@@ -3,7 +3,6 @@ package ch.hsr.waktu.presentation.view.usermanagment;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -17,39 +16,35 @@ import ch.hsr.waktu.domain.User;
 import ch.hsr.waktu.domain.UserProperties;
 import ch.hsr.waktu.presentation.model.UserTreeModel;
 
-public class UserManagmentView extends JFrame {
+public class UserManagmentView extends JPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -988600126721632829L;
-	public JPanel contentPane;
 	
 	private JTree userTree;
-	private JPanel pnDetails;
+	private JSplitPane splitPane;
 
 	/**
 	 * Create the frame.
 	 */
 	public UserManagmentView() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		setBorder(new EmptyBorder(5, 5, 5, 5));
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 0};
 		gbl_contentPane.rowHeights = new int[]{0, 0};
 		gbl_contentPane.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{1.0, Double.MIN_VALUE};
-		contentPane.setLayout(gbl_contentPane);
+		setLayout(gbl_contentPane);
 		
-		JSplitPane splitPane = new JSplitPane();
+		splitPane = new JSplitPane();
 		GridBagConstraints gbc_splitPane = new GridBagConstraints();
 		gbc_splitPane.fill = GridBagConstraints.BOTH;
 		gbc_splitPane.gridx = 0;
 		gbc_splitPane.gridy = 0;
-		contentPane.add(splitPane, gbc_splitPane);
+		add(splitPane, gbc_splitPane);
 		
 		JPanel pnTree = new JPanel();
 		splitPane.setLeftComponent(pnTree);
@@ -82,17 +77,17 @@ public class UserManagmentView extends JFrame {
 				    if (selectedNode instanceof UserProperties) {
 				    	UserProperties userProperties = (UserProperties) selectedNode;
 				    	if (userProperties.getDescription().equals("Daten")) {
-				    		pnDetails = new UserDetailView((User)parentPath.getLastPathComponent());
+				    		splitPane.setRightComponent(new UserDetailView((User)parentPath.getLastPathComponent()));
 				    	}
 				    	else {
-				    		pnDetails = new JPanel();
+				    		splitPane.setRightComponent(new JPanel());
 				    	}
 				    }
 				    
 			}
 		});
 		
-		pnDetails = new JPanel();
+		JPanel pnDetails = new JPanel();
 		splitPane.setRightComponent(pnDetails);
 		GridBagLayout gbl_pnDetails = new GridBagLayout();
 		gbl_pnDetails.columnWidths = new int[]{0};

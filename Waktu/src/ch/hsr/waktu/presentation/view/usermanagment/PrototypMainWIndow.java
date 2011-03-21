@@ -1,11 +1,11 @@
 package ch.hsr.waktu.presentation.view.usermanagment;
 
-import java.awt.EventQueue;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 import javax.swing.JFrame;
-import java.awt.GridBagLayout;
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import java.awt.GridBagConstraints;
 
 public class PrototypMainWIndow {
 
@@ -40,8 +40,10 @@ public class PrototypMainWIndow {
 		gbc_tabbedPane.gridy = 0;
 		frame.getContentPane().add(tabbedPane, gbc_tabbedPane);
 		
+		tabbedPane.add("Projekte", new JPanel());
+		
 		UserManagmentView userView = new UserManagmentView();
-		tabbedPane.add(userView.getContentPane());
+		tabbedPane.add("Benutzer", userView);
 	}
 	
 	public void setVisible(boolean visible) {
