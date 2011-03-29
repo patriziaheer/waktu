@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<project default="main" basedir=".">
+
+<property name="qtjambi.base" value="/Applications/qtjambi-mac-gpl-4.3.3_01"/>
+
+<target name="main" >
+	<exec executable="${qtjambi.base}/bin/juic">
+		<env key="DYLD_LIBRARY_PATH" path="${env.DYLD_LIBRARY_PATH}:${qtjambi.base}/lib"/>
+		<arg value="-cp"/>
+		<arg value="src"/>
+		<arg value="-d"/>
+		<arg value="Generated JUIC files"/>
+	</exec>
+
+</target>
+  
+</project>

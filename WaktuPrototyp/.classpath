@@ -3,6 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="Generated JUIC files"/>
-	<classpathentry kind="lib" path="/Users/patriziaheer/Documents/qtjambi-mac-lgpl-4.5.2_01/qtjambi-4.5.2_01.jar"/>
+	<classpathentry kind="var" path="JAMBI_LOCATION/qtjambi-4.5.2_01.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
