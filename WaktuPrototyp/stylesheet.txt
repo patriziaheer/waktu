@@ -1,6 +1,6 @@
 QWidget {
 	background-color: white;
-	font-size: 18px;
+	font-size: 12px;
 	color: black
 }
 QPushButton {
@@ -9,7 +9,7 @@ QPushButton {
 QListView {
 	border: 2px solid #E0E0E0;
 	selection-background-color: #E0E0E0;
-	font-size: 18px
+	font-size: 12px
 }
 QColumnView {
 	border: 2px solid #E0E0E0;
@@ -32,7 +32,7 @@ QTabBar::pane { /* The tab widget frame */
 
 QTabBar::tab-bar {
     alignment: center;
-    font: 15px
+    font: 12px
 }
 
  /* Style the tab using the tab sub-control. Note that
@@ -47,7 +47,7 @@ QTabBar::tab {
     border-top-right-radius: 4px;
     min-width: 15ex;
     padding: 2px;
-    font: 15px
+    font: 10px
 }
 
 QTabBar::tab:selected, QTabBar::tab:hover {
@@ -59,7 +59,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
 QTabBar::tab:selected {
     border-color: #9B9B9B;
     border-bottom-color: #C2C7CB; /* same as pane color */
-    font: 15px
+    font: 10px
 }
 
 QScrollBar:vertical { 
@@ -96,8 +96,6 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 	background: none
 }
 
-
-
 QScrollBar:horizontal { 
 	border: 2px #E0E0E0; 
 	background: grey; 
@@ -130,5 +128,19 @@ QScrollBar:left-arrow:horizontal, QScrollBar::right-arrow:horizontal {
 } 
 QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal { 
 	background: none
+}
+
+QGroupBox {
+    background-color: white;
+    border: 2px solid gray;
+    border-radius: 5px;
+    margin-top: 1ex;  leave space at the top for the title 
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;  position at the top center 
+    padding: 0 3px;
+    background-color: white;
 }
 
