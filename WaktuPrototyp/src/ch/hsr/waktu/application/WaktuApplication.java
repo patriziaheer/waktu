@@ -8,6 +8,9 @@ import ch.hsr.waktu.domain.User;
 import ch.hsr.waktu.domain.UserProperties;
 import ch.hsr.waktu.presentation.WaktuMainWindow;
 
+import com.trolltech.qt.core.QFile;
+import com.trolltech.qt.core.QIODevice;
+import com.trolltech.qt.core.QTextStream;
 import com.trolltech.qt.gui.QApplication;
 
 
@@ -21,6 +24,9 @@ public class WaktuApplication {
         initUsers();
 
         WaktuMainWindow testWaktuMainWindow = new WaktuMainWindow();
+    	String sheet = getStyleSheet("stylesheet.txt");
+    	QApplication.setStyle(sheet);
+        
         testWaktuMainWindow.show();
 
         QApplication.exec();
@@ -38,5 +44,26 @@ public class WaktuApplication {
 		Domain.getInstance().addUser(new User("Simon Stäheli"));
 		Domain.getInstance().addUser(new User("Michael Fisler"));
 	}
+	
+    
+    private static String getStyleSheet(String path) {
+    	
+        QFile file = new QFile(path);
+        if (!file.open(new QIODevice.OpenMode(QIODevice.OpenModeFlag.ReadOnly, QIODevice.OpenModeFlag.Text))) {
+            return null;
+        }
+
+        QTextStream in = new QTextStream(file);
+        
+        StringBuffer buffer = new StringBuffer();
+        
+        
+        while (in.atEnd() == false) {
+        	buffer.append(in.readLine());
+        }
+        
+        file.close();
+    	return buffer.toString();
+    }
 
 }

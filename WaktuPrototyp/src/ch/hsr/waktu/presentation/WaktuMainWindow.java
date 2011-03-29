@@ -15,7 +15,6 @@ public class WaktuMainWindow extends QMainWindow {
         ui.setupUi(this);
         ui.tabWidget.addTab(new UserDetails(), "Benutzer");
         ui.actionClose.triggered.connect(this, "closeApp()");
-        setMenuBar(ui.menubar);
     }
 
     public WaktuMainWindow(QWidget parent) {

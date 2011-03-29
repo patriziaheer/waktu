@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'UserDetails.jui'
 **
-** Created: Mo. Mrz 28 15:30:25 2011
+** Created: Di. Mrz 29 09:02:24 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -15,8 +15,10 @@ import com.trolltech.qt.gui.*;
 public class Ui_UserDetails implements com.trolltech.qt.QUiForm<QWidget>
 {
     public QGridLayout gridLayout;
-    public QTreeView treeView;
     public QWidget widget;
+    public QGridLayout gridLayout_2;
+    public QTreeView treeView;
+    public QLineEdit lineEdit;
 
     public Ui_UserDetails() { super(); }
 
@@ -26,7 +28,12 @@ public class Ui_UserDetails implements com.trolltech.qt.QUiForm<QWidget>
         UserDetails.resize(new QSize(490, 375).expandedTo(UserDetails.minimumSizeHint()));
         gridLayout = new QGridLayout(UserDetails);
         gridLayout.setObjectName("gridLayout");
-        treeView = new QTreeView(UserDetails);
+        widget = new QWidget(UserDetails);
+        widget.setObjectName("widget");
+        gridLayout_2 = new QGridLayout(widget);
+        gridLayout_2.setMargin(0);
+        gridLayout_2.setObjectName("gridLayout_2");
+        treeView = new QTreeView(widget);
         treeView.setObjectName("treeView");
         QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Expanding, com.trolltech.qt.gui.QSizePolicy.Policy.Expanding);
         sizePolicy.setHorizontalStretch((byte)0);
@@ -34,13 +41,15 @@ public class Ui_UserDetails implements com.trolltech.qt.QUiForm<QWidget>
         sizePolicy.setHeightForWidth(treeView.sizePolicy().hasHeightForWidth());
         treeView.setSizePolicy(sizePolicy);
 
-        gridLayout.addWidget(treeView, 0, 0, 1, 1);
+        gridLayout_2.addWidget(treeView, 1, 0, 1, 1);
 
-        widget = new QWidget(UserDetails);
-        widget.setObjectName("widget");
-        widget.setMinimumSize(new QSize(200, 150));
+        lineEdit = new QLineEdit(widget);
+        lineEdit.setObjectName("lineEdit");
 
-        gridLayout.addWidget(widget, 0, 1, 1, 1);
+        gridLayout_2.addWidget(lineEdit, 0, 0, 1, 1);
+
+
+        gridLayout.addWidget(widget, 2, 1, 1, 1);
 
         retranslateUi(UserDetails);
 

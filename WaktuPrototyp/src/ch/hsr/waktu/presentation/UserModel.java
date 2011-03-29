@@ -9,6 +9,7 @@ import com.trolltech.qt.core.Qt;
 import com.trolltech.qt.core.Qt.Orientation;
 import com.trolltech.qt.gui.QFont;
 import com.trolltech.qt.gui.QIcon;
+import com.trolltech.qt.gui.QPixmap;
 import com.trolltech.qt.gui.QTreeModel;
 
 
@@ -59,13 +60,13 @@ public class UserModel extends QTreeModel {
 	public Object data(Object value, int role) {
 		switch (role) {
 			case Qt.ItemDataRole.DisplayRole: {
-				return value.toString();
+				return value;
 			}
 			case Qt.ItemDataRole.ToolTipRole: {
 				return value.toString();
 			}
 			case Qt.ItemDataRole.DecorationRole: {
-				QIcon icon = new QIcon("PfeilDown.JPG");
+				QIcon icon = new QIcon(new QPixmap("classpath:PfeilDown.JPG"));
 				return icon;
 			} case Qt.ItemDataRole.FontRole:
 				QFont font = new QFont();
