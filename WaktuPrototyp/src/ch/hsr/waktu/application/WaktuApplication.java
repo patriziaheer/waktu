@@ -12,6 +12,8 @@ import com.trolltech.qt.core.QFile;
 import com.trolltech.qt.core.QIODevice;
 import com.trolltech.qt.core.QTextStream;
 import com.trolltech.qt.gui.QApplication;
+import com.trolltech.qt.gui.QStyle;
+import com.trolltech.qt.gui.QStyleFactory;
 
 
 public class WaktuApplication {
@@ -24,8 +26,11 @@ public class WaktuApplication {
         initUsers();
 
         WaktuMainWindow testWaktuMainWindow = new WaktuMainWindow();
-    	String sheet = getStyleSheet("stylesheet.txt");
-    	QApplication.setStyle(sheet);
+    	//String sheet = getStyleSheet("stylesheet.txt");
+    	QApplication.setStyle("Macintosh");
+        /*for (String s: QStyleFactory.keys()) {
+        	System.out.println(s);
+        }*/
         
         testWaktuMainWindow.show();
 
@@ -46,7 +51,7 @@ public class WaktuApplication {
 	}
 	
     
-    private static String getStyleSheet(String path) {
+    /*private static String getStyleSheet(String path) {
     	
         QFile file = new QFile(path);
         if (!file.open(new QIODevice.OpenMode(QIODevice.OpenModeFlag.ReadOnly, QIODevice.OpenModeFlag.Text))) {
@@ -64,6 +69,6 @@ public class WaktuApplication {
         
         file.close();
     	return buffer.toString();
-    }
+    }*/
 
 }
