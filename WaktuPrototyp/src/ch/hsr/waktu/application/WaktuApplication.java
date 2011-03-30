@@ -6,7 +6,7 @@ package ch.hsr.waktu.application;
 import ch.hsr.waktu.domain.Domain;
 import ch.hsr.waktu.domain.User;
 import ch.hsr.waktu.domain.UserProperties;
-import ch.hsr.waktu.presentation.WaktuMainWindow;
+import ch.hsr.waktu.presentation.view.WaktuMainWindow;
 
 import com.trolltech.qt.core.QFile;
 import com.trolltech.qt.core.QIODevice;
@@ -19,9 +19,10 @@ public class WaktuApplication {
 
     public static void main(String[] args) {
         QApplication app = new QApplication(args);
-        String sheet = getStyleSheet("stylesheet.txt");
+        String sheet = getStyleSheet("classpath:stylesheet.txt");
         app.setStyleSheet(sheet);
-        
+        //QApplication.initialize(args);
+    	//QApplication.setStyle("Cleanlooks");
         initProperties();
         initUsers();
 
