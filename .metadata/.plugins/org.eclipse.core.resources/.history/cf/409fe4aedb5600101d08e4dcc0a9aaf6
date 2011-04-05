@@ -1,0 +1,80 @@
+package ch.hsr.waktu.presentation.view.usermanagment;
+
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+
+import ch.hsr.waktu.presentation.view.usermanagment.UserManagmentView;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class PrototypMainWIndow {
+
+	private JFrame frame;
+
+
+	/**
+	 * Create the application.
+	 */
+	public PrototypMainWIndow() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		frame.getContentPane().setLayout(gridBagLayout);
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setSelectedIndex(1);
+		GridBagConstraints gbc_tabbedPane = new GridBagConstraints();
+		gbc_tabbedPane.fill = GridBagConstraints.BOTH;
+		gbc_tabbedPane.gridx = 0;
+		gbc_tabbedPane.gridy = 0;
+		frame.getContentPane().add(tabbedPane, gbc_tabbedPane);
+		
+		tabbedPane.add("Projekte", new JPanel());
+		
+		UserManagmentView userView = new UserManagmentView();
+		tabbedPane.add("Benutzer", userView);
+		
+		JMenuBar menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+		
+		JMenu mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+		
+		JMenuItem mnAddUser = new JMenuItem("Add User");
+		mnAddUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//TODO Check if can add
+				
+			}
+		});
+		mnFile.add(mnAddUser);
+		
+		JMenuItem mnSAve = new JMenuItem("Save");
+		mnFile.add(mnSAve);
+	}
+	
+	public void setVisible(boolean visible) {
+		frame.setVisible(true);
+	}
+
+}

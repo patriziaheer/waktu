@@ -1,0 +1,27 @@
+
+
+/**
+ * @author simon.staeheli
+ * @version 1.0
+ * @created 01-Apr-2011 15:36:30
+ */
+public class LoginController {
+
+	public LoginController(){
+
+	}
+
+	public void finalize() throws Throwable {
+
+	}
+
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 */
+	public boolean login(String username, String password){
+		return false;
+	}
+
+}

@@ -1,0 +1,33 @@
+package ch.hsr.waktu.presentation.view.usermanagment;
+import ch.hsr.waktu.controller.UserController;
+import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.presentation.model.UserTableModel;
+import ch.hsr.waktu.presentation.view.usermanagment.jui.Ui_UserData;
+
+import com.trolltech.qt.core.QModelIndex;
+import com.trolltech.qt.gui.QWidget;
+
+
+public class UserData extends QWidget{
+
+	Ui_UserData ui = new Ui_UserData();
+	private UserTableModel model;
+	
+	public UserData(Usr user) {
+		ui.setupUi(this);
+		ui.lblUser.setText(user.toString());
+		model = new UserTableModel();
+		ui.tableView.setModel(model);
+		ui.tableView.horizontalHeader().clicked.connect(this, "headerClicked(QModelIndex)");
+		UserController.getInstance().update.connect(this, "updateData()");
+	}
+	
+	@SuppressWarnings("unused")
+	private void headerClicked(QModelIndex index) {
+		model.sort(index.column());
+	}
+	
+	public void updateData() {
+		model.dataChanged.emit(model.index(0, 0), model.index(model.rowCount(), model.columnCount()));
+	}
+}

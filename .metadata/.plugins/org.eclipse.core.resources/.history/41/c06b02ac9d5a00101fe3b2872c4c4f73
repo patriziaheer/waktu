@@ -1,0 +1,1 @@
+java -XstartOnFirstThread -D"java.library.path=lib" -jar waktu.jar

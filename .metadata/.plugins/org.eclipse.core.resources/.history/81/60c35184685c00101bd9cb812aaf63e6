@@ -1,0 +1,27 @@
+package ch.hsr.waktu.domain;
+
+import com.trolltech.qt.core.QDateTime;
+
+/**
+ * @author simon.staeheli
+ * @version 1.0
+ * @created 01-Apr-2011 15:36:30
+ */
+public class WorkSession {
+
+	private QDateTime end;
+	private QDateTime start;
+	private Usr UserID;
+	private WorkPackage WorkPackageID;
+	public Usr m_Usr;
+	public WorkPackage m_WorkPackage;
+
+	public WorkSession(){
+
+	}
+
+	public void finalize() throws Throwable {
+
+	}
+
+}

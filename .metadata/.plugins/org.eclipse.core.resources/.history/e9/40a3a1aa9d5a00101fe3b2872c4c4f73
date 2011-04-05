@@ -1,0 +1,1 @@
+java -XstartOnFirstThread -D"java.library.path=/Users/patriziaheer/Documents/qtjambi-mac-lgpl-4.5.2_01/lib" -jar waktu.jar

@@ -1,0 +1,15 @@
+package ch.hsr.waktu.presentation.view.projectmanagment;
+
+import ch.hsr.waktu.presentation.view.projectmanagment.jui.Ui_ProjectWorkSessions;
+
+import com.trolltech.qt.gui.QWidget;
+
+public class ProjectWorkSessionsView extends QWidget {
+	
+	Ui_ProjectWorkSessions ui = new Ui_ProjectWorkSessions();
+	
+	public ProjectWorkSessionsView() {
+		ui.setupUi(this);
+	}
+
+}

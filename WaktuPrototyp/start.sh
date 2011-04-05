@@ -1,1 +1,0 @@
-java -d32 -XstartOnFirstThread -jar waktumac.jar

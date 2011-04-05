@@ -1,0 +1,121 @@
+package ch.hsr.waktu.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import ch.hsr.waktu.domain.Usr;
+
+import static org.eclipse.persistence.config.PersistenceUnitProperties.DDL_GENERATION;
+import static org.eclipse.persistence.config.PersistenceUnitProperties.DROP_AND_CREATE;
+
+public class PersistenceController {
+	private static String PERSISTENCE_UNIT_NAME = "waktu";
+	private EntityManagerFactory emf;
+	protected EntityManager em;
+	
+	
+	public void readAllEmployees() {
+		EntityManager em = getEMF().createEntityManager();
+
+		List<Employee> emps = em.createQuery(
+				"SELECT e FROM Employee e")
+				.getResultList();
+
+		Assert.assertNotNull(emps);
+		for (Employee emp : emps) {
+			System.out.println(emp.toDetailedString());
+		}
+
+		em.close();
+	}
+	
+	public void readAllUsers() {
+		EntityManager em = getEMF().createEntityManager();
+
+		List<Usr> usrs = em.createQuery(
+				"SELECT u FROM Usr u")
+				.getResultList();
+
+		for (Usr usr : usrs) {
+			System.out.println(usr.toString());
+		}
+
+		em.close();
+	}
+
+	
+	
+	protected EntityManagerFactory getEMF() {
+		if (emf == null) {
+			emf = createEMF();
+		}
+
+		return emf;
+	}
+
+	private EntityManagerFactory createEMF() {
+		try {
+			return Persistence.createEntityManagerFactory("waktu");
+		} catch (RuntimeException e) {
+			System.out.println("Persistence.createEMF FAILED: "
+					+ e.getMessage());
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	
+	
+	/*public void init() {
+		Map properties = new HashMap();
+
+		// Add in properties to have the database re-created
+		properties.put(DDL_GENERATION, DROP_AND_CREATE);
+		// properties.put(TARGET_DATABASE, TargetDatabase.Oracle10);
+
+		EntityManagerFactory emf = Persistence
+				.createEntityManagerFactory(PERSISTENCE_UNIT_NAME, properties);
+        em = emf.createEntityManager();
+	}
+	
+
+	public void crudCustomer() {
+		
+		try {
+			Usr user = new Usr("Fredi", "Hinz");
+			em.getTransaction().begin();
+			em.persist(user);
+			em.getTransaction().commit();
+			
+			Integer customerId = user.getId();
+			user = em.find(Usr.class, customerId);
+			System.out.println(user.getFirstname());
+			System.out.println(user.getName());
+			
+			em.getTransaction().begin();
+	        user.setFirstname("Heiri");
+	        em.getTransaction().commit();
+	        
+	        user = em.find(Usr.class, customerId);
+			System.out.println(user.getFirstname());
+			
+			em.getTransaction().begin();
+	        em.remove(user);
+	        em.getTransaction().commit();
+	        
+	        if (em.find(Usr.class, customerId)!= null) {
+	        	System.out.println("customer should have been deleted");
+	        }
+		}
+		finally {
+			if(em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+        	}
+		}
+	}*/
+	
+}

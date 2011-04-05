@@ -1,0 +1,11 @@
+package ch.hsr.waktu.presentation.view.projectmanagment;
+
+import ch.hsr.waktu.presentation.view.projectmanagment.jui.Ui_WorkPackage;
+
+import com.trolltech.qt.gui.QWidget;
+
+public class WorkPackageView extends QWidget{
+	
+	Ui_WorkPackage ui = new Ui_WorkPackage();
+
+}

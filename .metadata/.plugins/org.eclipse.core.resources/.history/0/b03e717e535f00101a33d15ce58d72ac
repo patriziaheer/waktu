@@ -1,0 +1,51 @@
+package ch.hsr.waktu.presentation.view.usermanagment;
+import ch.hsr.waktu.controller.UserController;
+import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.presentation.view.usermanagment.jui.Ui_UserData;
+
+import com.trolltech.qt.gui.QWidget;
+
+
+public class UserDataView extends QWidget{
+
+	Ui_UserData ui = new Ui_UserData();
+	private Usr usr;
+	
+	public UserDataView(Usr user) {
+		this.usr = user;
+		ui.setupUi(this);
+		UserController.getInstance().update.connect(this, "updateData()");
+		UserController.getInstance().add.connect(this, "addData(Usr)");
+	}
+	
+	private void setFields() {
+		if (usr != null) {
+			ui.txtName.setText(usr.getName());
+			ui.txtName.setEnabled(false);
+			
+			ui.txtFirstname.setText(usr.getFirstname());
+			ui.txtFirstname.setEnabled(false);
+			
+			//ui.txtPensum.setValue()
+			ui.txtPensum.setEnabled(false);
+			
+			//ui.txtHolidays.setValue(val)
+			ui.txtHolidays.setEnabled(galse);
+		} else {
+			ui.grpOverview.setVisible(false);
+			ui.btnAdd.setVisible(true);
+		}
+	}
+	
+	@SuppressWarnings("unused")
+	private void updateData() {
+		
+	}
+	
+	@SuppressWarnings("unused")
+	private void addData(Usr usr) {
+		
+	}
+	
+	
+}

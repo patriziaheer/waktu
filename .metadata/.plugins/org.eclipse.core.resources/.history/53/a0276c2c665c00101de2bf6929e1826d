@@ -1,0 +1,49 @@
+
+
+/**
+ * @author simon.staeheli
+ * @version 1.0
+ * @created 01-Apr-2011 15:36:30
+ */
+public class ProjectController {
+
+	public ProjectController(){
+
+	}
+
+	public void finalize() throws Throwable {
+
+	}
+
+	/**
+	 * 
+	 * @param projectIdentifier
+	 * @param description
+	 * @param projectManager
+	 * @param plannedTime
+	 */
+	public boolean addProject(String projectIdentifier, String description, User projectManager, int plannedTime){
+		return false;
+	}
+
+	public List<Project> getActiveProjects(){
+		return null;
+	}
+
+	public List<Project> getAllProjects(){
+		return null;
+	}
+
+	public List<Project> getInactiveProjects(){
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param project
+	 */
+	public boolean updateProject(Project project){
+		return false;
+	}
+
+}

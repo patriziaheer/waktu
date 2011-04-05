@@ -1,0 +1,15 @@
+package ch.hsr.waktu.presentation.view.projectmanagment;
+
+import ch.hsr.waktu.presentation.view.projectmanagment.jui.Ui_ProjectStaff;
+
+import com.trolltech.qt.gui.QWidget;
+
+public class ProjectStaffView extends QWidget {
+	
+	Ui_ProjectStaff ui = new Ui_ProjectStaff();
+	
+	public ProjectStaffView() {
+		ui.setupUi(this);
+	}
+
+}

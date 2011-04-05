@@ -1,0 +1,134 @@
+QWidget {
+	background-color: white;
+	font-size: 15px;
+	color: black
+}
+QPushButton {
+	background-color: #E0E0E0 
+}
+QListView {
+	border: 2px solid #E0E0E0;
+	selection-background-color: #E0E0E0;
+	font-size: 15px
+}
+QColumnView {
+	border: 2px solid #E0E0E0;
+	selection-background-color: #E0E0E0
+}
+QTextEdit {
+	border: 2px solid #E0E0E0;
+	selection-background-color: #E0E0E0
+}
+QLineEdit {
+	border: 2px solid #E0E0E0;
+	selection-background-color: #E0E0E0
+}
+
+QTabBar::pane { /* The tab widget frame */
+    border-top: 2px solid #C2C7CB;
+    position: absolute;
+    top: -0.5em;
+}
+
+QTabBar::tab-bar {
+    alignment: center;
+    font: 15px
+}
+
+ /* Style the tab using the tab sub-control. Note that
+     it reads QTabBar _not_ QTabWidget */
+QTabBar::tab {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                 stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,
+                                 stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);
+    border: 2px solid #C4C4C3;
+    border-bottom-color: #C2C7CB; /* same as the pane color */
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    min-width: 15ex;
+    padding: 2px;
+    font: 12px
+}
+
+QTabBar::tab:selected, QTabBar::tab:hover {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #fafafa, stop: 0.4 #f4f4f4,
+                                stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);
+}
+
+QTabBar::tab:selected {
+    border-color: #9B9B9B;
+    border-bottom-color: #C2C7CB; /* same as pane color */
+    font: 12px
+}
+
+QScrollBar:vertical { 
+	border: 2px #E0E0E0; 
+	background: grey; 
+	width: 15px; 
+	margin: 20px 0px 20px 0px;
+}  
+QScrollBar::handle:vertical { 
+	background: #E0E0E0; 
+	min-width: 20px;
+}  
+QScrollBar::add-line:vertical { 
+	border: 2px solid #E0E0E0; 
+	background: white; 
+	height: 20px; 
+	subcontrol-position: bottom; 
+	subcontrol-origin: margin;
+} 
+QScrollBar::sub-line:vertical { 
+	border: 2px solid #E0E0E0; 
+	background: white; 
+	height: 20px; 
+	subcontrol-position: top; 
+	subcontrol-origin: margin;
+}  
+QScrollBar:left-arrow:vertical, QScrollBar::right-arrow:vertical { 
+	border: 2px #E0E0E0; 
+	width: 3px; 
+	height: 3px; 
+	background: white;
+} 
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical { 
+	background: none
+}
+
+
+
+QScrollBar:horizontal { 
+	border: 2px #E0E0E0; 
+	background: grey; 
+	height: 15px; 
+	margin: 0px 20px 0px 20px;
+}  
+QScrollBar::handle:horizontal { 
+	background: #E0E0E0; 
+	min-height: 20px;
+}  
+QScrollBar::add-line:horizontal { 
+	border: 2px solid #E0E0E0; 
+	background: white; 
+	width: 20px; 
+	subcontrol-position: left; 
+	subcontrol-origin: margin;
+} 
+QScrollBar::sub-line:horizontal { 
+	border: 2px solid #E0E0E0; 
+	background: white; 
+	width: 20px; 
+	subcontrol-position: top; 
+	subcontrol-origin: rigth;
+}  
+QScrollBar:left-arrow:horizontal, QScrollBar::right-arrow:horizontal { 
+	border: 2px #E0E0E0; 
+	width: 3px; 
+	height: 3px; 
+	background: white;
+} 
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal { 
+	background: none
+}
+

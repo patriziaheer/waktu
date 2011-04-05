@@ -1,0 +1,39 @@
+package ch.hsr.waktu.domain;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+
+public class User {
+	@Id
+	@GeneratedValue
+	private int id;
+	private String name;
+	private String firstname;
+
+	public User(String name) {
+		this.name = name;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getFirstName() {
+		return firstname;
+	}
+	
+	public void setFirstName(String firstname) {
+		this.firstname = firstname;
+	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
+
+}

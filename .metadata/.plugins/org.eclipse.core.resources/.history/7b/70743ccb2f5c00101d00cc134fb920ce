@@ -1,0 +1,78 @@
+package ch.hsr.waktu.presentation.model;
+
+import java.sql.Date;
+
+import ch.hsr.waktu.controller.UserController;
+import ch.hsr.waktu.domain.Usr;
+
+import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User;
+import com.trolltech.qt.core.QAbstractItemModel;
+import com.trolltech.qt.core.QModelIndex;
+import com.trolltech.qt.core.Qt;
+import com.trolltech.qt.core.Qt.ItemFlag;
+import com.trolltech.qt.core.Qt.ItemFlags;
+import com.trolltech.qt.core.Qt.SortOrder;
+
+public class UserTableModel extends QAbstractItemModel{
+	
+	public UserTableModel() {
+	}
+
+	@Override
+	public int columnCount(QModelIndex arg0) {
+		return 2;
+	}
+
+	@Override
+	public int rowCount(QModelIndex arg0) {
+		return UserController.getInstance().getAllUsers().size();
+	}
+
+	@Override
+	public Object data(QModelIndex index, int role) {
+		if (role == Qt.ItemDataRole.DisplayRole) {
+			switch (index.column()) {
+			case 0: return UserController.getInstance().getAllUsers().get(index.row()).getFirstname();
+			case 1: return UserController.getInstance().getAllUsers().get(index.row()).getName();
+			}
+		}
+		return null;
+	}
+	
+	@Override
+	public boolean setData(QModelIndex index, Object value, int role) {
+		Usr user = UserController.getInstance().getAllUsers().get(index.row());
+		switch (index.column()) {
+		case 0: {
+			user.setFirstname((String)value);
+		}
+		break;
+		case 1: {
+			user.setFirstname((String)value);
+		}
+		break;
+		}
+		user.setName((String)value);
+		return super.setData(index, value, role);
+	}
+	
+	@Override
+	public ItemFlags flags(QModelIndex index) {
+		if (index.row() == 0) {
+			Qt.ItemFlag[] flags = {Qt.ItemFlag.ItemIsEditable,Qt.ItemFlag.ItemIsSelectable,Qt.ItemFlag.ItemIsEnabled}; 
+			return new Qt.ItemFlags(flags);
+		}
+		return super.flags(index);
+	}
+
+	@Override
+	public QModelIndex index(int row, int column, QModelIndex arg2) {
+		return createIndex(row, column);
+	}
+
+	@Override
+	public QModelIndex parent(QModelIndex arg0) {
+		return null;
+	}
+
+}

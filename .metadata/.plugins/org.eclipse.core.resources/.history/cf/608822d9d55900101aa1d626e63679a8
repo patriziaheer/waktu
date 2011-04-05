@@ -1,0 +1,14 @@
+package ch.hsr.waktu.presentation;
+
+import com.trolltech.qt.core.QModelIndex;
+import com.trolltech.qt.gui.QSortFilterProxyModel;
+
+public class SortFilter extends QSortFilterProxyModel {
+	
+	@Override
+	protected boolean filterAcceptsRow(int source_row, QModelIndex source_parent) {
+		// TODO Auto-generated method stub
+		return super.filterAcceptsRow(source_row, source_parent);
+	}
+
+}

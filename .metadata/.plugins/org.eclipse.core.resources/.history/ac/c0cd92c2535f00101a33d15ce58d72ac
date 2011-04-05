@@ -1,0 +1,26 @@
+package ch.hsr.waktu.presentation.view;
+
+import com.trolltech.qt.gui.QMainWindow;
+
+import ch.hsr.waktu.presentation.view.jui.Ui_ManagmentWindow;
+import ch.hsr.waktu.presentation.view.projectmanagment.ProjectDetails;
+import ch.hsr.waktu.presentation.view.usermanagment.UserDetails;
+
+public class ManagmentView extends QMainWindow {
+
+	private Ui_ManagmentWindow ui = new Ui_ManagmentWindow();
+	private ProjectDetails projectDetails;
+	private UserDetails userDetails;
+	
+	public ManagmentView() {
+		ui.setupUi(this);
+		ui.tabWidget.removeTab(0);
+		projectDetails = new ProjectDetails();
+		ui.tabWidget.addTab(projectDetails, tr("Projects"));
+		userDetails = new UserDetails(); 
+		ui.tabWidget.addTab(, tr("Users"));
+		
+		QToo
+	}
+	
+}

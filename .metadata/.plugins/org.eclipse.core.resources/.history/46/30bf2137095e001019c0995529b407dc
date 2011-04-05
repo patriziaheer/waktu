@@ -1,0 +1,17 @@
+package ch.hsr.waktu.presentation.view;
+
+import com.trolltech.qt.gui.QMainWindow;
+
+import ch.hsr.waktu.presentation.view.jui.Ui_ManagmentWindow;
+
+public class ManagmentView extends QMainWindow {
+
+	Ui_ManagmentWindow ui = new Ui_ManagmentWindow();
+	
+	public ManagmentView() {
+		ui.setupUi(this);
+		ui.tabWidget.removeTab(0);
+		ui.tabWidget.addTab(widget, arg__2)
+	}
+	
+}

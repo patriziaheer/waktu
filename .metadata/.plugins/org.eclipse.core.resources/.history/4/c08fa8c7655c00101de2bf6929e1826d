@@ -1,0 +1,42 @@
+
+
+/**
+ * @author simon.staeheli
+ * @version 1.0
+ * @created 01-Apr-2011 15:36:30
+ */
+public class FavoriteController {
+
+	private static FavoriteController theInstance = null;
+	
+	private FavoriteController(){
+
+	}
+
+	/**
+	 * 
+	 * @param workPackage
+	 * @param startTime
+	 * @param endTime
+	 */
+	public boolean addFavorite(WorkPackage workPackage, Time startTime, Time endTime){
+		return false;
+	}
+
+	/**
+	 * 
+	 * @param user
+	 */
+	public List<Favorite> getFavorites(User user){
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param favorite
+	 */
+	public boolean removeFavorite(Favorite favorite){
+		return false;
+	}
+
+}

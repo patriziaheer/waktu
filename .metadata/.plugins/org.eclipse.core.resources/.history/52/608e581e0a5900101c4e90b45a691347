@@ -1,0 +1,14 @@
+package ch.hsr.waktu.presentation.view.usermanagment;
+
+import javax.swing.JPanel;
+
+public class UserHoursView extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public UserHoursView() {
+
+	}
+
+}

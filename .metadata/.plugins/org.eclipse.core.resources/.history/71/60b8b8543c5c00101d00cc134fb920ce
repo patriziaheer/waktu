@@ -1,0 +1,74 @@
+package ch.hsr.waktu.application;
+
+
+
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
+import ch.hsr.waktu.controller.UserController;
+import ch.hsr.waktu.domain.UserProperties;
+import ch.hsr.waktu.presentation.view.WaktuMainWindow;
+
+import com.trolltech.qt.core.QFile;
+import com.trolltech.qt.core.QIODevice;
+import com.trolltech.qt.core.QTextStream;
+import com.trolltech.qt.gui.QApplication;
+
+
+public class WaktuApplication {
+	
+	private static Logger logger = Logger.getRootLogger();
+	
+
+    public static void main(String[] args) {
+		PropertyConfigurator.configure("classpath:settings");
+    	logger.info("Initialize Application");
+        QApplication app = new QApplication(args);
+        String sheet = getStyleSheet("classpath:stylesheet.txt");
+        app.setStyleSheet(sheet);
+        initProperties();
+        initUsers();
+
+        WaktuMainWindow testWaktuMainWindow = new WaktuMainWindow();
+        
+        testWaktuMainWindow.show();
+
+        QApplication.exec();
+    }
+	
+	
+	private static void initProperties() {
+		UserController.getInstance().addUserProperty(new UserProperties("Daten"));
+		UserController.getInstance().addUserProperty(new UserProperties("Projekte"));
+		UserController.getInstance().addUserProperty(new UserProperties("Stunden"));
+	}
+	
+	private static void initUsers() {
+		//UserController.getInstance().addUser(new User("Patrizia Heer"));
+		//UserController.getInstance().addUser(new User("Simon Stäheli"));
+		//UserController.getInstance().addUser(new User("Michael Fisler"));
+	}
+	
+    
+    private static String getStyleSheet(String path) {
+    	logger.info("Initialize Stylesheet");
+        QFile file = new QFile(path);
+        if (!file.open(new QIODevice.OpenMode(QIODevice.OpenModeFlag.ReadOnly, QIODevice.OpenModeFlag.Text))) {
+            return null;
+        }
+
+        QTextStream in = new QTextStream(file);
+        
+        StringBuffer buffer = new StringBuffer();
+        
+        
+        while (in.atEnd() == false) {
+        	buffer.append(in.readLine());
+        }
+        
+        file.close();
+    	return buffer.toString();
+    }
+
+}

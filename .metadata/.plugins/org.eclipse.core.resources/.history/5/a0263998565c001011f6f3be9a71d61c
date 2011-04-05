@@ -1,0 +1,43 @@
+package ch.hsr.waktu.presentation.view;
+
+
+import ch.hsr.waktu.controller.UserController;
+import ch.hsr.waktu.presentation.view.jui.Ui_WaktuMainWindow;
+import ch.hsr.waktu.presentation.view.usermanagment.UserDetails;
+
+import com.trolltech.qt.gui.QMainWindow;
+import com.trolltech.qt.gui.QMenuBar;
+import com.trolltech.qt.gui.QWidget;
+
+public class WaktuMainWindow extends QMainWindow {
+
+    Ui_WaktuMainWindow ui = new Ui_WaktuMainWindow();
+    private int curr = 0;
+    private UserDetails userDetails;
+
+
+    public WaktuMainWindow() {
+        ui.setupUi(this);
+        userDetails = new UserDetails();
+        ui.tabWidget.addTab(userDetails, "Benutzer");
+        ui.actionClose.triggered.connect(this, "closeApp()");
+        ui.actionAdd.triggered.connect(this, "add()");
+        QMenuBar menu = ui.menubar;
+        this.setMenuBar(menu);
+    }
+
+    public WaktuMainWindow(QWidget parent) {
+        super(parent);
+        ui.setupUi(this);
+    }
+    
+    public void add() {
+    	UserController.getInstance().add("name"+curr, "firstname"+curr);
+    	curr++;
+    }
+    
+    @SuppressWarnings("unused")
+	private void closeApp() {
+    	System.exit(0);
+    }
+}

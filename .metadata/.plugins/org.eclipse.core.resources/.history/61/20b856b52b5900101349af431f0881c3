@@ -1,0 +1,38 @@
+import com.trolltech.qt.gui.QTreeModel;
+
+
+public class UserModel extends QTreeModel {
+	
+	public UserModel() {
+		
+	}
+
+	@Override
+	public Object child(Object parent, int index) {
+		if (parent == null) {
+			return Domain.getInstance().getUsers().get(index);
+		} else if (parent instaceof User) {
+			return Domain.getInstance().getUserProperties().get(index);
+		}
+		return null;
+	}
+
+	@Override
+	public int childCount(Object parent) {
+		if (parent == null) {
+			return Domain.getInstance().getUsers().size();
+		} else if (parent instanceof User) {
+			return Domain.getInstance().getUserProperties().size();
+		}
+		return 0;
+	}
+
+	@Override
+	public String text(Object value) {
+		if (value == null) {
+			return "";
+		}
+		return value.toString();
+	}
+
+}

@@ -1,0 +1,23 @@
+
+
+/**
+ * @author simon.staeheli
+ * @version 1.0
+ * @created 01-Apr-2011 15:36:30
+ */
+public class ProjectStaff {
+
+	private Project ProjectID;
+	private User UserID;
+	public Project m_Project;
+	public Usr m_Usr;
+
+	public ProjectStaff(){
+
+	}
+
+	public void finalize() throws Throwable {
+
+	}
+
+}

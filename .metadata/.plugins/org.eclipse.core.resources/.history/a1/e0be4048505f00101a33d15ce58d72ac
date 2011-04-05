@@ -1,0 +1,15 @@
+package ch.hsr.waktu.presentation.view.usermanagment;
+
+import ch.hsr.waktu.presentation.view.usermanagment.jui.Ui_UserWorkSessions;
+
+import com.trolltech.qt.gui.QWidget;
+
+public class UserWorkSessionsView extends QWidget{ 
+	
+	Ui_UserWorkSessions ui = new Ui_UserWorkSessions();
+	
+	public UserWorkSessionsView() {
+		ui.setupUi(this);
+	}
+
+}

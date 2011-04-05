@@ -1,0 +1,78 @@
+/********************************************************************************
+** Form generated from reading ui file 'loginWindow.jui'
+**
+** Created: So. Apr 3 16:54:28 2011
+**      by: Qt User Interface Compiler version 4.5.2
+**
+** WARNING! All changes made in this file will be lost when recompiling ui file!
+********************************************************************************/
+
+package ch.hsr.waktu.presentation.view;
+
+import com.trolltech.qt.core.*;
+import com.trolltech.qt.gui.*;
+
+public class Ui_loginDialog implements com.trolltech.qt.QUiForm<QDialog>
+{
+    public QGridLayout gridLayout;
+    public QLineEdit txtUsername;
+    public QLineEdit txtPassword;
+    public QPushButton btnLogin;
+    public QPushButton btnCancel;
+    public QLabel lblPassword;
+    public QLabel lblUsernmae;
+
+    public Ui_loginDialog() { super(); }
+
+    public void setupUi(QDialog loginDialog)
+    {
+        loginDialog.setObjectName("loginDialog");
+        loginDialog.resize(new QSize(431, 146).expandedTo(loginDialog.minimumSizeHint()));
+        gridLayout = new QGridLayout(loginDialog);
+        gridLayout.setObjectName("gridLayout");
+        txtUsername = new QLineEdit(loginDialog);
+        txtUsername.setObjectName("txtUsername");
+
+        gridLayout.addWidget(txtUsername, 0, 1, 1, 2);
+
+        txtPassword = new QLineEdit(loginDialog);
+        txtPassword.setObjectName("txtPassword");
+
+        gridLayout.addWidget(txtPassword, 1, 1, 1, 2);
+
+        btnLogin = new QPushButton(loginDialog);
+        btnLogin.setObjectName("btnLogin");
+
+        gridLayout.addWidget(btnLogin, 3, 2, 1, 1);
+
+        btnCancel = new QPushButton(loginDialog);
+        btnCancel.setObjectName("btnCancel");
+
+        gridLayout.addWidget(btnCancel, 3, 1, 1, 1);
+
+        lblPassword = new QLabel(loginDialog);
+        lblPassword.setObjectName("lblPassword");
+
+        gridLayout.addWidget(lblPassword, 1, 0, 1, 1);
+
+        lblUsernmae = new QLabel(loginDialog);
+        lblUsernmae.setObjectName("lblUsernmae");
+
+        gridLayout.addWidget(lblUsernmae, 0, 0, 1, 1);
+
+        retranslateUi(loginDialog);
+
+        loginDialog.connectSlotsByName();
+    } // setupUi
+
+    void retranslateUi(QDialog loginDialog)
+    {
+        loginDialog.setWindowTitle(com.trolltech.qt.core.QCoreApplication.translate("loginDialog", "Dialog", null));
+        btnLogin.setText(com.trolltech.qt.core.QCoreApplication.translate("loginDialog", "Login", null));
+        btnCancel.setText(com.trolltech.qt.core.QCoreApplication.translate("loginDialog", "Cancel", null));
+        lblPassword.setText(com.trolltech.qt.core.QCoreApplication.translate("loginDialog", "Password:", null));
+        lblUsernmae.setText(com.trolltech.qt.core.QCoreApplication.translate("loginDialog", "Username:", null));
+    } // retranslateUi
+
+}
+

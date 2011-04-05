@@ -1,0 +1,59 @@
+
+
+/**
+ * @author pheer
+ * @version 1.0
+ * @created 01-Apr-2011 15:36:30
+ */
+public class PermissionController {
+
+	public PermissionController(){
+
+	}
+
+	public void finalize() throws Throwable {
+
+	}
+
+	/**
+	 * 
+	 * @param user
+	 */
+	public boolean canAddProject(User user){
+		return false;
+	}
+
+	/**
+	 * 
+	 * @param user
+	 */
+	public boolean canAddProjectStaff(User user){
+		return false;
+	}
+
+	/**
+	 * 
+	 * @param user
+	 */
+	public boolean canAddUser(User user){
+		return false;
+	}
+
+	/**
+	 * 
+	 * @param user
+	 */
+	public boolean canAddWorkPackage(User user){
+		return false;
+	}
+
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 */
+	public boolean canLogin(String username, String password){
+		return false;
+	}
+
+}

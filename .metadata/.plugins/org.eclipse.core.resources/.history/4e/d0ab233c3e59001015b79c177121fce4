@@ -1,0 +1,87 @@
+<project name="Waktu" default="zip" basedir=".">
+	<description>
+		Waktu
+	</description>
+
+	<property name="qtjambi.dir" value="/Users/patriziaheer/Documents/qtjambi-mac-lgpl-4.5.2_01/" />
+	
+	<!-- set global properties for this build -->
+	<property name="src" location="src" />
+	<property name="build" location="bin" />
+	<property name="dist" location="build" />
+	<property name="dist.zip" location="Waktu.zip" />
+	
+	
+	<property name="qt.src" location="Generated JUIC files" />
+	<property name="qt.bin" location="${build}" />
+
+		
+	<path id="classpath">
+		<path location="${qt.src}" />
+		<path location="${jar.dir}/${ant.project.name}.jar" />
+		<fileset dir="${qtjambi.dir}" includes="*.jar" />
+	</path>
+		
+	<target name="init">
+		<!-- Create the time stamp -->
+		<tstamp />
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${dist}/lib" />	
+		<mkdir dir="${build}" />
+		
+		<echo level="debug">Creating dir ${dist}</echo>
+	</target>
+
+	<target name="compile" depends="init" description="compile the source">
+		<!-- Compile the java code from ${src} into ${build} -->		
+
+		<echo level="debug">Compile the Qt Designer Source from ${qt.src} to ${qt.bin}</echo>
+		<javac srcdir="${qt.src}" destdir="${qt.bin}">
+			<classpath>
+				<fileset dir="${qtjambi.dir}" includes="*.jar" />
+			</classpath>
+		</javac>
+	
+		
+		<echo level="debug">Compile the Dermatologist source from ${src} to ${build}</echo>
+		<javac srcdir="${src}" destdir="${build}">
+			<classpath refid="classpath" />
+		</javac>
+		
+	</target>
+
+	<target name="dist" depends="compile" description="generate the distribution">
+		<!-- Create the distribution directory -->
+
+		
+		<!--jar  jarfile="jmsMessageLogger.jar" basedir="${build}">-->
+		<jar  destfile="${dist}/Waktu.jar" basedir="${build}">
+			<manifest>
+				<attribute name="Main-Class" value="WaktuMainWindow"/>
+				<attribute name="Class-Path" value="lib/qtjambi.jar"/>
+    		</manifest>
+    	</jar>
+		
+		<echo level="debug">Copy qt libs from ${qtjambi.dir} to ${dist.dir}</echo>
+		 <copy todir="${dist}/lib">
+			<fileset dir="${qtjambi.dir}">
+				<include name="*.jar"/>
+			</fileset>
+		</copy>
+
+
+	<target name="zip" depends="dist" description="generate a zip file">
+		<zip destfile="${dist.zip}" 
+				       basedir="${dist}"/>
+	</target>
+
+	
+	<target name="clean" description="clean up">
+		<!-- Delete the ${build} and ${dist} directory trees -->
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+		<delete file="${dist.zip}" />
+				
+		<echo level="debug">Delete dir ${build} and ${dist.dir}</echo>
+	</target>
+</project>

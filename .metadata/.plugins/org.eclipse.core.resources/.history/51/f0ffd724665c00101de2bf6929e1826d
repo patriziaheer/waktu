@@ -1,0 +1,33 @@
+package ch.hsr.waktu.controller;
+
+/**
+ * @author simon.staeheli
+ * @version 1.0
+ * @created 01-Apr-2011 15:36:30
+ */
+public class LoginController {
+	
+	private static LoginController theInstance = null;
+	
+	public static LoginController getInstance() {
+		if (theInstance == null) {
+			theInstance = new LoginController();
+		}
+		return theInstance;
+	}
+	
+
+	private LoginController(){
+
+	}
+
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 */
+	public boolean login(String username, String password){
+		return false;
+	}
+
+}

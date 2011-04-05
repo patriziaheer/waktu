@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<commands>
+	<moveEntry
+		id="com.instantiations.designer.swing.components javax.swing.JRadioButton"
+		category="com.instantiations.designer.swing.components"
+		nextEntry="com.instantiations.designer.swing.components javax.swing.JButton"/>
+	<moveEntry
+		id="com.instantiations.designer.swing.components javax.swing.JButton"
+		category="com.instantiations.designer.swing.components"
+		nextEntry="com.instantiations.designer.swing.components javax.swing.JRadioButton"/>
+</commands>

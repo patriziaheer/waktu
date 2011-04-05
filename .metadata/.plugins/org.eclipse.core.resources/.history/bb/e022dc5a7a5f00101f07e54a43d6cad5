@@ -1,0 +1,46 @@
+package ch.hsr.waktu.presentation.view.projectmanagment;
+
+import ch.hsr.waktu.domain.Project;
+import ch.hsr.waktu.presentation.view.projectmanagment.jui.Ui_ProjectData;
+
+import com.trolltech.qt.gui.QWidget;
+
+public class ProjectDataView extends QWidget {
+
+	private Ui_ProjectData ui = new Ui_ProjectData();
+	private Project project;
+	
+	public ProjectDataView(Project project) {
+		this.project = project;
+		ui.setupUi(this);
+		setFields();
+	}
+	
+	private void setFields() {
+		if (usr != null) {
+			ui.grpOverview.setVisible(true);
+			ui.btnAdd.setVisible(false);
+			
+			ui.txtName.setText(usr.getName());
+			ui.txtName.setEnabled(false);
+			
+			ui.txtFirstname.setText(usr.getFirstname());
+			ui.txtFirstname.setEnabled(false);
+			
+			//ui.txtPensum.setValue()
+			ui.txtPensum.setEnabled(false);
+			
+			//ui.txtHolidays.setValue(val)
+			ui.txtHolidays.setEnabled(false);
+		} else {
+			ui.grpOverview.setVisible(false);
+			ui.btnAdd.setVisible(true);
+
+			ui.txtName.setEnabled(true);
+			ui.txtFirstname.setEnabled(true);
+			ui.txtPensum.setEnabled(true);
+			ui.txtHolidays.setEnabled(true);
+		}
+	}
+	
+}

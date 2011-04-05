@@ -1,0 +1,39 @@
+import com.sun.org.apache.xalan.internal.xsltc.DOM;
+import com.trolltech.qt.core.QAbstractItemModel;
+import com.trolltech.qt.core.QModelIndex;
+import com.trolltech.qt.gui.QTreeModel;
+
+
+public class UserModel extends QTreeModel {
+	
+	public UserModel() {
+		
+	}
+
+	@Override
+	public Object child(Object parent, int index) {
+		if (parent == null) {
+			return Domain.getInstance().getUsers().get(index);
+		} else if (index == 0) {
+			return Domain.getInstance().getUserProperties().get(index);
+		}
+		return null;
+	}
+
+	@Override
+	public int childCount(Object parent) {
+		if (parent == null) {
+			return Domain.getInstance().getUsers().size();
+		} else if (parent instanceof User) {
+			return Domain.getInstance().getUserProperties().size();
+		}
+		return 0;
+	}
+
+	@Override
+	public String text(Object value) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

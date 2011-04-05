@@ -1,0 +1,40 @@
+package ch.hsr.waktu.presentation.model;
+
+import com.trolltech.qt.core.QAbstractItemModel;
+import com.trolltech.qt.core.QModelIndex;
+
+public class UserTableModel extends QAbstractItemModel{
+	
+	public UserTableModel() {
+	}
+
+	@Override
+	public int columnCount(QModelIndex arg0) {
+		return 2;
+	}
+
+	@Override
+	public Object data(QModelIndex index, int role) {
+		switch 
+		return null;
+	}
+
+	@Override
+	public QModelIndex index(int arg0, int arg1, QModelIndex arg2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public QModelIndex parent(QModelIndex arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int rowCount(QModelIndex arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

@@ -1,0 +1,41 @@
+<installation datetime="201103280822">
+   <serialNumbers>
+      <serialNumber>CodeProServer-00000-0000</serialNumber>
+      <serialNumber>Profiler-00000-0000</serialNumber>
+      <serialNumber>RCPDeveloper-00000-0000</serialNumber>
+      <serialNumber>WindowBuilderPro-00000-0000</serialNumber>
+      <serialNumber>WindowTesterPro-00000-0000</serialNumber>
+   </serialNumbers>
+   <activationKeys>
+      <activationKey>CodeProServer-UD0WB-GM16B-1XPA6</activationKey>
+      <activationKey>Profiler-UD0WB-GM0BH-AKPV6</activationKey>
+      <activationKey>RCPDeveloper-UD0WB-GM0KR-G3KKD</activationKey>
+      <activationKey>WindowBuilderPro-UD0WK-GM19C-HSWF5</activationKey>
+      <activationKey>WindowTesterPro-UD0WB-GM1FN-21S94</activationKey>
+   </activationKeys>
+   <products>
+      <product name="Code Coverage"                installed="false" fullyEnabled="false" build="UNKNOWN" />
+      <product name="CodePro AnalytiX"             installed="false" fullyEnabled="false" build="UNKNOWN" />
+      <product name="CodePro Analytix and PlusPak" installed="false" fullyEnabled="false" build="UNKNOWN" />
+      <product name="CodePro PlusPak"              installed="false" fullyEnabled="false" build="UNKNOWN" />
+      <product name="CodePro Profiler"             installed="false" fullyEnabled="true"  build="UNKNOWN" />
+      <product name="CodePro Server"               installed="false" fullyEnabled="true"  build="UNKNOWN" />
+      <product name="EclipsePro Audit"             installed="false" fullyEnabled="false" build="UNKNOWN" />
+      <product name="EclipsePro Test"              installed="false" fullyEnabled="false" build="UNKNOWN" />
+      <product name="GWT Designer"                 installed="true"  fullyEnabled="true"  build="201009160831" />
+      <product name="Help Composer"                installed="false" fullyEnabled="false" build="UNKNOWN" />
+      <product name="RCP Developer"                installed="false" fullyEnabled="true"  build="UNKNOWN" />
+      <product name="RCP Packager"                 installed="false" fullyEnabled="false" build="UNKNOWN" />
+      <product name="RIM Designer"                 installed="true"  fullyEnabled="true"  build="201009160631" />
+      <product name="SWT Designer"                 installed="true"  fullyEnabled="true"  build="201009160649" />
+      <product name="Shared"                       installed="true"  fullyEnabled="true"  build="201009131414" />
+      <product name="Swing Designer"               installed="true"  fullyEnabled="true"  build="201009160643" />
+      <product name="WindowBuilder"                installed="true"  fullyEnabled="true"  build="201009160631" />
+      <product name="WindowTester Pro"             installed="false" fullyEnabled="true"  build="UNKNOWN" />
+      <product name="WindowTester Runner"          installed="false" fullyEnabled="false" build="UNKNOWN" />
+      <product name="WindowTester SWT"             installed="false" fullyEnabled="false" build="UNKNOWN" />
+      <product name="WindowTester SWT Runner"      installed="false" fullyEnabled="false" build="UNKNOWN" />
+      <product name="WindowTester Swing"           installed="false" fullyEnabled="false" build="UNKNOWN" />
+      <product name="WindowTester Swing Runner"    installed="false" fullyEnabled="false" build="UNKNOWN" />
+   </products>
+</installation>

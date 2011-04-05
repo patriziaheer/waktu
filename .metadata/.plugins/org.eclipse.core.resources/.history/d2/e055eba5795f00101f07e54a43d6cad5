@@ -1,0 +1,83 @@
+package ch.hsr.waktu.domain;
+
+import com.trolltech.qt.core.QDateTime;
+
+/**
+ * @author simon.staeheli
+ * @version 1.0
+ * @created 01-Apr-2011 15:36:30
+ */
+public class WorkSession {
+
+	private QDateTime end;
+	private QDateTime start;
+	private Usr UserID;
+	private String description;
+	private WorkPackage WorkPackageID;
+	public Usr m_Usr;
+	public WorkPackage m_WorkPackage;
+
+	public WorkSession(){
+
+	}
+
+	public QDateTime getEnd() {
+		return end;
+	}
+
+	public void setEnd(QDateTime end) {
+		this.end = end;
+	}
+
+	public QDateTime getStart() {
+		return start;
+	}
+
+	public void setStart(QDateTime start) {
+		this.start = start;
+	}
+
+	public Usr getUserID() {
+		return UserID;
+	}
+
+	public void setUserID(Usr userID) {
+		UserID = userID;
+	}
+	
+	
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public WorkPackage getWorkPackageID() {
+		return WorkPackageID;
+	}
+
+	public void setWorkPackageID(WorkPackage workPackageID) {
+		WorkPackageID = workPackageID;
+	}
+
+	public Usr getM_Usr() {
+		return m_Usr;
+	}
+
+	public void setM_Usr(Usr m_Usr) {
+		this.m_Usr = m_Usr;
+	}
+
+	public WorkPackage getM_WorkPackage() {
+		return m_WorkPackage;
+	}
+
+	public void setM_WorkPackage(WorkPackage m_WorkPackage) {
+		this.m_WorkPackage = m_WorkPackage;
+	}
+
+
+}

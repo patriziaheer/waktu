@@ -1,0 +1,85 @@
+package ch.hsr.waktu.presentation.view.usermanagment;
+
+import java.awt.GridBagLayout;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import java.awt.GridBagConstraints;
+import java.awt.Dimension;
+
+public class UserHoursView extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+	private JButton jButton = null;
+	private JButton jButton1 = null;
+	private JButton jButton2 = null;
+
+	/**
+	 * This is the default constructor
+	 */
+	public UserHoursView() {
+		super();
+		initialize();
+	}
+
+	/**
+	 * This method initializes this
+	 * 
+	 * @return void
+	 */
+	private void initialize() {
+		GridBagConstraints gridBagConstraints2 = new GridBagConstraints();
+		gridBagConstraints2.gridx = 2;
+		gridBagConstraints2.gridy = 0;
+		GridBagConstraints gridBagConstraints1 = new GridBagConstraints();
+		gridBagConstraints1.gridx = 1;
+		gridBagConstraints1.gridy = 0;
+		GridBagConstraints gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 0;
+		this.setSize(300, 200);
+		this.setLayout(new GridBagLayout());
+		this.add(getJButton(), gridBagConstraints);
+		this.add(getJButton1(), gridBagConstraints1);
+		this.add(getJButton2(), gridBagConstraints2);
+	}
+
+	/**
+	 * This method initializes jButton	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getJButton() {
+		if (jButton == null) {
+			jButton = new JButton();
+			jButton.setPreferredSize(new Dimension(30, 30));
+		}
+		return jButton;
+	}
+
+	/**
+	 * This method initializes jButton1	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getJButton1() {
+		if (jButton1 == null) {
+			jButton1 = new JButton();
+			jButton1.setPreferredSize(new Dimension(30, 30));
+		}
+		return jButton1;
+	}
+
+	/**
+	 * This method initializes jButton2	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getJButton2() {
+		if (jButton2 == null) {
+			jButton2 = new JButton();
+			jButton2.setPreferredSize(new Dimension(30, 30));
+		}
+		return jButton2;
+	}
+
+}

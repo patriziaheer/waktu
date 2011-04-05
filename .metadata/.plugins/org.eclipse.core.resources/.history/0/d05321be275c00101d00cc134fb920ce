@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<entity-mappings
+	xsi:schemaLocation="http://www.eclipse.org/eclipselink/xsds/persistence/orm xsd/eclipselink_orm_1_0.xsd"
+	xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0">
+	
+	
+	<object-type-converter name="gender-converter"
+		object-type="model.Gender" data-type="java.lang.String">
+		<conversion-value object-value="Male" data-value="M" />
+		<conversion-value object-value="Female" data-value="F" />
+	</object-type-converter>
+	
+	<entity class="model.LargeProject">
+		<table name="LPROJECT" />
+		<discriminator-value>L</discriminator-value>
+		<attributes>
+			<basic name="budget" />
+			<basic name="milestone">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+		</attributes>
+	</entity>
+	
+	<entity class="domain.Address">
+		<attributes>
+			<id name="id">
+				<column name="USER_ID" />
+				<generated-value />
+			</id>
+			<basic name="name" />
+			<basic name="firstname" />
+		</attributes>
+	</entity>
+	
+</entity-mappings>

@@ -1,0 +1,324 @@
+/********************************************************************************
+** Form generated from reading ui file 'TimeWindow.jui'
+**
+** Created: So. Apr 3 17:06:12 2011
+**      by: Qt User Interface Compiler version 4.5.2
+**
+** WARNING! All changes made in this file will be lost when recompiling ui file!
+********************************************************************************/
+
+package ch.hsr.waktu.presentation.view.jui;
+
+import com.trolltech.qt.core.*;
+import com.trolltech.qt.gui.*;
+
+public class Ui_WaktuMainWindow implements com.trolltech.qt.QUiForm<QMainWindow>
+{
+    public QWidget centralwidget;
+    public QGridLayout gridLayout;
+    public QWidget calendarWidget;
+    public QHBoxLayout horizontalLayout;
+    public QSpacerItem horizontalSpacer;
+    public QCalendarWidget calendar;
+    public QPushButton btnLeft;
+    public QPushButton btnMo;
+    public QPushButton btnDi;
+    public QPushButton btnMi;
+    public QPushButton btnDo;
+    public QPushButton btnFri;
+    public QPushButton btnSa;
+    public QPushButton btnSo;
+    public QPushButton btnDown;
+    public QPushButton btnRight;
+    public QGroupBox groupBox;
+    public QGridLayout gridLayout_2;
+    public QLabel label;
+    public QLineEdit lineEdit;
+    public QLabel label_2;
+    public QComboBox comboBox;
+    public QComboBox comboBox_2;
+    public QLabel label_3;
+    public QLabel label_4;
+    public QSpacerItem verticalSpacer;
+    public QLineEdit lineEdit_2;
+    public QLabel label_7;
+    public QLineEdit lineEdit_3;
+    public QGroupBox groupBox_3;
+    public QGridLayout gridLayout_4;
+    public QTableView tableView_2;
+    public QGroupBox groupBox_4;
+    public QGridLayout gridLayout_5;
+    public QLabel label_5;
+    public QLabel label_6;
+    public QGroupBox groupBox_2;
+    public QGridLayout gridLayout_3;
+    public QTableView tableView;
+    public QMenuBar menubar;
+    public QMenu menuFile;
+    public QMenu menuManagment;
+
+    public Ui_WaktuMainWindow() { super(); }
+
+    public void setupUi(QMainWindow WaktuMainWindow)
+    {
+        WaktuMainWindow.setObjectName("WaktuMainWindow");
+        WaktuMainWindow.resize(new QSize(740, 663).expandedTo(WaktuMainWindow.minimumSizeHint()));
+        centralwidget = new QWidget(WaktuMainWindow);
+        centralwidget.setObjectName("centralwidget");
+        gridLayout = new QGridLayout(centralwidget);
+        gridLayout.setObjectName("gridLayout");
+        calendarWidget = new QWidget(centralwidget);
+        calendarWidget.setObjectName("calendarWidget");
+        QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Expanding, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
+        sizePolicy.setHorizontalStretch((byte)0);
+        sizePolicy.setVerticalStretch((byte)0);
+        sizePolicy.setHeightForWidth(calendarWidget.sizePolicy().hasHeightForWidth());
+        calendarWidget.setSizePolicy(sizePolicy);
+        horizontalLayout = new QHBoxLayout(calendarWidget);
+        horizontalLayout.setObjectName("horizontalLayout");
+        horizontalSpacer = new QSpacerItem(40, 20, com.trolltech.qt.gui.QSizePolicy.Policy.Expanding, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
+
+        horizontalLayout.addItem(horizontalSpacer);
+
+        calendar = new QCalendarWidget(calendarWidget);
+        calendar.setObjectName("calendar");
+        QSizePolicy sizePolicy1 = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Fixed, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
+        sizePolicy1.setHorizontalStretch((byte)0);
+        sizePolicy1.setVerticalStretch((byte)0);
+        sizePolicy1.setHeightForWidth(calendar.sizePolicy().hasHeightForWidth());
+        calendar.setSizePolicy(sizePolicy1);
+        calendar.setFirstDayOfWeek(com.trolltech.qt.core.Qt.DayOfWeek.Monday);
+        calendar.setHorizontalHeaderFormat(com.trolltech.qt.gui.QCalendarWidget.HorizontalHeaderFormat.SingleLetterDayNames);
+        calendar.setVerticalHeaderFormat(com.trolltech.qt.gui.QCalendarWidget.VerticalHeaderFormat.ISOWeekNumbers);
+
+        horizontalLayout.addWidget(calendar);
+
+        btnLeft = new QPushButton(calendarWidget);
+        btnLeft.setObjectName("btnLeft");
+        btnLeft.setMinimumSize(new QSize(30, 30));
+        btnLeft.setMaximumSize(new QSize(30, 30));
+
+        horizontalLayout.addWidget(btnLeft);
+
+        btnMo = new QPushButton(calendarWidget);
+        btnMo.setObjectName("btnMo");
+        btnMo.setMinimumSize(new QSize(30, 30));
+        btnMo.setMaximumSize(new QSize(30, 30));
+
+        horizontalLayout.addWidget(btnMo);
+
+        btnDi = new QPushButton(calendarWidget);
+        btnDi.setObjectName("btnDi");
+        btnDi.setMinimumSize(new QSize(30, 30));
+        btnDi.setMaximumSize(new QSize(30, 30));
+
+        horizontalLayout.addWidget(btnDi);
+
+        btnMi = new QPushButton(calendarWidget);
+        btnMi.setObjectName("btnMi");
+        btnMi.setMinimumSize(new QSize(30, 30));
+        btnMi.setMaximumSize(new QSize(30, 30));
+
+        horizontalLayout.addWidget(btnMi);
+
+        btnDo = new QPushButton(calendarWidget);
+        btnDo.setObjectName("btnDo");
+        btnDo.setMinimumSize(new QSize(30, 30));
+        btnDo.setMaximumSize(new QSize(30, 30));
+
+        horizontalLayout.addWidget(btnDo);
+
+        btnFri = new QPushButton(calendarWidget);
+        btnFri.setObjectName("btnFri");
+        btnFri.setMinimumSize(new QSize(30, 30));
+        btnFri.setMaximumSize(new QSize(30, 30));
+
+        horizontalLayout.addWidget(btnFri);
+
+        btnSa = new QPushButton(calendarWidget);
+        btnSa.setObjectName("btnSa");
+        btnSa.setMinimumSize(new QSize(30, 30));
+        btnSa.setMaximumSize(new QSize(30, 30));
+
+        horizontalLayout.addWidget(btnSa);
+
+        btnSo = new QPushButton(calendarWidget);
+        btnSo.setObjectName("btnSo");
+        btnSo.setMinimumSize(new QSize(30, 30));
+        btnSo.setMaximumSize(new QSize(30, 30));
+
+        horizontalLayout.addWidget(btnSo);
+
+        btnDown = new QPushButton(calendarWidget);
+        btnDown.setObjectName("btnDown");
+        btnDown.setMinimumSize(new QSize(30, 30));
+        btnDown.setMaximumSize(new QSize(30, 30));
+
+        horizontalLayout.addWidget(btnDown);
+
+        btnRight = new QPushButton(calendarWidget);
+        btnRight.setObjectName("btnRight");
+        btnRight.setMinimumSize(new QSize(30, 30));
+        btnRight.setMaximumSize(new QSize(30, 30));
+
+        horizontalLayout.addWidget(btnRight);
+
+
+        gridLayout.addWidget(calendarWidget, 0, 0, 1, 2);
+
+        groupBox = new QGroupBox(centralwidget);
+        groupBox.setObjectName("groupBox");
+        QSizePolicy sizePolicy2 = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Preferred, com.trolltech.qt.gui.QSizePolicy.Policy.Preferred);
+        sizePolicy2.setHorizontalStretch((byte)0);
+        sizePolicy2.setVerticalStretch((byte)0);
+        sizePolicy2.setHeightForWidth(groupBox.sizePolicy().hasHeightForWidth());
+        groupBox.setSizePolicy(sizePolicy2);
+        groupBox.setMinimumSize(new QSize(350, 0));
+        gridLayout_2 = new QGridLayout(groupBox);
+        gridLayout_2.setObjectName("gridLayout_2");
+        label = new QLabel(groupBox);
+        label.setObjectName("label");
+
+        gridLayout_2.addWidget(label, 0, 0, 1, 1);
+
+        lineEdit = new QLineEdit(groupBox);
+        lineEdit.setObjectName("lineEdit");
+
+        gridLayout_2.addWidget(lineEdit, 0, 2, 1, 1);
+
+        label_2 = new QLabel(groupBox);
+        label_2.setObjectName("label_2");
+
+        gridLayout_2.addWidget(label_2, 1, 0, 1, 1);
+
+        comboBox = new QComboBox(groupBox);
+        comboBox.setObjectName("comboBox");
+
+        gridLayout_2.addWidget(comboBox, 1, 2, 1, 3);
+
+        comboBox_2 = new QComboBox(groupBox);
+        comboBox_2.setObjectName("comboBox_2");
+
+        gridLayout_2.addWidget(comboBox_2, 2, 2, 1, 3);
+
+        label_3 = new QLabel(groupBox);
+        label_3.setObjectName("label_3");
+
+        gridLayout_2.addWidget(label_3, 2, 0, 1, 1);
+
+        label_4 = new QLabel(groupBox);
+        label_4.setObjectName("label_4");
+
+        gridLayout_2.addWidget(label_4, 3, 0, 1, 1);
+
+        verticalSpacer = new QSpacerItem(20, 40, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum, com.trolltech.qt.gui.QSizePolicy.Policy.Expanding);
+
+        gridLayout_2.addItem(verticalSpacer, 4, 1, 1, 1);
+
+        lineEdit_2 = new QLineEdit(groupBox);
+        lineEdit_2.setObjectName("lineEdit_2");
+
+        gridLayout_2.addWidget(lineEdit_2, 3, 2, 1, 3);
+
+        label_7 = new QLabel(groupBox);
+        label_7.setObjectName("label_7");
+
+        gridLayout_2.addWidget(label_7, 0, 3, 1, 1);
+
+        lineEdit_3 = new QLineEdit(groupBox);
+        lineEdit_3.setObjectName("lineEdit_3");
+
+        gridLayout_2.addWidget(lineEdit_3, 0, 4, 1, 1);
+
+
+        gridLayout.addWidget(groupBox, 1, 0, 1, 1);
+
+        groupBox_3 = new QGroupBox(centralwidget);
+        groupBox_3.setObjectName("groupBox_3");
+        gridLayout_4 = new QGridLayout(groupBox_3);
+        gridLayout_4.setObjectName("gridLayout_4");
+        tableView_2 = new QTableView(groupBox_3);
+        tableView_2.setObjectName("tableView_2");
+
+        gridLayout_4.addWidget(tableView_2, 0, 0, 1, 1);
+
+
+        gridLayout.addWidget(groupBox_3, 3, 0, 1, 2);
+
+        groupBox_4 = new QGroupBox(centralwidget);
+        groupBox_4.setObjectName("groupBox_4");
+        gridLayout_5 = new QGridLayout(groupBox_4);
+        gridLayout_5.setObjectName("gridLayout_5");
+        label_5 = new QLabel(groupBox_4);
+        label_5.setObjectName("label_5");
+
+        gridLayout_5.addWidget(label_5, 0, 0, 1, 1);
+
+        label_6 = new QLabel(groupBox_4);
+        label_6.setObjectName("label_6");
+
+        gridLayout_5.addWidget(label_6, 1, 0, 1, 1);
+
+
+        gridLayout.addWidget(groupBox_4, 4, 0, 1, 2);
+
+        groupBox_2 = new QGroupBox(centralwidget);
+        groupBox_2.setObjectName("groupBox_2");
+        groupBox_2.setMinimumSize(new QSize(350, 0));
+        gridLayout_3 = new QGridLayout(groupBox_2);
+        gridLayout_3.setObjectName("gridLayout_3");
+        tableView = new QTableView(groupBox_2);
+        tableView.setObjectName("tableView");
+
+        gridLayout_3.addWidget(tableView, 0, 0, 1, 1);
+
+
+        gridLayout.addWidget(groupBox_2, 1, 1, 1, 1);
+
+        WaktuMainWindow.setCentralWidget(centralwidget);
+        menubar = new QMenuBar(WaktuMainWindow);
+        menubar.setObjectName("menubar");
+        menubar.setGeometry(new QRect(0, 0, 740, 22));
+        menuFile = new QMenu(menubar);
+        menuFile.setObjectName("menuFile");
+        menuManagment = new QMenu(menubar);
+        menuManagment.setObjectName("menuManagment");
+        WaktuMainWindow.setMenuBar(menubar);
+
+        menubar.addAction(menuFile.menuAction());
+        menubar.addAction(menuManagment.menuAction());
+        retranslateUi(WaktuMainWindow);
+
+        WaktuMainWindow.connectSlotsByName();
+    } // setupUi
+
+    void retranslateUi(QMainWindow WaktuMainWindow)
+    {
+        WaktuMainWindow.setWindowTitle(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "Time Window", null));
+        btnLeft.setText(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "<", null));
+        btnMo.setText(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "MO", null));
+        btnDi.setText(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "DI", null));
+        btnMi.setText(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "MI", null));
+        btnDo.setText(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "DO", null));
+        btnFri.setText(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "FRI", null));
+        btnSa.setText(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "SA", null));
+        btnSo.setText(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "SO", null));
+        btnDown.setText(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "v", null));
+        btnRight.setText(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", ">", null));
+        groupBox.setTitle(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "Create Worksession", null));
+        label.setText(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "Time:", null));
+        label_2.setText(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "Project:", null));
+        label_3.setText(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "Work Package:", null));
+        label_4.setText(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "Description:", null));
+        label_7.setText(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "-", null));
+        groupBox_3.setTitle(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "Worksessions", null));
+        groupBox_4.setTitle(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "Overview", null));
+        label_5.setText(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "TextLabel", null));
+        label_6.setText(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "TextLabel", null));
+        groupBox_2.setTitle(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "Favorites", null));
+        menuFile.setTitle(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "File", null));
+        menuManagment.setTitle(com.trolltech.qt.core.QCoreApplication.translate("WaktuMainWindow", "Managment", null));
+    } // retranslateUi
+
+}
+

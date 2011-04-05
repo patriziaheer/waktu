@@ -1,0 +1,14 @@
+package ch.hsr.waktu.presentation.view;
+
+import javax.swing.JPanel;
+
+public class Calendar extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public Calendar() {
+
+	}
+
+}

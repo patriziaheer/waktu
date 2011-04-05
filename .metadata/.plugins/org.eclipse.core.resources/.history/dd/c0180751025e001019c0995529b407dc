@@ -1,0 +1,17 @@
+package ch.hsr.waktu.presentation.view;
+
+
+import ch.hsr.waktu.presentation.view.jui.Ui_WaktuMainWindow;
+import ch.hsr.waktu.presentation.view.usermanagment.UserDetails;
+
+import com.trolltech.qt.gui.QMainWindow;
+
+public class WaktuMainWindow extends QMainWindow {
+
+    Ui_WaktuMainWindow ui = new Ui_WaktuMainWindow();
+
+    public WaktuMainWindow() {
+        ui.setupUi(this);
+    }
+
+}

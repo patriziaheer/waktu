@@ -1,0 +1,24 @@
+package ch.hsr.waktu.domain;
+
+/**
+ * @author simon.staeheli
+ * @version 1.0
+ * @created 01-Apr-2011 15:36:30
+ */
+public class Project {
+
+	private String description;
+	private boolean inactive;
+	private int plannedTime;
+	private String projectIdentifier;
+	public WorkPackage m_WorkPackage;
+
+	public Project(){
+
+	}
+
+	public void finalize() throws Throwable {
+
+	}
+
+}

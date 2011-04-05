@@ -1,0 +1,26 @@
+
+
+import com.trolltech.qt.gui.*;
+
+public class WaktuMainWindow extends QMainWindow {
+
+    Ui_WaktuMainWindow ui = new Ui_WaktuMainWindow();
+
+    public static void main(String[] args) {
+        QApplication.initialize(args);
+
+        WaktuMainWindow testWaktuMainWindow = new WaktuMainWindow();
+        testWaktuMainWindow.show();
+
+        QApplication.exec();
+    }
+
+    public WaktuMainWindow() {
+        ui.setupUi(this);
+    }
+
+    public WaktuMainWindow(QWidget parent) {
+        super(parent);
+        ui.setupUi(this);
+    }
+}

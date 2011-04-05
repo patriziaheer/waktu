@@ -1,0 +1,251 @@
+what,kind,bundleId,bundleVersion,description,time
+started,bundle,org.eclipse.jdt.core,3.5.2.v_981_R35x,"org.eclipse.jdt.core",1301292682961
+started,bundle,org.eclipse.jdt.core.manipulation,1.3.0.v20090603,"org.eclipse.jdt.core.manipulation",1301292682961
+started,bundle,org.eclipse.jdt.launching,3.5.1.v20100108_r352,"org.eclipse.jdt.launching",1301292682961
+started,bundle,org.eclipse.jdt.launching.macosx,3.2.0.v20090527,"org.eclipse.jdt.launching.macosx",1301292682961
+started,bundle,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui",1301292682961
+started,bundle,org.eclipse.jface,3.5.2.M20100120-0800,"org.eclipse.jface",1301292682961
+started,bundle,org.eclipse.jsch.core,1.1.100.I20090430-0408,"org.eclipse.jsch.core",1301292682961
+started,bundle,org.eclipse.team.core,3.5.1.r35x_20100113-0800,"org.eclipse.team.core",1301292682961
+started,bundle,org.eclipse.team.cvs.core,3.3.200.I20090430-0408,"org.eclipse.team.cvs.core",1301292682961
+started,bundle,org.eclipse.team.cvs.ui,3.3.202.r35x_20090930-0800,"org.eclipse.team.cvs.ui",1301292682961
+started,bundle,org.eclipse.team.ui,3.5.0.I20090430-0408,"org.eclipse.team.ui",1301292682961
+started,bundle,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui",1301292682961
+started,bundle,org.eclipse.ui.console,3.4.0.v20090513,"org.eclipse.ui.console",1301292682961
+started,bundle,org.eclipse.ui.editors,3.5.0.v20090527-2000,"org.eclipse.ui.editors",1301292682961
+started,bundle,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.ide",1301292682961
+started,bundle,org.eclipse.ui.net,1.2.1.r35x_20090812-1200,"org.eclipse.ui.net",1301292682961
+started,bundle,org.eclipse.ui.views,3.4.1.M20090826-0800,"org.eclipse.ui.views",1301292682961
+started,bundle,org.eclipse.ui.views.log,1.0.100.v20090731,"org.eclipse.ui.views.log",1301292682961
+started,bundle,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"org.eclipse.ui.workbench",1301292682961
+started,bundle,org.eclipse.ui.workbench.texteditor,3.5.1.r352_v20100105,"org.eclipse.ui.workbench.texteditor",1301292682961
+started,bundle,org.eclipse.update.configurator,3.3.0.v20090312,"org.eclipse.update.configurator",1301292682961
+started,bundle,org.eclipse.update.core,3.2.300.v20090525,"org.eclipse.update.core",1301292682961
+started,bundle,org.eclipse.update.scheduler,3.2.200.v20081127,"org.eclipse.update.scheduler",1301292682961
+started,bundle,com.instantiations.common.core,6.0.0.r35x201009131414,"com.instantiations.common.core",1301292682961
+started,bundle,com.instantiations.designer.core,8.0.0.r35x201009160631,"com.instantiations.designer.core",1301292682961
+started,bundle,com.instantiations.designer.core.lib,8.0.0.r35x201009160631,"com.instantiations.designer.core.lib",1301292682962
+started,bundle,com.instantiations.designer.core.xml,8.0.0.r35x201009160634,"com.instantiations.designer.core.xml",1301292682962
+started,bundle,com.instantiations.designer.gwt,8.0.0.r35x201009160831,"com.instantiations.designer.gwt",1301292682962
+started,bundle,com.instantiations.designer.rcp,8.0.0.r35x201009160649,"com.instantiations.designer.rcp",1301292682962
+started,bundle,com.instantiations.designer.swing,8.0.0.r35x201009160643,"com.instantiations.designer.swing",1301292682962
+started,bundle,com.instantiations.designer.swt,8.0.0.r35x201009160641,"com.instantiations.designer.swt",1301292682962
+started,bundle,com.instantiations.eclipse.ui,8.0.0.r35x201009131432,"com.instantiations.eclipse.ui",1301292682962
+started,bundle,org.eclipse.pde.ui,3.5.1.v201001121200,"org.eclipse.pde.ui",1301292682962
+started,bundle,org.eclipse.egit.core,0.11.3,"org.eclipse.egit.core",1301292682962
+started,bundle,org.eclipse.egit.ui,0.11.3,"org.eclipse.egit.ui",1301292682962
+started,bundle,org.eclipse.jgit,0.11.3,"org.eclipse.jgit",1301292682962
+os,sysinfo,,,"macosx",1301292682969
+arch,sysinfo,,,"x86_64",1301292682970
+ws,sysinfo,,,"cocoa",1301292682970
+locale,sysinfo,,,"de_DE",1301292682970
+processors,sysinfo,,,"2",1301292682970
+java.runtime.name,sysinfo,,,"Java(TM) SE Runtime Environment",1301292682970
+java.runtime.version,sysinfo,,,"1.6.0_24-b07-334-10M3326",1301292682970
+java.specification.name,sysinfo,,,"Java Platform API Specification",1301292682970
+java.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1301292682970
+java.specification.version,sysinfo,,,"1.6",1301292682970
+java.vendor,sysinfo,,,"Apple Inc.",1301292682970
+java.version,sysinfo,,,"1.6.0_24",1301292682970
+java.vm.info,sysinfo,,,"mixed mode",1301292682970
+java.vm.name,sysinfo,,,"Java HotSpot(TM) 64-Bit Server VM",1301292682970
+java.vm.specification.name,sysinfo,,,"Java Virtual Machine Specification",1301292682970
+java.vm.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1301292682970
+java.vm.specification.version,sysinfo,,,"1.0",1301292682970
+java.vm.vendor,sysinfo,,,"Apple Inc.",1301292682970
+java.vm.version,sysinfo,,,"19.1-b02-334",1301292682970
+started,bundle,com.instantiations.designer.gwt.ExtGWT,8.0.0.r35x201009160831,"com.instantiations.designer.gwt.ExtGWT",1301292683107
+started,bundle,com.instantiations.designer.gwt.SmartGWT,8.0.0.r35x201009160831,"com.instantiations.designer.gwt.SmartGWT",1301292683110
+started,bundle,com.instantiations.designer.gwt.UiBinder,8.0.0.r35x201009160831,"com.instantiations.designer.gwt.UiBinder",1301292683152
+started,bundle,com.instantiations.eclipse.debug,6.0.0.r35x201009131414,"com.instantiations.eclipse.debug",1301292683163
+started,bundle,com.instantiations.eclipse.startup,6.0.0.r35x201009131414,"com.instantiations.eclipse.startup",1301292683164
+started,bundle,com.instantiations.eclipse.util,6.0.0.r35x201009131414,"com.instantiations.eclipse.util",1301292683166
+started,bundle,com.instantiations.eclipse.usageprofiler,6.0.0.r35x201009131414,"com.instantiations.eclipse.usageprofiler",1301292683172
+started,bundle,com.instantiations.eclipse.usageprofiler.ui,6.0.0.r35x201009131414,"com.instantiations.eclipse.usageprofiler.ui",1301292683235
+started,bundle,com.instantiations.j2ee,8.0.0.r35x201009140724,"com.instantiations.j2ee",1301292683275
+started,bundle,org.eclipse.mylyn.monitor.ui,3.4.0.v20100608-0100-e3x,"org.eclipse.mylyn.monitor.ui",1301292683383
+started,bundle,org.eclipse.mylyn.commons.net,3.4.1.v20100625-2100-e3x,"org.eclipse.mylyn.commons.net",1301292683407
+started,bundle,org.eclipse.mylyn.commons.ui,3.4.0.v20100608-0100-e3x,"org.eclipse.mylyn.commons.ui",1301292683449
+started,bundle,org.eclipse.mylyn.bugzilla.core,3.4.2.v20100902-0100-e3x,"org.eclipse.mylyn.bugzilla.core",1301292683498
+started,bundle,org.eclipse.mylyn.bugzilla.ui,3.4.2.v20100909-0100-e3x,"org.eclipse.mylyn.bugzilla.ui",1301292683617
+started,bundle,org.eclipse.ui.forms,3.4.1.v20090714_35x,"org.eclipse.ui.forms",1301292683639
+started,bundle,org.eclipse.mylyn.context.core,3.4.1.v20100909-0100-e3x,"org.eclipse.mylyn.context.core",1301292683663
+started,bundle,org.eclipse.mylyn.context.ui,3.4.1.v20100909-0100-e3x,"org.eclipse.mylyn.context.ui",1301292683681
+started,bundle,org.eclipse.mylyn.tasks.ui,3.4.2.v20100902-0100-e3x,"org.eclipse.mylyn.tasks.ui",1301292683799
+started,bundle,org.eclipse.mylyn.team.ui,3.4.2.v20100909-0100-e3x,"org.eclipse.mylyn.team.ui",1301292683812
+started,bundle,org.eclipse.ltk.core.refactoring,3.5.0.v20090513-2000,"org.eclipse.ltk.core.refactoring",1301292690391
+started,bundle,org.eclipse.compare,3.5.2.r35x_20100113-0800,"org.eclipse.compare",1301292691640
+started,bundle,org.eclipse.ltk.ui.refactoring,3.4.101.r352_v20100209,"org.eclipse.ltk.ui.refactoring",1301292694102
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292694241
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292695503
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.edit.delete",1301292695539
+started,bundle,org.eclipse.jdt.apt.core,3.3.202.R35x_v20091130-2300,"org.eclipse.jdt.apt.core",1301292695692
+started,bundle,org.eclipse.jdt.apt.pluggable.core,1.0.201.R35x_v20090925-1100,"org.eclipse.jdt.apt.pluggable.core",1301292695696
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292701597
+started,bundle,org.eclipse.wst.sse.core,1.1.402.v201001251516,"org.eclipse.wst.sse.core",1301292702592
+started,bundle,org.eclipse.wst.xml.core,1.1.402.v201001222130,"org.eclipse.wst.xml.core",1301292702596
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292704047
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.edit.delete",1301292704086
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292712693
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292714968
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.edit.delete",1301292715019
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292718938
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292722005
+started,bundle,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui",1301292727382
+started,bundle,com.instantiations.designer.gxt.databinding,8.0.0.r35x201009160831,"com.instantiations.designer.gxt.databinding",1301292727511
+started,bundle,com.instantiations.designer.rcp.databinding,8.0.0.r35x201009160649,"com.instantiations.designer.rcp.databinding",1301292727514
+started,bundle,com.instantiations.designer.swing.databinding,8.0.0.r35x201009160643,"com.instantiations.designer.swing.databinding",1301292727527
+started,bundle,com.instantiations.designer.core.databinding,8.0.0.r35x201009160631,"com.instantiations.designer.core.databinding",1301292727546
+started,bundle,org.eclipse.compare.core,3.5.0.I20090430-0408,"org.eclipse.compare.core",1301292728338
+opened,editor,com.instantiations.designer.core,8.0.0.r35x201009160631,"com.instantiations.designer.core.guiEditor",1301292728692
+started,bundle,com.instantiations.designer.xwt,8.0.0.r35x201009160656,"com.instantiations.designer.xwt",1301292728806
+activated,editor,com.instantiations.designer.core,8.0.0.r35x201009160631,"com.instantiations.designer.core.guiEditor",1301292728877
+started,bundle,org.eclipse.core.variables,3.2.200.v20090521,"org.eclipse.core.variables",1301292728946
+opened,view,org.eclipse.ui.console,3.4.0.v20090513,"org.eclipse.ui.console.ConsoleView",1301292729909
+started,bundle,org.eclipse.search,3.5.1.r351_v20090708-0800,"org.eclipse.search",1301292729980
+opened,view,org.eclipse.mylyn.tasks.ui,3.4.2.v20100902-0100-e3x,"org.eclipse.mylyn.tasks.ui.views.tasks",1301292730223
+activated,perspective,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.JavaPerspective",1301292730252
+started,bundle,org.eclipse.jdt.debug,3.5.0.v20090526,"org.eclipse.jdt.debug",1301292730350
+started,bundle,org.eclipse.jdt.debug.ui,3.4.1.v20090811_r351,"org.eclipse.jdt.debug.ui",1301292730432
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292734729
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292738405
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.perspectives.showPerspective",1301292738453
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.perspectives.showPerspective",1301292738453
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292742618
+started,bundle,com.instantiations.designer.runtime.lib,8.0.0.r35x201009160631,"com.instantiations.designer.runtime.lib",1301292742955
+started,bundle,com.instantiations.designer.gwt.GWTExt,8.0.0.r35x201009160831,"com.instantiations.designer.gwt.GWTExt",1301292743085
+started,bundle,com.instantiations.designer.rcp.nebula,8.0.0.r35x201009160649,"com.instantiations.designer.rcp.nebula",1301292743089
+started,bundle,com.instantiations.designer.swing.FormLayout,8.0.0.r35x201009160643,"com.instantiations.designer.swing.FormLayout",1301292743096
+started,bundle,com.instantiations.designer.swing.hc,8.0.0.r35x201009160643,"com.instantiations.designer.swing.hc",1301292743099
+started,bundle,org.eclipse.pde.core,3.5.101.v20100104,"org.eclipse.pde.core",1301292743259
+started,bundle,org.eclipse.pde,3.4.100.v201002111343,"org.eclipse.pde",1301292743283
+started,bundle,com.instantiations.designer.core.apiImpl,8.0.0.r35x201009160631,"com.instantiations.designer.core.apiImpl",1301292745931
+started,bundle,com.instantiations.designer.rcp.GroupLayout,8.0.0.r35x201009160649,"com.instantiations.designer.rcp.GroupLayout",1301292746221
+started,bundle,com.instantiations.designer.rcp.swing2swt,8.0.0.r35x201009160649,"com.instantiations.designer.rcp.swing2swt",1301292746222
+started,bundle,com.instantiations.designer.layout.group,8.0.0.r35x201009160635,"com.instantiations.designer.layout.group",1301292749579
+started,bundle,com.instantiations.designer.swing.MigLayout.lib,8.0.0.r35x201009160643,"com.instantiations.designer.swing.MigLayout.lib",1301292749604
+started,bundle,com.instantiations.designer.swing.MigLayout,8.0.0.r35x201009160643,"com.instantiations.designer.swing.MigLayout",1301292749606
+started,bundle,com.instantiations.designer.swing.java6,8.0.0.r35x201009160643,"com.instantiations.designer.swing.java6",1301292749613
+started,bundle,com.instantiations.designer.swing.FormLayout.lib,8.0.0.r35x201009160643,"com.instantiations.designer.swing.FormLayout.lib",1301292749887
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292750323
+activated,view,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.PackageExplorer",1301292754485
+closed,editor,com.instantiations.designer.core,8.0.0.r35x201009160631,"com.instantiations.designer.core.guiEditor",1301292754486
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292765441
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292776506
+activated,perspective,,,"<Qt_Designer_UI>",1301292777680
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292780213
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292783312
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.perspectives.showPerspective",1301292783343
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.perspectives.showPerspective",1301292783343
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292784011
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292817445
+started,bundle,org.eclipse.ui.externaltools,3.2.0.v20090504,"org.eclipse.ui.externaltools",1301292819511
+started,bundle,org.eclipse.equinox.p2.ui,1.0.101.R35x_v20090819,"org.eclipse.equinox.p2.ui",1301292822370
+started,bundle,org.eclipse.equinox.p2.ui.sdk,1.0.100.v20090520-1905,"org.eclipse.equinox.p2.ui.sdk",1301292822372
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292822566
+started,bundle,org.eclipse.equinox.p2.updatesite,1.0.101.R35x_20100105,"org.eclipse.equinox.p2.updatesite",1301292827940
+error,log,,,"Unable to load the repository http://download.instantiations.com/D2WBPro/continous/latest/update/E-3.5/",1301292828446
+error,log,,,"Unable to load the repository http://dl.google.com/eclipse/inst/%20d2wbpro/latest/3.5",1301292831074
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.edit.paste",1301292855103
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.edit.paste",1301292862416
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292890651
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292893224
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292955299
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301292956715
+error,log,,,"Operation details",1301292967053
+error,log,,,"Operation details",1301292967054
+error,log,,,"Operation details",1301292967064
+error,log,,,"Operation details",1301292967091
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301293147125
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301293150018
+error,log,,,"Operation details",1301293151654
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.edit.copy",1301293170109
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301293197511
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301293198977
+error,log,,,"Operation details",1301293233167
+error,log,,,"Operation details",1301293233169
+error,log,,,"Operation details",1301293250092
+error,log,,,"Operation details",1301293250133
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301293252946
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301293258915
+error,log,,,"Operation details",1301293265431
+error,log,,,"Operation details",1301293265466
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.edit.copy",1301293276126
+error,log,,,"Operation details",1301293297304
+error,log,,,"Operation details",1301293297306
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301293305964
+executed,command,org.eclipse.equinox.p2.ui.sdk,1.0.100.v20090520-1905,"org.eclipse.equinox.p2.ui.sdk.install",1301293306016
+closed,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1301293306468
+stopped,bundle,com.instantiations.designer.gxt.databinding,8.0.0.r35x201009160831,"com.instantiations.designer.gxt.databinding",1301293307467
+stopped,bundle,com.instantiations.designer.gwt.ExtGWT,8.0.0.r35x201009160831,"com.instantiations.designer.gwt.ExtGWT",1301293307467
+stopped,bundle,com.instantiations.designer.gwt.GWTExt,8.0.0.r35x201009160831,"com.instantiations.designer.gwt.GWTExt",1301293307467
+stopped,bundle,com.instantiations.designer.gwt.SmartGWT,8.0.0.r35x201009160831,"com.instantiations.designer.gwt.SmartGWT",1301293307467
+stopped,bundle,com.instantiations.designer.gwt.UiBinder,8.0.0.r35x201009160831,"com.instantiations.designer.gwt.UiBinder",1301293307467
+stopped,bundle,com.instantiations.designer.gwt,8.0.0.r35x201009160831,"com.instantiations.designer.gwt",1301293307467
+stopped,bundle,com.instantiations.j2ee,8.0.0.r35x201009140724,"com.instantiations.j2ee",1301293307468
+stopped,bundle,org.eclipse.mylyn.ide.ant,3.4.0.v20100608-0100-e3x,"org.eclipse.mylyn.ide.ant",1301293307468
+stopped,bundle,com.instantiations.designer.rcp.databinding.xwt,8.0.0.r35x201009160656,"com.instantiations.designer.rcp.databinding.xwt",1301293307468
+stopped,bundle,com.instantiations.designer.core.databinding.xml,8.0.0.r35x201009160634,"com.instantiations.designer.core.databinding.xml",1301293307468
+stopped,bundle,com.instantiations.designer.rcp.databinding.emf,8.0.0.r35x201009160649,"com.instantiations.designer.rcp.databinding.emf",1301293307468
+stopped,bundle,com.instantiations.designer.rcp.databinding,8.0.0.r35x201009160649,"com.instantiations.designer.rcp.databinding",1301293307468
+stopped,bundle,com.instantiations.designer.swing.databinding,8.0.0.r35x201009160643,"com.instantiations.designer.swing.databinding",1301293307468
+stopped,bundle,com.instantiations.designer.core.databinding,8.0.0.r35x201009160631,"com.instantiations.designer.core.databinding",1301293307468
+stopped,bundle,com.instantiations.designer.rcp.GroupLayout,8.0.0.r35x201009160649,"com.instantiations.designer.rcp.GroupLayout",1301293307469
+stopped,bundle,com.instantiations.designer.rcp.SWT_AWT,8.0.0.r35x201009160651,"com.instantiations.designer.rcp.SWT_AWT",1301293307469
+stopped,bundle,com.instantiations.designer.rcp.nebula,8.0.0.r35x201009160649,"com.instantiations.designer.rcp.nebula",1301293307469
+stopped,bundle,com.instantiations.designer.rcp.swing2swt,8.0.0.r35x201009160649,"com.instantiations.designer.rcp.swing2swt",1301293307469
+stopped,bundle,com.instantiations.designer.xwt,8.0.0.r35x201009160656,"com.instantiations.designer.xwt",1301293307469
+stopped,bundle,com.instantiations.designer.rcp,8.0.0.r35x201009160649,"com.instantiations.designer.rcp",1301293307469
+stopped,bundle,org.eclipse.pde.api.tools.ui,1.0.101.v20090820,"org.eclipse.pde.api.tools.ui",1301293307469
+stopped,bundle,org.eclipse.pde.ds.ui,1.0.0.v20100209-maintenance,"org.eclipse.pde.ds.ui",1301293307469
+stopped,bundle,org.eclipse.pde.runtime,3.4.100.v20090731,"org.eclipse.pde.runtime",1301293307470
+stopped,bundle,org.eclipse.pde.ua.ui,1.0.0.v20090511,"org.eclipse.pde.ua.ui",1301293307471
+stopped,bundle,org.eclipse.pde.ui.templates,3.4.100.v20090527,"org.eclipse.pde.ui.templates",1301293307471
+stopped,bundle,org.eclipse.pde.ui,3.5.1.v201001121200,"org.eclipse.pde.ui",1301293307474
+stopped,bundle,org.eclipse.ant.ui,3.4.2.v20091204_r352,"org.eclipse.ant.ui",1301293307474
+stopped,bundle,org.eclipse.mylyn.java.tasks,3.4.0.v20100608-0100-e3x,"org.eclipse.mylyn.java.tasks",1301293307474
+stopped,bundle,org.eclipse.mylyn.java.ui,3.4.0.v20100608-0100-e3x,"org.eclipse.mylyn.java.ui",1301293307474
+stopped,bundle,org.eclipse.jdt.junit,3.5.2.r352_v20100113-0800,"org.eclipse.jdt.junit",1301293307474
+stopped,bundle,org.eclipse.jdt.apt.ui,3.3.200.v20090930-2100_R35x,"org.eclipse.jdt.apt.ui",1301293307475
+stopped,bundle,org.eclipse.jdt.debug.ui,3.4.1.v20090811_r351,"org.eclipse.jdt.debug.ui",1301293307508
+stopped,bundle,com.instantiations.designer.swing.FormLayout,8.0.0.r35x201009160643,"com.instantiations.designer.swing.FormLayout",1301293307508
+stopped,bundle,com.instantiations.designer.swing.LookAndFeel,8.0.0.r35x201009160643,"com.instantiations.designer.swing.LookAndFeel",1301293307508
+stopped,bundle,com.instantiations.designer.swing.MigLayout,8.0.0.r35x201009160643,"com.instantiations.designer.swing.MigLayout",1301293307508
+stopped,bundle,com.instantiations.designer.swing.ams,8.0.0.r35x201009160643,"com.instantiations.designer.swing.ams",1301293307508
+stopped,bundle,com.instantiations.designer.swing.hc,8.0.0.r35x201009160643,"com.instantiations.designer.swing.hc",1301293307508
+stopped,bundle,com.instantiations.designer.swing.java6,8.0.0.r35x201009160643,"com.instantiations.designer.swing.java6",1301293307508
+stopped,bundle,com.instantiations.designer.swing,8.0.0.r35x201009160643,"com.instantiations.designer.swing",1301293307508
+stopped,bundle,com.instantiations.designer.core.apiImpl,8.0.0.r35x201009160631,"com.instantiations.designer.core.apiImpl",1301293307508
+stopped,bundle,com.instantiations.designer.core.xml,8.0.0.r35x201009160634,"com.instantiations.designer.core.xml",1301293307509
+stopped,bundle,com.instantiations.designer.layout.group,8.0.0.r35x201009160635,"com.instantiations.designer.layout.group",1301293307509
+stopped,bundle,com.instantiations.designer.os.macosx,8.0.0.r35x201009160631,"com.instantiations.designer.os.macosx",1301293307509
+stopped,bundle,com.instantiations.designer.swt,8.0.0.r35x201009160641,"com.instantiations.designer.swt",1301293307509
+stopped,bundle,com.instantiations.designer.core,8.0.0.r35x201009160631,"com.instantiations.designer.core",1301293307509
+stopped,bundle,com.instantiations.css,8.0.0.r35x201009131454,"com.instantiations.css",1301293307509
+stopped,bundle,com.instantiations.designer.gwt.hosted.1_4,8.0.0.r35x201009140724,"com.instantiations.designer.gwt.hosted.1_4",1301293307509
+stopped,bundle,com.instantiations.designer.gwt.hosted.1_5.mac,8.0.0.r35x201009140724,"com.instantiations.designer.gwt.hosted.1_5.mac",1301293307509
+stopped,bundle,com.instantiations.designer.gwt.hosted.1_5,8.0.0.r35x201009140724,"com.instantiations.designer.gwt.hosted.1_5",1301293307510
+stopped,bundle,com.instantiations.designer.gwt.hosted.1_6.mac,8.0.0.r35x201009140724,"com.instantiations.designer.gwt.hosted.1_6.mac",1301293307510
+stopped,bundle,com.instantiations.designer.gwt.hosted.1_6,8.0.0.r35x201009140724,"com.instantiations.designer.gwt.hosted.1_6",1301293307510
+stopped,bundle,com.instantiations.designer.gwt.hosted.2_0.webkit,8.0.0.r35x201009140724,"com.instantiations.designer.gwt.hosted.2_0.webkit",1301293307511
+stopped,bundle,com.instantiations.designer.gwt.hosted.2_0,8.0.0.r35x201009140724,"com.instantiations.designer.gwt.hosted.2_0",1301293307511
+stopped,bundle,com.instantiations.designer.gwt.hosted,8.0.0.r35x201009140724,"com.instantiations.designer.gwt.hosted",1301293307511
+stopped,bundle,com.instantiations.eclipse.ui,8.0.0.r35x201009131432,"com.instantiations.eclipse.ui",1301293307511
+stopped,bundle,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui",1301293307522
+stopped,bundle,org.eclipse.wst.dtd.ui,1.0.400.v200904300717,"org.eclipse.wst.dtd.ui",1301293307522
+stopped,bundle,org.eclipse.wst.xsd.ui,1.2.204.v200909021537,"org.eclipse.wst.xsd.ui",1301293307522
+stopped,bundle,org.eclipse.wst.xml.ui,1.1.2.v201001222130,"org.eclipse.wst.xml.ui",1301293307522
+stopped,bundle,org.eclipse.wst.common.ui,1.1.402.v200901262305,"org.eclipse.wst.common.ui",1301293307522
+stopped,bundle,org.eclipse.wst.sse.ui,1.1.102.v200910200227,"org.eclipse.wst.sse.ui",1301293307522
+stopped,bundle,org.eclipse.search,3.5.1.r351_v20090708-0800,"org.eclipse.search",1301293307531
+stopped,bundle,org.eclipse.ltk.ui.refactoring,3.4.101.r352_v20100209,"org.eclipse.ltk.ui.refactoring",1301293307532
+stopped,bundle,org.eclipse.team.cvs.ui,3.3.202.r35x_20090930-0800,"org.eclipse.team.cvs.ui",1301293307532
+stopped,bundle,org.eclipse.egit.mylyn.ui,0.11.3,"org.eclipse.egit.mylyn.ui",1301293307532
+stopped,bundle,org.eclipse.mylyn.team.ui,3.4.2.v20100909-0100-e3x,"org.eclipse.mylyn.team.ui",1301293307533
+stopped,bundle,org.eclipse.team.svn.ui,0.7.8.I20091023-1300,"org.eclipse.team.svn.ui",1301293307533
+stopped,bundle,org.eclipse.egit.ui,0.11.3,"org.eclipse.egit.ui",1301293307533
+stopped,bundle,org.eclipse.team.ui,3.5.0.I20090430-0408,"org.eclipse.team.ui",1301293307533
+stopped,bundle,org.eclipse.mylyn.bugzilla.ui,3.4.2.v20100909-0100-e3x,"org.eclipse.mylyn.bugzilla.ui",1301293307533
+stopped,bundle,org.eclipse.mylyn.ide.ui,3.4.0.v20100608-0100-e3x,"org.eclipse.mylyn.ide.ui",1301293307533
+stopped,bundle,org.eclipse.mylyn.resources.ui,3.4.1.v20100909-0100-e3x,"org.eclipse.mylyn.resources.ui",1301293307533
+stopped,bundle,org.eclipse.mylyn.wikitext.tasks.ui,1.3.1.v20100823-0100-e3x,"org.eclipse.mylyn.wikitext.tasks.ui",1301293307533

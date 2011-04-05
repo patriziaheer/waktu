@@ -1,0 +1,58 @@
+package ch.hsr.waktu.controller;
+
+/**
+ * @author simon.staeheli
+ * @version 1.0
+ * @created 01-Apr-2011 15:36:30
+ */
+public class WorkPackageController {
+
+	private static WorkPackageController theInstance = null;
+	
+	private WorkPackageController(){
+
+	}
+
+
+	/**
+	 * 
+	 * @param project
+	 * @param description
+	 */
+	public boolean addWorkPackage(Project project, String description){
+		return false;
+	}
+
+	/**
+	 * 
+	 * @param project
+	 */
+	public List<WorkPackage> getActiveWorkPackages(Project project){
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param project
+	 */
+	public List<WorkPackage> getAllWorkPackages(Project project){
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param project
+	 */
+	public List<WorkPackage> getInactiveWorkPackages(Project project){
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param workPackage
+	 */
+	public boolean updateWorkPackage(WorkPackage workPackage){
+		return false;
+	}
+
+}

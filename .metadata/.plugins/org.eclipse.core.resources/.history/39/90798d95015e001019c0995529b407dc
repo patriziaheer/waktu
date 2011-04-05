@@ -1,0 +1,13 @@
+package ch.hsr.waktu.presentation.view;
+
+import com.trolltech.qt.gui.QDialog;
+
+public class LoginView extends QDialog {
+	
+	Ui_loginDialog ui = new Ui_loginDialog();
+	
+	public LoginView() {
+		ui.setupUi(this);
+	}
+
+}

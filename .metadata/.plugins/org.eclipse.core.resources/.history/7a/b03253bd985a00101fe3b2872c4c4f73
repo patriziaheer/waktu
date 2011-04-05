@@ -1,0 +1,7 @@
+package ch.hsr.waktu.presentation.model;
+
+import com.trolltech.qt.core.QAbstractItemModel;
+
+public class UserTableModel extends QAbstractItemModel{
+
+}

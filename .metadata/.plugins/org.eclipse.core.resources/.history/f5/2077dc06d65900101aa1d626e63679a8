@@ -1,0 +1,18 @@
+package ch.hsr.waktu.presentation;
+
+import com.trolltech.qt.core.QModelIndex;
+import com.trolltech.qt.gui.QSortFilterProxyModel;
+
+public class SortFilter extends QSortFilterProxyModel {
+	
+	@Override
+	protected boolean filterAcceptsRow(int source_row, QModelIndex source_parent) {
+	     QModelIndex index0 = sourceModel().index(source_row, 0, source_parent);
+	     QModelIndex index1 = sourceModel().index(source_row, 1, source_parent);
+	     QModelIndex index2 = sourceModel().index(source_row, 2, source_parent);
+
+	     return (sourceModel().data(index0).toString().contains(filterRegExp())
+	             || sourceModel().data(index1).toString().contains(filterRegExp())));
+	}
+
+}

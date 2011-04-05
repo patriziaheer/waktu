@@ -1,0 +1,38 @@
+package ch.hsr.waktu.presentation.view.usermanagment;
+import ch.hsr.waktu.controller.UserController;
+import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.presentation.view.usermanagment.jui.Ui_UserData;
+
+import com.trolltech.qt.core.QModelIndex;
+import com.trolltech.qt.gui.QWidget;
+
+
+public class UserData extends QWidget{
+
+	Ui_UserData ui = new Ui_UserData();
+	private Usr usr;
+	
+	public UserData(Usr user) {
+		this.usr = user;
+		ui.setupUi(this);
+		UserController.getInstance().update.connect(this, "updateData()");
+		UserController.getInstance().add.connect(this, "addData(Usr)");
+	}
+	
+	@SuppressWarnings("unused")
+	private void headerClicked(QModelIndex index) {
+		model.sort(index.column());
+	}
+	
+	@SuppressWarnings("unused")
+	private void updateData() {
+		model.dataChanged.emit(model.index(0, 0), model.index(model.rowCount(), model.columnCount()));
+	}
+	
+	@SuppressWarnings("unused")
+	private void addData(Usr usr) {
+		model.dataChanged.emit(model.index(0, 0), model.index(model.rowCount(), model.columnCount()));
+	}
+	
+	
+}

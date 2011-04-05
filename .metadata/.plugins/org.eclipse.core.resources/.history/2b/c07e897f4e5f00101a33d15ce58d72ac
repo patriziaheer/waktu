@@ -1,0 +1,11 @@
+package ch.hsr.waktu.presentation.view.projectmanagment;
+
+import ch.hsr.waktu.presentation.view.projectmanagment.jui.Ui_ProjectData;
+
+import com.trolltech.qt.gui.QWidget;
+
+public class ProjectDataView extends QWidget {
+
+	Ui_ProjectData ui = new Ui_ProjectData();
+	
+}

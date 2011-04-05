@@ -1,0 +1,94 @@
+package ch.hsr.waktu.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.trolltech.qt.QSignalEmitter;
+import com.trolltech.qt.QSignalEmitter.Signal0;
+
+import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.model.UserProperty;
+
+/**
+ * @author simon.staeheli
+ * @version 1.0
+ * @created 01-Apr-2011 15:36:30
+ */
+public class UserController extends QSignalEmitter {
+
+	private static UserController theInstance = null;
+	
+	public static UserController getInstance() {
+		if (theInstance == null) {
+			theInstance = new UserController();
+		}
+		return theInstance;
+	}
+	
+	private List<UserProperty> properties = new ArrayList<UserProperty>();
+	public Signal0 update = new Signal0();
+	public Signal1<Usr> add = new Signal1<Usr>();
+	
+	private UserController(){
+
+	}
+
+
+	/**
+	 * 
+	 * @param username
+	 * @param name
+	 * @param firstname
+	 * @param pensum
+	 * @param role
+	 */
+	public boolean addUser(String username, String name, String firstname, int pensum, int role){
+		return false;
+	}
+
+	public List<Usr> getActiveUsers(){
+		return null;
+	}
+
+	public List<Usr> getAllUsers(){
+		return null;
+	}
+
+	public List<Usr> getInactiveUsers(){
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param loginName
+	 */
+	public Usr getUser(String loginName){
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param user
+	 */
+	public boolean updateUser(Usr user){
+		 EntityManager em = PersistenceController.getInstance().getEMF().createEntityManager();
+		 
+		 em.getTransaction().begin();
+		 Usr updateUsr = (Usr)em.createQuery("SELECT u FROM Usr u WHERE u.id = " + user.getId()).getSingleResult();
+		 updateUsr.setName(user.getName());
+		 updateUsr.setFirstname(user.getFirstname());
+		 em.getTransaction().commit();
+		    update.emit();
+		 
+		    return true;
+	}
+
+	public void addUserProperty(UserProperty userProperty) {
+		properties.add(userProperty);
+	}
+	
+	public List<UserProperty> getUserProperties() {
+		return properties;
+	}
+
+}

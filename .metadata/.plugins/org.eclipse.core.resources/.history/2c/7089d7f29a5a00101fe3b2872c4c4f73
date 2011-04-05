@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project WaktuPrototyp">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+
+	<property name="dist" location="build" />
+	
+	<target name="init">
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${dist}/lib" />	
+		<mkdir dir="${dist}" />
+		
+		<echo level="debug">Creating dir ${dist}</echo>
+	</target>
+
+	
+    <target name="create_run_jar">
+        <jar destfile="${dist}/Waktu.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="ch.hsr.waktu.application.WaktuApplication"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="/Users/patriziaheer/Documents/hsr/Semester 4/SE2P/waktu/WaktuPrototyp/bin"/>
+            <zipfileset excludes="META-INF/*.SF" src="/Users/patriziaheer/Documents/qtjambi-mac-lgpl-4.5.2_01/qtjambi-4.5.2_01.jar"/>
+        </jar>
+    </target>
+	
+
+	<target name="zip" depends="create_run_jar" description="generate a zip file">
+		<zip destfile="${dist.zip}" 
+				       basedir="${dist}"/>
+	</target>
+</project>

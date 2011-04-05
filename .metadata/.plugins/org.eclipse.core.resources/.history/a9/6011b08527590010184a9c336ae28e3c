@@ -1,0 +1,38 @@
+package ch.hsr.waktu.domain;
+
+
+import WaktuMainWindow;
+
+import java.awt.EventQueue;
+
+import com.trolltech.qt.gui.QApplication;
+
+import ch.hsr.waktu.presentation.view.PrototypMainWIndow;
+
+
+public class WaktuApplication {
+	
+
+    public static void main(String[] args) {
+        QApplication.initialize(args);
+
+        WaktuMainWindow testWaktuMainWindow = new WaktuMainWindow();
+        testWaktuMainWindow.show();
+
+        QApplication.exec();
+    }
+	
+	
+	private static void initProperties() {
+		Domain.getInstance().addUserProperty(new UserProperties("Daten"));
+		Domain.getInstance().addUserProperty(new UserProperties("Projekte"));
+		Domain.getInstance().addUserProperty(new UserProperties("Stunden"));
+	}
+	
+	private static void initUsers() {
+		Domain.getInstance().addUser(new User("Patrizia Heer"));
+		Domain.getInstance().addUser(new User("Simon Stäheli"));
+		Domain.getInstance().addUser(new User("Michael Fisler"));
+	}
+
+}

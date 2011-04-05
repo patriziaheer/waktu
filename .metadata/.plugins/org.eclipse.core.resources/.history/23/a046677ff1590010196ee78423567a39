@@ -1,0 +1,69 @@
+package ch.hsr.waktu.application;
+
+
+
+
+import ch.hsr.waktu.domain.Domain;
+import ch.hsr.waktu.domain.User;
+import ch.hsr.waktu.domain.UserProperties;
+import ch.hsr.waktu.presentation.WaktuMainWindow;
+
+import com.trolltech.qt.core.QFile;
+import com.trolltech.qt.core.QIODevice;
+import com.trolltech.qt.core.QTextStream;
+import com.trolltech.qt.gui.QApplication;
+
+
+public class WaktuApplication {
+	
+
+    public static void main(String[] args) {
+        QApplication.initialize(args);
+        
+        initProperties();
+        initUsers();
+
+        WaktuMainWindow testWaktuMainWindow = new WaktuMainWindow();
+    	//String sheet = getStyleSheet("stylesheet.txt");
+    	QApplication.setStyle(sheet);
+        
+        testWaktuMainWindow.show();
+
+        QApplication.exec();
+    }
+	
+	
+	private static void initProperties() {
+		Domain.getInstance().addUserProperty(new UserProperties("Daten"));
+		Domain.getInstance().addUserProperty(new UserProperties("Projekte"));
+		Domain.getInstance().addUserProperty(new UserProperties("Stunden"));
+	}
+	
+	private static void initUsers() {
+		Domain.getInstance().addUser(new User("Patrizia Heer"));
+		Domain.getInstance().addUser(new User("Simon Stäheli"));
+		Domain.getInstance().addUser(new User("Michael Fisler"));
+	}
+	
+    
+    private static String getStyleSheet(String path) {
+    	
+        QFile file = new QFile(path);
+        if (!file.open(new QIODevice.OpenMode(QIODevice.OpenModeFlag.ReadOnly, QIODevice.OpenModeFlag.Text))) {
+            return null;
+        }
+
+        QTextStream in = new QTextStream(file);
+        
+        StringBuffer buffer = new StringBuffer();
+        
+        
+        while (in.atEnd() == false) {
+        	buffer.append(in.readLine());
+        }
+        
+        file.close();
+    	return buffer.toString();
+    }
+
+}

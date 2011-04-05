@@ -1,0 +1,22 @@
+import com.trolltech.qt.gui.QWidget;
+
+
+public class Calendar extends QWidget {
+	
+	Ui_Calendar ui = new Ui_Calendar();
+	
+	public Calendar() {
+		ui.setupUi(this);
+		ui.lblDown.clicked.connect(this, "downClicked()");
+		ui.calendarWidget.setVisible(false);
+	}
+	
+	public void downClicked() {
+		if (ui.calendarWidget.isVisible()) {
+			ui.calendarWidget.setVisible(false);
+		} else {
+			ui.
+		}
+	}
+
+}

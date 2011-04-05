@@ -1,0 +1,9 @@
+import com.trolltech.qt.gui.QWidget;
+
+
+public class UserData extends QWidget{
+
+	public UserData() {
+		// TODO Auto-generated constructor stub
+	}
+}

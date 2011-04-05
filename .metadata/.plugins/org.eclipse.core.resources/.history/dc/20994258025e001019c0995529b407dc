@@ -1,0 +1,30 @@
+package ch.hsr.waktu.presentation.view;
+
+import ch.hsr.waktu.controller.PermissionController;
+import ch.hsr.waktu.presentation.view.jui.Ui_LoginWindow;
+
+import com.trolltech.qt.gui.QMainWindow;
+
+public class LoginView extends QMainWindow {
+	
+	Ui_LoginWindow ui = new Ui_LoginWindow();
+	
+	public LoginView() {
+		ui.setupUi(this);
+		ui.btnCancel.clicked.connect(this, "cancelClicked()");
+		ui.btnLogin.clicked.connect(this, "loginClicked()");
+	}
+	
+	@SuppressWarnings("unused")
+	private void cancelClicked() {
+		System.exit(0);
+	}
+	
+	@SuppressWarnings("unused")
+	private void loginClicked() {
+		if (PermissionController.getInstance().canLogin(ui.txtUsername.text(), ui.txtPassword.text())) {
+			
+		}
+	}
+
+}

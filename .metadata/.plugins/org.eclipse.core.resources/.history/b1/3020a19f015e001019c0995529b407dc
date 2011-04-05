@@ -1,0 +1,19 @@
+package ch.hsr.waktu.presentation.view;
+
+import com.trolltech.qt.gui.QDialog;
+
+public class LoginView extends QDialog {
+	
+	Ui_loginDialog ui = new Ui_loginDialog();
+	
+	public LoginView() {
+		ui.setupUi(this);
+		ui.btnCancel.clicked.connect(this, "cancelClicked()");
+	}
+	
+	@SuppressWarnings("unused")
+	private void cancelClicked() {
+		System.exit(0);
+	}
+
+}

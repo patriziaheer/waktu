@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project WaktuPrototyp">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+
+	<property name="dist" location="build" />
+	<property name="bin" location="bin" />
+	<property name="lib" location="lib" />
+	<property name="dist.zip" location="waktu.zip" />
+	
+	
+	<target name="init">
+		<!-- Create the build directory structure used by compile -->
+		<!-- mkdir dir="${dist}" /-->
+		<mkdir dir="${dist}" />	
+		
+		<echo level="debug">Creating dir ${dist}</echo>
+	</target>
+
+	
+    <target name="create_run_jar" depends="init">
+        <jar destfile="${dist}/waktuwin.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="ch.hsr.waktu.application.WaktuApplication"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="${bin}"/>
+            
+        <zipfileset excludes="META-INF/*.SF" src="${lib}/qtjambi-4.5.2_01.jar"/>
+        <zipfileset excludes="META-INF/*.SF" src="${lib}/qtjambi-win32-msvc2005-4.5.2_01.jar"/>
+        <zipfileset excludes="META-INF/*.SF" src="${lib}/eclipselink.jar"/>
+        <zipfileset excludes="META-INF/*.SF" src="${lib}/javax.persistence_1.0.0.jar"/>
+        <zipfileset excludes="META-INF/*.SF" src="${lib}/postgresql-9.0-801.jdbc4.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${lib}/log4j-1.2.16.jar"/>
+        	         
+        </jar>
+    </target>
+	
+<!--	<target name="copy_libs">
+		 <copy todir="${dist}/lib">
+			<fileset dir="${qtjambi.dir}">
+				<include name="*.jar"/>
+			</fileset>
+		</copy>
+	</target>
+-->	
+
+<!--	
+	<target name="zip" depends="create_run_jar" description="generate a zip file">
+		<zip destfile="${dist.zip}" 
+				       basedir="${dist}"/>
+	</target>
+	-->
+</project>

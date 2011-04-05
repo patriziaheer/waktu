@@ -1,0 +1,53 @@
+package ch.hsr.waktu.controller;
+
+/**
+ * @author simon.staeheli
+ * @version 1.0
+ * @created 01-Apr-2011 15:36:30
+ */
+public class WorkSessionController {
+
+	private static WorkSessionController theInstance = null;
+	
+	private WorkSessionController(){
+
+	}
+
+
+	/**
+	 * 
+	 * @param user
+	 * @param workPackage
+	 * @param startTime
+	 * @param endTime
+	 */
+	public boolean addWorkSession(User user, WorkPackage workPackage, DateTime startTime, DateTime endTime){
+		return false;
+	}
+
+	/**
+	 * 
+	 * @param user
+	 */
+	public List<WorkSession> getWorkSessions(User user){
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param user
+	 * @param date
+	 */
+	public List<WorkSession> getWorkSessions(User user, DateTime date){
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param workSession
+	 */
+	public boolean removeWorkSession(WorkSession workSession){
+		return false;
+	}
+
+}

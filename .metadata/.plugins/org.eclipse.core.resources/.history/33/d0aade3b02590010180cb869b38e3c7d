@@ -1,0 +1,26 @@
+package ch.hsr.waktu.presentation.view;
+
+import com.trolltech.qt.gui.*;
+
+public class QtMainPrototyp extends QMainWindow {
+
+    Ui_QtMainPrototyp ui = new Ui_QtMainPrototyp();
+
+    public static void main(String[] args) {
+        QApplication.initialize(args);
+
+        QtMainPrototyp testQtMainPrototyp = new QtMainPrototyp();
+        testQtMainPrototyp.show();
+
+        QApplication.exec();
+    }
+
+    public QtMainPrototyp() {
+        ui.setupUi(this);
+    }
+
+    public QtMainPrototyp(QWidget parent) {
+        super(parent);
+        ui.setupUi(this);
+    }
+}

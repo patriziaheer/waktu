@@ -1,0 +1,61 @@
+package ch.hsr.waktu.controller;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import ch.hsr.waktu.domain.User;
+
+public class PersistenceController {
+	private static String PERSISTENCE_UNIT_NAME = "waktu";
+	private EntityManagerFactory emf;
+	protected EntityManager em;
+	private static Calendar calendar;
+	
+	public void init() {
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        em = emf.createEntityManager();
+        calendar = GregorianCalendar.getInstance();
+	}
+	
+
+	public void crudCustomer() {
+		
+		try {
+			calendar.set(1940, 10, 9);
+			Date dateOfBirth = calendar.getTime();
+			User user = new User("Fredi", "Hinz");
+			em.getTransaction().begin();
+			em.persist(user);
+			em.getTransaction().commit();
+			
+			Integer customerId = user.getId();
+			user = em.find(User.class, customerId);
+			System.out.println(user.getFirstname()));
+			System.out.println("Hinz", user.getName());
+			
+			em.getTransaction().begin();
+	        user.setFirstname("Heiri");
+	        em.getTransaction().commit();
+	        
+	        user = em.find(Customer.class, customerId);
+			assertEquals("Heiri", user.getFirstname());
+			
+			em.getTransaction().begin();
+	        em.remove(user);
+	        em.getTransaction().commit();
+	        
+	        assertNull("customer should have been deleted", em.find(Customer.class, customerId));
+		}
+		finally {
+			if(em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+        	}
+		}
+	}
+	
+}

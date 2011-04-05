@@ -1,0 +1,50 @@
+/********************************************************************************
+** Form generated from reading ui file 'UserData.jui'
+**
+** Created: Mo. Mrz 28 13:36:27 2011
+**      by: Qt User Interface Compiler version 4.5.2
+**
+** WARNING! All changes made in this file will be lost when recompiling ui file!
+********************************************************************************/
+
+import com.trolltech.qt.core.*;
+import com.trolltech.qt.gui.*;
+
+public class Ui_Form implements com.trolltech.qt.QUiForm<QWidget>
+{
+    public QGridLayout gridLayout;
+    public QLabel label;
+    public QLabel lblUser;
+
+    public Ui_Form() { super(); }
+
+    public void setupUi(QWidget Form)
+    {
+        Form.setObjectName("Form");
+        Form.resize(new QSize(400, 300).expandedTo(Form.minimumSizeHint()));
+        gridLayout = new QGridLayout(Form);
+        gridLayout.setObjectName("gridLayout");
+        label = new QLabel(Form);
+        label.setObjectName("label");
+
+        gridLayout.addWidget(label, 0, 0, 1, 1);
+
+        lblUser = new QLabel(Form);
+        lblUser.setObjectName("lblUser");
+
+        gridLayout.addWidget(lblUser, 0, 1, 1, 1);
+
+        retranslateUi(Form);
+
+        Form.connectSlotsByName();
+    } // setupUi
+
+    void retranslateUi(QWidget Form)
+    {
+        Form.setWindowTitle(com.trolltech.qt.core.QCoreApplication.translate("Form", "Form", null));
+        label.setText(com.trolltech.qt.core.QCoreApplication.translate("Form", "Data for", null));
+        lblUser.setText("");
+    } // retranslateUi
+
+}
+

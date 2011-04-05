@@ -1,0 +1,194 @@
+package ch.hsr.waktu.presentation.view;
+
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.util.List;
+import java.util.Observable;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+
+public class CalendarPanel extends Observable {
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5633738508265702281L;
+	private WeekModel weekModel = new WeekModel();
+	//private Day selectedDay;
+    private List<Day> displayDays = null;
+    private JPanel contentPane;
+    private JCalendar calendar;
+    private JLabel lblWeek;
+    private JButton btnLeft;
+    private JButton btnRight;
+    private JButton btnDown;
+    private JButton btn1Day;
+    private JButton btn2Day;
+    private JButton btn3Day;
+    private JButton btn4Day;
+    private JButton btn5Day;
+    private JButton btn6Day;
+    private JButton btn7Day;
+    
+	/**
+	 * Create the panel.
+	 */
+	public CalendarPanel() {
+		contentPane = new JPanel();
+        displayDays = weekModel.getDisplayDays();
+        //selectedDay = weekModel.
+		
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		contentPane.setLayout(gridBagLayout);
+		
+		lblWeek = new JLabel(displayDays.get(0).getDateString() + " - " + displayDays.get(6).getDateString());
+		GridBagConstraints gbc_lblWeek = new GridBagConstraints();
+		gbc_lblWeek.gridwidth = 10;
+		gbc_lblWeek.insets = new Insets(0, 0, 5, 5);
+		gbc_lblWeek.gridx = 0;
+		gbc_lblWeek.gridy = 0;
+		contentPane.add(lblWeek, gbc_lblWeek);
+		
+		calendar = new JCalendar();
+		GridBagConstraints gbc_calendar = new GridBagConstraints();
+		gbc_calendar.insets = new Insets(0, 0, 0, 5);
+		gbc_calendar.gridx = 0;
+		gbc_calendar.gridy = 1;
+		contentPane.add(calendar, gbc_calendar);
+		calendar.setVisible(false);
+		
+		btnLeft = new JButton("<");
+		btnLeft.setPreferredSize(new Dimension(30,30));
+		GridBagConstraints gbc_btnLeft = new GridBagConstraints();
+		gbc_btnLeft.insets = new Insets(0, 0, 0, 5);
+		gbc_btnLeft.gridx = 0;
+		gbc_btnLeft.gridy = 1;
+		contentPane.add(btnLeft, gbc_btnLeft);
+		
+		Day d1 = displayDays.get(0);
+		btn1Day = new JButton(d1.getWeekdayString());
+		btn1Day.setPreferredSize(new Dimension(30,30));
+		if (d1.isCurrent()) {
+			btn1Day.setEnabled(false);
+		}
+		GridBagConstraints gbc_btn1Day = new GridBagConstraints();
+		gbc_btn1Day.insets = new Insets(0, 0, 0, 5);
+		gbc_btn1Day.gridx = 1;
+		gbc_btn1Day.gridy = 1;
+		contentPane.add(btn1Day, gbc_btn1Day);
+		
+		Day d2 = displayDays.get(1);
+		btn2Day = new JButton(d2.getWeekdayString());
+		btn2Day.setPreferredSize(new Dimension(30,30));
+		if (d2.isCurrent()) {
+			btn2Day.setEnabled(false);
+		}
+		GridBagConstraints gbc_btn2Day = new GridBagConstraints();
+		gbc_btn2Day.insets = new Insets(0, 0, 0, 5);
+		gbc_btn2Day.gridx = 2;
+		gbc_btn2Day.gridy = 1;
+		contentPane.add(btn2Day, gbc_btn2Day);
+
+		Day d3 = displayDays.get(2);
+		btn3Day = new JButton(d3.getWeekdayString());
+		btn3Day.setPreferredSize(new Dimension(30,30));
+		GridBagConstraints gbc_btn3Day = new GridBagConstraints();
+		gbc_btn3Day.insets = new Insets(0, 0, 0, 5);
+		gbc_btn3Day.gridx = 3;
+		gbc_btn3Day.gridy = 1;
+		contentPane.add(btn3Day, gbc_btn3Day);
+
+		Day d4 = displayDays.get(3);
+		btn4Day = new JButton(d4.getWeekdayString());
+		btn4Day.setPreferredSize(new Dimension(30,30));
+		GridBagConstraints gbc_btn4Day = new GridBagConstraints();
+		gbc_btn4Day.insets = new Insets(0, 0, 0, 5);
+		gbc_btn4Day.gridx = 4;
+		gbc_btn4Day.gridy = 1;
+		contentPane.add(btn4Day, gbc_btn4Day);
+
+		Day d5 = displayDays.get(4);
+		btn5Day = new JButton(d5.getWeekdayString());
+		btn5Day.setPreferredSize(new Dimension(30,30));
+		GridBagConstraints gbc_btn5Day = new GridBagConstraints();
+		gbc_btn5Day.insets = new Insets(0, 0, 0, 5);
+		gbc_btn5Day.gridx = 5;
+		gbc_btn5Day.gridy = 1;
+		contentPane.add(btn5Day, gbc_btn5Day);
+
+		Day d6 = displayDays.get(5);
+		btn6Day = new JButton(d6.getWeekdayString());
+		btn6Day.setPreferredSize(new Dimension(30,30));
+		GridBagConstraints gbc_btn6Day = new GridBagConstraints();
+		gbc_btn6Day.insets = new Insets(0, 0, 0, 5);
+		gbc_btn6Day.gridx = 6;
+		gbc_btn6Day.gridy = 1;
+		contentPane.add(btn6Day, gbc_btn6Day);
+
+		Day d7 = displayDays.get(6);
+		btn7Day = new JButton(d7.getWeekdayString());
+		btn7Day.setPreferredSize(new Dimension(30,30));
+		GridBagConstraints gbc_btn7Day = new GridBagConstraints();
+		gbc_btn7Day.insets = new Insets(0, 0, 0, 5);
+		gbc_btn7Day.gridx = 7;
+		gbc_btn7Day.gridy = 1;
+		contentPane.add(btn7Day, gbc_btn7Day);
+		
+		btnDown = new JButton("v");
+		btnDown.setPreferredSize(new Dimension(30,30));
+		btnDown.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (calendar.isVisible()) {
+					setButtonVisible(true);
+					calendar.setVisible(false);
+					btnDown.setText("v");
+				} else {
+					setButtonVisible(false);
+					calendar.setVisible(true);
+					btnDown.setText("^");
+				}
+			}
+		});
+		GridBagConstraints gbc_btnDown = new GridBagConstraints();
+		gbc_btnDown.insets = new Insets(0, 0, 0, 5);
+		gbc_btnDown.gridx = 8;
+		gbc_btnDown.gridy = 1;
+		contentPane.add(btnDown, gbc_btnDown);
+		
+		btnRight = new JButton(">");
+		btnRight.setPreferredSize(new Dimension(30,30));
+		GridBagConstraints gbc_btnRight = new GridBagConstraints();
+		gbc_btnRight.gridx = 9;
+		gbc_btnRight.gridy = 1;
+		contentPane.add(btnRight, gbc_btnRight);
+		
+	}
+	
+	private void setButtonVisible(boolean visible) {
+		btn1Day.setVisible(visible);
+		btn2Day.setVisible(visible);
+		btn3Day.setVisible(visible);
+		btn4Day.setVisible(visible);
+		btn5Day.setVisible(visible);
+		btn6Day.setVisible(visible);
+		btn7Day.setVisible(visible);
+		btnLeft.setVisible(visible);
+		btnRight.setVisible(visible);
+		lblWeek.setVisible(visible);
+	}
+	
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+
+}

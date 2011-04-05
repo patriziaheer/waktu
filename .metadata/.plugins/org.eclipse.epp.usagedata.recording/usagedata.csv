@@ -1,0 +1,15 @@
+what,kind,bundleId,bundleVersion,description,time
+started,bundle,com.google.gdt.eclipse.designer,2.2.0.r36x201102111142,"com.google.gdt.eclipse.designer",1301589653855
+started,bundle,com.google.gdt.eclipse.designer.GXT,2.2.0.r36x201102111155,"com.google.gdt.eclipse.designer.GXT",1301589653958
+started,bundle,com.google.gdt.eclipse.designer.SmartGWT,2.2.0.r36x201102111155,"com.google.gdt.eclipse.designer.SmartGWT",1301589654013
+started,bundle,com.google.gdt.eclipse.designer.UiBinder,2.2.0.r36x201102111142,"com.google.gdt.eclipse.designer.UiBinder",1301589654040
+started,bundle,com.google.gdt.eclipse.designer.usageprofiler,2.2.0.r36x201102111155,"com.google.gdt.eclipse.designer.usageprofiler",1301589654098
+started,bundle,com.google.gdt.eclipse.designer.usageprofiler.ui,2.2.0.r36x201102111155,"com.google.gdt.eclipse.designer.usageprofiler.ui",1301589654157
+started,bundle,org.eclipse.wb.rcp,0.9.0.r36x201102111222,"org.eclipse.wb.rcp",1301589654498
+started,bundle,org.eclipse.wb.swt,0.9.0.r36x201102111147,"org.eclipse.wb.swt",1301589654524
+started,bundle,org.eclipse.wb.swing,0.9.0.r36x201102111405,"org.eclipse.wb.swing",1301589654595
+started,bundle,org.eclipse.wb.core.xml,0.9.0.r36x201102111134,"org.eclipse.wb.core.xml",1301589654726
+started,bundle,com.trolltech.qtjambi,1.2.0,"com.trolltech.qtjambi",1301589654805
+activated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1301589813797
+activated,editor,org.eclipse.ui.editors,3.6.1.r361_v20100825-0800,"org.eclipse.ui.DefaultTextEditor",1301589813802
+deactivated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1301589815855

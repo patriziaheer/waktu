@@ -1,0 +1,37 @@
+package ch.hsr.waktu.presentation.view.usermanagment;
+
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+public class UserHoursView extends JPanel {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5472264641133367858L;
+
+	/**
+	 * Create the panel.
+	 */
+	public UserHoursView() {
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		setLayout(gridBagLayout);
+		
+		JButton btnMo = new JButton("MO");
+		btnMo.setPreferredSize(new Dimension(30,30));
+		GridBagConstraints gbc_btnMo = new GridBagConstraints();
+		gbc_btnMo.gridx = 0;
+		gbc_btnMo.gridy = 0;
+		add(btnMo, gbc_btnMo);
+
+	}
+
+}

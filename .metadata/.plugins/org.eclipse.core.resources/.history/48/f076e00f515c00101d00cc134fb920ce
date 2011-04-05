@@ -1,0 +1,36 @@
+package ch.hsr.waktu.application;
+import java.sql.*;
+
+public class JDBCTest {
+
+	/**
+	 * @param args
+	 * @throws SQLException
+	 *             , ClassNotFoundException
+	 */
+	public static void main(String[] args) throws ClassNotFoundException,
+			SQLException {
+
+		Class.forName("org.postgresql.Driver");
+		Connection db = DriverManager.getConnection(
+				"jdbc:postgresql://waktu.phew.ch:5432/waktu", "usr_waktu",
+				"waktu!2010");
+
+		Statement st = db.createStatement();
+		ResultSet rs = st.executeQuery("SELECT * FROM usr");
+		while (rs.next()) {
+			System.out.print(rs.getString("userid") + '\t');
+			System.out.print(rs.getString("password") + '\t');
+			System.out.print(rs.getString("name") + "\t\t");
+			System.out.print(rs.getString("firstname") + "\t");
+			System.out.print(rs.getString("pensum") + '\t');
+			System.out.print(rs.getString("holiday") + '\t');
+			System.out.print(rs.getString("inactive") + '\t');
+			System.out.println(rs.getString("role"));
+		}
+		rs.close();
+		st.close();
+
+	}
+
+}

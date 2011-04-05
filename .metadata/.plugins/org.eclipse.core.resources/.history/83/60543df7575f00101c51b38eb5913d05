@@ -1,0 +1,21 @@
+package ch.hsr.waktu.presentation.view.usermanagment;
+
+import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.model.UserProjectsModel;
+import ch.hsr.waktu.presentation.view.usermanagment.jui.Ui_UserProjects;
+
+import com.trolltech.qt.gui.QWidget;
+
+public class UserProjectsView extends QWidget{
+	
+	Ui_UserProjects ui = new Ui_UserProjects();
+	private Usr usr;
+	private UserProjectsModel model;
+	
+	public UserProjectsView(Usr usr) {
+		this.usr = usr;
+		ui.setupUi(this);
+		ui.
+	}
+
+}

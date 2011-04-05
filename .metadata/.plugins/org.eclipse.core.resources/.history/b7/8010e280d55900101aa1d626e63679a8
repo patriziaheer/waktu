@@ -1,0 +1,7 @@
+package ch.hsr.waktu.presentation;
+
+import com.trolltech.qt.gui.QSortFilterProxyModel;
+
+public class SortFilter extends QSortFilterProxyModel{
+
+}

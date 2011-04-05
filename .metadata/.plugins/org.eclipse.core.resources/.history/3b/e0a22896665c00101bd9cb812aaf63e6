@@ -1,0 +1,52 @@
+package ch.hsr.waktu.controller;
+
+/**
+ * @author simon.staeheli
+ * @version 1.0
+ * @created 01-Apr-2011 15:36:30
+ */
+public class ProjectStaffController {
+
+	public ProjectStaffController(){
+
+	}
+
+	public void finalize() throws Throwable {
+
+	}
+
+	/**
+	 * 
+	 * @param user
+	 * @param project
+	 */
+	public boolean addProjectStaff(User user, Project project){
+		return false;
+	}
+
+	/**
+	 * 
+	 * @param user
+	 */
+	public List<Project> getProjects(User user){
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param project
+	 */
+	public List<User> getUsers(Project project){
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param user
+	 * @param project
+	 */
+	public boolean removeUser(User user, Project project){
+		return false;
+	}
+
+}

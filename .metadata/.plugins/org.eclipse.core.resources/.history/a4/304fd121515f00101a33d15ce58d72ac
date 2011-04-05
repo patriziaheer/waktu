@@ -1,0 +1,115 @@
+package ch.hsr.waktu.controller;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import org.apache.log4j.Logger;
+
+import ch.hsr.waktu.domain.Usr;
+
+import com.trolltech.qt.QSignalEmitter;
+
+/**
+ * @author simon.staeheli
+ * @version 1.0
+ * @created 01-Apr-2011 15:36:30
+ */
+public class UserController extends QSignalEmitter {
+	
+	public enum UserProperties {
+		Data, 
+		Projects,
+		WorkSessions
+	}
+
+	private static UserController theInstance = null;
+
+	public static UserController getInstance() {
+		if (theInstance == null) {
+			theInstance = new UserController();
+		}
+		return theInstance;
+	}
+
+	private Logger logger = Logger.getLogger(UserController.class);
+	public Signal0 update = new Signal0();
+	public Signal1<Usr> add = new Signal1<Usr>();
+
+	private UserController() {
+
+	}
+
+	/**
+	 * 
+	 * @param username
+	 * @param name
+	 * @param firstname
+	 * @param pensum
+	 * @param role
+	 */
+	public boolean addUser(String username, String name, String firstname,
+			int pensum, int role) {
+		Usr usr = new Usr(name, firstname);
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+		em.getTransaction().begin();s
+		em.persist(usr);
+		em.flush();
+		em.getTransaction().commit();
+		add.emit(usr);
+		return true;
+	}
+
+	public List<Usr> getActiveUsers() {
+		return getAllUsers();
+	}
+
+	public List<Usr> getAllUsers() {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		@SuppressWarnings("unchecked")
+		List<Usr> usrs = em.createQuery("SELECT u FROM Usr u").getResultList();
+
+		for (Usr usr : usrs) {
+			logger.info(usr.toString());
+		}
+
+		em.close();
+		return usrs;
+	}
+
+	public List<Usr> getInactiveUsers() {
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param loginName
+	 */
+	public Usr getUser(String loginName) {
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param user
+	 */
+	public boolean updateUser(Usr user) {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		em.getTransaction().begin();
+		Usr updateUsr = (Usr) em.createQuery(
+				"SELECT u FROM Usr u WHERE u.id = " + user.getId())
+				.getSingleResult();
+		updateUsr.setName(user.getName());
+		updateUsr.setFirstname(user.getFirstname());
+		em.getTransaction().commit();
+		update.emit();
+
+		return true;
+	}
+
+}

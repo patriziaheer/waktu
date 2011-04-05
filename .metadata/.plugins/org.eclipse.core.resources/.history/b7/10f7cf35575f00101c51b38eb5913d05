@@ -1,0 +1,64 @@
+package ch.hsr.waktu.controller;
+
+import java.util.List;
+
+import ch.hsr.waktu.domain.Project;
+import ch.hsr.waktu.domain.Usr;
+
+import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User;
+
+/**
+ * @author simon.staeheli
+ * @version 1.0
+ * @created 01-Apr-2011 15:36:30
+ */
+public class ProjectStaffController {
+	
+	private static ProjectStaffController theInstance = null;
+	
+	public static ProjectStaffController getInstance() {
+		if (theInstance == null) {
+			theInstance = new ProjectStaffController();
+		}
+		return theInstance;
+	}
+
+	private ProjectStaffController(){
+
+	}
+
+	/**
+	 * 
+	 * @param user
+	 * @param project
+	 */
+	public boolean addProjectStaff(Usr user, Project project){
+		return false;
+	}
+
+	/**
+	 * 
+	 * @param user
+	 */
+	public List<Project> getProjects(User user){
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param project
+	 */
+	public List<User> getUsers(Project project){
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param user
+	 * @param project
+	 */
+	public boolean removeUser(User user, Project project){
+		return false;
+	}
+
+}
