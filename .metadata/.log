@@ -8352,3 +8352,6 @@ Binding(ALT+COMMAND+I,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,cocoa,system)
+
+!ENTRY org.eclipse.egit.ui 4 0 2011-04-05 14:08:48.293
+!MESSAGE Can't connect to any repository: https://patriziaheer@github.com/patriziaheer/waktu.git (Transport error occured during push operation: https://patriziaheer@github.com/patriziaheer/waktu.git: 401 Authorization Required)
