@@ -1,11 +1,14 @@
 package ch.hsr.waktu.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.domain.WorkSession;
 
+import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.core.QDateTime;
 
 /**
@@ -36,8 +39,8 @@ public class WorkSessionController {
 	 * @param startTime
 	 * @param endTime
 	 */
-	public boolean addWorkSession(Usr user, WorkPackage workPackage, QDateTime startTime, QDateTime endTime){
-		return false;
+	public WorkSession addWorkSession(Usr user, WorkPackage workPackage, QDateTime startTime, QDateTime endTime){
+		return null;
 	}
 
 	/**
@@ -45,7 +48,7 @@ public class WorkSessionController {
 	 * @param user
 	 */
 	public List<WorkSession> getWorkSessions(Usr user){
-		return null;
+		return new ArrayList<WorkSession>();
 	}
 
 	/**
@@ -53,8 +56,12 @@ public class WorkSessionController {
 	 * @param user
 	 * @param date
 	 */
-	public List<WorkSession> getWorkSessions(Usr user, QDateTime date){
-		return null;
+	public List<WorkSession> getWorkSessions(Usr user, QDate date){
+		return new ArrayList<WorkSession>();
+	}
+
+	public List<WorkSession> getWorkSessions(Project project) {
+		return new ArrayList<WorkSession>();
 	}
 
 	/**

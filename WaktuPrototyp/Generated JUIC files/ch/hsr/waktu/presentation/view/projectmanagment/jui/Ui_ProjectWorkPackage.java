@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ProjectWorkPackage.jui'
 **
-** Created: Do 7. Apr 09:44:31 2011
+** Created: Do. Apr 7 19:27:14 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!

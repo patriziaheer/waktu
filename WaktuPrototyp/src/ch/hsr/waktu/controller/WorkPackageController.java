@@ -32,8 +32,8 @@ public class WorkPackageController {
 	 * @param project
 	 * @param description
 	 */
-	public boolean addWorkPackage(Project project, String description){
-		return false;
+	public WorkPackage addWorkPackage(Project project, String description){
+		return null;
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class WorkPackageController {
 	 * @param project
 	 */
 	public List<WorkPackage> getAllWorkPackages(Project project){
-		return null;
+		return new ArrayList<WorkPackage>();
 	}
 
 	/**

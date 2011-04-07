@@ -12,6 +12,7 @@ public class WorkSession {
 	private QDateTime end;
 	private QDateTime start;
 	private Usr UserID;
+	private String description;
 	private WorkPackage WorkPackageID;
 	public Usr m_Usr;
 	public WorkPackage m_WorkPackage;
@@ -42,6 +43,14 @@ public class WorkSession {
 
 	public void setUserID(Usr userID) {
 		UserID = userID;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public WorkPackage getWorkPackageID() {

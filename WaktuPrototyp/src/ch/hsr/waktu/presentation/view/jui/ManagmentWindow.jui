@@ -48,7 +48,8 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionAdd"/>
+    <addaction name="actionAddProject"/>
+    <addaction name="actionAddUser"/>
     <addaction name="actionClose"/>
    </widget>
    <addaction name="menuFile"/>
@@ -61,6 +62,16 @@
   <action name="actionAdd">
    <property name="text">
     <string>Add</string>
+   </property>
+  </action>
+  <action name="actionAddProject">
+   <property name="text">
+    <string>Add Project</string>
+   </property>
+  </action>
+  <action name="actionAddUser">
+   <property name="text">
+    <string>Add User</string>
    </property>
   </action>
  </widget>

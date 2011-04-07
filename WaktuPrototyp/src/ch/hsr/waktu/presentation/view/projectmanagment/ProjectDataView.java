@@ -13,6 +13,32 @@ public class ProjectDataView extends QWidget {
 	public ProjectDataView(Project project) {
 		this.project = project;
 		ui.setupUi(this);
+		setFields();
+	}
+	
+	private void setFields() {
+		if (project != null) {
+			ui.btnAdd.setVisible(false);
+			
+			ui.txtDescription.setText(project.getDescription());
+			ui.txtDescription.setEnabled(false);
+			
+			ui.txtProjectnumber.setText(project.getProjectIdentifier());
+			ui.txtProjectnumber.setEnabled(false);
+			
+			ui.txtPlannedTime.setValue(project.getPlannedTime());
+			ui.txtPlannedTime.setEnabled(false);
+			
+			ui.txtPlannedTime.setValue(project.getPlannedTime());
+			ui.txtPlannedTime.setEnabled(false);
+		} else {
+			ui.btnAdd.setVisible(true);
+
+			ui.txtDescription.setEnabled(true);
+			ui.txtProjectnumber.setEnabled(true);
+			ui.txtPlannedTime.setEnabled(true);
+			ui.txtPlannedTime.setEnabled(true);
+		}
 	}
 	
 }

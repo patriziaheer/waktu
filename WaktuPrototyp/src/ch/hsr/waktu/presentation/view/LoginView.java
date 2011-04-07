@@ -34,9 +34,9 @@ public class LoginView extends QMainWindow {
 			timeView.show();
 			close();
 		} else {
-			ui.statusbar.showMessage(tr("Username or Password wrong"), 10000);
+			ui.statusbar.showMessage(tr("Username or Password wrong"), 2000);
 			QPalette palette = ui.statusbar.palette();
-			palette.setBrush(ColorRole.Window, new QBrush(QColor.red));
+			palette.setBrush(ColorRole.WindowText, new QBrush(QColor.red));
 			ui.statusbar.setPalette(palette);
 		}
 	}

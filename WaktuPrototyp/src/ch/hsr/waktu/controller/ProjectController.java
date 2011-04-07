@@ -39,7 +39,6 @@ public class ProjectController extends QSignalEmitter {
 	public Signal0 update = new Signal0();
 	public Signal1<Project> add = new Signal1<Project>();
 	
-
 	private ProjectController(){
 		logger.info("constructor");
 	}
@@ -51,10 +50,9 @@ public class ProjectController extends QSignalEmitter {
 	 * @param projectManager
 	 * @param plannedTime
 	 */
-	public boolean addProject(String projectIdentifier, String description, Usr projectManager, int plannedTime){
-		Project proj = new Project();
-		add.emit(proj);
-		return false;
+	public Project addProject(String projectIdentifier, String description, Usr projectManager, int plannedTime){
+		add.emit(null);
+		return null;
 	}
 
 	public List<Project> getActiveProjects(){
@@ -62,11 +60,11 @@ public class ProjectController extends QSignalEmitter {
 	}
 
 	public List<Project> getAllProjects(){
-		return null;
+		return new ArrayList<Project>();
 	}
 
 	public List<Project> getInactiveProjects(){
-		return null;
+		return new ArrayList<Project>();
 	}
 
 	/**

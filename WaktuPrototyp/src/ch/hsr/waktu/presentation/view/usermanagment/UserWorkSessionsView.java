@@ -1,6 +1,10 @@
 package ch.hsr.waktu.presentation.view.usermanagment;
 
+import ch.hsr.waktu.controller.ProjectController;
 import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.model.ProjectComboBoxModel;
+import ch.hsr.waktu.model.UserWorkSessionModel;
+import ch.hsr.waktu.model.WorkPackageComboBoxModel;
 import ch.hsr.waktu.presentation.view.usermanagment.jui.Ui_UserWorkSessions;
 
 import com.trolltech.qt.gui.QWidget;
@@ -8,11 +12,20 @@ import com.trolltech.qt.gui.QWidget;
 public class UserWorkSessionsView extends QWidget{ 
 	
 	private Ui_UserWorkSessions ui = new Ui_UserWorkSessions();
-	private Usr usr;
 	
 	public UserWorkSessionsView(Usr usr) {
-		this.usr = usr;
 		ui.setupUi(this);
+		
+		ui.tblWorkSessions.setModel(new UserWorkSessionModel(usr));
+		ui.tblWorkSessions.horizontalHeader().setStretchLastSection(true);
+		
+		ui.cmbProject.setModel(new ProjectComboBoxModel());
+		ui.cmbProject.currentIndexChanged.connect(this, "projectChanged()");
 	}
+	
+	@SuppressWarnings("unused")
+	private void projectChanged() {
+		ui.cmbWorkpackage.setModel(new WorkPackageComboBoxModel(ProjectController.getInstance().getActiveProjects().get(ui.cmbProject.currentIndex())));
+}
 
 }

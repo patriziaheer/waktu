@@ -21,7 +21,7 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="2">
+   <item row="0" column="1" colspan="2">
     <widget class="QLineEdit" name="txtProjectnumber"/>
    </item>
    <item row="1" column="0">
@@ -31,7 +31,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="2">
+   <item row="1" column="1" colspan="2">
     <widget class="QLineEdit" name="txtDescription"/>
    </item>
    <item row="2" column="0">
@@ -41,7 +41,7 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="2">
+   <item row="2" column="1" colspan="2">
     <widget class="QLineEdit" name="txtProjectmanager"/>
    </item>
    <item row="3" column="0">
@@ -51,15 +51,35 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="2">
-    <widget class="QSpinBox" name="txtPlannedTime"/>
+   <item row="5" column="2">
+    <widget class="QPushButton" name="btnAdd">
+     <property name="text">
+      <string>add</string>
+     </property>
+    </widget>
    </item>
-   <item row="4" column="2">
+   <item row="5" column="1">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>com.trolltech.qt.core.Qt.Orientation.Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="4" column="1">
     <widget class="QCheckBox" name="checkBox">
      <property name="text">
       <string>Inactiv</string>
      </property>
     </widget>
+   </item>
+   <item row="3" column="1" colspan="2">
+    <widget class="QSpinBox" name="txtPlannedTime"/>
    </item>
   </layout>
  </widget>

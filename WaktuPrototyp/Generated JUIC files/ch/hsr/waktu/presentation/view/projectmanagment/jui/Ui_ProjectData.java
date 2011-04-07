@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ProjectData.jui'
 **
-** Created: Do 7. Apr 09:44:31 2011
+** Created: Do. Apr 7 19:27:14 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -22,8 +22,10 @@ public class Ui_ProjectData implements com.trolltech.qt.QUiForm<QWidget>
     public QLabel lblProjectManager;
     public QLineEdit txtProjectmanager;
     public QLabel lblPlannedTime;
-    public QSpinBox txtPlannedTime;
+    public QPushButton btnAdd;
+    public QSpacerItem horizontalSpacer;
     public QCheckBox checkBox;
+    public QSpinBox txtPlannedTime;
 
     public Ui_ProjectData() { super(); }
 
@@ -41,7 +43,7 @@ public class Ui_ProjectData implements com.trolltech.qt.QUiForm<QWidget>
         txtProjectnumber = new QLineEdit(ProjectData);
         txtProjectnumber.setObjectName("txtProjectnumber");
 
-        gridLayout.addWidget(txtProjectnumber, 0, 2, 1, 1);
+        gridLayout.addWidget(txtProjectnumber, 0, 1, 1, 2);
 
         lblDescription = new QLabel(ProjectData);
         lblDescription.setObjectName("lblDescription");
@@ -51,7 +53,7 @@ public class Ui_ProjectData implements com.trolltech.qt.QUiForm<QWidget>
         txtDescription = new QLineEdit(ProjectData);
         txtDescription.setObjectName("txtDescription");
 
-        gridLayout.addWidget(txtDescription, 1, 2, 1, 1);
+        gridLayout.addWidget(txtDescription, 1, 1, 1, 2);
 
         lblProjectManager = new QLabel(ProjectData);
         lblProjectManager.setObjectName("lblProjectManager");
@@ -61,22 +63,31 @@ public class Ui_ProjectData implements com.trolltech.qt.QUiForm<QWidget>
         txtProjectmanager = new QLineEdit(ProjectData);
         txtProjectmanager.setObjectName("txtProjectmanager");
 
-        gridLayout.addWidget(txtProjectmanager, 2, 2, 1, 1);
+        gridLayout.addWidget(txtProjectmanager, 2, 1, 1, 2);
 
         lblPlannedTime = new QLabel(ProjectData);
         lblPlannedTime.setObjectName("lblPlannedTime");
 
         gridLayout.addWidget(lblPlannedTime, 3, 0, 1, 1);
 
-        txtPlannedTime = new QSpinBox(ProjectData);
-        txtPlannedTime.setObjectName("txtPlannedTime");
+        btnAdd = new QPushButton(ProjectData);
+        btnAdd.setObjectName("btnAdd");
 
-        gridLayout.addWidget(txtPlannedTime, 3, 2, 1, 1);
+        gridLayout.addWidget(btnAdd, 5, 2, 1, 1);
+
+        horizontalSpacer = new QSpacerItem(40, 20, com.trolltech.qt.gui.QSizePolicy.Policy.Expanding, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
+
+        gridLayout.addItem(horizontalSpacer, 5, 1, 1, 1);
 
         checkBox = new QCheckBox(ProjectData);
         checkBox.setObjectName("checkBox");
 
-        gridLayout.addWidget(checkBox, 4, 2, 1, 1);
+        gridLayout.addWidget(checkBox, 4, 1, 1, 1);
+
+        txtPlannedTime = new QSpinBox(ProjectData);
+        txtPlannedTime.setObjectName("txtPlannedTime");
+
+        gridLayout.addWidget(txtPlannedTime, 3, 1, 1, 2);
 
         retranslateUi(ProjectData);
 
@@ -90,6 +101,7 @@ public class Ui_ProjectData implements com.trolltech.qt.QUiForm<QWidget>
         lblDescription.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectData", "Projectdescription:", null));
         lblProjectManager.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectData", "Projectmanager:", null));
         lblPlannedTime.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectData", "Planned Time:", null));
+        btnAdd.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectData", "add", null));
         checkBox.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectData", "Inactiv", null));
     } // retranslateUi
 

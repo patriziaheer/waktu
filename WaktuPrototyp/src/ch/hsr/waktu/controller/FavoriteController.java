@@ -1,6 +1,7 @@
 package ch.hsr.waktu.controller;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 
 import ch.hsr.waktu.domain.Favorite;
@@ -35,8 +36,8 @@ public class FavoriteController {
 	 * @param startTime
 	 * @param endTime
 	 */
-	public boolean addFavorite(WorkPackage workPackage, Time startTime, Time endTime){
-		return false;
+	public Favorite addFavorite(WorkPackage workPackage, Time startTime, Time endTime){
+		return null;
 	}
 
 	/**
@@ -44,7 +45,7 @@ public class FavoriteController {
 	 * @param user
 	 */
 	public List<Favorite> getFavorites(Usr user){
-		return null;
+		return new ArrayList<Favorite>();
 	}
 
 	/**

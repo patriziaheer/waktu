@@ -6,18 +6,20 @@ import ch.hsr.waktu.controller.WorkSessionController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
-import ch.hsr.waktu.model.ProjectComboBoxModel;
+import ch.hsr.waktu.model.FavoriteModel;
+import ch.hsr.waktu.model.UserWorkSessionModel;
 import ch.hsr.waktu.model.WorkPackageComboBoxModel;
 import ch.hsr.waktu.presentation.view.jui.Ui_TimeWindow;
 
 import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.core.QDateTime;
 import com.trolltech.qt.core.QTime;
-import com.trolltech.qt.gui.QAction;
+import com.trolltech.qt.gui.QBrush;
+import com.trolltech.qt.gui.QColor;
 import com.trolltech.qt.gui.QComboBox;
 import com.trolltech.qt.gui.QMainWindow;
-import com.trolltech.qt.gui.QMenuBar;
-import com.trolltech.qt.gui.QToolBar;
+import com.trolltech.qt.gui.QPalette;
+import com.trolltech.qt.gui.QPalette.ColorRole;
 
 public class TimeView extends QMainWindow{
 	
@@ -31,22 +33,10 @@ public class TimeView extends QMainWindow{
 		ui.setupUi(this);
 		ui.btnDown.clicked.connect(this, "downClicked()");
 		ui.calendar.setVisible(false);
-		QMenuBar menuBar = new QMenuBar(this);
-		QAction managmentActionMenu = new QAction(tr("Managment"), menuBar);
-		managmentActionMenu.triggered.connect(this, "managmentClicked()");
-		QAction managmentActionTool = new QAction(tr("Managment"), menuBar);
-		managmentActionTool.triggered.connect(this, "managmentClicked()");
-		menuBar.addAction(managmentActionMenu);
-		setMenuBar(menuBar);
-		menuBar.setVisible(true);
-		QToolBar toolbar = new QToolBar();
-		toolbar.addAction(managmentActionTool);
-		addToolBar(toolbar);
-		ui.calendar.setSelectedDate(currDate);
-		calendarSelectionChanged();
-		
-		ui.cmbProject.setModel(new ProjectComboBoxModel());
-		ui.cmbProject.currentIndexChanged.connect(this, "projectChanged()");
+
+
+		ui.actionOpenManagment.triggered.connect(this, "managmentClicked()");
+		ui.actionClose.triggered.connect(this, "closeApp()");
 		
 		
 		//calendar slots
@@ -64,6 +54,23 @@ public class TimeView extends QMainWindow{
 		//worksession slots
 		ui.btnReset.clicked.connect(this, "resetClicked()");
 		ui.btnCreate.clicked.connect(this, "createWorkSessionClicked()");
+		
+		ui.tblFavorites.setModel(new FavoriteModel(currUser));
+		ui.tblFavorites.horizontalHeader().setStretchLastSection(true);
+		ui.tblWorksessions.horizontalHeader().setStretchLastSection(true);
+		
+		calendarSelectionChanged();
+	}
+	
+	@SuppressWarnings("unused")
+	private void managmentClicked() {
+		ManagmentView managmentView = new ManagmentView(currUser);
+		managmentView.show();
+	}
+	
+	@SuppressWarnings("unused")
+	private void closeApp() {
+		System.exit(0);
 	}
 	
 	@SuppressWarnings("unused")
@@ -94,14 +101,9 @@ public class TimeView extends QMainWindow{
 		ui.lblBis.setVisible(visible);
 	}
 	
-	@SuppressWarnings("unused")
-	private void managmentClicked() {
-		ManagmentView managmentView = new ManagmentView(currUser);
-		managmentView.show();
-	}
-	
 	private void calendarSelectionChanged() {
 		currDate = ui.calendar.selectedDate();
+		ui.tblWorksessions.setModel(new UserWorkSessionModel(currUser, currDate));
 		resetButtonEnabled();
 		
 		QDate startDate = new QDate();
@@ -322,6 +324,7 @@ public class TimeView extends QMainWindow{
 	
 	private void updateCalendar() {
 		ui.calendar.setSelectedDate(currDate);
+		ui.tblWorksessions.setModel(new UserWorkSessionModel(currUser, currDate));
 	}
 
 	@SuppressWarnings("unused")
@@ -336,6 +339,9 @@ public class TimeView extends QMainWindow{
 	private void createWorkSessionClicked() {
 		if (ui.txtEnd.time().compareTo(ui.txtStart.time()) < 0) {
 			ui.statusBar.showMessage(tr("Endtime must be greater then Starttime"), 2000);
+			QPalette palette = ui.statusBar.palette();
+			palette.setBrush(ColorRole.WindowText, new QBrush(QColor.red));
+			ui.statusBar.setPalette(palette);
 		} else {
 			Project project = ProjectController.getInstance().getActiveProjects().get(ui.cmbProject.currentIndex());
 			WorkPackage workPackage = WorkPackageController.getInstance().getActiveWorkPackages(project).get(ui.cmbWorkpackage.currentIndex());

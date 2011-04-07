@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.hsr.waktu.domain.Project;
+import ch.hsr.waktu.domain.ProjectStaff;
 import ch.hsr.waktu.domain.Usr;
 
 /**
@@ -31,8 +32,8 @@ public class ProjectStaffController {
 	 * @param user
 	 * @param project
 	 */
-	public boolean addProjectStaff(Usr user, Project project){
-		return false;
+	public ProjectStaff addProjectStaff(Usr user, Project project){
+		return null;
 	}
 
 	/**

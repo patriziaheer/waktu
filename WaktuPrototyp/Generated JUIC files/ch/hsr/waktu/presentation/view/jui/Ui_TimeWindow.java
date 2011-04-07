@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'TimeWindow.jui'
 **
-** Created: Do 7. Apr 09:44:31 2011
+** Created: Do. Apr 7 19:48:35 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -14,6 +14,8 @@ import com.trolltech.qt.gui.*;
 
 public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
 {
+    public QAction actionClose;
+    public QAction actionOpenManagment;
     public QWidget centralwidget;
     public QGridLayout gridLayout;
     public QWidget calendarWidget;
@@ -73,6 +75,9 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
     public QPushButton btnCreate;
     public QPushButton btnReset;
     public QStatusBar statusBar;
+    public QMenuBar menuBar;
+    public QMenu menuManagment;
+    public QMenu menuFile;
 
     public Ui_TimeWindow() { super(); }
 
@@ -80,6 +85,10 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
     {
         TimeWindow.setObjectName("TimeWindow");
         TimeWindow.resize(new QSize(740, 743).expandedTo(TimeWindow.minimumSizeHint()));
+        actionClose = new QAction(TimeWindow);
+        actionClose.setObjectName("actionClose");
+        actionOpenManagment = new QAction(TimeWindow);
+        actionOpenManagment.setObjectName("actionOpenManagment");
         centralwidget = new QWidget(TimeWindow);
         centralwidget.setObjectName("centralwidget");
         gridLayout = new QGridLayout(centralwidget);
@@ -392,6 +401,19 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         statusBar = new QStatusBar(TimeWindow);
         statusBar.setObjectName("statusBar");
         TimeWindow.setStatusBar(statusBar);
+        menuBar = new QMenuBar(TimeWindow);
+        menuBar.setObjectName("menuBar");
+        menuBar.setGeometry(new QRect(0, 0, 740, 22));
+        menuManagment = new QMenu(menuBar);
+        menuManagment.setObjectName("menuManagment");
+        menuFile = new QMenu(menuBar);
+        menuFile.setObjectName("menuFile");
+        TimeWindow.setMenuBar(menuBar);
+
+        menuBar.addAction(menuFile.menuAction());
+        menuBar.addAction(menuManagment.menuAction());
+        menuManagment.addAction(actionOpenManagment);
+        menuFile.addAction(actionClose);
         retranslateUi(TimeWindow);
 
         TimeWindow.connectSlotsByName();
@@ -400,6 +422,8 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
     void retranslateUi(QMainWindow TimeWindow)
     {
         TimeWindow.setWindowTitle(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Time Window", null));
+        actionClose.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Close", null));
+        actionOpenManagment.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Open", null));
         btnLeft.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "<", null));
         btnMo.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "MO", null));
         btnDi.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "DI", null));
@@ -441,6 +465,8 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         lblBis2.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "-", null));
         btnCreate.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "create", null));
         btnReset.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "reset", null));
+        menuManagment.setTitle(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Managment", null));
+        menuFile.setTitle(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "File", null));
     } // retranslateUi
 
 }

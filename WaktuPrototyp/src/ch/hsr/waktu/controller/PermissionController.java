@@ -27,7 +27,7 @@ public class PermissionController {
 	 * @param user
 	 */
 	public boolean canAddProject(Usr user){
-		return false;
+		return true;
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class PermissionController {
 	 * @param user
 	 */
 	public boolean canAddUser(Usr user){
-		return false;
+		return true;
 	}
 
 	/**
