@@ -4,9 +4,8 @@ import java.sql.Time;
 import java.util.List;
 
 import ch.hsr.waktu.domain.Favorite;
+import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
-
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User;
 
 
 
@@ -44,7 +43,7 @@ public class FavoriteController {
 	 * 
 	 * @param user
 	 */
-	public List<Favorite> getFavorites(User user){
+	public List<Favorite> getFavorites(Usr user){
 		return null;
 	}
 
