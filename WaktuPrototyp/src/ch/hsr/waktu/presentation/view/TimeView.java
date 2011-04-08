@@ -7,25 +7,33 @@ import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.model.FavoriteModel;
-import ch.hsr.waktu.model.UserWorkSessionModel;
 import ch.hsr.waktu.model.WorkPackageComboBoxModel;
+import ch.hsr.waktu.model.WorkSessionModel;
 import ch.hsr.waktu.presentation.view.jui.Ui_TimeWindow;
 
 import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.core.QDateTime;
+import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.QTime;
+import com.trolltech.qt.gui.QAbstractItemView.SelectionBehavior;
+import com.trolltech.qt.gui.QAbstractItemView.SelectionMode;
 import com.trolltech.qt.gui.QBrush;
 import com.trolltech.qt.gui.QColor;
 import com.trolltech.qt.gui.QComboBox;
+import com.trolltech.qt.gui.QHBoxLayout;
+import com.trolltech.qt.gui.QItemSelectionModel.SelectionFlag;
 import com.trolltech.qt.gui.QMainWindow;
 import com.trolltech.qt.gui.QPalette;
 import com.trolltech.qt.gui.QPalette.ColorRole;
+import com.trolltech.qt.gui.QPushButton;
+import com.trolltech.qt.gui.QWidget;
 
 public class TimeView extends QMainWindow{
 	
 	private Ui_TimeWindow ui = new Ui_TimeWindow();
 	private QDate currDate = QDate.currentDate();
 	private Usr currUser;
+	private WorkSessionModel workSessionModel;
 	
 	public TimeView(Usr usr) {
 		currUser = usr;
@@ -58,8 +66,27 @@ public class TimeView extends QMainWindow{
 		ui.tblFavorites.setModel(new FavoriteModel(currUser));
 		ui.tblFavorites.horizontalHeader().setStretchLastSection(true);
 		ui.tblWorksessions.horizontalHeader().setStretchLastSection(true);
+		ui.tblWorksessions.setSelectionMode(SelectionMode.SingleSelection);
+		ui.tblWorksessions.setSelectionBehavior(SelectionBehavior.SelectRows);
 		
+		workSessionModel = new WorkSessionModel(currUser, currDate);
+		ui.calendar.setSelectedDate(currDate);
 		calendarSelectionChanged();
+		
+		for (int i = 0; i < WorkSessionController.getInstance().getWorkSessions(currUser, currDate).size(); i++) {
+			QModelIndex currIndex = workSessionModel.index(i, workSessionModel.columnCount()-1);
+			QWidget w = new QWidget();
+			w.setLayout(new QHBoxLayout());
+			EditButton editButton = new EditButton(tr("Edit"), currIndex);
+			editButton.editClicked.connect(this, "editClicked(EditButton)");
+			
+			QPushButton deleteButton = new QPushButton(tr("Delete"));
+			deleteButton.clicked.connect(this, "deleteClicked()");
+			w.layout().addWidget(editButton);
+			w.layout().addWidget(deleteButton);
+			
+			ui.tblWorksessions.setIndexWidget(currIndex, w);
+		}
 	}
 	
 	@SuppressWarnings("unused")
@@ -103,7 +130,8 @@ public class TimeView extends QMainWindow{
 	
 	private void calendarSelectionChanged() {
 		currDate = ui.calendar.selectedDate();
-		ui.tblWorksessions.setModel(new UserWorkSessionModel(currUser, currDate));
+		workSessionModel = new WorkSessionModel(currUser, currDate);
+		ui.tblWorksessions.setModel(workSessionModel);
 		resetButtonEnabled();
 		
 		QDate startDate = new QDate();
@@ -324,7 +352,8 @@ public class TimeView extends QMainWindow{
 	
 	private void updateCalendar() {
 		ui.calendar.setSelectedDate(currDate);
-		ui.tblWorksessions.setModel(new UserWorkSessionModel(currUser, currDate));
+		workSessionModel = new WorkSessionModel(currUser, currDate);
+		ui.tblWorksessions.setModel(workSessionModel);
 	}
 
 	@SuppressWarnings("unused")
@@ -338,10 +367,7 @@ public class TimeView extends QMainWindow{
 	@SuppressWarnings("unused")
 	private void createWorkSessionClicked() {
 		if (ui.txtEnd.time().compareTo(ui.txtStart.time()) < 0) {
-			ui.statusBar.showMessage(tr("Endtime must be greater then Starttime"), 2000);
-			QPalette palette = ui.statusBar.palette();
-			palette.setBrush(ColorRole.WindowText, new QBrush(QColor.red));
-			ui.statusBar.setPalette(palette);
+			setStatusBarText(tr("Endtime must be greater then Starttime"));
 		} else {
 			Project project = ProjectController.getInstance().getActiveProjects().get(ui.cmbProject.currentIndex());
 			WorkPackage workPackage = WorkPackageController.getInstance().getActiveWorkPackages(project).get(ui.cmbWorkpackage.currentIndex());
@@ -356,5 +382,39 @@ public class TimeView extends QMainWindow{
 	@SuppressWarnings("unused")
 	private void projectChanged() {
 		ui.cmbWorkpackage.setModel(new WorkPackageComboBoxModel(ProjectController.getInstance().getActiveProjects().get(ui.cmbProject.currentIndex())));
+	}
+	
+	@SuppressWarnings("unused")
+	private void editClicked(EditButton btn) {
+		if (workSessionModel.getEditable() != null && btn.text().equals("Edit")) {
+			setStatusBarText(tr("Save first current edit row"));
+		} else {
+			if (btn.text().equals(tr("Edit"))) {
+				for (int i = 0; i < workSessionModel.columnCount(); i++) {
+					ui.tblWorksessions.edit(workSessionModel.index(btn.getIndex().row(), i));
+				}
+				workSessionModel.setEditable(btn.getIndex());
+				btn.setText(tr("Save"));
+				ui.tblWorksessions.selectionModel().select(btn.getIndex(), SelectionFlag.Rows);
+			} else {
+				workSessionModel.setEditable(null);
+				btn.setText(tr("Edit"));
+			}
+			workSessionModel.layoutAboutToBeChanged.emit();
+			workSessionModel.dataChanged.emit(workSessionModel.index(0, 0), workSessionModel.index(workSessionModel.rowCount(), workSessionModel.columnCount()));
+			workSessionModel.layoutChanged.emit();
+		}
+	}
+	
+	@SuppressWarnings("unused")
+	private void deleteClicked() {
+		
+	}
+	
+	private void setStatusBarText(String text) {
+		ui.statusBar.showMessage(text, 2000);
+		QPalette palette = ui.statusBar.palette();
+		palette.setBrush(ColorRole.WindowText, new QBrush(QColor.red));
+		ui.statusBar.setPalette(palette);
 	}
 }

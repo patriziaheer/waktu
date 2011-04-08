@@ -1,0 +1,73 @@
+package ch.hsr.waktu.model;
+
+import ch.hsr.waktu.controller.UserController;
+import ch.hsr.waktu.domain.Usr;
+
+import com.trolltech.qt.core.QAbstractItemModel;
+import com.trolltech.qt.core.QModelIndex;
+import com.trolltech.qt.core.Qt;
+import com.trolltech.qt.core.Qt.ItemFlags;
+
+public class UserTableModel extends QAbstractItemModel {
+	
+	public UserTableModel() {
+	}
+
+	@Override
+	public int columnCount(QModelIndex arg0) {
+		return 2;
+	}
+
+	@Override
+	public int rowCount(QModelIndex arg0) {
+		return UserController.getInstance().getAllUsers().size();
+	}
+
+	@Override
+	public Object data(QModelIndex index, int role) {
+		if (role == Qt.ItemDataRole.DisplayRole || role == Qt.ItemDataRole.EditRole) {
+			switch (index.column()) {
+			case 0: return UserController.getInstance().getAllUsers().get(index.row()).getFirstname();
+			case 1: return UserController.getInstance().getAllUsers().get(index.row()).getName();
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public boolean setData(QModelIndex index, Object value, int role) {
+		Usr user = UserController.getInstance().getAllUsers().get(index.row());
+		switch (index.column()) {
+		case 0: {
+			user.setFirstname((String)value);
+		}
+		break;
+		case 1: {
+			user.setName((String)value);
+		}
+		break;
+		}
+		UserController.getInstance().updateUser(user);
+		return true;
+	}
+
+	@Override
+	public ItemFlags flags(QModelIndex index) {
+		if (index.row() == 0) {
+			Qt.ItemFlag[] flags = {Qt.ItemFlag.ItemIsEditable,Qt.ItemFlag.ItemIsSelectable,Qt.ItemFlag.ItemIsEnabled}; 
+			return new Qt.ItemFlags(flags);
+		}
+		return super.flags(index);
+	}
+
+	@Override
+	public QModelIndex index(int row, int column, QModelIndex arg2) {
+		return createIndex(row, column);
+	}
+
+	@Override
+	public QModelIndex parent(QModelIndex arg0) {
+		return null;
+	}
+
+}

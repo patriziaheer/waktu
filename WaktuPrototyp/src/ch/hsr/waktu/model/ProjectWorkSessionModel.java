@@ -35,7 +35,7 @@ public class ProjectWorkSessionModel extends QAbstractItemModel {
 			switch (index.column()) {
 			case 0: return "Project: Workpackage";
 			case 1: return workSession.getDescription();
-			case 2: return workSession.getM_Usr();
+			case 2: return workSession.getUser();
 			case 3: return workSession.getStart().toString();
 			case 4: return workSession.getEnd().toString();
 			case 5:  {
