@@ -1,6 +1,7 @@
 package ch.hsr.waktu.controller;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import ch.hsr.waktu.domain.Project;
@@ -33,8 +34,8 @@ public class WorkSessionController {
 		for (int i = 0; i < 10; i++) {
 			WorkSession s = new WorkSession();
 			s.setDescription("test"+i);
-			s.setStart(QDateTime.currentDateTime());
-			s.setEnd(QDateTime.currentDateTime().addSecs(3600));
+			s.setStart(new GregorianCalendar());
+			s.setEnd(new GregorianCalendar());
 			sessions.add(s);
 		}
 	}

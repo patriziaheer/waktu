@@ -1,6 +1,6 @@
 package ch.hsr.waktu.domain;
 
-import com.trolltech.qt.core.QTime;
+import java.util.GregorianCalendar;
 
 /**
  * @author simon.staeheli
@@ -9,8 +9,9 @@ import com.trolltech.qt.core.QTime;
  */
 public class Favorite {
 
-	private QTime endTime;
-	private QTime startTime;
+	private int id;
+	private GregorianCalendar endTime;
+	private GregorianCalendar startTime;
 	private Usr UserID;
 	private WorkPackage WorkPackageID;
 
@@ -18,19 +19,19 @@ public class Favorite {
 
 	}
 
-	public QTime getEndTime() {
+	public GregorianCalendar getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(QTime endTime) {
+	public void setEndTime(GregorianCalendar endTime) {
 		this.endTime = endTime;
 	}
 
-	public QTime getStartTime() {
+	public GregorianCalendar getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(QTime startTime) {
+	public void setStartTime(GregorianCalendar startTime) {
 		this.startTime = startTime;
 	}
 

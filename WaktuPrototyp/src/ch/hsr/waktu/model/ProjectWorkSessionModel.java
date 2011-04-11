@@ -1,5 +1,7 @@
 package ch.hsr.waktu.model;
 
+import java.util.GregorianCalendar;
+
 import ch.hsr.waktu.controller.WorkSessionController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.WorkSession;
@@ -39,7 +41,8 @@ public class ProjectWorkSessionModel extends QAbstractItemModel {
 			case 3: return workSession.getStart().toString();
 			case 4: return workSession.getEnd().toString();
 			case 5:  {
-				QTime dauer = new QTime(0, 0, workSession.getStart().secsTo(workSession.getEnd()));
+				//QTime dauer = new QTime(0, 0, workSession.getStart().secsTo(workSession.getEnd()));
+				GregorianCalendar dauer = new GregorianCalendar();
 				return dauer.toString();
 			}
 			}

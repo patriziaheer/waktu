@@ -1,6 +1,6 @@
 package ch.hsr.waktu.domain;
 
-import com.trolltech.qt.core.QDateTime;
+import java.util.GregorianCalendar;
 
 /**
  * @author simon.staeheli
@@ -9,8 +9,9 @@ import com.trolltech.qt.core.QDateTime;
  */
 public class WorkSession {
 
-	private QDateTime end;
-	private QDateTime start;
+	private int id;
+	private GregorianCalendar endTime;
+	private GregorianCalendar startTime;
 	private Usr user;
 	private String description;
 	private WorkPackage workPackage;
@@ -19,20 +20,20 @@ public class WorkSession {
 
 	}
 
-	public QDateTime getEnd() {
-		return end;
+	public GregorianCalendar getEnd() {
+		return endTime;
 	}
 
-	public void setEnd(QDateTime end) {
-		this.end = end;
+	public void setEnd(GregorianCalendar end) {
+		this.endTime = end;
 	}
 
-	public QDateTime getStart() {
-		return start;
+	public GregorianCalendar getStart() {
+		return startTime;
 	}
 
-	public void setStart(QDateTime start) {
-		this.start = start;
+	public void setStart(GregorianCalendar start) {
+		this.startTime = start;
 	}
 
 	public Usr getUser() {

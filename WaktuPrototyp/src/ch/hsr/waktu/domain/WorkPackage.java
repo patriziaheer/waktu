@@ -7,6 +7,7 @@ package ch.hsr.waktu.domain;
  */
 public class WorkPackage {
 
+	private int id;
 	private String description;
 	private boolean inactive;
 	private Project project;

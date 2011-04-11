@@ -8,6 +8,7 @@ package ch.hsr.waktu.domain;
  */
 public class Project {
 
+	private int id;
 	private String projectIdentifier;
 	private String description;
 	private Usr projectManager;
