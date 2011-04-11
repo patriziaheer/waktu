@@ -10,11 +10,25 @@ public class Project {
 
 	private String projectIdentifier;
 	private String description;
-	private boolean inactive;
+	private Usr projectManager;
+	private boolean inactive = false;
 	private int plannedTime;
 
 	public Project(){
 
+	}
+	
+	public Project(String projectID, String description, int plannedTime) {
+		this.projectIdentifier = projectID;
+		this.description = description;
+		this.plannedTime = plannedTime;
+	}
+	
+	public Project(String projectID, String description, Usr projectManager, int plannedTime) {
+		this.projectIdentifier = projectID;
+		this.description = description;
+		this.projectManager = projectManager;
+		this.plannedTime = plannedTime;
 	}
 
 	public String getDescription() {
@@ -47,6 +61,14 @@ public class Project {
 
 	public void setProjectIdentifier(String projectIdentifier) {
 		this.projectIdentifier = projectIdentifier;
+	}
+	
+	public Usr getProjectManager() {
+		return projectManager;
+	}
+	
+	public void setProjectManager(Usr projectManager) {
+		this.projectManager = projectManager;
 	}
 
 	@Override
