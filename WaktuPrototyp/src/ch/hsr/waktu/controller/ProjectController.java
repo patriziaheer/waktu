@@ -98,7 +98,7 @@ public class ProjectController extends QSignalEmitter {
 		ArrayList<Project> inactiveProjects = new ArrayList<Project>();
 		
 		for(Project p : projectList) {
-			if(!p.isInactive()) {
+			if(p.isInactive()) {
 				inactiveProjects.add(p);
 			}
 		}
