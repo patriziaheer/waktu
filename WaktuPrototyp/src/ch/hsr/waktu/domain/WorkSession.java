@@ -11,11 +11,9 @@ public class WorkSession {
 
 	private QDateTime end;
 	private QDateTime start;
-	private Usr UserID;
+	private Usr user;
 	private String description;
-	private WorkPackage WorkPackageID;
-	public Usr m_Usr;
-	public WorkPackage m_WorkPackage;
+	private WorkPackage workPackage;
 
 	public WorkSession(){
 
@@ -37,12 +35,12 @@ public class WorkSession {
 		this.start = start;
 	}
 
-	public Usr getUserID() {
-		return UserID;
+	public Usr getUser() {
+		return user;
 	}
 
-	public void setUserID(Usr userID) {
-		UserID = userID;
+	public void setUser(Usr user) {
+		this.user = user;
 	}
 
 	public String getDescription() {
@@ -53,29 +51,12 @@ public class WorkSession {
 		this.description = description;
 	}
 
-	public WorkPackage getWorkPackageID() {
-		return WorkPackageID;
+	public WorkPackage getWorkPackage() {
+		return workPackage;
 	}
 
-	public void setWorkPackageID(WorkPackage workPackageID) {
-		WorkPackageID = workPackageID;
+	public void setWorkPackage(WorkPackage workPackage) {
+		this.workPackage = workPackage;
 	}
-
-	public Usr getM_Usr() {
-		return m_Usr;
-	}
-
-	public void setM_Usr(Usr m_Usr) {
-		this.m_Usr = m_Usr;
-	}
-
-	public WorkPackage getM_WorkPackage() {
-		return m_WorkPackage;
-	}
-
-	public void setM_WorkPackage(WorkPackage m_WorkPackage) {
-		this.m_WorkPackage = m_WorkPackage;
-	}
-
 
 }

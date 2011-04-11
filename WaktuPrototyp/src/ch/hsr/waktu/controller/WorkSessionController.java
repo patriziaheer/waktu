@@ -27,8 +27,16 @@ public class WorkSessionController {
 		return theInstance;
 	}
 	
+	private List<WorkSession> sessions = new ArrayList<WorkSession>();
+	
 	private WorkSessionController(){
-
+		for (int i = 0; i < 10; i++) {
+			WorkSession s = new WorkSession();
+			s.setDescription("test"+i);
+			s.setStart(QDateTime.currentDateTime());
+			s.setEnd(QDateTime.currentDateTime().addSecs(3600));
+			sessions.add(s);
+		}
 	}
 
 
@@ -48,7 +56,7 @@ public class WorkSessionController {
 	 * @param user
 	 */
 	public List<WorkSession> getWorkSessions(Usr user){
-		return new ArrayList<WorkSession>();
+		return sessions;
 	}
 
 	/**
@@ -57,11 +65,11 @@ public class WorkSessionController {
 	 * @param date
 	 */
 	public List<WorkSession> getWorkSessions(Usr user, QDate date){
-		return new ArrayList<WorkSession>();
+		return sessions;
 	}
 
 	public List<WorkSession> getWorkSessions(Project project) {
-		return new ArrayList<WorkSession>();
+		return sessions;
 	}
 
 	/**

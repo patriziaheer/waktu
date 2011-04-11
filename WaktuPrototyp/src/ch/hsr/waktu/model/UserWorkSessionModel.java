@@ -5,7 +5,6 @@ import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkSession;
 
 import com.trolltech.qt.core.QAbstractItemModel;
-import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.QTime;
 import com.trolltech.qt.core.Qt;
@@ -14,15 +13,9 @@ import com.trolltech.qt.core.Qt.Orientation;
 public class UserWorkSessionModel extends QAbstractItemModel {
 	
 	private Usr usr;
-	private QDate date = null;
 	
 	public UserWorkSessionModel(Usr usr) {
 		this.usr = usr;
-	}
-	
-	public UserWorkSessionModel(Usr usr, QDate date) {
-		this.usr = usr;
-		this.date = date;
 	}
 
 	@Override
@@ -32,22 +25,13 @@ public class UserWorkSessionModel extends QAbstractItemModel {
 
 	@Override
 	public int rowCount(QModelIndex arg0) {
-		if (null == date) {
 			return WorkSessionController.getInstance().getWorkSessions(usr).size();
-		} else {
-			return WorkSessionController.getInstance().getWorkSessions(usr, date).size();
-		}
 	}
 
 	@Override
 	public Object data(QModelIndex index, int role) {
 		if (Qt.ItemDataRole.DisplayRole == role) {
-			WorkSession workSession;
-			if (null == date) {
-				workSession = WorkSessionController.getInstance().getWorkSessions(usr).get(index.row());
-			} else {
-				workSession = WorkSessionController.getInstance().getWorkSessions(usr, date).get(index.row());
-			}
+			WorkSession workSession = WorkSessionController.getInstance().getWorkSessions(usr).get(index.row());
 			switch (index.column()) {
 			case 0: return "Project: Workpackage";
 			case 1: return workSession.getDescription();
