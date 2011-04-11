@@ -20,6 +20,10 @@ public class WorkSession {
 
 	}
 
+	public int getId() {
+		return id;
+	}
+
 	public GregorianCalendar getEnd() {
 		return endTime;
 	}

@@ -32,6 +32,10 @@ public class Project {
 		this.plannedTime = plannedTime;
 	}
 
+	public int getId() {
+		return id;
+	}
+
 	public String getDescription() {
 		return description;
 	}

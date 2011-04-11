@@ -19,6 +19,10 @@ public class Favorite {
 
 	}
 
+	public int getId() {
+		return id;
+	}
+
 	public GregorianCalendar getEndTime() {
 		return endTime;
 	}

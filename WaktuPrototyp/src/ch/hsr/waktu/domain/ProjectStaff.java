@@ -15,6 +15,10 @@ public class ProjectStaff {
 
 	}
 
+	public int getId() {
+		return id;
+	}
+
 	public Project getProjectID() {
 		return ProjectID;
 	}
