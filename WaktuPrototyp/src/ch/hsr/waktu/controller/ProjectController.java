@@ -33,20 +33,13 @@ public class ProjectController extends QSignalEmitter {
 		return theInstance;
 	}
 	
-	private static ArrayList<Project> projectList = new ArrayList<Project>();
 
 	private Logger logger = Logger.getLogger(ProjectController.class);
 	public Signal0 update = new Signal0();
 	public Signal1<Project> add = new Signal1<Project>();
 	
 	private ProjectController(){
-		loadProjectsFromDB();
 		logger.info("constructor");
-	}
-	
-	private static void loadProjectsFromDB() {
-		//TODO: reading projects from db and assigning them to projectList
-		// loading projects according to user's permission!
 	}
 
 	/**
@@ -56,9 +49,9 @@ public class ProjectController extends QSignalEmitter {
 	 * @param plannedTime
 	 */
 	public Project addProject(String projectIdentifier, String description, int plannedTime){
-		add.emit(null);
 		Project newProject = new Project(projectIdentifier, description, plannedTime);
-		projectList.add(newProject);
+//TODO persistence of newProject (save it to DB)
+		add.emit(newProject);
 		return newProject;
 	}
 
@@ -72,7 +65,7 @@ public class ProjectController extends QSignalEmitter {
 	 */
 	public Project addProject(String projectIdentifier, String description, Usr projectManager, int plannedTime){
 		Project newProject = new Project(projectIdentifier, description, projectManager, plannedTime);
-		projectList.add(newProject);
+//TODO persistence of newProject (save it to DB)
 		add.emit(newProject);
 		return newProject;
 	}
@@ -81,27 +74,20 @@ public class ProjectController extends QSignalEmitter {
 		
 		ArrayList<Project> activeProjects = new ArrayList<Project>();
 		
-		for(Project p : projectList) {
-			if(!p.isInactive()) {
-				activeProjects.add(p);
-			}
-		}
+//TODO acquiring active projects from DB and assigning them to activeProjects
 		return activeProjects;
 	}
 
 	public List<Project> getAllProjects(){
-		return projectList;
+		return new ArrayList<Project>();
 	}
 
 	public List<Project> getInactiveProjects(){
 		
 		ArrayList<Project> inactiveProjects = new ArrayList<Project>();
 		
-		for(Project p : projectList) {
-			if(p.isInactive()) {
-				inactiveProjects.add(p);
-			}
-		}
+//TODO acquiring inactive projects from DB and assigning them to activeProjects
+
 		return inactiveProjects;
 	}
 
@@ -110,8 +96,7 @@ public class ProjectController extends QSignalEmitter {
 	 * @param project
 	 */
 	public boolean updateProject(Project project){
-		//TODO better: return value = value which changed within project? 
-		//Args project? o_O better: project to change and values to change
+
 		update.emit();
 		return false;
 	}
