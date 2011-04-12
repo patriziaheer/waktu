@@ -3,8 +3,10 @@ package ch.hsr.waktu.model;
 import ch.hsr.waktu.controller.WorkSessionController;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkSession;
+import ch.hsr.waktu.services.TimeCalculator;
 
 import com.trolltech.qt.core.QAbstractItemModel;
+import com.trolltech.qt.core.QDateTime;
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.QTime;
 import com.trolltech.qt.core.Qt;
@@ -38,7 +40,9 @@ public class UserWorkSessionModel extends QAbstractItemModel {
 			case 2: return workSession.getStart().toString();
 			case 3: return workSession.getEnd().toString();
 			case 4:  {
-				QTime dauer = new QTime(0, 0, workSession.getStart().secsTo(workSession.getEnd()));
+				QDateTime start = TimeCalculator.convertGregorianCalToQDateTimeCal(workSession.getStart());
+				QDateTime end = TimeCalculator.convertGregorianCalToQDateTimeCal(workSession.getEnd());
+				QTime dauer = new QTime(0, 0, start.secsTo(end));
 				return dauer.toString();
 			}
 			}

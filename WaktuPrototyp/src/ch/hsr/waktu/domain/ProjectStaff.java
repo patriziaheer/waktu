@@ -7,13 +7,16 @@ package ch.hsr.waktu.domain;
  */
 public class ProjectStaff {
 
+	private int id;
 	private Project ProjectID;
 	private Usr UserID;
-	public Project m_Project;
-	public Usr m_Usr;
 
 	public ProjectStaff(){
 
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public Project getProjectID() {
@@ -30,22 +33,6 @@ public class ProjectStaff {
 
 	public void setUserID(Usr userID) {
 		UserID = userID;
-	}
-
-	public Project getM_Project() {
-		return m_Project;
-	}
-
-	public void setM_Project(Project m_Project) {
-		this.m_Project = m_Project;
-	}
-
-	public Usr getM_Usr() {
-		return m_Usr;
-	}
-
-	public void setM_Usr(Usr m_Usr) {
-		this.m_Usr = m_Usr;
 	}
 
 }

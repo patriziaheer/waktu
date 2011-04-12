@@ -4,15 +4,75 @@
 	xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/orm"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0">
 
-	<entity class="ch.hsr.waktu.domain.Usr">
-		<table name="USR" />
+	<entity class="ch.hsr.waktu.domain.Favorite">
+		<table name="favorite" />
 		<attributes>
 			<id name="id">
-				<column name="USR_ID" />
+				<column name="favoriteId" />
 				<generated-value />
 			</id>
-			<basic name="name" />
-			<basic name="firstname" />
+			<basic name="startTime">
+           		<temporal>TIMESTAMP</temporal>
+   		 	</basic>
+   		 	<basic name="endTime">
+          		<temporal>TIMESTAMP</temporal>
+   		 	</basic>
+		</attributes>
+	</entity>
+	
+	<entity class="ch.hsr.waktu.domain.Project">
+		<table name="project" />
+		<attributes>
+			<id name="id">
+				<column name="projectId" />
+				<generated-value />
+			</id>
+		</attributes>
+	</entity>
+	
+	<entity class="ch.hsr.waktu.domain.ProjectStaff">
+		<table name="projectstaff" />
+		<attributes>
+			<id name="id">
+				<column name="projectStaff" />
+				<generated-value />
+			</id>
+		</attributes>
+	</entity>
+	
+	<entity class="ch.hsr.waktu.domain.Usr">
+		<table name="usr" />
+		<attributes>
+			<id name="id">
+				<column name="usrId" />
+				<generated-value />
+			</id>
+		</attributes>
+	</entity>
+	
+	<entity class="ch.hsr.waktu.domain.WorkPackage">
+		<table name="workpackage" />
+		<attributes>
+			<id name="id">
+				<column name="workPackageId" />
+				<generated-value />
+			</id>
+		</attributes>
+	</entity>
+	
+	<entity class="ch.hsr.waktu.domain.WorkSession">
+		<table name="worksession" />
+		<attributes>
+			<id name="id">
+				<column name="workSessionId" />
+				<generated-value />
+			</id>
+			<basic name="startTime">
+           		<temporal>TIMESTAMP</temporal>
+   		 	</basic>
+   		 	<basic name="endTime">
+          		<temporal>TIMESTAMP</temporal>
+   		 	</basic>
 		</attributes>
 	</entity>
 	

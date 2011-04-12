@@ -8,6 +8,7 @@ package ch.hsr.waktu.domain;
  */
 public class Project {
 
+	private int id;
 	private String projectIdentifier;
 	private String description;
 	private Usr projectManager;
@@ -29,6 +30,10 @@ public class Project {
 		this.description = description;
 		this.projectManager = projectManager;
 		this.plannedTime = plannedTime;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public String getDescription() {
