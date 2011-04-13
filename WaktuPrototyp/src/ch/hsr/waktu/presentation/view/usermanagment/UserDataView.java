@@ -1,5 +1,5 @@
 package ch.hsr.waktu.presentation.view.usermanagment;
-import ch.hsr.waktu.controller.UserController;
+import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.presentation.view.usermanagment.jui.Ui_UserData;
 

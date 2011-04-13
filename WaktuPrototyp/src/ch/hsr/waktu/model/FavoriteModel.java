@@ -1,6 +1,6 @@
 package ch.hsr.waktu.model;
 
-import ch.hsr.waktu.controller.FavoriteController;
+import ch.hsr.waktu.controller.datacontroller.FavoriteController;
 import ch.hsr.waktu.domain.Favorite;
 import ch.hsr.waktu.domain.Usr;
 

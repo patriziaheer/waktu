@@ -1,6 +1,6 @@
 package ch.hsr.waktu.model;
 
-import ch.hsr.waktu.controller.ProjectController;
+import ch.hsr.waktu.controller.datacontroller.ProjectController;
 
 import com.trolltech.qt.core.QAbstractItemModel;
 import com.trolltech.qt.core.QModelIndex;

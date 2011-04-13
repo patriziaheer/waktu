@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'UserData.jui'
 **
-** Created: Fr. Apr 8 13:36:25 2011
+** Created: Mi 13. Apr 10:17:18 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -17,7 +17,6 @@ public class Ui_UserData implements com.trolltech.qt.QUiForm<QWidget>
     public QGridLayout gridLayout;
     public QLabel lblName;
     public QLineEdit txtName;
-    public QLabel lblFirstname;
     public QLineEdit txtFirstname;
     public QLabel lblPensum;
     public QSpinBox txtPensum;
@@ -37,6 +36,9 @@ public class Ui_UserData implements com.trolltech.qt.QUiForm<QWidget>
     public QDoubleSpinBox txtHolidays;
     public QSpacerItem verticalSpacer;
     public QCheckBox checkBox;
+    public QLabel lblFirstname;
+    public QLineEdit txtPassword;
+    public QLabel lblPassword;
 
     public Ui_UserData() { super(); }
 
@@ -58,11 +60,6 @@ public class Ui_UserData implements com.trolltech.qt.QUiForm<QWidget>
 
         gridLayout.addWidget(txtName, 0, 1, 1, 3);
 
-        lblFirstname = new QLabel(UserData);
-        lblFirstname.setObjectName("lblFirstname");
-
-        gridLayout.addWidget(lblFirstname, 1, 0, 1, 1);
-
         txtFirstname = new QLineEdit(UserData);
         txtFirstname.setObjectName("txtFirstname");
 
@@ -71,28 +68,28 @@ public class Ui_UserData implements com.trolltech.qt.QUiForm<QWidget>
         lblPensum = new QLabel(UserData);
         lblPensum.setObjectName("lblPensum");
 
-        gridLayout.addWidget(lblPensum, 2, 0, 1, 1);
+        gridLayout.addWidget(lblPensum, 3, 0, 1, 1);
 
         txtPensum = new QSpinBox(UserData);
         txtPensum.setObjectName("txtPensum");
         txtPensum.setMaximum(100);
 
-        gridLayout.addWidget(txtPensum, 2, 1, 1, 3);
+        gridLayout.addWidget(txtPensum, 3, 1, 1, 3);
 
         lblRole = new QLabel(UserData);
         lblRole.setObjectName("lblRole");
 
-        gridLayout.addWidget(lblRole, 3, 0, 1, 1);
+        gridLayout.addWidget(lblRole, 4, 0, 1, 1);
 
         cmbRole = new QComboBox(UserData);
         cmbRole.setObjectName("cmbRole");
 
-        gridLayout.addWidget(cmbRole, 3, 1, 1, 3);
+        gridLayout.addWidget(cmbRole, 4, 1, 1, 3);
 
         lblHolidaysText2 = new QLabel(UserData);
         lblHolidaysText2.setObjectName("lblHolidaysText2");
 
-        gridLayout.addWidget(lblHolidaysText2, 4, 0, 1, 1);
+        gridLayout.addWidget(lblHolidaysText2, 5, 0, 1, 1);
 
         grpOverview = new QGroupBox(UserData);
         grpOverview.setObjectName("grpOverview");
@@ -130,30 +127,46 @@ public class Ui_UserData implements com.trolltech.qt.QUiForm<QWidget>
         gridLayout_5.addWidget(lblHolidays, 1, 3, 1, 1);
 
 
-        gridLayout.addWidget(grpOverview, 8, 0, 1, 4);
+        gridLayout.addWidget(grpOverview, 9, 0, 1, 4);
 
         btnAdd = new QPushButton(UserData);
         btnAdd.setObjectName("btnAdd");
 
-        gridLayout.addWidget(btnAdd, 6, 3, 1, 1);
+        gridLayout.addWidget(btnAdd, 7, 3, 1, 1);
 
         horizontalSpacer = new QSpacerItem(40, 20, com.trolltech.qt.gui.QSizePolicy.Policy.Expanding, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
 
-        gridLayout.addItem(horizontalSpacer, 6, 1, 1, 2);
+        gridLayout.addItem(horizontalSpacer, 7, 1, 1, 2);
 
         txtHolidays = new QDoubleSpinBox(UserData);
         txtHolidays.setObjectName("txtHolidays");
 
-        gridLayout.addWidget(txtHolidays, 4, 1, 1, 3);
+        gridLayout.addWidget(txtHolidays, 5, 1, 1, 3);
 
         verticalSpacer = new QSpacerItem(20, 40, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum, com.trolltech.qt.gui.QSizePolicy.Policy.Expanding);
 
-        gridLayout.addItem(verticalSpacer, 7, 2, 1, 1);
+        gridLayout.addItem(verticalSpacer, 8, 2, 1, 1);
 
         checkBox = new QCheckBox(UserData);
         checkBox.setObjectName("checkBox");
 
-        gridLayout.addWidget(checkBox, 5, 1, 1, 1);
+        gridLayout.addWidget(checkBox, 6, 1, 1, 1);
+
+        lblFirstname = new QLabel(UserData);
+        lblFirstname.setObjectName("lblFirstname");
+
+        gridLayout.addWidget(lblFirstname, 1, 0, 1, 1);
+
+        txtPassword = new QLineEdit(UserData);
+        txtPassword.setObjectName("txtPassword");
+        txtPassword.setEchoMode(com.trolltech.qt.gui.QLineEdit.EchoMode.Password);
+
+        gridLayout.addWidget(txtPassword, 2, 1, 1, 3);
+
+        lblPassword = new QLabel(UserData);
+        lblPassword.setObjectName("lblPassword");
+
+        gridLayout.addWidget(lblPassword, 2, 0, 1, 1);
 
         retranslateUi(UserData);
 
@@ -164,7 +177,6 @@ public class Ui_UserData implements com.trolltech.qt.QUiForm<QWidget>
     {
         UserData.setWindowTitle(com.trolltech.qt.core.QCoreApplication.translate("UserData", "UserData", null));
         lblName.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "Name:", null));
-        lblFirstname.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "FIrstname:", null));
         lblPensum.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "Pensum:", null));
         lblRole.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "Role:", null));
         lblHolidaysText2.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "Holidays:", null));
@@ -177,6 +189,8 @@ public class Ui_UserData implements com.trolltech.qt.QUiForm<QWidget>
         lblHolidays.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "12.3d", null));
         btnAdd.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "add", null));
         checkBox.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "Inactiv", null));
+        lblFirstname.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "Firstname:", null));
+        lblPassword.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "Password:", null));
     } // retranslateUi
 
 }

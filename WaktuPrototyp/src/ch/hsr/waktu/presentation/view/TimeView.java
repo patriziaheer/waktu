@@ -1,14 +1,17 @@
 package ch.hsr.waktu.presentation.view;
 
-import ch.hsr.waktu.controller.ProjectController;
-import ch.hsr.waktu.controller.WorkPackageController;
-import ch.hsr.waktu.controller.WorkSessionController;
+import org.apache.log4j.Logger;
+
+import ch.hsr.waktu.controller.datacontroller.ProjectController;
+import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
+import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.model.FavoriteModel;
 import ch.hsr.waktu.model.WorkPackageComboBoxModel;
 import ch.hsr.waktu.model.WorkSessionModel;
+import ch.hsr.waktu.presentation.view.IndexButton.EditStatus;
 import ch.hsr.waktu.presentation.view.jui.Ui_TimeWindow;
 
 import com.trolltech.qt.core.QDate;
@@ -21,14 +24,16 @@ import com.trolltech.qt.gui.QBrush;
 import com.trolltech.qt.gui.QColor;
 import com.trolltech.qt.gui.QComboBox;
 import com.trolltech.qt.gui.QHBoxLayout;
+import com.trolltech.qt.gui.QIcon;
 import com.trolltech.qt.gui.QItemSelectionModel.SelectionFlag;
 import com.trolltech.qt.gui.QMainWindow;
 import com.trolltech.qt.gui.QPalette;
 import com.trolltech.qt.gui.QPalette.ColorRole;
-import com.trolltech.qt.gui.QPushButton;
 import com.trolltech.qt.gui.QWidget;
 
 public class TimeView extends QMainWindow{
+	
+	private Logger logger = Logger.getLogger(TimeView.class);
 	
 	private Ui_TimeWindow ui = new Ui_TimeWindow();
 	private QDate currDate = QDate.currentDate();
@@ -72,21 +77,7 @@ public class TimeView extends QMainWindow{
 		workSessionModel = new WorkSessionModel(currUser, currDate);
 		ui.calendar.setSelectedDate(currDate);
 		calendarSelectionChanged();
-		
-		for (int i = 0; i < WorkSessionController.getInstance().getWorkSessions(currUser, currDate).size(); i++) {
-			QModelIndex currIndex = workSessionModel.index(i, workSessionModel.columnCount()-1);
-			QWidget w = new QWidget();
-			w.setLayout(new QHBoxLayout());
-			EditButton editButton = new EditButton(tr("Edit"), currIndex);
-			editButton.editClicked.connect(this, "editClicked(EditButton)");
-			
-			QPushButton deleteButton = new QPushButton(tr("Delete"));
-			deleteButton.clicked.connect(this, "deleteClicked()");
-			w.layout().addWidget(editButton);
-			w.layout().addWidget(deleteButton);
-			
-			ui.tblWorksessions.setIndexWidget(currIndex, w);
-		}
+		updateWorkSessionModel();
 	}
 	
 	@SuppressWarnings("unused")
@@ -126,12 +117,13 @@ public class TimeView extends QMainWindow{
 		ui.lblStart.setVisible(visible);
 		ui.lblEnd.setVisible(visible);
 		ui.lblBis.setVisible(visible);
+		ui.dtCurrDate.setVisible(visible);
 	}
 	
 	private void calendarSelectionChanged() {
 		currDate = ui.calendar.selectedDate();
-		workSessionModel = new WorkSessionModel(currUser, currDate);
-		ui.tblWorksessions.setModel(workSessionModel);
+		ui.dtCurrDate.setDate(currDate);
+		updateWorkSessionModel();
 		resetButtonEnabled();
 		
 		QDate startDate = new QDate();
@@ -174,7 +166,7 @@ public class TimeView extends QMainWindow{
 			endDate = currDate.addDays(1);
 		}
 		break;
-		case 0: {
+		case 7: {
 			ui.btnSo.setEnabled(false);
 			startDate = currDate.addDays(-6);
 			endDate = currDate;
@@ -200,7 +192,7 @@ public class TimeView extends QMainWindow{
 		resetButtonEnabled();
 		ui.btnMo.setEnabled(false);
 		
-		if (currDate.dayOfWeek() == 0) {
+		if (currDate.dayOfWeek() == 7) {
 			currDate = currDate.addDays(-6);
 		} else {
 			currDate = currDate.addDays((currDate.dayOfWeek()-1)*-1);
@@ -215,7 +207,7 @@ public class TimeView extends QMainWindow{
 		ui.btnDi.setEnabled(false);
 		
 		switch (currDate.dayOfWeek()) {
-		case 0: {
+		case 7: {
 			currDate = currDate.addDays(-5);
 		}
 		break;
@@ -238,7 +230,7 @@ public class TimeView extends QMainWindow{
 
 		
 		switch (currDate.dayOfWeek()) {
-		case 0: {
+		case 7: {
 			currDate = currDate.addDays(-4);
 		}
 		break;
@@ -260,7 +252,7 @@ public class TimeView extends QMainWindow{
 		ui.btnDo.setEnabled(false);
 
 		switch (currDate.dayOfWeek()) {
-		case 0: {
+		case 7: {
 			currDate = currDate.addDays(-3);
 		}
 		break;
@@ -283,7 +275,7 @@ public class TimeView extends QMainWindow{
 		ui.btnFri.setEnabled(false);
 
 		switch (currDate.dayOfWeek()) {
-		case 0: {
+		case 7: {
 			currDate = currDate.addDays(-2);
 		}
 		break;
@@ -307,7 +299,7 @@ public class TimeView extends QMainWindow{
 		ui.btnSa.setEnabled(false);
 		
 		switch (currDate.dayOfWeek()) {
-		case 0: {
+		case 7: {
 			currDate = currDate.addDays(-1);
 		}
 		break;
@@ -352,8 +344,31 @@ public class TimeView extends QMainWindow{
 	
 	private void updateCalendar() {
 		ui.calendar.setSelectedDate(currDate);
+		ui.dtCurrDate.setDate(currDate);
+		updateWorkSessionModel();
+	}
+	
+	private void updateWorkSessionModel() {
 		workSessionModel = new WorkSessionModel(currUser, currDate);
 		ui.tblWorksessions.setModel(workSessionModel);
+		for (int i = 0; i < WorkSessionController.getInstance().getWorkSessions(currUser, currDate).size(); i++) {
+			QModelIndex currIndex = workSessionModel.index(i, workSessionModel.columnCount()-1);
+			QWidget w = new QWidget();
+			w.setLayout(new QHBoxLayout());
+			IndexButton editButton = new IndexButton(currIndex);
+			editButton.setFixedHeight(20);
+			editButton.setIcon(new QIcon("classpath:icons/edit_16x16.png"));
+			editButton.actionClicked.connect(this, "editClicked(IndexButton)");
+			
+			IndexButton deleteButton = new IndexButton(currIndex);
+			deleteButton.setFixedHeight(20);
+			deleteButton.setIcon(new QIcon("classpath:icons/delete_16x16.png"));
+			deleteButton.actionClicked.connect(this, "deleteClicked(IndexButton)");
+			w.layout().addWidget(editButton);
+			w.layout().addWidget(deleteButton);
+			
+			ui.tblWorksessions.setIndexWidget(currIndex, w);
+		}
 	}
 
 	@SuppressWarnings("unused")
@@ -385,20 +400,23 @@ public class TimeView extends QMainWindow{
 	}
 	
 	@SuppressWarnings("unused")
-	private void editClicked(EditButton btn) {
-		if (workSessionModel.getEditable() != null && btn.text().equals("Edit")) {
+	private void editClicked(IndexButton btn) {
+		logger.info("EditClicked for " + btn);
+		if (workSessionModel.getEditable() != null && EditStatus.Edit == btn.getStatus()) {
 			setStatusBarText(tr("Save first current edit row"));
 		} else {
-			if (btn.text().equals(tr("Edit"))) {
+			if (EditStatus.Edit == btn.getStatus()) {
+				btn.setStatus(EditStatus.Save);
 				for (int i = 0; i < workSessionModel.columnCount(); i++) {
 					ui.tblWorksessions.edit(workSessionModel.index(btn.getIndex().row(), i));
 				}
 				workSessionModel.setEditable(btn.getIndex());
-				btn.setText(tr("Save"));
+				btn.setIcon(new QIcon("classpath:icons/save_16x16.png"));
 				ui.tblWorksessions.selectionModel().select(btn.getIndex(), SelectionFlag.Rows);
 			} else {
 				workSessionModel.setEditable(null);
-				btn.setText(tr("Edit"));
+				btn.setIcon(new QIcon("classpath:icons/edit_16x16.png"));
+				btn.setStatus(EditStatus.Edit);
 			}
 			workSessionModel.layoutAboutToBeChanged.emit();
 			workSessionModel.dataChanged.emit(workSessionModel.index(0, 0), workSessionModel.index(workSessionModel.rowCount(), workSessionModel.columnCount()));
@@ -407,7 +425,8 @@ public class TimeView extends QMainWindow{
 	}
 	
 	@SuppressWarnings("unused")
-	private void deleteClicked() {
+	private void deleteClicked(IndexButton btn) {
+		logger.info("EditClicked for " + btn);
 		
 	}
 	

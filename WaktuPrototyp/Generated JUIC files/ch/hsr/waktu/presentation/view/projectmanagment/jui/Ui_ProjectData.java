@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ProjectData.jui'
 **
-** Created: Do. Apr 7 19:27:14 2011
+** Created: Mi 13. Apr 07:35:32 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!

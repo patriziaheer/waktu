@@ -1,4 +1,4 @@
-package ch.hsr.waktu.controller;
+package ch.hsr.waktu.controller.datacontroller;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 import org.apache.log4j.Logger;
 
+import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.domain.Usr;
 
 import com.trolltech.qt.QSignalEmitter;

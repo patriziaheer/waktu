@@ -1,6 +1,6 @@
 package ch.hsr.waktu.model;
 
-import ch.hsr.waktu.controller.WorkSessionController;
+import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.WorkSession;
 import ch.hsr.waktu.services.TimeCalculator;
