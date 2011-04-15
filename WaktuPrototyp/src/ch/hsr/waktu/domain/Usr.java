@@ -10,16 +10,17 @@ public class Usr {
 	private String firstname;
 	private String password;
 	private int pensum;
-	private int systemRole;
+	private SystemRole systemRole;
 	private double holiday;
 	private boolean inactive = false;
+	
 
 	public Usr() {
 		
 	}
 	
 	public Usr(String username, String firstname, String lastname,
-			String password, int pensum, int role, double holiday) {
+			String password, int pensum, SystemRole role, double holiday) {
 		this.username = username;
 		this.name = lastname;
 		this.firstname = firstname;
@@ -50,11 +51,11 @@ public class Usr {
 		return pensum;
 	}
 
-	public int getRole() {
+	public SystemRole getRole() {
 		return systemRole;
 	}
 
-	public void setRole(int role) {
+	public void setRole(SystemRole role) {
 		this.systemRole = role;
 	}
 
@@ -89,30 +90,25 @@ public class Usr {
 	public boolean isInactive() {
 		return inactive;
 	}
+	
+	public boolean isActive() {
+		return !inactive;
+	}
 
 	public void setInactive(boolean inactive) {
 		this.inactive = inactive;
 	}
 
-	public void setPensum(int pensum) throws InvalidInputException {
-		if(pensum > 0 && pensum <= 100) {
-			this.pensum = pensum;
-		} else {
-			throw new InvalidInputException("Pensum muss gršsser 0%, maximal 100% sein");
-		}		
+	public void setPensum(int pensum) {
+			this.pensum = pensum;		
 	}
 	
-	public int getSystemRole() {
+	public SystemRole getSystemRole() {
 		return systemRole;
 	}
 	
-	public void setSystemRole(int systemRole) throws InvalidInputException {
-		if(systemRole > 0 && systemRole <= 2) {
+	public void setSystemRole(SystemRole systemRole) {
 			this.systemRole = systemRole;
-		} else {
-			throw new InvalidInputException("Systemrollen: 0=Admin, 1=Projektleiter, 2=Projektmitarbeiter");
-		}
-		
 	}
 	
 	public void setInactive() {
