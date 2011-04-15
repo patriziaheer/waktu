@@ -1,4 +1,4 @@
-package ch.hsr.waktu.controller;
+package ch.hsr.waktu.controller.datacontroller;
 
 import java.sql.Time;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package ch.hsr.waktu.model;
 
-import ch.hsr.waktu.controller.UserController;
+import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.Usr;
 
 import com.trolltech.qt.core.QAbstractItemModel;

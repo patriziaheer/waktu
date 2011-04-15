@@ -1,7 +1,7 @@
 package ch.hsr.waktu.presentation.view;
 
 import ch.hsr.waktu.controller.PermissionController;
-import ch.hsr.waktu.controller.UserController;
+import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.presentation.view.jui.Ui_LoginWindow;
 

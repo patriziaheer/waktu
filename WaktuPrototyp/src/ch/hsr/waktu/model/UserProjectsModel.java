@@ -1,6 +1,6 @@
 package ch.hsr.waktu.model;
 
-import ch.hsr.waktu.controller.ProjectStaffController;
+import ch.hsr.waktu.controller.datacontroller.ProjectStaffController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 

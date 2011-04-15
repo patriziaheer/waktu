@@ -1,7 +1,7 @@
 package ch.hsr.waktu.model;
 import java.util.List;
 
-import ch.hsr.waktu.controller.ProjectController;
+import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 

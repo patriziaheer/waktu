@@ -1,5 +1,5 @@
 package ch.hsr.waktu.presentation.view.projectmanagment;
-import ch.hsr.waktu.controller.ProjectController;
+import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.model.ProjectTreeModel;
 import ch.hsr.waktu.model.SortFilterModel;

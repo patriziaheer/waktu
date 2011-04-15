@@ -10,9 +10,9 @@ public class Usr {
 	private String firstname;
 	private String password;
 	private int pensum;
-	private int role;
+	private int systemRole;
 	private double holiday;
-	private boolean inactive;
+	private boolean inactive = false;
 
 	public Usr() {
 		
@@ -25,7 +25,7 @@ public class Usr {
 		this.firstname = firstname;
 		this.password = password;
 		this.pensum = pensum;
-		this.role = role;
+		this.systemRole = role;
 		this.holiday = holiday;
 
 	}
@@ -50,16 +50,12 @@ public class Usr {
 		return pensum;
 	}
 
-	public void setPensum(int pensum) {
-		this.pensum = pensum;
-	}
-
 	public int getRole() {
-		return role;
+		return systemRole;
 	}
 
 	public void setRole(int role) {
-		this.role = role;
+		this.systemRole = role;
 	}
 
 	public double getHoliday() {
@@ -98,6 +94,35 @@ public class Usr {
 		this.inactive = inactive;
 	}
 
+	public void setPensum(int pensum) throws InvalidInputException {
+		if(pensum > 0 && pensum <= 100) {
+			this.pensum = pensum;
+		} else {
+			throw new InvalidInputException("Pensum muss gršsser 0%, maximal 100% sein");
+		}		
+	}
+	
+	public int getSystemRole() {
+		return systemRole;
+	}
+	
+	public void setSystemRole(int systemRole) throws InvalidInputException {
+		if(systemRole > 0 && systemRole <= 2) {
+			this.systemRole = systemRole;
+		} else {
+			throw new InvalidInputException("Systemrollen: 0=Admin, 1=Projektleiter, 2=Projektmitarbeiter");
+		}
+		
+	}
+	
+	public void setInactive() {
+		this.inactive = true;
+	}
+	
+	public void setActive() {
+		this.inactive = false;
+	}
+	
 	@Override
 	public String toString() {
 		return firstname + " " + name;

@@ -1,4 +1,4 @@
-package ch.hsr.waktu.controller;
+package ch.hsr.waktu.controller.datacontroller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +31,15 @@ public class ProjectController extends QSignalEmitter {
 		}
 		return theInstance;
 	}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 7a0459d7d7b8c9077e76c2dcbb93c2496a98cbbd
 
 	private Logger logger = Logger.getLogger(ProjectController.class);
 	public Signal0 update = new Signal0();
 	public Signal1<Project> add = new Signal1<Project>();
+<<<<<<< HEAD
 
 	private ProjectController() {
 		loadProjectsFromDB();
@@ -45,6 +50,12 @@ public class ProjectController extends QSignalEmitter {
 		// TODO: reading projects from db and assigning them to projectList
 		// loading projects according to user's permission!
 	}
+=======
+	
+	private ProjectController(){
+		logger.info("constructor");
+	}
+>>>>>>> 7a0459d7d7b8c9077e76c2dcbb93c2496a98cbbd
 
 	/**
 	 * 
@@ -52,10 +63,18 @@ public class ProjectController extends QSignalEmitter {
 	 * @param description
 	 * @param plannedTime
 	 */
+<<<<<<< HEAD
 	public Project addProject(String projectIdentifier, String description,
 			int plannedTime) {
 		Usr projectManager = null;
 		return this.addProject(projectIdentifier, description, projectManager ,plannedTime);
+=======
+	public Project addProject(String projectIdentifier, String description, int plannedTime){
+		Project newProject = new Project(projectIdentifier, description, plannedTime);
+//TODO persistence of newProject (save it to DB)
+		add.emit(newProject);
+		return newProject;
+>>>>>>> 7a0459d7d7b8c9077e76c2dcbb93c2496a98cbbd
 	}
 	
 	/**
@@ -70,6 +89,7 @@ public class ProjectController extends QSignalEmitter {
 			Usr projectManager, int plannedTime) {
 
 		Project newProject = new Project(projectIdentifier, description, projectManager, plannedTime);
+<<<<<<< HEAD
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		em.getTransaction().begin();
@@ -78,6 +98,10 @@ public class ProjectController extends QSignalEmitter {
 		em.getTransaction().commit();
 		// TODO: add.emit() wieder einschalten (Observer von QT)
 		// add.emit(newProject);
+=======
+//TODO persistence of newProject (save it to DB)
+		add.emit(newProject);
+>>>>>>> 7a0459d7d7b8c9077e76c2dcbb93c2496a98cbbd
 		return newProject;
 		
 	}
@@ -85,6 +109,7 @@ public class ProjectController extends QSignalEmitter {
 	public List<Project> getActiveProjects() {
 
 		ArrayList<Project> activeProjects = new ArrayList<Project>();
+<<<<<<< HEAD
 	
 		return activeProjects;
 	}
@@ -104,11 +129,25 @@ public class ProjectController extends QSignalEmitter {
 		return projects;
 
 		//return projectList;
+=======
+		
+//TODO acquiring active projects from DB and assigning them to activeProjects
+		return activeProjects;
+	}
+
+	public List<Project> getAllProjects(){
+		return new ArrayList<Project>();
+>>>>>>> 7a0459d7d7b8c9077e76c2dcbb93c2496a98cbbd
 	}
 
 	public List<Project> getInactiveProjects() {
 
 		ArrayList<Project> inactiveProjects = new ArrayList<Project>();
+<<<<<<< HEAD
+=======
+		
+//TODO acquiring inactive projects from DB and assigning them to activeProjects
+>>>>>>> 7a0459d7d7b8c9077e76c2dcbb93c2496a98cbbd
 
 		return inactiveProjects;
 	}
@@ -117,9 +156,14 @@ public class ProjectController extends QSignalEmitter {
 	 * 
 	 * @param project
 	 */
+<<<<<<< HEAD
 	public boolean updateProject(Project project) {
 		// TODO better: return value = value which changed within project?
 		// Args project? o_O better: project to change and values to change
+=======
+	public boolean updateProject(Project project){
+
+>>>>>>> 7a0459d7d7b8c9077e76c2dcbb93c2496a98cbbd
 		update.emit();
 		return false;
 	}

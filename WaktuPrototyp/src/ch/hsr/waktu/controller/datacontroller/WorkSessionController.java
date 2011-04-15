@@ -1,4 +1,4 @@
-package ch.hsr.waktu.controller;
+package ch.hsr.waktu.controller.datacontroller;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;

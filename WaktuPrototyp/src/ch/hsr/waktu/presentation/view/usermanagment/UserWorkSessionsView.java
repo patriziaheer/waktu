@@ -1,6 +1,6 @@
 package ch.hsr.waktu.presentation.view.usermanagment;
 
-import ch.hsr.waktu.controller.ProjectController;
+import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.model.ProjectComboBoxModel;
 import ch.hsr.waktu.model.UserWorkSessionModel;
