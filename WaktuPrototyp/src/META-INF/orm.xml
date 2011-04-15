@@ -12,10 +12,10 @@
 				<generated-value />
 			</id>
 			<basic name="startTime">
-           		<temporal>TIMESTAMP</temporal>
+           		<temporal>TIME</temporal>
    		 	</basic>
    		 	<basic name="endTime">
-          		<temporal>TIMESTAMP</temporal>
+          		<temporal>TIME</temporal>
    		 	</basic>
 		</attributes>
 	</entity>
@@ -45,7 +45,7 @@
 		<attributes>
 			<id name="id">
 				<column name="usrId" />
-				<generated-value />
+				<generated-value strategy="IDENTITY"/>
 			</id>
 		</attributes>
 	</entity>
@@ -73,6 +73,9 @@
    		 	<basic name="endTime">
           		<temporal>TIMESTAMP</temporal>
    		 	</basic>
+			<basic name="description">
+				<column name="description" />
+			</basic>
 		</attributes>
 	</entity>
 	
