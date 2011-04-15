@@ -12,9 +12,9 @@ public class WorkSession {
 	private int id;
 	private GregorianCalendar endTime;
 	private GregorianCalendar startTime;
-	private Usr user;
+	private Usr userRef;
 	private String description;
-	private WorkPackage workPackage;
+	private WorkPackage workPackageRef;
 
 	public WorkSession(){
 
@@ -41,11 +41,11 @@ public class WorkSession {
 	}
 
 	public Usr getUser() {
-		return user;
+		return userRef;
 	}
 
 	public void setUser(Usr user) {
-		this.user = user;
+		this.userRef = user;
 	}
 
 	public String getDescription() {
@@ -57,11 +57,11 @@ public class WorkSession {
 	}
 
 	public WorkPackage getWorkPackage() {
-		return workPackage;
+		return workPackageRef;
 	}
 
 	public void setWorkPackage(WorkPackage workPackage) {
-		this.workPackage = workPackage;
+		this.workPackageRef = workPackage;
 	}
 
 }

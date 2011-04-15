@@ -78,7 +78,7 @@ public class Project {
 
 	@Override
 	public String toString() {
-		return projectIdentifier + " " + description;
+		return projectIdentifier + " " + description + projectManager;
 	}
 
 }

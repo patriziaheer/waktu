@@ -46,21 +46,35 @@ public class UserController extends QSignalEmitter {
 	 * @param pensum
 	 * @param role
 	 */
-	public Usr addUser(String name, String firstname, int pensum, int role, double holiday) {
-		//Generate Username!
-		Usr usr = new Usr(name, firstname);
+	public Usr addUser(String username, String firstname, String lastname,
+			String password, int pensum, int role, double holiday) {
+		Usr newUser = new Usr(username, firstname, lastname, password, pensum,
+				role, holiday);
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		em.getTransaction().begin();
-		em.persist(usr);
+		em.persist(newUser);
 		em.flush();
 		em.getTransaction().commit();
-		add.emit(usr);
-		return usr;
+		// TODO: add.emit() wieder einschalten (Observer von QT)
+		// add.emit(newUser);
+		return newUser;
 	}
 
 	public List<Usr> getActiveUsers() {
-		return getAllUsers();
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		@SuppressWarnings("unchecked")
+		List<Usr> usrs = em.createQuery(
+				"SELECT u FROM Usr u WHERE u.inactive = FALSE").getResultList();
+
+		for (Usr usr : usrs) {
+			logger.info("ACTIVE USER: " + usr.toString());
+		}
+
+		em.close();
+		return usrs;
 	}
 
 	public List<Usr> getAllUsers() {
@@ -79,15 +93,37 @@ public class UserController extends QSignalEmitter {
 	}
 
 	public List<Usr> getInactiveUsers() {
-		return null;
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		@SuppressWarnings("unchecked")
+		List<Usr> usrs = em.createQuery(
+				"SELECT u FROM Usr u WHERE u.inactive = TRUE").getResultList();
+
+		for (Usr usr : usrs) {
+			logger.info("INACTIVE USERS: " + usr.toString());
+		}
+
+		em.close();
+		return usrs;
 	}
 
 	/**
 	 * 
 	 * @param loginName
 	 */
-	public Usr getUser(String loginName) {
-		return null;
+	public Usr getUser(String username) {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		Usr user = (Usr) em.createQuery(
+				"SELECT u FROM Usr u WHERE u.username = '" + username + "'")
+				.getSingleResult();
+
+		logger.info(user.toString());
+
+		em.close();
+		return user;
 	}
 
 	/**
@@ -95,6 +131,10 @@ public class UserController extends QSignalEmitter {
 	 * @param user
 	 */
 	public boolean updateUser(Usr user) {
+		// TODO: Username wechseln erlaubt? Spezifizieren! Bring Probleme mit
+		// sich, da Unique in DB.
+		// TODO: Was wenn ID der Users nicht vorhanden? Exception?
+
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -104,8 +144,16 @@ public class UserController extends QSignalEmitter {
 				.getSingleResult();
 		updateUsr.setName(user.getName());
 		updateUsr.setFirstname(user.getFirstname());
+		updateUsr.setHoliday(user.getHoliday());
+		updateUsr.setInactive(user.isInactive());
+		updateUsr.setPassword(user.getPassword());
+		updateUsr.setPensum(user.getPensum());
+		updateUsr.setRole(user.getRole());
+		updateUsr.setUsername(user.getUsername());
+
 		em.getTransaction().commit();
-		update.emit();
+		// TODO: update.emit() wieder einschalten (Observer von QT)
+		// update.emit();
 
 		return true;
 	}

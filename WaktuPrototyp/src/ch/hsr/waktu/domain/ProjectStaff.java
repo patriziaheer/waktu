@@ -11,8 +11,13 @@ public class ProjectStaff {
 	private Project ProjectID;
 	private Usr UserID;
 
-	public ProjectStaff(){
-
+	public ProjectStaff() {
+		
+	}
+	
+	public ProjectStaff(Usr userId, Project projectId){
+		this.ProjectID = projectId;
+		this.UserID = userId;
 	}
 
 	public int getId() {
