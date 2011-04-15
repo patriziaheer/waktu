@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import org.apache.log4j.Logger;
 
 import ch.hsr.waktu.controller.PersistenceController;
+import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 
 import com.trolltech.qt.QSignalEmitter;
@@ -48,7 +49,7 @@ public class UserController extends QSignalEmitter {
 	 * @param role
 	 */
 	public Usr addUser(String username, String firstname, String lastname,
-			String password, int pensum, int role, double holiday) {
+			String password, int pensum, SystemRole role, double holiday) {
 		Usr newUser = new Usr(username, firstname, lastname, password, pensum,
 				role, holiday);
 		EntityManager em = PersistenceController.getInstance().getEMF()
