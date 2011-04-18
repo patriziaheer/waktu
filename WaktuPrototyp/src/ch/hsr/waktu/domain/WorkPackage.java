@@ -13,7 +13,11 @@ public class WorkPackage {
 	private Project project;
 	
 	public WorkPackage(){
-
+	}
+	
+	public WorkPackage(Project project, String description){
+		this.project = project;
+		this.description = description;
 	}
 
 	public int getId() {
