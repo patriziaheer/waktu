@@ -10,7 +10,7 @@ public class Usr {
 	private String firstname;
 	private String password;
 	private int pensum;
-	private SystemRole systemRole;
+	private SystemRole systemRole = SystemRole.Employee;
 	private double holiday;
 	private boolean inactive = false;
 	
