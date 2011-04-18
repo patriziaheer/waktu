@@ -4,42 +4,42 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.apache.log4j.Logger;
+
+import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.domain.WorkSession;
 
+import com.trolltech.qt.QSignalEmitter;
 import com.trolltech.qt.core.QDate;
-import com.trolltech.qt.core.QDateTime;
 
 /**
  * @author simon.staeheli
  * @version 1.0
  * @created 01-Apr-2011 15:36:30
  */
-public class WorkSessionController {
+public class WorkSessionController extends QSignalEmitter {
 
 	private static WorkSessionController theInstance = null;
-	
+
 	public static WorkSessionController getInstance() {
 		if (theInstance == null) {
 			theInstance = new WorkSessionController();
 		}
 		return theInstance;
 	}
-	
-	private List<WorkSession> sessions = new ArrayList<WorkSession>();
-	
-	private WorkSessionController(){
-		for (int i = 0; i < 10; i++) {
-			WorkSession s = new WorkSession();
-			s.setDescription("test"+i);
-			s.setStart(new GregorianCalendar());
-			s.setEnd(new GregorianCalendar());
-			sessions.add(s);
-		}
-	}
 
+	private Logger logger = Logger.getLogger(UserController.class);
+	public Signal0 update = new Signal0();
+	public Signal1<WorkSession> add = new Signal1<WorkSession>();
+
+	private WorkSessionController() {
+
+	}
 
 	/**
 	 * 
@@ -48,16 +48,45 @@ public class WorkSessionController {
 	 * @param startTime
 	 * @param endTime
 	 */
-	public WorkSession addWorkSession(Usr user, WorkPackage workPackage, QDateTime startTime, QDateTime endTime){
-		return null;
+	public WorkSession addWorkSession(Usr user, WorkPackage workPackage,
+			GregorianCalendar startTime, GregorianCalendar endTime) {
+		WorkSession newWorkSession = new WorkSession(user, workPackage,
+				startTime, endTime);
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(newWorkSession);
+		em.flush();
+		em.getTransaction().commit();
+		// TODO: add.emit() wieder einschalten (Observer von QT)
+		add.emit(newWorkSession);
+		return newWorkSession;
 	}
 
 	/**
 	 * 
 	 * @param user
 	 */
-	public List<WorkSession> getWorkSessions(Usr user){
-		return sessions;
+	public List<WorkSession> getWorkSessions(Usr user) {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		@SuppressWarnings("unchecked")
+		List<WorkSession> workSessionsByUser = em.createQuery(
+				"SELECT ws FROM WorkSession ws").getResultList();
+
+		ArrayList<WorkSession> workSessions = new ArrayList<WorkSession>();
+		for (WorkSession ws : workSessionsByUser) {
+
+			if (ws.getUser().equals(user)) {
+				workSessions.add(ws);
+				logger.info("WORKSESSION: " + ws.toString());
+			}
+
+		}
+
+		em.close();
+		return workSessions;
 	}
 
 	/**
@@ -65,20 +94,44 @@ public class WorkSessionController {
 	 * @param user
 	 * @param date
 	 */
-	public List<WorkSession> getWorkSessions(Usr user, QDate date){
-		return sessions;
-	}
+	 public List<WorkSession> getWorkSessions(Usr user, QDate date) {
+	 return new ArrayList<WorkSession>();
+	 }
 
 	public List<WorkSession> getWorkSessions(Project project) {
-		return sessions;
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		@SuppressWarnings("unchecked")
+		List<WorkSession> workSessionsByUser = em.createQuery(
+				"SELECT ws FROM WorkSession ws").getResultList();
+
+		ArrayList<WorkSession> workSessions = new ArrayList<WorkSession>();
+		for (WorkSession ws : workSessionsByUser) {
+
+			if (ws.getWorkPackage().getProject().equals(project)) {
+				workSessions.add(ws);
+				logger.info("WORKSESSION: " + ws.toString());
+			}
+
+		}
+
+		em.close();
+		return workSessions;
 	}
 
 	/**
 	 * 
 	 * @param workSession
 	 */
-	public boolean removeWorkSession(WorkSession workSession){
-		return false;
+	public boolean removeWorkSession(WorkSession workSession) {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		em.createQuery("DELETE WorkSession ws WHERE ws.id = "
+				+ workSession.getId());
+		em.close();
+		return true;
 	}
 
 }

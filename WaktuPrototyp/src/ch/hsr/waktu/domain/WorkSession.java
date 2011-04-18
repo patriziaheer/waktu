@@ -19,6 +19,14 @@ public class WorkSession {
 	public WorkSession(){
 
 	}
+	
+	public WorkSession(Usr user, WorkPackage workPackage,
+			GregorianCalendar startTime, GregorianCalendar endTime){
+		this.userRef = user;
+		this.workPackageRef = workPackage;
+		this.startTime = startTime;
+		this.endTime = endTime;
+	}
 
 	public int getId() {
 		return id;

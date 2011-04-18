@@ -59,7 +59,7 @@ public class UserController extends QSignalEmitter {
 		em.flush();
 		em.getTransaction().commit();
 		// TODO: add.emit() wieder einschalten (Observer von QT)
-		// add.emit(newUser);
+		 add.emit(newUser);
 		return newUser;
 	}
 
