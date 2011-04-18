@@ -8,36 +8,36 @@ package ch.hsr.waktu.domain;
 public class ProjectStaff {
 
 	private int id;
-	private Project ProjectID;
-	private Usr UserID;
+	private Project Project;
+	private Usr User;
 
 	public ProjectStaff() {
 		
 	}
 	
 	public ProjectStaff(Usr userId, Project projectId){
-		this.ProjectID = projectId;
-		this.UserID = userId;
+		this.Project = projectId;
+		this.User = userId;
 	}
 
 	public int getId() {
 		return id;
 	}
 
-	public Project getProjectID() {
-		return ProjectID;
+	public Project getProject() {
+		return Project;
 	}
 
-	public void setProjectID(Project projectID) {
-		ProjectID = projectID;
+	public void setProject(Project project) {
+		Project = project;
 	}
 
-	public Usr getUserID() {
-		return UserID;
+	public Usr getUser() {
+		return User;
 	}
 
-	public void setUserID(Usr userID) {
-		UserID = userID;
+	public void setUser(Usr user) {
+		User = user;
 	}
 
 }

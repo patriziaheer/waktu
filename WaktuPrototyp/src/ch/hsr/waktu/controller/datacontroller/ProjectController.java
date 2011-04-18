@@ -1,6 +1,5 @@
 package ch.hsr.waktu.controller.datacontroller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -37,8 +36,7 @@ public class ProjectController extends QSignalEmitter {
 	public Signal0 update = new Signal0();
 	public Signal1<Project> add = new Signal1<Project>();
 
-	
-	private ProjectController(){
+	private ProjectController() {
 		logger.info("constructor");
 	}
 
@@ -51,10 +49,11 @@ public class ProjectController extends QSignalEmitter {
 	public Project addProject(String projectIdentifier, String description,
 			int plannedTime) {
 		Usr projectManager = null;
-		return this.addProject(projectIdentifier, description, projectManager ,plannedTime);
+		return this.addProject(projectIdentifier, description, projectManager,
+				plannedTime);
 
 	}
-	
+
 	/**
 	 * 
 	 * 
@@ -66,7 +65,8 @@ public class ProjectController extends QSignalEmitter {
 	public Project addProject(String projectIdentifier, String description,
 			Usr projectManager, int plannedTime) {
 
-		Project newProject = new Project(projectIdentifier, description, projectManager, plannedTime);
+		Project newProject = new Project(projectIdentifier, description,
+				projectManager, plannedTime);
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		em.getTransaction().begin();
@@ -77,14 +77,25 @@ public class ProjectController extends QSignalEmitter {
 		// add.emit(newProject);
 
 		return newProject;
-		
+
 	}
 
 	public List<Project> getActiveProjects() {
 
-		ArrayList<Project> activeProjects = new ArrayList<Project>();
-	
-		return activeProjects;
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		@SuppressWarnings("unchecked")
+		List<Project> projects = em.createQuery(
+				"SELECT p FROM Project p WHERE p.inactive = FALSE")
+				.getResultList();
+
+		for (Project project : projects) {
+			logger.info("ACTIVE PROJECTS: " + project.toString());
+		}
+
+		em.close();
+		return projects;
 	}
 
 	public List<Project> getAllProjects() {
@@ -92,8 +103,8 @@ public class ProjectController extends QSignalEmitter {
 				.createEntityManager();
 
 		@SuppressWarnings("unchecked")
-		List<Project> projects = em.createQuery("SELECT p FROM Project p").getResultList();
-
+		List<Project> projects = em.createQuery("SELECT p FROM Project p")
+				.getResultList();
 		for (Project project : projects) {
 			logger.info(project.toString());
 		}
@@ -104,9 +115,31 @@ public class ProjectController extends QSignalEmitter {
 
 	public List<Project> getInactiveProjects() {
 
-		ArrayList<Project> inactiveProjects = new ArrayList<Project>();
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
 
-		return inactiveProjects;
+		@SuppressWarnings("unchecked")
+		List<Project> projects = em.createQuery(
+				"SELECT p FROM Project p WHERE p.inactive = TRUE")
+				.getResultList();
+
+		for (Project project : projects) {
+			logger.info("INACTIVE PROJECTS: " + project.toString());
+		}
+
+		em.close();
+		return projects;
+	}
+	
+	public Project getProject(int projectId) {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		Project project = (Project) em.createQuery("SELECT p FROM Project p WHERE p.id = " + projectId)
+				.getSingleResult();
+
+		em.close();
+		return project;
 	}
 
 	/**
@@ -114,9 +147,29 @@ public class ProjectController extends QSignalEmitter {
 	 * @param project
 	 */
 
-	public boolean updateProject(Project project){
-		update.emit();
-		return false;
+	public boolean updateProject(Project project) {
+		// TODO: Was wenn ID des Projektes nicht vorhanden? Exception?
+		// TODO: Was wenn ProjectIdentifier anders als vorher?
+
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		em.getTransaction().begin();
+		Project updateProj = (Project) em.createQuery(
+				"SELECT p FROM Project p WHERE p.id = " + project.getId())
+				.getSingleResult();
+		
+		updateProj.setDescription(project.getDescription());
+		updateProj.setInactive(project.isInactive());
+		updateProj.setPlannedTime(project.getPlannedTime());
+		updateProj.setProjectManager(project.getProjectManager());
+
+		em.getTransaction().commit();
+		logger.info("Project " + project.getProjectIdentifier() + " updated");
+		// TODO: update.emit() wieder einschalten (Observer von QT)
+		// update.emit();
+
+		return true;
 	}
 
 }
