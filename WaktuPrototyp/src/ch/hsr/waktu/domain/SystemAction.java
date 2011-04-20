@@ -3,8 +3,8 @@ package ch.hsr.waktu.domain;
 public enum SystemAction {
 	AddProjects(0), ReadAllProjects(1), ReadOwnProjects(2), 
 	EditAllProjects(3), EditOwnProjects(4), 
-	SetAllProjectInactive(5), SetOwnProjectInactive(6),
-	SetAllProjectActive(7), SetOwnProjectActive(8),
+	SetAllProjectsInactive(5), SetOwnProjectInactive(6),
+	SetAllProjectsActive(7), SetOwnProjectActive(8),
 	CreateAllWorkPackages(9), CreateOwnWorkPackages(10),
 	ReadAllWorkPackages(11), ReadOwnWorkPackages(12),
 	EditAllWorkPackages(13), EditOwnWorkPackages(14),
