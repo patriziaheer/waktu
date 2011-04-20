@@ -12,13 +12,20 @@ public class Favorite {
 	private int id;
 	private GregorianCalendar endTime;
 	private GregorianCalendar startTime;
-	private Usr UserID;
-	private WorkPackage WorkPackageID;
+	private Usr UserId;
+	private WorkPackage WorkPackageId;
 
 	public Favorite(){
 
 	}
 
+	public Favorite(Usr userId, WorkPackage workPackage, GregorianCalendar startTime, GregorianCalendar endTime){
+		this.UserId = userId;
+		this.WorkPackageId = workPackage;
+		this.startTime = startTime;
+		this.endTime = endTime;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -40,19 +47,19 @@ public class Favorite {
 	}
 
 	public Usr getUserID() {
-		return UserID;
+		return UserId;
 	}
 
 	public void setUserID(Usr userID) {
-		UserID = userID;
+		UserId = userID;
 	}
 
 	public WorkPackage getWorkPackageID() {
-		return WorkPackageID;
+		return WorkPackageId;
 	}
 
 	public void setWorkPackageID(WorkPackage workPackageID) {
-		WorkPackageID = workPackageID;
+		WorkPackageId = workPackageID;
 	}
 
 

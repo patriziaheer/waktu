@@ -390,7 +390,7 @@ public class TimeView extends QMainWindow{
 			start.setTime(ui.txtStart.time());
 			QDateTime end = new QDateTime(currDate);
 			end.setTime(ui.txtEnd.time());
-			WorkSessionController.getInstance().addWorkSession(currUser, workPackage, start, end);
+//			WorkSessionController.getInstance().addWorkSession(currUser, workPackage, start, end);
 		}
 	}
 	

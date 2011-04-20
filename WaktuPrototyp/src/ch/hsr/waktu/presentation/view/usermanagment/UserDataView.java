@@ -50,7 +50,7 @@ public class UserDataView extends QWidget{
 	
 	@SuppressWarnings("unused")
 	private void addClicked() {
-		usr = UserController.getInstance().addUser(ui.txtName.text(), ui.txtFirstname.text(), ui.txtPensum.value(), ui.cmbRole.currentIndex(), ui.txtHolidays.value());
+//		usr = UserController.getInstance().addUser(ui.txtName.text(), ui.txtFirstname.text(), ui.txtPensum.value(), ui.cmbRole.currentIndex(), ui.txtHolidays.value());
 		setFields();
 	}
 	
