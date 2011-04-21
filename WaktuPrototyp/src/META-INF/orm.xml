@@ -9,7 +9,7 @@
 		<attributes>
 			<id name="id">
 				<column name="favoriteId" />
-				<generated-value />
+				<generated-value strategy="IDENTITY"/>
 			</id>
 			<basic name="startTime">
            		<temporal>TIME</temporal>
@@ -25,7 +25,7 @@
 		<attributes>
 			<id name="id">
 				<column name="projectId" />
-				<generated-value />
+				<generated-value strategy="IDENTITY"/>
 			</id>
 		</attributes>
 	</entity>
@@ -35,7 +35,7 @@
 		<attributes>
 			<id name="id">
 				<column name="projectStaff" />
-				<generated-value />
+				<generated-value strategy="IDENTITY"/>
 			</id>
 		</attributes>
 	</entity>
@@ -47,6 +47,9 @@
 				<column name="usrId" />
 				<generated-value strategy="IDENTITY"/>
 			</id>
+			<basic name="systemRole">
+				<enumerated>STRING</enumerated>	
+			</basic>
 		</attributes>
 	</entity>
 	
@@ -55,7 +58,7 @@
 		<attributes>
 			<id name="id">
 				<column name="workPackageId" />
-				<generated-value />
+				<generated-value strategy="IDENTITY"/>
 			</id>
 		</attributes>
 	</entity>
@@ -65,7 +68,7 @@
 		<attributes>
 			<id name="id">
 				<column name="workSessionId" />
-				<generated-value />
+				<generated-value strategy="IDENTITY"/>
 			</id>
 			<basic name="startTime">
            		<temporal>TIMESTAMP</temporal>
