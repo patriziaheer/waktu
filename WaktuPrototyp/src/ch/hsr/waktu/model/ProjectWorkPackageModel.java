@@ -33,7 +33,7 @@ public class ProjectWorkPackageModel extends QAbstractItemModel{
 			WorkPackage workPackage = WorkPackageController.getInstance().getAllWorkPackages(project).get(index.row());
 			switch (index.column()) {
 			case 0: return workPackage.getDescription();
-			case 1: return workPackage.isInactive();
+			case 1: return !workPackage.isActive();
 			}
 		}
 		return null;

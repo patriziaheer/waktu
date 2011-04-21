@@ -3,6 +3,7 @@ package ch.hsr.waktu.controller;
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.PermissionTable;
 import ch.hsr.waktu.domain.Project;
+import ch.hsr.waktu.domain.SystemAction;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.services.Md5;
@@ -23,7 +24,7 @@ public class PermissionController {
 		return theInstance;
 	}
 	
-	private static Usr loggedInUser;
+	private Usr loggedInUser;
 	
 	private PermissionController(){
 
@@ -33,10 +34,14 @@ public class PermissionController {
 	 * 
 	 * @param username
 	 */
-	public boolean login(String username, String password){		
-		if(canLogin(username, password)) {
-			loggedInUser = UserController.getInstance().getUser(username);
-			return true;
+	public boolean login(String username, String password){
+		if(canLogin(username)) {
+			Usr user = UserController.getInstance().getUser(username);
+			String passwordHash = Md5.hash(password);
+			if(user.getPasswordHash().equals(passwordHash)) {
+				loggedInUser = user;
+				return true;
+			}
 		}
 		return false;
 	}
@@ -55,14 +60,14 @@ public class PermissionController {
 	 */
 	public boolean canAddProject(Usr loggedInUser){
 		SystemRole systemRole = loggedInUser.getRole();
-		return PermissionTable.getPermission(systemRole,"canAddProject");
+		return PermissionTable.getPermission(SystemAction.AddProjects, systemRole, null);
 	}
 
 	/**
 	 * 
 	 * @param user
 	 */
-	public boolean canAddProjectStaff(Usr loggedInUser, Project project){
+	public boolean canAddProjectStaff(Project project){
 		return false;
 	}
 
@@ -70,7 +75,7 @@ public class PermissionController {
 	 * 
 	 * @param user
 	 */
-	public boolean canAddUser(Usr loggedInUser){
+	public boolean canAddUser(){
 		return true;
 	}
 
@@ -78,7 +83,7 @@ public class PermissionController {
 	 * 
 	 * @param user
 	 */
-	public boolean canAddWorkPackage(Usr user, Project project){
+	public boolean canAddWorkPackage(Project project){
 		return false;
 	}
 
@@ -87,15 +92,20 @@ public class PermissionController {
 	 * @param username
 	 * @param password
 	 */
-	public boolean canLogin(String username, String password){
-		String passwordHash = Md5.hash(password);
-		if(UserController.getInstance().getUser(username).getPassword().equals(passwordHash)) {
+	public boolean canLogin(String username){
+		System.out.println("canLogin entered, username: " + username);
+		
+		try {
+			UserController.getInstance().getUser(username);
+			System.out.println("Can Login reached");
 			return true;
+		} catch(Exception e) {
+		
 		}
 		return false;
 	}
 
-	public static Usr getLoggedInUser() {
+	public Usr getLoggedInUser() {
 		return loggedInUser;
 	}
 

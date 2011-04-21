@@ -87,7 +87,7 @@ public class ProjectController extends QSignalEmitter {
 
 		@SuppressWarnings("unchecked")
 		List<Project> projects = em.createQuery(
-				"SELECT p FROM Project p WHERE p.inactive = FALSE")
+				"SELECT p FROM Project p WHERE p.active = TRUE")
 				.getResultList();
 
 		for (Project project : projects) {
@@ -120,7 +120,7 @@ public class ProjectController extends QSignalEmitter {
 
 		@SuppressWarnings("unchecked")
 		List<Project> projects = em.createQuery(
-				"SELECT p FROM Project p WHERE p.inactive = TRUE")
+				"SELECT p FROM Project p WHERE p.active = FALSE")
 				.getResultList();
 
 		for (Project project : projects) {
@@ -160,7 +160,7 @@ public class ProjectController extends QSignalEmitter {
 				.getSingleResult();
 		
 		updateProj.setDescription(project.getDescription());
-		updateProj.setInactive(project.isInactive());
+		updateProj.setActiveState(project.isActive());
 		updateProj.setPlannedTime(project.getPlannedTime());
 		updateProj.setProjectManager(project.getProjectManager());
 

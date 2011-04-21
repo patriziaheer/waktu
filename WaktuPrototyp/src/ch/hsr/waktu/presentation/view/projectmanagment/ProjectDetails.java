@@ -65,6 +65,7 @@ public class ProjectDetails extends QWidget {
 			case WorkSessions: {
 				currWidget = new ProjectWorkSessionsView((Project)parent);
 			}
+			break;
 			case ProjectStaff: {
 				currWidget = new ProjectStaffView((Project)parent);
 			}

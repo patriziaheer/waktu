@@ -8,11 +8,11 @@ public class Usr {
 	private String username;
 	private String name;
 	private String firstname;
-	private String password;
+	private String passwordHash;
 	private int pensum;
 	private SystemRole systemRole = SystemRole.Employee;
 	private double holiday;
-	private boolean inactive = false;
+	private boolean active = true;
 	
 
 	public Usr() {
@@ -24,7 +24,7 @@ public class Usr {
 		this.username = username;
 		this.name = lastname;
 		this.firstname = firstname;
-		this.password = password;
+		this.passwordHash = password;
 		this.pensum = pensum;
 		this.systemRole = role;
 		this.holiday = holiday;
@@ -39,12 +39,12 @@ public class Usr {
 		this.username = username;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getPasswordHash() {
+		return passwordHash;
 	}
 
 	public void setPassword(String password) {
-		this.password = Md5.hash(password);
+		this.passwordHash = Md5.hash(password);
 	}
 
 	public int getPensum() {
@@ -87,16 +87,12 @@ public class Usr {
 		this.firstname = firstname;
 	}
 	
-	public boolean isInactive() {
-		return inactive;
-	}
-	
 	public boolean isActive() {
-		return !inactive;
+		return active;
 	}
 
-	public void setInactive(boolean inactive) {
-		this.inactive = inactive;
+	public void setActiveState(boolean toActive) {
+		this.active = toActive;
 	}
 
 	public void setPensum(int pensum) {
@@ -109,14 +105,6 @@ public class Usr {
 	
 	public void setSystemRole(SystemRole systemRole) {
 			this.systemRole = systemRole;
-	}
-	
-	public void setInactive() {
-		this.inactive = true;
-	}
-	
-	public void setActive() {
-		this.inactive = false;
 	}
 	
 	@Override

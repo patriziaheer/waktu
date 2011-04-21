@@ -12,11 +12,15 @@ public class Project {
 	private String projectIdentifier;
 	private String description;
 	private Usr projectManager;
-	private boolean inactive = false;
+	private boolean active = true;
 	private int plannedTime;
 
 	public Project(){
 
+	}
+	
+	public Project(String projectIdentifier) {
+		this.projectIdentifier = projectIdentifier;
 	}
 	
 	public Project(String projectID, String description, int plannedTime) {
@@ -44,12 +48,12 @@ public class Project {
 		this.description = description;
 	}
 
-	public boolean isInactive() {
-		return inactive;
+	public boolean isActive() {
+		return active;
 	}
 
-	public void setInactive(boolean inactive) {
-		this.inactive = inactive;
+	public void setActiveState(boolean toActive) {
+		this.active = toActive;
 	}
 
 	public int getPlannedTime() {

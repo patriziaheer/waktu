@@ -50,7 +50,7 @@ public class UserController extends QSignalEmitter {
 	 */
 	public Usr addUser(String username, String firstname, String lastname,
 			String password, int pensum, SystemRole role, double holiday) {
-		Usr newUser = new Usr(username, firstname, lastname, password, pensum,
+		Usr newUser = new Usr(generateUsername(firstname, lastname), firstname, lastname, password, pensum,
 				role, holiday);
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
@@ -69,7 +69,7 @@ public class UserController extends QSignalEmitter {
 
 		@SuppressWarnings("unchecked")
 		List<Usr> usrs = em.createQuery(
-				"SELECT u FROM Usr u WHERE u.inactive = FALSE").getResultList();
+				"SELECT u FROM Usr u WHERE u.active = TRUE").getResultList();
 
 		for (Usr usr : usrs) {
 			logger.info("ACTIVE USER: " + usr.toString());
@@ -100,7 +100,7 @@ public class UserController extends QSignalEmitter {
 
 		@SuppressWarnings("unchecked")
 		List<Usr> usrs = em.createQuery(
-				"SELECT u FROM Usr u WHERE u.inactive = TRUE").getResultList();
+				"SELECT u FROM Usr u WHERE u.active = FALSE").getResultList();
 
 		for (Usr usr : usrs) {
 			logger.info("INACTIVE USERS: " + usr.toString());
@@ -147,8 +147,8 @@ public class UserController extends QSignalEmitter {
 		updateUsr.setName(user.getName());
 		updateUsr.setFirstname(user.getFirstname());
 		updateUsr.setHoliday(user.getHoliday());
-		updateUsr.setInactive(user.isInactive());
-		updateUsr.setPassword(user.getPassword());
+		updateUsr.setActiveState(user.isActive());
+		updateUsr.setPassword(user.getPasswordHash());
 		updateUsr.setPensum(user.getPensum());
 		updateUsr.setRole(user.getRole());
 		updateUsr.setUsername(user.getUsername());
@@ -158,6 +158,20 @@ public class UserController extends QSignalEmitter {
 		// update.emit();
 
 		return true;
+	}
+	
+	private String generateUsername(String firstname, String lastname) {
+		String username = firstname.toLowerCase() + lastname.toLowerCase();
+		int usernameOccurrence = 1;
+		for(Usr u: getAllUsers()) {
+			if(u.getUsername().startsWith(username)) {
+				usernameOccurrence += 1;
+			}
+		}
+		if(usernameOccurrence > 1) {
+			username = username + usernameOccurrence;
+		}		
+		return username;
 	}
 
 }

@@ -28,7 +28,7 @@ public class LoginView extends QMainWindow {
 	
 	@SuppressWarnings("unused")
 	private void loginClicked() {
-		if (PermissionController.getInstance().canLogin(ui.txtUsername.text(), ui.txtPassword.text())) {
+		if (PermissionController.getInstance().login(ui.txtUsername.text(), ui.txtPassword.text())) {
 			Usr usr = UserController.getInstance().getUser(ui.txtUsername.text());
 			TimeView timeView = new TimeView(usr);
 			timeView.show();

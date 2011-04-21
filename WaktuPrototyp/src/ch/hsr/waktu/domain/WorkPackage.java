@@ -9,7 +9,7 @@ public class WorkPackage {
 
 	private int id;
 	private String description;
-	private boolean inactive;
+	private boolean active = true;
 	private Project project;
 	
 	public WorkPackage(){
@@ -32,12 +32,12 @@ public class WorkPackage {
 		this.description = description;
 	}
 
-	public boolean isInactive() {
-		return inactive;
+	public boolean isActive() {
+		return active;
 	}
 
-	public void setInactive(boolean inactive) {
-		this.inactive = inactive;
+	public void setActiveState(boolean toActive) {
+		this.active = toActive;
 	}
 
 	public Project getProject() {
@@ -52,6 +52,4 @@ public class WorkPackage {
 	public String toString() {
 		return description;
 	}
-
-
 }

@@ -28,7 +28,7 @@ public class ProjectDataView extends QWidget {
 			
 			ui.txtPlannedTime.setValue(project.getPlannedTime());
 			ui.txtPlannedTime.setEnabled(false);
-			
+
 			ui.txtPlannedTime.setValue(project.getPlannedTime());
 			ui.txtPlannedTime.setEnabled(false);
 		} else {

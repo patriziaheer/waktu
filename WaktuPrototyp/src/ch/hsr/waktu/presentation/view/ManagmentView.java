@@ -25,7 +25,7 @@ public class ManagmentView extends QMainWindow {
 		userDetails = new UserDetails(); 
 		ui.tabWidget.addTab(userDetails, tr("Users"));
 		
-		ui.actionAddUser.setVisible(PermissionController.getInstance().canAddUser(currUsr));
+		ui.actionAddUser.setVisible(PermissionController.getInstance().canAddUser());
 		ui.actionAddProject.setVisible(PermissionController.getInstance().canAddProject(currUsr));
 		
 		ui.actionAddProject.triggered.connect(this, "addProject()");

@@ -66,7 +66,7 @@ public class WorkPackageController extends QSignalEmitter{
 
 		@SuppressWarnings("unchecked")
 		List<WorkPackage> allActiveWorkPackages = em.createQuery(
-				"SELECT wp FROM WorkPackage wp WHERE wp.inactive = false")
+				"SELECT wp FROM WorkPackage wp WHERE wp.active = TRUE")
 				.getResultList();
 
 		ArrayList<WorkPackage> workPackages = new ArrayList<WorkPackage>();
@@ -119,7 +119,7 @@ public class WorkPackageController extends QSignalEmitter{
 
 		@SuppressWarnings("unchecked")
 		List<WorkPackage> allActiveWorkPackages = em.createQuery(
-				"SELECT wp FROM WorkPackage wp WHERE wp.inactive = true")
+				"SELECT wp FROM WorkPackage wp WHERE wp.active = FALSE")
 				.getResultList();
 
 		ArrayList<WorkPackage> workPackages = new ArrayList<WorkPackage>();
@@ -155,7 +155,7 @@ public class WorkPackageController extends QSignalEmitter{
 
 		updateWorkPackage.setDescription(workPackage.getDescription());
 		updateWorkPackage.setProject(workPackage.getProject());
-		updateWorkPackage.setInactive(workPackage.isInactive());
+		updateWorkPackage.setActiveState(workPackage.isActive());
 		
 		em.getTransaction().commit();
 		// TODO: update.emit() wieder einschalten (Observer von QT)
