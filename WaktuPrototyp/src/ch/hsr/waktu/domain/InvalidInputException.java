@@ -1,6 +1,6 @@
 package ch.hsr.waktu.domain;
 
-public class InvalidInputException extends Throwable {
+public class InvalidInputException extends Exception {
 	/**
 	 * 
 	 */
