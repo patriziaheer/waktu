@@ -32,7 +32,7 @@ public class ProjectStaffController extends QSignalEmitter {
 
 	private Logger logger = Logger.getLogger(UserController.class);
 	public Signal0 update = new Signal0();
-	public Signal1<Usr> add = new Signal1<Usr>();
+	public Signal1<ProjectStaff> add = new Signal1<ProjectStaff>();
 
 	private ProjectStaffController() {
 

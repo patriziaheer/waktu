@@ -2,22 +2,22 @@ package ch.hsr.waktu.domain;
 
 public class PermissionTable {
 	public static boolean getPermission(SystemAction action, SystemRole role, Project project) {
-		if(role.equals(SystemRole.Admin)) {
+		if(role.equals(SystemRole.ADMIN)) {
 			return Admin.getPermission(action, project);
-		} else if(role.equals(SystemRole.ProjectManager)) {
+		} else if(role.equals(SystemRole.PROJECTMANAGER)) {
 			return ProjectManager.getPermission(action, project);
-		} else if(role.equals(SystemRole.Employee)) {
+		} else if(role.equals(SystemRole.EMPLOYEE)) {
 			return Employee.getPermission(action, project);
 		}
 		return false;
 	}
 	
 	public static void setPermission(SystemAction action, SystemRole role, boolean permission) {
-		if(role.equals(SystemRole.Admin)) {
+		if(role.equals(SystemRole.ADMIN)) {
 			Admin.setPermission(action, permission);
-		} else if(role.equals(SystemRole.ProjectManager)) {
+		} else if(role.equals(SystemRole.PROJECTMANAGER)) {
 			ProjectManager.setPermission(action, permission);
-		} else if(role.equals(SystemRole.Employee)) {
+		} else if(role.equals(SystemRole.EMPLOYEE)) {
 			Employee.setPermission(action, permission);
 		}
 	}

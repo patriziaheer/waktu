@@ -10,7 +10,7 @@ public class Usr {
 	private String firstname;
 	private String passwordHash;
 	private int pensum;
-	private SystemRole systemRole = SystemRole.Employee;
+	private SystemRole systemRole = SystemRole.EMPLOYEE;
 	private double holiday;
 	private boolean active = true;
 	
@@ -25,6 +25,7 @@ public class Usr {
 		this.name = lastname;
 		this.firstname = firstname;
 		this.passwordHash = password;
+
 		this.pensum = pensum;
 		this.systemRole = role;
 		this.holiday = holiday;
