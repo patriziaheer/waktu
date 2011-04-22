@@ -1,5 +1,6 @@
 package ch.hsr.waktu.controller;
 
+import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.PermissionTable;
 import ch.hsr.waktu.domain.Project;
@@ -67,8 +68,11 @@ public class PermissionController {
 	 * 
 	 * @param user
 	 */
-	public boolean canAddProjectStaff(Project project){
-		return false;
+	public boolean canAddProjectStaff(Usr loggedInUser, Project project){
+		if(ProjectController.getInstance().getProject(project.getId()).getProjectManager().equals(loggedInUser)) {
+			return PermissionTable.getPermission(SystemAction.AddUserToOwnProjects, loggedInUser.getRole(), project);
+		}
+		return PermissionTable.getPermission(SystemAction.AddUserToAllProjects, loggedInUser.getRole(), project);
 	}
 
 	/**
@@ -76,7 +80,7 @@ public class PermissionController {
 	 * @param user
 	 */
 	public boolean canAddUser(){
-		return true;
+		return PermissionTable.getPermission(SystemAction.AddUser, loggedInUser.getRole(), null);
 	}
 
 	/**
@@ -84,7 +88,10 @@ public class PermissionController {
 	 * @param user
 	 */
 	public boolean canAddWorkPackage(Project project){
-		return false;
+		if(ProjectController.getInstance().getProject(project.getId()).getProjectManager().equals(loggedInUser)) {
+			return PermissionTable.getPermission(SystemAction.CreateOwnWorkPackages, loggedInUser.getRole(), project);
+		}
+		return PermissionTable.getPermission(SystemAction.CreateAllWorkPackages, loggedInUser.getRole(), project);
 	}
 
 	/**
@@ -97,7 +104,7 @@ public class PermissionController {
 		
 		try {
 			UserController.getInstance().getUser(username);
-			System.out.println("Can Login reached");
+			System.out.println("End of canLogin() reached");
 			return true;
 		} catch(Exception e) {
 		
