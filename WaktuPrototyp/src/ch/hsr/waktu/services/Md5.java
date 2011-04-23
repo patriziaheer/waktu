@@ -7,6 +7,8 @@ import java.security.NoSuchAlgorithmException;
 public class Md5 {
 	public static String hash(String input) {
 		MessageDigest digest = null;
+		byte[] hash = null;
+		
 		try {
 			digest = java.security.MessageDigest.getInstance("MD5");
 		} catch (NoSuchAlgorithmException e) {
@@ -17,8 +19,11 @@ public class Md5 {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		byte[] hash = digest.digest();
-
+		
+		if(digest != null){
+			hash = digest.digest();
+		}
+		
 		return byteArrayToString(hash);
 
 	}
