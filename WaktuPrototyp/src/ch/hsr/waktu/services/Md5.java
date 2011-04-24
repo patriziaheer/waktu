@@ -11,21 +11,19 @@ public class Md5 {
 		
 		try {
 			digest = java.security.MessageDigest.getInstance("MD5");
+			
+			try {
+				digest.update(input.getBytes("UTF-8"));
+				hash = digest.digest();
+				return byteArrayToString(hash);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-		try {
-			digest.update(input.getBytes("UTF-8"));
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
 		
-		if(digest != null){
-			hash = digest.digest();
-		}
-		
-		return byteArrayToString(hash);
-
+		return null;
 	}
 
 	public static String byteArrayToString(byte[] binaryData) {
