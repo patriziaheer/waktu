@@ -81,12 +81,12 @@ public class IcsParser {
 							} else if(currentLine.startsWith("DTSTART;")) { 
 								//start time read
 								QDateTime startTime = stringToQDateTime(currentLine);
-								tmpWs.setStart(TimeCalculator.convertQDateTimeCalToGregorianCal(startTime));
+								tmpWs.setStart(TimeUtil.convertQDateTimeCalToGregorianCal(startTime));
 								
 							} else if(currentLine.startsWith("DTEND;")) { 
 								//end time read
 								QDateTime endTime = stringToQDateTime(currentLine);
-								tmpWs.setEnd(TimeCalculator.convertQDateTimeCalToGregorianCal(endTime));
+								tmpWs.setEnd(TimeUtil.convertQDateTimeCalToGregorianCal(endTime));
 							}
 						} 
 						//Appointment end

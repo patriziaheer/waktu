@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkSession;
-import ch.hsr.waktu.services.TimeCalculator;
+import ch.hsr.waktu.services.TimeUtil;
 
 import com.trolltech.qt.core.QAbstractItemModel;
 import com.trolltech.qt.core.QDate;
@@ -51,8 +51,8 @@ public class WorkSessionModel extends QAbstractItemModel {
 			case 0: return "Projekt";
 			case 1: return "WorkPackage"; 
 			case 2: return workSession.getDescription();
-			case 3: return TimeCalculator.convertGregorianCalToQDateTimeCal(workSession.getStart()).time();
-			case 4: return TimeCalculator.convertGregorianCalToQDateTimeCal(workSession.getEnd()).time();
+			case 3: return TimeUtil.convertGregorianCalToQDateTimeCal(workSession.getStart()).time();
+			case 4: return TimeUtil.convertGregorianCalToQDateTimeCal(workSession.getEnd()).time();
 			case 5: return "";
 			}
 		}
@@ -100,13 +100,13 @@ public class WorkSessionModel extends QAbstractItemModel {
 		break;
 		case 3: {
 //			WorkSessionController.getInstance().getWorkSessions(usr, date).get(index.row()).setStart(new QDateTime(date, (QTime)value));
-			GregorianCalendar dateTime = TimeCalculator.convertQDateTimeCalToGregorianCal(new QDateTime(date, (QTime)value));
+			GregorianCalendar dateTime = TimeUtil.convertQDateTimeCalToGregorianCal(new QDateTime(date, (QTime)value));
 			WorkSessionController.getInstance().getWorkSessions(usr, date).get(index.row()).setStart(dateTime);
 		}
 		break;
 		case 4: {
 //			WorkSessionController.getInstance().getWorkSessions(usr, date).get(index.row()).setEnd(new QDateTime(date, (QTime)value));
-			GregorianCalendar dateTime = TimeCalculator.convertQDateTimeCalToGregorianCal(new QDateTime(date, (QTime)value));
+			GregorianCalendar dateTime = TimeUtil.convertQDateTimeCalToGregorianCal(new QDateTime(date, (QTime)value));
 			WorkSessionController.getInstance().getWorkSessions(usr, date).get(index.row()).setEnd(dateTime);
 			
 		}
