@@ -19,20 +19,24 @@ public class IcsParser {
 	
 	/**
 	 * Parses contents of an .ics file which is used in iCal, Outlook, etc.
-	 *
-	 *
-	 * ICS FILE FORMAT:
 	 * <p>
-	 * EXAMPLE WORKSESSION:
-	 * BEGIN:VEVENT
-	 * CREATED:20100809T062219Z
- 	 * UID:2DE909B3-96C6-4D7B-BB99-5CA7487C43A2
-	 * DTEND;TZID=Europe/Zurich:20100810T115000
-	 * TRANSP:OPAQUE
-	 * SUMMARY:Prog2
-	 * DTSTART;TZID=Europe/Zurich:20100810T101000
-	 * DTSTAMP:20100809T062304Z
-	 * SEQUENCE:4
+	 *
+	 * <b>ICS FILE FORMAT:</b><br>
+	 * An .ics file consists of multiple lines, each line beginning with a tag. 
+	 * 
+	 * 
+	 * <p>
+	 * <b>EXAMPLE WORKSESSION:</b>
+	 * <br>
+	 * BEGIN:VEVENT<br>
+	 * CREATED:20100809T062219Z<br>
+ 	 * UID:2DE909B3-96C6-4D7B-BB99-5CA7487C43A2<br>
+	 * DTEND;TZID=Europe/Zurich:20100810T115000<br>
+	 * TRANSP:OPAQUE<br>
+	 * SUMMARY:Prog2<br>
+	 * DTSTART;TZID=Europe/Zurich:20100810T101000<br>
+	 * DTSTAMP:20100809T062304Z<br>
+	 * SEQUENCE:4<br>
 	 * END:VEVENT
 	 * <p>
 	 * An WorkSession starts with the tag "BEGIN:VEVENT" and should be closed by "END:VEVENT".
@@ -139,7 +143,7 @@ public class IcsParser {
 	 * MM the month, dd the day, 'T' a delimiter, hh the hour, mm the minutes, ss the seconds.
 	 * Failing to pass the dateTimeString in this format will result in undesirable DateTime Objects 
 	 * or a @throws IndexOutOfBoundsException may be thrown in case the dateTimeString is too short.
-	 * 
+	 * <p>
 	 * Example dateTimeString:
 	 * 20110221T124714Z
 	 * <p>
@@ -178,7 +182,7 @@ public class IcsParser {
 	 * Every parsed .ics line starts with a tag and may only contain a single tag. 
 	 * (e.g. stripTag("SUMMARY:CN2:p3") would return "CN2:p3") 
 	 *
-	 * @param  stringWithTag a string beginning with a .ics tag
+	 * @param  stringWithTag a string beginning with an .ics tag
 	 * @return string without the tag.
 	 */
 	public static String stripTag(String stringWithTag) {

@@ -6,21 +6,23 @@ import java.security.NoSuchAlgorithmException;
 
 public class Md5 {
 	public static String hash(String input) {
-		MessageDigest digest = null;
-		byte[] hash = null;
-		
-		try {
-			digest = java.security.MessageDigest.getInstance("MD5");
+		if(input != null) {
+			MessageDigest digest = null;
+			byte[] hash = null;
 			
 			try {
-				digest.update(input.getBytes("UTF-8"));
-				hash = digest.digest();
-				return byteArrayToString(hash);
-			} catch (UnsupportedEncodingException e) {
+				digest = java.security.MessageDigest.getInstance("MD5");
+				
+				try {
+					digest.update(input.getBytes("UTF-8"));
+					hash = digest.digest();
+					return byteArrayToString(hash);
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+			} catch (NoSuchAlgorithmException e) {
 				e.printStackTrace();
 			}
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
 		}
 		
 		return null;
