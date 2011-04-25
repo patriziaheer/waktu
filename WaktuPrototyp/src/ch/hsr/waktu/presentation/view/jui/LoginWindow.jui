@@ -33,7 +33,11 @@
      </widget>
     </item>
     <item row="1" column="1" colspan="2">
-     <widget class="QLineEdit" name="txtPassword"/>
+     <widget class="QLineEdit" name="txtPassword">
+      <property name="echoMode">
+       <enum>com.trolltech.qt.gui.QLineEdit.EchoMode.Password</enum>
+      </property>
+     </widget>
     </item>
     <item row="2" column="1">
      <widget class="QPushButton" name="btnCancel">
@@ -46,6 +50,9 @@
      <widget class="QPushButton" name="btnLogin">
       <property name="text">
        <string>Login</string>
+      </property>
+      <property name="default">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
