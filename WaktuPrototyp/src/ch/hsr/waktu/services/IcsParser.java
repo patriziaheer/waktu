@@ -45,11 +45,10 @@ public class IcsParser {
 	 * <p>
 	 * Within a WorkSession the following tags may occur in any order:
 	 * <ul>
-	 * <li>CREATED: 		Creation date 
-	 * <li>SUMMARY:* 		Title
+	 * <li>SUMMARY:* 		WorkSession Name
 	 * <li>DTEND;...:* 		End time
 	 * <li>DTSTART;...:* 	Start time
-	 * <li>SEQUENCE:		Indicates a recurring WorkSession						
+	 * <li>RRULE:			Indicates a recurring WorkSession						
 	 * </ul>
 	 * *: Mandatory tags
 	 * <p>
@@ -75,29 +74,43 @@ public class IcsParser {
 					
 					if(currentLine.startsWith("BEGIN:VEVENT")) { 
 						//Appointment begin
-						tmpWs = new WorkSession();	
+						tmpWs = new WorkSession();
+						int eventCount = 1;
+						int eventInterval = 0;
+						String eventFrequency = "";
+						
 						
 						while(!((currentLine = br.readLine()) == null || currentLine.startsWith("END:VEVENT"))) {
 							if(currentLine.contains("SUMMARY:")) { 
 								//title read
 								tmpWs.setDescription(stripTag(currentLine));
 									
-							} else if(currentLine.startsWith("DTSTART;")) { 
+							} else if(currentLine.startsWith("DTSTART")) { 
 								//start time read
 								QDateTime startTime = stringToQDateTime(currentLine);
 								tmpWs.setStart(TimeUtil.convertQDateTimeCalToGregorianCal(startTime));
 								
-							} else if(currentLine.startsWith("DTEND;")) { 
+							} else if(currentLine.startsWith("DTEND")) { 
 								//end time read
 								QDateTime endTime = stringToQDateTime(currentLine);
 								tmpWs.setEnd(TimeUtil.convertQDateTimeCalToGregorianCal(endTime));
+								
+							} else if(currentLine.startsWith("RRULE:")) {
+								eventCount = getRecurringEventCount(currentLine);
+								eventFrequency = getRecurringEventFrequency(currentLine);
+								eventInterval = getRecurringEventInterval(currentLine);
 							}
+							
 						} 
 						//Appointment end
-						calendar.add(tmpWs);
-					}
+						for(int i = 0; i < eventCount; i++) {							
+							calendar.add(tmpWs);
+							if(eventCount > 1) {
+								tmpWs = createSubsequentWorkSession(tmpWs, eventFrequency, eventInterval, eventCount);
 
-					//TODO Sequence Tag
+							}
+						}
+					}
 									
 					//Unused Tags
 //					if(currentLine.startsWith("CREATED:")) {
@@ -154,7 +167,7 @@ public class IcsParser {
 	 * @param  dateTimeString string containing a date and a time.
 	 * @return QDateTime Instance (a Qt DateTime Object, which Combines QDate and QTime).
 	 */
-	public static QDateTime stringToQDateTime(String dateTimeString) {	
+	private static QDateTime stringToQDateTime(String dateTimeString) {	
 		String[] dateTime = splitTimeDateString(stripTag(dateTimeString));
 		int year = new Integer(dateTime[0].substring(0, 4));
 		int month = new Integer(dateTime[0].substring(4, 6));
@@ -171,7 +184,7 @@ public class IcsParser {
 	 * @param  timeDateString string containing date and time delimited by 'T'  
 	 * @return array containing a date- and a time-string
 	 */
-	public static String[] splitTimeDateString(String timeDateString) {
+	private static String[] splitTimeDateString(String timeDateString) {
 		return timeDateString.split("T"); 
 	}
 	
@@ -185,8 +198,35 @@ public class IcsParser {
 	 * @param  stringWithTag a string beginning with an .ics tag
 	 * @return string without the tag.
 	 */
-	public static String stripTag(String stringWithTag) {
+	private static String stripTag(String stringWithTag) {
 		return stringWithTag.split(":", 2)[1];
+	}
+	
+	private static QDateTime getRecurringEventUntilDate(String stringWithUntilDate) {
+		return new QDateTime(stringToQDateTime((stringWithUntilDate.split("UNTIL=")[1]).split(";")[0]));
+	}
+
+	private static int getRecurringEventCount(String stringWithRecurringEvent) {
+		if(stringWithRecurringEvent.contains("COUNT=")) {
+			return new Integer((stringWithRecurringEvent.split("COUNT=")[1]).split(";")[0]);
+		} else if(stringWithRecurringEvent.contains("UNTIL=")) {
+			getRecurringEventUntilDate(stringWithRecurringEvent);
+			//TODO Is getting the dates for subsequent events really necessary if until date is given? 
+			//Implementing it is a pain in the a$$!!!
+		}
+		return 1;
+	}
+	
+	private static String getRecurringEventFrequency(String stringWithRecurringEvent) {
+		return (stringWithRecurringEvent.split("FREQ=")[1]).split(";")[0];
+	}
+	
+	private static int getRecurringEventInterval(String stringWithRecurringEvent) {
+		return new Integer((stringWithRecurringEvent.split("INTERVAL=")[1]).split(";")[0]);
+	}
+	
+	private static WorkSession createSubsequentWorkSession(WorkSession workSession, String frequency, int interval, int count) {
+		return new WorkSession();
 	}
 	
 	/*
