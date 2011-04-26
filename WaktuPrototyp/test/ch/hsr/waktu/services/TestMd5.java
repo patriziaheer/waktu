@@ -1,4 +1,4 @@
-package ch.hsr.waktu.domain;
+package ch.hsr.waktu.services;
 
 import static org.junit.Assert.assertEquals;
 
