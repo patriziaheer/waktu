@@ -17,7 +17,7 @@ public class TestIcsParser {
 	private WorkSession ws2 = new WorkSession();
 	private WorkSession ws3 = new WorkSession();
 	private LinkedList<WorkSession> calendar = new LinkedList<WorkSession>();
-	
+	//TODO file nicht vorhanden -> Fehlermeldung
 	@Before
 	public void setUp() {
 		ws1.setDescription("Prog3");
@@ -33,6 +33,15 @@ public class TestIcsParser {
 		ws3.setEnd(new GregorianCalendar(2010, 8, 9, 15, 0, 0));
 		calendar.add(ws3);
 	}
+	
+	@After 
+	public void tearDown() {
+		ws1 = null;
+		ws2 = null;
+		ws3 = null;
+		calendar = null;
+	}
+	
 	@Test
 	public void parseIcsFile_allBeginVeventMissing_noEventsProcessed() {
 		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./resources/TestICS/allBeginVeventMissing.ics");
@@ -53,8 +62,8 @@ public class TestIcsParser {
 
 	@Test
 	public void parseIcsFile_invalidTimeDelimiter_onlyValidEventsProcessed() {
-		LinkedList<WorkSession> testCalendar3 = IcsParser.parseIcsFile("./resources/TestICS/invalidTimeDelimiter.ics");
-		calendarValidity(testCalendar3, 2);
+		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./resources/TestICS/invalidTimeDelimiter.ics");
+		calendarValidity(testCalendar, 2);
 	}
 	
 	@Test
@@ -86,13 +95,5 @@ public class TestIcsParser {
 			assertEquals(calendar.get(i).getEnd(), testCalendar.get(i).getEnd());
 		}
 		assertEquals(noOfValidEntries, testCalendar.size());
-	}
-	
-	@After 
-	public void tearDown() {
-		ws1 = null;
-		ws2 = null;
-		ws3 = null;
-		calendar = null;
 	}
 }

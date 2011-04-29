@@ -41,8 +41,8 @@ public class ProjectWorkSessionModel extends QAbstractItemModel {
 			case 3: return workSession.getStart().toString();
 			case 4: return workSession.getEnd().toString();
 			case 5:  {
-				QDateTime start = TimeUtil.convertGregorianCalToQDateTimeCal(workSession.getStart());
-				QDateTime end = TimeUtil.convertGregorianCalToQDateTimeCal(workSession.getEnd());
+				QDateTime start = TimeUtil.convertGregorianToQDateTime(workSession.getStart());
+				QDateTime end = TimeUtil.convertGregorianToQDateTime(workSession.getEnd());
 				QTime dauer = new QTime(0, 0, start.secsTo(end));
 				return dauer.toString();
 			}
