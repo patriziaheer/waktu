@@ -15,8 +15,6 @@ import com.trolltech.qt.core.QTime;
 
 public class IcsParser {
 
-	private static LinkedList<WorkSession> calendar = new LinkedList<WorkSession>();
-	
 	/**
 	 * Parses contents of an .ics file which is used in iCal, Outlook, etc.
 	 * <p>
@@ -57,6 +55,8 @@ public class IcsParser {
 	 * @return a linked list containing all WorkSessions extracted from input file.
 	 */
 	public static LinkedList<WorkSession> parseIcsFile(String filePath) {
+		
+		LinkedList<WorkSession> calendar = new LinkedList<WorkSession>();
 		
 		BufferedReader br;
 		
@@ -164,8 +164,12 @@ public class IcsParser {
 	 * @param  dateTimeString string containing a date and a time.
 	 * @return QDateTime Instance (a Qt DateTime Object, which Combines QDate and QTime).
 	 */
-	private static QDateTime stringToQDateTime(String dateTimeString) {	
-		String[] dateTime = splitTimeDateString(stripTag(dateTimeString));
+	private static QDateTime stringToQDateTime(String dateTimeString) {
+		String strippedDateTimeString = stripTag(dateTimeString);
+		if(invalidDateTimeString(strippedDateTimeString)) {
+			return null;
+		}
+		String[] dateTime = splitTimeDateString(strippedDateTimeString);
 		int year = new Integer(dateTime[0].substring(0, 4));
 		int month = new Integer(dateTime[0].substring(4, 6));
 		int day = new Integer(dateTime[0].substring(6, 8));
@@ -175,6 +179,10 @@ public class IcsParser {
 		return new QDateTime(new QDate(year, month, day), new QTime(hours, minutes, seconds));
 	}
 	
+	private static boolean invalidDateTimeString(String dateTimeString) {
+		return (dateTimeString.length() < 15);
+	}
+
 	/**
 	 * Splits a string containing a date followed by a time in two separate strings.
 	 *

@@ -17,7 +17,6 @@ public class TestIcsParser {
 	private WorkSession ws2 = new WorkSession();
 	private WorkSession ws3 = new WorkSession();
 	private LinkedList<WorkSession> calendar = new LinkedList<WorkSession>();
-	private volatile LinkedList<WorkSession> testCalendar = new LinkedList<WorkSession>();
 	
 	@Before
 	public void setUp() {
@@ -36,36 +35,32 @@ public class TestIcsParser {
 	}
 	@Test
 	public void parseIcsFile_allBeginVeventMissing_noEventsProcessed() {
-		testCalendar = IcsParser.parseIcsFile("./resources/TestICS/allBeginVeventMissing.ics");
+		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./resources/TestICS/allBeginVeventMissing.ics");
 		assertEquals(0, testCalendar.size());
 	}
-	@Test
-	public void parseIcsFile_Normal() {
-		testCalendar.clear();
-		testCalendar = IcsParser.parseIcsFile("./resources/TestICS/normal.ics");
-		calendarValidity(testCalendar, 3);
-	}
-	
-	
 	
 	@Test
 	public void parseIcsFile_endVCalendarMissing_allEventsProcessedNoException() {
-		testCalendar.clear();
-		testCalendar = IcsParser.parseIcsFile("./resources/TestICS/endVCalendarMissing.ics");
+		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./resources/TestICS/endVCalendarMissing.ics");
 		calendarValidity(testCalendar, 3);
 		//TODO assert not failing:no (null pointer) exception
+	}
+	@Test
+	public void parseIcsFile_Normal() {
+		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./resources/TestICS/normal.ics");
+		calendarValidity(testCalendar, 3);
 	}
 
 	@Test
 	public void parseIcsFile_invalidTimeDelimiter_onlyValidEventsProcessed() {
-		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./resources/TestICS/invalidTimeDelimiter.ics");
-		calendarValidity(testCalendar, 2);
+		LinkedList<WorkSession> testCalendar3 = IcsParser.parseIcsFile("./resources/TestICS/invalidTimeDelimiter.ics");
+		calendarValidity(testCalendar3, 2);
 	}
 	
 	@Test
 	public void parseIcsFile_invalidTimeFormat_onlyValidEventsProcessed() {
 		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./resources/TestICS/invalidTimeFormat.ics");
-		calendarValidity(testCalendar, 2);
+		calendarValidity(testCalendar, 1);
 	}
 	
 	@Test
