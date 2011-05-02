@@ -82,12 +82,12 @@ public class IcsParser {
 							} else if(currentLine.startsWith("DTSTART")) { 
 								//start time read
 								QDateTime startTime = stringToQDateTime(currentLine);
-								tmpWs.setStart(TimeUtil.convertQDateTimeCalToGregorianCal(startTime));
+								tmpWs.setStart(TimeUtil.convertQDateTimeToGregorian(startTime));
 								
 							} else if(currentLine.startsWith("DTEND")) { 
 								//end time read
 								QDateTime endTime = stringToQDateTime(currentLine);
-								tmpWs.setEnd(TimeUtil.convertQDateTimeCalToGregorianCal(endTime));
+								tmpWs.setEnd(TimeUtil.convertQDateTimeToGregorian(endTime));
 		
 							}
 							
@@ -165,11 +165,7 @@ public class IcsParser {
 	 * @return QDateTime Instance (a Qt DateTime Object, which Combines QDate and QTime).
 	 */
 	private static QDateTime stringToQDateTime(String dateTimeString) {
-		String strippedDateTimeString = stripTag(dateTimeString);
-		if(invalidDateTimeString(strippedDateTimeString)) {
-			return null;
-		}
-		String[] dateTime = splitTimeDateString(strippedDateTimeString);
+		String[] dateTime = splitTimeDateString(stripTag(dateTimeString));
 		int year = new Integer(dateTime[0].substring(0, 4));
 		int month = new Integer(dateTime[0].substring(4, 6));
 		int day = new Integer(dateTime[0].substring(6, 8));
@@ -179,9 +175,9 @@ public class IcsParser {
 		return new QDateTime(new QDate(year, month, day), new QTime(hours, minutes, seconds));
 	}
 	
-	private static boolean invalidDateTimeString(String dateTimeString) {
-		return (dateTimeString.length() < 15);
-	}
+//	private static boolean invalidDateTimeString(String dateTimeString) {
+//		return (dateTimeString.length() < 15);
+//	}
 
 	/**
 	 * Splits a string containing a date followed by a time in two separate strings.
