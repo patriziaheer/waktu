@@ -32,7 +32,7 @@ public class PersistenceController {
 		return emf;
 	}
 
-	public EntityManagerFactory createEMF() {
+	private EntityManagerFactory createEMF() {
 		try {
 			return Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		} catch (RuntimeException e) {

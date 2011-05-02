@@ -113,4 +113,14 @@ public class Usr {
 		return firstname + " " + name;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Usr) {
+			Usr usr = (Usr)obj;
+			if (usr.username.equals(username) && usr.id == id) {
+				return true;
+			}
+		}
+		return super.equals(obj);
+	}
 }

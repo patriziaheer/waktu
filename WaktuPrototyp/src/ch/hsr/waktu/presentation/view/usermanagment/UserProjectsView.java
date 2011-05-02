@@ -1,7 +1,7 @@
 package ch.hsr.waktu.presentation.view.usermanagment;
 
 import ch.hsr.waktu.domain.Usr;
-import ch.hsr.waktu.model.ProjectComboBoxModel;
+import ch.hsr.waktu.model.ComboBoxData;
 import ch.hsr.waktu.model.UserProjectsModel;
 import ch.hsr.waktu.presentation.view.usermanagment.jui.Ui_UserProjects;
 
@@ -17,7 +17,7 @@ public class UserProjectsView extends QWidget{
 		model = new UserProjectsModel(usr);
 		ui.tblProjects.setModel(model);
 		ui.tblProjects.horizontalHeader().setStretchLastSection(true);
-		ui.cmbProjects.setModel(new ProjectComboBoxModel());
+		ComboBoxData.createActiveProjectComboBox(ui.cmbProjects);
 	}
 
 }

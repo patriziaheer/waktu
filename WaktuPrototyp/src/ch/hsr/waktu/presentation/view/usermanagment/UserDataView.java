@@ -1,6 +1,8 @@
 package ch.hsr.waktu.presentation.view.usermanagment;
 import ch.hsr.waktu.controller.datacontroller.UserController;
+import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.model.ComboBoxData;
 import ch.hsr.waktu.presentation.view.usermanagment.jui.Ui_UserData;
 
 import com.trolltech.qt.gui.QWidget;
@@ -15,12 +17,13 @@ public class UserDataView extends QWidget{
 		this.usr = user;
 		ui.setupUi(this);
 		ui.btnAdd.clicked.connect(this, "addClicked()");
+		ComboBoxData.createSystemRoleComboBox(ui.cmbRole);
 		
 		UserController.getInstance().update.connect(this, "updateData()");
 		UserController.getInstance().add.connect(this, "addData(Usr)");
 		setFields();
 	}
-	
+
 	private void setFields() {
 		if (usr != null) {
 			ui.grpOverview.setVisible(true);
@@ -50,7 +53,7 @@ public class UserDataView extends QWidget{
 	
 	@SuppressWarnings("unused")
 	private void addClicked() {
-//		usr = UserController.getInstance().addUser(ui.txtName.text(), ui.txtFirstname.text(), ui.txtPensum.value(), ui.cmbRole.currentIndex(), ui.txtHolidays.value());
+		usr = UserController.getInstance().addUser(ui.txtFirstname.text(), ui.txtName.text(), ui.txtPassword.text(), ui.txtPensum.value(), (SystemRole)ui.cmbRole.itemData(ui.cmbRole.currentIndex()), ui.txtHolidays.value());
 		setFields();
 	}
 	

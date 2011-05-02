@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.services.Md5;
 
 import com.trolltech.qt.QSignalEmitter;
 
@@ -48,9 +49,9 @@ public class UserController extends QSignalEmitter {
 	 * @param pensum
 	 * @param role
 	 */
-	public Usr addUser(String username, String firstname, String lastname,
+	public Usr addUser(String firstname, String lastname,
 			String password, int pensum, SystemRole role, double holiday) {
-		Usr newUser = new Usr(generateUsername(firstname, lastname), firstname, lastname, password, pensum,
+		Usr newUser = new Usr(generateUsername(firstname, lastname), firstname, lastname, Md5.hash(password), pensum,
 				role, holiday);
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
@@ -59,7 +60,7 @@ public class UserController extends QSignalEmitter {
 		em.flush();
 		em.getTransaction().commit();
 		// TODO: add.emit() wieder einschalten (Observer von QT)
-		//add.emit(newUser);
+		add.emit(newUser);
 		return newUser;
 	}
 
@@ -109,6 +110,11 @@ public class UserController extends QSignalEmitter {
 		em.close();
 		return usrs;
 	}
+	
+	public List<Usr> getProjectManagers() {
+		//TODO
+		return getAllUsers();
+	}
 
 	/**
 	 * 
@@ -155,7 +161,7 @@ public class UserController extends QSignalEmitter {
 
 		em.getTransaction().commit();
 		// TODO: update.emit() wieder einschalten (Observer von QT)
-		// update.emit();
+		update.emit();
 
 		return true;
 	}

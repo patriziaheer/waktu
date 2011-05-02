@@ -115,5 +115,13 @@ public class ProjectDetails extends QWidget {
 	private void closeApp() {
 		System.exit(0);
 	}
+
+	public void addProject() {
+		if (currWidget != null) {
+			currWidget.setParent(null);
+		}
+		currWidget = new ProjectDataView(null);
+		splitter.addWidget(currWidget);
+	}
 	
 }

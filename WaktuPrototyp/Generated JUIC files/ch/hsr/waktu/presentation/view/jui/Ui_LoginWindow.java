@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'LoginWindow.jui'
 **
-** Created: Do. Apr 7 19:27:14 2011
+** Created: Mo. Apr 25 15:46:55 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -51,6 +51,7 @@ public class Ui_LoginWindow implements com.trolltech.qt.QUiForm<QMainWindow>
 
         txtPassword = new QLineEdit(centralwidget);
         txtPassword.setObjectName("txtPassword");
+        txtPassword.setEchoMode(com.trolltech.qt.gui.QLineEdit.EchoMode.Password);
 
         gridLayout.addWidget(txtPassword, 1, 1, 1, 2);
 
@@ -61,6 +62,7 @@ public class Ui_LoginWindow implements com.trolltech.qt.QUiForm<QMainWindow>
 
         btnLogin = new QPushButton(centralwidget);
         btnLogin.setObjectName("btnLogin");
+        btnLogin.setDefault(true);
 
         gridLayout.addWidget(btnLogin, 2, 2, 1, 1);
 

@@ -1,6 +1,10 @@
 package ch.hsr.waktu.presentation.view.projectmanagment;
 
+import ch.hsr.waktu.controller.datacontroller.ProjectController;
+import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.Project;
+import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.model.ComboBoxData;
 import ch.hsr.waktu.presentation.view.projectmanagment.jui.Ui_ProjectData;
 
 import com.trolltech.qt.gui.QWidget;
@@ -13,6 +17,11 @@ public class ProjectDataView extends QWidget {
 	public ProjectDataView(Project project) {
 		this.project = project;
 		ui.setupUi(this);
+		ui.btnAdd.clicked.connect(this, "addClicked()");
+		ComboBoxData.createProjectManagerComboBox(ui.cmbProjectManager);
+
+		ProjectController.getInstance().update.connect(this, "updateData()");
+		ProjectController.getInstance().add.connect(this, "addData(Project)");
 		setFields();
 	}
 	
@@ -41,4 +50,20 @@ public class ProjectDataView extends QWidget {
 		}
 	}
 	
+	@SuppressWarnings("unused")
+	private void addClicked() {
+		project = ProjectController.getInstance().addProject(ui.txtProjectnumber.text(), ui.txtDescription.text(), (Usr)ui.cmbProjectManager.itemData(ui.cmbProjectManager.currentIndex()), ui.txtPlannedTime.value());
+		setFields();
+	}
+	
+	
+	@SuppressWarnings("unused")
+	private void updateData() {
+		
+	}
+	
+	@SuppressWarnings("unused")
+	private void addData(Project project) {
+		
+	}
 }

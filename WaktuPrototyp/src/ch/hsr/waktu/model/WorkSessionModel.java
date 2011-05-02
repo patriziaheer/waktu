@@ -40,7 +40,7 @@ public class WorkSessionModel extends QAbstractItemModel {
 
 	@Override
 	public int rowCount(QModelIndex arg0) {
-		return WorkSessionController.getInstance().getWorkSessions(usr).size();
+		return WorkSessionController.getInstance().getWorkSessions(usr, date).size();
 	}
 
 	@Override

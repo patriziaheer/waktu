@@ -1,11 +1,7 @@
 package ch.hsr.waktu.controller;
 
-import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.controller.datacontroller.UserController;
-import ch.hsr.waktu.domain.PermissionTable;
 import ch.hsr.waktu.domain.Project;
-import ch.hsr.waktu.domain.SystemAction;
-import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.services.Md5;
 
@@ -60,8 +56,9 @@ public class PermissionController {
 	 * @param user
 	 */
 	public boolean canAddProject(Usr loggedInUser){
-		SystemRole systemRole = loggedInUser.getRole();
-		return PermissionTable.getPermission(SystemAction.AddProjects, systemRole, null);
+		return true;
+		/*SystemRole systemRole = loggedInUser.getRole();
+		return PermissionTable.getPermission(SystemAction.AddProjects, systemRole, null);*/
 	}
 
 	/**
@@ -69,10 +66,11 @@ public class PermissionController {
 	 * @param user
 	 */
 	public boolean canAddProjectStaff(Usr loggedInUser, Project project){
-		if(ProjectController.getInstance().getProject(project.getId()).getProjectManager().equals(loggedInUser)) {
+		return true;
+		/*if(ProjectController.getInstance().getProject(project.getId()).getProjectManager().equals(loggedInUser)) {
 			return PermissionTable.getPermission(SystemAction.AddUserToOwnProjects, loggedInUser.getRole(), project);
 		}
-		return PermissionTable.getPermission(SystemAction.AddUserToAllProjects, loggedInUser.getRole(), project);
+		return PermissionTable.getPermission(SystemAction.AddUserToAllProjects, loggedInUser.getRole(), project);*/
 	}
 
 	/**
@@ -80,7 +78,8 @@ public class PermissionController {
 	 * @param user
 	 */
 	public boolean canAddUser(){
-		return PermissionTable.getPermission(SystemAction.AddUser, loggedInUser.getRole(), null);
+		return true; 
+		//return PermissionTable.getPermission(SystemAction.AddUser, loggedInUser.getRole(), null);
 	}
 
 	/**
@@ -88,10 +87,11 @@ public class PermissionController {
 	 * @param user
 	 */
 	public boolean canAddWorkPackage(Project project){
-		if(ProjectController.getInstance().getProject(project.getId()).getProjectManager().equals(loggedInUser)) {
+		return true;
+		/*if(ProjectController.getInstance().getProject(project.getId()).getProjectManager().equals(loggedInUser)) {
 			return PermissionTable.getPermission(SystemAction.CreateOwnWorkPackages, loggedInUser.getRole(), project);
 		}
-		return PermissionTable.getPermission(SystemAction.CreateAllWorkPackages, loggedInUser.getRole(), project);
+		return PermissionTable.getPermission(SystemAction.CreateAllWorkPackages, loggedInUser.getRole(), project);*/
 	}
 
 	/**

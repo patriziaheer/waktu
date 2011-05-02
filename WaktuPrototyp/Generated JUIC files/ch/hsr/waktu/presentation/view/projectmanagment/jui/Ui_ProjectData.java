@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ProjectData.jui'
 **
-** Created: Mi 13. Apr 07:35:32 2011
+** Created: Mo. Mai 2 15:00:10 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -20,12 +20,12 @@ public class Ui_ProjectData implements com.trolltech.qt.QUiForm<QWidget>
     public QLabel lblDescription;
     public QLineEdit txtDescription;
     public QLabel lblProjectManager;
-    public QLineEdit txtProjectmanager;
     public QLabel lblPlannedTime;
     public QPushButton btnAdd;
     public QSpacerItem horizontalSpacer;
     public QCheckBox checkBox;
     public QSpinBox txtPlannedTime;
+    public QComboBox cmbProjectManager;
 
     public Ui_ProjectData() { super(); }
 
@@ -60,11 +60,6 @@ public class Ui_ProjectData implements com.trolltech.qt.QUiForm<QWidget>
 
         gridLayout.addWidget(lblProjectManager, 2, 0, 1, 1);
 
-        txtProjectmanager = new QLineEdit(ProjectData);
-        txtProjectmanager.setObjectName("txtProjectmanager");
-
-        gridLayout.addWidget(txtProjectmanager, 2, 1, 1, 2);
-
         lblPlannedTime = new QLabel(ProjectData);
         lblPlannedTime.setObjectName("lblPlannedTime");
 
@@ -88,6 +83,11 @@ public class Ui_ProjectData implements com.trolltech.qt.QUiForm<QWidget>
         txtPlannedTime.setObjectName("txtPlannedTime");
 
         gridLayout.addWidget(txtPlannedTime, 3, 1, 1, 2);
+
+        cmbProjectManager = new QComboBox(ProjectData);
+        cmbProjectManager.setObjectName("cmbProjectManager");
+
+        gridLayout.addWidget(cmbProjectManager, 2, 1, 1, 2);
 
         retranslateUi(ProjectData);
 

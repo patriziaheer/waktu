@@ -23,7 +23,7 @@ public class ProjectTreeModel extends QTreeModel {
 	@Override
 	public Object child(Object parent, int index) {
 		if (parent == null) {
-			return ProjectController.getInstance().getActiveProjects();
+			return ProjectController.getInstance().getActiveProjects().get(index);
 		} else if (parent instanceof Project) {
 			return ProjectController.ProjectProperties.values()[index];
 		}

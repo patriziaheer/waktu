@@ -2,17 +2,21 @@ package ch.hsr.waktu.presentation.view;
 
 import org.apache.log4j.Logger;
 
+import ch.hsr.waktu.controller.datacontroller.FavoriteController;
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
+import ch.hsr.waktu.domain.Favorite;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
+import ch.hsr.waktu.domain.WorkSession;
+import ch.hsr.waktu.model.ComboBoxData;
 import ch.hsr.waktu.model.FavoriteModel;
-import ch.hsr.waktu.model.WorkPackageComboBoxModel;
 import ch.hsr.waktu.model.WorkSessionModel;
 import ch.hsr.waktu.presentation.view.IndexButton.EditStatus;
 import ch.hsr.waktu.presentation.view.jui.Ui_TimeWindow;
+import ch.hsr.waktu.services.TimeUtil;
 
 import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.core.QDateTime;
@@ -39,6 +43,7 @@ public class TimeView extends QMainWindow{
 	private QDate currDate = QDate.currentDate();
 	private Usr currUser;
 	private WorkSessionModel workSessionModel;
+	private FavoriteModel favoriteModel;
 	
 	public TimeView(Usr usr) {
 		currUser = usr;
@@ -46,6 +51,8 @@ public class TimeView extends QMainWindow{
 		ui.setupUi(this);
 		ui.btnDown.clicked.connect(this, "downClicked()");
 		ui.calendar.setVisible(false);
+		ComboBoxData.createProjectForUserComboBox(ui.cmbProject, currUser);
+		ui.cmbProject.currentIndexChanged.connect(this, "projectChanged()");
 
 
 		ui.actionOpenManagment.triggered.connect(this, "managmentClicked()");
@@ -74,10 +81,25 @@ public class TimeView extends QMainWindow{
 		ui.tblWorksessions.setSelectionMode(SelectionMode.SingleSelection);
 		ui.tblWorksessions.setSelectionBehavior(SelectionBehavior.SelectRows);
 		
+		ui.actionAdd_to_Favorites.triggered.connect(this, "addToFavorites()");
+		
+		FavoriteController.getInstance().add.connect(this, "favoriteAdded(Favorite)");
+		FavoriteController.getInstance().update.connect(this, "favoriteUpdated()");
+		
+		WorkSessionController.getInstance().add.connect(this, "workSessionAdded(WorkSession)");
+		WorkSessionController.getInstance().update.connect(this, "workSessionUpdated()");
+		
 		workSessionModel = new WorkSessionModel(currUser, currDate);
+		favoriteModel = new FavoriteModel(currUser);
+		ui.tblFavorites.setModel(favoriteModel);
 		ui.calendar.setSelectedDate(currDate);
 		calendarSelectionChanged();
 		updateWorkSessionModel();
+	}
+	
+	@SuppressWarnings("unused")
+	private void projectChanged() {
+		ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
 	}
 	
 	@SuppressWarnings("unused")
@@ -383,6 +405,10 @@ public class TimeView extends QMainWindow{
 	private void createWorkSessionClicked() {
 		if (ui.txtEnd.time().compareTo(ui.txtStart.time()) < 0) {
 			setStatusBarText(tr("Endtime must be greater then Starttime"));
+		} else if (ui.cmbProject.currentIndex() < 0) {
+			setStatusBarText(tr("Project must be choosen"));
+		} else if (ui.cmbWorkpackage.currentIndex() < 0) {
+			setStatusBarText(tr("WorkPackage must be choosen"));
 		} else {
 			Project project = ProjectController.getInstance().getActiveProjects().get(ui.cmbProject.currentIndex());
 			WorkPackage workPackage = WorkPackageController.getInstance().getActiveWorkPackages(project).get(ui.cmbWorkpackage.currentIndex());
@@ -390,13 +416,53 @@ public class TimeView extends QMainWindow{
 			start.setTime(ui.txtStart.time());
 			QDateTime end = new QDateTime(currDate);
 			end.setTime(ui.txtEnd.time());
-//			WorkSessionController.getInstance().addWorkSession(currUser, workPackage, start, end);
+			WorkSessionController.getInstance().addWorkSession(currUser, workPackage, TimeUtil.convertQDateTimeToGregorian(start), TimeUtil.convertQDateTimeToGregorian(end));
 		}
 	}
 	
 	@SuppressWarnings("unused")
-	private void projectChanged() {
-		ui.cmbWorkpackage.setModel(new WorkPackageComboBoxModel(ProjectController.getInstance().getActiveProjects().get(ui.cmbProject.currentIndex())));
+	private void addToFavorites() {
+		if (ui.txtEnd.time().compareTo(ui.txtStart.time()) < 0) {
+			setStatusBarText(tr("Endtime must be greater then Starttime"));
+		} else if (ui.cmbProject.currentIndex() < 0) {
+			setStatusBarText(tr("Project must be choosen"));
+		} else if (ui.cmbWorkpackage.currentIndex() < 0) {
+			setStatusBarText(tr("WorkPackage must be choosen"));
+		} else {
+			Project project = ProjectController.getInstance().getActiveProjects().get(ui.cmbProject.currentIndex());
+			WorkPackage workPackage = WorkPackageController.getInstance().getActiveWorkPackages(project).get(ui.cmbWorkpackage.currentIndex());
+			QDateTime start = new QDateTime(currDate);
+			start.setTime(ui.txtStart.time());
+			QDateTime end = new QDateTime(currDate);
+			end.setTime(ui.txtEnd.time());
+			FavoriteController.getInstance().addFavorite(currUser, workPackage, TimeUtil.convertQDateTimeToGregorian(start), TimeUtil.convertQDateTimeToGregorian(end));
+		}
+	}
+	
+	@SuppressWarnings("unused")
+	private void favoriteAdded(Favorite favorite) {
+		//TODO
+	}
+	
+	@SuppressWarnings("unused")
+	private void  favoriteUpdated() {
+		//TODO
+	}
+	
+	@SuppressWarnings("unused")
+	private void  workSessionAdded(WorkSession workSession) {
+		updateWorkSessionModel();
+		workSessionModel.layoutAboutToBeChanged.emit();
+		workSessionModel.dataChanged.emit(workSessionModel.index(0, 0), workSessionModel.index(workSessionModel.rowCount(), workSessionModel.columnCount()));
+		workSessionModel.layoutChanged.emit();
+	}
+	
+	@SuppressWarnings("unused")
+	private void workSessionUpdated() {
+		updateWorkSessionModel();
+		workSessionModel.layoutAboutToBeChanged.emit();
+		workSessionModel.dataChanged.emit(workSessionModel.index(0, 0), workSessionModel.index(workSessionModel.rowCount(), workSessionModel.columnCount()));
+		workSessionModel.layoutChanged.emit();
 	}
 	
 	@SuppressWarnings("unused")

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'UserData.jui'
 **
-** Created: Mi 13. Apr 10:17:18 2011
+** Created: Mo. Apr 25 14:56:00 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
