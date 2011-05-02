@@ -10,8 +10,8 @@ import java.util.GregorianCalendar;
 public class WorkSession {
 
 	private int id;
-	private GregorianCalendar end;
-	private GregorianCalendar start;
+	private GregorianCalendar endTime;
+	private GregorianCalendar startTime;
 	private Usr userRef;
 	private String description;
 	private WorkPackage workPackageRef;
@@ -24,8 +24,8 @@ public class WorkSession {
 			GregorianCalendar startTime, GregorianCalendar endTime){
 		this.userRef = user;
 		this.workPackageRef = workPackage;
-		this.start = startTime;
-		this.end = endTime;
+		this.startTime = startTime;
+		this.endTime = endTime;
 	}
 
 	public int getId() {
@@ -33,19 +33,19 @@ public class WorkSession {
 	}
 
 	public GregorianCalendar getEnd() {
-		return end;
+		return endTime;
 	}
 
 	public void setEnd(GregorianCalendar end) {
-		this.end = end;
+		this.endTime = end;
 	}
 
 	public GregorianCalendar getStart() {
-		return start;
+		return startTime;
 	}
 
 	public void setStart(GregorianCalendar start) {
-		this.start = start;
+		this.startTime = start;
 	}
 
 	public Usr getUser() {
