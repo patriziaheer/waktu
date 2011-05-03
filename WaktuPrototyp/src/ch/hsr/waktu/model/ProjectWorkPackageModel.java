@@ -24,13 +24,13 @@ public class ProjectWorkPackageModel extends QAbstractItemModel{
 
 	@Override
 	public int rowCount(QModelIndex arg0) {
-		return WorkPackageController.getInstance().getAllWorkPackages(project).size();
+		return WorkPackageController.getInstance().getActiveWorkPackages(project).size();
 	}
 
 	@Override
 	public Object data(QModelIndex index, int role) {
 		if (Qt.ItemDataRole.DisplayRole == role) {
-			WorkPackage workPackage = WorkPackageController.getInstance().getAllWorkPackages(project).get(index.row());
+			WorkPackage workPackage = WorkPackageController.getInstance().getActiveWorkPackages(project).get(index.row());
 			switch (index.column()) {
 			case 0: return workPackage.getDescription();
 			case 1: return !workPackage.isActive();

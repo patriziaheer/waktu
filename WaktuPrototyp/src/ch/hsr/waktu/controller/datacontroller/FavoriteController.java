@@ -48,7 +48,7 @@ public class FavoriteController extends QSignalEmitter {
 			GregorianCalendar startTime, GregorianCalendar endTime) {
 		Favorite newFavorite = new Favorite(user, workPackage, startTime,
 				endTime);
-		EntityManager em = PersistenceController.getInstance().createEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		em.getTransaction().begin();
@@ -66,10 +66,10 @@ public class FavoriteController extends QSignalEmitter {
 	 * @param user
 	 */
 	public List<Favorite> getFavorites(Usr user) {
-		EntityManager em = PersistenceController.getInstance().createEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		@SuppressWarnings("unchecked")
-		List<Favorite> allFavorites = em.createQuery("SELECT f FROM favorite f").getResultList();
+		List<Favorite> allFavorites = em.createQuery("SELECT f FROM Favorite f").getResultList();
 		return allFavorites;
 	}
 

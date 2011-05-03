@@ -74,7 +74,7 @@ public class ProjectController extends QSignalEmitter {
 		em.flush();
 		em.getTransaction().commit();
 		// TODO: add.emit() wieder einschalten (Observer von QT)
-		// add.emit(newProject);
+		add.emit(newProject);
 
 		return newProject;
 
@@ -96,6 +96,11 @@ public class ProjectController extends QSignalEmitter {
 
 		em.close();
 		return projects;
+	}
+	
+	public List<Project> getActiveProjects(Usr usr) {
+		//TODO
+		return getActiveProjects();
 	}
 
 	public List<Project> getAllProjects() {
@@ -167,7 +172,7 @@ public class ProjectController extends QSignalEmitter {
 		em.getTransaction().commit();
 		logger.info("Project " + project.getProjectIdentifier() + " updated");
 		// TODO: update.emit() wieder einschalten (Observer von QT)
-		// update.emit();
+		update.emit();
 
 		return true;
 	}

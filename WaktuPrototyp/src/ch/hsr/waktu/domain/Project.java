@@ -82,7 +82,20 @@ public class Project {
 
 	@Override
 	public String toString() {
-		return projectIdentifier + " " + description + projectManager;
+		return projectIdentifier + " " + description;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Project) {
+			Project proj = (Project)obj;
+			if (proj.projectIdentifier.equals(projectIdentifier) && proj.description.equals(description) && proj.id == id) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		return super.equals(obj);
 	}
 
 }

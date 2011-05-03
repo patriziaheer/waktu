@@ -50,6 +50,7 @@ public class WorkSessionController extends QSignalEmitter {
 	 */
 	public WorkSession addWorkSession(Usr user, WorkPackage workPackage,
 			GregorianCalendar startTime, GregorianCalendar endTime) {
+		//TODO set description
 		WorkSession newWorkSession = new WorkSession(user, workPackage,
 				startTime, endTime);
 		EntityManager em = PersistenceController.getInstance().getEMF()
@@ -80,7 +81,7 @@ public class WorkSessionController extends QSignalEmitter {
 
 			if (ws.getUser().equals(user)) {
 				workSessions.add(ws);
-				logger.info("WORKSESSION: " + ws.toString());
+				//logger.info("WORKSESSION: " + ws.toString());
 			}
 
 		}
@@ -94,9 +95,28 @@ public class WorkSessionController extends QSignalEmitter {
 	 * @param user
 	 * @param date
 	 */
-	 public List<WorkSession> getWorkSessions(Usr user, QDate date) {
-	 return new ArrayList<WorkSession>();
-	 }
+	public List<WorkSession> getWorkSessions(Usr user, QDate date) {
+		//TODO filter by date
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		@SuppressWarnings("unchecked")
+		List<WorkSession> workSessionsByUser = em.createQuery(
+				"SELECT ws FROM WorkSession ws").getResultList();
+
+		ArrayList<WorkSession> workSessions = new ArrayList<WorkSession>();
+		for (WorkSession ws : workSessionsByUser) {
+
+			if (ws.getUser().equals(user)) {
+				workSessions.add(ws);
+				logger.info("WORKSESSION: " + ws.toString());
+			}
+
+		}
+
+		em.close();
+		return workSessions;
+	}
 
 	public List<WorkSession> getWorkSessions(Project project) {
 		EntityManager em = PersistenceController.getInstance().getEMF()
@@ -111,7 +131,7 @@ public class WorkSessionController extends QSignalEmitter {
 
 			if (ws.getWorkPackage().getProject().equals(project)) {
 				workSessions.add(ws);
-				logger.info("WORKSESSION: " + ws.toString());
+				//logger.info("WORKSESSION: " + ws.toString());
 			}
 
 		}
@@ -128,8 +148,8 @@ public class WorkSessionController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
-//		em.createQuery("DELETE WorkSession ws WHERE ws.id = "
-//				+ workSession.getId());
+		// em.createQuery("DELETE WorkSession ws WHERE ws.id = "
+		// + workSession.getId());
 		em.remove(workSession);
 		em.close();
 		return true;

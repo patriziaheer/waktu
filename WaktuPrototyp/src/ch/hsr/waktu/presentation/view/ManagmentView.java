@@ -41,7 +41,8 @@ public class ManagmentView extends QMainWindow {
 	
 	@SuppressWarnings("unused")
 	private void addProject() {
-		ui.tabWidget.setCurrentIndex(1);
+		ui.tabWidget.setCurrentIndex(0);
+		projectDetails.addProject();
 		
 	}
 	

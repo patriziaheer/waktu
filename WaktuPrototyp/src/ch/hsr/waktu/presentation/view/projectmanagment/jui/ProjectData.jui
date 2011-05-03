@@ -41,9 +41,6 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="1" colspan="2">
-    <widget class="QLineEdit" name="txtProjectmanager"/>
-   </item>
    <item row="3" column="0">
     <widget class="QLabel" name="lblPlannedTime">
      <property name="text">
@@ -80,6 +77,9 @@
    </item>
    <item row="3" column="1" colspan="2">
     <widget class="QSpinBox" name="txtPlannedTime"/>
+   </item>
+   <item row="2" column="1" colspan="2">
+    <widget class="QComboBox" name="cmbProjectManager"/>
    </item>
   </layout>
  </widget>

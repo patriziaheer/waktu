@@ -52,7 +52,7 @@ public class WorkPackageController extends QSignalEmitter{
 		em.flush();
 		em.getTransaction().commit();
 		// TODO: add.emit() wieder einschalten (Observer von QT)
-		// add.emit(newUser);
+		add.emit(newWorkPackage);
 		return newWorkPackage;
 	}
 
@@ -159,7 +159,7 @@ public class WorkPackageController extends QSignalEmitter{
 		
 		em.getTransaction().commit();
 		// TODO: update.emit() wieder einschalten (Observer von QT)
-		// update.emit();
+		update.emit();
 
 		return true;
 	}
