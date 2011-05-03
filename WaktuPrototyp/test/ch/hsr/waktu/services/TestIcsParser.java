@@ -44,44 +44,51 @@ public class TestIcsParser {
 	
 	@Test
 	public void parseIcsFile_allBeginVeventMissing_noEventsProcessed() {
-		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./resources/TestICS/allBeginVeventMissing.ics");
+		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/allBeginVeventMissing.ics");
 		assertEquals(0, testCalendar.size());
 	}
 	
 	@Test
 	public void parseIcsFile_endVCalendarMissing_allEventsProcessedNoException() {
-		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./resources/TestICS/endVCalendarMissing.ics");
+		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/endVCalendarMissing.ics");
 		calendarValidity(testCalendar, 3);
 		//TODO assert not failing:no (null pointer) exception
 	}
+	
 	@Test
 	public void parseIcsFile_Normal() {
-		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./resources/TestICS/normal.ics");
+		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/normal.ics");
 		calendarValidity(testCalendar, 3);
 	}
 
 	@Test
 	public void parseIcsFile_invalidTimeDelimiter_onlyValidEventsProcessed() {
-		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./resources/TestICS/invalidTimeDelimiter.ics");
+		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/invalidTimeDelimiter.ics");
 		calendarValidity(testCalendar, 2);
 	}
 	
 	@Test
 	public void parseIcsFile_invalidTimeFormat_onlyValidEventsProcessed() {
-		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./resources/TestICS/invalidTimeFormat.ics");
+		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/invalidTimeFormat.ics");
 		calendarValidity(testCalendar, 1);
 	}
 	
 	@Test
 	public void parseIcsFile_startTimeEndTimeMissing_onlyValidEventsProcessed() {
-		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./resources/TestICS/startTimeEndTimeMissing.ics");
+		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/startTimeEndTimeMissing.ics");
 		calendarValidity(testCalendar, 1);
 	}
 	
 	@Test
 	public void parseIcsFile_summaryMissing_onlyValidEventsProcessed() {
-		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./resources/TestICS/summaryMissing.ics");
+		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/summaryMissing.ics");
 		calendarValidity(testCalendar, 2);
+	}
+	
+	@Test
+	public void parseIcsFile_invalidFilepathInArgument_NullReturned() {
+		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile(null);
+		assertEquals(null, testCalendar);
 	}
 	
 	private void calendarValidity(LinkedList<WorkSession> testCalendar, int noOfValidEntries) {

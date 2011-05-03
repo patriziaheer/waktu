@@ -19,10 +19,9 @@ public class TimeUtil {
 		return new GregorianCalendar(date.year(), date.month(), date.day(), time.hour(), time.minute(), time.second());
 	}
 	
-	public static QDateTime calculateTimespan(QDateTime timeBefore, QDateTime timeAfter) {
-		QDateTime timeSpan = new QDateTime();
-		timeSpan.addDays(timeBefore.daysTo(timeAfter));
+	public static QTime calculateTimespan(QDateTime timeBefore, QDateTime timeAfter) {
+		QTime timeSpan = new QTime(0, 0, 0);
+		timeSpan.addSecs(timeBefore.secsTo(timeAfter));
 		return timeSpan;
-		//TODO: Chose better return value? Alter signature
 	}
 }

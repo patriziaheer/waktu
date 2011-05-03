@@ -1,7 +1,6 @@
 package ch.hsr.waktu.services;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 //import java.util.ArrayList;
@@ -50,6 +49,9 @@ public class IcsParser {
 	 * *: Mandatory tags
 	 * <p>
 	 * All other tags are ignored.
+	 * <p>
+	 * If the Argument filePath is invalid (file non-existent) or null, parseIcsFile() 
+	 * will return null 
 	 *
 	 * @param  filePath path to the .ics file to parse.
 	 * @return a linked list containing all WorkSessions extracted from input file.
@@ -60,45 +62,48 @@ public class IcsParser {
 		
 		BufferedReader br;
 		
+		//TODO Limit file size?
 		try {
-			//TODO Limit file size?
 			br = new BufferedReader(new FileReader(new File(filePath)));
-						
-			String currentLine;
-			
-			try {
-				while((currentLine = br.readLine()) != null) {
-					WorkSession tmpWs = null;
+		} catch (Exception e) {
+			return null;
+		}
 					
-					if(currentLine.startsWith("BEGIN:VEVENT")) { 
-						//Appointment begin
-						tmpWs = new WorkSession();
-						
-						while(!((currentLine = br.readLine()) == null || currentLine.startsWith("END:VEVENT"))) {
-							if(currentLine.contains("SUMMARY:")) { 
-								//title read
-								tmpWs.setDescription(stripTag(currentLine));
-									
-							} else if(currentLine.startsWith("DTSTART")) { 
-								//start time read
-								QDateTime startTime = stringToQDateTime(currentLine);
-								tmpWs.setStart(TimeUtil.convertQDateTimeToGregorian(startTime));
-								
-							} else if(currentLine.startsWith("DTEND")) { 
-								//end time read
-								QDateTime endTime = stringToQDateTime(currentLine);
-								tmpWs.setEnd(TimeUtil.convertQDateTimeToGregorian(endTime));
+		String currentLine;
 		
-							}
+		try {
+			while((currentLine = br.readLine()) != null) {
+				WorkSession tmpWs = null;
+				
+				if(currentLine.startsWith("BEGIN:VEVENT")) { 
+					//Appointment begin
+					tmpWs = new WorkSession();
+					
+					while(!((currentLine = br.readLine()) == null || currentLine.startsWith("END:VEVENT"))) {
+						if(currentLine.contains("SUMMARY:")) { 
+							//title read
+							tmpWs.setDescription(stripTag(currentLine));
+								
+						} else if(currentLine.startsWith("DTSTART")) { 
+							//start time read
+							QDateTime startTime = stringToQDateTime(currentLine);
+							tmpWs.setStart(TimeUtil.convertQDateTimeToGregorian(startTime));
 							
-						} 
-						//Appointment end
-						if(isValidWorkSession(tmpWs)) {
-							calendar.add(tmpWs);
+						} else if(currentLine.startsWith("DTEND")) { 
+							//end time read
+							QDateTime endTime = stringToQDateTime(currentLine);
+							tmpWs.setEnd(TimeUtil.convertQDateTimeToGregorian(endTime));
+
 						}
+						
+					} 
+					//Appointment end
+					if(isValidWorkSession(tmpWs)) {
+						calendar.add(tmpWs);
 					}
-									
-					//Unused Tags
+				}
+								
+				//Unused Tags
 //					if(currentLine.startsWith("CREATED:")) {
 //						
 //					}
@@ -122,18 +127,15 @@ public class IcsParser {
 //						eventCount = getRecurringEventCount(currentLine);
 //						eventFrequency = getRecurringEventFrequency(currentLine);
 //						eventInterval = getRecurringEventInterval(currentLine);
-					
-				}
-			} catch(Exception e) {
 				
 			}
-			try {
-				br.close();
-			} catch (IOException e) {
-				System.out.println("IO Exception occurred");
-			}
-		} catch(FileNotFoundException e) {
-			System.out.println("File " + filePath + " was not found");
+		} catch(Exception e) {
+			
+		}
+		try {
+			br.close();
+		} catch (IOException e) {
+			System.out.println("IO Exception occurred");
 		}
 
 		return calendar;
