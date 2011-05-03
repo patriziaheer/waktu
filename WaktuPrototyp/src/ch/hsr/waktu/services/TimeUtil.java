@@ -14,7 +14,7 @@ public class TimeUtil {
 	
 	public static QDateTime convertGregorianToQDateTime(GregorianCalendar dateTime) {
 		QDate date = new QDate(dateTime.get(GregorianCalendar.YEAR), dateTime.get(GregorianCalendar.MONTH), dateTime.get(GregorianCalendar.DAY_OF_MONTH));
-		QTime time = new QTime(dateTime.get(GregorianCalendar.HOUR), dateTime.get(GregorianCalendar.MINUTE), dateTime.get(GregorianCalendar.SECOND));
+		QTime time = new QTime(dateTime.get(GregorianCalendar.HOUR_OF_DAY), dateTime.get(GregorianCalendar.MINUTE), dateTime.get(GregorianCalendar.SECOND));
 		return new QDateTime(date, time);
 	}
 	
@@ -28,9 +28,13 @@ public class TimeUtil {
 		return gregCal;
 	}
 	
-	public static QTime calculateTimespan(QDateTime timeBefore, QDateTime timeAfter) {
-		QTime timeSpan = new QTime(0, 0, 0);
-		timeSpan.addSecs(timeBefore.secsTo(timeAfter));
-		return timeSpan;
+//	public static GregorianCalendar calculateTimespan(GregorianCalendar timeBefore, GregorianCalendar timeAfter) {
+//		GregorianCalendar timespan = timeBefore.clone();
+//		timespan.
+//		return new GregorianCalendar();
+//	}
+	
+	public static int calculateTimespanInSeconds(QDateTime timeBefore, QDateTime timeAfter) {
+		return timeBefore.secsTo(timeAfter);
 	}
 }

@@ -22,14 +22,33 @@ public class TestTimeUtil {
 	}
 
 	@Test
-	public void calculateTimespanSameDay() {
-		assertEquals(new QTime(5,0,0), TimeUtil.calculateTimespan(new QDateTime(new QDate(2011, 3, 5), new QTime(12,3,32)), new QDateTime(new QDate(2011, 3, 5), new QTime(17,3,32))));
-		assertEquals(new QTime(0,12,0), TimeUtil.calculateTimespan(new QDateTime(new QDate(2011, 3, 5), new QTime(12,3,32)), new QDateTime(new QDate(2011, 3, 5), new QTime(12,15,32))));
-		assertEquals(new QTime(0,0,9), TimeUtil.calculateTimespan(new QDateTime(new QDate(2011, 3, 5), new QTime(12,3,32)), new QDateTime(new QDate(2011, 3, 5), new QTime(12,3,41))));
+	public void calculateTimespanSecondsDifferenceNoOverflow() {
+		assertEquals(9, TimeUtil.calculateTimespanInSeconds(new QDateTime(new QDate(2011, 3, 5), new QTime(12,3,32)), new QDateTime(new QDate(2011, 3, 5), new QTime(12,3,41))));
 	}
 	
 	@Test
-	public void calculateTimespanSeveralDays() {
+	public void calculateTimespanMinutesDifferenceNoOverflow() {
+		assertEquals(42*60, TimeUtil.calculateTimespanInSeconds(new QDateTime(new QDate(2011, 3, 5), new QTime(12,3,32)), new QDateTime(new QDate(2011, 3, 5), new QTime(12,45,32))));
+	}
+	
+	@Test
+	public void calculateTimespanHourDifferenceNoOverflow() {
+		assertEquals(11*60*60, TimeUtil.calculateTimespanInSeconds(new QDateTime(new QDate(2011, 3, 5), new QTime(12,3,32)), new QDateTime(new QDate(2011, 3, 5), new QTime(23,3,32))));
+	}
+	
+	@Test
+	public void calculateTimespanDayDifferenceNoOverflow() {
+		assertEquals(2*24*60*60, TimeUtil.calculateTimespanInSeconds(new QDateTime(new QDate(2011, 3, 5), new QTime(12,3,32)), new QDateTime(new QDate(2011, 3, 7), new QTime(12,3,32))));
+	}
+	
+	@Test
+	public void calculateTimespanMonthDifference() {
 		
 	}
+
+//TODO BeforeTime is after afterTime
+//	@Test
+//	public void calculateTimespanBeforeTimeAfterTimeSwitched_TODO()Ê{
+//		
+//	}
 }
