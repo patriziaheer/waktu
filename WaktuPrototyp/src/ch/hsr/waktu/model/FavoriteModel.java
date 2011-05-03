@@ -11,6 +11,7 @@ import com.trolltech.qt.core.QAbstractItemModel;
 import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.core.QDateTime;
 import com.trolltech.qt.core.QModelIndex;
+import com.trolltech.qt.core.QSize;
 import com.trolltech.qt.core.QTime;
 import com.trolltech.qt.core.Qt;
 import com.trolltech.qt.core.Qt.ItemFlags;
@@ -70,7 +71,9 @@ public class FavoriteModel extends QAbstractItemModel {
 			case 3:
 				return "";
 			}
-		}
+		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Vertical == orientation) {
+			return new QSize(0,20);
+		} 
 		return super.headerData(section, orientation, role);
 	}
 

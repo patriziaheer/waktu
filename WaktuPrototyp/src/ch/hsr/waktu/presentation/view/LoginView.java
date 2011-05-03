@@ -5,8 +5,10 @@ import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.presentation.view.jui.Ui_LoginDialog;
 
+import com.trolltech.qt.core.Qt.CursorShape;
 import com.trolltech.qt.gui.QBrush;
 import com.trolltech.qt.gui.QColor;
+import com.trolltech.qt.gui.QCursor;
 import com.trolltech.qt.gui.QDialog;
 import com.trolltech.qt.gui.QPalette;
 import com.trolltech.qt.gui.QPalette.ColorRole;
@@ -30,6 +32,7 @@ public class LoginView extends QDialog {
 	
 	@SuppressWarnings("unused")
 	private void loginClicked() {
+		this.setCursor(new QCursor(CursorShape.WaitCursor));
 		if (PermissionController.getInstance().login(ui.txtUsername.text(), ui.txtPassword.text())) {
 			Usr usr = UserController.getInstance().getUser(ui.txtUsername.text());
 			TimeView timeView = new TimeView(usr);
@@ -41,6 +44,7 @@ public class LoginView extends QDialog {
 			palette.setBrush(ColorRole.WindowText, new QBrush(QColor.red));
 			ui.lblStatus.setPalette(palette);
 		}
+		this.setCursor(new QCursor(CursorShape.ArrowCursor));
 	}
 
 }
