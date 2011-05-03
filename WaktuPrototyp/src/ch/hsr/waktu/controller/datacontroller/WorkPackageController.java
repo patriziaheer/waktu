@@ -74,7 +74,7 @@ public class WorkPackageController extends QSignalEmitter{
 
 			if (wp.getProject().equals(project)) {
 				workPackages.add(wp);
-				logger.info("WORKPACKAGE: " + wp.getProject().toString());
+				//logger.info("WORKPACKAGE: " + wp.getProject().toString());
 			}
 
 		}
@@ -100,7 +100,7 @@ public class WorkPackageController extends QSignalEmitter{
 
 			if (wp.getProject().equals(project)) {
 				workPackages.add(wp);
-				logger.info("WORKPACKAGE: " + wp.getProject().toString());
+				//logger.info("WORKPACKAGE: " + wp.getProject().toString());
 			}
 
 		}
@@ -127,7 +127,7 @@ public class WorkPackageController extends QSignalEmitter{
 
 			if (wp.getProject().equals(project)) {
 				workPackages.add(wp);
-				logger.info("WORKPACKAGE: " + wp.getProject().toString());
+				//logger.info("WORKPACKAGE: " + wp.getProject().toString());
 			}
 
 		}

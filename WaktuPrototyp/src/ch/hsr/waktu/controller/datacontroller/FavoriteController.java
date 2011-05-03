@@ -33,6 +33,7 @@ public class FavoriteController extends QSignalEmitter {
 	private Logger logger = Logger.getLogger(UserController.class);
 	public Signal0 update = new Signal0();
 	public Signal1<Favorite> add = new Signal1<Favorite>();
+	public Signal1<Favorite> removed = new Signal1<Favorite>();
 
 	private FavoriteController() {
 
@@ -81,6 +82,7 @@ public class FavoriteController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		em.remove(favorite);
+		removed.emit(favorite);
 		return true;
 	}
 

@@ -36,6 +36,7 @@ public class WorkSessionController extends QSignalEmitter {
 	private Logger logger = Logger.getLogger(UserController.class);
 	public Signal0 update = new Signal0();
 	public Signal1<WorkSession> add = new Signal1<WorkSession>();
+	public Signal1<WorkSession> removed = new Signal1<WorkSession>();
 
 	private WorkSessionController() {
 
@@ -59,6 +60,7 @@ public class WorkSessionController extends QSignalEmitter {
 		em.persist(newWorkSession);
 		em.flush();
 		em.getTransaction().commit();
+		logger.info("WorkSession added");
 		// TODO: add.emit() wieder einschalten (Observer von QT)
 		add.emit(newWorkSession);
 		return newWorkSession;
@@ -109,7 +111,7 @@ public class WorkSessionController extends QSignalEmitter {
 
 			if (ws.getUser().equals(user)) {
 				workSessions.add(ws);
-				logger.info("WORKSESSION: " + ws.toString());
+				//logger.info("WORKSESSION: " + ws.toString());
 			}
 
 		}
@@ -152,6 +154,7 @@ public class WorkSessionController extends QSignalEmitter {
 		// + workSession.getId());
 		em.remove(workSession);
 		em.close();
+		removed.emit(workSession);
 		return true;
 	}
 

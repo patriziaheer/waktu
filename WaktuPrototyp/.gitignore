@@ -3,3 +3,4 @@ log4j.log
 bin
 ControllerTest.java
 AddTestData.java
+persistence.log

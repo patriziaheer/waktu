@@ -72,7 +72,7 @@ public class ProjectStaffController extends QSignalEmitter {
 
 			if (ps.getUser().getId() == user.getId()) {
 				projects.add(ps.getProject());
-				logger.info("PROJECT: " + ps.getProject().toString());
+				//logger.info("PROJECT: " + ps.getProject().toString());
 			}
 
 		}
@@ -98,7 +98,7 @@ public class ProjectStaffController extends QSignalEmitter {
 
 			if (ps.getProject().getId() == project.getId()) {
 				usrs.add(ps.getUser());
-				logger.info("USER: " + ps.getUser().toString());
+				//logger.info("USER: " + ps.getUser().toString());
 			}
 
 		}

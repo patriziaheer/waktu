@@ -1,6 +1,6 @@
 package ch.hsr.waktu.services;
 
-import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import org.apache.log4j.Logger;
@@ -22,9 +22,8 @@ public class TimeUtil {
 		QDate date = dateTime.date();
 		QTime time = dateTime.time();
 		GregorianCalendar gregCal = new GregorianCalendar(date.year(), date.month(), date.day(), time.hour(), time.minute(), time.second());
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-		String formattedDate = formatter.format(gregCal.getTime());
-		logger.info(formattedDate);
+		logger.info(gregCal.get(Calendar.DAY_OF_MONTH) + "." + gregCal.get(Calendar.MONTH) + "." + gregCal.get(Calendar.YEAR));
+		logger.info(gregCal.get(Calendar.HOUR) + ":" + gregCal.get(Calendar.MINUTE));
 		return gregCal;
 	}
 	

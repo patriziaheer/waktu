@@ -1,7 +1,6 @@
 package ch.hsr.waktu.presentation.view.projectmanagment;
 
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
-import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.model.ComboBoxData;

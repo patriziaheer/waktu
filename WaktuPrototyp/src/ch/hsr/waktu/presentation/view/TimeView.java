@@ -88,9 +88,11 @@ public class TimeView extends QMainWindow{
 		
 		FavoriteController.getInstance().add.connect(this, "favoriteAdded(Favorite)");
 		FavoriteController.getInstance().update.connect(this, "favoriteUpdated()");
+		FavoriteController.getInstance().removed.connect(this, "favoriteRemoved(Favorite)");
 		
 		WorkSessionController.getInstance().add.connect(this, "workSessionAdded(WorkSession)");
 		WorkSessionController.getInstance().update.connect(this, "workSessionUpdated()");
+		WorkSessionController.getInstance().removed.connect(this, "workSessionRemoved(WorkSession)");
 		
 		workSessionModel = new WorkSessionModel(currUser, currDate);
 		favoriteModel = new FavoriteModel(currUser);
@@ -98,6 +100,7 @@ public class TimeView extends QMainWindow{
 		ui.calendar.setSelectedDate(currDate);
 		calendarSelectionChanged();
 		updateWorkSessionModel();
+		updateFavoriteModel();
 	}
 	
 	@SuppressWarnings("unused")
@@ -383,16 +386,37 @@ public class TimeView extends QMainWindow{
 			IndexButton editButton = new IndexButton(currIndex);
 			editButton.setFixedHeight(20);
 			editButton.setIcon(new QIcon("classpath:icons/edit_16x16.png"));
-			editButton.actionClicked.connect(this, "editClicked(IndexButton)");
+			editButton.actionClicked.connect(this, "workSessionEditClicked(IndexButton)");
 			
 			IndexButton deleteButton = new IndexButton(currIndex);
 			deleteButton.setFixedHeight(20);
 			deleteButton.setIcon(new QIcon("classpath:icons/delete_16x16.png"));
-			deleteButton.actionClicked.connect(this, "deleteClicked(IndexButton)");
+			deleteButton.actionClicked.connect(this, "workSessionDeleteClicked(IndexButton)");
 			w.layout().addWidget(editButton);
 			w.layout().addWidget(deleteButton);
 			
 			ui.tblWorksessions.setIndexWidget(currIndex, w);
+		}
+	}
+	
+	private void updateFavoriteModel() {
+		for (int i = 0; i < FavoriteController.getInstance().getFavorites(currUser).size(); i++) {
+			QModelIndex currIndex = favoriteModel.index(i, favoriteModel.columnCount()-1);
+			QWidget w = new QWidget();
+			w.setLayout(new QHBoxLayout());
+			IndexButton editButton = new IndexButton(currIndex);
+			editButton.setFixedHeight(20);
+			editButton.setIcon(new QIcon("classpath:icons/edit_16x16.png"));
+			editButton.actionClicked.connect(this, "favoriteEditClicked(IndexButton)");
+			
+			IndexButton deleteButton = new IndexButton(currIndex);
+			deleteButton.setFixedHeight(20);
+			deleteButton.setIcon(new QIcon("classpath:icons/delete_16x16.png"));
+			deleteButton.actionClicked.connect(this, "favoriteDeleteClicked(IndexButton)");
+			w.layout().addWidget(editButton);
+			w.layout().addWidget(deleteButton);
+			
+			ui.tblFavorites.setIndexWidget(currIndex, w);
 		}
 	}
 
@@ -444,12 +468,26 @@ public class TimeView extends QMainWindow{
 	
 	@SuppressWarnings("unused")
 	private void favoriteAdded(Favorite favorite) {
-		//TODO
+		favoriteModel.layoutAboutToBeChanged.emit();
+		favoriteModel.dataChanged.emit(favoriteModel.index(0, 0), favoriteModel.index(favoriteModel.rowCount(), favoriteModel.columnCount()));
+		favoriteModel.layoutChanged.emit();
+		updateFavoriteModel();
 	}
 	
 	@SuppressWarnings("unused")
 	private void  favoriteUpdated() {
-		//TODO
+		favoriteModel.layoutAboutToBeChanged.emit();
+		favoriteModel.dataChanged.emit(favoriteModel.index(0, 0), favoriteModel.index(favoriteModel.rowCount(), favoriteModel.columnCount()));
+		favoriteModel.layoutChanged.emit();
+		updateFavoriteModel();
+	}
+	
+	@SuppressWarnings("unused")
+	private void favoriteRemoved(Favorite favorite) {
+		favoriteModel.layoutAboutToBeChanged.emit();
+		favoriteModel.dataChanged.emit(favoriteModel.index(0, 0), favoriteModel.index(favoriteModel.rowCount(), favoriteModel.columnCount()));
+		favoriteModel.layoutChanged.emit();
+		updateFavoriteModel();
 	}
 	
 	@SuppressWarnings("unused")
@@ -469,7 +507,15 @@ public class TimeView extends QMainWindow{
 	}
 	
 	@SuppressWarnings("unused")
-	private void editClicked(IndexButton btn) {
+	private void  workSessionRemoved(WorkSession workSession) {
+		updateWorkSessionModel();
+		workSessionModel.layoutAboutToBeChanged.emit();
+		workSessionModel.dataChanged.emit(workSessionModel.index(0, 0), workSessionModel.index(workSessionModel.rowCount(), workSessionModel.columnCount()));
+		workSessionModel.layoutChanged.emit();
+	}
+	
+	@SuppressWarnings("unused")
+	private void workSessionEditClicked(IndexButton btn) {
 		logger.info("EditClicked for " + btn);
 		if (workSessionModel.getEditable() != null && EditStatus.Edit == btn.getStatus()) {
 			setStatusBarText(tr("Save first current edit row"));
@@ -494,9 +540,40 @@ public class TimeView extends QMainWindow{
 	}
 	
 	@SuppressWarnings("unused")
-	private void deleteClicked(IndexButton btn) {
+	private void workSessionDeleteClicked(IndexButton btn) {
 		logger.info("EditClicked for " + btn);
+		WorkSessionController.getInstance().removeWorkSession(WorkSessionController.getInstance().getWorkSessions(currUser, currDate).get(btn.getIndex().row()));
 		
+	}
+	
+	@SuppressWarnings("unused")
+	private void favoriteEditClicked(IndexButton btn) {
+		logger.info("EditClicked for favorite " + btn);
+		if (favoriteModel.getEditable() != null && EditStatus.Edit == btn.getStatus()) {
+			setStatusBarText(tr("Save first current edit row"));
+		} else {
+			if (EditStatus.Edit == btn.getStatus()) {
+				btn.setStatus(EditStatus.Save);
+				for (int i = 0; i < favoriteModel.columnCount(); i++) {
+					ui.tblFavorites.edit(favoriteModel.index(btn.getIndex().row(), i));
+				}
+				favoriteModel.setEditable(btn.getIndex());
+				btn.setIcon(new QIcon("classpath:icons/save_16x16.png"));
+				ui.tblFavorites.selectionModel().select(btn.getIndex(), SelectionFlag.Rows);
+			} else {
+				favoriteModel.setEditable(null);
+				btn.setIcon(new QIcon("classpath:icons/edit_16x16.png"));
+				btn.setStatus(EditStatus.Edit);
+			}
+			favoriteModel.layoutAboutToBeChanged.emit();
+			favoriteModel.layoutChanged.emit();
+		}
+	}
+	
+	@SuppressWarnings("unused")
+	private void favoriteDeleteClicked(IndexButton btn) {
+		logger.info("EditClicked for favorite " + btn);
+		FavoriteController.getInstance().removeFavorite(FavoriteController.getInstance().getFavorites(currUser).get(btn.getIndex().row()));
 	}
 	
 	private void setStatusBarText(String text) {

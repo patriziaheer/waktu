@@ -6,6 +6,7 @@ import ch.hsr.waktu.domain.WorkPackage;
 
 import com.trolltech.qt.core.QAbstractItemModel;
 import com.trolltech.qt.core.QModelIndex;
+import com.trolltech.qt.core.QSize;
 import com.trolltech.qt.core.Qt;
 import com.trolltech.qt.core.Qt.Orientation;
 
@@ -46,13 +47,15 @@ public class ProjectWorkPackageModel extends QAbstractItemModel{
 			case 0: return tr("Description");
 			case 1: return tr("Inactiv");
 			}
-		}
+		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Vertical == orientation) {
+			return new QSize(0,20);
+		} 
 		return super.headerData(section, orientation, role);
 	}
 	
 	@Override
-	public QModelIndex index(int arg0, int arg1, QModelIndex arg2) {
-		return null;
+	public QModelIndex index(int row, int column, QModelIndex arg2) {
+		return createIndex(row, column);
 	}
 
 	@Override
