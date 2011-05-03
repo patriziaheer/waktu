@@ -3,22 +3,24 @@ package ch.hsr.waktu.presentation.view;
 import ch.hsr.waktu.controller.PermissionController;
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.Usr;
-import ch.hsr.waktu.presentation.view.jui.Ui_LoginWindow;
+import ch.hsr.waktu.presentation.view.jui.Ui_LoginDialog;
 
 import com.trolltech.qt.gui.QBrush;
 import com.trolltech.qt.gui.QColor;
-import com.trolltech.qt.gui.QMainWindow;
+import com.trolltech.qt.gui.QDialog;
 import com.trolltech.qt.gui.QPalette;
 import com.trolltech.qt.gui.QPalette.ColorRole;
 
-public class LoginView extends QMainWindow {
+public class LoginView extends QDialog {
 	
-	private Ui_LoginWindow ui = new Ui_LoginWindow();
+	private Ui_LoginDialog ui = new Ui_LoginDialog();
 	
 	public LoginView() {
 		ui.setupUi(this);
+		
 		ui.btnCancel.clicked.connect(this, "cancelClicked()");
 		ui.btnLogin.clicked.connect(this, "loginClicked()");
+		
 	}
 	
 	@SuppressWarnings("unused")
@@ -34,10 +36,10 @@ public class LoginView extends QMainWindow {
 			timeView.show();
 			close();
 		} else {
-			ui.statusbar.showMessage(tr("Username or Password wrong"), 2000);
-			QPalette palette = ui.statusbar.palette();
+			ui.lblStatus.setText(tr("Username or Password wrong"));
+			QPalette palette = ui.lblStatus.palette();
 			palette.setBrush(ColorRole.WindowText, new QBrush(QColor.red));
-			ui.statusbar.setPalette(palette);
+			ui.lblStatus.setPalette(palette);
 		}
 	}
 

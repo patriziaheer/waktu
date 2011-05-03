@@ -44,14 +44,17 @@ public class TimeView extends QMainWindow{
 	private Usr currUser;
 	private WorkSessionModel workSessionModel;
 	private FavoriteModel favoriteModel;
+	private ManagmentView managmentView;
 	
 	public TimeView(Usr usr) {
 		currUser = usr;
+		managmentView = new ManagmentView(currUser);
 		
 		ui.setupUi(this);
 		ui.btnDown.clicked.connect(this, "downClicked()");
 		ui.calendar.setVisible(false);
 		ComboBoxData.createProjectForUserComboBox(ui.cmbProject, currUser);
+		ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
 		ui.cmbProject.currentIndexChanged.connect(this, "projectChanged()");
 
 
@@ -104,8 +107,8 @@ public class TimeView extends QMainWindow{
 	
 	@SuppressWarnings("unused")
 	private void managmentClicked() {
-		ManagmentView managmentView = new ManagmentView(currUser);
 		managmentView.show();
+		managmentView.setFocus();
 	}
 	
 	@SuppressWarnings("unused")

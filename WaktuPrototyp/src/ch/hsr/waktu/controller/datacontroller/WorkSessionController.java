@@ -50,6 +50,7 @@ public class WorkSessionController extends QSignalEmitter {
 	 */
 	public WorkSession addWorkSession(Usr user, WorkPackage workPackage,
 			GregorianCalendar startTime, GregorianCalendar endTime) {
+		//TODO set description
 		WorkSession newWorkSession = new WorkSession(user, workPackage,
 				startTime, endTime);
 		EntityManager em = PersistenceController.getInstance().getEMF()
@@ -80,7 +81,7 @@ public class WorkSessionController extends QSignalEmitter {
 
 			if (ws.getUser().equals(user)) {
 				workSessions.add(ws);
-				logger.info("WORKSESSION: " + ws.toString());
+				//logger.info("WORKSESSION: " + ws.toString());
 			}
 
 		}
@@ -130,7 +131,7 @@ public class WorkSessionController extends QSignalEmitter {
 
 			if (ws.getWorkPackage().getProject().equals(project)) {
 				workSessions.add(ws);
-				logger.info("WORKSESSION: " + ws.toString());
+				//logger.info("WORKSESSION: " + ws.toString());
 			}
 
 		}
