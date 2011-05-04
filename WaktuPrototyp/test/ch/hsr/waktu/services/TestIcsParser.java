@@ -52,7 +52,6 @@ public class TestIcsParser {
 	public void parseIcsFile_endVCalendarMissing_allEventsProcessedNoException() {
 		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/endVCalendarMissing.ics");
 		calendarValidity(testCalendar, 3);
-		//TODO assert not failing:no (null pointer) exception
 	}
 	
 	@Test
@@ -90,6 +89,7 @@ public class TestIcsParser {
 		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile(null);
 		assertEquals(null, testCalendar);
 	}
+	
 	
 	private void calendarValidity(LinkedList<WorkSession> testCalendar, int noOfValidEntries) {
 		for(int i=0; i < noOfValidEntries; i++) {

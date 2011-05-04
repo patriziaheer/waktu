@@ -18,7 +18,7 @@ import com.trolltech.qt.QSignalEmitter;
  * @version 1.0
  * @created 01-Apr-2011 15:36:30
  */
-public class UserController extends QSignalEmitter {
+public class UserController extends QSignalEmitter implements UserControllerInterface {
 
 	public enum UserProperties {
 		Data, Projects, WorkSessions
@@ -32,12 +32,17 @@ public class UserController extends QSignalEmitter {
 		}
 		return theInstance;
 	}
+	
+	public static void setInstance(
+			UserController userControllerInstance) {
+		theInstance = userControllerInstance;
+	}
 
 	private Logger logger = Logger.getLogger(UserController.class);
 	public Signal0 update = new Signal0();
 	public Signal1<Usr> add = new Signal1<Usr>();
 
-	private UserController() {
+	protected UserController() {
 
 	}
 
@@ -166,15 +171,15 @@ public class UserController extends QSignalEmitter {
 		return true;
 	}
 	
-	private String generateUsername(String firstname, String lastname) {
-		String username = firstname.toLowerCase() + lastname.toLowerCase();
-		int usernameOccurrence = 1;
+	protected String generateUsername(String firstname, String lastname) {
+		String username = firstname.toLowerCase() + lastname.toLowerCase().replaceAll(" ", "");
+		int usernameOccurrence = 0;
 		for(Usr u: getAllUsers()) {
 			if(u.getUsername().startsWith(username)) {
 				usernameOccurrence += 1;
 			}
 		}
-		if(usernameOccurrence > 1) {
+		if(usernameOccurrence > 0) {
 			username = username + usernameOccurrence;
 		}		
 		return username;

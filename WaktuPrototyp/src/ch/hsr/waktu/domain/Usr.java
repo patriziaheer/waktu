@@ -123,4 +123,8 @@ public class Usr {
 		}
 		return super.equals(obj);
 	}
+
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
+	}
 }

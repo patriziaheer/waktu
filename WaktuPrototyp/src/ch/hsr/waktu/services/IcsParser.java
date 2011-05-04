@@ -3,7 +3,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-//import java.util.ArrayList;
 import java.util.LinkedList;
 
 import ch.hsr.waktu.domain.WorkSession;
@@ -102,32 +101,6 @@ public class IcsParser {
 						calendar.add(tmpWs);
 					}
 				}
-								
-				//Unused Tags
-//					if(currentLine.startsWith("CREATED:")) {
-//						
-//					}
-//					
-//					if(currentLine.startsWith("UID:")) {
-//						
-//					}
-//					
-//					if(currentLine.startsWith("TRANSP:")) {
-//						
-//					}
-//					
-//					if(currentLine.startsWith("DTSTAMP:")) {
-//						
-//					}
-//					
-//					if(currentLine.startsWith("SEQUENCE:")) {
-//						
-//					}
-//					} else if(currentLine.startsWith("RRULE:")) {
-//						eventCount = getRecurringEventCount(currentLine);
-//						eventFrequency = getRecurringEventFrequency(currentLine);
-//						eventInterval = getRecurringEventInterval(currentLine);
-				
 			}
 		} catch(Exception e) {
 			
@@ -176,10 +149,6 @@ public class IcsParser {
 		int seconds = new Integer(dateTime[1].substring(4,6));
 		return new QDateTime(new QDate(year, month, day), new QTime(hours, minutes, seconds));
 	}
-	
-//	private static boolean invalidDateTimeString(String dateTimeString) {
-//		return (dateTimeString.length() < 15);
-//	}
 
 	/**
 	 * Splits a string containing a date followed by a time in two separate strings.
@@ -204,37 +173,5 @@ public class IcsParser {
 	private static String stripTag(String stringWithTag) {
 		return stringWithTag.split(":", 2)[1];
 	}
-	
-//	private static QDateTime getRecurringEventUntilDate(String stringWithUntilDate) {
-//		return new QDateTime(stringToQDateTime((stringWithUntilDate.split("UNTIL=")[1]).split(";")[0]));
-//	}
 
-//	private static int getRecurringEventCount(String stringWithRecurringEvent) {
-//		if(stringWithRecurringEvent.contains("COUNT=")) {
-//			return new Integer((stringWithRecurringEvent.split("COUNT=")[1]).split(";")[0]);
-//		} else if(stringWithRecurringEvent.contains("UNTIL=")) {
-//			getRecurringEventUntilDate(stringWithRecurringEvent);
-//			//TODO Is getting the dates for subsequent events really necessary if until date is given? 
-//			//Implementing it is a pain in the a$$!!!
-//		}
-//		return 1;
-//	}
-	
-//	private static String getRecurringEventFrequency(String stringWithRecurringEvent) {
-//		return (stringWithRecurringEvent.split("FREQ=")[1]).split(";")[0];
-//	}
-//	
-//	private static int getRecurringEventInterval(String stringWithRecurringEvent) {
-//		return new Integer((stringWithRecurringEvent.split("INTERVAL=")[1]).split(";")[0]);
-//	}
-//	
-//	private static WorkSession createSubsequentWorkSession(WorkSession workSession, String frequency, int interval, int count) {
-//		return new WorkSession();
-//	}
-	
-	/*
-	public static getIcsParameters() {
-		
-	}
-	*/
 }

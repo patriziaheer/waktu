@@ -21,9 +21,14 @@ public class PermissionController {
 		return theInstance;
 	}
 	
-	private Usr loggedInUser;
+	public static void setInstance(
+			PermissionController permissionControllerInstance) {
+		theInstance = permissionControllerInstance;
+	}
 	
-	private PermissionController(){
+	private static Usr loggedInUser;
+	
+	protected PermissionController(){
 
 	}
 	
@@ -100,14 +105,13 @@ public class PermissionController {
 	 * @param password
 	 */
 	public boolean canLogin(String username){
-		System.out.println("canLogin entered, username: " + username);
 		
 		try {
-			UserController.getInstance().getUser(username);
-			System.out.println("End of canLogin() reached");
-			return true;
+			if(UserController.getInstance().getUser(username) != null) {
+				return true;
+			}
 		} catch(Exception e) {
-		
+			e.printStackTrace();
 		}
 		return false;
 	}
