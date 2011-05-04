@@ -106,14 +106,14 @@ public class ProjectDetails extends QWidget {
 	protected void contextMenuEvent(QContextMenuEvent event) {
         QMenu menu = new QMenu(this);
         QAction closeAction = new QAction(tr("Close"),menu);
-        closeAction.triggered.connect(this, "closeApp()");
+        closeAction.triggered.connect(this, "closeWindow()");
         menu.addAction(closeAction);
         menu.exec(event.globalPos());
 	}
 	
 	@SuppressWarnings("unused")
-	private void closeApp() {
-		System.exit(0);
+	private void closeWindow() {
+		setVisible(false);
 	}
 
 	public void addProject() {

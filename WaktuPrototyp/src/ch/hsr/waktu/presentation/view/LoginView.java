@@ -55,7 +55,7 @@ public class LoginView extends QDialog {
 	
 	@SuppressWarnings("unused")
 	private void cancelClicked() {
-		System.exit(0);
+		QApplication.exit();
 	}
 	
 	@SuppressWarnings("unused")
@@ -95,7 +95,7 @@ public class LoginView extends QDialog {
 	
 	@SuppressWarnings("unused")
 	private void closeClicked() {
-		System.exit(0);
+		QApplication.exit();
 	}
 	
 	private void changeText() {

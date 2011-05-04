@@ -23,6 +23,7 @@ import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.QTime;
 import com.trolltech.qt.gui.QAbstractItemView.SelectionBehavior;
 import com.trolltech.qt.gui.QAbstractItemView.SelectionMode;
+import com.trolltech.qt.gui.QApplication;
 import com.trolltech.qt.gui.QBrush;
 import com.trolltech.qt.gui.QColor;
 import com.trolltech.qt.gui.QComboBox;
@@ -115,7 +116,7 @@ public class TimeView extends QMainWindow{
 	
 	@SuppressWarnings("unused")
 	private void closeApp() {
-		System.exit(0);
+		QApplication.exit();
 	}
 	
 	@SuppressWarnings("unused")
