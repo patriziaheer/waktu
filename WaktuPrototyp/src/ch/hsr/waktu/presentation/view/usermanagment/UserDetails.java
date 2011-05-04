@@ -3,7 +3,7 @@ import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.model.SortFilterModel;
 import ch.hsr.waktu.model.UserTreeModel;
-import ch.hsr.waktu.presentation.view.jui.Ui_ManagmentDetails;
+import ch.hsr.waktu.presentation.view.Ui_ManagmentDetails;
 
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.QRegExp;

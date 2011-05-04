@@ -15,7 +15,6 @@ import ch.hsr.waktu.model.ComboBoxData;
 import ch.hsr.waktu.model.FavoriteModel;
 import ch.hsr.waktu.model.WorkSessionModel;
 import ch.hsr.waktu.presentation.view.IndexButton.EditStatus;
-import ch.hsr.waktu.presentation.view.jui.Ui_TimeWindow;
 import ch.hsr.waktu.services.TimeUtil;
 
 import com.trolltech.qt.core.QDate;

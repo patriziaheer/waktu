@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ProjectStaff.jui'
 **
-** Created: Di. Mai 3 11:46:33 2011
+** Created: Mi 4. Mai 08:15:29 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!

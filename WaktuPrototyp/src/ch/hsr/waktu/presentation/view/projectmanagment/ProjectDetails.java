@@ -3,7 +3,7 @@ import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.model.ProjectTreeModel;
 import ch.hsr.waktu.model.SortFilterModel;
-import ch.hsr.waktu.presentation.view.jui.Ui_ManagmentDetails;
+import ch.hsr.waktu.presentation.view.Ui_ManagmentDetails;
 
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.QRegExp;

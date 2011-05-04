@@ -72,9 +72,9 @@ public class UserController extends QSignalEmitter {
 		List<Usr> usrs = em.createQuery(
 				"SELECT u FROM Usr u WHERE u.active = TRUE").getResultList();
 
-		for (Usr usr : usrs) {
+		//for (Usr usr : usrs) {
 			//logger.info("ACTIVE USER: " + usr.toString());
-		}
+		//}
 
 		em.close();
 		return usrs;
@@ -87,9 +87,9 @@ public class UserController extends QSignalEmitter {
 		@SuppressWarnings("unchecked")
 		List<Usr> usrs = em.createQuery("SELECT u FROM Usr u").getResultList();
 
-		for (Usr usr : usrs) {
+		//for (Usr usr : usrs) {
 			//logger.info(usr.toString());
-		}
+		//}
 
 		em.close();
 		return usrs;
@@ -103,9 +103,9 @@ public class UserController extends QSignalEmitter {
 		List<Usr> usrs = em.createQuery(
 				"SELECT u FROM Usr u WHERE u.active = FALSE").getResultList();
 
-		for (Usr usr : usrs) {
+		//for (Usr usr : usrs) {
 			//logger.info("INACTIVE USERS: " + usr.toString());
-		}
+		//}
 
 		em.close();
 		return usrs;

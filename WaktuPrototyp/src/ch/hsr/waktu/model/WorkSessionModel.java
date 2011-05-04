@@ -93,25 +93,25 @@ public class WorkSessionModel extends QAbstractItemModel {
 	
 	@Override
 	public boolean setData(QModelIndex index, Object value, int role) {
+		WorkSession workSession = WorkSessionController.getInstance().getWorkSessions(usr, date).get(index.row());
 		switch(index.column()) {
 		case 2: {
-			WorkSessionController.getInstance().getWorkSessions(usr, date).get(index.row()).setDescription((String)value);
+			workSession.setDescription((String)value);
 		}
 		break;
 		case 3: {
-//			WorkSessionController.getInstance().getWorkSessions(usr, date).get(index.row()).setStart(new QDateTime(date, (QTime)value));
 			GregorianCalendar dateTime = TimeUtil.convertQDateTimeToGregorian(new QDateTime(date, (QTime)value));
-			WorkSessionController.getInstance().getWorkSessions(usr, date).get(index.row()).setStart(dateTime);
+			workSession.setStart(dateTime);
 		}
 		break;
 		case 4: {
-//			WorkSessionController.getInstance().getWorkSessions(usr, date).get(index.row()).setEnd(new QDateTime(date, (QTime)value));
 			GregorianCalendar dateTime = TimeUtil.convertQDateTimeToGregorian(new QDateTime(date, (QTime)value));
-			WorkSessionController.getInstance().getWorkSessions(usr, date).get(index.row()).setEnd(dateTime);
+			workSession.setEnd(dateTime);
 			
 		}
 		break;
 		}
+		WorkSessionController.getInstance().updateWorkSession(workSession);
 		return super.setData(index, value, role);
 	}
 

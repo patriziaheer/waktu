@@ -8,6 +8,7 @@ import org.apache.log4j.PropertyConfigurator;
 
 import ch.hsr.waktu.presentation.view.LoginView;
 
+import com.trolltech.qt.core.QFile;
 import com.trolltech.qt.core.QTranslator;
 import com.trolltech.qt.gui.QApplication;
 
@@ -28,8 +29,8 @@ public class WaktuApplication {
         //String sheet = getStyleSheet("classpath:stylesheet.txt");
         //app.setStyleSheet(sheet);
         QTranslator translator = new QTranslator();
-        //QFile file = new QFile("classpath:config/Login_de");
-        translator.load("classpath:config/Login_de");
+        //QFile file = new QFile("classpath:config/Login_de.qm");
+        translator.load("classpath:Login_de.qm");
         QApplication.installTranslator(translator);
         
 

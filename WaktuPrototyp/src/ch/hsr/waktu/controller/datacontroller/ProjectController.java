@@ -90,9 +90,9 @@ public class ProjectController extends QSignalEmitter {
 				"SELECT p FROM Project p WHERE p.active = TRUE")
 				.getResultList();
 
-		for (Project project : projects) {
+		//for (Project project : projects) {
 			//logger.info("ACTIVE PROJECTS: " + project.toString());
-		}
+		//}
 
 		em.close();
 		return projects;
@@ -110,9 +110,9 @@ public class ProjectController extends QSignalEmitter {
 		@SuppressWarnings("unchecked")
 		List<Project> projects = em.createQuery("SELECT p FROM Project p")
 				.getResultList();
-		for (Project project : projects) {
+		//for (Project project : projects) {
 			//logger.info(project.toString());
-		}
+		//}
 
 		em.close();
 		return projects;
@@ -128,9 +128,9 @@ public class ProjectController extends QSignalEmitter {
 				"SELECT p FROM Project p WHERE p.active = FALSE")
 				.getResultList();
 
-		for (Project project : projects) {
+		//for (Project project : projects) {
 			//logger.info("INACTIVE PROJECTS: " + project.toString());
-		}
+		//}
 
 		em.close();
 		return projects;

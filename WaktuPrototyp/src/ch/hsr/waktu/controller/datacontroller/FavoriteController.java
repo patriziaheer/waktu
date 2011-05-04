@@ -45,12 +45,9 @@ public class FavoriteController extends QSignalEmitter {
 	 * @param startTime
 	 * @param endTime
 	 */
-	public Favorite addFavorite(Usr user, WorkPackage workPackage,
-			GregorianCalendar startTime, GregorianCalendar endTime) {
-		Favorite newFavorite = new Favorite(user, workPackage, startTime,
-				endTime);
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+	public Favorite addFavorite(Usr user, WorkPackage workPackage, GregorianCalendar startTime, GregorianCalendar endTime) {
+		Favorite newFavorite = new Favorite(user, workPackage, startTime, endTime);
+		EntityManager em = PersistenceController.getInstance().getEMF().createEntityManager();
 
 		em.getTransaction().begin();
 		em.persist(newFavorite);
@@ -67,8 +64,7 @@ public class FavoriteController extends QSignalEmitter {
 	 * @param user
 	 */
 	public List<Favorite> getFavorites(Usr user) {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+		EntityManager em = PersistenceController.getInstance().getEMF().createEntityManager();
 		@SuppressWarnings("unchecked")
 		List<Favorite> allFavorites = em.createQuery("SELECT f FROM Favorite f").getResultList();
 		return allFavorites;
@@ -79,10 +75,26 @@ public class FavoriteController extends QSignalEmitter {
 	 * @param favorite
 	 */
 	public boolean removeFavorite(Favorite favorite) {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+		EntityManager em = PersistenceController.getInstance().getEMF().createEntityManager();
 		em.remove(favorite);
 		removed.emit(favorite);
+		return true;
+	}
+
+	public boolean updateFavorite(Favorite favorite) {
+		// TODO: added by ph
+		EntityManager em = PersistenceController.getInstance().getEMF().createEntityManager();
+
+		em.getTransaction().begin();
+		Favorite updateFav = (Favorite) em.createQuery("SELECT f FROM Favorite f WHERE f.id = " + favorite.getId()).getSingleResult();
+
+		updateFav.setStartTime(favorite.getStartTime());
+		updateFav.setEndTime(favorite.getEndTime());
+
+		em.getTransaction().commit();
+		logger.info("Favorite " + favorite.getId() + " updated");
+
+		update.emit();
 		return true;
 	}
 

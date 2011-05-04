@@ -2,7 +2,6 @@ package ch.hsr.waktu.presentation.view;
 
 import ch.hsr.waktu.controller.PermissionController;
 import ch.hsr.waktu.domain.Usr;
-import ch.hsr.waktu.presentation.view.jui.Ui_ManagmentWindow;
 import ch.hsr.waktu.presentation.view.projectmanagment.ProjectDetails;
 import ch.hsr.waktu.presentation.view.usermanagment.UserDetails;
 

@@ -35,7 +35,7 @@ public class WorkPackageController extends QSignalEmitter{
 	 public Signal1<WorkPackage> add = new Signal1<WorkPackage>();
 
 	private WorkPackageController() {
-
+		logger.info("Constructor");
 	}
 
 	/**

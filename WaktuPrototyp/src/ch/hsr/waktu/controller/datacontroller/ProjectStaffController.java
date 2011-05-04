@@ -35,7 +35,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	public Signal1<ProjectStaff> add = new Signal1<ProjectStaff>();
 
 	private ProjectStaffController() {
-
+		logger.info("Constructor");
 	}
 
 	/**

@@ -158,4 +158,21 @@ public class WorkSessionController extends QSignalEmitter {
 		return true;
 	}
 
+	public boolean updateWorkSession(WorkSession workSession) {
+		//TODO: added by ph
+		EntityManager em = PersistenceController.getInstance().getEMF().createEntityManager();
+
+		em.getTransaction().begin();
+		WorkSession updateWorkSession = (WorkSession) em.createQuery("SELECT ws FROM WorkSession ws WHERE ws.id = " + workSession.getId()).getSingleResult();
+
+		updateWorkSession.setDescription(workSession.getDescription());
+		updateWorkSession.setStart(workSession.getStart());
+		updateWorkSession.setEnd(workSession.getEnd());
+
+		em.getTransaction().commit();
+		logger.info("Favorite " + workSession.getId() + " updated");
+		
+		update.emit();
+		return true;
+	}
 }
