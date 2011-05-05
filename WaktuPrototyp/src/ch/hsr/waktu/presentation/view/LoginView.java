@@ -65,14 +65,15 @@ public class LoginView extends QDialog {
 			Usr usr = UserController.getInstance().getUser(ui.txtUsername.text());
 			TimeView timeView = new TimeView(usr);
 			timeView.show();
+			this.setCursor(new QCursor(CursorShape.ArrowCursor));
 			close();
 		} else {
 			ui.lblStatus.setText(com.trolltech.qt.core.QCoreApplication.translate("LoginView","Username or Password wrong", null));
 			QPalette palette = ui.lblStatus.palette();
 			palette.setBrush(ColorRole.WindowText, new QBrush(QColor.red));
 			ui.lblStatus.setPalette(palette);
+			this.setCursor(new QCursor(CursorShape.ArrowCursor));
 		}
-		this.setCursor(new QCursor(CursorShape.ArrowCursor));
 	}
 
 	@SuppressWarnings("unused")

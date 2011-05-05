@@ -52,4 +52,11 @@ public class ComboBoxData {
 		}
 	}
 	
+	public static void createUserComboBox(QComboBox cmb) {
+		cmb.clear();
+		for (Usr usr: UserController.getInstance().getActiveUsers()) {
+			cmb.addItem(usr.toString(), usr);
+		}
+	}
+	
 }

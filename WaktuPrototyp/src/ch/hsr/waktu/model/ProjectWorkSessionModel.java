@@ -36,11 +36,11 @@ public class ProjectWorkSessionModel extends QAbstractItemModel {
 		if (Qt.ItemDataRole.DisplayRole == role) {
 			WorkSession workSession = WorkSessionController.getInstance().getWorkSessions(project).get(index.row());
 			switch (index.column()) {
-			case 0: return "Project: Workpackage";
+			case 0: return workSession.getWorkPackage();
 			case 1: return workSession.getDescription();
 			case 2: return workSession.getUser();
-			case 3: return workSession.getStart().toString();
-			case 4: return workSession.getEnd().toString();
+			case 3: return TimeUtil.convertGregorianToQDateTime(workSession.getStart());
+			case 4: return TimeUtil.convertGregorianToQDateTime(workSession.getEnd());
 			case 5:  {
 				QDateTime start = TimeUtil.convertGregorianToQDateTime(workSession.getStart());
 				QDateTime end = TimeUtil.convertGregorianToQDateTime(workSession.getEnd());

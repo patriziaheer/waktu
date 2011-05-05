@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'TimeWindow.jui'
 **
-** Created: Mi 4. Mai 08:14:56 2011
+** Created: Do 5. Mai 11:27:04 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -88,7 +88,7 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
     public void setupUi(QMainWindow TimeWindow)
     {
         TimeWindow.setObjectName("TimeWindow");
-        TimeWindow.resize(new QSize(740, 740).expandedTo(TimeWindow.minimumSizeHint()));
+        TimeWindow.resize(new QSize(864, 740).expandedTo(TimeWindow.minimumSizeHint()));
         actionClose = new QAction(TimeWindow);
         actionClose.setObjectName("actionClose");
         actionOpenManagment = new QAction(TimeWindow);
@@ -434,7 +434,7 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         TimeWindow.setStatusBar(statusBar);
         menuBar = new QMenuBar(TimeWindow);
         menuBar.setObjectName("menuBar");
-        menuBar.setGeometry(new QRect(0, 0, 740, 22));
+        menuBar.setGeometry(new QRect(0, 0, 864, 22));
         menuManagment = new QMenu(menuBar);
         menuManagment.setObjectName("menuManagment");
         menuFile = new QMenu(menuBar);

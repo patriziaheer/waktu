@@ -66,7 +66,7 @@ public class FavoriteController extends QSignalEmitter {
 	public List<Favorite> getFavorites(Usr user) {
 		EntityManager em = PersistenceController.getInstance().getEMF().createEntityManager();
 		@SuppressWarnings("unchecked")
-		List<Favorite> allFavorites = em.createQuery("SELECT f FROM Favorite f").getResultList();
+		List<Favorite> allFavorites = em.createQuery("SELECT f FROM Favorite f ORDER BY f.id").getResultList();
 		return allFavorites;
 	}
 
