@@ -119,7 +119,7 @@ public class XmlUtil {
 	
 	private static SystemRole getSystemRoleContentOf(Node element, String name) {
 		for(SystemRole sr: SystemRole.values()) {
-			if(sr.equals(getTextContentOf(element, name))) {
+			if(sr.toString().equalsIgnoreCase(getTextContentOf(element, name))) {
 				return sr;
 			}
 		}

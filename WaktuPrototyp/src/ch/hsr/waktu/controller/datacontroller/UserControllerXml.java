@@ -10,6 +10,20 @@ public class UserControllerXml extends UserController implements UserControllerI
 	
 	private String userFilePath = "./test/testdata/users.xml";
 	
+	private static UserControllerXml theInstance = null;
+
+	public static UserControllerXml getInstance() {
+		if (theInstance == null) {
+			theInstance = new UserControllerXml();
+		}
+		return theInstance;
+	}
+	
+	public static void setInstance(
+			UserControllerXml userControllerInstance) {
+		theInstance = userControllerInstance;
+	}
+	
 	public UserControllerXml() {
 		
 	}
@@ -26,10 +40,10 @@ public class UserControllerXml extends UserController implements UserControllerI
 
 	@Override
 	public LinkedList<Usr> getActiveUsers() {
-		LinkedList<Usr> activeUsers = getAllUsers();
-		for(Usr u: activeUsers) {
-			if(!u.isActive()) {
-				activeUsers.remove(u);
+		LinkedList<Usr> activeUsers = new LinkedList<Usr>();
+		for(Usr u: getAllUsers()) {
+			if(u.isActive()) {
+				activeUsers.add(u);
 			}
 		}
 		return activeUsers;
@@ -42,10 +56,10 @@ public class UserControllerXml extends UserController implements UserControllerI
 
 	@Override
 	public LinkedList<Usr> getInactiveUsers() {
-		LinkedList<Usr> inactiveUsers = getAllUsers();
-		for(Usr u: inactiveUsers) {
-			if(u.isActive()) {
-				inactiveUsers.remove(u);
+		LinkedList<Usr> inactiveUsers = new LinkedList<Usr>();
+		for(Usr u: getAllUsers()) {
+			if(!u.isActive()) {
+				inactiveUsers.add(u);
 			}
 		}
 		return inactiveUsers;
@@ -53,19 +67,18 @@ public class UserControllerXml extends UserController implements UserControllerI
 
 	@Override
 	public LinkedList<Usr> getProjectManagers() {
-		LinkedList<Usr> projectManagers = getAllUsers();
-		for(Usr u: projectManagers) {
-			if(u.isActive()) {
-				projectManagers.remove(u);
+		LinkedList<Usr> projectManagers = new LinkedList<Usr>();
+		for(Usr u: getAllUsers()) {
+			if(u.getSystemRole().equals(SystemRole.PROJECTMANAGER)) {
+				projectManagers.add(u);
 			}
 		}
-		return null;
+		return projectManagers;
 	}
 
 	@Override
 	public Usr getUser(String username) {
-		LinkedList<Usr> allUsers = getAllUsers();
-		for(Usr u: allUsers) {
+		for(Usr u: getAllUsers()) {
 			if(u.getUsername().equals(username)) {
 				return u;
 			}
@@ -75,8 +88,7 @@ public class UserControllerXml extends UserController implements UserControllerI
 
 	@Override
 	public boolean updateUser(Usr user) {
-		LinkedList<Usr> allUsers = getAllUsers();
-		for(Usr u: allUsers) {
+		for(Usr u: getAllUsers()) {
 			if(u.equals(user)) {
 				u.setActiveState(user.isActive());
 				u.setFirstname(user.getFirstname());
