@@ -33,6 +33,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	private Logger logger = Logger.getLogger(UserController.class);
 	public Signal0 update = new Signal0();
 	public Signal1<ProjectStaff> add = new Signal1<ProjectStaff>();
+	public Signal1<ProjectStaff> removed = new Signal1<ProjectStaff>();
 
 	private ProjectStaffController() {
 		logger.info("Constructor");
@@ -120,7 +121,7 @@ public class ProjectStaffController extends QSignalEmitter {
 		List<ProjectStaff> projStaff = em.createQuery(
 				"SELECT ps FROM ProjectStaff ps ").getResultList();
 
-		ProjectStaff projectStaffToRemove;
+		ProjectStaff projectStaffToRemove = null;
 
 		for (ProjectStaff ps : projStaff) {
 
@@ -133,6 +134,7 @@ public class ProjectStaffController extends QSignalEmitter {
 				return true;
 			}
 		}
+		removed.emit(projectStaffToRemove);
 
 		em.close();
 		return false;

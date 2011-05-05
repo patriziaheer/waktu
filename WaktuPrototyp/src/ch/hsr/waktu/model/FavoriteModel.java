@@ -93,18 +93,20 @@ public class FavoriteModel extends QAbstractItemModel {
 	
 	@Override
 	public boolean setData(QModelIndex index, Object value, int role) {
+		Favorite favorite = FavoriteController.getInstance().getFavorites(usr).get(index.row());
 		switch(index.column()) {
 		case 1: {
 			QDateTime dateTime = new QDateTime(new QDate(1900,01,01), (QTime)value);
-			FavoriteController.getInstance().getFavorites(usr).get(index.row()).setStartTime(TimeUtil.convertQDateTimeToGregorian(dateTime));
+			favorite.setStartTime(TimeUtil.convertQDateTimeToGregorian(dateTime));
 		}
 		break;
 		case 2: {
 			QDateTime dateTime = new QDateTime(new QDate(1900,01,01), (QTime)value);
-			FavoriteController.getInstance().getFavorites(usr).get(index.row()).setEndTime(TimeUtil.convertQDateTimeToGregorian(dateTime));
+			favorite.setEndTime(TimeUtil.convertQDateTimeToGregorian(dateTime));
 		}
 		break;
 		}
+		FavoriteController.getInstance().updateFavorite(favorite);
 		return super.setData(index, value, role);
 	}
 

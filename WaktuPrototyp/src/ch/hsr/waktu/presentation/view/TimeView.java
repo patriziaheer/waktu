@@ -468,22 +468,20 @@ public class TimeView extends QMainWindow{
 	
 	@SuppressWarnings("unused")
 	private void favoriteAdded(Favorite favorite) {
-		favoriteModel.layoutAboutToBeChanged.emit();
-		favoriteModel.dataChanged.emit(favoriteModel.index(0, 0), favoriteModel.index(favoriteModel.rowCount(), favoriteModel.columnCount()));
-		favoriteModel.layoutChanged.emit();
-		updateFavoriteModel();
+		updateFavoriteTable();
 	}
 	
 	@SuppressWarnings("unused")
 	private void  favoriteUpdated() {
-		favoriteModel.layoutAboutToBeChanged.emit();
-		favoriteModel.dataChanged.emit(favoriteModel.index(0, 0), favoriteModel.index(favoriteModel.rowCount(), favoriteModel.columnCount()));
-		favoriteModel.layoutChanged.emit();
-		updateFavoriteModel();
+		updateFavoriteTable();
 	}
 	
 	@SuppressWarnings("unused")
 	private void favoriteRemoved(Favorite favorite) {
+		updateFavoriteTable();
+	}
+	
+	private void updateFavoriteTable() {
 		favoriteModel.layoutAboutToBeChanged.emit();
 		favoriteModel.dataChanged.emit(favoriteModel.index(0, 0), favoriteModel.index(favoriteModel.rowCount(), favoriteModel.columnCount()));
 		favoriteModel.layoutChanged.emit();
@@ -492,15 +490,11 @@ public class TimeView extends QMainWindow{
 	
 	@SuppressWarnings("unused")
 	private void  workSessionAdded(WorkSession workSession) {
-		updateWorkSessionModel();
-		workSessionModel.layoutAboutToBeChanged.emit();
-		workSessionModel.dataChanged.emit(workSessionModel.index(0, 0), workSessionModel.index(workSessionModel.rowCount(), workSessionModel.columnCount()));
-		workSessionModel.layoutChanged.emit();
+		updateWorkSessionTable();
 	}
 	
 	@SuppressWarnings("unused")
 	private void workSessionUpdated() {
-		updateWorkSessionModel();
 		workSessionModel.layoutAboutToBeChanged.emit();
 		workSessionModel.dataChanged.emit(workSessionModel.index(0, 0), workSessionModel.index(workSessionModel.rowCount(), workSessionModel.columnCount()));
 		workSessionModel.layoutChanged.emit();
@@ -508,6 +502,10 @@ public class TimeView extends QMainWindow{
 	
 	@SuppressWarnings("unused")
 	private void  workSessionRemoved(WorkSession workSession) {
+		updateWorkSessionTable();
+	}
+	
+	private void updateWorkSessionTable() {
 		updateWorkSessionModel();
 		workSessionModel.layoutAboutToBeChanged.emit();
 		workSessionModel.dataChanged.emit(workSessionModel.index(0, 0), workSessionModel.index(workSessionModel.rowCount(), workSessionModel.columnCount()));
@@ -522,9 +520,9 @@ public class TimeView extends QMainWindow{
 		} else {
 			if (EditStatus.Edit == btn.getStatus()) {
 				btn.setStatus(EditStatus.Save);
-				for (int i = 0; i < workSessionModel.columnCount(); i++) {
+				/*for (int i = 0; i < workSessionModel.columnCount(); i++) {
 					ui.tblWorksessions.edit(workSessionModel.index(btn.getIndex().row(), i));
-				}
+				}*/
 				workSessionModel.setEditable(btn.getIndex());
 				btn.setIcon(new QIcon("classpath:icons/save_16x16.png"));
 				ui.tblWorksessions.selectionModel().select(btn.getIndex(), SelectionFlag.Rows);

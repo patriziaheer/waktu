@@ -9,7 +9,6 @@ import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.QSize;
 import com.trolltech.qt.core.Qt;
 import com.trolltech.qt.core.Qt.Orientation;
-import com.trolltech.qt.gui.QPushButton;
 
 public class ProjectStaffModel extends QAbstractItemModel{
 	
@@ -36,7 +35,7 @@ public class ProjectStaffModel extends QAbstractItemModel{
 			switch (index.column()) {
 			case 0: return usr.getName();
 			case 1: return usr.getFirstname();
-			case 2: return new QPushButton(tr("Edit"));
+			case 2: return "";
 			}
 		}
 		return null;

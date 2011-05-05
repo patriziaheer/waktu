@@ -23,6 +23,8 @@ public class ProjectWorkPackageView extends QWidget{
 		
 		ui.btnAdd.clicked.connect(this, "addClicked()");
 		WorkPackageController.getInstance().add.connect(this, "addData(WorkPackage)");
+		
+		WorkPackageController.getInstance().update.connect(this, "updated()");
 	}
 	
 	@SuppressWarnings("unused")
@@ -34,6 +36,13 @@ public class ProjectWorkPackageView extends QWidget{
 	
 	@SuppressWarnings("unused")
 	private void addData(WorkPackage workPackage) {
+		workPackageModel.layoutAboutToBeChanged.emit();
+		workPackageModel.dataChanged.emit(workPackageModel.index(0, 0), workPackageModel.index(workPackageModel.rowCount(), workPackageModel.columnCount()));
+		workPackageModel.layoutChanged.emit();
+	}
+	
+	@SuppressWarnings("unused")
+	private void updated() {
 		workPackageModel.layoutAboutToBeChanged.emit();
 		workPackageModel.dataChanged.emit(workPackageModel.index(0, 0), workPackageModel.index(workPackageModel.rowCount(), workPackageModel.columnCount()));
 		workPackageModel.layoutChanged.emit();

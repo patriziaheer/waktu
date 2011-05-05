@@ -104,7 +104,7 @@ public class WorkSessionController extends QSignalEmitter {
 
 		@SuppressWarnings("unchecked")
 		List<WorkSession> workSessionsByUser = em.createQuery(
-				"SELECT ws FROM WorkSession ws").getResultList();
+				"SELECT ws FROM WorkSession ws ORDER BY ws.id").getResultList();
 
 		ArrayList<WorkSession> workSessions = new ArrayList<WorkSession>();
 		for (WorkSession ws : workSessionsByUser) {
