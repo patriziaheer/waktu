@@ -31,6 +31,15 @@ public class PermissionController {
 	protected PermissionController(){
 
 	}
+
+	public Usr getLoggedInUser() {
+		return loggedInUser;
+	}
+	
+	private void setLoggedInUser(Usr user) {
+		loggedInUser = user;
+	}
+
 	
 	/**
 	 * 
@@ -41,7 +50,7 @@ public class PermissionController {
 			Usr user = UserController.getInstance().getUser(username);
 			String passwordHash = Md5.hash(password);
 			if(user.getPasswordHash().equals(passwordHash)) {
-				loggedInUser = user;
+				setLoggedInUser(user);
 				return true;
 			}
 		}
@@ -53,7 +62,7 @@ public class PermissionController {
 	 * @param user
 	 */
 	public void logout(){
-		loggedInUser = null;
+		setLoggedInUser(null);
 	}
 
 	/**
@@ -115,9 +124,4 @@ public class PermissionController {
 		}
 		return false;
 	}
-
-	public Usr getLoggedInUser() {
-		return loggedInUser;
-	}
-
 }
