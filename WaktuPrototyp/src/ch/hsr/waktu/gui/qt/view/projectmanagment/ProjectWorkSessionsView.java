@@ -68,12 +68,12 @@ public class ProjectWorkSessionsView extends QWidget {
 	}
 	
 	@SuppressWarnings("unused")
-	private void updated(WorkSession workSession) {
+	private void updated() {
 		updateWorkSessionTable();
 	}
 	
 	@SuppressWarnings("unused")
-	private void removed() {
+	private void removed(WorkSession workSession) {
 		updateWorkSessionTable();
 	}
 	
