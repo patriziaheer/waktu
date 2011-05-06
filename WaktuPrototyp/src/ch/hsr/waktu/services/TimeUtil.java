@@ -31,12 +31,6 @@ public class TimeUtil {
 		return gregCal;
 	}
 	
-//	public static GregorianCalendar calculateTimespan(GregorianCalendar timeBefore, GregorianCalendar timeAfter) {
-//		GregorianCalendar timespan = timeBefore.clone();
-//		timespan.
-//		return new GregorianCalendar();
-//	}
-	
 	public static int calculateTimespanInSeconds(GregorianCalendar timeBefore, GregorianCalendar timeAfter) {
 		return calculateTimespanInSeconds(convertGregorianToQDateTime(timeBefore), convertGregorianToQDateTime(timeAfter));
 	}
@@ -49,4 +43,18 @@ public class TimeUtil {
 		//TODO: added by PH => null for parameters means no filter
 		return 0.0;
 	}
+	
+	public static double calculateOvertime(Usr user) {
+		//TODO
+		return 0.0;
+	}
+	
+	public static double getRequiredWorkingTimeForMonth(QDate month) {
+		return 0.0;
+	}
+	
+	public static double formatTimeSecondsToHalfAnHourPrecision(int timeInSeconds) {
+		return 0.0;
+	}
+	
 }
