@@ -107,5 +107,18 @@
 			</one-to-one>
 		</attributes>
 	</entity>
+	
+	<entity class="ch.hsr.waktu.domain.Permission">
+		<table name="permission" />
+		<attributes>
+			<id name="permissionid">
+				<column name="permissionId" />
+				<generated-value strategy="IDENTITY" />
+			</id>
+			<basic name="systemRole">
+				<enumerated>STRING</enumerated>
+			</basic>
+		</attributes>
+	</entity>
 
 </entity-mappings>

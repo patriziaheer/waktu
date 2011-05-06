@@ -1,5 +1,9 @@
 package ch.hsr.waktu.controller;
 
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
@@ -55,6 +59,33 @@ public class PermissionController {
 	public void logout(){
 		loggedInUser = null;
 	}
+	
+	public List<Project> getPermissionTable() {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		@SuppressWarnings("unchecked")
+		List<Project> permissions = em.createQuery("SELECT p FROM Permission p")
+				.getResultList();
+
+		em.close();
+		return permissions;
+	}
+	
+//	public Project addPermission(SystemRole systemRole, ) {
+//
+//		Permission newPermission = new Permission();
+//		EntityManager em = PersistenceController.getInstance().getEMF()
+//				.createEntityManager();
+//		em.getTransaction().begin();
+//		em.persist(newPermission);
+//		em.flush();
+//		em.getTransaction().commit();
+//		add.emit(newPermission);
+//
+//		return newPermission;
+//
+//	}
 
 	/**
 	 * 
