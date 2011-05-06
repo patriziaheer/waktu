@@ -128,10 +128,10 @@ public class Usr {
 		return super.equals(obj);
 	}
 	
-	@Override
-	public int hashCode() {
-		return new Integer(Md5.hash(this.toString()));
-	}
+//	@Override
+//	public int hashCode() {
+//		return new Integer(Md5.hash(this.toString()));
+//	}
 
 	public void setPasswordHash(String passwordHash) {
 		this.passwordHash = passwordHash;
