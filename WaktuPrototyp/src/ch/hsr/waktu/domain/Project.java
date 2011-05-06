@@ -1,5 +1,7 @@
 package ch.hsr.waktu.domain;
 
+import ch.hsr.waktu.services.Md5;
+
 
 /**
  * @author simon.staeheli
@@ -98,4 +100,8 @@ public class Project {
 		return super.equals(obj);
 	}
 
+	@Override
+	public int hashCode() {
+		return new Integer(Md5.hash(this.toString()));
+	}
 }
