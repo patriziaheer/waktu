@@ -1,5 +1,6 @@
 package ch.hsr.waktu.controller.datacontroller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -90,17 +91,32 @@ public class ProjectController extends QSignalEmitter {
 				"SELECT p FROM Project p WHERE p.active = TRUE")
 				.getResultList();
 
-		//for (Project project : projects) {
-			//logger.info("ACTIVE PROJECTS: " + project.toString());
-		//}
+		// for (Project project : projects) {
+		// logger.info("ACTIVE PROJECTS: " + project.toString());
+		// }
 
 		em.close();
 		return projects;
 	}
-	
+
 	public List<Project> getActiveProjects(Usr usr) {
-		//TODO
-		return getActiveProjects();
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		@SuppressWarnings("unchecked")
+		// TODO: nur usr.usrid auswählen in ProjectStaff
+		List<Project> projectStaff = em.createQuery("SELECT p FROM ProjectStaff p").getResultList();
+
+		em.close();
+		
+		List<Project> activeProjects = new ArrayList<Project>();
+		
+		for(Project p : projectStaff) {
+			
+			activeProjects.add(p);
+		}
+		
+		return activeProjects;
 	}
 
 	public List<Project> getAllProjects() {
@@ -110,9 +126,9 @@ public class ProjectController extends QSignalEmitter {
 		@SuppressWarnings("unchecked")
 		List<Project> projects = em.createQuery("SELECT p FROM Project p")
 				.getResultList();
-		//for (Project project : projects) {
-			//logger.info(project.toString());
-		//}
+		// for (Project project : projects) {
+		// logger.info(project.toString());
+		// }
 
 		em.close();
 		return projects;
@@ -128,19 +144,20 @@ public class ProjectController extends QSignalEmitter {
 				"SELECT p FROM Project p WHERE p.active = FALSE")
 				.getResultList();
 
-		//for (Project project : projects) {
-			//logger.info("INACTIVE PROJECTS: " + project.toString());
-		//}
+		// for (Project project : projects) {
+		// logger.info("INACTIVE PROJECTS: " + project.toString());
+		// }
 
 		em.close();
 		return projects;
 	}
-	
+
 	public Project getProject(int projectId) {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
-		Project project = (Project) em.createQuery("SELECT p FROM Project p WHERE p.id = " + projectId)
+		Project project = (Project) em.createQuery(
+				"SELECT p FROM Project p WHERE p.id = " + projectId)
 				.getSingleResult();
 
 		em.close();
@@ -163,7 +180,7 @@ public class ProjectController extends QSignalEmitter {
 		Project updateProj = (Project) em.createQuery(
 				"SELECT p FROM Project p WHERE p.id = " + project.getId())
 				.getSingleResult();
-		
+
 		updateProj.setDescription(project.getDescription());
 		updateProj.setActiveState(project.isActive());
 		updateProj.setPlannedTime(project.getPlannedTime());

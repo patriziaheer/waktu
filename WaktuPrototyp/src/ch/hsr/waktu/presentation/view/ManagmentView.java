@@ -1,6 +1,6 @@
 package ch.hsr.waktu.presentation.view;
 
-import ch.hsr.waktu.controller.PermissionController;
+import ch.hsr.waktu.controller.GuiController;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.presentation.view.projectmanagment.ProjectDetails;
 import ch.hsr.waktu.presentation.view.usermanagment.UserDetails;
@@ -24,8 +24,8 @@ public class ManagmentView extends QMainWindow {
 		userDetails = new UserDetails(); 
 		ui.tabWidget.addTab(userDetails, tr("Users"));
 		
-		ui.actionAddUser.setVisible(PermissionController.getInstance().canAddUser());
-		ui.actionAddProject.setVisible(PermissionController.getInstance().canAddProject(currUsr));
+		ui.actionAddUser.setVisible(GuiController.getInstance().canAddUser());
+		ui.actionAddProject.setVisible(GuiController.getInstance().canAddProject(currUsr));
 		
 		ui.actionAddProject.triggered.connect(this, "addProject()");
 		ui.actionAddUser.triggered.connect(this, "addUser()");

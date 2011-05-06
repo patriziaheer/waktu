@@ -33,7 +33,11 @@ public class Permission {
 	public int getId() {
 		return permissionid;
 	}
-	
+
+	public SystemRole getSystemRole() {
+		return systemRole;
+	}
+
 	public boolean getAddUser() {
 		return addUser;
 	}

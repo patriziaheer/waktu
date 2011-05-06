@@ -161,7 +161,7 @@ public class UserController extends QSignalEmitter implements UserControllerInte
 		updateUsr.setActiveState(user.isActive());
 		updateUsr.setPassword(user.getPasswordHash());
 		updateUsr.setPensum(user.getPensum());
-		updateUsr.setRole(user.getRole());
+		updateUsr.setSystemRole(user.getSystemRole());
 		updateUsr.setUsername(user.getUsername());
 
 		em.getTransaction().commit();
