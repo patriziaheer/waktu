@@ -152,10 +152,9 @@ public class WorkSessionController extends QSignalEmitter {
 	public boolean removeWorkSession(WorkSession workSession) {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
-
-		// em.createQuery("DELETE WorkSession ws WHERE ws.id = "
-		// + workSession.getId());
+		em.getTransaction().begin();
 		em.remove(workSession);
+		em.getTransaction().commit();
 		em.close();
 		removed.emit(workSession);
 		return true;
