@@ -101,6 +101,12 @@ public class Project {
 
 	@Override
 	public int hashCode() {
-		return projectid << description.hashCode() << plannedTime << projectIdentifier.hashCode();
+		int hashCode = 23;
+		hashCode = 31 * projectid;
+		hashCode = 31 * projectIdentifier.hashCode();
+		hashCode = 31 * description.hashCode();
+		hashCode = 31 * projectManager.hashCode();
+		hashCode = 31 * plannedTime;
+		return hashCode;
 	}
 }
