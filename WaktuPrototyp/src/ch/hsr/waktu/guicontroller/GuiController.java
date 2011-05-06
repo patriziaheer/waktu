@@ -1,4 +1,4 @@
-package ch.hsr.waktu.controller;
+package ch.hsr.waktu.guicontroller;
 
 import org.apache.log4j.Logger;
 

@@ -1,9 +1,9 @@
 package ch.hsr.waktu.gui.qt.view;
 
-import ch.hsr.waktu.controller.GuiController;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.gui.qt.view.projectmanagment.ProjectDetails;
 import ch.hsr.waktu.gui.qt.view.usermanagment.UserDetails;
+import ch.hsr.waktu.guicontroller.GuiController;
 
 import com.trolltech.qt.gui.QMainWindow;
 
