@@ -71,9 +71,13 @@ public class ProjectController extends QSignalEmitter {
 	public Project addProject(String projectIdentifier, String description,
 			Usr projectManager, int plannedTime) throws WaktuException {
 
-//		if(!pc.checkPermission("addProject")) {
-//			throw new WaktuException("AccessNotAllowed");
-//		}
+		if(!pc.checkPermission("addProject")) {
+			throw new WaktuException("AccessNotAllowed");
+		}
+		
+//		if(!pc.checkBusinessRules("addProject")) {
+//			throw new WaktuException("BusinessRules");
+//		}		
 		
 		Project newProject = new Project(projectIdentifier, description,
 				projectManager, plannedTime);
