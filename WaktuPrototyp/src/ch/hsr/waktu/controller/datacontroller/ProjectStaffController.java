@@ -52,6 +52,7 @@ public class ProjectStaffController extends QSignalEmitter {
 		em.persist(newProjectStaff);
 		em.flush();
 		em.getTransaction().commit();
+		em.close();
 		// add.emit(newProjectStaff);
 		return newProjectStaff;
 	}
@@ -66,7 +67,7 @@ public class ProjectStaffController extends QSignalEmitter {
 
 		@SuppressWarnings("unchecked")
 		List<ProjectStaff> projStaff = em.createQuery(
-				"SELECT ps FROM ProjectStaff ps ").getResultList();
+				"SELECT ps FROM ProjectStaff ps WHERE ps.user_usrid = '" + user.getId() + "'").getResultList();
 
 		ArrayList<Project> projects = new ArrayList<Project>();
 		for (ProjectStaff ps : projStaff) {
@@ -128,8 +129,9 @@ public class ProjectStaffController extends QSignalEmitter {
 			if ((ps.getProject().getId() == project.getId())
 					&& (ps.getUser().getId() == user.getId())) {
 				projectStaffToRemove = ps;
-				em.createQuery("DELETE ProjectStaff ps WHERE ps.id = "
-						+ projectStaffToRemove.getId());
+				
+				em.remove(ps);
+				
 				em.close();
 				return true;
 			}

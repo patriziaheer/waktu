@@ -8,7 +8,6 @@ import org.apache.log4j.PropertyConfigurator;
 
 import ch.hsr.waktu.presentation.view.LoginView;
 
-import com.trolltech.qt.core.QFile;
 import com.trolltech.qt.core.QTranslator;
 import com.trolltech.qt.gui.QApplication;
 

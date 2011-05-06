@@ -4,7 +4,7 @@ import ch.hsr.waktu.services.Md5;
 
 public class Usr {
 
-	private int id;
+	private int usrid;
 	private String username;
 	private String name;
 	private String firstname;
@@ -69,7 +69,7 @@ public class Usr {
 	}
 
 	public int getId() {
-		return id;
+		return usrid;
 	}
 
 	public String getName() {
@@ -117,7 +117,7 @@ public class Usr {
 	public boolean equals(Object obj) {
 		if (obj instanceof Usr) {
 			Usr usr = (Usr)obj;
-			if (usr.username.equals(username) && usr.id == id) {
+			if (usr.username.equals(username) && usr.usrid == usrid) {
 				return true;
 			}
 		}
