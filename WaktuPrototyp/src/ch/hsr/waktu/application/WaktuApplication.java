@@ -6,7 +6,7 @@ package ch.hsr.waktu.application;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import ch.hsr.waktu.presentation.view.LoginView;
+import ch.hsr.waktu.gui.qt.view.LoginView;
 
 import com.trolltech.qt.core.QTranslator;
 import com.trolltech.qt.gui.QApplication;
