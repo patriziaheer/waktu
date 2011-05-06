@@ -11,7 +11,7 @@ public class SortFilterModel extends QSortFilterProxyModel {
 	protected boolean filterAcceptsRow(int source_row, QModelIndex source_parent) {
 		QModelIndex index0;
 		if (source_parent == null) {
-			index0 = sourceModel().index(source_row, 0, source_parent);
+			index0 = sourceModel().index(source_row, 0, null);
 		} else {
 			index0 = sourceModel().index(source_parent.row(), 0,
 					source_parent.parent());

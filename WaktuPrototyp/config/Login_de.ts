@@ -50,12 +50,12 @@
     <message>
         <location filename="LoginView.java" line="106"/>
         <source>Close</source>
-        <translation type="unfinished">Beenden</translation>
+        <translation>Beenden</translation>
     </message>
-	<message>
+    <message>
         <location filename="LoginView.java" line="70"/>
         <source>Username or Password wrong</source>
-        <translation type="unfinished">Benutzername oder Passwort falsch</translation>
+        <translation>Benutzername oder Passwort falsch</translation>
     </message>
 </context>
 </TS>
