@@ -185,7 +185,7 @@ public class PermissionController extends QSignalEmitter {
 	public boolean checkPermission(String method) {
 
 		for (PermissionNode pn : getPermissions()) {
-			if((pn.getSystemRole() == loggedInUser.getSystemRole()) && (pn.method == method)) {
+			if((pn.getSystemRole().equals(loggedInUser.getSystemRole())) && (pn.method.equals(method))) {
 				return pn.getPermission();
 			}
 		}
