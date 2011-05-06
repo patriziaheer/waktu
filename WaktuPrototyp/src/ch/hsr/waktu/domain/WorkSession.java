@@ -23,11 +23,12 @@ public class WorkSession {
 	}
 	
 	public WorkSession(Usr user, WorkPackage workPackage,
-			GregorianCalendar startTime, GregorianCalendar endTime){
+			GregorianCalendar startTime, GregorianCalendar endTime, String description){
 		this.userRef = user;
 		this.workPackageRef = workPackage;
 		this.startTime = startTime;
 		this.endTime = endTime;
+		this.description = description;
 	}
 
 	public int getId() {

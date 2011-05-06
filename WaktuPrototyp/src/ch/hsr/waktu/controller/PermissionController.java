@@ -4,17 +4,24 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.apache.log4j.Logger;
+
+import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.controller.datacontroller.UserController;
+import ch.hsr.waktu.domain.Permission;
 import ch.hsr.waktu.domain.Project;
+import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.services.Md5;
+
+import com.trolltech.qt.QSignalEmitter;
 
 /**
  * @author pheer
  * @version 1.0
  * @created 01-Apr-2011 15:36:30
  */
-public class PermissionController {
+public class PermissionController extends QSignalEmitter {
 
 	private static PermissionController theInstance = null;
 	
@@ -25,12 +32,18 @@ public class PermissionController {
 		return theInstance;
 	}
 	
+	@SuppressWarnings("unused")
+	private Logger logger = Logger.getLogger(ProjectController.class);
+	public Signal0 update = new Signal0();
+	public Signal1<Permission> add = new Signal1<Permission>();
+	
 	public static void setInstance(
 			PermissionController permissionControllerInstance) {
 		theInstance = permissionControllerInstance;
 	}
 	
 	private static Usr loggedInUser;
+
 	
 	protected PermissionController(){
 
@@ -81,20 +94,20 @@ public class PermissionController {
 		return permissions;
 	}
 	
-//	public Project addPermission(SystemRole systemRole, ) {
-//
-//		Permission newPermission = new Permission();
-//		EntityManager em = PersistenceController.getInstance().getEMF()
-//				.createEntityManager();
-//		em.getTransaction().begin();
-//		em.persist(newPermission);
-//		em.flush();
-//		em.getTransaction().commit();
-//		add.emit(newPermission);
-//
-//		return newPermission;
-//
-//	}
+	public Permission addPermission(SystemRole systemRole, boolean addUser, boolean updateUser, boolean addProject, boolean updateProject, boolean addFavorite, boolean updateFavorite, boolean deleteFavorite) {
+
+		Permission newPermission = new Permission(systemRole, addUser, updateUser, addProject, updateProject, addFavorite, updateFavorite, deleteFavorite);
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(newPermission);
+		em.flush();
+		em.getTransaction().commit();
+		add.emit(newPermission);
+
+		return newPermission;
+
+	}
 
 	/**
 	 * 

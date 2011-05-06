@@ -50,10 +50,9 @@ public class WorkSessionController extends QSignalEmitter {
 	 * @param endTime
 	 */
 	public WorkSession addWorkSession(Usr user, WorkPackage workPackage,
-			GregorianCalendar startTime, GregorianCalendar endTime) {
-		//TODO set description
+			GregorianCalendar startTime, GregorianCalendar endTime, String description) {
 		WorkSession newWorkSession = new WorkSession(user, workPackage,
-				startTime, endTime);
+				startTime, endTime, description);
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		em.getTransaction().begin();
@@ -146,6 +145,10 @@ public class WorkSessionController extends QSignalEmitter {
 	 * 
 	 * @param workSession
 	 */
+	
+	
+	// TODO: funktioniert noch nicht..
+	
 	public boolean removeWorkSession(WorkSession workSession) {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
