@@ -6,7 +6,7 @@ import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.services.XmlUtil;
 
-public class UserControllerXml extends UserController implements UserControllerInterface{
+public class UserControllerXml implements UserControllerInterface{
 	
 	private String userFilePath = "./test/testdata/users.xml";
 	
@@ -32,7 +32,7 @@ public class UserControllerXml extends UserController implements UserControllerI
 	public Usr addUser(String firstname, String lastname, String password,
 			int pensum, SystemRole role, double holiday) {
 		LinkedList<Usr> allUsers = getAllUsers();
-		Usr newUser = new Usr(generateUsername(firstname, lastname), firstname, lastname, password, pensum, role, holiday);
+		Usr newUser = new Usr(UsernameController.generateUsername(firstname, lastname), firstname, lastname, password, pensum, role, holiday);
 		allUsers.add(newUser);
 		XmlUtil.saveUsersToXml(userFilePath, allUsers);
 		return newUser;

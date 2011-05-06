@@ -56,7 +56,7 @@ public class UserController extends QSignalEmitter implements UserControllerInte
 	 */
 	public Usr addUser(String firstname, String lastname,
 			String password, int pensum, SystemRole role, double holiday) {
-		Usr newUser = new Usr(generateUsername(firstname, lastname), firstname, lastname, Md5.hash(password), pensum,
+		Usr newUser = new Usr(UsernameController.generateUsername(firstname, lastname), firstname, lastname, Md5.hash(password), pensum,
 				role, holiday);
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
@@ -169,20 +169,6 @@ public class UserController extends QSignalEmitter implements UserControllerInte
 		update.emit();
 
 		return true;
-	}
-	
-	protected String generateUsername(String firstname, String lastname) {
-		String username = firstname.toLowerCase() + lastname.toLowerCase().replaceAll(" ", "");
-		int usernameOccurrence = 0;
-		for(Usr u: getAllUsers()) {
-			if(u.getUsername().startsWith(username)) {
-				usernameOccurrence += 1;
-			}
-		}
-		if(usernameOccurrence > 0) {
-			username = username + usernameOccurrence;
-		}		
-		return username;
 	}
 
 }
