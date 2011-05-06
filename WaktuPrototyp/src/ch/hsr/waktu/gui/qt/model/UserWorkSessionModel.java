@@ -38,8 +38,8 @@ public class UserWorkSessionModel extends QAbstractItemModel {
 			switch (index.column()) {
 			case 0: return workSession.getWorkPackage().getProject() + "-" + workSession.getWorkPackage();
 			case 1: return workSession.getDescription();
-			case 2: return workSession.getStart().toString();
-			case 3: return workSession.getEnd().toString();
+			case 2: return TimeUtil.convertGregorianToQDateTime(workSession.getStart());
+			case 3: return TimeUtil.convertGregorianToQDateTime(workSession.getEnd());
 			case 4:  {
 				QDateTime start = TimeUtil.convertGregorianToQDateTime(workSession.getStart());
 				QDateTime end = TimeUtil.convertGregorianToQDateTime(workSession.getEnd());
