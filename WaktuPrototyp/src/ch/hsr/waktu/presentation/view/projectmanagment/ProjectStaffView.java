@@ -29,11 +29,9 @@ public class ProjectStaffView extends QWidget {
 		ComboBoxData.createUserComboBox(ui.cmbUsers);
 		
 		ProjectStaffController.getInstance().add.connect(this, "added(ProjectStaff)");
-		ProjectStaffController.getInstance().update.connect(this, "updated()");
 		ProjectStaffController.getInstance().removed.connect(this, "removed(ProjectStaff)");
 		updateProjectStaffModel();
 	}
-
 	
 	private void updateProjectStaffModel() {
 		for (int i = 0; i < ProjectStaffController.getInstance().getUsers(project).size(); i++) {
@@ -49,23 +47,18 @@ public class ProjectStaffView extends QWidget {
 	}
 	
 	@SuppressWarnings("unused")
-	private void addUser() {
-		ProjectStaffController.getInstance().addProjectStaff((Usr)ui.cmbUsers.itemData(ui.cmbUsers.currentIndex()), project);
-	}
-	
-	@SuppressWarnings("unused")
 	private void deleteClicked(IndexButton btn) {
 		Usr user = ProjectStaffController.getInstance().getUsers(project).get(btn.getIndex().row());
 		ProjectStaffController.getInstance().removeUser(user, project);
 	}
 	
 	@SuppressWarnings("unused")
-	private void added(ProjectStaff projectStaff) {
-		updateTable();
+	private void addUser() {
+		ProjectStaffController.getInstance().addProjectStaff((Usr)ui.cmbUsers.itemData(ui.cmbUsers.currentIndex()), project);
 	}
 	
 	@SuppressWarnings("unused")
-	private void updated() {
+	private void added(ProjectStaff projectStaff) {
 		updateTable();
 	}
 

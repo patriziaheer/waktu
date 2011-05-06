@@ -1,11 +1,16 @@
 package ch.hsr.waktu.presentation.view.projectmanagment;
 
+import ch.hsr.waktu.controller.datacontroller.ProjectStaffController;
 import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.domain.Project;
+import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.model.ProjectWorkPackageModel;
+import ch.hsr.waktu.presentation.view.IndexButton;
 import ch.hsr.waktu.presentation.view.projectmanagment.jui.Ui_ProjectWorkPackage;
 
+import com.trolltech.qt.core.QModelIndex;
+import com.trolltech.qt.gui.QIcon;
 import com.trolltech.qt.gui.QWidget;
 
 public class ProjectWorkPackageView extends QWidget{
