@@ -80,7 +80,10 @@ public class FavoriteController extends QSignalEmitter {
 	
 	public boolean removeFavorite(Favorite favorite) {
 		EntityManager em = PersistenceController.getInstance().getEMF().createEntityManager();
-		em.remove(favorite);
+		em.getTransaction().begin();
+		Favorite favoriteToRemove = em.find(Favorite.class, favorite.getId());
+		em.remove(favoriteToRemove);
+		em.getTransaction().commit();
 		removed.emit(favorite);
 		return true;
 	}

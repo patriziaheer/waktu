@@ -2,7 +2,6 @@ package ch.hsr.waktu.domain;
 
 public class Permission {
 	private int permissionid;
-	@SuppressWarnings("unused")
 	private SystemRole systemRole;
 	private boolean addUser;
 	private boolean updateUser;

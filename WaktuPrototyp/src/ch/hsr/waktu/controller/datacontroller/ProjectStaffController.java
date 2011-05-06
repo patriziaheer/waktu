@@ -31,7 +31,6 @@ public class ProjectStaffController extends QSignalEmitter {
 	}
 
 	private Logger logger = Logger.getLogger(UserController.class);
-	public Signal0 update = new Signal0();
 	public Signal1<ProjectStaff> add = new Signal1<ProjectStaff>();
 	public Signal1<ProjectStaff> removed = new Signal1<ProjectStaff>();
 
@@ -53,7 +52,7 @@ public class ProjectStaffController extends QSignalEmitter {
 		em.flush();
 		em.getTransaction().commit();
 		em.close();
-		// add.emit(newProjectStaff);
+		add.emit(newProjectStaff);
 		return newProjectStaff;
 	}
 
@@ -130,8 +129,7 @@ public class ProjectStaffController extends QSignalEmitter {
 					&& (ps.getUser().getId() == user.getId())) {
 				projectStaffToRemove = ps;
 				
-				em.remove(ps);
-				
+				em.remove(projectStaffToRemove);				
 				em.close();
 				return true;
 			}

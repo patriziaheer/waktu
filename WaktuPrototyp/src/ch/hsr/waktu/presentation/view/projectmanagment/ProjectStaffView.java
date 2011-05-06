@@ -26,7 +26,6 @@ public class ProjectStaffView extends QWidget {
 		ui.tblWorkStaff.horizontalHeader().setStretchLastSection(true);
 		
 		ProjectStaffController.getInstance().add.connect(this, "added(ProjectStaff)");
-		ProjectStaffController.getInstance().update.connect(this, "updated()");
 		ProjectStaffController.getInstance().removed.connect(this, "removed(ProjectStaff)");
 		updateProjectStaffModel();
 	}
@@ -53,11 +52,6 @@ public class ProjectStaffView extends QWidget {
 	
 	@SuppressWarnings("unused")
 	private void added(ProjectStaff projectStaff) {
-		updateTable();
-	}
-	
-	@SuppressWarnings("unused")
-	private void updated() {
 		updateTable();
 	}
 

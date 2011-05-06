@@ -7,8 +7,10 @@ import javax.persistence.EntityManager;
 
 import org.apache.log4j.Logger;
 
+import ch.hsr.waktu.controller.PermissionController;
 import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.domain.Project;
+import ch.hsr.waktu.domain.ProjectStaff;
 import ch.hsr.waktu.domain.Usr;
 
 import com.trolltech.qt.QSignalEmitter;
@@ -25,6 +27,7 @@ public class ProjectController extends QSignalEmitter {
 	}
 
 	private static ProjectController theInstance = null;
+	private PermissionController pc = PermissionController.getInstance();
 
 	public static ProjectController getInstance() {
 		if (theInstance == null) {
@@ -46,9 +49,10 @@ public class ProjectController extends QSignalEmitter {
 	 * @param projectIdentifier
 	 * @param description
 	 * @param plannedTime
+	 * @throws WaktuException 
 	 */
 	public Project addProject(String projectIdentifier, String description,
-			int plannedTime) {
+			int plannedTime) throws WaktuException {
 		Usr projectManager = null;
 		return this.addProject(projectIdentifier, description, projectManager,
 				plannedTime);
@@ -62,10 +66,15 @@ public class ProjectController extends QSignalEmitter {
 	 * @param description
 	 * @param projectManager
 	 * @param plannedTime
+	 * @throws WaktuException 
 	 */
 	public Project addProject(String projectIdentifier, String description,
-			Usr projectManager, int plannedTime) {
+			Usr projectManager, int plannedTime) throws WaktuException {
 
+//		if(!pc.checkPermission("addProject")) {
+//			throw new WaktuException("AccessNotAllowed");
+//		}
+		
 		Project newProject = new Project(projectIdentifier, description,
 				projectManager, plannedTime);
 		EntityManager em = PersistenceController.getInstance().getEMF()
@@ -74,7 +83,6 @@ public class ProjectController extends QSignalEmitter {
 		em.persist(newProject);
 		em.flush();
 		em.getTransaction().commit();
-		// TODO: add.emit() wieder einschalten (Observer von QT)
 		add.emit(newProject);
 
 		return newProject;
@@ -105,15 +113,15 @@ public class ProjectController extends QSignalEmitter {
 
 		@SuppressWarnings("unchecked")
 		// TODO: nur usr.usrid auswählen in ProjectStaff
-		List<Project> projectStaff = em.createQuery("SELECT p FROM ProjectStaff p").getResultList();
+		List<ProjectStaff> projectStaff = em.createQuery("SELECT p FROM ProjectStaff p").getResultList();
 
 		em.close();
 		
 		List<Project> activeProjects = new ArrayList<Project>();
 		
-		for(Project p : projectStaff) {
+		for(ProjectStaff p : projectStaff) {
 			
-			activeProjects.add(p);
+			activeProjects.add(p.getProject());
 		}
 		
 		return activeProjects;

@@ -142,24 +142,8 @@ public class PermissionController extends QSignalEmitter {
 			return systemRole;
 		}
 
-		public void setSystemRole(SystemRole systemRole) {
-			this.systemRole = systemRole;
-		}
-
-		public String getMethod() {
-			return method;
-		}
-
-		public void setMethod(String method) {
-			this.method = method;
-		}
-
 		public boolean getPermission() {
 			return permission;
-		}
-
-		public void setPermission(boolean permission) {
-			this.permission = permission;
 		}
 
 	}
