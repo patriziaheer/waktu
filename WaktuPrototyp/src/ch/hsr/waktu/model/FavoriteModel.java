@@ -142,4 +142,8 @@ public class FavoriteModel extends QAbstractItemModel {
 	public void updateFavoriteModel() {
 		favorites = FavoriteController.getInstance().getFavorites(usr);
 	}
+	
+	public Favorite getFavorite(int row) {
+		return favorites.get(row);
+	}
 }

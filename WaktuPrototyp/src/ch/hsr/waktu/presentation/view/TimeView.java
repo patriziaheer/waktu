@@ -1,5 +1,7 @@
 package ch.hsr.waktu.presentation.view;
 
+import java.util.GregorianCalendar;
+
 import org.apache.log4j.Logger;
 
 import ch.hsr.waktu.controller.datacontroller.FavoriteController;
@@ -470,17 +472,39 @@ public class TimeView extends QMainWindow {
 
 	@SuppressWarnings("unused")
 	private void timeOnlyClicked() {
-		
-	}
-	
-	@SuppressWarnings("unused")
-	private void createFavoriteClicked() {
-		
+		if (ui.tblFavorites.selectionModel().selectedRows().size() >= 0) {
+			Favorite favorite = favoriteModel.getFavorite(ui.tblFavorites.selectionModel().selectedRows().get(0).row());
+			ui.txtStart.setTime(TimeUtil.convertGregorianToQDateTime(favorite.getStartTime()).time());
+			ui.txtEnd.setTime(TimeUtil.convertGregorianToQDateTime(favorite.getEndTime()).time());
+		} else {
+			setStatusBarText("Select a Favorite");
+		}
 	}
 	
 	@SuppressWarnings("unused")
 	private void workPackageOnlyClicked() {
-		
+		if (ui.tblFavorites.selectionModel().selectedRows().size() >= 0) {
+			Favorite favorite = favoriteModel.getFavorite(ui.tblFavorites.selectionModel().selectedRows().get(0).row());
+			WorkPackage wp = favorite.getWorkPackageID();
+			Project project = wp.getProject();
+			ui.cmbProject.setCurrentIndex(ui.cmbProject.findData(project));
+			ui.cmbWorkpackage.setCurrentIndex(ui.cmbWorkpackage.findData(wp));
+		} else {
+			setStatusBarText("Select a Favorite");
+		}
+	}
+	
+	@SuppressWarnings("unused")
+	private void createFavoriteClicked() {
+		if (ui.tblFavorites.selectionModel().selectedRows().size() >= 0) {
+			Favorite favorite = favoriteModel.getFavorite(ui.tblFavorites.selectionModel().selectedRows().get(0).row());
+			WorkPackage wp = favorite.getWorkPackageID();
+			GregorianCalendar start = favorite.getStartTime();
+			GregorianCalendar end = favorite.getEndTime();
+			WorkSessionController.getInstance().addWorkSession(currUser, wp, start, end, "");
+		} else {
+			setStatusBarText("Select a Favorite");
+		}
 	}
 
 	@SuppressWarnings("unused")

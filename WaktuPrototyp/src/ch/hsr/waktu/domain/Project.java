@@ -1,6 +1,5 @@
 package ch.hsr.waktu.domain;
 
-import ch.hsr.waktu.services.Md5;
 
 
 /**
@@ -100,8 +99,8 @@ public class Project {
 		return super.equals(obj);
 	}
 
-//	@Override
-//	public int hashCode() {
-//		return new Integer(Md5.hash(this.toString()));
-//	}
+	@Override
+	public int hashCode() {
+		return projectid << description.hashCode() << plannedTime << projectIdentifier.hashCode();
+	}
 }
