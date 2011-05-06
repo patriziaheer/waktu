@@ -1,5 +1,6 @@
 package ch.hsr.waktu.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,7 +10,6 @@ import org.apache.log4j.Logger;
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.Permission;
-import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.services.Md5;
@@ -24,79 +24,77 @@ import com.trolltech.qt.QSignalEmitter;
 public class PermissionController extends QSignalEmitter {
 
 	private static PermissionController theInstance = null;
-	
+
 	public static PermissionController getInstance() {
 		if (theInstance == null) {
 			theInstance = new PermissionController();
 		}
 		return theInstance;
 	}
-	
+
 	@SuppressWarnings("unused")
 	private Logger logger = Logger.getLogger(ProjectController.class);
 	public Signal0 update = new Signal0();
 	public Signal1<Permission> add = new Signal1<Permission>();
-	
-	public static void setInstance(
-			PermissionController permissionControllerInstance) {
-		theInstance = permissionControllerInstance;
-	}
-	
+
 	private static Usr loggedInUser;
+	private static List<Permission> permissionTable;
 
-	
-	protected PermissionController(){
-
+	protected PermissionController() {
+		permissionTable = getPermissionTable();
 	}
 
 	public Usr getLoggedInUser() {
 		return loggedInUser;
 	}
-	
+
 	private void setLoggedInUser(Usr user) {
 		loggedInUser = user;
 	}
 
-	
+	/**
+	 * 
+	 * @param user
+	 */
+	public void logout() {
+		setLoggedInUser(null);
+	}
+
 	/**
 	 * 
 	 * @param username
 	 */
-	public boolean login(String username, String password){
-		if(canLogin(username)) {
+	public boolean login(String username, String password) {
+		if (canLogin(username)) {
 			Usr user = UserController.getInstance().getUser(username);
 			String passwordHash = Md5.hash(password);
-			if(user.getPasswordHash().equals(passwordHash)) {
+			if (user.getPasswordHash().equals(passwordHash)) {
 				setLoggedInUser(user);
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	/**
-	 * 
-	 * @param user
-	 */
-	public void logout(){
-		setLoggedInUser(null);
-	}
-	
-	public List<Project> getPermissionTable() {
+
+	private List<Permission> getPermissionTable() {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		@SuppressWarnings("unchecked")
-		List<Project> permissions = em.createQuery("SELECT p FROM Permission p")
-				.getResultList();
+		List<Permission> permissions = em.createQuery(
+				"SELECT p FROM Permission p").getResultList();
 
 		em.close();
 		return permissions;
 	}
-	
-	public Permission addPermission(SystemRole systemRole, boolean addUser, boolean updateUser, boolean addProject, boolean updateProject, boolean addFavorite, boolean updateFavorite, boolean deleteFavorite) {
 
-		Permission newPermission = new Permission(systemRole, addUser, updateUser, addProject, updateProject, addFavorite, updateFavorite, deleteFavorite);
+	public Permission addPermission(SystemRole systemRole, boolean addUser,
+			boolean updateUser, boolean addProject, boolean updateProject,
+			boolean addFavorite, boolean updateFavorite, boolean deleteFavorite) {
+
+		Permission newPermission = new Permission(systemRole, addUser,
+				updateUser, addProject, updateProject, addFavorite,
+				updateFavorite, deleteFavorite);
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		em.getTransaction().begin();
@@ -111,61 +109,87 @@ public class PermissionController extends QSignalEmitter {
 
 	/**
 	 * 
-	 * @param user
-	 */
-	public boolean canAddProject(Usr loggedInUser){
-		return true;
-		/*SystemRole systemRole = loggedInUser.getRole();
-		return PermissionTable.getPermission(SystemAction.AddProjects, systemRole, null);*/
-	}
-
-	/**
-	 * 
-	 * @param user
-	 */
-	public boolean canAddProjectStaff(Usr loggedInUser, Project project){
-		return true;
-		/*if(ProjectController.getInstance().getProject(project.getId()).getProjectManager().equals(loggedInUser)) {
-			return PermissionTable.getPermission(SystemAction.AddUserToOwnProjects, loggedInUser.getRole(), project);
-		}
-		return PermissionTable.getPermission(SystemAction.AddUserToAllProjects, loggedInUser.getRole(), project);*/
-	}
-
-	/**
-	 * 
-	 * @param user
-	 */
-	public boolean canAddUser(){
-		return true; 
-		//return PermissionTable.getPermission(SystemAction.AddUser, loggedInUser.getRole(), null);
-	}
-
-	/**
-	 * 
-	 * @param user
-	 */
-	public boolean canAddWorkPackage(Project project){
-		return true;
-		/*if(ProjectController.getInstance().getProject(project.getId()).getProjectManager().equals(loggedInUser)) {
-			return PermissionTable.getPermission(SystemAction.CreateOwnWorkPackages, loggedInUser.getRole(), project);
-		}
-		return PermissionTable.getPermission(SystemAction.CreateAllWorkPackages, loggedInUser.getRole(), project);*/
-	}
-
-	/**
-	 * 
 	 * @param username
 	 * @param password
 	 */
-	public boolean canLogin(String username){
-		
+	public boolean canLogin(String username) {
+
 		try {
-			if(UserController.getInstance().getUser(username) != null) {
+			if (UserController.getInstance().getUser(username) != null) {
 				return true;
 			}
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return false;
+	}
+
+	private class PermissionNode {
+
+		public PermissionNode(SystemRole systemRole, String method,
+				boolean permission) {
+			this.systemRole = systemRole;
+			this.method = method;
+			this.permission = permission;
+
+		}
+
+		private SystemRole systemRole;
+		private String method;
+		private boolean permission;
+
+		public SystemRole getSystemRole() {
+			return systemRole;
+		}
+
+		public void setSystemRole(SystemRole systemRole) {
+			this.systemRole = systemRole;
+		}
+
+		public String getMethod() {
+			return method;
+		}
+
+		public void setMethod(String method) {
+			this.method = method;
+		}
+
+		public boolean getPermission() {
+			return permission;
+		}
+
+		public void setPermission(boolean permission) {
+			this.permission = permission;
+		}
+
+	}
+
+	public ArrayList<PermissionNode> getPermissions() {
+		ArrayList<PermissionNode> list = new ArrayList<PermissionNode>();
+
+		for (Permission perm : permissionTable) {
+			
+			list.add(new PermissionNode(perm.getSystemRole(), "addFavorite", perm.getAddFavorite()));
+			list.add(new PermissionNode(perm.getSystemRole(), "addProject", perm.getAddProject()));
+			list.add(new PermissionNode(perm.getSystemRole(), "addUser", perm.getAddUser()));
+			list.add(new PermissionNode(perm.getSystemRole(), "deleteFavorite", perm.getDeleteFavorite()));
+			list.add(new PermissionNode(perm.getSystemRole(), "updateFavorite", perm.getUpdateFavorite()));
+			list.add(new PermissionNode(perm.getSystemRole(), "updateProject", perm.getUpdateProject()));
+			list.add(new PermissionNode(perm.getSystemRole(), "updateUser", perm.getUpdateUser()));
+		}
+
+		return list;
+
+	}
+
+	public boolean checkPermission(String method) {
+
+		for (PermissionNode pn : getPermissions()) {
+			if((pn.getSystemRole() == loggedInUser.getSystemRole()) && (pn.method == method)) {
+				return pn.getPermission();
+			}
+		}
+
 		return false;
 	}
 }

@@ -96,7 +96,7 @@ public class UserControllerXml extends UserController implements UserControllerI
 				u.setName(user.getName());
 				u.setPassword(user.getPasswordHash());
 				u.setPensum(user.getPensum());
-				u.setRole(user.getSystemRole());
+				u.setSystemRole(user.getSystemRole());
 				u.setUsername(user.getUsername());
 //TODO update XML-File
 				return true;

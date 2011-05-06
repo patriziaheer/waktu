@@ -52,14 +52,6 @@ public class Usr {
 		return pensum;
 	}
 
-	public SystemRole getRole() {
-		return systemRole;
-	}
-
-	public void setRole(SystemRole role) {
-		this.systemRole = role;
-	}
-
 	public double getHoliday() {
 		return holiday;
 	}
