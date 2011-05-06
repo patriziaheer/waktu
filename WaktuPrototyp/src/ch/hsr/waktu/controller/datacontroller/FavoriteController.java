@@ -55,6 +55,7 @@ public class FavoriteController extends QSignalEmitter {
 		em.flush();
 		em.getTransaction().commit();
 		em.close();
+		add.emit(newFavorite);
 
 		return newFavorite;
 	}

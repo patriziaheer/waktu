@@ -18,6 +18,7 @@ public class WaktuApplication {
 	
 
     public static void main(String[] args) {
+    	
     	//ClassLoader loader = WaktuApplication.class.getClassLoader();
 		//PropertyConfigurator.configure(loader.getResource("settings").getFile());
     	PropertyConfigurator.configure("settings");
