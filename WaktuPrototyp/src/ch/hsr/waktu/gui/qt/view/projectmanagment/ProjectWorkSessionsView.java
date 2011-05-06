@@ -1,5 +1,6 @@
 package ch.hsr.waktu.gui.qt.view.projectmanagment;
 
+import ch.hsr.waktu.controller.TimeController;
 import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
@@ -36,7 +37,7 @@ public class ProjectWorkSessionsView extends QWidget {
 		ui.cmbWorkpackage.setCurrentIndex(-1);
 		ui.btnAddFilter.clicked.connect(this, "addFilter()");
 		ui.btnRemoveFilter.clicked.connect(this, "removeFilter()");
-		ui.lblTotalTime.setText(""+TimeUtil.calculateWorktimeForProject(project, null, null, null, null));
+		ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, null, null, null, null));
 		
 		WorkSessionController.getInstance().add.connect(this, "added(WorkSession)");
 		WorkSessionController.getInstance().removed.connect(this, "removed(WorkSession)");
@@ -50,12 +51,12 @@ public class ProjectWorkSessionsView extends QWidget {
 		filterModel.setStart(ui.txtStart.date());
 		filterModel.setEnd(ui.txtEnd.date());
 		
-		ui.lblTotalTime.setText(""+TimeUtil.calculateWorktimeForProject(project, (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), (Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()), ui.txtStart.dateTime(), ui.txtEnd.dateTime()));
+		ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), (Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()), ui.txtStart.dateTime(), ui.txtEnd.dateTime()));
 	}
 	
 	@SuppressWarnings("unused")
 	private void removeFilter() {
-		ui.lblTotalTime.setText(""+TimeUtil.calculateWorktimeForProject(project, null, null, null, null));
+		ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, null, null, null, null));
 		ui.cmbUser.setCurrentIndex(-1);
 		ui.cmbUser.setCurrentIndex(-1);
 		ui.txtStart.setDate(new QDate(01, 01, 1900));

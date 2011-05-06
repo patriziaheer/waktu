@@ -1,5 +1,6 @@
-package ch.hsr.waktu.controller.datacontroller;
+package ch.hsr.waktu.controller;
 
+import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.Usr;
 
 public class UsernameController {

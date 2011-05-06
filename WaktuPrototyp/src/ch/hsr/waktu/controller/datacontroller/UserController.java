@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import org.apache.log4j.Logger;
 
 import ch.hsr.waktu.controller.PersistenceController;
+import ch.hsr.waktu.controller.UsernameController;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.services.Md5;

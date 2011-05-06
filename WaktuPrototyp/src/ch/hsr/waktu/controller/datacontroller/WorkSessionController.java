@@ -118,6 +118,28 @@ public class WorkSessionController extends QSignalEmitter {
 		em.close();
 		return workSessions;
 	}
+	
+	public List<WorkSession> getWorkSessionsStartingAt(Usr user, QDate startDate) {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+		.createEntityManager();
+
+		@SuppressWarnings("unchecked")
+		List<WorkSession> workSessionsByUser = em.createQuery(
+		"SELECT ws FROM WorkSession ws ORDER BY ws.id").getResultList();
+
+		ArrayList<WorkSession> workSessions = new ArrayList<WorkSession>();
+		for (WorkSession ws : workSessionsByUser) {
+
+			if (ws.getUser().equals(user) && ws.getStart().equals(startDate)) {
+				workSessions.add(ws);
+				//logger.info("WORKSESSION: " + ws.toString());
+			}
+
+		}
+
+		em.close();
+		return workSessions;
+	}
 
 	public List<WorkSession> getWorkSessions(Project project) {
 		EntityManager em = PersistenceController.getInstance().getEMF()
@@ -177,4 +199,5 @@ public class WorkSessionController extends QSignalEmitter {
 		update.emit();
 		return true;
 	}
+
 }

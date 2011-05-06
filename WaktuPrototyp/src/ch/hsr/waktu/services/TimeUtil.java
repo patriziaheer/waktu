@@ -5,10 +5,6 @@ import java.util.GregorianCalendar;
 
 import org.apache.log4j.Logger;
 
-import ch.hsr.waktu.domain.Project;
-import ch.hsr.waktu.domain.Usr;
-import ch.hsr.waktu.domain.WorkPackage;
-
 import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.core.QDateTime;
 import com.trolltech.qt.core.QTime;
@@ -38,23 +34,9 @@ public class TimeUtil {
 	public static int calculateTimespanInSeconds(QDateTime timeBefore, QDateTime timeAfter) {
 		return timeBefore.secsTo(timeAfter);
 	}
-	
-	public static double calculateWorktimeForProject(Project project, WorkPackage workPackage, Usr usr, QDateTime start, QDateTime end) {
-		//TODO: added by PH => null for parameters means no filter
-		return 0.0;
-	}
-	
-	public static double calculateOvertime(Usr user) {
-		//TODO
-		return 0.0;
-	}
-	
-	public static double getRequiredWorkingTimeForMonth(QDate month) {
-		return 0.0;
-	}
-	
-	public static double formatTimeSecondsToHalfAnHourPrecision(int timeInSeconds) {
-		return 0.0;
+
+	public static GregorianCalendar convertQDateToGregorian(QDate date) {
+		return new GregorianCalendar(date.year(), date.month(), date.day());
 	}
 	
 }

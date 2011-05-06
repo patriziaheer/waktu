@@ -2,11 +2,12 @@ package ch.hsr.waktu.controller.datacontroller;
 
 import java.util.LinkedList;
 
+import ch.hsr.waktu.controller.UsernameController;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.services.XmlUtil;
 
-public class UserControllerXml implements UserControllerInterface{
+public class UserControllerXml extends UserController implements UserControllerInterface {
 	
 	private String userFilePath = "./test/testdata/users.xml";
 	
