@@ -55,7 +55,7 @@ public class TimeController {
 	}
 	
 	public static double timeInSecondsToHalfAnHourPrecision(int timeInSeconds) {
-		//TODO: round up/down
-		return 0.0;
+		double timeInHours = timeInSeconds / 3600;
+		return Math.ceil(timeInHours * 2)/2;
 	}
 }
