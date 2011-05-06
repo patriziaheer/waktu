@@ -8,16 +8,16 @@ package ch.hsr.waktu.domain;
 public class ProjectStaff {
 
 	private int id;
-	private Project Project;
-	private Usr User;
+	private Project project;
+	private Usr user;
 
 	public ProjectStaff() {
 		
 	}
 	
 	public ProjectStaff(Usr userId, Project projectId){
-		this.Project = projectId;
-		this.User = userId;
+		this.project = projectId;
+		this.user = userId;
 	}
 
 	public int getId() {
@@ -25,19 +25,19 @@ public class ProjectStaff {
 	}
 
 	public Project getProject() {
-		return Project;
+		return project;
 	}
 
 	public void setProject(Project project) {
-		Project = project;
+		this.project = project;
 	}
 
 	public Usr getUser() {
-		return User;
+		return user;
 	}
 
 	public void setUser(Usr user) {
-		User = user;
+		this.user = user;
 	}
 
 }

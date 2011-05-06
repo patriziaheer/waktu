@@ -2,6 +2,7 @@ package ch.hsr.waktu.model;
 
 
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -24,6 +25,7 @@ public class WorkSessionModel extends QAbstractItemModel {
 	
 	private Logger logger = Logger.getLogger(WorkSessionModel.class);
 	
+	private List<WorkSession> workSessions;
 	private Usr usr;
 	private QDate date;
 	private QModelIndex editable = null;
@@ -31,6 +33,7 @@ public class WorkSessionModel extends QAbstractItemModel {
 	public WorkSessionModel(Usr usr, QDate date) {
 		this.usr = usr;
 		this.date = date;
+		workSessions = WorkSessionController.getInstance().getWorkSessions(usr, date);
 	}
 
 	@Override
@@ -40,16 +43,16 @@ public class WorkSessionModel extends QAbstractItemModel {
 
 	@Override
 	public int rowCount(QModelIndex arg0) {
-		return WorkSessionController.getInstance().getWorkSessions(usr, date).size();
+		return workSessions.size();
 	}
 
 	@Override
 	public Object data(QModelIndex index, int role) {
 		if (Qt.ItemDataRole.DisplayRole == role || role == Qt.ItemDataRole.EditRole) {
-			WorkSession workSession = WorkSessionController.getInstance().getWorkSessions(usr, date).get(index.row());
+			WorkSession workSession = workSessions.get(index.row());
 			switch (index.column()) {
-			case 0: return "Projekt";
-			case 1: return "WorkPackage"; 
+			case 0: return workSession.getWorkPackage().getProject();
+			case 1: return workSession.getWorkPackage(); 
 			case 2: return workSession.getDescription();
 			case 3: return TimeUtil.convertGregorianToQDateTime(workSession.getStart()).time();
 			case 4: return TimeUtil.convertGregorianToQDateTime(workSession.getEnd()).time();
@@ -82,7 +85,7 @@ public class WorkSessionModel extends QAbstractItemModel {
 		if (editable == null) {
 			return super.flags(index);
 		}
-		if (index.row() == editable.row() && index.column() != columnCount()-1) {
+		if (index.row() == editable.row() && index.column() != columnCount()-1 && index.column() != 0 && index.column() != 1) {
 			Qt.ItemFlag[] flags = {Qt.ItemFlag.ItemIsEditable,Qt.ItemFlag.ItemIsSelectable,Qt.ItemFlag.ItemIsEnabled};
 			ItemFlags f = super.flags(index);
 			f.set(flags);
@@ -93,25 +96,30 @@ public class WorkSessionModel extends QAbstractItemModel {
 	
 	@Override
 	public boolean setData(QModelIndex index, Object value, int role) {
-		WorkSession workSession = WorkSessionController.getInstance().getWorkSessions(usr, date).get(index.row());
+		WorkSession workSession = workSessions.get(index.row());
 		switch(index.column()) {
 		case 2: {
 			workSession.setDescription((String)value);
 		}
 		break;
 		case 3: {
-			GregorianCalendar dateTime = TimeUtil.convertQDateTimeToGregorian(new QDateTime(date, (QTime)value));
-			workSession.setStart(dateTime);
+			QDateTime qDateTime = new QDateTime(date, (QTime)value);
+			if (qDateTime.compareTo(TimeUtil.convertGregorianToQDateTime(workSession.getEnd())) < 0) {
+				GregorianCalendar dateTime = TimeUtil.convertQDateTimeToGregorian(qDateTime);
+				workSession.setStart(dateTime);
+			}
 		}
 		break;
 		case 4: {
-			GregorianCalendar dateTime = TimeUtil.convertQDateTimeToGregorian(new QDateTime(date, (QTime)value));
-			workSession.setEnd(dateTime);
+			QDateTime qDateTime = new QDateTime(date, (QTime)value);
+			if (qDateTime.compareTo(TimeUtil.convertGregorianToQDateTime(workSession.getStart())) > 0) {
+				GregorianCalendar dateTime = TimeUtil.convertQDateTimeToGregorian(qDateTime);
+				workSession.setEnd(dateTime);
+			}
 			
 		}
 		break;
 		}
-		WorkSessionController.getInstance().updateWorkSession(workSession);
 		return super.setData(index, value, role);
 	}
 
@@ -136,6 +144,14 @@ public class WorkSessionModel extends QAbstractItemModel {
 		} else {
 			logger.info("Row " + editable.row() + " is editable");
 		}
+	}
+	
+	public WorkSession getWorkSession(int row) {
+		return workSessions.get(row);
+	}
+	
+	public void updateModel() {
+		workSessions = WorkSessionController.getInstance().getWorkSessions(usr, date);
 	}
 
 }

@@ -9,77 +9,116 @@
 		<attributes>
 			<id name="id">
 				<column name="favoriteId" />
-				<generated-value strategy="IDENTITY"/>
+				<generated-value strategy="IDENTITY" />
 			</id>
 			<basic name="startTime">
-           		<temporal>TIME</temporal>
-   		 	</basic>
-   		 	<basic name="endTime">
-          		<temporal>TIME</temporal>
-   		 	</basic>
+				<temporal>TIME</temporal>
+			</basic>
+			<basic name="endTime">
+				<temporal>TIME</temporal>
+			</basic>
+			<one-to-one name="workPackageId" fetch="LAZY">
+				<join-column name="workPackage"/>
+			</one-to-one>
+			<one-to-one name="usrId" fetch="LAZY">
+				<join-column name="usr"/>
+			</one-to-one>
 		</attributes>
 	</entity>
-	
+
 	<entity class="ch.hsr.waktu.domain.Project">
 		<table name="project" />
 		<attributes>
-			<id name="id">
+			<id name="projectid">
 				<column name="projectId" />
-				<generated-value strategy="IDENTITY"/>
-			</id>
+				<generated-value strategy="IDENTITY" />
+			</id>						
+			<one-to-one name="projectManager" fetch="LAZY">
+				<join-column name="projectmanager"/>
+			</one-to-one>
 		</attributes>
 	</entity>
-	
+
 	<entity class="ch.hsr.waktu.domain.ProjectStaff">
 		<table name="projectstaff" />
 		<attributes>
 			<id name="id">
 				<column name="projectStaff" />
-				<generated-value strategy="IDENTITY"/>
+				<generated-value strategy="IDENTITY" />
 			</id>
+			<one-to-one name="project" fetch="LAZY">
+				<join-column name="projectid" />
+			</one-to-one>
+			<one-to-one name="user" fetch="LAZY">
+				<join-column name="usrid" />
+			</one-to-one>
 		</attributes>
 	</entity>
-	
+
 	<entity class="ch.hsr.waktu.domain.Usr">
 		<table name="usr" />
 		<attributes>
-			<id name="id">
+			<id name="usrid">
 				<column name="usrId" />
-				<generated-value strategy="IDENTITY"/>
+				<generated-value strategy="IDENTITY" />
 			</id>
+
 			<basic name="systemRole">
-				<enumerated>STRING</enumerated>	
+				<enumerated>STRING</enumerated>
 			</basic>
 		</attributes>
 	</entity>
-	
+
 	<entity class="ch.hsr.waktu.domain.WorkPackage">
 		<table name="workpackage" />
 		<attributes>
 			<id name="id">
 				<column name="workPackageId" />
-				<generated-value strategy="IDENTITY"/>
+				<generated-value strategy="IDENTITY" />
 			</id>
+			<one-to-one name="project" fetch="LAZY">
+				<join-column name="project"/>
+			</one-to-one>
+		
 		</attributes>
 	</entity>
-	
+
 	<entity class="ch.hsr.waktu.domain.WorkSession">
 		<table name="worksession" />
 		<attributes>
 			<id name="id">
 				<column name="workSessionId" />
-				<generated-value strategy="IDENTITY"/>
+				<generated-value strategy="IDENTITY" />
 			</id>
 			<basic name="startTime">
-           		<temporal>TIMESTAMP</temporal>
-   		 	</basic>
-   		 	<basic name="endTime">
-          		<temporal>TIMESTAMP</temporal>
-   		 	</basic>
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="endTime">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
 			<basic name="description">
 				<column name="description" />
 			</basic>
+			<one-to-one name="workPackageRef" fetch="LAZY">
+				<join-column name="workpackage"/>
+			</one-to-one>
+			<one-to-one name="userRef" fetch="LAZY">
+				<join-column name="usr"/>
+			</one-to-one>
 		</attributes>
 	</entity>
 	
+	<entity class="ch.hsr.waktu.domain.Permission">
+		<table name="permission" />
+		<attributes>
+			<id name="permissionid">
+				<column name="permissionId" />
+				<generated-value strategy="IDENTITY" />
+			</id>
+			<basic name="systemRole">
+				<enumerated>STRING</enumerated>
+			</basic>
+		</attributes>
+	</entity>
+
 </entity-mappings>

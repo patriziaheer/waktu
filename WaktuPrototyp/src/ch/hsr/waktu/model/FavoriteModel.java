@@ -1,5 +1,7 @@
 package ch.hsr.waktu.model;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import ch.hsr.waktu.controller.datacontroller.FavoriteController;
@@ -21,11 +23,13 @@ public class FavoriteModel extends QAbstractItemModel {
 
 	private Logger logger = Logger.getLogger(FavoriteModel.class);
 	
+	private List<Favorite> favorites;
 	private Usr usr;
 	private QModelIndex editable = null;
 
 	public FavoriteModel(Usr usr) {
 		this.usr = usr;
+		favorites = FavoriteController.getInstance().getFavorites(usr);
 	}
 
 	@Override
@@ -35,17 +39,16 @@ public class FavoriteModel extends QAbstractItemModel {
 
 	@Override
 	public int rowCount(QModelIndex arg0) {
-		return FavoriteController.getInstance().getFavorites(usr).size();
+		return favorites.size();
 	}
 
 	@Override
 	public Object data(QModelIndex index, int role) {
 		if (Qt.ItemDataRole.DisplayRole == role || role == Qt.ItemDataRole.EditRole) {
-			Favorite fav = FavoriteController.getInstance().getFavorites(usr)
-					.get(index.row());
+			Favorite fav = favorites.get(index.row());
 			switch (index.column()) {
 			case 0:
-				return fav.getWorkPackageID();
+				return fav.getWorkPackageID().getProject() + " - " + fav.getWorkPackageID();
 			case 1:
 				return TimeUtil.convertGregorianToQDateTime(fav.getStartTime()).time();
 			case 2:
@@ -93,20 +96,23 @@ public class FavoriteModel extends QAbstractItemModel {
 	
 	@Override
 	public boolean setData(QModelIndex index, Object value, int role) {
-		Favorite favorite = FavoriteController.getInstance().getFavorites(usr).get(index.row());
+		Favorite favorite = favorites.get(index.row());
 		switch(index.column()) {
 		case 1: {
 			QDateTime dateTime = new QDateTime(new QDate(1900,01,01), (QTime)value);
-			favorite.setStartTime(TimeUtil.convertQDateTimeToGregorian(dateTime));
+			if (dateTime.compareTo(TimeUtil.convertGregorianToQDateTime(favorite.getEndTime())) < 0) {
+				favorite.setStartTime(TimeUtil.convertQDateTimeToGregorian(dateTime));
+			}
 		}
 		break;
 		case 2: {
 			QDateTime dateTime = new QDateTime(new QDate(1900,01,01), (QTime)value);
-			favorite.setEndTime(TimeUtil.convertQDateTimeToGregorian(dateTime));
+			if (dateTime.compareTo(TimeUtil.convertGregorianToQDateTime(favorite.getStartTime())) > 0) {
+				favorite.setEndTime(TimeUtil.convertQDateTimeToGregorian(dateTime));
+			}
 		}
 		break;
 		}
-		FavoriteController.getInstance().updateFavorite(favorite);
 		return super.setData(index, value, role);
 	}
 
@@ -131,5 +137,9 @@ public class FavoriteModel extends QAbstractItemModel {
 		} else {
 			logger.info("Row " + editable.row() + " is editable");
 		}
+	}
+	
+	public void updateFavoriteModel() {
+		favorites = FavoriteController.getInstance().getFavorites(usr);
 	}
 }

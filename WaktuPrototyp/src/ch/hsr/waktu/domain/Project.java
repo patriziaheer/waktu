@@ -10,7 +10,7 @@ import ch.hsr.waktu.services.Md5;
  */
 public class Project {
 
-	private int id;
+	private int projectid;
 	private String projectIdentifier;
 	private String description;
 	private Usr projectManager;
@@ -39,7 +39,7 @@ public class Project {
 	}
 
 	public int getId() {
-		return id;
+		return projectid;
 	}
 
 	public String getDescription() {
@@ -91,7 +91,7 @@ public class Project {
 	public boolean equals(Object obj) {
 		if (obj instanceof Project) {
 			Project proj = (Project)obj;
-			if (proj.projectIdentifier.equals(projectIdentifier) && proj.description.equals(description) && proj.id == id) {
+			if (proj.projectIdentifier.equals(projectIdentifier) && proj.description.equals(description) && proj.projectid == projectid) {
 				return true;
 			} else {
 				return false;
