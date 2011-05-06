@@ -4,6 +4,7 @@ import ch.hsr.waktu.controller.datacontroller.ProjectStaffController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.ProjectStaff;
 import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.model.ComboBoxData;
 import ch.hsr.waktu.model.ProjectStaffModel;
 import ch.hsr.waktu.presentation.view.IndexButton;
 import ch.hsr.waktu.presentation.view.projectmanagment.jui.Ui_ProjectStaff;
@@ -24,6 +25,8 @@ public class ProjectStaffView extends QWidget {
 		projectStaffModel = new ProjectStaffModel(project);
 		ui.tblWorkStaff.setModel(projectStaffModel);
 		ui.tblWorkStaff.horizontalHeader().setStretchLastSection(true);
+		ui.btnAdd.clicked.connect(this, "addUser()");
+		ComboBoxData.createUserComboBox(ui.cmbUsers);
 		
 		ProjectStaffController.getInstance().add.connect(this, "added(ProjectStaff)");
 		ProjectStaffController.getInstance().removed.connect(this, "removed(ProjectStaff)");
@@ -42,6 +45,11 @@ public class ProjectStaffView extends QWidget {
 			
 			ui.tblWorkStaff.setIndexWidget(currIndex, deleteButton);
 		}
+	}
+	
+	@SuppressWarnings("unused")
+	private void addUser() {
+		ProjectStaffController.getInstance().addProjectStaff((Usr)ui.cmbUsers.itemData(ui.cmbUsers.currentIndex()), project);
 	}
 	
 	@SuppressWarnings("unused")

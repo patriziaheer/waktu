@@ -9,6 +9,7 @@ import ch.hsr.waktu.model.TableSortFilterModel;
 import ch.hsr.waktu.presentation.view.projectmanagment.jui.Ui_ProjectWorkSessions;
 import ch.hsr.waktu.services.TimeUtil;
 
+import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.gui.QWidget;
 
 public class ProjectWorkSessionsView extends QWidget {
@@ -29,6 +30,8 @@ public class ProjectWorkSessionsView extends QWidget {
 
 		ComboBoxData.createUserComboBox(ui.cmbUser);
 		ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, project);
+		ui.cmbUser.setCurrentIndex(-1);
+		ui.cmbWorkpackage.setCurrentIndex(-1);
 		ui.btnAddFilter.clicked.connect(this, "addFilter()");
 		ui.btnRemoveFilter.clicked.connect(this, "removeFilter()");
 		ui.lblTotalTime.setText(""+TimeUtil.calculateWorktimeForProject(project, null, null, null, null));
@@ -37,6 +40,9 @@ public class ProjectWorkSessionsView extends QWidget {
 	@SuppressWarnings("unused")
 	private void addFilter() {
 		filterModel.setUsr((Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()));
+		filterModel.setWorkPackage((WorkPackage)ui.cmbUser.itemData(ui.cmbWorkpackage.currentIndex()));
+		filterModel.setStart(ui.txtStart.date());
+		filterModel.setEnd(ui.txtEnd.date());
 		
 		ui.lblTotalTime.setText(""+TimeUtil.calculateWorktimeForProject(project, (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), (Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()), ui.txtStart.dateTime(), ui.txtEnd.dateTime()));
 	}
@@ -44,7 +50,10 @@ public class ProjectWorkSessionsView extends QWidget {
 	@SuppressWarnings("unused")
 	private void removeFilter() {
 		ui.lblTotalTime.setText(""+TimeUtil.calculateWorktimeForProject(project, null, null, null, null));
-		
+		ui.cmbUser.setCurrentIndex(-1);
+		ui.cmbUser.setCurrentIndex(-1);
+		ui.txtStart.setDate(new QDate(01, 01, 1900));
+		ui.txtEnd.setDate(new QDate(31, 12, 2999));
 	}
 	
 

@@ -37,6 +37,10 @@ public class TimeUtil {
 //		return new GregorianCalendar();
 //	}
 	
+	public static int calculateTimespanInSeconds(GregorianCalendar timeBefore, GregorianCalendar timeAfter) {
+		return calculateTimespanInSeconds(convertGregorianToQDateTime(timeBefore), convertGregorianToQDateTime(timeAfter));
+	}
+	
 	public static int calculateTimespanInSeconds(QDateTime timeBefore, QDateTime timeAfter) {
 		return timeBefore.secsTo(timeAfter);
 	}

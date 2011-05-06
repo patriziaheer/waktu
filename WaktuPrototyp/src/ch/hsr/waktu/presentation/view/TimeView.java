@@ -52,8 +52,6 @@ public class TimeView extends QMainWindow {
 		managmentView = new ManagmentView(currUser);
 
 		ui.setupUi(this);
-		ui.btnDown.clicked.connect(this, "downClicked()");
-		ui.calendar.setVisible(false);
 		ComboBoxData.createProjectForUserComboBox(ui.cmbProject, currUser);
 		ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage,
 				(Project) ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
@@ -63,8 +61,6 @@ public class TimeView extends QMainWindow {
 		ui.actionClose.triggered.connect(this, "closeApp()");
 
 		// calendar slots
-		ui.calendar.selectionChanged
-				.connect(this, "calendarSelectionChanged()");
 		ui.btnMo.clicked.connect(this, "moClicked()");
 		ui.btnDi.clicked.connect(this, "diClicked()");
 		ui.btnMi.clicked.connect(this, "miClicked()");
@@ -84,7 +80,12 @@ public class TimeView extends QMainWindow {
 
 		ui.tblFavorites.setModel(new FavoriteModel(currUser));
 		ui.tblFavorites.horizontalHeader().setStretchLastSection(true);
+		ui.tblFavorites.resizeColumnsToContents();
+		ui.tblFavorites.setSelectionMode(SelectionMode.SingleSelection);
+		ui.tblFavorites.setSelectionBehavior(SelectionBehavior.SelectRows);
+		
 		ui.tblWorksessions.horizontalHeader().setStretchLastSection(true);
+		ui.tblWorksessions.resizeColumnsToContents();
 		ui.tblWorksessions.setSelectionMode(SelectionMode.SingleSelection);
 		ui.tblWorksessions.setSelectionBehavior(SelectionBehavior.SelectRows);
 
@@ -107,8 +108,7 @@ public class TimeView extends QMainWindow {
 		workSessionModel = new WorkSessionModel(currUser, currDate);
 		favoriteModel = new FavoriteModel(currUser);
 		ui.tblFavorites.setModel(favoriteModel);
-		ui.calendar.setSelectedDate(currDate);
-		calendarSelectionChanged();
+		updateCalendar();
 		updateWorkSessionModel();
 		updateFavoriteModel();
 	}
@@ -128,92 +128,6 @@ public class TimeView extends QMainWindow {
 	@SuppressWarnings("unused")
 	private void closeApp() {
 		System.exit(0);
-	}
-
-	@SuppressWarnings("unused")
-	private void downClicked() {
-		if (ui.calendar.isVisible()) {
-			ui.btnDown.setText("v");
-			ui.calendar.setVisible(false);
-			setButtonVisibility(true);
-		} else {
-			ui.btnDown.setText("^");
-			setButtonVisibility(false);
-			ui.calendar.setVisible(true);
-		}
-	}
-
-	private void setButtonVisibility(boolean visible) {
-		ui.btnLeft.setVisible(visible);
-		ui.btnMo.setVisible(visible);
-		ui.btnDi.setVisible(visible);
-		ui.btnMi.setVisible(visible);
-		ui.btnDo.setVisible(visible);
-		ui.btnFri.setVisible(visible);
-		ui.btnSa.setVisible(visible);
-		ui.btnSo.setVisible(visible);
-		ui.btnRight.setVisible(visible);
-		ui.lblStart.setVisible(visible);
-		ui.lblEnd.setVisible(visible);
-		ui.lblBis.setVisible(visible);
-		ui.dtCurrDate.setVisible(visible);
-	}
-
-	private void calendarSelectionChanged() {
-		currDate = ui.calendar.selectedDate();
-		ui.dtCurrDate.setDate(currDate);
-		updateWorkSessionModel();
-		resetButtonEnabled();
-
-		QDate startDate = new QDate();
-		QDate endDate = new QDate();
-
-		switch (currDate.dayOfWeek()) {
-		case 1: {
-			ui.btnMo.setEnabled(false);
-			startDate = currDate;
-			endDate = currDate.addDays(6);
-		}
-			break;
-		case 2: {
-			ui.btnDi.setEnabled(false);
-			startDate = currDate.addDays(-1);
-			endDate = currDate.addDays(5);
-		}
-			break;
-		case 3: {
-			ui.btnMi.setEnabled(false);
-			startDate = currDate.addDays(-2);
-			endDate = currDate.addDays(4);
-		}
-			break;
-		case 4: {
-			ui.btnDo.setEnabled(false);
-			startDate = currDate.addDays(-3);
-			endDate = currDate.addDays(3);
-		}
-			break;
-		case 5: {
-			ui.btnFri.setEnabled(false);
-			startDate = currDate.addDays(-4);
-			endDate = currDate.addDays(2);
-		}
-			break;
-		case 6: {
-			ui.btnSa.setEnabled(false);
-			startDate = currDate.addDays(-5);
-			endDate = currDate.addDays(1);
-		}
-			break;
-		case 7: {
-			ui.btnSo.setEnabled(false);
-			startDate = currDate.addDays(-6);
-			endDate = currDate;
-		}
-			break;
-		}
-		ui.lblStart.setText(startDate.toString());
-		ui.lblEnd.setText(endDate.toString());
 	}
 
 	private void resetButtonEnabled() {
@@ -369,20 +283,66 @@ public class TimeView extends QMainWindow {
 	@SuppressWarnings("unused")
 	private void leftClicked() {
 		currDate = currDate.addDays(-7);
-		ui.calendar.setSelectedDate(currDate);
-		calendarSelectionChanged();
+		updateCalendar();
 	}
 
 	@SuppressWarnings("unused")
 	private void rightClicked() {
 		currDate = currDate.addDays(7);
-		ui.calendar.setSelectedDate(currDate);
-		calendarSelectionChanged();
+		updateCalendar();
 	}
 
 	private void updateCalendar() {
-		ui.calendar.setSelectedDate(currDate);
-		ui.dtCurrDate.setDate(currDate);
+		ui.lblCurrDate.setText(currDate.toString("dd.MM.yy"));
+		QDate startDate = new QDate();
+		QDate endDate = new QDate();
+
+		switch (currDate.dayOfWeek()) {
+		case 1: {
+			ui.btnMo.setEnabled(false);
+			startDate = currDate;
+			endDate = currDate.addDays(6);
+		}
+			break;
+		case 2: {
+			ui.btnDi.setEnabled(false);
+			startDate = currDate.addDays(-1);
+			endDate = currDate.addDays(5);
+		}
+			break;
+		case 3: {
+			ui.btnMi.setEnabled(false);
+			startDate = currDate.addDays(-2);
+			endDate = currDate.addDays(4);
+		}
+			break;
+		case 4: {
+			ui.btnDo.setEnabled(false);
+			startDate = currDate.addDays(-3);
+			endDate = currDate.addDays(3);
+		}
+			break;
+		case 5: {
+			ui.btnFri.setEnabled(false);
+			startDate = currDate.addDays(-4);
+			endDate = currDate.addDays(2);
+		}
+			break;
+		case 6: {
+			ui.btnSa.setEnabled(false);
+			startDate = currDate.addDays(-5);
+			endDate = currDate.addDays(1);
+		}
+			break;
+		case 7: {
+			ui.btnSo.setEnabled(false);
+			startDate = currDate.addDays(-6);
+			endDate = currDate;
+		}
+			break;
+		}
+		ui.lblStart.setText(startDate.toString("dd.MM.yy"));
+		ui.lblEnd.setText(endDate.toString("dd.MM.yy"));
 		updateWorkSessionModel();
 	}
 
@@ -442,6 +402,7 @@ public class TimeView extends QMainWindow {
 	private void resetClicked() {
 		ui.txtStart.setTime(new QTime(0, 0, 0));
 		ui.txtEnd.setTime(new QTime(0, 0, 0));
+		ui.txtDescription.setText("");
 		ui.cmbProject.setCurrentIndex(-1);
 		ui.cmbWorkpackage = new QComboBox();
 	}
@@ -466,25 +427,30 @@ public class TimeView extends QMainWindow {
 			end.setTime(ui.txtEnd.time());
 			WorkSessionController.getInstance().addWorkSession(currUser,
 					workPackage, TimeUtil.convertQDateTimeToGregorian(start),
-					TimeUtil.convertQDateTimeToGregorian(end), ui.txtDescription.text());
+					TimeUtil.convertQDateTimeToGregorian(end),
+					ui.txtDescription.text());
 		}
 	}
 
 	@SuppressWarnings("unused")
 	private void timeOnlyClicked() {
 		if (ui.tblFavorites.selectionModel().selectedRows().size() >= 0) {
-			Favorite favorite = favoriteModel.getFavorite(ui.tblFavorites.selectionModel().selectedRows().get(0).row());
-			ui.txtStart.setTime(TimeUtil.convertGregorianToQDateTime(favorite.getStartTime()).time());
-			ui.txtEnd.setTime(TimeUtil.convertGregorianToQDateTime(favorite.getEndTime()).time());
+			Favorite favorite = favoriteModel.getFavorite(ui.tblFavorites
+					.selectionModel().selectedRows().get(0).row());
+			ui.txtStart.setTime(TimeUtil.convertGregorianToQDateTime(
+					favorite.getStartTime()).time());
+			ui.txtEnd.setTime(TimeUtil.convertGregorianToQDateTime(
+					favorite.getEndTime()).time());
 		} else {
 			setStatusBarText("Select a Favorite");
 		}
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void workPackageOnlyClicked() {
 		if (ui.tblFavorites.selectionModel().selectedRows().size() >= 0) {
-			Favorite favorite = favoriteModel.getFavorite(ui.tblFavorites.selectionModel().selectedRows().get(0).row());
+			Favorite favorite = favoriteModel.getFavorite(ui.tblFavorites
+					.selectionModel().selectedRows().get(0).row());
 			WorkPackage wp = favorite.getWorkPackageID();
 			Project project = wp.getProject();
 			ui.cmbProject.setCurrentIndex(ui.cmbProject.findData(project));
@@ -493,15 +459,17 @@ public class TimeView extends QMainWindow {
 			setStatusBarText("Select a Favorite");
 		}
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void createFavoriteClicked() {
 		if (ui.tblFavorites.selectionModel().selectedRows().size() >= 0) {
-			Favorite favorite = favoriteModel.getFavorite(ui.tblFavorites.selectionModel().selectedRows().get(0).row());
+			Favorite favorite = favoriteModel.getFavorite(ui.tblFavorites
+					.selectionModel().selectedRows().get(0).row());
 			WorkPackage wp = favorite.getWorkPackageID();
 			GregorianCalendar start = favorite.getStartTime();
 			GregorianCalendar end = favorite.getEndTime();
-			WorkSessionController.getInstance().addWorkSession(currUser, wp, start, end, "");
+			WorkSessionController.getInstance().addWorkSession(currUser, wp,
+					start, end, "");
 		} else {
 			setStatusBarText("Select a Favorite");
 		}
@@ -581,7 +549,9 @@ public class TimeView extends QMainWindow {
 		updateWorkSessionModel();
 		workSessionModel.updateModel();
 		workSessionModel.layoutAboutToBeChanged.emit();
-		workSessionModel.dataChanged.emit(workSessionModel.index(0, 0), workSessionModel.index(workSessionModel.rowCount(), workSessionModel.columnCount()));
+		workSessionModel.dataChanged.emit(workSessionModel.index(0, 0),
+				workSessionModel.index(workSessionModel.rowCount(),
+						workSessionModel.columnCount()));
 		workSessionModel.layoutChanged.emit();
 	}
 
@@ -594,10 +564,11 @@ public class TimeView extends QMainWindow {
 		} else {
 			if (EditStatus.Edit == btn.getStatus()) {
 				btn.setStatus(EditStatus.Save);
-				/*for (int i = 0; i < workSessionModel.columnCount(); i++) {
-					ui.tblWorksessions.edit(workSessionModel.index(btn
-							.getIndex().row(), i));
-				}*/
+				/*
+				 * for (int i = 0; i < workSessionModel.columnCount(); i++) {
+				 * ui.tblWorksessions.edit(workSessionModel.index(btn
+				 * .getIndex().row(), i)); }
+				 */
 				workSessionModel.setEditable(btn.getIndex());
 				btn.setIcon(new QIcon("classpath:icons/save_16x16.png"));
 				ui.tblWorksessions.selectionModel().select(btn.getIndex(),
@@ -606,13 +577,16 @@ public class TimeView extends QMainWindow {
 				workSessionModel.setEditable(null);
 				btn.setIcon(new QIcon("classpath:icons/edit_16x16.png"));
 				btn.setStatus(EditStatus.Edit);
-				WorkSessionController.getInstance().updateWorkSession(workSessionModel.getWorkSession(btn.getIndex().row()));
+				WorkSessionController.getInstance().updateWorkSession(
+						workSessionModel.getWorkSession(btn.getIndex().row()));
 			}
-			/*workSessionModel.layoutAboutToBeChanged.emit();
-			workSessionModel.dataChanged.emit(workSessionModel.index(0, 0),
-					workSessionModel.index(workSessionModel.rowCount(),
-							workSessionModel.columnCount()));
-			workSessionModel.layoutChanged.emit();*/
+			/*
+			 * workSessionModel.layoutAboutToBeChanged.emit();
+			 * workSessionModel.dataChanged.emit(workSessionModel.index(0, 0),
+			 * workSessionModel.index(workSessionModel.rowCount(),
+			 * workSessionModel.columnCount()));
+			 * workSessionModel.layoutChanged.emit();
+			 */
 		}
 	}
 
@@ -635,10 +609,11 @@ public class TimeView extends QMainWindow {
 		} else {
 			if (EditStatus.Edit == btn.getStatus()) {
 				btn.setStatus(EditStatus.Save);
-				/*for (int i = 0; i < favoriteModel.columnCount(); i++) {
-					ui.tblFavorites.edit(favoriteModel.index(btn.getIndex()
-							.row(), i));
-				}*/
+				/*
+				 * for (int i = 0; i < favoriteModel.columnCount(); i++) {
+				 * ui.tblFavorites.edit(favoriteModel.index(btn.getIndex()
+				 * .row(), i)); }
+				 */
 				favoriteModel.setEditable(btn.getIndex());
 				btn.setIcon(new QIcon("classpath:icons/save_16x16.png"));
 				ui.tblFavorites.selectionModel().select(btn.getIndex(),
