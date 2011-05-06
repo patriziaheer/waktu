@@ -109,12 +109,21 @@ public class Usr {
 	public boolean equals(Object obj) {
 		if (obj instanceof Usr) {
 			Usr usr = (Usr)obj;
-			if (usr.username.equals(username) && usr.usrid == usrid) {
+			if (usr.username.equals(username) && usr.usrid == usrid && 
+					usr.firstname.equals(firstname) && usr.name.equals(name) && 
+					usr.holiday == holiday && usr.active == active && 
+					usr.passwordHash.equals(passwordHash) && usr.pensum == pensum && 
+					usr.systemRole.equals(systemRole)) {
 				return true;
 			}
 		}
 		return super.equals(obj);
 	}
+	
+//	@Override
+//	public int hashCode() {
+//		return new Integer(Md5.hash(this.toString()));
+//	}
 
 	public void setPasswordHash(String passwordHash) {
 		this.passwordHash = passwordHash;

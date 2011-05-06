@@ -4,7 +4,7 @@
 <username>patriziaheer</username>
 <firstname>Patrizia</firstname>
 <lastname>Heer</lastname>
-<passwordHash></passwordHash>
+<passwordHash>81dc9bdb52d04dc20036dbd8313ed055</passwordHash>
 <pensum>100</pensum>
 <systemRole>ADMIN</systemRole>
 <holiday>12</holiday>
@@ -15,7 +15,7 @@
 <username>simonstäheli</username>
 <firstname>Simon</firstname>
 <lastname>Stäheli</lastname>
-<passwordHash></passwordHash>
+<passwordHash>81dc9bdb52d04dc20036dbd8313ed055</passwordHash>
 <pensum>100</pensum>
 <systemRole>ADMIN</systemRole>
 <holiday>12</holiday>
@@ -26,7 +26,7 @@
 <username>mikefisler</username>
 <firstname>Mike</firstname>
 <lastname>Fisler</lastname>
-<passwordHash></passwordHash>
+<passwordHash>81dc9bdb52d04dc20036dbd8313ed055</passwordHash>
 <pensum>100</pensum>
 <systemRole>ADMIN</systemRole>
 <holiday>12</holiday>
@@ -37,7 +37,7 @@
 <username>osamabinladen</username>
 <firstname>Osama</firstname>
 <lastname>Bin Laden</lastname>
-<passwordHash></passwordHash>
+<passwordHash>81dc9bdb52d04dc20036dbd8313ed055</passwordHash>
 <pensum>100</pensum>
 <systemRole>EMPLOYEE</systemRole>
 <holiday>12</holiday>
@@ -48,7 +48,7 @@
 <username>mickeymouse</username>
 <firstname>Mickey</firstname>
 <lastname>Mouse</lastname>
-<passwordHash></passwordHash>
+<passwordHash>81dc9bdb52d04dc20036dbd8313ed055</passwordHash>
 <pensum>20</pensum>
 <systemRole>PROJECTMANAGER</systemRole>
 <holiday>12</holiday>
@@ -70,7 +70,7 @@
 <username>hansmuster</username>
 <firstname>Hans</firstname>
 <lastname>Muster</lastname>
-<passwordHash></passwordHash>
+<passwordHash>81dc9bdb52d04dc20036dbd8313ed055</passwordHash>
 <pensum>80</pensum>
 <systemRole>EMPLOYEE</systemRole>
 <holiday>10</holiday>
@@ -81,7 +81,7 @@
 <username>hansmuster1</username>
 <firstname>Hans</firstname>
 <lastname>Muster</lastname>
-<passwordHash></passwordHash>
+<passwordHash>81dc9bdb52d04dc20036dbd8313ed055</passwordHash>
 <pensum>80</pensum>
 <systemRole>EMPLOYEE</systemRole>
 <holiday>10</holiday>
@@ -92,7 +92,7 @@
 <username>hansmuster2</username>
 <firstname>Hans</firstname>
 <lastname>Muster</lastname>
-<passwordHash></passwordHash>
+<passwordHash>81dc9bdb52d04dc20036dbd8313ed055</passwordHash>
 <pensum>80</pensum>
 <systemRole>EMPLOYEE</systemRole>
 <holiday>10</holiday>
@@ -103,7 +103,7 @@
 <username>obiwankenobi</username>
 <firstname>Obi Wan</firstname>
 <lastname>Kenobi</lastname>
-<passwordHash></passwordHash>
+<passwordHash>81dc9bdb52d04dc20036dbd8313ed055</passwordHash>
 <pensum>30</pensum>
 <systemRole>PROJECTMANAGER</systemRole>
 <holiday>10</holiday>

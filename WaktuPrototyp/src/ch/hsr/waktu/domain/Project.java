@@ -1,6 +1,7 @@
 package ch.hsr.waktu.domain;
 
 
+
 /**
  * @author simon.staeheli
  * @version 1.0
@@ -98,4 +99,8 @@ public class Project {
 		return super.equals(obj);
 	}
 
+	@Override
+	public int hashCode() {
+		return projectid << description.hashCode() << plannedTime << projectIdentifier.hashCode();
+	}
 }
