@@ -120,10 +120,19 @@ public class Usr {
 		return super.equals(obj);
 	}
 	
-//	@Override
-//	public int hashCode() {
-//		return new Integer(Md5.hash(this.toString()));
-//	}
+	@Override
+	public int hashCode() {
+		int hashCode = 23;
+		hashCode = 31 * usrid;
+		hashCode = 31 * username.hashCode();
+		hashCode = 31 * name.hashCode();
+		hashCode = 31 * firstname.hashCode();
+		hashCode = 31 * passwordHash.hashCode();
+		hashCode = 31 * pensum;
+		hashCode = 31 * systemRole.hashCode();
+		hashCode = 31 * (int)holiday;
+		return hashCode;
+	}
 
 	public void setPasswordHash(String passwordHash) {
 		this.passwordHash = passwordHash;
