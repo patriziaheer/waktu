@@ -36,7 +36,7 @@ public class UserWorkSessionModel extends QAbstractItemModel {
 		if (Qt.ItemDataRole.DisplayRole == role) {
 			WorkSession workSession = WorkSessionController.getInstance().getWorkSessions(usr).get(index.row());
 			switch (index.column()) {
-			case 0: return "Project: Workpackage";
+			case 0: return workSession.getWorkPackage().getProject() + "-" + workSession.getWorkPackage();
 			case 1: return workSession.getDescription();
 			case 2: return workSession.getStart().toString();
 			case 3: return workSession.getEnd().toString();

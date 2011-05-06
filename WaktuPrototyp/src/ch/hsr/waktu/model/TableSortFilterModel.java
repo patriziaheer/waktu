@@ -4,6 +4,7 @@ import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
 
 import com.trolltech.qt.core.QAbstractItemModel;
+import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.core.QDateTime;
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.gui.QSortFilterProxyModel;
@@ -12,8 +13,8 @@ public class TableSortFilterModel extends QSortFilterProxyModel {
 	
 	private WorkPackage workPackage = null;
 	private Usr usr = null;
-	private QDateTime start = null;
-	private QDateTime end = null;
+	private QDate start = null;
+	private QDate end = null;
 
 	@Override
 	protected boolean filterAcceptsRow(int sourceRow, QModelIndex sourceParent) {
@@ -28,16 +29,22 @@ public class TableSortFilterModel extends QSortFilterProxyModel {
         idxEnd = sourceModel().index(sourceRow, 4, sourceParent); //end
 
         QAbstractItemModel model = sourceModel();
-        boolean matchFound;
+        boolean matchFound = true;
         QDateTime currStart = (QDateTime)model.data(idxStart);
         QDateTime currEnd = (QDateTime)model.data(idxEnd);
 
-        matchFound = model.data(idxWP).toString().equals(workPackage.toString())
-                     && model.data(idxUsr).toString().equals(usr.toString())
-                     && start.compareTo(currStart) <= 0
-                     && end.compareTo(currStart) >= 0
-                     && start.compareTo(currEnd) >= 0
-                     && end.compareTo(currEnd) <= 0;
+        if (workPackage != null) {
+        	matchFound = model.data(idxWP).toString().equals(workPackage.toString());
+        }
+        if (usr != null) {
+        	matchFound = matchFound && model.data(idxUsr).toString().equals(usr.toString());
+        }
+        if (start != null) {
+        	matchFound = matchFound && start.compareTo(currStart) <= 0 && start.compareTo(currEnd) >= 0;
+        }
+        if (end != null) {
+        	matchFound = matchFound && end.compareTo(currStart) >= 0 && end.compareTo(currEnd) <= 0;
+        }
 
         return matchFound;
 
@@ -53,12 +60,12 @@ public class TableSortFilterModel extends QSortFilterProxyModel {
 		invalidateFilter();
 	}
 
-	public void setStart(QDateTime start) {
+	public void setStart(QDate start) {
 		this.start = start;
 		invalidateFilter();
 	}
 
-	public void setEnd(QDateTime end) {
+	public void setEnd(QDate end) {
 		this.end = end;
 		invalidateFilter();
 	}
