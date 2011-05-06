@@ -1,5 +1,6 @@
 package ch.hsr.waktu.presentation.view.projectmanagment;
 
+import ch.hsr.waktu.controller.datacontroller.WaktuException;
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
@@ -51,7 +52,12 @@ public class ProjectDataView extends QWidget {
 	
 	@SuppressWarnings("unused")
 	private void addClicked() {
-		project = ProjectController.getInstance().addProject(ui.txtProjectnumber.text(), ui.txtDescription.text(), (Usr)ui.cmbProjectManager.itemData(ui.cmbProjectManager.currentIndex()), ui.txtPlannedTime.value());
+		try {
+			project = ProjectController.getInstance().addProject(ui.txtProjectnumber.text(), ui.txtDescription.text(), (Usr)ui.cmbProjectManager.itemData(ui.cmbProjectManager.currentIndex()), ui.txtPlannedTime.value());
+		} catch (WaktuException e) {
+			// TODO NoAccess Exception muss gefangen und behandelt werden..
+			e.printStackTrace();
+		}
 		setFields();
 	}
 	
