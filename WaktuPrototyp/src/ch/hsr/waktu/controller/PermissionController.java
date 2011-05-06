@@ -124,30 +124,6 @@ public class PermissionController extends QSignalEmitter {
 		return false;
 	}
 
-	private class PermissionNode {
-
-		public PermissionNode(SystemRole systemRole, String method,
-				boolean permission) {
-			this.systemRole = systemRole;
-			this.method = method;
-			this.permission = permission;
-
-		}
-
-		private SystemRole systemRole;
-		private String method;
-		private boolean permission;
-
-		public SystemRole getSystemRole() {
-			return systemRole;
-		}
-
-		public boolean getPermission() {
-			return permission;
-		}
-
-	}
-
 	public ArrayList<PermissionNode> getPermissions() {
 		ArrayList<PermissionNode> list = new ArrayList<PermissionNode>();
 
@@ -169,11 +145,39 @@ public class PermissionController extends QSignalEmitter {
 	public boolean checkPermission(String method) {
 
 		for (PermissionNode pn : getPermissions()) {
-			if((pn.getSystemRole().equals(loggedInUser.getSystemRole())) && (pn.method.equals(method))) {
+			if((pn.getSystemRole().equals(loggedInUser.getSystemRole())) && (pn.getMethod().equals(method))) {
 				return pn.getPermission();
 			}
 		}
 
 		return false;
 	}
+}
+
+class PermissionNode {
+
+	public PermissionNode(SystemRole systemRole, String method,
+			boolean permission) {
+		this.systemRole = systemRole;
+		this.method = method;
+		this.permission = permission;
+
+	}
+
+	private SystemRole systemRole;
+	private String method;
+	private boolean permission;
+
+	public SystemRole getSystemRole() {
+		return systemRole;
+	}
+
+	public boolean getPermission() {
+		return permission;
+	}
+	
+	public String getMethod() {
+		return method;
+	}
+
 }
