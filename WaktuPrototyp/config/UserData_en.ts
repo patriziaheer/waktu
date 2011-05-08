@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.0" language="en_US">
 <context>
     <name>UserData</name>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/jui/Ui_UserData.java" line="178"/>
         <source>UserData</source>
-        <translation type="unfinished"></translation>
+        <translation>Userdata</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/jui/Ui_UserData.java" line="179"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Name:</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/jui/Ui_UserData.java" line="180"/>
         <source>Pensum:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pensum:</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/jui/Ui_UserData.java" line="181"/>
         <source>Role:</source>
-        <translation type="unfinished"></translation>
+        <translation>Role:</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/jui/Ui_UserData.java" line="182"/>
         <source>Holidays:</source>
-        <translation type="unfinished"></translation>
+        <translation>Holidays:</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/jui/Ui_UserData.java" line="183"/>
         <source>Overview</source>
-        <translation type="unfinished"></translation>
+        <translation>Overview</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/jui/Ui_UserData.java" line="184"/>
         <source>Worktime per day:</source>
-        <translation type="unfinished"></translation>
+        <translation>Worktime per day:</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/jui/Ui_UserData.java" line="185"/>
         <source>Overtime:</source>
-        <translation type="unfinished"></translation>
+        <translation>Overtime:</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/jui/Ui_UserData.java" line="186"/>
         <source>Holidays</source>
-        <translation type="unfinished"></translation>
+        <translation>Holidays:</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/jui/Ui_UserData.java" line="187"/>
@@ -66,22 +66,22 @@
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/jui/Ui_UserData.java" line="190"/>
         <source>add</source>
-        <translation type="unfinished"></translation>
+        <translation>add</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/jui/Ui_UserData.java" line="191"/>
         <source>Inactiv</source>
-        <translation type="unfinished"></translation>
+        <translation>Inactiv</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/jui/Ui_UserData.java" line="192"/>
         <source>Firstname:</source>
-        <translation type="unfinished"></translation>
+        <translation>Firstname:</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/jui/Ui_UserData.java" line="193"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Password:</translation>
     </message>
 </context>
 </TS>

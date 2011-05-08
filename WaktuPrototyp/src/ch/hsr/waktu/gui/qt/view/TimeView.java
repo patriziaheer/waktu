@@ -15,6 +15,7 @@ import ch.hsr.waktu.gui.qt.model.ComboBoxData;
 import ch.hsr.waktu.gui.qt.model.FavoriteModel;
 import ch.hsr.waktu.gui.qt.model.WorkSessionModel;
 import ch.hsr.waktu.gui.qt.view.IndexButton.EditStatus;
+import ch.hsr.waktu.guicontroller.LanguageController;
 import ch.hsr.waktu.services.TimeUtil;
 
 import com.trolltech.qt.core.QDateTime;
@@ -114,6 +115,9 @@ public class TimeView extends QMainWindow {
 		ui.tblWorksessions.setModel(workSessionModel);
 		favoriteModel = new FavoriteModel(currUser);
 		ui.tblFavorites.setModel(favoriteModel);
+		
+		LanguageController.getInstance().languageChanged.connect(this, "translate()");
+		
 		updateWorkSessionModel();
 		updateFavoriteModel();
 		updateTimeInfos();
@@ -449,5 +453,10 @@ public class TimeView extends QMainWindow {
 		FavoriteController.getInstance().removeFavorite(
 				FavoriteController.getInstance().getFavorites(currUser)
 						.get(btn.getIndex().row()));
+	}
+	
+	@SuppressWarnings("unused")
+	private void translate() {
+		ui.retranslateUi(this);
 	}
 }

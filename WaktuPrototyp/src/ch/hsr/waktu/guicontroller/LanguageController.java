@@ -38,9 +38,9 @@ public class LanguageController extends QSignalEmitter {
 	private void changeLanguage() {
         QTranslator translator = new QTranslator();
         if (currLanguage == Language.EN) {
-        	translator.load("classpath:Login_en.qm");
+        	translator.load("classpath:waktu_en.qm");
         } else if (currLanguage == Language.DE) {
-        	translator.load("classpath:Login_de.qm");
+        	translator.load("classpath:waktu_de.qm");
         }
         QApplication.installTranslator(translator);
         languageChanged.emit();

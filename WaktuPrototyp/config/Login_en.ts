@@ -28,28 +28,34 @@
 <context>
     <name>LoginView</name>
     <message>
+        <location filename="LoginView.java" line="92"/>
         <source>File</source>
-        <translation type="obsolete">File</translation>
+        <translation>File</translation>
     </message>
     <message>
+        <location filename="LoginView.java" line="93"/>
         <source>language</source>
-        <translation type="obsolete">Language</translation>
+        <translation>Language</translation>
     </message>
     <message>
+        <location filename="LoginView.java" line="94"/>
         <source>DE</source>
-        <translation type="obsolete">German</translation>
+        <translation>German</translation>
     </message>
     <message>
+        <location filename="LoginView.java" line="95"/>
         <source>EN</source>
-        <translation type="obsolete">Englisch</translation>
+        <translation>Englisch</translation>
     </message>
     <message>
+        <location filename="LoginView.java" line="70"/>
         <source>Username or Password wrong</source>
-        <translation type="obsolete">Username or Password wrong</translation>
+        <translation>Username or Password wrong</translation>
     </message>
     <message>
+        <location filename="LoginView.java" line="106"/>
         <source>Close</source>
-        <translation type="obsolete">Close</translation>
+        <translation>Close</translation>
     </message>
 </context>
 </TS>

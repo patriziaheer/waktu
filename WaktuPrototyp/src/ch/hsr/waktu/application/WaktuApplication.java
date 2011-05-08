@@ -29,7 +29,7 @@ public class WaktuApplication {
         //QApplication app = new QApplication(args);
         //String sheet = getStyleSheet("classpath:stylesheet.txt");
         //app.setStyleSheet(sheet);
-    	LanguageController.getInstance().setCurrLanguage(Language.EN);
+    	LanguageController.getInstance().setCurrLanguage(Language.DE);
         
 
        	LoginView loginView = new LoginView();

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.0" language="en_US">
 <context>
     <name>ProjectWorkSessions</name>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/jui/Ui_ProjectWorkSessions.java" line="139"/>
         <source>WorkSessions</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Worksessions</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/jui/Ui_ProjectWorkSessions.java" line="140"/>
@@ -17,17 +17,17 @@
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/jui/Ui_ProjectWorkSessions.java" line="141"/>
         <source>-</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/jui/Ui_ProjectWorkSessions.java" line="143"/>
         <source>Add Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Add Filter</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/jui/Ui_ProjectWorkSessions.java" line="144"/>
         <source>Remove Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Remove Filter</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/jui/Ui_ProjectWorkSessions.java" line="145"/>
@@ -37,7 +37,7 @@
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/jui/Ui_ProjectWorkSessions.java" line="146"/>
         <source>Total Time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Total Time:</translation>
     </message>
 </context>
 </TS>
