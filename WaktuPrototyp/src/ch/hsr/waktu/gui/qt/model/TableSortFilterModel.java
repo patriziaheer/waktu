@@ -30,8 +30,8 @@ public class TableSortFilterModel extends QSortFilterProxyModel {
 
         QAbstractItemModel model = sourceModel();
         boolean matchFound = true;
-        QDateTime currStart = (QDateTime)model.data(idxStart);
-        QDateTime currEnd = (QDateTime)model.data(idxEnd);
+        QDate currStart = ((QDateTime)model.data(idxStart)).date();
+        QDate currEnd = ((QDateTime)model.data(idxEnd)).date();
 
         if (workPackage != null) {
         	matchFound = model.data(idxWP).toString().equals(workPackage.toString());

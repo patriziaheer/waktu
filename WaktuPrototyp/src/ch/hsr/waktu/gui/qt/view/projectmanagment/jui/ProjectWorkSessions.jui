@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>649</width>
+    <width>716</width>
     <height>358</height>
    </rect>
   </property>
@@ -45,11 +45,20 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="minimumSize">
+      <size>
+       <width>90</width>
+       <height>0</height>
+      </size>
+     </property>
      <property name="maximumSize">
       <size>
        <width>90</width>
        <height>16777215</height>
       </size>
+     </property>
+     <property name="displayFormat">
+      <string>dd.MM.yy</string>
      </property>
     </widget>
    </item>
@@ -80,16 +89,43 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="minimumSize">
+      <size>
+       <width>90</width>
+       <height>0</height>
+      </size>
+     </property>
      <property name="maximumSize">
       <size>
        <width>90</width>
        <height>16777215</height>
       </size>
      </property>
+     <property name="displayFormat">
+      <string>dd.MM.yy</string>
+     </property>
     </widget>
    </item>
    <item row="0" column="5">
     <widget class="QPushButton" name="btnAddFilter">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>90</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>90</width>
+       <height>16777215</height>
+      </size>
+     </property>
      <property name="text">
       <string>Add Filter</string>
      </property>
@@ -97,6 +133,24 @@
    </item>
    <item row="0" column="6">
     <widget class="QPushButton" name="btnRemoveFilter">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>110</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>110</width>
+       <height>16777215</height>
+      </size>
+     </property>
      <property name="text">
       <string>Remove Filter</string>
      </property>

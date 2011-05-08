@@ -10,18 +10,27 @@ import ch.hsr.waktu.domain.WorkSession;
 import ch.hsr.waktu.services.TimeUtil;
 
 import com.trolltech.qt.core.QDate;
-import com.trolltech.qt.core.QDateTime;
 
 public class TimeController {
-	private static final double HOURS_PER_WORKDAY = 8.5;
+	public static final double HOURS_PER_WORKDAY = 8.5;
 	
-	public static double calculateWorktimeForProject(Project project, WorkPackage workPackage, Usr usr, QDateTime start, QDateTime end) {
+	public static double calculateWorktimeForProject(Project project, WorkPackage workPackage, Usr usr, QDate start, QDate end) {
 		//TODO: added by PH => null for parameters means no filter
 		return 0.0;
 	}
 	
 	public static double calculateOvertime(Usr user, QDate fromDate, QDate toDate) {
 		return calculateWorktime(user, fromDate, toDate) - getPlannedTime(user, fromDate, toDate);
+	}
+	
+	public static double calculateWorktimeForWeek(Usr user, QDate date) {
+		//TODO 
+		return 0.0;
+	}
+	
+	public static double calculateWorktimeForMonth(Usr user, QDate date) {
+		//TODO 
+		return 0.0;
 	}
 	
 	public static double calculateWorktime(Usr user, QDate fromDate, QDate toDate) {
@@ -48,6 +57,11 @@ public class TimeController {
 			worktime += TimeUtil.calculateTimespanInSeconds(ws.getStart(), ws.getEnd());
 		}
 		return timeInSecondsToHalfAnHourPrecision(worktime);
+	}
+	
+	public static double getPlannedTime(Usr user, QDate currMonth) {
+		// TODO: remove weekenddays
+		return currMonth.daysInMonth() * user.getPensum() * HOURS_PER_WORKDAY;
 	}
 	
 	public static double getPlannedTime(Usr user, QDate fromDate, QDate toDate) {

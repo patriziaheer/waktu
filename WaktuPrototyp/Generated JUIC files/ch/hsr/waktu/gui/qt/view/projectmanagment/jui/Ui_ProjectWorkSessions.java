@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ProjectWorkSessions.jui'
 **
-** Created: Fr. Mai 6 15:00:18 2011
+** Created: Sa. Mai 7 10:48:32 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -31,7 +31,7 @@ public class Ui_ProjectWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
     public void setupUi(QWidget ProjectWorkSessions)
     {
         ProjectWorkSessions.setObjectName("ProjectWorkSessions");
-        ProjectWorkSessions.resize(new QSize(649, 358).expandedTo(ProjectWorkSessions.minimumSizeHint()));
+        ProjectWorkSessions.resize(new QSize(716, 358).expandedTo(ProjectWorkSessions.minimumSizeHint()));
         gridLayout = new QGridLayout(ProjectWorkSessions);
         gridLayout.setObjectName("gridLayout");
         cmbWorkpackage = new QComboBox(ProjectWorkSessions);
@@ -66,7 +66,8 @@ public class Ui_ProjectWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
         sizePolicy2.setVerticalStretch((byte)0);
         sizePolicy2.setHeightForWidth(txtStart.sizePolicy().hasHeightForWidth());
         txtStart.setSizePolicy(sizePolicy2);
-        txtStart.setMaximumSize(new QSize(90, 16777215));
+        txtStart.setMinimumSize(new QSize(100, 0));
+        txtStart.setMaximumSize(new QSize(100, 16777215));
 
         gridLayout.addWidget(txtStart, 0, 2, 1, 1);
 
@@ -88,17 +89,22 @@ public class Ui_ProjectWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
         sizePolicy4.setVerticalStretch((byte)0);
         sizePolicy4.setHeightForWidth(txtEnd.sizePolicy().hasHeightForWidth());
         txtEnd.setSizePolicy(sizePolicy4);
-        txtEnd.setMaximumSize(new QSize(90, 16777215));
+        txtEnd.setMinimumSize(new QSize(100, 0));
+        txtEnd.setMaximumSize(new QSize(100, 16777215));
 
         gridLayout.addWidget(txtEnd, 0, 4, 1, 1);
 
         btnAddFilter = new QPushButton(ProjectWorkSessions);
         btnAddFilter.setObjectName("btnAddFilter");
+        btnAddFilter.setMinimumSize(new QSize(90, 0));
+        btnAddFilter.setMaximumSize(new QSize(90, 16777215));
 
         gridLayout.addWidget(btnAddFilter, 0, 5, 1, 1);
 
         btnRemoveFilter = new QPushButton(ProjectWorkSessions);
         btnRemoveFilter.setObjectName("btnRemoveFilter");
+        btnRemoveFilter.setMinimumSize(new QSize(110, 0));
+        btnRemoveFilter.setMaximumSize(new QSize(110, 16777215));
 
         gridLayout.addWidget(btnRemoveFilter, 0, 6, 1, 1);
 
@@ -121,7 +127,9 @@ public class Ui_ProjectWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
     void retranslateUi(QWidget ProjectWorkSessions)
     {
         ProjectWorkSessions.setWindowTitle(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "WorkSessions", null));
+        txtStart.setDisplayFormat(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "dd.MM.yyyy", null));
         lblBis.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "-", null));
+        txtEnd.setDisplayFormat(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "dd.MM.yyyy", null));
         btnAddFilter.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "Add Filter", null));
         btnRemoveFilter.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "Remove Filter", null));
         lblTotalTime.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "0.0h", null));

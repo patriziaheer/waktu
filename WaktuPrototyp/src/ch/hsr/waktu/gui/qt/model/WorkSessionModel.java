@@ -26,12 +26,10 @@ public class WorkSessionModel extends QAbstractItemModel {
 	private Logger logger = Logger.getLogger(WorkSessionModel.class);
 	
 	private List<WorkSession> workSessions;
-	private Usr usr;
-	private QDate date;
 	private QModelIndex editable = null;
+	private QDate date;
 	
 	public WorkSessionModel(Usr usr, QDate date) {
-		this.usr = usr;
 		this.date = date;
 		workSessions = WorkSessionController.getInstance().getWorkSessions(usr, date);
 	}
@@ -150,7 +148,7 @@ public class WorkSessionModel extends QAbstractItemModel {
 		return workSessions.get(row);
 	}
 	
-	public void updateModel() {
+	public void updateModel(Usr usr, QDate date) {
 		workSessions = WorkSessionController.getInstance().getWorkSessions(usr, date);
 	}
 
