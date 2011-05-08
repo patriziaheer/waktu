@@ -6,10 +6,8 @@ import ch.hsr.waktu.domain.WorkSession;
 import ch.hsr.waktu.services.TimeUtil;
 
 import com.trolltech.qt.core.QAbstractItemModel;
-import com.trolltech.qt.core.QDateTime;
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.QSize;
-import com.trolltech.qt.core.QTime;
 import com.trolltech.qt.core.Qt;
 import com.trolltech.qt.core.Qt.Orientation;
 
