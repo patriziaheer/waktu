@@ -23,7 +23,7 @@ public class UserWorkSessionModel extends QAbstractItemModel {
 
 	@Override
 	public int columnCount(QModelIndex arg0) {
-		return 5;
+		return 6;
 	}
 
 	@Override
@@ -36,16 +36,12 @@ public class UserWorkSessionModel extends QAbstractItemModel {
 		if (Qt.ItemDataRole.DisplayRole == role) {
 			WorkSession workSession = WorkSessionController.getInstance().getWorkSessions(usr).get(index.row());
 			switch (index.column()) {
-			case 0: return workSession.getWorkPackage().getProject() + "-" + workSession.getWorkPackage();
-			case 1: return workSession.getDescription();
-			case 2: return TimeUtil.convertGregorianToQDateTime(workSession.getStart());
-			case 3: return TimeUtil.convertGregorianToQDateTime(workSession.getEnd());
-			case 4:  {
-				QDateTime start = TimeUtil.convertGregorianToQDateTime(workSession.getStart());
-				QDateTime end = TimeUtil.convertGregorianToQDateTime(workSession.getEnd());
-				QTime dauer = new QTime(0, 0, start.secsTo(end));
-				return dauer.toString();
-			}
+			case 0: return workSession.getWorkPackage().getProject();
+			case 1: return workSession.getWorkPackage();
+			case 2: return workSession.getDescription();
+			case 3: return TimeUtil.convertGregorianToQDateTime(workSession.getStart());
+			case 4: return TimeUtil.convertGregorianToQDateTime(workSession.getEnd());
+			case 5: return TimeUtil.calculateTimespanInSeconds(workSession.getStart(), workSession.getEnd());
 			}
 		}
 		return null;
@@ -56,10 +52,11 @@ public class UserWorkSessionModel extends QAbstractItemModel {
 		if (Qt.ItemDataRole.DisplayRole == role && Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
 			case 0: return tr("Project");
-			case 1: return tr("Desciption");
-			case 2: return tr("Start");
-			case 3: return tr("End");
-			case 4: return tr("Duration");
+			case 1: return tr("WorkPackage");
+			case 2: return tr("Desciption");
+			case 3: return tr("Start");
+			case 4: return tr("End");
+			case 5: return tr("Duration");
 			}
  		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Vertical == orientation) {
 			return new QSize(0,20);

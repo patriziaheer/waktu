@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ProjectWorkSessions.jui'
 **
-** Created: Sa. Mai 7 10:48:32 2011
+** Created: So. Mai 8 20:14:26 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -66,8 +66,8 @@ public class Ui_ProjectWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
         sizePolicy2.setVerticalStretch((byte)0);
         sizePolicy2.setHeightForWidth(txtStart.sizePolicy().hasHeightForWidth());
         txtStart.setSizePolicy(sizePolicy2);
-        txtStart.setMinimumSize(new QSize(100, 0));
-        txtStart.setMaximumSize(new QSize(100, 16777215));
+        txtStart.setMinimumSize(new QSize(90, 0));
+        txtStart.setMaximumSize(new QSize(90, 16777215));
 
         gridLayout.addWidget(txtStart, 0, 2, 1, 1);
 
@@ -89,13 +89,18 @@ public class Ui_ProjectWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
         sizePolicy4.setVerticalStretch((byte)0);
         sizePolicy4.setHeightForWidth(txtEnd.sizePolicy().hasHeightForWidth());
         txtEnd.setSizePolicy(sizePolicy4);
-        txtEnd.setMinimumSize(new QSize(100, 0));
-        txtEnd.setMaximumSize(new QSize(100, 16777215));
+        txtEnd.setMinimumSize(new QSize(90, 0));
+        txtEnd.setMaximumSize(new QSize(90, 16777215));
 
         gridLayout.addWidget(txtEnd, 0, 4, 1, 1);
 
         btnAddFilter = new QPushButton(ProjectWorkSessions);
         btnAddFilter.setObjectName("btnAddFilter");
+        QSizePolicy sizePolicy5 = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Fixed, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
+        sizePolicy5.setHorizontalStretch((byte)0);
+        sizePolicy5.setVerticalStretch((byte)0);
+        sizePolicy5.setHeightForWidth(btnAddFilter.sizePolicy().hasHeightForWidth());
+        btnAddFilter.setSizePolicy(sizePolicy5);
         btnAddFilter.setMinimumSize(new QSize(90, 0));
         btnAddFilter.setMaximumSize(new QSize(90, 16777215));
 
@@ -103,6 +108,11 @@ public class Ui_ProjectWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
 
         btnRemoveFilter = new QPushButton(ProjectWorkSessions);
         btnRemoveFilter.setObjectName("btnRemoveFilter");
+        QSizePolicy sizePolicy6 = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Fixed, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
+        sizePolicy6.setHorizontalStretch((byte)0);
+        sizePolicy6.setVerticalStretch((byte)0);
+        sizePolicy6.setHeightForWidth(btnRemoveFilter.sizePolicy().hasHeightForWidth());
+        btnRemoveFilter.setSizePolicy(sizePolicy6);
         btnRemoveFilter.setMinimumSize(new QSize(110, 0));
         btnRemoveFilter.setMaximumSize(new QSize(110, 16777215));
 
@@ -127,9 +137,9 @@ public class Ui_ProjectWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
     void retranslateUi(QWidget ProjectWorkSessions)
     {
         ProjectWorkSessions.setWindowTitle(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "WorkSessions", null));
-        txtStart.setDisplayFormat(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "dd.MM.yyyy", null));
+        txtStart.setDisplayFormat(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "dd.MM.yy", null));
         lblBis.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "-", null));
-        txtEnd.setDisplayFormat(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "dd.MM.yyyy", null));
+        txtEnd.setDisplayFormat(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "dd.MM.yy", null));
         btnAddFilter.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "Add Filter", null));
         btnRemoveFilter.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "Remove Filter", null));
         lblTotalTime.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "0.0h", null));

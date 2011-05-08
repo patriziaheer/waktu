@@ -1,5 +1,6 @@
 package ch.hsr.waktu.gui.qt.model;
 
+import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
 
@@ -11,6 +12,7 @@ import com.trolltech.qt.gui.QSortFilterProxyModel;
 
 public class TableSortFilterModel extends QSortFilterProxyModel {
 	
+	private Project project = null;
 	private WorkPackage workPackage = null;
 	private Usr usr = null;
 	private QDate start = null;
@@ -18,23 +20,34 @@ public class TableSortFilterModel extends QSortFilterProxyModel {
 
 	@Override
 	protected boolean filterAcceptsRow(int sourceRow, QModelIndex sourceParent) {
-        QModelIndex idxWP;
-        QModelIndex idxUsr;
-        QModelIndex idxStart;
-        QModelIndex idxEnd;
+		QModelIndex idxProj = null;
+        QModelIndex idxWP = null;
+        QModelIndex idxUsr = null;
+        QModelIndex idxStart = null;
+        QModelIndex idxEnd = null;
 
-        idxWP = sourceModel().index(sourceRow, 0, sourceParent); //WP
-        idxUsr = sourceModel().index(sourceRow, 2, sourceParent); //Usr
-        idxStart = sourceModel().index(sourceRow, 3, sourceParent); //start
-        idxEnd = sourceModel().index(sourceRow, 4, sourceParent); //end
+        if (sourceModel() instanceof ProjectWorkSessionModel) {
+	        idxWP = sourceModel().index(sourceRow, 0, sourceParent); //WP
+	        idxUsr = sourceModel().index(sourceRow, 2, sourceParent); //Usr
+	        idxStart = sourceModel().index(sourceRow, 3, sourceParent); //start
+	        idxEnd = sourceModel().index(sourceRow, 4, sourceParent); //end
+        } else if (sourceModel() instanceof UserWorkSessionModel) {
+        	idxProj = sourceModel().index(sourceRow, 0, sourceParent); //Project
+	        idxWP = sourceModel().index(sourceRow, 1, sourceParent); //WP
+	        idxStart = sourceModel().index(sourceRow, 3, sourceParent); //start
+	        idxEnd = sourceModel().index(sourceRow, 4, sourceParent); //end
+        }
 
         QAbstractItemModel model = sourceModel();
         boolean matchFound = true;
         QDate currStart = ((QDateTime)model.data(idxStart)).date();
         QDate currEnd = ((QDateTime)model.data(idxEnd)).date();
 
+        if (project != null) {
+        	matchFound = model.data(idxProj).toString().equals(project.toString());
+        }
         if (workPackage != null) {
-        	matchFound = model.data(idxWP).toString().equals(workPackage.toString());
+        	matchFound = matchFound && model.data(idxWP).toString().equals(workPackage.toString());
         }
         if (usr != null) {
         	matchFound = matchFound && model.data(idxUsr).toString().equals(usr.toString());
@@ -48,6 +61,11 @@ public class TableSortFilterModel extends QSortFilterProxyModel {
 
         return matchFound;
 
+	}
+	
+	public void setProject(Project project) {
+		this.project = project;
+		invalidateFilter();
 	}
 
 	public void setWorkPackage(WorkPackage workPackage) {
