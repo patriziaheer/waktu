@@ -7,6 +7,7 @@ import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.gui.qt.model.ComboBoxData;
 import ch.hsr.waktu.gui.qt.model.UserProjectsModel;
 import ch.hsr.waktu.gui.qt.view.IndexButton;
+import ch.hsr.waktu.guicontroller.LanguageController;
 
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.gui.QIcon;
@@ -30,6 +31,8 @@ public class UserProjectsView extends QWidget{
 
 		ProjectStaffController.getInstance().add.connect(this, "added(ProjectStaff)");
 		ProjectStaffController.getInstance().removed.connect(this, "removed(ProjectStaff)");
+		
+		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 		
 		updateProjectModel();
 	}
@@ -74,5 +77,10 @@ public class UserProjectsView extends QWidget{
 		projectsModel.dataChanged.emit(projectsModel.index(0, 0), projectsModel.index(projectsModel.rowCount(), projectsModel.columnCount()));
 		projectsModel.layoutChanged.emit();
 		updateProjectModel();
+	}
+	
+	@SuppressWarnings("unused")
+	private void translate() {
+        ui.retranslateUi(this);
 	}
 }

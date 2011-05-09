@@ -9,6 +9,7 @@ import ch.hsr.waktu.domain.WorkSession;
 import ch.hsr.waktu.gui.qt.model.ComboBoxData;
 import ch.hsr.waktu.gui.qt.model.TableSortFilterModel;
 import ch.hsr.waktu.gui.qt.model.UserWorkSessionModel;
+import ch.hsr.waktu.guicontroller.LanguageController;
 
 import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.gui.QWidget;
@@ -44,6 +45,8 @@ public class UserWorkSessionsView extends QWidget{
 		ui.btnRemoveFilter.clicked.connect(this, "removeFilter()");
 		//TODO
 		//ui.lblTotalTime.setText(""+TimeController.calc(project, null, null, null, null));
+		
+		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 	}
 	
 	@SuppressWarnings("unused")
@@ -109,6 +112,11 @@ public class UserWorkSessionsView extends QWidget{
 				workSessionModel.index(workSessionModel.rowCount(),
 						workSessionModel.columnCount()));
 		workSessionModel.layoutChanged.emit();
+	}
+	
+	@SuppressWarnings("unused")
+	private void translate() {
+        ui.retranslateUi(this);
 	}
 	
 }

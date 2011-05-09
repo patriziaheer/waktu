@@ -5,6 +5,7 @@ import ch.hsr.waktu.controller.datacontroller.WaktuException;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.gui.qt.model.ComboBoxData;
+import ch.hsr.waktu.guicontroller.LanguageController;
 
 import com.trolltech.qt.gui.QWidget;
 
@@ -22,6 +23,9 @@ public class ProjectDataView extends QWidget {
 
 		ProjectController.getInstance().update.connect(this, "updateData()");
 		ProjectController.getInstance().add.connect(this, "addData(Project)");
+		
+		LanguageController.getInstance().languageChanged.connect(this, "translate()");
+		
 		setFields();
 	}
 	
@@ -77,5 +81,10 @@ public class ProjectDataView extends QWidget {
 	@SuppressWarnings("unused")
 	private void addData(Project project) {
 		setFields();
+	}
+	
+	@SuppressWarnings("unused")
+	private void translate() {
+        ui.retranslateUi(this);
 	}
 }

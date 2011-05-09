@@ -3,6 +3,7 @@ import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.gui.qt.model.ComboBoxData;
+import ch.hsr.waktu.guicontroller.LanguageController;
 
 import com.trolltech.qt.gui.QWidget;
 
@@ -21,6 +22,8 @@ public class UserDataView extends QWidget{
 		
 		UserController.getInstance().update.connect(this, "updateData()");
 		UserController.getInstance().add.connect(this, "addData(Usr)");
+		
+		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 		setFields();
 	}
 
@@ -74,6 +77,10 @@ public class UserDataView extends QWidget{
 	private void addData(Usr usr) {
 		setFields();
 	}
-	
+
+	@SuppressWarnings("unused")
+	private void translate() {
+        ui.retranslateUi(this);
+	}
 	
 }

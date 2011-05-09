@@ -52,7 +52,6 @@
      <property name="title">
       <string>Language</string>
      </property>
-     <addaction name="separator"/>
      <addaction name="actionEN"/>
      <addaction name="actionDE"/>
     </widget>
