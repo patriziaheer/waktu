@@ -77,7 +77,7 @@ public class WorkSession {
 	
 	@Override
 	public String toString() {
-		return userRef + " " + TimeUtil.convertGregorianToQDateTime(startTime) + " - " + TimeUtil.convertGregorianToQDateTime(endTime);
+		return id + " " + userRef + " " + workPackageRef.getDescription() + " " + TimeUtil.convertGregorianToQDateTime(startTime) + " - " + TimeUtil.convertGregorianToQDateTime(endTime);
 	}
 
 	@Override

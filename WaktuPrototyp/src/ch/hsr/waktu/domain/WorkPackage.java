@@ -50,7 +50,7 @@ public class WorkPackage {
 	
 	@Override
 	public String toString() {
-		return description;
+		return id + " " + description + " " + project.getProjectIdentifier();
 	}
 	
 	@Override

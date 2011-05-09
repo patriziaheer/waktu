@@ -102,7 +102,7 @@ public class Usr {
 	
 	@Override
 	public String toString() {
-		return firstname + " " + name;
+		return usrid + firstname + " " + name + " " + username;
 	}
 
 	@Override

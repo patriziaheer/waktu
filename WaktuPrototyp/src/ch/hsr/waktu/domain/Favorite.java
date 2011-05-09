@@ -90,7 +90,7 @@ public class Favorite {
 	
 	@Override
 	public String toString() {
-		return this.getId() + this.getStartTime().toString() + this.getEndTime().toString() + this.getWorkPackageID() + this.getUserID();
+		return id + startTime.toString() + endTime.toString() + workPackageId.getDescription() + usrId.getUsername();
 	}
 	
 }
