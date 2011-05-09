@@ -15,14 +15,16 @@ import com.trolltech.qt.gui.QTreeModel;
 
 public class UserTreeModel extends QTreeModel {
 	
+	private List<Usr> usrs;
+	
 	public UserTreeModel() {
-		
+		usrs = UserController.getInstance().getActiveUsers();
 	}
 
 	@Override
 	public Object child(Object parent, int index) {
 		if (parent == null) {
-			return UserController.getInstance().getActiveUsers().get(index);
+			return usrs.get(index);
 		} else if (parent instanceof Usr) {
 			return UserController.UserProperties.values()[index];
 		}
@@ -32,7 +34,7 @@ public class UserTreeModel extends QTreeModel {
 	@Override
 	public int childCount(Object parent) {
 		if (parent == null) {
-			return UserController.getInstance().getActiveUsers().size();
+			return usrs.size();
 		} else if (parent instanceof Usr) {
 			return UserController.UserProperties.values().length;
 		}
@@ -77,4 +79,7 @@ public class UserTreeModel extends QTreeModel {
 		return super.data(value, role);
 	}
 	
+	public void updateUsrModel() {
+		usrs = UserController.getInstance().getActiveUsers();
+	}
 }

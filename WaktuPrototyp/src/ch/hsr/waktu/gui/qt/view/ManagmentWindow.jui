@@ -48,8 +48,17 @@
     <property name="title">
      <string>File</string>
     </property>
+    <widget class="QMenu" name="menuLanguage">
+     <property name="title">
+      <string>Language</string>
+     </property>
+     <addaction name="separator"/>
+     <addaction name="actionEN"/>
+     <addaction name="actionDE"/>
+    </widget>
     <addaction name="actionAddProject"/>
     <addaction name="actionAddUser"/>
+    <addaction name="menuLanguage"/>
     <addaction name="actionClose"/>
    </widget>
    <addaction name="menuFile"/>
@@ -72,6 +81,16 @@
   <action name="actionAddUser">
    <property name="text">
     <string>Add User</string>
+   </property>
+  </action>
+  <action name="actionEN">
+   <property name="text">
+    <string>EN</string>
+   </property>
+  </action>
+  <action name="actionDE">
+   <property name="text">
+    <string>DE</string>
    </property>
   </action>
  </widget>

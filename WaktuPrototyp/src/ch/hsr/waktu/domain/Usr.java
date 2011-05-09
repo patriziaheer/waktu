@@ -123,14 +123,14 @@ public class Usr {
 	@Override
 	public int hashCode() {
 		int hashCode = 23;
-		hashCode = 31 * usrid;
-		hashCode = 31 * username.hashCode();
-		hashCode = 31 * name.hashCode();
-		hashCode = 31 * firstname.hashCode();
-		hashCode = 31 * passwordHash.hashCode();
-		hashCode = 31 * pensum;
-		hashCode = 31 * systemRole.hashCode();
-		hashCode = 31 * (int)holiday;
+		hashCode += 31 * usrid;
+		hashCode += 31 * username.hashCode();
+		hashCode += 31 * name.hashCode();
+		hashCode += 31 * firstname.hashCode();
+		hashCode += 31 * passwordHash.hashCode();
+		hashCode += 31 * pensum;
+		hashCode += 31 * systemRole.hashCode();
+		hashCode += 31 * (int)holiday;
 		return hashCode;
 	}
 

@@ -3,7 +3,6 @@ import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.gui.qt.model.ComboBoxData;
-import ch.hsr.waktu.gui.qt.view.usermanagment.jui.Ui_UserData;
 
 import com.trolltech.qt.gui.QWidget;
 

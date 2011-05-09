@@ -125,4 +125,5 @@ public class ProjectStaffController extends QSignalEmitter {
 		removed.emit(projectStaffToRemove);
 		return true;
 	}
+	
 }

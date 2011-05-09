@@ -1,5 +1,7 @@
 package ch.hsr.waktu.gui.qt.model;
 
+import java.util.List;
+
 import ch.hsr.waktu.controller.datacontroller.ProjectStaffController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
@@ -13,11 +15,13 @@ import com.trolltech.qt.core.Qt.Orientation;
 public class ProjectStaffModel extends QAbstractItemModel{
 	
 	private Project project;
+	private List<Usr> usrs;
 	
 	public ProjectStaffModel(Project project) {
 		this.project = project;
+		usrs = ProjectStaffController.getInstance().getUsers(project);
 	}
-
+	
 	@Override
 	public int columnCount(QModelIndex arg0) {
 		return 3;
@@ -25,13 +29,13 @@ public class ProjectStaffModel extends QAbstractItemModel{
 
 	@Override
 	public int rowCount(QModelIndex arg0) {
-		return ProjectStaffController.getInstance().getUsers(project).size();
+		return usrs.size();
 	}
 
 	@Override
 	public Object data(QModelIndex index, int role) {
 		if (Qt.ItemDataRole.DisplayRole == role) {
-			Usr usr = ProjectStaffController.getInstance().getUsers(project).get(index.row());
+			Usr usr = usrs.get(index.row());
 			switch (index.column()) {
 			case 0: return usr.getName();
 			case 1: return usr.getFirstname();
@@ -65,4 +69,7 @@ public class ProjectStaffModel extends QAbstractItemModel{
 		return null;
 	}
 
+	public void updateProjectStaffModel() {
+		usrs = ProjectStaffController.getInstance().getUsers(project);
+	}
 }

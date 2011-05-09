@@ -10,6 +10,9 @@ import ch.hsr.waktu.gui.qt.view.LoginView;
 import ch.hsr.waktu.guicontroller.LanguageController;
 import ch.hsr.waktu.guicontroller.LanguageController.Language;
 
+import com.trolltech.qt.core.QFile;
+import com.trolltech.qt.core.QIODevice;
+import com.trolltech.qt.core.QTextStream;
 import com.trolltech.qt.gui.QApplication;
 
 
@@ -24,11 +27,11 @@ public class WaktuApplication {
 		//PropertyConfigurator.configure(loader.getResource("settings").getFile());
     	PropertyConfigurator.configure("settings");
     	logger.info("Initialize Application");
-    	QApplication.initialize(args);
-    	//QApplication.setStyle(new QCleanlooksStyle());
-        //QApplication app = new QApplication(args);
-        //String sheet = getStyleSheet("classpath:stylesheet.txt");
-        //app.setStyleSheet(sheet);
+    	//QApplication.initialize(args);
+    	//QApplication.setStyle(new QPlastiqueStyle());
+        QApplication app = new QApplication(args);
+        String sheet = getStyleSheet("classpath:stylesheet.txt");
+        app.setStyleSheet(sheet);
     	LanguageController.getInstance().setCurrLanguage(Language.DE);
         
 
@@ -40,7 +43,7 @@ public class WaktuApplication {
     }
 	
     
-    /*private static String getStyleSheet(String path) {
+    private static String getStyleSheet(String path) {
     	logger.info("Initialize Stylesheet");
         QFile file = new QFile(path);
         if (!file.open(new QIODevice.OpenMode(QIODevice.OpenModeFlag.ReadOnly, QIODevice.OpenModeFlag.Text))) {
@@ -58,6 +61,6 @@ public class WaktuApplication {
         
         file.close();
     	return buffer.toString();
-    }*/
+    }
 
 }
