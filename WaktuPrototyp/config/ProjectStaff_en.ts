@@ -4,12 +4,12 @@
 <context>
     <name>ProjectStaff</name>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/jui/Ui_ProjectStaff.java" line="57"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectStaff.java" line="57"/>
         <source>WorkPackage</source>
         <translation>Workpackage</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/jui/Ui_ProjectStaff.java" line="58"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectStaff.java" line="58"/>
         <source>Add</source>
         <translation>add</translation>
     </message>

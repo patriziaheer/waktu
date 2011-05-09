@@ -4,170 +4,185 @@
 <context>
     <name>TimeWindow</name>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="328"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="340"/>
         <source>Time Window</source>
         <translation>Zeit erfassen</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="329"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="341"/>
         <source>Close</source>
         <translation type="unfinished">Beenden</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="330"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="342"/>
         <source>Open</source>
         <translation type="unfinished">Öffnen</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="331"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="343"/>
         <source>Add to Favorites</source>
         <translation type="unfinished">Zu Favoriten hinzufügen</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="332"/>
-        <source>Worksessions</source>
-        <translation type="unfinished">Tätigkeiten</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="333"/>
-        <source>Overview</source>
-        <translation type="unfinished">Übersicht</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="334"/>
-        <source>Worktime per day:</source>
-        <translation type="unfinished">Arbeitszeit pro Tag:</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="335"/>
-        <source>Worktime today:</source>
-        <translation type="unfinished">Zeit heute:</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="336"/>
-        <source>Worktime current Week:</source>
-        <translation type="unfinished">Geleistete Zeit diese Woche:</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="337"/>
-        <source>Overtime:</source>
-        <translation type="unfinished">Überzeit:</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="338"/>
-        <source>Worktime current Month:</source>
-        <translation type="unfinished">Geleistete Zeit diesen Monat:</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="339"/>
-        <source>Worktime for March:</source>
-        <translation type="unfinished">Zeit aktueller Monat:</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="340"/>
-        <source>Holidays</source>
-        <translation type="unfinished">Ferientage:</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="341"/>
-        <source>8.2h</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="342"/>
-        <source>164.4h</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="343"/>
-        <source>0.0h</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="344"/>
-        <source>20.4h</source>
+        <source>EN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="345"/>
-        <source>45.3h</source>
+        <source>DE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="346"/>
+        <source>Worksessions</source>
+        <translation type="unfinished">Tätigkeiten</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="347"/>
+        <source>Overview</source>
+        <translation type="unfinished">Übersicht</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="348"/>
+        <source>Worktime per day:</source>
+        <translation type="unfinished">Arbeitszeit pro Tag:</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="349"/>
+        <source>Worktime today:</source>
+        <translation type="unfinished">Zeit heute:</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="350"/>
+        <source>Worktime current Week:</source>
+        <translation type="unfinished">Geleistete Zeit diese Woche:</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="351"/>
+        <source>Overtime:</source>
+        <translation type="unfinished">Überzeit:</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="352"/>
+        <source>Worktime current Month:</source>
+        <translation type="unfinished">Geleistete Zeit diesen Monat:</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="353"/>
+        <source>Worktime for March:</source>
+        <translation type="unfinished">Zeit aktueller Monat:</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="354"/>
+        <source>Holidays</source>
+        <translation type="unfinished">Ferientage:</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="355"/>
+        <source>8.2h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="356"/>
+        <source>164.4h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="357"/>
+        <source>0.0h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="358"/>
+        <source>20.4h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="359"/>
+        <source>45.3h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="360"/>
         <source>2.4h</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="347"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="361"/>
         <source>12.3d</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="348"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="362"/>
         <source>Create Worksession</source>
         <translation type="unfinished">Tätigkeit hinzufügen</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="349"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="363"/>
         <source>Time:</source>
         <translation type="unfinished">Zeit:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="350"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="364"/>
         <source>-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="351"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="365"/>
         <source>Project:</source>
         <translation type="unfinished">Projekt:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="352"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="366"/>
         <source>Work Package:</source>
         <translation type="unfinished">Arbeitspacket</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="353"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="367"/>
         <source>Description:</source>
         <translation type="unfinished">Beschreibung:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="354"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="368"/>
         <source>reset</source>
         <translation type="unfinished">zurücksetzen</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="355"/>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="357"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="369"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="371"/>
         <source>create</source>
         <translation type="unfinished">erstellen</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="356"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="370"/>
         <source>Favorites</source>
         <translation type="unfinished">Favoriten</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="358"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="372"/>
         <source>Workpackage only</source>
         <translation type="unfinished">Nur Arbeitspacket</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="359"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="373"/>
         <source>Time only</source>
         <translation type="unfinished">Nur Zeit</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="360"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="374"/>
         <source>Managment</source>
         <translation>Verwaltung</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="361"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="375"/>
         <source>File</source>
         <translation>Datei</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="376"/>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

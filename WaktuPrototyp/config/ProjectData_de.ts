@@ -4,37 +4,37 @@
 <context>
     <name>ProjectData</name>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/jui/Ui_ProjectData.java" line="99"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="99"/>
         <source>ProjectData</source>
         <translation>Projekt Daten</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/jui/Ui_ProjectData.java" line="100"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="100"/>
         <source>Projectnumber:</source>
         <translation>Projekt Nummer:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/jui/Ui_ProjectData.java" line="101"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="101"/>
         <source>Projectdescription:</source>
         <translation>Projektbeschreibung:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/jui/Ui_ProjectData.java" line="102"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="102"/>
         <source>Projectmanager:</source>
         <translation>Projektleiter:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/jui/Ui_ProjectData.java" line="103"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="103"/>
         <source>Planned Time:</source>
         <translation>Planzeit:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/jui/Ui_ProjectData.java" line="104"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="104"/>
         <source>add</source>
         <translation>hinzufügen</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/jui/Ui_ProjectData.java" line="105"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="105"/>
         <source>Inactiv</source>
         <translation>Inaktiv</translation>
     </message>
