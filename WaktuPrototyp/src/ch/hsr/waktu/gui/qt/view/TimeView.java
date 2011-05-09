@@ -119,7 +119,7 @@ public class TimeView extends QMainWindow {
 		favoriteModel = new FavoriteModel(currUser);
 		ui.tblFavorites.setModel(favoriteModel);
 		
-		//TODO: Funktioniert seit ts-file-generieren nicht mehr..
+//		TODO: Funktioniert seit ts-file-generieren nicht mehr..
 //		ui.actionDE.triggered.connect(this, "translateDE()");
 //		ui.actionEN.triggered.connect(this, "translateEN()");
 		LanguageController.getInstance().languageChanged.connect(this, "translate()");
