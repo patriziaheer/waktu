@@ -49,10 +49,10 @@ public class ProjectController extends QSignalEmitter {
 	 * @param projectIdentifier
 	 * @param description
 	 * @param plannedTime
-	 * @throws WaktuException 
+	 * @throws WaktuGeneralException 
 	 */
 	public Project addProject(String projectIdentifier, String description,
-			int plannedTime) throws WaktuException {
+			int plannedTime) throws WaktuGeneralException {
 		Usr projectManager = null;
 		return this.addProject(projectIdentifier, description, projectManager,
 				plannedTime);
@@ -66,13 +66,13 @@ public class ProjectController extends QSignalEmitter {
 	 * @param description
 	 * @param projectManager
 	 * @param plannedTime
-	 * @throws WaktuException 
+	 * @throws WaktuGeneralException 
 	 */
 	public Project addProject(String projectIdentifier, String description,
-			Usr projectManager, int plannedTime) throws WaktuException {
+			Usr projectManager, int plannedTime) throws WaktuGeneralException {
 
 		if(!pc.checkPermission("addProject")) {
-			throw new WaktuException("AccessNotAllowed");
+			throw new WaktuGeneralException("Permission denied");
 		}
 		
 //		if(!pc.checkBusinessRules("addProject")) {
