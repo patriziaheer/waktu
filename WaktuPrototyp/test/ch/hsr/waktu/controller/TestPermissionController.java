@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import ch.hsr.waktu.controller.PermissionController;
 import ch.hsr.waktu.controller.datacontroller.UserController;
+import ch.hsr.waktu.controller.datacontroller.UserControllerInterface;
 import ch.hsr.waktu.controller.datacontroller.UserControllerXml;
 
 public class TestPermissionController {

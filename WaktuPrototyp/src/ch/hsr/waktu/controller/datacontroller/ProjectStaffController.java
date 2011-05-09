@@ -66,16 +66,12 @@ public class ProjectStaffController extends QSignalEmitter {
 
 		@SuppressWarnings("unchecked")
 		List<ProjectStaff> projStaff = em.createQuery(
-				"SELECT ps FROM ProjectStaff ps WHERE ps.user_usrid = '" + user.getId() + "'").getResultList();
+				"SELECT ps FROM ProjectStaff ps JOIN ps.user u WHERE u.usrid = '"
+						+ user.getId() + "'").getResultList();
 
 		ArrayList<Project> projects = new ArrayList<Project>();
 		for (ProjectStaff ps : projStaff) {
-
-			if (ps.getUser().getId() == user.getId()) {
-				projects.add(ps.getProject());
-				//logger.info("PROJECT: " + ps.getProject().toString());
-			}
-
+			projects.add(ps.getProject());
 		}
 
 		em.close();
@@ -92,16 +88,12 @@ public class ProjectStaffController extends QSignalEmitter {
 
 		@SuppressWarnings("unchecked")
 		List<ProjectStaff> projStaff = em.createQuery(
-				"SELECT ps FROM ProjectStaff ps ").getResultList();
+				"SELECT ps FROM ProjectStaff ps JOIN ps.project p WHERE p.projectid = '"
+						+ project.getId() + "'").getResultList();
 
 		ArrayList<Usr> usrs = new ArrayList<Usr>();
 		for (ProjectStaff ps : projStaff) {
-
-			if (ps.getProject().getId() == project.getId()) {
-				usrs.add(ps.getUser());
-				//logger.info("USER: " + ps.getUser().toString());
-			}
-
+			usrs.add(ps.getUser());
 		}
 
 		em.close();
@@ -117,27 +109,38 @@ public class ProjectStaffController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
-		@SuppressWarnings("unchecked")
-		List<ProjectStaff> projStaff = em.createQuery(
-				"SELECT ps FROM ProjectStaff ps ").getResultList();
-
-		ProjectStaff projectStaffToRemove = null;
-
-		for (ProjectStaff ps : projStaff) {
-
-			if ((ps.getProject().getId() == project.getId())
-					&& (ps.getUser().getId() == user.getId())) {
-				projectStaffToRemove = ps;
-				
-				em.remove(projectStaffToRemove);				
-				em.close();
-				return true;
-			}
-		}
-		removed.emit(projectStaffToRemove);
-
+		em.getTransaction().begin();
+		ProjectStaff projStaff = (ProjectStaff) em
+				.createQuery(
+						"SELECT ps FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE p.projectid = '"
+								+ project.getId()
+								+ "' AND u.usrid = '"
+								+ user.getId() + "'").getSingleResult();
+		System.err.println(projStaff.getUser().getFirstname());
+		System.err.println(projStaff.getUser().getId());
+		ProjectStaff projectStaffToRemove = em.find(ProjectStaff.class, projStaff.getId());
+		em.remove(projectStaffToRemove);
+		em.getTransaction().commit();
 		em.close();
-		return false;
+		removed.emit(projectStaffToRemove);
+		return true;
+
+		// ProjectStaff projectStaffToRemove = null;
+		// for (ProjectStaff ps : projStaff) {
+		//
+		// if ((ps.getProject().getId() == project.getId())
+		// && (ps.getUser().getId() == user.getId())) {
+		// projectStaffToRemove = ps;
+		//
+		// em.remove(projectStaffToRemove);
+		// em.close();
+		// return true;
+		// }
+		// }
+		// removed.emit(projectStaffToRemove);
+		//
+		// em.close();
+		// return false;
 	}
 	
 }

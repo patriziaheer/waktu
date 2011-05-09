@@ -90,8 +90,13 @@ public class Project {
 	public boolean equals(Object obj) {
 		if (obj instanceof Project) {
 			Project proj = (Project)obj;
-			if (proj.projectIdentifier.equals(projectIdentifier) && proj.description.equals(description) && proj.projectid == projectid) {
-				return true;
+			if (proj.projectIdentifier.equals(projectIdentifier) && 
+				proj.description.equals(description) && 
+				proj.projectid == projectid &&
+				proj.active == active &&
+				proj.plannedTime == plannedTime &&
+				proj.projectManager.equals(projectManager)) {
+					return true;
 			} else {
 				return false;
 			}
@@ -102,11 +107,11 @@ public class Project {
 	@Override
 	public int hashCode() {
 		int hashCode = 23;
-		hashCode = 31 * projectid;
-		hashCode = 31 * projectIdentifier.hashCode();
-		hashCode = 31 * description.hashCode();
-		hashCode = 31 * projectManager.hashCode();
-		hashCode = 31 * plannedTime;
+		hashCode += 31 * projectid;
+		hashCode += 31 * projectIdentifier.hashCode();
+		hashCode += 31 * description.hashCode();
+		hashCode += 31 * projectManager.hashCode();
+		hashCode += 31 * plannedTime;
 		return hashCode;
 	}
 }

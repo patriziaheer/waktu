@@ -13,9 +13,11 @@ import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.domain.WorkSession;
+import ch.hsr.waktu.services.TimeUtil;
 
 import com.trolltech.qt.QSignalEmitter;
 import com.trolltech.qt.core.QDate;
+import com.trolltech.qt.core.QDateTime;
 
 /**
  * @author simon.staeheli
@@ -60,7 +62,6 @@ public class WorkSessionController extends QSignalEmitter {
 		em.flush();
 		em.getTransaction().commit();
 		logger.info("WorkSession added");
-		// TODO: add.emit() wieder einschalten (Observer von QT)
 		add.emit(newWorkSession);
 		return newWorkSession;
 	}
@@ -129,8 +130,7 @@ public class WorkSessionController extends QSignalEmitter {
 
 		ArrayList<WorkSession> workSessions = new ArrayList<WorkSession>();
 		for (WorkSession ws : workSessionsByUser) {
-
-			if (ws.getUser().equals(user) && ws.getStart().equals(startDate)) {
+			if (ws.getUser().equals(user) && ws.getStart().equals(TimeUtil.convertQDateTimeToGregorian(new QDateTime(startDate, null)))) {
 				workSessions.add(ws);
 				//logger.info("WORKSESSION: " + ws.toString());
 			}

@@ -80,4 +80,32 @@ public class WorkSession {
 		return userRef + " " + TimeUtil.convertGregorianToQDateTime(startTime) + " - " + TimeUtil.convertGregorianToQDateTime(endTime);
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof WorkSession) {
+			WorkSession ws = (WorkSession)obj;
+			if (ws.id == id &&
+			ws.userRef.equals(userRef) &&
+			ws.workPackageRef.equals(workPackageRef) &&
+			ws.description.equals(description) &&
+			ws.startTime.equals(startTime) &&
+			ws.endTime.equals(endTime)
+			) {
+				return true;
+			}
+		}
+		return super.equals(obj);
+	}
+	
+	@Override
+	public int hashCode() {
+		int hashCode = 23;
+		hashCode += 31 * id;
+		hashCode += 31 * userRef.hashCode();
+		hashCode += 31 * workPackageRef.hashCode();
+		hashCode += 31 * description.hashCode();
+		hashCode += 31 * startTime.hashCode();
+		hashCode += 31 * endTime.hashCode();
+		return hashCode;
+	}
 }

@@ -62,5 +62,29 @@ public class Favorite {
 		workPackageId = workPackageID;
 	}
 
-
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Favorite) {
+			Favorite fav = (Favorite)obj;
+			if (fav.id == id &&
+			fav.endTime.equals(endTime) &&
+			fav.startTime.equals(startTime) &&
+			fav.usrId.equals(usrId) &&
+			fav.workPackageId.equals(workPackageId)) {
+				return true;
+			}
+		}
+		return super.equals(obj);
+	}
+	
+	@Override
+	public int hashCode() {
+		int hashCode = 23;
+		hashCode += 31 * id;
+		hashCode += 31 * endTime.hashCode();
+		hashCode += 31 * startTime.hashCode();
+		hashCode += 31 * usrId.hashCode();
+		hashCode += 31 * workPackageId.hashCode();
+		return hashCode;
+	}
 }
