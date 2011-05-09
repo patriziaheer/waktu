@@ -11,7 +11,7 @@ import com.trolltech.qt.core.QTime;
 
 public class TimeUtil {
 	private static Logger logger = Logger.getLogger(TimeUtil.class);
-	
+	//TODO: Konvertier-Methoden refactoren gemäss DKellers Aussage..
 	public static QDateTime convertGregorianToQDateTime(GregorianCalendar dateTime) {
 		QDate date = new QDate(dateTime.get(GregorianCalendar.YEAR), dateTime.get(GregorianCalendar.MONTH), dateTime.get(GregorianCalendar.DAY_OF_MONTH));
 		QTime time = new QTime(dateTime.get(GregorianCalendar.HOUR_OF_DAY), dateTime.get(GregorianCalendar.MINUTE), dateTime.get(GregorianCalendar.SECOND));
