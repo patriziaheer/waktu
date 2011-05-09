@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 
 import ch.hsr.waktu.controller.datacontroller.FavoriteController;
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Favorite;
@@ -459,9 +460,14 @@ public class TimeView extends QMainWindow {
 	@SuppressWarnings("unused")
 	private void favoriteDeleteClicked(IndexButton btn) {
 		logger.info("EditClicked for favorite " + btn);
-		FavoriteController.getInstance().removeFavorite(
-				FavoriteController.getInstance().getFavorites(currUser)
-						.get(btn.getIndex().row()));
+		try {
+			FavoriteController.getInstance().removeFavorite(
+					FavoriteController.getInstance().getFavorites(currUser)
+							.get(btn.getIndex().row()));
+		} catch (WaktuGeneralException e) {
+			// TODO ExceptionHandling
+			e.printStackTrace();
+		}
 	}
 	
 	@SuppressWarnings("unused")

@@ -124,23 +124,6 @@ public class ProjectStaffController extends QSignalEmitter {
 		em.close();
 		removed.emit(projectStaffToRemove);
 		return true;
-
-		// ProjectStaff projectStaffToRemove = null;
-		// for (ProjectStaff ps : projStaff) {
-		//
-		// if ((ps.getProject().getId() == project.getId())
-		// && (ps.getUser().getId() == user.getId())) {
-		// projectStaffToRemove = ps;
-		//
-		// em.remove(projectStaffToRemove);
-		// em.close();
-		// return true;
-		// }
-		// }
-		// removed.emit(projectStaffToRemove);
-		//
-		// em.close();
-		// return false;
 	}
 	
 }

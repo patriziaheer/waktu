@@ -45,9 +45,12 @@ public class FavoriteController extends QSignalEmitter {
 	 * @param startTime
 	 * @param endTime
 	 */
-	public Favorite addFavorite(Usr user, WorkPackage workPackage, GregorianCalendar startTime, GregorianCalendar endTime) {
-		Favorite newFavorite = new Favorite(user, workPackage, startTime, endTime);
-		EntityManager em = PersistenceController.getInstance().getEMF().createEntityManager();
+	public Favorite addFavorite(Usr user, WorkPackage workPackage,
+			GregorianCalendar startTime, GregorianCalendar endTime) {
+		Favorite newFavorite = new Favorite(user, workPackage, startTime,
+				endTime);
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
 
 		em.getTransaction().begin();
 		em.persist(newFavorite);
@@ -65,42 +68,51 @@ public class FavoriteController extends QSignalEmitter {
 	 * @param user
 	 */
 	public List<Favorite> getFavorites(Usr user) {
-		EntityManager em = PersistenceController.getInstance().getEMF().createEntityManager();
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
 		@SuppressWarnings("unchecked")
-		List<Favorite> allFavorites = em.createQuery("SELECT f FROM Favorite f ORDER BY f.id").getResultList();
+		List<Favorite> allFavorites = em.createQuery(
+				"SELECT f FROM Favorite f ORDER BY f.id").getResultList();
 		return allFavorites;
 	}
 
 	/**
 	 * 
 	 * @param favorite
+	 * @throws WaktuGeneralException 
 	 */
-	
-	// TODO: remove funktioniert noch nicht...
-	
-	public boolean removeFavorite(Favorite favorite) {
-		EntityManager em = PersistenceController.getInstance().getEMF().createEntityManager();
-		em.getTransaction().begin();
-		Favorite favoriteToRemove = em.find(Favorite.class, favorite.getId());
-		if(favoriteToRemove == null) {
-			em.getTransaction().commit();
-			em.close();
-			return false;
-		} else {
-			em.remove(favoriteToRemove);
-			em.getTransaction().commit();
-			em.close();
+
+	public void removeFavorite(Favorite favorite) throws WaktuGeneralException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+		try {
+			em.getTransaction().begin();
+			em.remove(em.find(Favorite.class, favorite.getId()));
 			removed.emit(favorite);
-			return true;
+			em.getTransaction().commit();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		}
+		catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException("Illegal Argument");
+		}
+		catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		}
+		finally {
+			em.close();
 		}
 	}
 
 	public boolean updateFavorite(Favorite favorite) {
 		// TODO: added by ph
-		EntityManager em = PersistenceController.getInstance().getEMF().createEntityManager();
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
 
 		em.getTransaction().begin();
-		Favorite updateFav = (Favorite) em.createQuery("SELECT f FROM Favorite f WHERE f.id = " + favorite.getId()).getSingleResult();
+		Favorite updateFav = (Favorite) em.createQuery(
+				"SELECT f FROM Favorite f WHERE f.id = " + favorite.getId())
+				.getSingleResult();
 
 		updateFav.setStartTime(favorite.getStartTime());
 		updateFav.setEndTime(favorite.getEndTime());
