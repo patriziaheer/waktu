@@ -70,9 +70,9 @@ public class WorkPackage {
 	@Override
 	public int hashCode() {
 		int hashCode = 23;
-		hashCode = 31 * id;
-		hashCode = 31 * description.hashCode();
-		hashCode = 31 * project.hashCode();
+		hashCode += 31 * id;
+		hashCode += 31 * description.hashCode();
+		hashCode += 31 * project.hashCode();
 		return hashCode;
 	}
 }
