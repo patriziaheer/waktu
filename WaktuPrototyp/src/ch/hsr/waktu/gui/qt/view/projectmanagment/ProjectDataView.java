@@ -5,7 +5,6 @@ import ch.hsr.waktu.controller.datacontroller.WaktuException;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.gui.qt.model.ComboBoxData;
-import ch.hsr.waktu.gui.qt.view.projectmanagment.jui.Ui_ProjectData;
 
 import com.trolltech.qt.gui.QWidget;
 

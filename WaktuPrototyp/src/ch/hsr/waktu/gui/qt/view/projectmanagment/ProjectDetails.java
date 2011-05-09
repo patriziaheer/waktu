@@ -88,17 +88,19 @@ public class ProjectDetails extends QWidget {
 	
 	@SuppressWarnings("unused")
 	private void updateData() {
-		model.layoutAboutToBeChanged.emit();
-		model.dataChanged.emit(model.index(0, 0), model.index(model.rowCount(), model.columnCount()));
-		filterModel.dataChanged.emit(filterModel.index(0, 0), filterModel.index(model.rowCount(), model.columnCount()));
-        model.layoutChanged.emit();
+		updateTable();
 	}
 	
 	@SuppressWarnings("unused")
 	private void addData(Project project) {
+		updateTable();
+	}
+
+	private void updateTable() {
+		model.updateProjectsModel();
 		model.layoutAboutToBeChanged.emit();
 		model.dataChanged.emit(model.index(0, 0), model.index(model.rowCount(), model.columnCount()));
-		filterModel.dataChanged.emit(model.index(0, 0), model.index(model.rowCount(), model.columnCount()));
+		filterModel.dataChanged.emit(filterModel.index(0, 0), filterModel.index(model.rowCount(), model.columnCount()));
         model.layoutChanged.emit();
 	}
 	

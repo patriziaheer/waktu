@@ -1,5 +1,7 @@
 package ch.hsr.waktu.gui.qt.model;
 
+import java.util.List;
+
 import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkSession;
@@ -14,9 +16,11 @@ import com.trolltech.qt.core.Qt.Orientation;
 public class UserWorkSessionModel extends QAbstractItemModel {
 	
 	private Usr usr;
+	private List<WorkSession> workSessions;
 	
 	public UserWorkSessionModel(Usr usr) {
 		this.usr = usr;
+		workSessions = WorkSessionController.getInstance().getWorkSessions(usr);
 	}
 
 	@Override
@@ -26,13 +30,13 @@ public class UserWorkSessionModel extends QAbstractItemModel {
 
 	@Override
 	public int rowCount(QModelIndex arg0) {
-			return WorkSessionController.getInstance().getWorkSessions(usr).size();
+			return workSessions.size();
 	}
 
 	@Override
 	public Object data(QModelIndex index, int role) {
 		if (Qt.ItemDataRole.DisplayRole == role) {
-			WorkSession workSession = WorkSessionController.getInstance().getWorkSessions(usr).get(index.row());
+			WorkSession workSession = workSessions.get(index.row());
 			switch (index.column()) {
 			case 0: return workSession.getWorkPackage().getProject();
 			case 1: return workSession.getWorkPackage();
@@ -72,4 +76,8 @@ public class UserWorkSessionModel extends QAbstractItemModel {
 		return null;
 	}
 
+	public void updateWorkSessionModel() {
+		workSessions = WorkSessionController.getInstance().getWorkSessions(usr);
+	}
+	
 }

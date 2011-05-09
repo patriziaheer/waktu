@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ManagmentWindow.jui'
 **
-** Created: Fr. Mai 6 15:00:18 2011
+** Created: Mo. Mai 9 13:41:05 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -18,12 +18,15 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
     public QAction actionAdd;
     public QAction actionAddProject;
     public QAction actionAddUser;
+    public QAction actionEN;
+    public QAction actionDE;
     public QWidget centralwidget;
     public QGridLayout gridLayout_2;
     public QTabWidget tabWidget;
     public QWidget tabProject;
     public QMenuBar menubar;
     public QMenu menuFile;
+    public QMenu menuLanguage;
 
     public Ui_ManagmentWindow() { super(); }
 
@@ -40,6 +43,10 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         actionAddProject.setObjectName("actionAddProject");
         actionAddUser = new QAction(ManagmentWindow);
         actionAddUser.setObjectName("actionAddUser");
+        actionEN = new QAction(ManagmentWindow);
+        actionEN.setObjectName("actionEN");
+        actionDE = new QAction(ManagmentWindow);
+        actionDE.setObjectName("actionDE");
         centralwidget = new QWidget(ManagmentWindow);
         centralwidget.setObjectName("centralwidget");
         gridLayout_2 = new QGridLayout(centralwidget);
@@ -58,12 +65,18 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         menubar.setGeometry(new QRect(0, 0, 850, 22));
         menuFile = new QMenu(menubar);
         menuFile.setObjectName("menuFile");
+        menuLanguage = new QMenu(menuFile);
+        menuLanguage.setObjectName("menuLanguage");
         ManagmentWindow.setMenuBar(menubar);
 
         menubar.addAction(menuFile.menuAction());
         menuFile.addAction(actionAddProject);
         menuFile.addAction(actionAddUser);
+        menuFile.addAction(menuLanguage.menuAction());
         menuFile.addAction(actionClose);
+        menuLanguage.addSeparator();
+        menuLanguage.addAction(actionEN);
+        menuLanguage.addAction(actionDE);
         retranslateUi(ManagmentWindow);
 
         tabWidget.setCurrentIndex(0);
@@ -79,8 +92,11 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         actionAdd.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Add", null));
         actionAddProject.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Add Project", null));
         actionAddUser.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Add User", null));
+        actionEN.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "EN", null));
+        actionDE.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "DE", null));
         tabWidget.setTabText(tabWidget.indexOf(tabProject), com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Projekte", null));
         menuFile.setTitle(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "File", null));
+        menuLanguage.setTitle(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Language", null));
     } // retranslateUi
 
 }

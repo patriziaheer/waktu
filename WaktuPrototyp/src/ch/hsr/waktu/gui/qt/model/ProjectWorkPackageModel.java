@@ -1,5 +1,7 @@
 package ch.hsr.waktu.gui.qt.model;
 
+import java.util.List;
+
 import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.WorkPackage;
@@ -14,9 +16,11 @@ import com.trolltech.qt.core.Qt.Orientation;
 public class ProjectWorkPackageModel extends QAbstractItemModel {
 
 	private Project project;
+	private List<WorkPackage> workPackages;
 
 	public ProjectWorkPackageModel(Project project) {
 		this.project = project;
+		workPackages = WorkPackageController.getInstance().getActiveWorkPackages(project);
 	}
 
 	@Override
@@ -26,12 +30,12 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 
 	@Override
 	public int rowCount(QModelIndex arg0) {
-		return WorkPackageController.getInstance().getActiveWorkPackages(project).size();
+		return workPackages.size();
 	}
 
 	@Override
 	public Object data(QModelIndex index, int role) {
-		WorkPackage workPackage = WorkPackageController.getInstance().getActiveWorkPackages(project).get(index.row());
+		WorkPackage workPackage = workPackages.get(index.row());
 		if (Qt.ItemDataRole.DisplayRole == role) {
 			switch (index.column()) {
 			case 0:
@@ -88,7 +92,7 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 
 	@Override
 	public boolean setData(QModelIndex index, Object value, int role) {
-		WorkPackage workPackage = WorkPackageController.getInstance().getActiveWorkPackages(project).get(index.row());
+		WorkPackage workPackage = workPackages.get(index.row());
 		switch (index.column()) {
 		case 0: {
 			workPackage.setDescription((String)value);
@@ -111,6 +115,10 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 	@Override
 	public QModelIndex parent(QModelIndex arg0) {
 		return null;
+	}
+	
+	public void updateWorkPackageModel() {
+		workPackages = WorkPackageController.getInstance().getActiveWorkPackages(project);
 	}
 
 }

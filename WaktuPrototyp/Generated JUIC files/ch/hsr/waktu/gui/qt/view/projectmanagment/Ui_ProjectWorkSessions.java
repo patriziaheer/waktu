@@ -1,13 +1,13 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ProjectWorkSessions.jui'
 **
-** Created: So. Mai 8 20:14:26 2011
+** Created: Mo. Mai 9 13:41:05 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
 ********************************************************************************/
 
-package ch.hsr.waktu.gui.qt.view.projectmanagment.jui;
+package ch.hsr.waktu.gui.qt.view.projectmanagment;
 
 import com.trolltech.qt.core.*;
 import com.trolltech.qt.gui.*;

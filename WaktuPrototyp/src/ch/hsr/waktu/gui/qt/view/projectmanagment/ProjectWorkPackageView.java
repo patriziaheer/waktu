@@ -4,7 +4,6 @@ import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.gui.qt.model.ProjectWorkPackageModel;
-import ch.hsr.waktu.gui.qt.view.projectmanagment.jui.Ui_ProjectWorkPackage;
 
 import com.trolltech.qt.gui.QWidget;
 
@@ -37,6 +36,7 @@ public class ProjectWorkPackageView extends QWidget{
 	
 	@SuppressWarnings("unused")
 	private void addData(WorkPackage workPackage) {
+		workPackageModel.updateWorkPackageModel();
 		workPackageModel.layoutAboutToBeChanged.emit();
 		workPackageModel.dataChanged.emit(workPackageModel.index(0, 0), workPackageModel.index(workPackageModel.rowCount(), workPackageModel.columnCount()));
 		workPackageModel.layoutChanged.emit();
@@ -44,6 +44,7 @@ public class ProjectWorkPackageView extends QWidget{
 	
 	@SuppressWarnings("unused")
 	private void updated() {
+		workPackageModel.updateWorkPackageModel();
 		workPackageModel.layoutAboutToBeChanged.emit();
 		workPackageModel.dataChanged.emit(workPackageModel.index(0, 0), workPackageModel.index(workPackageModel.rowCount(), workPackageModel.columnCount()));
 		workPackageModel.layoutChanged.emit();

@@ -4,6 +4,8 @@ import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.gui.qt.view.projectmanagment.ProjectDetails;
 import ch.hsr.waktu.gui.qt.view.usermanagment.UserDetails;
 import ch.hsr.waktu.guicontroller.GuiController;
+import ch.hsr.waktu.guicontroller.LanguageController;
+import ch.hsr.waktu.guicontroller.LanguageController.Language;
 
 import com.trolltech.qt.gui.QMainWindow;
 
@@ -20,9 +22,9 @@ public class ManagmentView extends QMainWindow {
 		ui.setupUi(this);
 		ui.tabWidget.removeTab(0);
 		projectDetails = new ProjectDetails();
-		ui.tabWidget.addTab(projectDetails, tr("Projects"));
+		ui.tabWidget.addTab(projectDetails, com.trolltech.qt.core.QCoreApplication.translate("ManagmentView",("Projects"), null));
 		userDetails = new UserDetails(); 
-		ui.tabWidget.addTab(userDetails, tr("Users"));
+		ui.tabWidget.addTab(userDetails, com.trolltech.qt.core.QCoreApplication.translate("ManagmentView",("Users"), null));
 		
 		ui.actionAddUser.setVisible(GuiController.getInstance().canAddUser());
 		ui.actionAddProject.setVisible(GuiController.getInstance().canAddProject(currUsr));
@@ -30,6 +32,11 @@ public class ManagmentView extends QMainWindow {
 		ui.actionAddProject.triggered.connect(this, "addProject()");
 		ui.actionAddUser.triggered.connect(this, "addUser()");
 		ui.actionClose.triggered.connect(this, "closeWindow()");
+
+		ui.actionDE.triggered.connect(this, "translateDE()");
+		ui.actionEN.triggered.connect(this, "translateEN()");
+		
+		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 	}
 	
 	@SuppressWarnings("unused")
@@ -48,6 +55,27 @@ public class ManagmentView extends QMainWindow {
 	@SuppressWarnings("unused")
 	private void closeWindow() {
 		close();
+	}
+
+	@SuppressWarnings("unused")
+	private void translateDE() {
+		LanguageController.getInstance().setCurrLanguage(Language.DE);
+	}
+	
+	@SuppressWarnings("unused")
+	private void translateEN() {
+        LanguageController.getInstance().setCurrLanguage(Language.EN);
+	}
+	
+	@SuppressWarnings("unused")
+	private void translate() {
+        ui.retranslateUi(this);
+        changeText();
+	}
+
+	private void changeText() {
+		ui.tabWidget.setTabText(0, com.trolltech.qt.core.QCoreApplication.translate("ManagmentView",("Projects"), null));
+		ui.tabWidget.setTabText(1, com.trolltech.qt.core.QCoreApplication.translate("ManagmentView",("Users"), null));
 	}
 	
 }

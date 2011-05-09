@@ -16,14 +16,16 @@ import com.trolltech.qt.gui.QTreeModel;
 
 public class ProjectTreeModel extends QTreeModel {
 	
+	private List<Project> projects;
+	
 	public ProjectTreeModel() {
-		
+		projects = ProjectController.getInstance().getActiveProjects();
 	}
 
 	@Override
 	public Object child(Object parent, int index) {
 		if (parent == null) {
-			return ProjectController.getInstance().getActiveProjects().get(index);
+			return projects.get(index);
 		} else if (parent instanceof Project) {
 			return ProjectController.ProjectProperties.values()[index];
 		}
@@ -33,7 +35,7 @@ public class ProjectTreeModel extends QTreeModel {
 	@Override
 	public int childCount(Object parent) {
 		if (parent == null) {
-			return ProjectController.getInstance().getActiveProjects().size();
+			return projects.size();
 		} else if (parent instanceof Project) {
 			return ProjectController.ProjectProperties.values().length;
 		}
@@ -76,6 +78,10 @@ public class ProjectTreeModel extends QTreeModel {
 				return font;
 		}
 		return super.data(value, role);
+	}
+	
+	public void updateProjectsModel() {
+		projects = ProjectController.getInstance().getActiveProjects();
 	}
 	
 }

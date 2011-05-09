@@ -1,5 +1,7 @@
 package ch.hsr.waktu.gui.qt.view;
 
+import ch.hsr.waktu.guicontroller.LanguageController;
+
 import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.gui.QWidget;
 
@@ -22,6 +24,8 @@ public class CalendarWidget extends QWidget{
 		ui.btnSo.clicked.connect(this, "soClicked()");
 		ui.btnLeft.clicked.connect(this, "leftClicked()");
 		ui.btnRight.clicked.connect(this, "rightClicked()");
+		
+		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 		
 		updateCalendar();
 	}
@@ -246,5 +250,10 @@ public class CalendarWidget extends QWidget{
 		dayChanged.emit();
 	}
 
+	@SuppressWarnings("unused")
+	private void translate() {
+		ui.retranslateUi(this);
+	}
 
+	
 }

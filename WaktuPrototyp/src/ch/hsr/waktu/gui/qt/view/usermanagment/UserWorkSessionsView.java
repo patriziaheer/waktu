@@ -9,7 +9,6 @@ import ch.hsr.waktu.domain.WorkSession;
 import ch.hsr.waktu.gui.qt.model.ComboBoxData;
 import ch.hsr.waktu.gui.qt.model.TableSortFilterModel;
 import ch.hsr.waktu.gui.qt.model.UserWorkSessionModel;
-import ch.hsr.waktu.gui.qt.view.usermanagment.jui.Ui_UserWorkSessions;
 
 import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.gui.QWidget;
@@ -104,6 +103,7 @@ public class UserWorkSessionsView extends QWidget{
 	}
 	
 	private void updateWorkSessionTable() {
+		workSessionModel.updateWorkSessionModel();
 		workSessionModel.layoutAboutToBeChanged.emit();
 		workSessionModel.dataChanged.emit(workSessionModel.index(0, 0),
 				workSessionModel.index(workSessionModel.rowCount(),

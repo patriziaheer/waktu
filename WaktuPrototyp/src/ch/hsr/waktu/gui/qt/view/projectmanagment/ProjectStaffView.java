@@ -7,7 +7,6 @@ import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.gui.qt.model.ComboBoxData;
 import ch.hsr.waktu.gui.qt.model.ProjectStaffModel;
 import ch.hsr.waktu.gui.qt.view.IndexButton;
-import ch.hsr.waktu.gui.qt.view.projectmanagment.jui.Ui_ProjectStaff;
 
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.gui.QIcon;
@@ -68,6 +67,7 @@ public class ProjectStaffView extends QWidget {
 	}
 	
 	private void updateTable() {
+		projectStaffModel.updateProjectStaffModel();
 		projectStaffModel.layoutAboutToBeChanged.emit();
 		projectStaffModel.dataChanged.emit(projectStaffModel.index(0, 0), projectStaffModel.index(projectStaffModel.rowCount(), projectStaffModel.columnCount()));
 		projectStaffModel.layoutChanged.emit();

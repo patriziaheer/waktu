@@ -16,6 +16,7 @@ import ch.hsr.waktu.gui.qt.model.FavoriteModel;
 import ch.hsr.waktu.gui.qt.model.WorkSessionModel;
 import ch.hsr.waktu.gui.qt.view.IndexButton.EditStatus;
 import ch.hsr.waktu.guicontroller.LanguageController;
+import ch.hsr.waktu.guicontroller.LanguageController.Language;
 import ch.hsr.waktu.services.TimeUtil;
 
 import com.trolltech.qt.core.QDateTime;
@@ -90,10 +91,11 @@ public class TimeView extends QMainWindow {
 		ui.tblFavorites.setSelectionMode(SelectionMode.SingleSelection);
 		ui.tblFavorites.setSelectionBehavior(SelectionBehavior.SelectRows);
 		
-		ui.tblWorksessions.horizontalHeader().setStretchLastSection(true);
+		//ui.tblWorksessions.horizontalHeader().setStretchLastSection(true);
 		ui.tblWorksessions.resizeColumnsToContents();
 		ui.tblWorksessions.setSelectionMode(SelectionMode.SingleSelection);
 		ui.tblWorksessions.setSelectionBehavior(SelectionBehavior.SelectRows);
+		ui.tblWorksessions.horizontalHeader().resizeSection(0, 200);
 
 		ui.actionAdd_to_Favorites.triggered.connect(this, "addToFavorites()");
 
@@ -116,6 +118,8 @@ public class TimeView extends QMainWindow {
 		favoriteModel = new FavoriteModel(currUser);
 		ui.tblFavorites.setModel(favoriteModel);
 		
+		ui.actionDE.triggered.connect(this, "translateDE()");
+		ui.actionEN.triggered.connect(this, "translateEN()");
 		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 		
 		updateWorkSessionModel();
@@ -222,11 +226,11 @@ public class TimeView extends QMainWindow {
 	@SuppressWarnings("unused")
 	private void createWorkSessionClicked() {
 		if (ui.txtEnd.time().compareTo(ui.txtStart.time()) <= 0) {
-			setStatusBarText(tr("Endtime must be greater then Starttime"));
+			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate("TimeView",("Endtime must be greater then Starttime"), null));
 		} else if (ui.cmbProject.currentIndex() < 0) {
-			setStatusBarText(tr("Project must be choosen"));
+			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate("TimeView",("Project must be choosen"), null));
 		} else if (ui.cmbWorkpackage.currentIndex() < 0) {
-			setStatusBarText(tr("WorkPackage must be choosen"));
+			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate("TimeView",("WorkPackage must be choosen"), null));
 		} else {
 			Project project = ProjectController.getInstance()
 					.getActiveProjects().get(ui.cmbProject.currentIndex());
@@ -299,11 +303,11 @@ public class TimeView extends QMainWindow {
 	@SuppressWarnings("unused")
 	private void addToFavorites() {
 		if (ui.txtEnd.time().compareTo(ui.txtStart.time()) <= 0) {
-			setStatusBarText(tr("Endtime must be greater then Starttime"));
+			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate("TimeView",("Endtime must be greater then Starttime"), null));
 		} else if (ui.cmbProject.currentIndex() < 0) {
-			setStatusBarText(tr("Project must be choosen"));
+			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate("TimeView",("Project must be choosen"), null));
 		} else if (ui.cmbWorkpackage.currentIndex() < 0) {
-			setStatusBarText(tr("WorkPackage must be choosen"));
+			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate("TimeView",("WorkPackage must be choosen"), null));
 		} else {
 			Project project = ProjectController.getInstance()
 					.getActiveProjects().get(ui.cmbProject.currentIndex());
@@ -332,6 +336,16 @@ public class TimeView extends QMainWindow {
 	private void managmentClicked() {
 		managmentView.show();
 		managmentView.setFocus();
+	}
+	
+	@SuppressWarnings("unused")
+	private void translateDE() {
+		LanguageController.getInstance().setCurrLanguage(Language.DE);
+	}
+	
+	@SuppressWarnings("unused")
+	private void translateEN() {
+        LanguageController.getInstance().setCurrLanguage(Language.EN);
 	}
 
 	@SuppressWarnings("unused")
@@ -391,7 +405,7 @@ public class TimeView extends QMainWindow {
 		logger.info("EditClicked for " + btn);
 		if (workSessionModel.getEditable() != null
 				&& EditStatus.Edit == btn.getStatus()) {
-			setStatusBarText(tr("Save first current edit row"));
+			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate("TimeView",("Save first current edit row"), null));
 		} else {
 			if (EditStatus.Edit == btn.getStatus()) {
 				btn.setStatus(EditStatus.Save);
@@ -424,15 +438,10 @@ public class TimeView extends QMainWindow {
 		logger.info("EditClicked for favorite " + btn);
 		if (favoriteModel.getEditable() != null
 				&& EditStatus.Edit == btn.getStatus()) {
-			setStatusBarText(tr("Save first current edit row"));
+			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate("TimeView",("Save first current edit row"), null));
 		} else {
 			if (EditStatus.Edit == btn.getStatus()) {
 				btn.setStatus(EditStatus.Save);
-				/*
-				 * for (int i = 0; i < favoriteModel.columnCount(); i++) {
-				 * ui.tblFavorites.edit(favoriteModel.index(btn.getIndex()
-				 * .row(), i)); }
-				 */
 				favoriteModel.setEditable(btn.getIndex());
 				btn.setIcon(new QIcon("classpath:icons/save_16x16.png"));
 				ui.tblFavorites.selectionModel().select(btn.getIndex(),
