@@ -46,20 +46,27 @@ public class FavoriteController extends QSignalEmitter {
 	 * @param endTime
 	 */
 	public Favorite addFavorite(Usr user, WorkPackage workPackage,
-			GregorianCalendar startTime, GregorianCalendar endTime) {
-		Favorite newFavorite = new Favorite(user, workPackage, startTime,
-				endTime);
+			GregorianCalendar startTime, GregorianCalendar endTime) throws WaktuGeneralException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
-
-		em.getTransaction().begin();
-		em.persist(newFavorite);
-		logger.info("FAVORITE ADDED");
-		em.flush();
-		em.getTransaction().commit();
-		em.close();
+		Favorite newFavorite = new Favorite(user, workPackage, startTime,
+				endTime);
+		try {
+			em.getTransaction().begin();
+			em.persist(newFavorite);
+			em.getTransaction().commit();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
+		
 		add.emit(newFavorite);
-
+		logger.info("favorite " + newFavorite + " deleted");
 		return newFavorite;
 	}
 
@@ -69,16 +76,14 @@ public class FavoriteController extends QSignalEmitter {
 	 * @throws WaktuGeneralException
 	 */
 	
+	@SuppressWarnings("unchecked")
 	public List<Favorite> getFavorites(Usr user) throws WaktuGeneralException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		
-		List<Favorite> allFavoritesOfUsr;
-		
+		List<Favorite> allFavoritesOfUsr;		
 		try {
-			@SuppressWarnings("unchecked")
-			List<Favorite> allFavoritesOfUsrAsList = em.createQuery("SELECT f FROM Favorite f ORDER BY f.id").getResultList();
-			allFavoritesOfUsr = allFavoritesOfUsrAsList;
+			allFavoritesOfUsr = em.createQuery("SELECT f FROM Favorite f ORDER BY f.id").getResultList();
 		} catch (IllegalStateException e) {
 			throw new WaktuGeneralException("Database problem");
 		} catch (IllegalArgumentException e) {
@@ -103,9 +108,7 @@ public class FavoriteController extends QSignalEmitter {
 		try {
 			em.getTransaction().begin();
 			em.remove(em.find(Favorite.class, favorite.getId()));
-			removed.emit(favorite);
 			em.getTransaction().commit();
-			logger.info("favorite " + favorite.getId() + " deleted");
 		} catch (IllegalStateException e) {
 			throw new WaktuGeneralException("Database problem");
 		} catch (IllegalArgumentException e) {
@@ -115,6 +118,8 @@ public class FavoriteController extends QSignalEmitter {
 		} finally {
 			em.close();
 		}
+		removed.emit(favorite);
+		logger.info("favorite " + favorite.getId() + " deleted");
 	}
 	
 	/**
@@ -131,9 +136,7 @@ public class FavoriteController extends QSignalEmitter {
 			Favorite updateFavorite = em.find(Favorite.class, favorite.getId());
 			updateFavorite.setStartTime(favorite.getStartTime());
 			updateFavorite.setEndTime(favorite.getEndTime());
-			update.emit();
 			em.getTransaction().commit();
-			logger.info("favorite " + favorite.getId() + " updated");
 		} catch (IllegalStateException e) {
 			throw new WaktuGeneralException("Database problem");
 		} catch (IllegalArgumentException e) {
@@ -143,5 +146,7 @@ public class FavoriteController extends QSignalEmitter {
 		} finally {
 			em.close();
 		}
+		update.emit();
+		logger.info("favorite " + favorite.getId() + " updated");
 	}
 }
