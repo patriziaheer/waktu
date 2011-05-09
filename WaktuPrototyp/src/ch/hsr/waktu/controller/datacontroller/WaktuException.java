@@ -11,7 +11,7 @@ public class WaktuException extends Exception {
 		
 	}
 	
-	WaktuException(String message) {
+	public WaktuException(String message) {
 		this.message = message;
 	}
 	
