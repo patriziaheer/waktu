@@ -47,15 +47,11 @@ public class TimeController {
 		for(WorkSession ws: workSessionsWithinRange) {
 			worktime += TimeUtil.calculateTimespanInSeconds(ws.getStart(), ws.getEnd());
 		}
-		return timeInSecondsToHalfAnHourPrecision(worktime);
+		return worktime/3600;
 	}
 	
 	public static double getPlannedTime(Usr user, QDate fromDate, QDate toDate) {
 		return fromDate.daysTo(toDate) * user.getPensum() * HOURS_PER_WORKDAY;
 	}
-	
-	public static double timeInSecondsToHalfAnHourPrecision(int timeInSeconds) {
-		double timeInHours = timeInSeconds / 3600;
-		return Math.ceil(timeInHours * 2)/2;
-	}
+
 }
