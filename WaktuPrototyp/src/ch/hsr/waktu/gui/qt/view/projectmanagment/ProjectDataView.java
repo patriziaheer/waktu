@@ -69,7 +69,12 @@ public class ProjectDataView extends QWidget {
 	private void inactivChanged() {
 		if (project != null) {
 			project.setActiveState(!ui.checkBox.isChecked());
-			ProjectController.getInstance().updateProject(project);
+			try {
+				ProjectController.getInstance().updateProject(project);
+			} catch (WaktuGeneralException e) {
+				// TODO PH: unhandled exception
+				e.printStackTrace();
+			}
 		}
 	}
 	

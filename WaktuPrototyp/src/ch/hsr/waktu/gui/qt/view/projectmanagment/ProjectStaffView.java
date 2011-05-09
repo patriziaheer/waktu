@@ -1,6 +1,7 @@
 package ch.hsr.waktu.gui.qt.view.projectmanagment;
 
 import ch.hsr.waktu.controller.datacontroller.ProjectStaffController;
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.ProjectStaff;
 import ch.hsr.waktu.domain.Usr;
@@ -37,27 +38,42 @@ public class ProjectStaffView extends QWidget {
 	}
 	
 	private void updateProjectStaffModel() {
-		for (int i = 0; i < ProjectStaffController.getInstance().getUsers(project).size(); i++) {
-			QModelIndex currIndex = projectStaffModel.index(i, projectStaffModel.columnCount()-1);
+		try {
+			for (int i = 0; i < ProjectStaffController.getInstance().getUsers(project).size(); i++) {
+				QModelIndex currIndex = projectStaffModel.index(i, projectStaffModel.columnCount()-1);
 
-			IndexButton deleteButton = new IndexButton(currIndex);
-			deleteButton.setFixedHeight(20);
-			deleteButton.setIcon(new QIcon("classpath:icons/delete_16x16.png"));
-			deleteButton.actionClicked.connect(this, "deleteClicked(IndexButton)");
-			
-			ui.tblWorkStaff.setIndexWidget(currIndex, deleteButton);
+				IndexButton deleteButton = new IndexButton(currIndex);
+				deleteButton.setFixedHeight(20);
+				deleteButton.setIcon(new QIcon("classpath:icons/delete_16x16.png"));
+				deleteButton.actionClicked.connect(this, "deleteClicked(IndexButton)");
+				
+				ui.tblWorkStaff.setIndexWidget(currIndex, deleteButton);
+			}
+		} catch (WaktuGeneralException e) {
+			// TODO unhandled exception
+			e.printStackTrace();
 		}
 	}
 	
 	@SuppressWarnings("unused")
 	private void deleteClicked(IndexButton btn) {
-		Usr user = ProjectStaffController.getInstance().getUsers(project).get(btn.getIndex().row());
-		ProjectStaffController.getInstance().removeUser(user, project);
+		try {
+			Usr user = ProjectStaffController.getInstance().getUsers(project).get(btn.getIndex().row());
+			ProjectStaffController.getInstance().removeUser(user, project);
+		} catch (WaktuGeneralException e) {
+			// TODO exception handling
+			e.printStackTrace();
+		}
 	}
 	
 	@SuppressWarnings("unused")
 	private void addUser() {
-		ProjectStaffController.getInstance().addProjectStaff((Usr)ui.cmbUsers.itemData(ui.cmbUsers.currentIndex()), project);
+		try {
+			ProjectStaffController.getInstance().addProjectStaff((Usr)ui.cmbUsers.itemData(ui.cmbUsers.currentIndex()), project);
+		} catch (WaktuGeneralException e) {
+			// TODO exception handling
+			e.printStackTrace();
+		}
 	}
 	
 	@SuppressWarnings("unused")

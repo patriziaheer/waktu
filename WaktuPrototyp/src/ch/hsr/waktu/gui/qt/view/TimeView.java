@@ -239,6 +239,8 @@ public class TimeView extends QMainWindow {
 		} else if (ui.cmbWorkpackage.currentIndex() < 0) {
 			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate("TimeView",("WorkPackage must be choosen"), null));
 		} else {
+			
+			try {
 			Project project = ProjectController.getInstance()
 					.getActiveProjects().get(ui.cmbProject.currentIndex());
 			WorkPackage workPackage = WorkPackageController.getInstance()
@@ -254,6 +256,10 @@ public class TimeView extends QMainWindow {
 					workPackage, TimeUtil.convertQDateTimeToGregorian(start),
 					TimeUtil.convertQDateTimeToGregorian(end),
 					ui.txtDescription.text());
+			}
+			catch (Exception e) {
+				//TODO: PH: exception handling
+			}
 		}
 	}
 
@@ -316,6 +322,9 @@ public class TimeView extends QMainWindow {
 		} else if (ui.cmbWorkpackage.currentIndex() < 0) {
 			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate("TimeView",("WorkPackage must be choosen"), null));
 		} else {
+			
+			try {
+			
 			Project project = ProjectController.getInstance()
 					.getActiveProjects().get(ui.cmbProject.currentIndex());
 			WorkPackage workPackage = WorkPackageController.getInstance()
@@ -327,12 +336,12 @@ public class TimeView extends QMainWindow {
 			QDateTime end = new QDateTime();
 			end.setDate(calendar.getCurrentDate());
 			end.setTime(ui.txtEnd.time());
-			try {
+			
 				FavoriteController.getInstance().addFavorite(currUser, workPackage,
 						TimeUtil.convertQDateTimeToGregorian(start),
 						TimeUtil.convertQDateTimeToGregorian(end));
 			} catch (WaktuGeneralException e) {
-				// TODO exception handling
+				// TODO PH: exception handling
 				e.printStackTrace();
 			}
 		}
