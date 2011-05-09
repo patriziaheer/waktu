@@ -3,8 +3,9 @@ package ch.hsr.waktu.gui.qt.view;
 import ch.hsr.waktu.controller.PermissionController;
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.guicontroller.LanguageController;
+import ch.hsr.waktu.guicontroller.LanguageController.Language;
 
-import com.trolltech.qt.core.QTranslator;
 import com.trolltech.qt.core.Qt.CursorShape;
 import com.trolltech.qt.gui.QAction;
 import com.trolltech.qt.gui.QApplication;
@@ -42,6 +43,8 @@ public class LoginView extends QDialog {
 		closeAction = new QAction(fileMenu);
 		closeAction.triggered.connect(this, "closeClicked()");
 		
+		LanguageController.getInstance().languageChanged.connect(this, "translate()");
+		
 		
 		menuBar.addMenu(fileMenu);
 		fileMenu.addMenu(languageMenu);
@@ -78,18 +81,16 @@ public class LoginView extends QDialog {
 
 	@SuppressWarnings("unused")
 	private void translateDE() {
-        QTranslator translator = new QTranslator();
-        translator.load("classpath:Login_de.qm");
-        QApplication.installTranslator(translator);
-        ui.retranslateUi(this);
-        changeText();
+		LanguageController.getInstance().setCurrLanguage(Language.DE);
 	}
 	
 	@SuppressWarnings("unused")
 	private void translateEN() {
-        QTranslator translator = new QTranslator();
-        translator.load("classpath:Login_en.qm");
-        QApplication.installTranslator(translator);
+        LanguageController.getInstance().setCurrLanguage(Language.EN);
+	}
+	
+	@SuppressWarnings("unused")
+	private void translate() {
         ui.retranslateUi(this);
         changeText();
 	}

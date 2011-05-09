@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'TimeWindow.jui'
 **
-** Created: Fr. Mai 6 15:00:18 2011
+** Created: Sa. Mai 7 09:05:15 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -38,44 +38,30 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
     public QLabel lblCurrentMonth;
     public QLabel lblOvertime;
     public QLabel lblHolidays;
+    public QWidget widget;
+    public QHBoxLayout horizontalLayout_3;
+    public QGroupBox grpCreateWorksession;
+    public QGridLayout gridLayout_2;
+    public QLabel lblTime;
+    public QHBoxLayout horizontalLayout;
+    public QTimeEdit txtStart;
+    public QLabel lblBis2;
+    public QTimeEdit txtEnd;
+    public QSpacerItem horizontalSpacer_2;
+    public QLabel lblProject;
+    public QComboBox cmbProject;
+    public QLabel lblWorkPackage;
+    public QComboBox cmbWorkpackage;
+    public QLabel lblDescription;
+    public QLineEdit txtDescription;
+    public QPushButton btnReset;
+    public QPushButton btnCreate;
     public QGroupBox grpFavorites;
     public QGridLayout gridLayout_3;
     public QTableView tblFavorites;
     public QPushButton btnCreateFavorite;
     public QPushButton btnWorkPackageOnly;
     public QPushButton btnTimeOnly;
-    public QGroupBox grpCreateWorksession;
-    public QGridLayout gridLayout_2;
-    public QLabel lblTime;
-    public QLabel lblProject;
-    public QComboBox cmbProject;
-    public QComboBox cmbWorkpackage;
-    public QLabel lblWorkPackage;
-    public QLabel lblDescription;
-    public QLineEdit txtDescription;
-    public QPushButton btnCreate;
-    public QPushButton btnReset;
-    public QHBoxLayout horizontalLayout;
-    public QTimeEdit txtStart;
-    public QLabel lblBis2;
-    public QTimeEdit txtEnd;
-    public QSpacerItem horizontalSpacer_2;
-    public QWidget calendarWidget;
-    public QGridLayout gridLayout_6;
-    public QPushButton btnMo;
-    public QPushButton btnDi;
-    public QPushButton btnMi;
-    public QPushButton btnDo;
-    public QPushButton btnFri;
-    public QPushButton btnSa;
-    public QPushButton btnSo;
-    public QLabel lblBis;
-    public QLabel lblEnd;
-    public QLabel lblStart;
-    public QSpacerItem horizontalSpacer;
-    public QLabel lblCurrDate;
-    public QPushButton btnLeft;
-    public QPushButton btnRight;
     public QStatusBar statusBar;
     public QMenuBar menuBar;
     public QMenu menuManagment;
@@ -86,7 +72,7 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
     public void setupUi(QMainWindow TimeWindow)
     {
         TimeWindow.setObjectName("TimeWindow");
-        TimeWindow.resize(new QSize(740, 612).expandedTo(TimeWindow.minimumSizeHint()));
+        TimeWindow.resize(new QSize(784, 731).expandedTo(TimeWindow.minimumSizeHint()));
         actionClose = new QAction(TimeWindow);
         actionClose.setObjectName("actionClose");
         actionOpenManagment = new QAction(TimeWindow);
@@ -187,35 +173,12 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
 
         gridLayout.addWidget(grpOverview, 4, 0, 1, 2);
 
-        grpFavorites = new QGroupBox(centralwidget);
-        grpFavorites.setObjectName("grpFavorites");
-        grpFavorites.setMinimumSize(new QSize(350, 0));
-        gridLayout_3 = new QGridLayout(grpFavorites);
-        gridLayout_3.setObjectName("gridLayout_3");
-        tblFavorites = new QTableView(grpFavorites);
-        tblFavorites.setObjectName("tblFavorites");
-
-        gridLayout_3.addWidget(tblFavorites, 0, 0, 1, 3);
-
-        btnCreateFavorite = new QPushButton(grpFavorites);
-        btnCreateFavorite.setObjectName("btnCreateFavorite");
-
-        gridLayout_3.addWidget(btnCreateFavorite, 1, 2, 1, 1);
-
-        btnWorkPackageOnly = new QPushButton(grpFavorites);
-        btnWorkPackageOnly.setObjectName("btnWorkPackageOnly");
-
-        gridLayout_3.addWidget(btnWorkPackageOnly, 1, 1, 1, 1);
-
-        btnTimeOnly = new QPushButton(grpFavorites);
-        btnTimeOnly.setObjectName("btnTimeOnly");
-
-        gridLayout_3.addWidget(btnTimeOnly, 1, 0, 1, 1);
-
-
-        gridLayout.addWidget(grpFavorites, 1, 1, 1, 1);
-
-        grpCreateWorksession = new QGroupBox(centralwidget);
+        widget = new QWidget(centralwidget);
+        widget.setObjectName("widget");
+        horizontalLayout_3 = new QHBoxLayout(widget);
+        horizontalLayout_3.setMargin(0);
+        horizontalLayout_3.setObjectName("horizontalLayout_3");
+        grpCreateWorksession = new QGroupBox(widget);
         grpCreateWorksession.setObjectName("grpCreateWorksession");
         QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Preferred, com.trolltech.qt.gui.QSizePolicy.Policy.Preferred);
         sizePolicy.setHorizontalStretch((byte)0);
@@ -229,46 +192,6 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         lblTime.setObjectName("lblTime");
 
         gridLayout_2.addWidget(lblTime, 0, 0, 1, 1);
-
-        lblProject = new QLabel(grpCreateWorksession);
-        lblProject.setObjectName("lblProject");
-
-        gridLayout_2.addWidget(lblProject, 2, 0, 1, 1);
-
-        cmbProject = new QComboBox(grpCreateWorksession);
-        cmbProject.setObjectName("cmbProject");
-
-        gridLayout_2.addWidget(cmbProject, 2, 2, 1, 6);
-
-        cmbWorkpackage = new QComboBox(grpCreateWorksession);
-        cmbWorkpackage.setObjectName("cmbWorkpackage");
-
-        gridLayout_2.addWidget(cmbWorkpackage, 3, 2, 1, 6);
-
-        lblWorkPackage = new QLabel(grpCreateWorksession);
-        lblWorkPackage.setObjectName("lblWorkPackage");
-
-        gridLayout_2.addWidget(lblWorkPackage, 3, 0, 1, 1);
-
-        lblDescription = new QLabel(grpCreateWorksession);
-        lblDescription.setObjectName("lblDescription");
-
-        gridLayout_2.addWidget(lblDescription, 4, 0, 1, 1);
-
-        txtDescription = new QLineEdit(grpCreateWorksession);
-        txtDescription.setObjectName("txtDescription");
-
-        gridLayout_2.addWidget(txtDescription, 4, 2, 1, 6);
-
-        btnCreate = new QPushButton(grpCreateWorksession);
-        btnCreate.setObjectName("btnCreate");
-
-        gridLayout_2.addWidget(btnCreate, 5, 5, 1, 3);
-
-        btnReset = new QPushButton(grpCreateWorksession);
-        btnReset.setObjectName("btnReset");
-
-        gridLayout_2.addWidget(btnReset, 5, 2, 1, 3);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout.setObjectName("horizontalLayout");
@@ -303,108 +226,79 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
 
         gridLayout_2.addLayout(horizontalLayout, 0, 2, 1, 6);
 
+        lblProject = new QLabel(grpCreateWorksession);
+        lblProject.setObjectName("lblProject");
 
-        gridLayout.addWidget(grpCreateWorksession, 1, 0, 1, 1);
+        gridLayout_2.addWidget(lblProject, 2, 0, 1, 1);
 
-        calendarWidget = new QWidget(centralwidget);
-        calendarWidget.setObjectName("calendarWidget");
-        QSizePolicy sizePolicy2 = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Expanding, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
-        sizePolicy2.setHorizontalStretch((byte)0);
-        sizePolicy2.setVerticalStretch((byte)0);
-        sizePolicy2.setHeightForWidth(calendarWidget.sizePolicy().hasHeightForWidth());
-        calendarWidget.setSizePolicy(sizePolicy2);
-        gridLayout_6 = new QGridLayout(calendarWidget);
-        gridLayout_6.setObjectName("gridLayout_6");
-        btnMo = new QPushButton(calendarWidget);
-        btnMo.setObjectName("btnMo");
-        btnMo.setMinimumSize(new QSize(30, 30));
-        btnMo.setMaximumSize(new QSize(30, 30));
+        cmbProject = new QComboBox(grpCreateWorksession);
+        cmbProject.setObjectName("cmbProject");
 
-        gridLayout_6.addWidget(btnMo, 2, 3, 1, 1);
+        gridLayout_2.addWidget(cmbProject, 2, 2, 1, 6);
 
-        btnDi = new QPushButton(calendarWidget);
-        btnDi.setObjectName("btnDi");
-        btnDi.setMinimumSize(new QSize(30, 30));
-        btnDi.setMaximumSize(new QSize(30, 30));
+        lblWorkPackage = new QLabel(grpCreateWorksession);
+        lblWorkPackage.setObjectName("lblWorkPackage");
 
-        gridLayout_6.addWidget(btnDi, 2, 4, 1, 1);
+        gridLayout_2.addWidget(lblWorkPackage, 3, 0, 1, 1);
 
-        btnMi = new QPushButton(calendarWidget);
-        btnMi.setObjectName("btnMi");
-        btnMi.setMinimumSize(new QSize(30, 30));
-        btnMi.setMaximumSize(new QSize(30, 30));
+        cmbWorkpackage = new QComboBox(grpCreateWorksession);
+        cmbWorkpackage.setObjectName("cmbWorkpackage");
 
-        gridLayout_6.addWidget(btnMi, 2, 5, 1, 1);
+        gridLayout_2.addWidget(cmbWorkpackage, 3, 2, 1, 6);
 
-        btnDo = new QPushButton(calendarWidget);
-        btnDo.setObjectName("btnDo");
-        btnDo.setMinimumSize(new QSize(30, 30));
-        btnDo.setMaximumSize(new QSize(30, 30));
+        lblDescription = new QLabel(grpCreateWorksession);
+        lblDescription.setObjectName("lblDescription");
 
-        gridLayout_6.addWidget(btnDo, 2, 6, 1, 1);
+        gridLayout_2.addWidget(lblDescription, 4, 0, 1, 1);
 
-        btnFri = new QPushButton(calendarWidget);
-        btnFri.setObjectName("btnFri");
-        btnFri.setMinimumSize(new QSize(30, 30));
-        btnFri.setMaximumSize(new QSize(30, 30));
+        txtDescription = new QLineEdit(grpCreateWorksession);
+        txtDescription.setObjectName("txtDescription");
 
-        gridLayout_6.addWidget(btnFri, 2, 7, 1, 1);
+        gridLayout_2.addWidget(txtDescription, 4, 2, 1, 6);
 
-        btnSa = new QPushButton(calendarWidget);
-        btnSa.setObjectName("btnSa");
-        btnSa.setMinimumSize(new QSize(30, 30));
-        btnSa.setMaximumSize(new QSize(30, 30));
+        btnReset = new QPushButton(grpCreateWorksession);
+        btnReset.setObjectName("btnReset");
 
-        gridLayout_6.addWidget(btnSa, 2, 8, 1, 1);
+        gridLayout_2.addWidget(btnReset, 5, 2, 1, 3);
 
-        btnSo = new QPushButton(calendarWidget);
-        btnSo.setObjectName("btnSo");
-        btnSo.setMinimumSize(new QSize(30, 30));
-        btnSo.setMaximumSize(new QSize(30, 30));
+        btnCreate = new QPushButton(grpCreateWorksession);
+        btnCreate.setObjectName("btnCreate");
 
-        gridLayout_6.addWidget(btnSo, 2, 10, 1, 1);
-
-        lblBis = new QLabel(calendarWidget);
-        lblBis.setObjectName("lblBis");
-
-        gridLayout_6.addWidget(lblBis, 1, 6, 1, 1);
-
-        lblEnd = new QLabel(calendarWidget);
-        lblEnd.setObjectName("lblEnd");
-
-        gridLayout_6.addWidget(lblEnd, 1, 7, 1, 2);
-
-        lblStart = new QLabel(calendarWidget);
-        lblStart.setObjectName("lblStart");
-        lblStart.setAlignment(com.trolltech.qt.core.Qt.AlignmentFlag.createQFlags(com.trolltech.qt.core.Qt.AlignmentFlag.AlignRight,com.trolltech.qt.core.Qt.AlignmentFlag.AlignVCenter));
-
-        gridLayout_6.addWidget(lblStart, 1, 4, 1, 2);
-
-        horizontalSpacer = new QSpacerItem(40, 20, com.trolltech.qt.gui.QSizePolicy.Policy.Expanding, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
-
-        gridLayout_6.addItem(horizontalSpacer, 2, 0, 1, 1);
-
-        lblCurrDate = new QLabel(calendarWidget);
-        lblCurrDate.setObjectName("lblCurrDate");
-
-        gridLayout_6.addWidget(lblCurrDate, 2, 1, 1, 1);
-
-        btnLeft = new QPushButton(calendarWidget);
-        btnLeft.setObjectName("btnLeft");
-        btnLeft.setMinimumSize(new QSize(30, 30));
-        btnLeft.setMaximumSize(new QSize(30, 30));
-
-        gridLayout_6.addWidget(btnLeft, 1, 3, 1, 1);
-
-        btnRight = new QPushButton(calendarWidget);
-        btnRight.setObjectName("btnRight");
-        btnRight.setMinimumSize(new QSize(30, 30));
-        btnRight.setMaximumSize(new QSize(30, 30));
-
-        gridLayout_6.addWidget(btnRight, 1, 10, 1, 1);
+        gridLayout_2.addWidget(btnCreate, 5, 5, 1, 3);
 
 
-        gridLayout.addWidget(calendarWidget, 0, 0, 1, 2);
+        horizontalLayout_3.addWidget(grpCreateWorksession);
+
+        grpFavorites = new QGroupBox(widget);
+        grpFavorites.setObjectName("grpFavorites");
+        grpFavorites.setMinimumSize(new QSize(350, 0));
+        gridLayout_3 = new QGridLayout(grpFavorites);
+        gridLayout_3.setObjectName("gridLayout_3");
+        tblFavorites = new QTableView(grpFavorites);
+        tblFavorites.setObjectName("tblFavorites");
+
+        gridLayout_3.addWidget(tblFavorites, 0, 0, 1, 3);
+
+        btnCreateFavorite = new QPushButton(grpFavorites);
+        btnCreateFavorite.setObjectName("btnCreateFavorite");
+
+        gridLayout_3.addWidget(btnCreateFavorite, 1, 2, 1, 1);
+
+        btnWorkPackageOnly = new QPushButton(grpFavorites);
+        btnWorkPackageOnly.setObjectName("btnWorkPackageOnly");
+
+        gridLayout_3.addWidget(btnWorkPackageOnly, 1, 1, 1, 1);
+
+        btnTimeOnly = new QPushButton(grpFavorites);
+        btnTimeOnly.setObjectName("btnTimeOnly");
+
+        gridLayout_3.addWidget(btnTimeOnly, 1, 0, 1, 1);
+
+
+        horizontalLayout_3.addWidget(grpFavorites);
+
+
+        gridLayout.addWidget(widget, 0, 0, 1, 2);
 
         TimeWindow.setCentralWidget(centralwidget);
         statusBar = new QStatusBar(TimeWindow);
@@ -412,7 +306,7 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         TimeWindow.setStatusBar(statusBar);
         menuBar = new QMenuBar(TimeWindow);
         menuBar.setObjectName("menuBar");
-        menuBar.setGeometry(new QRect(0, 0, 740, 22));
+        menuBar.setGeometry(new QRect(0, 0, 784, 22));
         menuManagment = new QMenu(menuBar);
         menuManagment.setObjectName("menuManagment");
         menuFile = new QMenu(menuBar);
@@ -451,31 +345,18 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         lblCurrentMonth.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "45.3h", null));
         lblOvertime.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "2.4h", null));
         lblHolidays.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "12.3d", null));
+        grpCreateWorksession.setTitle(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Create Worksession", null));
+        lblTime.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Time:", null));
+        lblBis2.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "-", null));
+        lblProject.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Project:", null));
+        lblWorkPackage.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Work Package:", null));
+        lblDescription.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Description:", null));
+        btnReset.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "reset", null));
+        btnCreate.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "create", null));
         grpFavorites.setTitle(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Favorites", null));
         btnCreateFavorite.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "create", null));
         btnWorkPackageOnly.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Workpackage only", null));
         btnTimeOnly.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Time only", null));
-        grpCreateWorksession.setTitle(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Create Worksession", null));
-        lblTime.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Time:", null));
-        lblProject.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Project:", null));
-        lblWorkPackage.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Work Package:", null));
-        lblDescription.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Description:", null));
-        btnCreate.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "create", null));
-        btnReset.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "reset", null));
-        lblBis2.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "-", null));
-        btnMo.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "MO", null));
-        btnDi.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "DI", null));
-        btnMi.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "MI", null));
-        btnDo.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "DO", null));
-        btnFri.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "FRI", null));
-        btnSa.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "SA", null));
-        btnSo.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "SO", null));
-        lblBis.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "-", null));
-        lblEnd.setText("");
-        lblStart.setText("");
-        lblCurrDate.setText("");
-        btnLeft.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "<", null));
-        btnRight.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", ">", null));
         menuManagment.setTitle(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Managment", null));
         menuFile.setTitle(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "File", null));
     } // retranslateUi

@@ -4,23 +4,23 @@
 <context>
     <name>LoginDialog</name>
     <message>
-        <location filename="Ui_LoginDialog.java" line="88"/>
-        <location filename="Ui_LoginDialog.java" line="92"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_LoginDialog.java" line="88"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_LoginDialog.java" line="92"/>
         <source>Login</source>
         <translation>Anmelden</translation>
     </message>
     <message>
-        <location filename="Ui_LoginDialog.java" line="89"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_LoginDialog.java" line="89"/>
         <source>Username:</source>
         <translation>Benutzername:</translation>
     </message>
     <message>
-        <location filename="Ui_LoginDialog.java" line="90"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_LoginDialog.java" line="90"/>
         <source>Password:</source>
         <translation>Passwort:</translation>
     </message>
     <message>
-        <location filename="Ui_LoginDialog.java" line="91"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_LoginDialog.java" line="91"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>

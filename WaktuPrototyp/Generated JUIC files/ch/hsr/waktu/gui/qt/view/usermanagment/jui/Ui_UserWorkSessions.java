@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'UserWorkSessions.jui'
 **
-** Created: Fr. Mai 6 15:00:18 2011
+** Created: So. Mai 8 20:14:26 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -21,8 +21,10 @@ public class Ui_UserWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
     public QDateEdit txtStart;
     public QLabel lblBis;
     public QDateEdit txtEnd;
-    public QLabel lblTotalTimeText;
+    public QPushButton btnAddFilter;
+    public QPushButton btnRemoveFilter;
     public QLabel lblTotalTime;
+    public QLabel lblTotalTimeText;
 
     public Ui_UserWorkSessions() { super(); }
 
@@ -57,7 +59,7 @@ public class Ui_UserWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
         tblWorkSessions = new QTableView(UserWorkSessions);
         tblWorkSessions.setObjectName("tblWorkSessions");
 
-        gridLayout.addWidget(tblWorkSessions, 1, 0, 1, 5);
+        gridLayout.addWidget(tblWorkSessions, 1, 0, 1, 7);
 
         txtStart = new QDateEdit(UserWorkSessions);
         txtStart.setObjectName("txtStart");
@@ -92,16 +94,26 @@ public class Ui_UserWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
 
         gridLayout.addWidget(txtEnd, 0, 4, 1, 1);
 
-        lblTotalTimeText = new QLabel(UserWorkSessions);
-        lblTotalTimeText.setObjectName("lblTotalTimeText");
-        lblTotalTimeText.setAlignment(com.trolltech.qt.core.Qt.AlignmentFlag.createQFlags(com.trolltech.qt.core.Qt.AlignmentFlag.AlignRight,com.trolltech.qt.core.Qt.AlignmentFlag.AlignVCenter));
+        btnAddFilter = new QPushButton(UserWorkSessions);
+        btnAddFilter.setObjectName("btnAddFilter");
 
-        gridLayout.addWidget(lblTotalTimeText, 2, 2, 1, 1);
+        gridLayout.addWidget(btnAddFilter, 0, 5, 1, 1);
+
+        btnRemoveFilter = new QPushButton(UserWorkSessions);
+        btnRemoveFilter.setObjectName("btnRemoveFilter");
+
+        gridLayout.addWidget(btnRemoveFilter, 0, 6, 1, 1);
 
         lblTotalTime = new QLabel(UserWorkSessions);
         lblTotalTime.setObjectName("lblTotalTime");
 
-        gridLayout.addWidget(lblTotalTime, 2, 4, 1, 1);
+        gridLayout.addWidget(lblTotalTime, 2, 6, 1, 1);
+
+        lblTotalTimeText = new QLabel(UserWorkSessions);
+        lblTotalTimeText.setObjectName("lblTotalTimeText");
+        lblTotalTimeText.setAlignment(com.trolltech.qt.core.Qt.AlignmentFlag.createQFlags(com.trolltech.qt.core.Qt.AlignmentFlag.AlignRight,com.trolltech.qt.core.Qt.AlignmentFlag.AlignVCenter));
+
+        gridLayout.addWidget(lblTotalTimeText, 2, 5, 1, 1);
 
         retranslateUi(UserWorkSessions);
 
@@ -112,8 +124,10 @@ public class Ui_UserWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
     {
         UserWorkSessions.setWindowTitle(com.trolltech.qt.core.QCoreApplication.translate("UserWorkSessions", "WorkSessions", null));
         lblBis.setText(com.trolltech.qt.core.QCoreApplication.translate("UserWorkSessions", "-", null));
-        lblTotalTimeText.setText(com.trolltech.qt.core.QCoreApplication.translate("UserWorkSessions", "Total Time:", null));
+        btnAddFilter.setText(com.trolltech.qt.core.QCoreApplication.translate("UserWorkSessions", "Add Filter", null));
+        btnRemoveFilter.setText(com.trolltech.qt.core.QCoreApplication.translate("UserWorkSessions", "Remove Filter", null));
         lblTotalTime.setText(com.trolltech.qt.core.QCoreApplication.translate("UserWorkSessions", "0.0h", null));
+        lblTotalTimeText.setText(com.trolltech.qt.core.QCoreApplication.translate("UserWorkSessions", "Total Time:", null));
     } // retranslateUi
 
 }

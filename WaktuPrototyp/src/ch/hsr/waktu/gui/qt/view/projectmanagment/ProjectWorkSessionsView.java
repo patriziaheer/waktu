@@ -10,7 +10,6 @@ import ch.hsr.waktu.gui.qt.model.ComboBoxData;
 import ch.hsr.waktu.gui.qt.model.ProjectWorkSessionModel;
 import ch.hsr.waktu.gui.qt.model.TableSortFilterModel;
 import ch.hsr.waktu.gui.qt.view.projectmanagment.jui.Ui_ProjectWorkSessions;
-import ch.hsr.waktu.services.TimeUtil;
 
 import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.gui.QWidget;
@@ -42,25 +41,40 @@ public class ProjectWorkSessionsView extends QWidget {
 		WorkSessionController.getInstance().add.connect(this, "added(WorkSession)");
 		WorkSessionController.getInstance().removed.connect(this, "removed(WorkSession)");
 		WorkSessionController.getInstance().update.connect(this, "updated()");
+		ui.txtStart.setDate(new QDate(01,01,1900));
+		ui.txtEnd.setDate(new QDate(01,01,1900));
 	}
 	
 	@SuppressWarnings("unused")
 	private void addFilter() {
 		filterModel.setUsr((Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()));
-		filterModel.setWorkPackage((WorkPackage)ui.cmbUser.itemData(ui.cmbWorkpackage.currentIndex()));
-		filterModel.setStart(ui.txtStart.date());
-		filterModel.setEnd(ui.txtEnd.date());
+		filterModel.setWorkPackage((WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()));
+		QDate start = null;
+		QDate end = null;
 		
-		ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), (Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()), ui.txtStart.dateTime(), ui.txtEnd.dateTime()));
+		if (ui.txtStart.date().toString("dd.MM.yyyy").equals("01.01.2000") == false) {
+			start = ui.txtStart.date(); 
+		}
+		if (ui.txtEnd.date().toString("dd.MM.yyyy").equals("01.01.2000") == false) {
+			end = ui.txtEnd.date();
+		}
+		filterModel.setStart(start);
+		filterModel.setEnd(end);
+		
+		ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), (Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()), start, end));
 	}
 	
 	@SuppressWarnings("unused")
 	private void removeFilter() {
 		ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, null, null, null, null));
 		ui.cmbUser.setCurrentIndex(-1);
-		ui.cmbUser.setCurrentIndex(-1);
+		ui.cmbWorkpackage.setCurrentIndex(-1);
 		ui.txtStart.setDate(new QDate(01, 01, 1900));
-		ui.txtEnd.setDate(new QDate(31, 12, 2999));
+		ui.txtEnd.setDate(new QDate(01, 01, 1900));
+		filterModel.setUsr(null);
+		filterModel.setWorkPackage(null);
+		filterModel.setStart(null);
+		filterModel.setEnd(null);
 	}
 	
 	@SuppressWarnings("unused")

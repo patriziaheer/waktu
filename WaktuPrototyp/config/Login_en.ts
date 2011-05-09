@@ -4,23 +4,23 @@
 <context>
     <name>LoginDialog</name>
     <message>
-        <location filename="Ui_LoginDialog.java" line="88"/>
-        <location filename="Ui_LoginDialog.java" line="92"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_LoginDialog.java" line="88"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_LoginDialog.java" line="92"/>
         <source>Login</source>
         <translation>Login</translation>
     </message>
     <message>
-        <location filename="Ui_LoginDialog.java" line="89"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_LoginDialog.java" line="89"/>
         <source>Username:</source>
         <translation>Username:</translation>
     </message>
     <message>
-        <location filename="Ui_LoginDialog.java" line="90"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_LoginDialog.java" line="90"/>
         <source>Password:</source>
         <translation>Password:</translation>
     </message>
     <message>
-        <location filename="Ui_LoginDialog.java" line="91"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_LoginDialog.java" line="91"/>
         <source>Cancel</source>
         <translation>Cancel</translation>
     </message>
@@ -46,16 +46,16 @@
         <location filename="LoginView.java" line="95"/>
         <source>EN</source>
         <translation>Englisch</translation>
-    </message>    
-	<message>
+    </message>
+    <message>
         <location filename="LoginView.java" line="70"/>
         <source>Username or Password wrong</source>
-        <translation type="unfinished">Username or Password wrong</translation>
+        <translation>Username or Password wrong</translation>
     </message>
     <message>
         <location filename="LoginView.java" line="106"/>
         <source>Close</source>
-        <translation type="unfinished">Close</translation>
+        <translation>Close</translation>
     </message>
 </context>
 </TS>

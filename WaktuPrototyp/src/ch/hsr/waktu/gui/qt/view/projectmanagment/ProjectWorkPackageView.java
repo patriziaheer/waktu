@@ -31,6 +31,7 @@ public class ProjectWorkPackageView extends QWidget{
 	private void addClicked() {
 		if (ui.txtDescription.text().isEmpty() == false) {
 			WorkPackageController.getInstance().addWorkPackage(project, ui.txtDescription.text());
+			ui.txtDescription.setText("");
 		}
 	}
 	
