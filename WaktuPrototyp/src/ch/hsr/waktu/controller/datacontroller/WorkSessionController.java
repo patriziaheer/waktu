@@ -60,7 +60,6 @@ public class WorkSessionController extends QSignalEmitter {
 		em.flush();
 		em.getTransaction().commit();
 		logger.info("WorkSession added");
-		// TODO: add.emit() wieder einschalten (Observer von QT)
 		add.emit(newWorkSession);
 		return newWorkSession;
 	}
