@@ -47,58 +47,63 @@ public class WorkSessionController extends QSignalEmitter {
 	/**
 	 * 
 	 * @param user
-	 * @param workPackage
-	 * @param startTime
-	 * @param endTime
+	 * @throws WaktuGeneralException
 	 */
-	public WorkSession addWorkSession(Usr user, WorkPackage workPackage,
-			GregorianCalendar startTime, GregorianCalendar endTime, String description) {
-		WorkSession newWorkSession = new WorkSession(user, workPackage,
-				startTime, endTime, description);
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
-		em.getTransaction().begin();
-		em.persist(newWorkSession);
-		em.flush();
-		em.getTransaction().commit();
-		logger.info("WorkSession added");
-		add.emit(newWorkSession);
-		return newWorkSession;
-	}
-
-	/**
-	 * 
-	 * @param user
-	 */
-	public List<WorkSession> getWorkSessions(Usr user) {
+	@SuppressWarnings("unchecked")
+	public List<WorkSession> getWorkSessions(Usr user)
+			throws WaktuGeneralException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
-		@SuppressWarnings("unchecked")
-		List<WorkSession> workSessionsByUser = em.createQuery(
-				"SELECT ws FROM WorkSession ws").getResultList();
-
-		ArrayList<WorkSession> workSessions = new ArrayList<WorkSession>();
-		for (WorkSession ws : workSessionsByUser) {
-
-			if (ws.getUser().equals(user)) {
-				workSessions.add(ws);
-				//logger.info("WORKSESSION: " + ws.toString());
-			}
-
+		List<WorkSession> workSessionsByUser;
+		try {
+			workSessionsByUser = em.createQuery(
+					"SELECT ws FROM WorkSession ws JOIN ws.userref u WHERE u.usrid = '"
+							+ user.getId() + "'").getResultList();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
 		}
-
-		em.close();
-		return workSessions;
+		return workSessionsByUser;
 	}
 
 	/**
 	 * 
 	 * @param user
 	 * @param date
+	 * @throws WaktuGeneralException
 	 */
-	public List<WorkSession> getWorkSessions(Usr user, QDate date) {
-		//TODO filter by date
+	@SuppressWarnings("unchecked")
+	public List<WorkSession> getWorkSessions(Usr user, QDate date)
+			throws WaktuGeneralException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		List<WorkSession> workSessionsByDate;
+		try {
+			workSessionsByDate = em.createQuery(
+					"SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE ws.startTime = '"
+							+ date.toString("yyyy-MM-dd") + "' AND u.usrid = '"
+							+ user.getId() + "'").getResultList();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
+		return workSessionsByDate;
+	}
+
+	// TODO: MF: Wird diese Methode noch gebraucht?
+	public List<WorkSession> getWorkSessionsStartingAt(Usr user, QDate startDate) {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -108,31 +113,12 @@ public class WorkSessionController extends QSignalEmitter {
 
 		ArrayList<WorkSession> workSessions = new ArrayList<WorkSession>();
 		for (WorkSession ws : workSessionsByUser) {
-
-			if (ws.getUser().equals(user)) {
+			if (ws.getUser().equals(user)
+					&& ws.getStart().equals(
+							TimeUtil.convertQDateTimeToGregorian(new QDateTime(
+									startDate, null)))) {
 				workSessions.add(ws);
-				//logger.info("WORKSESSION: " + ws.toString());
-			}
-
-		}
-
-		em.close();
-		return workSessions;
-	}
-	
-	public List<WorkSession> getWorkSessionsStartingAt(Usr user, QDate startDate) {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-		.createEntityManager();
-
-		@SuppressWarnings("unchecked")
-		List<WorkSession> workSessionsByUser = em.createQuery(
-		"SELECT ws FROM WorkSession ws ORDER BY ws.id").getResultList();
-
-		ArrayList<WorkSession> workSessions = new ArrayList<WorkSession>();
-		for (WorkSession ws : workSessionsByUser) {
-			if (ws.getUser().equals(user) && ws.getStart().equals(TimeUtil.convertQDateTimeToGregorian(new QDateTime(startDate, null)))) {
-				workSessions.add(ws);
-				//logger.info("WORKSESSION: " + ws.toString());
+				// logger.info("WORKSESSION: " + ws.toString());
 			}
 
 		}
@@ -141,63 +127,115 @@ public class WorkSessionController extends QSignalEmitter {
 		return workSessions;
 	}
 
-	public List<WorkSession> getWorkSessions(Project project) {
+	@SuppressWarnings("unchecked")
+	public List<WorkSession> getWorkSessions(Project project)
+			throws WaktuGeneralException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
-		@SuppressWarnings("unchecked")
-		List<WorkSession> workSessionsByUser = em.createQuery(
-				"SELECT ws FROM WorkSession ws").getResultList();
+		List<WorkSession> workSessionsByProject;
+		try {
+			workSessionsByProject = em
+					.createQuery(
+							"SELECT ws FROM WorkSession ws JOIN ws.workpackageref wp JOIN wp.project p WHERE p.projectid = '"
+									+ project.getId() + "'").getResultList();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
+		return workSessionsByProject;
+	}
 
-		ArrayList<WorkSession> workSessions = new ArrayList<WorkSession>();
-		for (WorkSession ws : workSessionsByUser) {
-
-			if (ws.getWorkPackage().getProject().equals(project)) {
-				workSessions.add(ws);
-				//logger.info("WORKSESSION: " + ws.toString());
-			}
-
+	/**
+	 * 
+	 * @param user
+	 * @param workPackage
+	 * @param startTime
+	 * @param endTime
+	 * @throws WaktuGeneralException
+	 */
+	public WorkSession addWorkSession(Usr user, WorkPackage workPackage,
+			GregorianCalendar startTime, GregorianCalendar endTime,
+			String description) throws WaktuGeneralException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+		WorkSession newWorkSession = new WorkSession(user, workPackage,
+				startTime, endTime, description);
+		try {
+			em.getTransaction().begin();
+			em.persist(newWorkSession);
+			em.getTransaction().commit();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
 		}
 
-		em.close();
-		return workSessions;
+		add.emit(newWorkSession);
+		logger.info("favorite " + newWorkSession + " deleted");
+		return newWorkSession;
+	}
+
+	public void updateWorkSession(WorkSession workSession)
+			throws WaktuGeneralException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+		WorkSession updateWorkSession;
+		try {
+			em.getTransaction().begin();
+			updateWorkSession = em.find(WorkSession.class, workSession.getId());
+
+			updateWorkSession.setUser(workSession.getUser());
+			updateWorkSession.setWorkPackage(workSession.getWorkPackage());
+			updateWorkSession.setStart(workSession.getStart());
+			updateWorkSession.setEnd(workSession.getEnd());
+			updateWorkSession.setDescription(workSession.getDescription());
+
+			em.getTransaction().commit();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
+		update.emit();
+		logger.info("workSession " + updateWorkSession + " updated");
 	}
 
 	/**
 	 * 
 	 * @param workSession
 	 */
-	
-	
-	// TODO: funktioniert noch nicht..
-	
-	public boolean removeWorkSession(WorkSession workSession) {
+	public void removeWorkSession(WorkSession workSession)
+			throws WaktuGeneralException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
-		em.getTransaction().begin();
-		em.remove(workSession);
-		em.getTransaction().commit();
-		em.close();
+		try {
+			em.getTransaction().begin();
+			em.remove(em.find(WorkSession.class, workSession.getId()));
+			em.getTransaction().commit();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
 		removed.emit(workSession);
-		return true;
+		logger.info("workSession " + workSession + " deleted");
 	}
-
-	public boolean updateWorkSession(WorkSession workSession) {
-		//TODO: added by ph
-		EntityManager em = PersistenceController.getInstance().getEMF().createEntityManager();
-
-		em.getTransaction().begin();
-		WorkSession updateWorkSession = (WorkSession) em.createQuery("SELECT ws FROM WorkSession ws WHERE ws.id = " + workSession.getId()).getSingleResult();
-
-		updateWorkSession.setDescription(workSession.getDescription());
-		updateWorkSession.setStart(workSession.getStart());
-		updateWorkSession.setEnd(workSession.getEnd());
-
-		em.getTransaction().commit();
-		logger.info("Favorite " + workSession.getId() + " updated");
-		
-		update.emit();
-		return true;
-	}
-
 }

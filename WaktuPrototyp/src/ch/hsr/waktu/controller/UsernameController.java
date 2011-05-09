@@ -1,11 +1,12 @@
 package ch.hsr.waktu.controller;
 
 import ch.hsr.waktu.controller.datacontroller.UserController;
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Usr;
 
 public class UsernameController {
 	
-	public static String generateUsername(String firstname, String lastname) {
+	public static String generateUsername(String firstname, String lastname) throws WaktuGeneralException {
 		String username = firstname.toLowerCase() + lastname.toLowerCase().replaceAll(" ", "");
 		int usernameOccurrence = 0;
 		for(Usr u: UserController.getInstance().getAllUsers()) {

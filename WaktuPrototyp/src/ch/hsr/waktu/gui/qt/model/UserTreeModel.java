@@ -2,6 +2,7 @@ package ch.hsr.waktu.gui.qt.model;
 import java.util.List;
 
 import ch.hsr.waktu.controller.datacontroller.UserController;
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Usr;
 
 import com.trolltech.qt.core.QModelIndex;
@@ -18,7 +19,12 @@ public class UserTreeModel extends QTreeModel {
 	private List<Usr> usrs;
 	
 	public UserTreeModel() {
-		usrs = UserController.getInstance().getActiveUsers();
+		try {
+			usrs = UserController.getInstance().getActiveUsers();
+		} catch (WaktuGeneralException e) {
+			// TODO PH: exception handling
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -80,6 +86,11 @@ public class UserTreeModel extends QTreeModel {
 	}
 	
 	public void updateUsrModel() {
-		usrs = UserController.getInstance().getActiveUsers();
+		try {
+			usrs = UserController.getInstance().getActiveUsers();
+		} catch (WaktuGeneralException e) {
+			// TODO PH: exception handling
+			e.printStackTrace();
+		}
 	}
 }

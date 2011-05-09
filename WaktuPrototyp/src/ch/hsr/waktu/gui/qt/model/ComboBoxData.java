@@ -25,8 +25,13 @@ public class ComboBoxData {
 	
 	public static void createProjectManagerComboBox(QComboBox cmb) {
 		cmb.clear();
-		for (Usr usr : UserController.getInstance().getProjectManagers()) {
-			cmb.addItem(usr.toString(), usr);
+		try {
+			for (Usr usr : UserController.getInstance().getProjectManagers()) {
+				cmb.addItem(usr.toString(), usr);
+			}
+		} catch (WaktuGeneralException e) {
+			// TODO PH: exception handling
+			e.printStackTrace();
 		}
 	}
 	
@@ -45,8 +50,13 @@ public class ComboBoxData {
 	public static void createWorkPackageComboBox(QComboBox cmb, Project project) {
 		cmb.clear();
 		if (project != null) {
-			for (WorkPackage wp: WorkPackageController.getInstance().getActiveWorkPackages(project)) {
-				cmb.addItem(wp.toString(), wp);
+			try {
+				for (WorkPackage wp: WorkPackageController.getInstance().getActiveWorkPackages(project)) {
+					cmb.addItem(wp.toString(), wp);
+				}
+			} catch (WaktuGeneralException e) {
+				// TODO PH: unhandled exceptions
+				e.printStackTrace();
 			}
 		}
 	}
@@ -65,8 +75,13 @@ public class ComboBoxData {
 	
 	public static void createUserComboBox(QComboBox cmb) {
 		cmb.clear();
-		for (Usr usr: UserController.getInstance().getActiveUsers()) {
-			cmb.addItem(usr.toString(), usr);
+		try {
+			for (Usr usr: UserController.getInstance().getActiveUsers()) {
+				cmb.addItem(usr.toString(), usr);
+			}
+		} catch (WaktuGeneralException e) {
+			// TODO PH: exception handling
+			e.printStackTrace();
 		}
 	}
 	

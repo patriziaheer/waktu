@@ -2,7 +2,6 @@ package ch.hsr.waktu.controller.datacontroller;
 
 import java.util.LinkedList;
 
-import ch.hsr.waktu.controller.UsernameController;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.services.XmlUtil;
@@ -29,15 +28,16 @@ public class UserControllerXml extends UserController implements UserControllerI
 		
 	}
 	
-	@Override
-	public Usr addUser(String firstname, String lastname, String password,
-			int pensum, SystemRole role, double holiday) {
-		LinkedList<Usr> allUsers = getAllUsers();
-		Usr newUser = new Usr(UsernameController.generateUsername(firstname, lastname), firstname, lastname, password, pensum, role, holiday);
-		allUsers.add(newUser);
-		XmlUtil.saveUsersToXml(userFilePath, allUsers);
-		return newUser;
-	}
+// TODO: MF: solve compiling error
+//	@Override
+//	public Usr addUser(String firstname, String lastname, String password,
+//			int pensum, SystemRole role, double holiday) {
+//		LinkedList<Usr> allUsers = getAllUsers();
+//		Usr newUser = new Usr(UsernameController.generateUsername(firstname, lastname), firstname, lastname, password, pensum, role, holiday);
+//		allUsers.add(newUser);
+//		XmlUtil.saveUsersToXml(userFilePath, allUsers);
+//		return newUser;
+//	}
 
 	@Override
 	public LinkedList<Usr> getActiveUsers() {
@@ -86,23 +86,23 @@ public class UserControllerXml extends UserController implements UserControllerI
 		}
 		return null;
 	}
-
-	@Override
-	public boolean updateUser(Usr user) {
-		for(Usr u: getAllUsers()) {
-			if(u.equals(user)) {
-				u.setActiveState(user.isActive());
-				u.setFirstname(user.getFirstname());
-				u.setHoliday(user.getHoliday());
-				u.setName(user.getName());
-				u.setPassword(user.getPasswordHash());
-				u.setPensum(user.getPensum());
-				u.setSystemRole(user.getSystemRole());
-				u.setUsername(user.getUsername());
-//TODO update XML-File
-				return true;
-			}
-		}
-		return false;
-	}
+// TODO: MF: solve compiling errors
+//	@Override
+//	public boolean updateUser(Usr user) {
+//		for(Usr u: getAllUsers()) {
+//			if(u.equals(user)) {
+//				u.setActiveState(user.isActive());
+//				u.setFirstname(user.getFirstname());
+//				u.setHoliday(user.getHoliday());
+//				u.setName(user.getName());
+//				u.setPassword(user.getPasswordHash());
+//				u.setPensum(user.getPensum());
+//				u.setSystemRole(user.getSystemRole());
+//				u.setUsername(user.getUsername());
+////TODO update XML-File
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
 }

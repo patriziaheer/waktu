@@ -147,7 +147,7 @@ public class FavoriteController extends QSignalEmitter {
 			em.close();
 		}
 		removed.emit(favorite);
-		logger.info("favorite " + favorite.getId() + " deleted");
+		logger.info("favorite " + favorite + " deleted");
 	}
 
 }

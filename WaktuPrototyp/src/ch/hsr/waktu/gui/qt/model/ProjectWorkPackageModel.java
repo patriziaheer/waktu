@@ -2,6 +2,7 @@ package ch.hsr.waktu.gui.qt.model;
 
 import java.util.List;
 
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.WorkPackage;
@@ -20,7 +21,12 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 
 	public ProjectWorkPackageModel(Project project) {
 		this.project = project;
-		workPackages = WorkPackageController.getInstance().getActiveWorkPackages(project);
+		try {
+			workPackages = WorkPackageController.getInstance().getActiveWorkPackages(project);
+		} catch (WaktuGeneralException e) {
+			// TODO PH: unhandled exceptions
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -103,7 +109,12 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 			return true;
 		}
 		}
-		WorkPackageController.getInstance().updateWorkPackage(workPackage);
+		try {
+			WorkPackageController.getInstance().updateWorkPackage(workPackage);
+		} catch (WaktuGeneralException e) {
+			// TODO PH: unhandled exceptions
+			e.printStackTrace();
+		}
 		return false;
 	}
 	
@@ -118,7 +129,12 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 	}
 	
 	public void updateWorkPackageModel() {
-		workPackages = WorkPackageController.getInstance().getActiveWorkPackages(project);
+		try {
+			workPackages = WorkPackageController.getInstance().getActiveWorkPackages(project);
+		} catch (WaktuGeneralException e) {
+			// TODO PH: unhandled exceptions
+			e.printStackTrace();
+		}
 	}
 
 }

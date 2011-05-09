@@ -1,5 +1,6 @@
 package ch.hsr.waktu.gui.qt.view.projectmanagment;
 
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.WorkPackage;
@@ -32,7 +33,12 @@ public class ProjectWorkPackageView extends QWidget{
 	@SuppressWarnings("unused")
 	private void addClicked() {
 		if (ui.txtDescription.text().isEmpty() == false) {
-			WorkPackageController.getInstance().addWorkPackage(project, ui.txtDescription.text());
+			try {
+				WorkPackageController.getInstance().addWorkPackage(project, ui.txtDescription.text());
+			} catch (WaktuGeneralException e) {
+				// TODO PH: unhandled exceptions
+				e.printStackTrace();
+			}
 			ui.txtDescription.setText("");
 		}
 	}

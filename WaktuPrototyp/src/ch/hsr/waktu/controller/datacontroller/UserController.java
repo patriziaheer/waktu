@@ -19,7 +19,8 @@ import com.trolltech.qt.QSignalEmitter;
  * @version 1.0
  * @created 01-Apr-2011 15:36:30
  */
-public class UserController extends QSignalEmitter implements UserControllerInterface {
+public class UserController extends QSignalEmitter implements
+		UserControllerInterface {
 
 	public enum UserProperties {
 		Data, Projects, WorkSessions
@@ -33,9 +34,8 @@ public class UserController extends QSignalEmitter implements UserControllerInte
 		}
 		return theInstance;
 	}
-	
-	public static void setInstance(
-			UserController userControllerInstance) {
+
+	public static void setInstance(UserController userControllerInstance) {
 		theInstance = userControllerInstance;
 	}
 
@@ -47,6 +47,124 @@ public class UserController extends QSignalEmitter implements UserControllerInte
 
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Usr> getActiveUsers() throws WaktuGeneralException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		List<Usr> activeUsers;
+		try {
+			activeUsers = em.createQuery(
+					"SELECT u FROM Usr u WHERE u.active = 'TRUE'")
+					.getResultList();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
+
+		return activeUsers;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Usr> getAllUsers() throws WaktuGeneralException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		List<Usr> allUsers;
+		try {
+			allUsers = em.createQuery("SELECT u FROM Usr u")
+					.getResultList();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
+
+		return allUsers;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Usr> getInactiveUsers() throws WaktuGeneralException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		List<Usr> inactiveUsers;
+		try {
+			inactiveUsers = em.createQuery(
+					"SELECT u FROM Usr u WHERE u.active = 'FALSE'")
+					.getResultList();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
+
+		return inactiveUsers;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Usr> getProjectManagers() throws WaktuGeneralException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		List<Usr> allProjectManagers;
+		try {
+			allProjectManagers = em.createQuery(
+					"SELECT u FROM Project p JOIN p.projectManager u")
+					.getResultList();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
+
+		return allProjectManagers;
+	}
+
+	/**
+	 * 
+	 * @param loginName
+	 */
+	public Usr getUser(String username) throws WaktuGeneralException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		Usr usr;
+		try {
+			usr = (Usr) em
+					.createQuery(
+							"SELECT u FROM Usr u WHERE u.username = '"
+									+ username + "'").getSingleResult();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
+
+		return usr;
+	}
+
 	/**
 	 * 
 	 * @param username
@@ -55,121 +173,69 @@ public class UserController extends QSignalEmitter implements UserControllerInte
 	 * @param pensum
 	 * @param role
 	 */
-	public Usr addUser(String firstname, String lastname,
-			String password, int pensum, SystemRole role, double holiday) {
-		Usr newUser = new Usr(UsernameController.generateUsername(firstname, lastname), firstname, lastname, Md5.hash(password), pensum,
+	public Usr addUser(String firstname, String lastname, String password,
+			int pensum, SystemRole role, double holiday)
+			throws WaktuGeneralException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		Usr newUsr = new Usr(UsernameController.generateUsername(firstname,
+				lastname), firstname, lastname, Md5.hash(password), pensum,
 				role, holiday);
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
-		em.getTransaction().begin();
-		em.persist(newUser);
-		em.flush();
-		em.getTransaction().commit();
-		// TODO: add.emit() wieder einschalten (Observer von QT)
-		add.emit(newUser);
-		return newUser;
-	}
 
-	public List<Usr> getActiveUsers() {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+		try {
+			em.getTransaction().begin();
+			em.persist(newUsr);
+			em.getTransaction().commit();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
 
-		@SuppressWarnings("unchecked")
-		List<Usr> usrs = em.createQuery(
-				"SELECT u FROM Usr u WHERE u.active = TRUE").getResultList();
-
-		//for (Usr usr : usrs) {
-			//logger.info("ACTIVE USER: " + usr.toString());
-		//}
-
-		em.close();
-		return usrs;
-	}
-
-	public List<Usr> getAllUsers() {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
-
-		@SuppressWarnings("unchecked")
-		List<Usr> usrs = em.createQuery("SELECT u FROM Usr u").getResultList();
-
-		//for (Usr usr : usrs) {
-			//logger.info(usr.toString());
-		//}
-
-		em.close();
-		return usrs;
-	}
-
-	public List<Usr> getInactiveUsers() {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
-
-		@SuppressWarnings("unchecked")
-		List<Usr> usrs = em.createQuery(
-				"SELECT u FROM Usr u WHERE u.active = FALSE").getResultList();
-
-		//for (Usr usr : usrs) {
-			//logger.info("INACTIVE USERS: " + usr.toString());
-		//}
-
-		em.close();
-		return usrs;
-	}
-	
-	public List<Usr> getProjectManagers() {
-		//TODO
-		return getAllUsers();
+		add.emit(newUsr);
+		logger.info("user " + newUsr + " added");
+		return newUsr;
 	}
 
 	/**
+	 * Attention, password must by hashed!
 	 * 
-	 * @param loginName
+	 * @param usr
 	 */
-	public Usr getUser(String username) {
+	public void updateUser(Usr usr) throws WaktuGeneralException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
-		Usr user = (Usr) em.createQuery(
-				"SELECT u FROM Usr u WHERE u.username = '" + username + "'")
-				.getSingleResult();
+		try {
+			em.getTransaction().begin();
+			Usr updateUsr = em.find(Usr.class, usr.getId());
 
-		logger.info(user.toString());
+			updateUsr.setName(usr.getName());
+			updateUsr.setFirstname(usr.getFirstname());
+			updateUsr.setHoliday(usr.getHoliday());
+			updateUsr.setActiveState(usr.isActive());
+			updateUsr.setPasswordHash(usr.getPasswordHash());
+			updateUsr.setPensum(usr.getPensum());
+			updateUsr.setSystemRole(usr.getSystemRole());
 
-		em.close();
-		return user;
-	}
-
-	/**
-	 * 
-	 * @param user
-	 */
-	public boolean updateUser(Usr user) {
-		// TODO: Username wechseln erlaubt? Spezifizieren! Bring Probleme mit
-		// sich, da Unique in DB.
-		// TODO: Was wenn ID der Users nicht vorhanden? Exception?
-
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
-
-		em.getTransaction().begin();
-		Usr updateUsr = (Usr) em.createQuery(
-				"SELECT u FROM Usr u WHERE u.id = " + user.getId())
-				.getSingleResult();
-		updateUsr.setName(user.getName());
-		updateUsr.setFirstname(user.getFirstname());
-		updateUsr.setHoliday(user.getHoliday());
-		updateUsr.setActiveState(user.isActive());
-		updateUsr.setPassword(user.getPasswordHash());
-		updateUsr.setPensum(user.getPensum());
-		updateUsr.setSystemRole(user.getSystemRole());
-		updateUsr.setUsername(user.getUsername());
-
-		em.getTransaction().commit();
-		// TODO: update.emit() wieder einschalten (Observer von QT)
+			em.getTransaction().commit();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
 		update.emit();
+		logger.info("user " + usr + " updated");
 
-		return true;
 	}
 
 }

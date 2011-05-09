@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkSession;
@@ -31,7 +32,12 @@ public class WorkSessionModel extends QAbstractItemModel {
 	
 	public WorkSessionModel(Usr usr, QDate date) {
 		this.date = date;
-		workSessions = WorkSessionController.getInstance().getWorkSessions(usr, date);
+		try {
+			workSessions = WorkSessionController.getInstance().getWorkSessions(usr, date);
+		} catch (WaktuGeneralException e) {
+			// TODO PH: unhandled exceptions
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -149,7 +155,12 @@ public class WorkSessionModel extends QAbstractItemModel {
 	}
 	
 	public void updateModel(Usr usr, QDate date) {
-		workSessions = WorkSessionController.getInstance().getWorkSessions(usr, date);
+		try {
+			workSessions = WorkSessionController.getInstance().getWorkSessions(usr, date);
+		} catch (WaktuGeneralException e) {
+			// TODO PH: unhandled exceptions
+			e.printStackTrace();
+		}
 	}
 
 }
