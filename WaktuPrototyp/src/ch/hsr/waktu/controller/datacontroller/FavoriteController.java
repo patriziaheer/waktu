@@ -30,7 +30,7 @@ public class FavoriteController extends QSignalEmitter {
 		return theInstance;
 	}
 
-	private Logger logger = Logger.getLogger(UserController.class);
+	private Logger logger = Logger.getLogger(FavoriteController.class);
 	public Signal0 update = new Signal0();
 	public Signal1<Favorite> add = new Signal1<Favorite>();
 	public Signal1<Favorite> removed = new Signal1<Favorite>();

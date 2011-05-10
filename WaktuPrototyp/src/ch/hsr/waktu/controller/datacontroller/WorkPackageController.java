@@ -28,7 +28,7 @@ public class WorkPackageController extends QSignalEmitter {
 		return theInstance;
 	}
 
-	private Logger logger = Logger.getLogger(UserController.class);
+	private Logger logger = Logger.getLogger(WorkPackageController.class);
 
 	public Signal0 update = new Signal0();
 	public Signal1<WorkPackage> add = new Signal1<WorkPackage>();

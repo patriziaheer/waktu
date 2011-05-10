@@ -2,7 +2,6 @@ package ch.hsr.waktu.guicontroller;
 
 import org.apache.log4j.Logger;
 
-import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 
@@ -18,7 +17,7 @@ public class GuiController {
 	}
 
 	@SuppressWarnings("unused")
-	private Logger logger = Logger.getLogger(ProjectController.class);
+	private Logger logger = Logger.getLogger(GuiController.class);
 
 	
 	/**

@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 import org.apache.log4j.Logger;
 
+import ch.hsr.waktu.controller.BusinessRuleController;
 import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.controller.UsernameController;
 import ch.hsr.waktu.domain.SystemRole;
@@ -25,12 +26,15 @@ public class UserController extends QSignalEmitter implements
 	public enum UserProperties {
 		Data, Projects, WorkSessions
 	}
+	
+	private static BusinessRuleController bc;
 
 	private static UserController theInstance = null;
 
 	public static UserController getInstance() {
 		if (theInstance == null) {
 			theInstance = new UserController();
+			bc = new BusinessRuleController();
 		}
 		return theInstance;
 	}
@@ -182,6 +186,8 @@ public class UserController extends QSignalEmitter implements
 		Usr newUsr = new Usr(UsernameController.generateUsername(firstname,
 				lastname), firstname, lastname, Md5.hash(password), pensum,
 				role, holiday);
+		
+		bc.check(newUsr);
 
 		try {
 			em.getTransaction().begin();

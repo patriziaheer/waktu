@@ -36,7 +36,7 @@ public class WorkSessionController extends QSignalEmitter {
 		return theInstance;
 	}
 
-	private Logger logger = Logger.getLogger(UserController.class);
+	private Logger logger = Logger.getLogger(WorkSessionController.class);
 	public Signal0 update = new Signal0();
 	public Signal1<WorkSession> add = new Signal1<WorkSession>();
 	public Signal1<WorkSession> removed = new Signal1<WorkSession>();

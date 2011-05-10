@@ -29,7 +29,7 @@ public class ProjectStaffController extends QSignalEmitter {
 		return theInstance;
 	}
 
-	private Logger logger = Logger.getLogger(UserController.class);
+	private Logger logger = Logger.getLogger(ProjectStaffController.class);
 	public Signal1<ProjectStaff> add = new Signal1<ProjectStaff>();
 	public Signal1<ProjectStaff> removed = new Signal1<ProjectStaff>();
 

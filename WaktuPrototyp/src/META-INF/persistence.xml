@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
 	version="1.0" xmlns="http://java.sun.com/xml/ns/persistence">
 	<persistence-unit name="waktu" transaction-type="RESOURCE_LOCAL">
-		<description>This is a description</description>
+		<description>Waktu default persistence.xml</description>
 		<properties>
 			<property name="eclipselink.logging.level" value="FINE"/>
 			<property name="eclipselink.logging.thread" value="false"/>

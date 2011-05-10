@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 
 import org.apache.log4j.Logger;
 
-import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Permission;
@@ -34,7 +33,7 @@ public class PermissionController extends QSignalEmitter {
 	}
 
 	@SuppressWarnings("unused")
-	private Logger logger = Logger.getLogger(ProjectController.class);
+	private Logger logger = Logger.getLogger(PermissionController.class);
 	public Signal0 update = new Signal0();
 	public Signal1<Permission> add = new Signal1<Permission>();
 
