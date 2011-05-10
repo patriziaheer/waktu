@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.controller.datacontroller.UserController;
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Permission;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
@@ -63,8 +64,9 @@ public class PermissionController extends QSignalEmitter {
 	/**
 	 * 
 	 * @param username
+	 * @throws WaktuGeneralException 
 	 */
-	public boolean login(String username, String password) {
+	public boolean login(String username, String password) throws WaktuGeneralException {
 		if (canLogin(username)) {
 			Usr user = UserController.getInstance().getUser(username);
 			String passwordHash = Md5.hash(password);

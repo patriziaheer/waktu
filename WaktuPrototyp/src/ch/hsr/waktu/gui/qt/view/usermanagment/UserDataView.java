@@ -1,5 +1,6 @@
 package ch.hsr.waktu.gui.qt.view.usermanagment;
 import ch.hsr.waktu.controller.datacontroller.UserController;
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.gui.qt.model.ComboBoxData;
@@ -58,13 +59,23 @@ public class UserDataView extends QWidget{
 	private void inactivChanged() {
 		if (usr != null) {
 			usr.setActiveState(!ui.checkBox.isChecked());
-			UserController.getInstance().updateUser(usr);
+			try {
+				UserController.getInstance().updateUser(usr);
+			} catch (WaktuGeneralException e) {
+				// TODO PH: exception handling
+				e.printStackTrace();
+			}
 		}
 	}
 	
 	@SuppressWarnings("unused")
 	private void addClicked() {
-		usr = UserController.getInstance().addUser(ui.txtFirstname.text(), ui.txtName.text(), ui.txtPassword.text(), ui.txtPensum.value(), (SystemRole)ui.cmbRole.itemData(ui.cmbRole.currentIndex()), ui.txtHolidays.value());
+		try {
+			usr = UserController.getInstance().addUser(ui.txtFirstname.text(), ui.txtName.text(), ui.txtPassword.text(), ui.txtPensum.value(), (SystemRole)ui.cmbRole.itemData(ui.cmbRole.currentIndex()), ui.txtHolidays.value());
+		} catch (WaktuGeneralException e) {
+			// TODO PH: exception handling
+			e.printStackTrace();
+		}
 		setFields();
 	}
 	

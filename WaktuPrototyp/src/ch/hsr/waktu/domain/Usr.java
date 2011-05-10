@@ -44,6 +44,10 @@ public class Usr {
 		return passwordHash;
 	}
 
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
+	}
+	
 	public void setPassword(String password) {
 		this.passwordHash = Md5.hash(password);
 	}
@@ -102,7 +106,7 @@ public class Usr {
 	
 	@Override
 	public String toString() {
-		return usrid + firstname + " " + name + " " + username;
+		return firstname + " " + name;
 	}
 
 	@Override
@@ -132,9 +136,5 @@ public class Usr {
 		hashCode += 31 * systemRole.hashCode();
 		hashCode += 31 * (int)holiday;
 		return hashCode;
-	}
-
-	public void setPasswordHash(String passwordHash) {
-		this.passwordHash = passwordHash;
 	}
 }

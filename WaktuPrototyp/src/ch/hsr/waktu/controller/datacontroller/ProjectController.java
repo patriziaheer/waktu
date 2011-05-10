@@ -74,7 +74,7 @@ public class ProjectController extends QSignalEmitter {
 		List<Project> activeProjectsOfUser;
 		try {
 			activeProjectsOfUser = em.createQuery(
-					"SELECT p FROM ProjectStaff ps JOIN Project p JOIN User u WHERE u.usrid = '"
+					"SELECT p FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE u.usrid = '"
 							+ usr.getId() + "'").getResultList();
 		} catch (IllegalStateException e) {
 			throw new WaktuGeneralException("Database problem");

@@ -7,17 +7,17 @@ import ch.hsr.waktu.domain.Usr;
 
 public interface UserControllerInterface {
 	Usr addUser(String firstname, String lastname,
-			String password, int pensum, SystemRole role, double holiday);
+			String password, int pensum, SystemRole role, double holiday) throws WaktuGeneralException;
 	
-	List<Usr> getActiveUsers();
+	List<Usr> getActiveUsers() throws WaktuGeneralException;
 
-	List<Usr> getAllUsers();
+	List<Usr> getAllUsers() throws WaktuGeneralException;
 
-	List<Usr> getInactiveUsers();
+	List<Usr> getInactiveUsers() throws WaktuGeneralException;
 	
-	List<Usr> getProjectManagers();
+	List<Usr> getProjectManagers() throws WaktuGeneralException;
 	
-	Usr getUser(String username);
+	Usr getUser(String username) throws WaktuGeneralException;
 
-	boolean updateUser(Usr user);
+	void updateUser(Usr user) throws WaktuGeneralException;
 }

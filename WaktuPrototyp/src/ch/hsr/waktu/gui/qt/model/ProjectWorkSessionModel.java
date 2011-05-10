@@ -2,6 +2,7 @@ package ch.hsr.waktu.gui.qt.model;
 
 import java.util.List;
 
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.WorkSession;
@@ -20,7 +21,12 @@ public class ProjectWorkSessionModel extends QAbstractItemModel {
 	
 	public ProjectWorkSessionModel(Project project) {
 		this.project = project;
-		workSessions = WorkSessionController.getInstance().getWorkSessions(project);
+		try {
+			workSessions = WorkSessionController.getInstance().getWorkSessions(project);
+		} catch (WaktuGeneralException e) {
+			// TODO PH: unhandled exceptions
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -77,7 +83,12 @@ public class ProjectWorkSessionModel extends QAbstractItemModel {
 	}
 	
 	public void updateWorkSessionModel() {
-		workSessions = WorkSessionController.getInstance().getWorkSessions(project);
+		try {
+			workSessions = WorkSessionController.getInstance().getWorkSessions(project);
+		} catch (WaktuGeneralException e) {
+			// TODO PH: unhandled exceptions
+			e.printStackTrace();
+		}
 	}
 
 }

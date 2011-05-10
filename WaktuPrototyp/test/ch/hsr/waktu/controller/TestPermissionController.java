@@ -1,15 +1,14 @@
 package ch.hsr.waktu.controller;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import ch.hsr.waktu.controller.PermissionController;
 import ch.hsr.waktu.controller.datacontroller.UserController;
-import ch.hsr.waktu.controller.datacontroller.UserControllerInterface;
 import ch.hsr.waktu.controller.datacontroller.UserControllerXml;
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 
 public class TestPermissionController {
 
@@ -43,17 +42,32 @@ public class TestPermissionController {
 	
 	@Test
 	public void login_InvalidPassword_False() {
-		assertEquals(false, PermissionController.getInstance().login("mickeymouse", "falschespasswort"));
+		try {
+			assertEquals(false, PermissionController.getInstance().login("mickeymouse", "falschespasswort"));
+		} catch (WaktuGeneralException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
 	public void login_InvalidUsername_False() {
-		assertEquals(false, PermissionController.getInstance().login("üngültigernameh", "whatever"));
+		try {
+			assertEquals(false, PermissionController.getInstance().login("üngültigernameh", "whatever"));
+		} catch (WaktuGeneralException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
 	public void login_ValidUsernamePassword_True() {
-		assertEquals(true, PermissionController.getInstance().login("chucknorris", "1337"));
+		try {
+			assertEquals(true, PermissionController.getInstance().login("chucknorris", "1337"));
+		} catch (WaktuGeneralException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Test

@@ -137,27 +137,32 @@ public class TimeView extends QMainWindow {
 	}
 	
 	private void updateWorkSessionModel() {
-		for (int i = 0; i < WorkSessionController.getInstance()
-				.getWorkSessions(currUser, calendar.getCurrentDate()).size(); i++) {
-			QModelIndex currIndex = workSessionModel.index(i,
-					workSessionModel.columnCount() - 1);
-			QWidget w = new QWidget();
-			w.setLayout(new QHBoxLayout());
-			IndexButton editButton = new IndexButton(currIndex);
-			editButton.setFixedHeight(20);
-			editButton.setIcon(new QIcon("classpath:icons/edit_16x16.png"));
-			editButton.actionClicked.connect(this,
-					"workSessionEditClicked(IndexButton)");
+		try {
+			for (int i = 0; i < WorkSessionController.getInstance()
+					.getWorkSessions(currUser, calendar.getCurrentDate()).size(); i++) {
+				QModelIndex currIndex = workSessionModel.index(i,
+						workSessionModel.columnCount() - 1);
+				QWidget w = new QWidget();
+				w.setLayout(new QHBoxLayout());
+				IndexButton editButton = new IndexButton(currIndex);
+				editButton.setFixedHeight(20);
+				editButton.setIcon(new QIcon("classpath:icons/edit_16x16.png"));
+				editButton.actionClicked.connect(this,
+						"workSessionEditClicked(IndexButton)");
 
-			IndexButton deleteButton = new IndexButton(currIndex);
-			deleteButton.setFixedHeight(20);
-			deleteButton.setIcon(new QIcon("classpath:icons/delete_16x16.png"));
-			deleteButton.actionClicked.connect(this,
-					"workSessionDeleteClicked(IndexButton)");
-			w.layout().addWidget(editButton);
-			w.layout().addWidget(deleteButton);
+				IndexButton deleteButton = new IndexButton(currIndex);
+				deleteButton.setFixedHeight(20);
+				deleteButton.setIcon(new QIcon("classpath:icons/delete_16x16.png"));
+				deleteButton.actionClicked.connect(this,
+						"workSessionDeleteClicked(IndexButton)");
+				w.layout().addWidget(editButton);
+				w.layout().addWidget(deleteButton);
 
-			ui.tblWorksessions.setIndexWidget(currIndex, w);
+				ui.tblWorksessions.setIndexWidget(currIndex, w);
+			}
+		} catch (WaktuGeneralException e) {
+			// TODO PH: unhandled exceptions
+			e.printStackTrace();
 		}
 	}
 
@@ -306,8 +311,13 @@ public class TimeView extends QMainWindow {
 			end.setDate(calendar.getCurrentDate());
 			start.setTime(TimeUtil.convertGregorianToQDateTime(favorite.getEndTime()).time());
 			
-			WorkSessionController.getInstance().addWorkSession(currUser, wp,
-					TimeUtil.convertQDateTimeToGregorian(start), TimeUtil.convertQDateTimeToGregorian(end), "");
+			try {
+				WorkSessionController.getInstance().addWorkSession(currUser, wp,
+						TimeUtil.convertQDateTimeToGregorian(start), TimeUtil.convertQDateTimeToGregorian(end), "");
+			} catch (WaktuGeneralException e) {
+				// TODO PH: unhandled exceptions
+				e.printStackTrace();
+			}
 		} else {
 			setStatusBarText("Select a Favorite");
 		}
@@ -438,8 +448,13 @@ public class TimeView extends QMainWindow {
 				workSessionModel.setEditable(null);
 				btn.setIcon(new QIcon("classpath:icons/edit_16x16.png"));
 				btn.setStatus(EditStatus.Edit);
-				WorkSessionController.getInstance().updateWorkSession(
-						workSessionModel.getWorkSession(btn.getIndex().row()));
+				try {
+					WorkSessionController.getInstance().updateWorkSession(
+							workSessionModel.getWorkSession(btn.getIndex().row()));
+				} catch (WaktuGeneralException e) {
+					// TODO PH: unhandled exceptions
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -447,10 +462,15 @@ public class TimeView extends QMainWindow {
 	@SuppressWarnings("unused")
 	private void workSessionDeleteClicked(IndexButton btn) {
 		logger.info("EditClicked for " + btn);
-		WorkSessionController.getInstance().removeWorkSession(
-				WorkSessionController.getInstance()
-						.getWorkSessions(currUser, calendar.getCurrentDate())
-						.get(btn.getIndex().row()));
+		try {
+			WorkSessionController.getInstance().removeWorkSession(
+					WorkSessionController.getInstance()
+							.getWorkSessions(currUser, calendar.getCurrentDate())
+							.get(btn.getIndex().row()));
+		} catch (WaktuGeneralException e) {
+			// TODO PH: unhandled exceptions
+			e.printStackTrace();
+		}
 
 	}
 
