@@ -8,6 +8,7 @@ import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.gui.qt.model.ComboBoxData;
 import ch.hsr.waktu.gui.qt.model.ProjectStaffModel;
 import ch.hsr.waktu.gui.qt.view.IndexButton;
+import ch.hsr.waktu.guicontroller.GuiController;
 import ch.hsr.waktu.guicontroller.LanguageController;
 
 import com.trolltech.qt.core.QModelIndex;
@@ -19,22 +20,32 @@ public class ProjectStaffView extends QWidget {
 	private Ui_ProjectStaff ui = new Ui_ProjectStaff();
 	private Project project;
 	private ProjectStaffModel projectStaffModel;
+	public Signal1<String> errorMessage = new Signal1<String>();
 	
 	public ProjectStaffView(Project project) {
 		ui.setupUi(this);
 		this.project = project;
-		projectStaffModel = new ProjectStaffModel(project);
+		try {
+			ComboBoxData.createUserComboBox(ui.cmbUsers);
+			projectStaffModel = new ProjectStaffModel(project);
+		} catch (WaktuGeneralException e) {
+			errorMessage.emit(e.getMessage());
+		}
 		ui.tblWorkStaff.setModel(projectStaffModel);
 		ui.tblWorkStaff.horizontalHeader().setStretchLastSection(true);
 		ui.btnAdd.clicked.connect(this, "addUser()");
-		ComboBoxData.createUserComboBox(ui.cmbUsers);
 		
 		ProjectStaffController.getInstance().add.connect(this, "added(ProjectStaff)");
 		ProjectStaffController.getInstance().removed.connect(this, "removed(ProjectStaff)");
 
 		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 		
-		updateProjectStaffModel();
+		if (GuiController.getInstance().canAddProjectStaff() == false) {
+			ui.cmbUsers.setVisible(false);
+			ui.btnAdd.setVisible(false);
+			updateProjectStaffModel();
+		}
+		
 	}
 	
 	private void updateProjectStaffModel() {
@@ -50,8 +61,7 @@ public class ProjectStaffView extends QWidget {
 				ui.tblWorkStaff.setIndexWidget(currIndex, deleteButton);
 			}
 		} catch (WaktuGeneralException e) {
-			// TODO unhandled exception
-			e.printStackTrace();
+			errorMessage.emit(e.getMessage());
 		}
 	}
 	
@@ -61,8 +71,7 @@ public class ProjectStaffView extends QWidget {
 			Usr user = ProjectStaffController.getInstance().getUsers(project).get(btn.getIndex().row());
 			ProjectStaffController.getInstance().removeUser(user, project);
 		} catch (WaktuGeneralException e) {
-			// TODO exception handling
-			e.printStackTrace();
+			errorMessage.emit(e.getMessage());
 		}
 	}
 	
@@ -71,8 +80,7 @@ public class ProjectStaffView extends QWidget {
 		try {
 			ProjectStaffController.getInstance().addProjectStaff((Usr)ui.cmbUsers.itemData(ui.cmbUsers.currentIndex()), project);
 		} catch (WaktuGeneralException e) {
-			// TODO exception handling
-			e.printStackTrace();
+			errorMessage.emit(e.getMessage());
 		}
 	}
 	
@@ -87,11 +95,17 @@ public class ProjectStaffView extends QWidget {
 	}
 	
 	private void updateTable() {
-		projectStaffModel.updateProjectStaffModel();
+		try {
+			projectStaffModel.updateProjectStaffModel();
+		} catch (WaktuGeneralException e) {
+			errorMessage.emit(e.getMessage());
+		}
 		projectStaffModel.layoutAboutToBeChanged.emit();
 		projectStaffModel.dataChanged.emit(projectStaffModel.index(0, 0), projectStaffModel.index(projectStaffModel.rowCount(), projectStaffModel.columnCount()));
 		projectStaffModel.layoutChanged.emit();
-		updateProjectStaffModel();
+		if (GuiController.getInstance().canAddProjectStaff() == false) {
+			updateProjectStaffModel();
+		}
 	}
 	
 	@SuppressWarnings("unused")

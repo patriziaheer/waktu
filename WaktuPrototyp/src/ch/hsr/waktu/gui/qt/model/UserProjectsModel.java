@@ -13,19 +13,14 @@ import com.trolltech.qt.core.QSize;
 import com.trolltech.qt.core.Qt;
 import com.trolltech.qt.core.Qt.Orientation;
 
-public class UserProjectsModel extends QAbstractItemModel{
-	
+public class UserProjectsModel extends QAbstractItemModel {
+
 	private Usr usr;
 	private List<Project> projects;
-	
-	public UserProjectsModel(Usr usr) {
+
+	public UserProjectsModel(Usr usr) throws WaktuGeneralException {
 		this.usr = usr;
-		try {
-			projects = ProjectStaffController.getInstance().getProjects(usr);
-		} catch (WaktuGeneralException e) {
-			// TODO undhangled exception
-			e.printStackTrace();
-		}
+		updateProjectsModel();
 	}
 
 	@Override
@@ -43,25 +38,33 @@ public class UserProjectsModel extends QAbstractItemModel{
 		if (Qt.ItemDataRole.DisplayRole == role) {
 			Project project = projects.get(index.row());
 			switch (index.column()) {
-			case 0: return project.getProjectIdentifier();
-			case 1: return project.getDescription();
-			case 2: return "";
+			case 0:
+				return project.getProjectIdentifier();
+			case 1:
+				return project.getDescription();
+			case 2:
+				return "";
 			}
 		}
 		return null;
 	}
-	
+
 	@Override
 	public Object headerData(int section, Orientation orientation, int role) {
-		if (Qt.ItemDataRole.DisplayRole == role && Qt.Orientation.Horizontal == orientation) {
+		if (Qt.ItemDataRole.DisplayRole == role
+				&& Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
-			case 0: return "ProjectIdentifier";
-			case 1: return "Description";
-			case 2: return "";
+			case 0:
+				return "ProjectIdentifier";
+			case 1:
+				return "Description";
+			case 2:
+				return "";
 			}
-		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Vertical == orientation) {
-			return new QSize(0,20);
-		} 
+		} else if (Qt.ItemDataRole.SizeHintRole == role
+				&& Qt.Orientation.Vertical == orientation) {
+			return new QSize(0, 20);
+		}
 		return super.headerData(section, orientation, role);
 	}
 
@@ -75,13 +78,8 @@ public class UserProjectsModel extends QAbstractItemModel{
 		return null;
 	}
 
-	public void updateProjectsModel() {
-		try {
-			projects = ProjectStaffController.getInstance().getProjects(usr);
-		} catch (WaktuGeneralException e) {
-			// TODO unhandled exception
-			e.printStackTrace();
-		}
+	public void updateProjectsModel() throws WaktuGeneralException {
+		projects = ProjectStaffController.getInstance().getProjects(usr);
 	}
-	
+
 }

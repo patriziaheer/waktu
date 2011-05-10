@@ -19,98 +19,24 @@ QPushButton:disabled {
 QPushButton:default {
     background-color: #DCE7F3;  make the default button prominent 
 }
-
+QListView {
+	border: 2px solid #E0E0E0;
+	selection-background-color: #E0E0E0;
+	font-size: 12px
+}
+QComboBox, QSpinBox {
+    selection-color: #737373;
+    selection-background-color: #C6C6C6;
+	border: 2px solid #E0E0E0;
+}
+QTextEdit {
+	border: 2px solid #E0E0E0;
+	selection-background-color: #E0E0E0
+}
 QLineEdit {
-    border: 2px solid gray;
-    padding: 0 2px;
-    background: white;
-    selection-background-color: darkgray;
+	border: 2px solid #E0E0E0;
+	selection-background-color: #E0E0E0
 }
-QLineEdit:read-only {
-    background: lightblue;
-}
-
-QComboBox {
-    border: 1px solid gray;
-    border-radius: 3px;
-    padding: 1px 18px 1px 3px;
-    min-width: 6em;
-}
-
-QComboBox:editable {
-    background: white;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable {
-     background: #E0E0E0;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on {
-    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #D3D3D3, stop: 0.4 #D8D8D8,
-                                stop: 0.5 #DDDDDD, stop: 1.0 #E1E1E1);
-}
-
-QComboBox:on {  shift the text when the popup opens 
-    padding-top: 3px;
-    padding-left: 4px;
-}
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-left-width: 1px;
-    border-left-color: gray;
-    border-left-style: solid; 
-    border-top-right-radius: 3px; 
-    border-bottom-right-radius: 3px;
-}
-
-
-QSpinBox {
-    padding-right: 15px;
-    border-width: 3;
-}
-
-QMenu {
-    background-color: white;  sets background of the menu 
-    border: 1px solid black; 
-}
-
-QMenu::item {
-     sets background of menu item. set this to something non-transparent 
-        if you want menu color and menu item color to be different 
-    background-color: transparent; 
-}
-
-QMenu::item:selected {  when user selects item using mouse or keyboard 
-    background-color: #E0E0E0;
-}
-
-
-QMenuBar {
-    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                                      stop:0 lightgray, stop:1 darkgray);
-}
-
-QMenuBar::item {
-    spacing: 3px;  spacing between menu bar items 
-    padding: 1px 4px;
-    background: transparent;
-    border-radius: 4px;
-}
-
-QMenuBar::item:selected {  when selected using mouse or keyboard 
-    background: #a8a8a8;
-}
-
-QMenuBar::item:pressed {
-    background: #888888;
-}
-
-
 
 QTabBar::pane { /* The tab widget frame */
     border-top: 2px solid #C2C7CB;

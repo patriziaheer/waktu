@@ -70,11 +70,18 @@ public class TimeView extends QMainWindow {
 		splitter.addWidget(ui.grpOverview);
 		ui.gridLayout.addWidget(splitter);
 		splitter.setCollapsible(0, false);
-		
-		
-		ComboBoxData.createProjectForUserComboBox(ui.cmbProject, currUser);
-		ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage,
-				(Project) ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
+
+		try {
+			ComboBoxData.createProjectForUserComboBox(ui.cmbProject, currUser);
+			ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage,
+					(Project) ui.cmbProject.itemData(ui.cmbProject
+							.currentIndex()));
+			workSessionModel = new WorkSessionModel(currUser,
+					calendar.getCurrentDate());
+			favoriteModel = new FavoriteModel(currUser);
+		} catch (WaktuGeneralException e) {
+			setStatusBarText(e.getMessage());
+		}
 		ui.cmbProject.currentIndexChanged.connect(this, "projectChanged()");
 
 		ui.actionOpenManagment.triggered.connect(this, "managmentClicked()");
@@ -91,8 +98,8 @@ public class TimeView extends QMainWindow {
 		ui.tblFavorites.resizeColumnsToContents();
 		ui.tblFavorites.setSelectionMode(SelectionMode.SingleSelection);
 		ui.tblFavorites.setSelectionBehavior(SelectionBehavior.SelectRows);
-		
-		//ui.tblWorksessions.horizontalHeader().setStretchLastSection(true);
+
+		// ui.tblWorksessions.horizontalHeader().setStretchLastSection(true);
 		ui.tblWorksessions.resizeColumnsToContents();
 		ui.tblWorksessions.setSelectionMode(SelectionMode.SingleSelection);
 		ui.tblWorksessions.setSelectionBehavior(SelectionBehavior.SelectRows);
@@ -114,16 +121,14 @@ public class TimeView extends QMainWindow {
 		WorkSessionController.getInstance().removed.connect(this,
 				"workSessionRemoved(WorkSession)");
 
-		workSessionModel = new WorkSessionModel(currUser, calendar.getCurrentDate());
 		ui.tblWorksessions.setModel(workSessionModel);
-		favoriteModel = new FavoriteModel(currUser);
 		ui.tblFavorites.setModel(favoriteModel);
-		
-//		TODO: Funktioniert seit ts-file-generieren nicht mehr..
-//		ui.actionDE.triggered.connect(this, "translateDE()");
-//		ui.actionEN.triggered.connect(this, "translateEN()");
-		LanguageController.getInstance().languageChanged.connect(this, "translate()");
-		
+
+		ui.actionDE.triggered.connect(this, "translateDE()");
+		ui.actionEN.triggered.connect(this, "translateEN()");
+		LanguageController.getInstance().languageChanged.connect(this,
+				"translate()");
+
 		updateWorkSessionModel();
 		updateFavoriteModel();
 		updateTimeInfos();
@@ -135,11 +140,12 @@ public class TimeView extends QMainWindow {
 		palette.setBrush(ColorRole.WindowText, new QBrush(QColor.red));
 		ui.statusBar.setPalette(palette);
 	}
-	
+
 	private void updateWorkSessionModel() {
 		try {
 			for (int i = 0; i < WorkSessionController.getInstance()
-					.getWorkSessions(currUser, calendar.getCurrentDate()).size(); i++) {
+					.getWorkSessions(currUser, calendar.getCurrentDate())
+					.size(); i++) {
 				QModelIndex currIndex = workSessionModel.index(i,
 						workSessionModel.columnCount() - 1);
 				QWidget w = new QWidget();
@@ -152,7 +158,8 @@ public class TimeView extends QMainWindow {
 
 				IndexButton deleteButton = new IndexButton(currIndex);
 				deleteButton.setFixedHeight(20);
-				deleteButton.setIcon(new QIcon("classpath:icons/delete_16x16.png"));
+				deleteButton.setIcon(new QIcon(
+						"classpath:icons/delete_16x16.png"));
 				deleteButton.actionClicked.connect(this,
 						"workSessionDeleteClicked(IndexButton)");
 				w.layout().addWidget(editButton);
@@ -161,8 +168,7 @@ public class TimeView extends QMainWindow {
 				ui.tblWorksessions.setIndexWidget(currIndex, w);
 			}
 		} catch (WaktuGeneralException e) {
-			// TODO PH: unhandled exceptions
-			e.printStackTrace();
+			setStatusBarText(e.getMessage());
 		}
 	}
 
@@ -182,7 +188,8 @@ public class TimeView extends QMainWindow {
 
 				IndexButton deleteButton = new IndexButton(currIndex);
 				deleteButton.setFixedHeight(20);
-				deleteButton.setIcon(new QIcon("classpath:icons/delete_16x16.png"));
+				deleteButton.setIcon(new QIcon(
+						"classpath:icons/delete_16x16.png"));
 				deleteButton.actionClicked.connect(this,
 						"favoriteDeleteClicked(IndexButton)");
 				w.layout().addWidget(editButton);
@@ -191,14 +198,18 @@ public class TimeView extends QMainWindow {
 				ui.tblFavorites.setIndexWidget(currIndex, w);
 			}
 		} catch (WaktuGeneralException e) {
-			// TODO exception handling
-			e.printStackTrace();
+			setStatusBarText(e.getMessage());
 		}
 	}
 
 	private void updateFavoriteTable() {
 		updateFavoriteModel();
-		favoriteModel.updateFavoriteModel();
+		try {
+			favoriteModel.updateFavoriteModel();
+		} catch (WaktuGeneralException e) {
+
+			setStatusBarText(e.getMessage());
+		}
 		favoriteModel.layoutAboutToBeChanged.emit();
 		favoriteModel.dataChanged.emit(
 				favoriteModel.index(0, 0),
@@ -206,24 +217,36 @@ public class TimeView extends QMainWindow {
 						favoriteModel.columnCount()));
 		favoriteModel.layoutChanged.emit();
 	}
-	
+
 	private void updateWorkSessionTable() {
 		updateWorkSessionModel();
-		workSessionModel.updateModel(currUser, calendar.getCurrentDate());
+		try {
+			workSessionModel.updateModel(currUser, calendar.getCurrentDate());
+		} catch (WaktuGeneralException e) {
+			setStatusBarText(e.getMessage());
+		}
 		workSessionModel.layoutAboutToBeChanged.emit();
 		workSessionModel.dataChanged.emit(workSessionModel.index(0, 0),
 				workSessionModel.index(workSessionModel.rowCount(),
 						workSessionModel.columnCount()));
 		workSessionModel.layoutChanged.emit();
 	}
-	
+
 	private void updateTimeInfos() {
-		/*ui.lblPlannedDay.setText(""+TimeController.HOURS_PER_WORKDAY);
-		ui.lblPlannedMonth.setText(""+TimeController.getPlannedTime(currUser, calendar.getCurrentDate()));
-		ui.lblToday.setText(""+TimeController.calculateWorktime(currUser, calendar.getCurrentDate(), calendar.getCurrentDate()));
-		ui.lblCurrentWeek.setText(""+TimeController.calculateWorktimeForWeek(currUser, calendar.getCurrentDate()));
-		ui.lblCurrentMonth.setText(""+TimeController.calculateWorktimeForMonth(currUser, calendar.getCurrentDate()));
-		ui.lblOvertime.setText(""+TimeController.calculateOvertime(currUser, new QDate(01,01,1900), new QDate(31,12,2999)));*/
+		/*
+		 * ui.lblPlannedDay.setText(""+TimeController.HOURS_PER_WORKDAY);
+		 * ui.lblPlannedMonth.setText(""+TimeController.getPlannedTime(currUser,
+		 * calendar.getCurrentDate()));
+		 * ui.lblToday.setText(""+TimeController.calculateWorktime(currUser,
+		 * calendar.getCurrentDate(), calendar.getCurrentDate()));
+		 * ui.lblCurrentWeek
+		 * .setText(""+TimeController.calculateWorktimeForWeek(currUser,
+		 * calendar.getCurrentDate()));
+		 * ui.lblCurrentMonth.setText(""+TimeController
+		 * .calculateWorktimeForMonth(currUser, calendar.getCurrentDate()));
+		 * ui.lblOvertime.setText(""+TimeController.calculateOvertime(currUser,
+		 * new QDate(01,01,1900), new QDate(31,12,2999)));
+		 */
 	}
 
 	@SuppressWarnings("unused")
@@ -238,32 +261,35 @@ public class TimeView extends QMainWindow {
 	@SuppressWarnings("unused")
 	private void createWorkSessionClicked() {
 		if (ui.txtEnd.time().compareTo(ui.txtStart.time()) <= 0) {
-			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate("TimeView",("Endtime must be greater then Starttime"), null));
+			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate(
+					"TimeView", ("Endtime must be greater then Starttime"),
+					null));
 		} else if (ui.cmbProject.currentIndex() < 0) {
-			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate("TimeView",("Project must be choosen"), null));
+			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate(
+					"TimeView", ("Project must be choosen"), null));
 		} else if (ui.cmbWorkpackage.currentIndex() < 0) {
-			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate("TimeView",("WorkPackage must be choosen"), null));
+			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate(
+					"TimeView", ("WorkPackage must be choosen"), null));
 		} else {
-			
+			Project project;
 			try {
-			Project project = ProjectController.getInstance()
-					.getActiveProjects().get(ui.cmbProject.currentIndex());
-			WorkPackage workPackage = WorkPackageController.getInstance()
-					.getActiveWorkPackages(project)
-					.get(ui.cmbWorkpackage.currentIndex());
-			QDateTime start = new QDateTime();
-			start.setDate(calendar.getCurrentDate());
-			start.setTime(ui.txtStart.time());
-			QDateTime end = new QDateTime();
-			end.setDate(calendar.getCurrentDate());
-			end.setTime(ui.txtEnd.time());
-			WorkSessionController.getInstance().addWorkSession(currUser,
-					workPackage, TimeUtil.convertQDateTimeToGregorian(start),
-					TimeUtil.convertQDateTimeToGregorian(end),
-					ui.txtDescription.text());
-			}
-			catch (Exception e) {
-				//TODO: PH: exception handling
+				project = ProjectController.getInstance()
+						.getActiveProjects().get(ui.cmbProject.currentIndex());
+				WorkPackage workPackage = WorkPackageController.getInstance()
+				.getActiveWorkPackages(project)
+				.get(ui.cmbWorkpackage.currentIndex());
+				QDateTime start = new QDateTime();
+				start.setDate(calendar.getCurrentDate());
+				start.setTime(ui.txtStart.time());
+				QDateTime end = new QDateTime();
+				end.setDate(calendar.getCurrentDate());
+				end.setTime(ui.txtEnd.time());
+				WorkSessionController.getInstance().addWorkSession(currUser,
+						workPackage, TimeUtil.convertQDateTimeToGregorian(start),
+						TimeUtil.convertQDateTimeToGregorian(end),
+						ui.txtDescription.text());
+			} catch (WaktuGeneralException e) {
+				setStatusBarText(e.getMessage());
 			}
 		}
 	}
@@ -302,21 +328,23 @@ public class TimeView extends QMainWindow {
 			Favorite favorite = favoriteModel.getFavorite(ui.tblFavorites
 					.selectionModel().selectedRows().get(0).row());
 			WorkPackage wp = favorite.getWorkPackageID();
-			
+
 			QDateTime start = new QDateTime();
 			start.setDate(calendar.getCurrentDate());
-			start.setTime(TimeUtil.convertGregorianToQDateTime(favorite.getStartTime()).time());
-			
+			start.setTime(TimeUtil.convertGregorianToQDateTime(
+					favorite.getStartTime()).time());
+
 			QDateTime end = new QDateTime();
 			end.setDate(calendar.getCurrentDate());
-			start.setTime(TimeUtil.convertGregorianToQDateTime(favorite.getEndTime()).time());
-			
+			start.setTime(TimeUtil.convertGregorianToQDateTime(
+					favorite.getEndTime()).time());
+
 			try {
-				WorkSessionController.getInstance().addWorkSession(currUser, wp,
-						TimeUtil.convertQDateTimeToGregorian(start), TimeUtil.convertQDateTimeToGregorian(end), "");
+				WorkSessionController.getInstance().addWorkSession(currUser,
+						wp, TimeUtil.convertQDateTimeToGregorian(start),
+						TimeUtil.convertQDateTimeToGregorian(end), "");
 			} catch (WaktuGeneralException e) {
-				// TODO PH: unhandled exceptions
-				e.printStackTrace();
+				setStatusBarText(e.getMessage());
 			}
 		} else {
 			setStatusBarText("Select a Favorite");
@@ -326,41 +354,49 @@ public class TimeView extends QMainWindow {
 	@SuppressWarnings("unused")
 	private void addToFavorites() {
 		if (ui.txtEnd.time().compareTo(ui.txtStart.time()) <= 0) {
-			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate("TimeView",("Endtime must be greater then Starttime"), null));
+			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate(
+					"TimeView", ("Endtime must be greater then Starttime"),
+					null));
 		} else if (ui.cmbProject.currentIndex() < 0) {
-			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate("TimeView",("Project must be choosen"), null));
+			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate(
+					"TimeView", ("Project must be choosen"), null));
 		} else if (ui.cmbWorkpackage.currentIndex() < 0) {
-			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate("TimeView",("WorkPackage must be choosen"), null));
+			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate(
+					"TimeView", ("WorkPackage must be choosen"), null));
 		} else {
-			
+
 			try {
-			
-			Project project = ProjectController.getInstance()
-					.getActiveProjects().get(ui.cmbProject.currentIndex());
-			WorkPackage workPackage = WorkPackageController.getInstance()
-					.getActiveWorkPackages(project)
-					.get(ui.cmbWorkpackage.currentIndex());
-			QDateTime start = new QDateTime();
-			start.setDate(calendar.getCurrentDate());
-			start.setTime(ui.txtStart.time());
-			QDateTime end = new QDateTime();
-			end.setDate(calendar.getCurrentDate());
-			end.setTime(ui.txtEnd.time());
-			
-				FavoriteController.getInstance().addFavorite(currUser, workPackage,
+
+				Project project = ProjectController.getInstance()
+						.getActiveProjects().get(ui.cmbProject.currentIndex());
+				WorkPackage workPackage = WorkPackageController.getInstance()
+						.getActiveWorkPackages(project)
+						.get(ui.cmbWorkpackage.currentIndex());
+				QDateTime start = new QDateTime();
+				start.setDate(calendar.getCurrentDate());
+				start.setTime(ui.txtStart.time());
+				QDateTime end = new QDateTime();
+				end.setDate(calendar.getCurrentDate());
+				end.setTime(ui.txtEnd.time());
+
+				FavoriteController.getInstance().addFavorite(currUser,
+						workPackage,
 						TimeUtil.convertQDateTimeToGregorian(start),
 						TimeUtil.convertQDateTimeToGregorian(end));
 			} catch (WaktuGeneralException e) {
-				// TODO PH: exception handling
-				e.printStackTrace();
+				setStatusBarText(e.getMessage());
 			}
 		}
-	}	
+	}
 
 	@SuppressWarnings("unused")
 	private void projectChanged() {
-		ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage,
-				(Project) ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
+		try {
+			ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage,
+					(Project) ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
+		} catch (WaktuGeneralException e) {
+			setStatusBarText(e.getMessage());
+		}
 	}
 
 	@SuppressWarnings("unused")
@@ -368,22 +404,22 @@ public class TimeView extends QMainWindow {
 		managmentView.show();
 		managmentView.setFocus();
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void translateDE() {
 		LanguageController.getInstance().setCurrLanguage(Language.DE);
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void translateEN() {
-        LanguageController.getInstance().setCurrLanguage(Language.EN);
+		LanguageController.getInstance().setCurrLanguage(Language.EN);
 	}
 
 	@SuppressWarnings("unused")
 	private void closeApp() {
 		QApplication.exit();
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void dayChanged() {
 		updateWorkSessionTable();
@@ -416,7 +452,11 @@ public class TimeView extends QMainWindow {
 
 	@SuppressWarnings("unused")
 	private void workSessionUpdated() {
-		workSessionModel.updateModel(currUser, calendar.getCurrentDate());
+		try {
+			workSessionModel.updateModel(currUser, calendar.getCurrentDate());
+		} catch (WaktuGeneralException e) {
+			setStatusBarText(e.getMessage());
+		}
 		workSessionModel.layoutAboutToBeChanged.emit();
 		workSessionModel.dataChanged.emit(workSessionModel.index(0, 0),
 				workSessionModel.index(workSessionModel.rowCount(),
@@ -436,7 +476,8 @@ public class TimeView extends QMainWindow {
 		logger.info("EditClicked for " + btn);
 		if (workSessionModel.getEditable() != null
 				&& EditStatus.Edit == btn.getStatus()) {
-			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate("TimeView",("Save first current edit row"), null));
+			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate(
+					"TimeView", ("Save first current edit row"), null));
 		} else {
 			if (EditStatus.Edit == btn.getStatus()) {
 				btn.setStatus(EditStatus.Save);
@@ -450,10 +491,10 @@ public class TimeView extends QMainWindow {
 				btn.setStatus(EditStatus.Edit);
 				try {
 					WorkSessionController.getInstance().updateWorkSession(
-							workSessionModel.getWorkSession(btn.getIndex().row()));
+							workSessionModel.getWorkSession(btn.getIndex()
+									.row()));
 				} catch (WaktuGeneralException e) {
-					// TODO PH: unhandled exceptions
-					e.printStackTrace();
+					setStatusBarText(e.getMessage());
 				}
 			}
 		}
@@ -464,12 +505,13 @@ public class TimeView extends QMainWindow {
 		logger.info("EditClicked for " + btn);
 		try {
 			WorkSessionController.getInstance().removeWorkSession(
-					WorkSessionController.getInstance()
-							.getWorkSessions(currUser, calendar.getCurrentDate())
+					WorkSessionController
+							.getInstance()
+							.getWorkSessions(currUser,
+									calendar.getCurrentDate())
 							.get(btn.getIndex().row()));
 		} catch (WaktuGeneralException e) {
-			// TODO PH: unhandled exceptions
-			e.printStackTrace();
+			setStatusBarText(e.getMessage());
 		}
 
 	}
@@ -479,7 +521,8 @@ public class TimeView extends QMainWindow {
 		logger.info("EditClicked for favorite " + btn);
 		if (favoriteModel.getEditable() != null
 				&& EditStatus.Edit == btn.getStatus()) {
-			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate("TimeView",("Save first current edit row"), null));
+			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate(
+					"TimeView", ("Save first current edit row"), null));
 		} else {
 			if (EditStatus.Edit == btn.getStatus()) {
 				btn.setStatus(EditStatus.Save);
@@ -505,11 +548,10 @@ public class TimeView extends QMainWindow {
 					FavoriteController.getInstance().getFavorites(currUser)
 							.get(btn.getIndex().row()));
 		} catch (WaktuGeneralException e) {
-			// TODO ExceptionHandling
-			e.printStackTrace();
+			setStatusBarText(e.getMessage());
 		}
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void translate() {
 		ui.retranslateUi(this);

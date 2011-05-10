@@ -1,6 +1,7 @@
 package ch.hsr.waktu.gui.qt.view.usermanagment;
 
 import ch.hsr.waktu.controller.TimeController;
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
@@ -20,12 +21,19 @@ public class UserWorkSessionsView extends QWidget{
 	private UserWorkSessionModel workSessionModel;
 	private TableSortFilterModel filterModel;
 	private Usr usr;
+	public Signal1<String> errorMessage = new Signal1<String>();
 	
 	public UserWorkSessionsView(Usr usr) {
 		ui.setupUi(this);
 		this.usr = usr;
 		
-		workSessionModel = new UserWorkSessionModel(usr);
+		try {
+			ComboBoxData.createActiveProjectComboBox(ui.cmbProject);
+			ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
+			workSessionModel = new UserWorkSessionModel(usr);
+		} catch (WaktuGeneralException e) {
+			errorMessage.emit(e.getMessage());
+		}
 		filterModel = new TableSortFilterModel();
 		filterModel.setDynamicSortFilter(true);
 		filterModel.setSourceModel(workSessionModel);
@@ -36,8 +44,6 @@ public class UserWorkSessionsView extends QWidget{
 		WorkSessionController.getInstance().removed.connect(this, "removed(WorkSession)");
 		WorkSessionController.getInstance().update.connect(this, "updated()");
 		
-		ComboBoxData.createActiveProjectComboBox(ui.cmbProject);
-		ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
 		ui.cmbProject.currentIndexChanged.connect(this, "projectChanged()");
 		ui.cmbProject.setCurrentIndex(-1);
 		ui.cmbWorkpackage.setCurrentIndex(-1);
@@ -86,10 +92,13 @@ public class UserWorkSessionsView extends QWidget{
 	
 	@SuppressWarnings("unused")
 	private void projectChanged() {
-		ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
+		try {
+			ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
+		} catch (WaktuGeneralException e) {
+			errorMessage.emit(e.getMessage());
+		}
 	}
 
-	
 	@SuppressWarnings("unused")
 	private void added(WorkSession workSession) {
 		updateWorkSessionTable();
@@ -106,7 +115,11 @@ public class UserWorkSessionsView extends QWidget{
 	}
 	
 	private void updateWorkSessionTable() {
-		workSessionModel.updateWorkSessionModel();
+		try {
+			workSessionModel.updateWorkSessionModel();
+		} catch (WaktuGeneralException e) {
+			errorMessage.emit(e.getMessage());
+		}
 		workSessionModel.layoutAboutToBeChanged.emit();
 		workSessionModel.dataChanged.emit(workSessionModel.index(0, 0),
 				workSessionModel.index(workSessionModel.rowCount(),

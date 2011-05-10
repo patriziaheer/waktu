@@ -5,27 +5,33 @@ import ch.hsr.waktu.guicontroller.GuiController;
 import ch.hsr.waktu.guicontroller.LanguageController;
 import ch.hsr.waktu.guicontroller.LanguageController.Language;
 
+import com.trolltech.qt.gui.QBrush;
+import com.trolltech.qt.gui.QColor;
 import com.trolltech.qt.gui.QMainWindow;
+import com.trolltech.qt.gui.QPalette;
+import com.trolltech.qt.gui.QPalette.ColorRole;
 
 public class ManagmentView extends QMainWindow {
 
 	private Ui_ManagmentWindow ui = new Ui_ManagmentWindow();
-	private Usr currUsr;
+	//private Usr currUsr;
 	private ProjectDetails projectDetails;
 	private UserDetails userDetails;
 	
 	public ManagmentView(Usr usr) {
-		currUsr = usr;
+		//currUsr = usr;
 		
 		ui.setupUi(this);
 		ui.tabWidget.removeTab(0);
 		projectDetails = new ProjectDetails();
+		projectDetails.errorMessage.connect(this, "showErrorMessage(String)");
 		ui.tabWidget.addTab(projectDetails, com.trolltech.qt.core.QCoreApplication.translate("ManagmentView",("Projects"), null));
 		userDetails = new UserDetails(); 
+		userDetails.errorMessage.connect(this, "showErrorMessage(String)");
 		ui.tabWidget.addTab(userDetails, com.trolltech.qt.core.QCoreApplication.translate("ManagmentView",("Users"), null));
 		
 		ui.actionAddUser.setVisible(GuiController.getInstance().canAddUser());
-		ui.actionAddProject.setVisible(GuiController.getInstance().canAddProject(currUsr));
+		ui.actionAddProject.setVisible(GuiController.getInstance().canAddProject());
 		
 		ui.actionAddProject.triggered.connect(this, "addProject()");
 		ui.actionAddUser.triggered.connect(this, "addUser()");
@@ -33,6 +39,8 @@ public class ManagmentView extends QMainWindow {
 
 		ui.actionDE.triggered.connect(this, "translateDE()");
 		ui.actionEN.triggered.connect(this, "translateEN()");
+		
+		
 		
 		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 	}
@@ -74,6 +82,18 @@ public class ManagmentView extends QMainWindow {
 	private void changeText() {
 		ui.tabWidget.setTabText(0, com.trolltech.qt.core.QCoreApplication.translate("ManagmentView",("Projects"), null));
 		ui.tabWidget.setTabText(1, com.trolltech.qt.core.QCoreApplication.translate("ManagmentView",("Users"), null));
+	}
+
+	private void setStatusBarText(String text) {
+		ui.statusBar.showMessage(text, 2000);
+		QPalette palette = ui.statusBar.palette();
+		palette.setBrush(ColorRole.WindowText, new QBrush(QColor.red));
+		ui.statusBar.setPalette(palette);
+	}
+	
+	@SuppressWarnings("unused")
+	private void showErrorMessage(String errorMessage) {
+		setStatusBarText(errorMessage);
 	}
 	
 }

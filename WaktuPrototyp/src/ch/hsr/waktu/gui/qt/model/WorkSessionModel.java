@@ -30,14 +30,9 @@ public class WorkSessionModel extends QAbstractItemModel {
 	private QModelIndex editable = null;
 	private QDate date;
 	
-	public WorkSessionModel(Usr usr, QDate date) {
+	public WorkSessionModel(Usr usr, QDate date) throws WaktuGeneralException {
 		this.date = date;
-		try {
-			workSessions = WorkSessionController.getInstance().getWorkSessions(usr, date);
-		} catch (WaktuGeneralException e) {
-			// TODO PH: unhandled exceptions
-			e.printStackTrace();
-		}
+		updateModel(usr, date);
 	}
 
 	@Override
@@ -154,13 +149,8 @@ public class WorkSessionModel extends QAbstractItemModel {
 		return workSessions.get(row);
 	}
 	
-	public void updateModel(Usr usr, QDate date) {
-		try {
-			workSessions = WorkSessionController.getInstance().getWorkSessions(usr, date);
-		} catch (WaktuGeneralException e) {
-			// TODO PH: unhandled exceptions
-			e.printStackTrace();
-		}
+	public void updateModel(Usr usr, QDate date) throws WaktuGeneralException {
+		workSessions = WorkSessionController.getInstance().getWorkSessions(usr, date);
 	}
 
 }

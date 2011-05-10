@@ -1,4 +1,5 @@
 package ch.hsr.waktu.gui.qt.model;
+
 import java.util.List;
 
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
@@ -14,18 +15,12 @@ import com.trolltech.qt.gui.QIcon;
 import com.trolltech.qt.gui.QPixmap;
 import com.trolltech.qt.gui.QTreeModel;
 
-
 public class ProjectTreeModel extends QTreeModel {
-	
+
 	private List<Project> projects;
-	
-	public ProjectTreeModel() {
-		try {
-			projects = ProjectController.getInstance().getActiveProjects();
-		} catch (WaktuGeneralException e) {
-			// TODO PH: unhandled exception
-			e.printStackTrace();
-		}
+
+	public ProjectTreeModel() throws WaktuGeneralException {
+		updateProjectsModel();
 	}
 
 	@Override
@@ -55,7 +50,7 @@ public class ProjectTreeModel extends QTreeModel {
 		}
 		return value.toString();
 	}
-	
+
 	@Override
 	public Object headerData(int section, Orientation orientation, int role) {
 		return "";
@@ -68,31 +63,27 @@ public class ProjectTreeModel extends QTreeModel {
 	@Override
 	public Object data(Object value, int role) {
 		switch (role) {
-			case Qt.ItemDataRole.DisplayRole: {
-				return value;
-			}
-			case Qt.ItemDataRole.ToolTipRole: {
-				return value.toString();
-			}
-			case Qt.ItemDataRole.DecorationRole: {
-				QIcon icon = new QIcon(new QPixmap("classpath:PfeilDown.JPG"));
-				return icon;
-			} case Qt.ItemDataRole.FontRole:
-				QFont font = new QFont();
-				font.setBold(true);
-				font.setPointSize(10);
-				return font;
+		case Qt.ItemDataRole.DisplayRole: {
+			return value;
+		}
+		case Qt.ItemDataRole.ToolTipRole: {
+			return value.toString();
+		}
+		case Qt.ItemDataRole.DecorationRole: {
+			QIcon icon = new QIcon(new QPixmap("classpath:PfeilDown.JPG"));
+			return icon;
+		}
+		case Qt.ItemDataRole.FontRole:
+			QFont font = new QFont();
+			font.setBold(true);
+			font.setPointSize(10);
+			return font;
 		}
 		return super.data(value, role);
 	}
-	
-	public void updateProjectsModel() {
-		try {
-			projects = ProjectController.getInstance().getActiveProjects();
-		} catch (WaktuGeneralException e) {
-			// TODO PH: unhandled exception
-			e.printStackTrace();
-		}
+
+	public void updateProjectsModel() throws WaktuGeneralException {
+		projects = ProjectController.getInstance().getActiveProjects();
 	}
-	
+
 }

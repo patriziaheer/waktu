@@ -19,14 +19,9 @@ public class UserWorkSessionModel extends QAbstractItemModel {
 	private Usr usr;
 	private List<WorkSession> workSessions;
 	
-	public UserWorkSessionModel(Usr usr) {
+	public UserWorkSessionModel(Usr usr) throws WaktuGeneralException {
 		this.usr = usr;
-		try {
-			workSessions = WorkSessionController.getInstance().getWorkSessions(usr);
-		} catch (WaktuGeneralException e) {
-			// TODO PH: unhandled exceptions
-			e.printStackTrace();
-		}
+		updateWorkSessionModel();
 	}
 
 	@Override
@@ -82,13 +77,8 @@ public class UserWorkSessionModel extends QAbstractItemModel {
 		return null;
 	}
 
-	public void updateWorkSessionModel() {
-		try {
-			workSessions = WorkSessionController.getInstance().getWorkSessions(usr);
-		} catch (WaktuGeneralException e) {
-			// TODO PH: unhandled exceptions
-			e.printStackTrace();
-		}
+	public void updateWorkSessionModel() throws WaktuGeneralException {
+		workSessions = WorkSessionController.getInstance().getWorkSessions(usr);
 	}
 	
 }

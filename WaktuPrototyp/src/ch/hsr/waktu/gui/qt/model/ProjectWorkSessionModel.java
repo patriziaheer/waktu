@@ -15,18 +15,13 @@ import com.trolltech.qt.core.Qt;
 import com.trolltech.qt.core.Qt.Orientation;
 
 public class ProjectWorkSessionModel extends QAbstractItemModel {
-	
+
 	private Project project;
 	private List<WorkSession> workSessions;
-	
-	public ProjectWorkSessionModel(Project project) {
+
+	public ProjectWorkSessionModel(Project project) throws WaktuGeneralException {
 		this.project = project;
-		try {
-			workSessions = WorkSessionController.getInstance().getWorkSessions(project);
-		} catch (WaktuGeneralException e) {
-			// TODO PH: unhandled exceptions
-			e.printStackTrace();
-		}
+		updateWorkSessionModel();
 	}
 
 	@Override
@@ -44,31 +39,48 @@ public class ProjectWorkSessionModel extends QAbstractItemModel {
 		if (Qt.ItemDataRole.DisplayRole == role) {
 			WorkSession workSession = workSessions.get(index.row());
 			switch (index.column()) {
-			case 0: return workSession.getWorkPackage();
-			case 1: return workSession.getDescription();
-			case 2: return workSession.getUser();
-			case 3: return TimeUtil.convertGregorianToQDateTime(workSession.getStart());
-			case 4: return TimeUtil.convertGregorianToQDateTime(workSession.getEnd());
-			case 5: return TimeUtil.calculateTimespanInSeconds(workSession.getStart(), workSession.getEnd());
+			case 0:
+				return workSession.getWorkPackage();
+			case 1:
+				return workSession.getDescription();
+			case 2:
+				return workSession.getUser();
+			case 3:
+				return TimeUtil.convertGregorianToQDateTime(workSession
+						.getStart());
+			case 4:
+				return TimeUtil.convertGregorianToQDateTime(workSession
+						.getEnd());
+			case 5:
+				return TimeUtil.calculateTimespanInSeconds(
+						workSession.getStart(), workSession.getEnd());
 			}
 		}
 		return null;
 	}
-	
+
 	@Override
 	public Object headerData(int section, Orientation orientation, int role) {
-		if (Qt.ItemDataRole.DisplayRole == role && Qt.Orientation.Horizontal == orientation) {
+		if (Qt.ItemDataRole.DisplayRole == role
+				&& Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
-			case 0: return tr("WorkPackage");
-			case 1: return tr("Desciption");
-			case 2: return tr("User");
-			case 3: return tr("Start");
-			case 4: return tr("End");
-			case 5: return tr("Duration");
+			case 0:
+				return tr("WorkPackage");
+			case 1:
+				return tr("Desciption");
+			case 2:
+				return tr("User");
+			case 3:
+				return tr("Start");
+			case 4:
+				return tr("End");
+			case 5:
+				return tr("Duration");
 			}
- 		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Vertical == orientation) {
-			return new QSize(0,20);
-		} 
+		} else if (Qt.ItemDataRole.SizeHintRole == role
+				&& Qt.Orientation.Vertical == orientation) {
+			return new QSize(0, 20);
+		}
 		return super.headerData(section, orientation, role);
 	}
 
@@ -81,14 +93,10 @@ public class ProjectWorkSessionModel extends QAbstractItemModel {
 	public QModelIndex parent(QModelIndex arg0) {
 		return null;
 	}
-	
-	public void updateWorkSessionModel() {
-		try {
-			workSessions = WorkSessionController.getInstance().getWorkSessions(project);
-		} catch (WaktuGeneralException e) {
-			// TODO PH: unhandled exceptions
-			e.printStackTrace();
-		}
+
+	public void updateWorkSessionModel() throws WaktuGeneralException {
+		workSessions = WorkSessionController.getInstance().getWorkSessions(
+				project);
 	}
 
 }

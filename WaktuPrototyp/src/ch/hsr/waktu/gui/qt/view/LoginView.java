@@ -75,17 +75,21 @@ public class LoginView extends QDialog {
 				this.setCursor(new QCursor(CursorShape.ArrowCursor));
 				close();
 			} else {
-				ui.lblStatus.setText(com.trolltech.qt.core.QCoreApplication
+				setStatus(com.trolltech.qt.core.QCoreApplication
 						.translate("LoginView", "Username or Password wrong",
 								null));
-				QPalette palette = ui.lblStatus.palette();
-				palette.setBrush(ColorRole.WindowText, new QBrush(QColor.red));
-				ui.lblStatus.setPalette(palette);
 				this.setCursor(new QCursor(CursorShape.ArrowCursor));
 			}
 		} catch (WaktuGeneralException e) {
-			// TODO PH: exception handling
+			setStatus(e.getMessage());
 		}
+	}
+
+	private void setStatus(String text) {
+		ui.lblStatus.setText(text);
+		QPalette palette = ui.lblStatus.palette();
+		palette.setBrush(ColorRole.WindowText, new QBrush(QColor.red));
+		ui.lblStatus.setPalette(palette);
 	}
 
 	@SuppressWarnings("unused")

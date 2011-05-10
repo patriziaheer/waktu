@@ -1,7 +1,5 @@
 package ch.hsr.waktu.gui.qt.model;
 
-import com.trolltech.qt.gui.QComboBox;
-
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
@@ -11,10 +9,10 @@ import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
 
+import com.trolltech.qt.gui.QComboBox;
+
 public class ComboBoxData {
 
-
-	
 	public static void createSystemRoleComboBox(QComboBox cmb) {
 		cmb.clear();
 		for (SystemRole role : SystemRole.values()) {
@@ -22,67 +20,46 @@ public class ComboBoxData {
 		}
 	}
 
-	
-	public static void createProjectManagerComboBox(QComboBox cmb) {
+	public static void createProjectManagerComboBox(QComboBox cmb)
+			throws WaktuGeneralException {
 		cmb.clear();
-		try {
-			for (Usr usr : UserController.getInstance().getProjectManagers()) {
-				cmb.addItem(usr.toString(), usr);
-			}
-		} catch (WaktuGeneralException e) {
-			// TODO PH: exception handling
-			e.printStackTrace();
+		for (Usr usr : UserController.getInstance().getProjectManagers()) {
+			cmb.addItem(usr.toString(), usr);
 		}
 	}
-	
-	public static void createProjectForUserComboBox(QComboBox cmb, Usr currUser) {
+
+	public static void createProjectForUserComboBox(QComboBox cmb, Usr currUser) throws WaktuGeneralException {
 		cmb.clear();
-		try {
-			for (Project proj : ProjectController.getInstance().getActiveProjects(currUser)) {
-				cmb.addItem(proj.toString(), proj);
-			}
-		} catch (WaktuGeneralException e) {
-			// TODO PH: unhandled exception
-			e.printStackTrace();
+		for (Project proj : ProjectController.getInstance().getActiveProjects(
+				currUser)) {
+			cmb.addItem(proj.toString(), proj);
 		}
 	}
-	
-	public static void createWorkPackageComboBox(QComboBox cmb, Project project) {
+
+	public static void createWorkPackageComboBox(QComboBox cmb, Project project) throws WaktuGeneralException {
 		cmb.clear();
 		if (project != null) {
-			try {
-				for (WorkPackage wp: WorkPackageController.getInstance().getActiveWorkPackages(project)) {
+				for (WorkPackage wp : WorkPackageController.getInstance()
+						.getActiveWorkPackages(project)) {
 					cmb.addItem(wp.toString(), wp);
 				}
-			} catch (WaktuGeneralException e) {
-				// TODO PH: unhandled exceptions
-				e.printStackTrace();
-			}
 		}
 	}
-	
-	public static void createActiveProjectComboBox(QComboBox cmb) {
+
+	public static void createActiveProjectComboBox(QComboBox cmb) throws WaktuGeneralException {
 		cmb.clear();
-		try {
-			for (Project project : ProjectController.getInstance().getActiveProjects()) {
+			for (Project project : ProjectController.getInstance()
+					.getActiveProjects()) {
 				cmb.addItem(project.toString(), project);
 			}
-		} catch (WaktuGeneralException e) {
-			// TODO PH: unhandled exception
-			e.printStackTrace();
-		}
 	}
-	
-	public static void createUserComboBox(QComboBox cmb) {
+
+	public static void createUserComboBox(QComboBox cmb)
+			throws WaktuGeneralException {
 		cmb.clear();
-		try {
-			for (Usr usr: UserController.getInstance().getActiveUsers()) {
+			for (Usr usr : UserController.getInstance().getActiveUsers()) {
 				cmb.addItem(usr.toString(), usr);
 			}
-		} catch (WaktuGeneralException e) {
-			// TODO PH: exception handling
-			e.printStackTrace();
-		}
 	}
-	
+
 }
