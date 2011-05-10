@@ -2,9 +2,9 @@ package ch.hsr.waktu.controller.datacontroller;
 
 import java.util.LinkedList;
 
-import ch.hsr.waktu.controller.UsernameController;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.services.UsernameUtil;
 import ch.hsr.waktu.services.XmlUtil;
 
 public class UserControllerXml extends UserController {
@@ -33,7 +33,7 @@ public class UserControllerXml extends UserController {
 	public Usr addUser(String firstname, String lastname, String password,
 			int pensum, SystemRole role, double holiday) throws WaktuGeneralException {
 		LinkedList<Usr> allUsers = getAllUsers();
-		Usr newUser = new Usr(UsernameController.generateUsername(firstname, lastname), firstname, lastname, password, pensum, role, holiday);
+		Usr newUser = new Usr(UsernameUtil.generateUsername(getAllUsers(), firstname, lastname), firstname, lastname, password, pensum, role, holiday);
 		allUsers.add(newUser);
 		XmlUtil.saveUsersToXml(userFilePath, allUsers);
 		return newUser;

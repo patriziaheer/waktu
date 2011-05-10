@@ -7,10 +7,10 @@ import javax.persistence.EntityManager;
 import org.apache.log4j.Logger;
 
 import ch.hsr.waktu.controller.PersistenceController;
-import ch.hsr.waktu.controller.UsernameController;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.services.Md5;
+import ch.hsr.waktu.services.UsernameUtil;
 
 import com.trolltech.qt.QSignalEmitter;
 
@@ -178,7 +178,7 @@ public class UserController  extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
-		Usr newUsr = new Usr(UsernameController.generateUsername(firstname,
+		Usr newUsr = new Usr(generateUsername(firstname,
 				lastname), firstname, lastname, Md5.hash(password), pensum,
 				role, holiday);
 
@@ -235,6 +235,10 @@ public class UserController  extends QSignalEmitter {
 		update.emit();
 		logger.info("user " + usr + " updated");
 
+	}
+	
+	private String generateUsername(String firstname, String name) throws WaktuGeneralException {
+		return UsernameUtil.generateUsername(getAllUsers(), firstname, name);
 	}
 
 }
