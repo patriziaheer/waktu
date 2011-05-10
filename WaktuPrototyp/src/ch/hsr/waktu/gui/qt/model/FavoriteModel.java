@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import ch.hsr.waktu.controller.datacontroller.FavoriteController;
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Favorite;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.services.TimeUtil;
@@ -29,7 +30,12 @@ public class FavoriteModel extends QAbstractItemModel {
 
 	public FavoriteModel(Usr usr) {
 		this.usr = usr;
-		favorites = FavoriteController.getInstance().getFavorites(usr);
+		try {
+			favorites = FavoriteController.getInstance().getFavorites(usr);
+		} catch (WaktuGeneralException e) {
+			// TODO exception handling
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -140,7 +146,12 @@ public class FavoriteModel extends QAbstractItemModel {
 	}
 	
 	public void updateFavoriteModel() {
-		favorites = FavoriteController.getInstance().getFavorites(usr);
+		try {
+			favorites = FavoriteController.getInstance().getFavorites(usr);
+		} catch (WaktuGeneralException e) {
+			// TODO exception handling
+			e.printStackTrace();
+		}
 	}
 	
 	public Favorite getFavorite(int row) {

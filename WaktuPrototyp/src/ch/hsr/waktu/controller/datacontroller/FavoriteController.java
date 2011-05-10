@@ -41,75 +41,113 @@ public class FavoriteController extends QSignalEmitter {
 
 	/**
 	 * 
+	 * @param Usr user
+	 * @throws WaktuGeneralException
+	 */
+	
+	@SuppressWarnings("unchecked")
+	public List<Favorite> getFavorites(Usr user) throws WaktuGeneralException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+		
+		List<Favorite> allFavoritesOfUsr;		
+		try {
+			allFavoritesOfUsr = em.createQuery("SELECT f FROM Favorite f ORDER BY f.id").getResultList();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
+		return allFavoritesOfUsr;		
+	}
+	
+	/**
+	 * 
 	 * @param workPackage
 	 * @param startTime
 	 * @param endTime
 	 */
-	public Favorite addFavorite(Usr user, WorkPackage workPackage, GregorianCalendar startTime, GregorianCalendar endTime) {
-		Favorite newFavorite = new Favorite(user, workPackage, startTime, endTime);
-		EntityManager em = PersistenceController.getInstance().getEMF().createEntityManager();
-
-		em.getTransaction().begin();
-		em.persist(newFavorite);
-		logger.info("FAVORITE ADDED");
-		em.flush();
-		em.getTransaction().commit();
-		em.close();
+	public Favorite addFavorite(Usr user, WorkPackage workPackage,
+			GregorianCalendar startTime, GregorianCalendar endTime) throws WaktuGeneralException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+		Favorite newFavorite = new Favorite(user, workPackage, startTime,
+				endTime);
+		try {
+			em.getTransaction().begin();
+			em.persist(newFavorite);
+			em.getTransaction().commit();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
+		
 		add.emit(newFavorite);
-
+		logger.info("favorite " + newFavorite + " deleted");
 		return newFavorite;
 	}
 
 	/**
 	 * 
-	 * @param user
+	 * @param favorite
+	 * @throws WaktuGeneralException
 	 */
-	public List<Favorite> getFavorites(Usr user) {
-		EntityManager em = PersistenceController.getInstance().getEMF().createEntityManager();
-		@SuppressWarnings("unchecked")
-		List<Favorite> allFavorites = em.createQuery("SELECT f FROM Favorite f ORDER BY f.id").getResultList();
-		return allFavorites;
-	}
 
+	public void updateFavorite(Favorite favorite) throws WaktuGeneralException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+		try {
+			em.getTransaction().begin();
+			Favorite updateFavorite = em.find(Favorite.class, favorite.getId());
+			updateFavorite.setStartTime(favorite.getStartTime());
+			updateFavorite.setEndTime(favorite.getEndTime());
+			em.getTransaction().commit();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
+		update.emit();
+		logger.info("favorite " + favorite.getId() + " updated");
+	}
+	
 	/**
 	 * 
 	 * @param favorite
+	 * @throws WaktuGeneralException
 	 */
-	
-	// TODO: remove funktioniert noch nicht...
-	
-	public boolean removeFavorite(Favorite favorite) {
-		EntityManager em = PersistenceController.getInstance().getEMF().createEntityManager();
-		em.getTransaction().begin();
-		Favorite favoriteToRemove = em.find(Favorite.class, favorite.getId());
-		if(favoriteToRemove == null) {
+
+	public void removeFavorite(Favorite favorite) throws WaktuGeneralException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+		try {
+			em.getTransaction().begin();
+			em.remove(em.find(Favorite.class, favorite.getId()));
 			em.getTransaction().commit();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
 			em.close();
-			return false;
-		} else {
-			em.remove(favoriteToRemove);
-			em.getTransaction().commit();
-			em.close();
-			removed.emit(favorite);
-			return true;
 		}
-	}
-
-	public boolean updateFavorite(Favorite favorite) {
-		// TODO: added by ph
-		EntityManager em = PersistenceController.getInstance().getEMF().createEntityManager();
-
-		em.getTransaction().begin();
-		Favorite updateFav = (Favorite) em.createQuery("SELECT f FROM Favorite f WHERE f.id = " + favorite.getId()).getSingleResult();
-
-		updateFav.setStartTime(favorite.getStartTime());
-		updateFav.setEndTime(favorite.getEndTime());
-
-		em.getTransaction().commit();
-		logger.info("Favorite " + favorite.getId() + " updated");
-
-		update.emit();
-		return true;
+		removed.emit(favorite);
+		logger.info("favorite " + favorite.getId() + " deleted");
 	}
 
 }

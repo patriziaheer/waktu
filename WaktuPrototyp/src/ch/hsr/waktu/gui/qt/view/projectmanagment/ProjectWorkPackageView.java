@@ -4,6 +4,7 @@ import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.gui.qt.model.ProjectWorkPackageModel;
+import ch.hsr.waktu.guicontroller.LanguageController;
 
 import com.trolltech.qt.gui.QWidget;
 
@@ -24,6 +25,8 @@ public class ProjectWorkPackageView extends QWidget{
 		WorkPackageController.getInstance().add.connect(this, "addData(WorkPackage)");
 		
 		WorkPackageController.getInstance().update.connect(this, "updated()");
+
+		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 	}
 	
 	@SuppressWarnings("unused")
@@ -48,6 +51,11 @@ public class ProjectWorkPackageView extends QWidget{
 		workPackageModel.layoutAboutToBeChanged.emit();
 		workPackageModel.dataChanged.emit(workPackageModel.index(0, 0), workPackageModel.index(workPackageModel.rowCount(), workPackageModel.columnCount()));
 		workPackageModel.layoutChanged.emit();
+	}
+	
+	@SuppressWarnings("unused")
+	private void translate() {
+        ui.retranslateUi(this);
 	}
 
 }

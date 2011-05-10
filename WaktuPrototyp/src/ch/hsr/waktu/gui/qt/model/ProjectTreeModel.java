@@ -2,6 +2,7 @@ package ch.hsr.waktu.gui.qt.model;
 import java.util.List;
 
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 
@@ -19,7 +20,12 @@ public class ProjectTreeModel extends QTreeModel {
 	private List<Project> projects;
 	
 	public ProjectTreeModel() {
-		projects = ProjectController.getInstance().getActiveProjects();
+		try {
+			projects = ProjectController.getInstance().getActiveProjects();
+		} catch (WaktuGeneralException e) {
+			// TODO PH: unhandled exception
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -81,7 +87,12 @@ public class ProjectTreeModel extends QTreeModel {
 	}
 	
 	public void updateProjectsModel() {
-		projects = ProjectController.getInstance().getActiveProjects();
+		try {
+			projects = ProjectController.getInstance().getActiveProjects();
+		} catch (WaktuGeneralException e) {
+			// TODO PH: unhandled exception
+			e.printStackTrace();
+		}
 	}
 	
 }

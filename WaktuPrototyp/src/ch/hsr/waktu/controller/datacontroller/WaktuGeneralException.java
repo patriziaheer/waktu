@@ -1,17 +1,17 @@
 package ch.hsr.waktu.controller.datacontroller;
 
-public class WaktuException extends Exception {
+public class WaktuGeneralException extends Exception {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private String message = "";
 	
-	WaktuException() {
+	WaktuGeneralException() {
 		
 	}
 	
-	public WaktuException(String message) {
+	WaktuGeneralException(String message) {
 		this.message = message;
 	}
 	

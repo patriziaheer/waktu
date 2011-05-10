@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 
 import ch.hsr.waktu.controller.datacontroller.FavoriteController;
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Favorite;
@@ -118,8 +119,9 @@ public class TimeView extends QMainWindow {
 		favoriteModel = new FavoriteModel(currUser);
 		ui.tblFavorites.setModel(favoriteModel);
 		
-		ui.actionDE.triggered.connect(this, "translateDE()");
-		ui.actionEN.triggered.connect(this, "translateEN()");
+//		TODO: Funktioniert seit ts-file-generieren nicht mehr..
+//		ui.actionDE.triggered.connect(this, "translateDE()");
+//		ui.actionEN.triggered.connect(this, "translateEN()");
 		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 		
 		updateWorkSessionModel();
@@ -160,27 +162,32 @@ public class TimeView extends QMainWindow {
 	}
 
 	private void updateFavoriteModel() {
-		for (int i = 0; i < FavoriteController.getInstance()
-				.getFavorites(currUser).size(); i++) {
-			QModelIndex currIndex = favoriteModel.index(i,
-					favoriteModel.columnCount() - 1);
-			QWidget w = new QWidget();
-			w.setLayout(new QHBoxLayout());
-			IndexButton editButton = new IndexButton(currIndex);
-			editButton.setFixedHeight(20);
-			editButton.setIcon(new QIcon("classpath:icons/edit_16x16.png"));
-			editButton.actionClicked.connect(this,
-					"favoriteEditClicked(IndexButton)");
+		try {
+			for (int i = 0; i < FavoriteController.getInstance()
+					.getFavorites(currUser).size(); i++) {
+				QModelIndex currIndex = favoriteModel.index(i,
+						favoriteModel.columnCount() - 1);
+				QWidget w = new QWidget();
+				w.setLayout(new QHBoxLayout());
+				IndexButton editButton = new IndexButton(currIndex);
+				editButton.setFixedHeight(20);
+				editButton.setIcon(new QIcon("classpath:icons/edit_16x16.png"));
+				editButton.actionClicked.connect(this,
+						"favoriteEditClicked(IndexButton)");
 
-			IndexButton deleteButton = new IndexButton(currIndex);
-			deleteButton.setFixedHeight(20);
-			deleteButton.setIcon(new QIcon("classpath:icons/delete_16x16.png"));
-			deleteButton.actionClicked.connect(this,
-					"favoriteDeleteClicked(IndexButton)");
-			w.layout().addWidget(editButton);
-			w.layout().addWidget(deleteButton);
+				IndexButton deleteButton = new IndexButton(currIndex);
+				deleteButton.setFixedHeight(20);
+				deleteButton.setIcon(new QIcon("classpath:icons/delete_16x16.png"));
+				deleteButton.actionClicked.connect(this,
+						"favoriteDeleteClicked(IndexButton)");
+				w.layout().addWidget(editButton);
+				w.layout().addWidget(deleteButton);
 
-			ui.tblFavorites.setIndexWidget(currIndex, w);
+				ui.tblFavorites.setIndexWidget(currIndex, w);
+			}
+		} catch (WaktuGeneralException e) {
+			// TODO exception handling
+			e.printStackTrace();
 		}
 	}
 
@@ -232,6 +239,8 @@ public class TimeView extends QMainWindow {
 		} else if (ui.cmbWorkpackage.currentIndex() < 0) {
 			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate("TimeView",("WorkPackage must be choosen"), null));
 		} else {
+			
+			try {
 			Project project = ProjectController.getInstance()
 					.getActiveProjects().get(ui.cmbProject.currentIndex());
 			WorkPackage workPackage = WorkPackageController.getInstance()
@@ -247,6 +256,10 @@ public class TimeView extends QMainWindow {
 					workPackage, TimeUtil.convertQDateTimeToGregorian(start),
 					TimeUtil.convertQDateTimeToGregorian(end),
 					ui.txtDescription.text());
+			}
+			catch (Exception e) {
+				//TODO: PH: exception handling
+			}
 		}
 	}
 
@@ -309,6 +322,9 @@ public class TimeView extends QMainWindow {
 		} else if (ui.cmbWorkpackage.currentIndex() < 0) {
 			setStatusBarText(com.trolltech.qt.core.QCoreApplication.translate("TimeView",("WorkPackage must be choosen"), null));
 		} else {
+			
+			try {
+			
 			Project project = ProjectController.getInstance()
 					.getActiveProjects().get(ui.cmbProject.currentIndex());
 			WorkPackage workPackage = WorkPackageController.getInstance()
@@ -320,9 +336,14 @@ public class TimeView extends QMainWindow {
 			QDateTime end = new QDateTime();
 			end.setDate(calendar.getCurrentDate());
 			end.setTime(ui.txtEnd.time());
-			FavoriteController.getInstance().addFavorite(currUser, workPackage,
-					TimeUtil.convertQDateTimeToGregorian(start),
-					TimeUtil.convertQDateTimeToGregorian(end));
+			
+				FavoriteController.getInstance().addFavorite(currUser, workPackage,
+						TimeUtil.convertQDateTimeToGregorian(start),
+						TimeUtil.convertQDateTimeToGregorian(end));
+			} catch (WaktuGeneralException e) {
+				// TODO PH: exception handling
+				e.printStackTrace();
+			}
 		}
 	}	
 
@@ -459,9 +480,14 @@ public class TimeView extends QMainWindow {
 	@SuppressWarnings("unused")
 	private void favoriteDeleteClicked(IndexButton btn) {
 		logger.info("EditClicked for favorite " + btn);
-		FavoriteController.getInstance().removeFavorite(
-				FavoriteController.getInstance().getFavorites(currUser)
-						.get(btn.getIndex().row()));
+		try {
+			FavoriteController.getInstance().removeFavorite(
+					FavoriteController.getInstance().getFavorites(currUser)
+							.get(btn.getIndex().row()));
+		} catch (WaktuGeneralException e) {
+			// TODO ExceptionHandling
+			e.printStackTrace();
+		}
 	}
 	
 	@SuppressWarnings("unused")

@@ -1,16 +1,13 @@
 package ch.hsr.waktu.controller.datacontroller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
 import org.apache.log4j.Logger;
 
-import ch.hsr.waktu.controller.PermissionController;
 import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.domain.Project;
-import ch.hsr.waktu.domain.ProjectStaff;
 import ch.hsr.waktu.domain.Usr;
 
 import com.trolltech.qt.QSignalEmitter;
@@ -27,7 +24,8 @@ public class ProjectController extends QSignalEmitter {
 	}
 
 	private static ProjectController theInstance = null;
-	private PermissionController pc = PermissionController.getInstance();
+	//TODO: SS: Permissions implementieren
+//	private PermissionController pc = PermissionController.getInstance();
 
 	public static ProjectController getInstance() {
 		if (theInstance == null) {
@@ -44,15 +42,126 @@ public class ProjectController extends QSignalEmitter {
 		logger.info("constructor");
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Project> getActiveProjects() throws WaktuGeneralException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		List<Project> allActiveProjects;
+		try {
+			allActiveProjects = em.createQuery(
+					"SELECT p FROM Project p WHERE p.active = TRUE")
+					.getResultList();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
+
+		return allActiveProjects;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Project> getActiveProjects(Usr usr)
+			throws WaktuGeneralException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		List<Project> activeProjectsOfUser;
+		try {
+			activeProjectsOfUser = em.createQuery(
+					"SELECT p FROM ProjectStaff ps JOIN Project p JOIN User u WHERE u.usrid = '"
+							+ usr.getId() + "'").getResultList();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
+
+		return activeProjectsOfUser;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Project> getAllProjects() throws WaktuGeneralException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		List<Project> allProjects;
+		try {
+			allProjects = em.createQuery("SELECT p FROM Project p")
+					.getResultList();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
+
+		return allProjects;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Project> getInactiveProjects() throws WaktuGeneralException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		List<Project> allInactiveProjects;
+		try {
+			allInactiveProjects = em.createQuery(
+					"SELECT p FROM Project p WHERE p.active = FALSE")
+					.getResultList();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
+
+		return allInactiveProjects;
+	}
+
+	public Project getProject(int projectId) throws WaktuGeneralException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		Project project;
+		try {
+			project = em.find(Project.class, projectId);
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
+		return project;
+	}
+
 	/**
 	 * 
 	 * @param projectIdentifier
 	 * @param description
 	 * @param plannedTime
-	 * @throws WaktuException 
+	 * @throws WaktuGeneralException
 	 */
 	public Project addProject(String projectIdentifier, String description,
-			int plannedTime) throws WaktuException {
+			int plannedTime) throws WaktuGeneralException {
 		Usr projectManager = null;
 		return this.addProject(projectIdentifier, description, projectManager,
 				plannedTime);
@@ -66,114 +175,33 @@ public class ProjectController extends QSignalEmitter {
 	 * @param description
 	 * @param projectManager
 	 * @param plannedTime
-	 * @throws WaktuException 
+	 * @throws WaktuGeneralException
 	 */
 	public Project addProject(String projectIdentifier, String description,
-			Usr projectManager, int plannedTime) throws WaktuException {
+			Usr projectManager, int plannedTime) throws WaktuGeneralException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
 
-		if(!pc.checkPermission("addProject")) {
-			throw new WaktuException("AccessNotAllowed");
-		}
-		
-//		if(!pc.checkBusinessRules("addProject")) {
-//			throw new WaktuException("BusinessRules");
-//		}		
-		
 		Project newProject = new Project(projectIdentifier, description,
 				projectManager, plannedTime);
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
-		em.getTransaction().begin();
-		em.persist(newProject);
-		em.flush();
-		em.getTransaction().commit();
-		add.emit(newProject);
 
-		return newProject;
-
-	}
-
-	public List<Project> getActiveProjects() {
-
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
-
-		@SuppressWarnings("unchecked")
-		List<Project> projects = em.createQuery(
-				"SELECT p FROM Project p WHERE p.active = TRUE")
-				.getResultList();
-
-		// for (Project project : projects) {
-		// logger.info("ACTIVE PROJECTS: " + project.toString());
-		// }
-
-		em.close();
-		return projects;
-	}
-
-	public List<Project> getActiveProjects(Usr usr) {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
-
-		@SuppressWarnings("unchecked")
-		// TODO: nur usr.usrid auswählen in ProjectStaff
-		List<ProjectStaff> projectStaff = em.createQuery("SELECT p FROM ProjectStaff p").getResultList();
-
-		em.close();
-		
-		List<Project> activeProjects = new ArrayList<Project>();
-		
-		for(ProjectStaff p : projectStaff) {
-			
-			activeProjects.add(p.getProject());
+		try {
+			em.getTransaction().begin();
+			em.persist(newProject);
+			em.getTransaction().commit();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
 		}
-		
-		return activeProjects;
-	}
 
-	public List<Project> getAllProjects() {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
-
-		@SuppressWarnings("unchecked")
-		List<Project> projects = em.createQuery("SELECT p FROM Project p")
-				.getResultList();
-		// for (Project project : projects) {
-		// logger.info(project.toString());
-		// }
-
-		em.close();
-		return projects;
-	}
-
-	public List<Project> getInactiveProjects() {
-
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
-
-		@SuppressWarnings("unchecked")
-		List<Project> projects = em.createQuery(
-				"SELECT p FROM Project p WHERE p.active = FALSE")
-				.getResultList();
-
-		// for (Project project : projects) {
-		// logger.info("INACTIVE PROJECTS: " + project.toString());
-		// }
-
-		em.close();
-		return projects;
-	}
-
-	public Project getProject(int projectId) {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
-
-		Project project = (Project) em.createQuery(
-				"SELECT p FROM Project p WHERE p.id = " + projectId)
-				.getSingleResult();
-
-		em.close();
-		return project;
+		add.emit(newProject);
+		logger.info("project " + newProject + " added");
+		return newProject;
 	}
 
 	/**
@@ -181,29 +209,29 @@ public class ProjectController extends QSignalEmitter {
 	 * @param project
 	 */
 
-	public boolean updateProject(Project project) {
-		// TODO: Was wenn ID des Projektes nicht vorhanden? Exception?
-		// TODO: Was wenn ProjectIdentifier anders als vorher?
-
+	public void updateProject(Project project) throws WaktuGeneralException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
-		em.getTransaction().begin();
-		Project updateProj = (Project) em.createQuery(
-				"SELECT p FROM Project p WHERE p.id = " + project.getId())
-				.getSingleResult();
-
-		updateProj.setDescription(project.getDescription());
-		updateProj.setActiveState(project.isActive());
-		updateProj.setPlannedTime(project.getPlannedTime());
-		updateProj.setProjectManager(project.getProjectManager());
-
-		em.getTransaction().commit();
-		logger.info("Project " + project.getProjectIdentifier() + " updated");
-		// TODO: update.emit() wieder einschalten (Observer von QT)
+		try {
+			em.getTransaction().begin();
+			Project updateProject = em.find(Project.class, project.getId());
+			updateProject.setActiveState(project.isActive());
+			updateProject.setDescription(project.getDescription());
+			updateProject.setPlannedTime(project.getPlannedTime());
+			updateProject.setProjectIdentifier(project.getProjectIdentifier());
+			updateProject.setProjectManager(project.getProjectManager());
+			em.getTransaction().commit();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
 		update.emit();
-
-		return true;
+		logger.info("project " + project + " updated");
 	}
-
 }

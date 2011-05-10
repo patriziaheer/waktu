@@ -83,7 +83,7 @@ public class Project {
 
 	@Override
 	public String toString() {
-		return projectIdentifier + " " + description;
+		return projectid + " " + projectIdentifier + " " + description + " " + projectManager.getUsername();
 	}
 	
 	@Override

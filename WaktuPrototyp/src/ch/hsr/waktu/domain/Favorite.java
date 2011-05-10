@@ -87,4 +87,10 @@ public class Favorite {
 		hashCode += 31 * workPackageId.hashCode();
 		return hashCode;
 	}
+	
+	@Override
+	public String toString() {
+		return id + startTime.toString() + endTime.toString() + workPackageId.getDescription() + usrId.getUsername();
+	}
+	
 }

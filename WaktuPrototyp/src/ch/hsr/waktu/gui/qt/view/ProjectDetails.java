@@ -1,9 +1,14 @@
-package ch.hsr.waktu.gui.qt.view.projectmanagment;
+package ch.hsr.waktu.gui.qt.view;
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.gui.qt.model.ProjectTreeModel;
 import ch.hsr.waktu.gui.qt.model.SortFilterModel;
 import ch.hsr.waktu.gui.qt.view.Ui_ManagmentDetails;
+import ch.hsr.waktu.gui.qt.view.projectmanagment.ProjectDataView;
+import ch.hsr.waktu.gui.qt.view.projectmanagment.ProjectStaffView;
+import ch.hsr.waktu.gui.qt.view.projectmanagment.ProjectWorkPackageView;
+import ch.hsr.waktu.gui.qt.view.projectmanagment.ProjectWorkSessionsView;
+import ch.hsr.waktu.guicontroller.LanguageController;
 
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.QRegExp;
@@ -41,7 +46,8 @@ public class ProjectDetails extends QWidget {
 		ui.lineEdit.textChanged.connect(this, "textFilterChanged()");
 		ProjectController.getInstance().update.connect(this, "updateData()");
 		ProjectController.getInstance().add.connect(this, "addData(Project)");
-		
+
+		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 	}
 	
 	@SuppressWarnings("unused")
@@ -124,6 +130,11 @@ public class ProjectDetails extends QWidget {
 		}
 		currWidget = new ProjectDataView(null);
 		splitter.addWidget(currWidget);
+	}
+	
+	@SuppressWarnings("unused")
+	private void translate() {
+        ui.retranslateUi(this);
 	}
 	
 }

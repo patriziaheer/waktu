@@ -1,6 +1,5 @@
 log4j.log.1
 log4j.log
 bin
-ControllerTest.java
 AddTestData.java
 persistence.log

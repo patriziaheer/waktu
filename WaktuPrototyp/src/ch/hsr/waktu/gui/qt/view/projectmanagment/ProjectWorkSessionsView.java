@@ -9,6 +9,7 @@ import ch.hsr.waktu.domain.WorkSession;
 import ch.hsr.waktu.gui.qt.model.ComboBoxData;
 import ch.hsr.waktu.gui.qt.model.ProjectWorkSessionModel;
 import ch.hsr.waktu.gui.qt.model.TableSortFilterModel;
+import ch.hsr.waktu.guicontroller.LanguageController;
 
 import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.gui.QWidget;
@@ -42,6 +43,8 @@ public class ProjectWorkSessionsView extends QWidget {
 		WorkSessionController.getInstance().update.connect(this, "updated()");
 		ui.txtStart.setDate(new QDate(01,01,1900));
 		ui.txtEnd.setDate(new QDate(01,01,1900));
+
+		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 	}
 	
 	@SuppressWarnings("unused")
@@ -98,6 +101,11 @@ public class ProjectWorkSessionsView extends QWidget {
 				workSessionModel.index(workSessionModel.rowCount(),
 						workSessionModel.columnCount()));
 		workSessionModel.layoutChanged.emit();
+	}
+	
+	@SuppressWarnings("unused")
+	private void translate() {
+        ui.retranslateUi(this);
 	}
 	
 

@@ -1,10 +1,11 @@
 package ch.hsr.waktu.gui.qt.view.projectmanagment;
 
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
-import ch.hsr.waktu.controller.datacontroller.WaktuException;
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.gui.qt.model.ComboBoxData;
+import ch.hsr.waktu.guicontroller.LanguageController;
 
 import com.trolltech.qt.gui.QWidget;
 
@@ -22,6 +23,9 @@ public class ProjectDataView extends QWidget {
 
 		ProjectController.getInstance().update.connect(this, "updateData()");
 		ProjectController.getInstance().add.connect(this, "addData(Project)");
+		
+		LanguageController.getInstance().languageChanged.connect(this, "translate()");
+		
 		setFields();
 	}
 	
@@ -54,7 +58,7 @@ public class ProjectDataView extends QWidget {
 	private void addClicked() {
 		try {
 			project = ProjectController.getInstance().addProject(ui.txtProjectnumber.text(), ui.txtDescription.text(), (Usr)ui.cmbProjectManager.itemData(ui.cmbProjectManager.currentIndex()), ui.txtPlannedTime.value());
-		} catch (WaktuException e) {
+		} catch (WaktuGeneralException e) {
 			// TODO NoAccess Exception muss gefangen und behandelt werden..
 			e.printStackTrace();
 		}
@@ -65,7 +69,12 @@ public class ProjectDataView extends QWidget {
 	private void inactivChanged() {
 		if (project != null) {
 			project.setActiveState(!ui.checkBox.isChecked());
-			ProjectController.getInstance().updateProject(project);
+			try {
+				ProjectController.getInstance().updateProject(project);
+			} catch (WaktuGeneralException e) {
+				// TODO PH: unhandled exception
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -77,5 +86,10 @@ public class ProjectDataView extends QWidget {
 	@SuppressWarnings("unused")
 	private void addData(Project project) {
 		setFields();
+	}
+	
+	@SuppressWarnings("unused")
+	private void translate() {
+        ui.retranslateUi(this);
 	}
 }

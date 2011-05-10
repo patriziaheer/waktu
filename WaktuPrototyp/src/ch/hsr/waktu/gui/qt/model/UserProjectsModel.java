@@ -3,6 +3,7 @@ package ch.hsr.waktu.gui.qt.model;
 import java.util.List;
 
 import ch.hsr.waktu.controller.datacontroller.ProjectStaffController;
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 
@@ -19,7 +20,12 @@ public class UserProjectsModel extends QAbstractItemModel{
 	
 	public UserProjectsModel(Usr usr) {
 		this.usr = usr;
-		projects = ProjectStaffController.getInstance().getProjects(usr);
+		try {
+			projects = ProjectStaffController.getInstance().getProjects(usr);
+		} catch (WaktuGeneralException e) {
+			// TODO undhangled exception
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -70,7 +76,12 @@ public class UserProjectsModel extends QAbstractItemModel{
 	}
 
 	public void updateProjectsModel() {
-		projects = ProjectStaffController.getInstance().getProjects(usr);
+		try {
+			projects = ProjectStaffController.getInstance().getProjects(usr);
+		} catch (WaktuGeneralException e) {
+			// TODO unhandled exception
+			e.printStackTrace();
+		}
 	}
 	
 }

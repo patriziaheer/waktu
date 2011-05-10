@@ -1,9 +1,13 @@
-package ch.hsr.waktu.gui.qt.view.usermanagment;
+package ch.hsr.waktu.gui.qt.view;
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.gui.qt.model.SortFilterModel;
 import ch.hsr.waktu.gui.qt.model.UserTreeModel;
 import ch.hsr.waktu.gui.qt.view.Ui_ManagmentDetails;
+import ch.hsr.waktu.gui.qt.view.usermanagment.UserDataView;
+import ch.hsr.waktu.gui.qt.view.usermanagment.UserProjectsView;
+import ch.hsr.waktu.gui.qt.view.usermanagment.UserWorkSessionsView;
+import ch.hsr.waktu.guicontroller.LanguageController;
 
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.QRegExp;
@@ -41,6 +45,8 @@ public class UserDetails extends QWidget {
 		ui.lineEdit.textChanged.connect(this, "textFilterChanged()");
 		UserController.getInstance().update.connect(this, "updateData()");
 		UserController.getInstance().add.connect(this, "addData(Usr)");
+		
+		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 		
 	}
 	
@@ -102,7 +108,7 @@ public class UserDetails extends QWidget {
 	@Override
 	protected void contextMenuEvent(QContextMenuEvent event) {
         QMenu menu = new QMenu(this);
-        QAction closeAction = new QAction(tr("Close"),menu);
+        QAction closeAction = new QAction(com.trolltech.qt.core.QCoreApplication.translate("UserDetails",("Close"),null),menu);
         closeAction.triggered.connect(this, "closeWindow()");
         menu.addAction(closeAction);
         menu.exec(event.globalPos());
@@ -120,5 +126,9 @@ public class UserDetails extends QWidget {
 		currWidget = new UserDataView(null);
 		splitter.addWidget(currWidget);
 	}
-	
+
+	@SuppressWarnings("unused")
+	private void translate() {
+        ui.retranslateUi(this);
+	}
 }

@@ -1,6 +1,5 @@
 package ch.hsr.waktu.controller.datacontroller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -41,40 +40,28 @@ public class ProjectStaffController extends QSignalEmitter {
 	/**
 	 * 
 	 * @param user
-	 * @param project
 	 */
-	public ProjectStaff addProjectStaff(Usr user, Project project) {
-		ProjectStaff newProjectStaff = new ProjectStaff(user, project);
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
-		em.getTransaction().begin();
-		em.persist(newProjectStaff);
-		em.flush();
-		em.getTransaction().commit();
-		em.close();
-		add.emit(newProjectStaff);
-		return newProjectStaff;
-	}
-
-	/**
-	 * 
-	 * @param user
-	 */
-	public List<Project> getProjects(Usr user) {
+	@SuppressWarnings("unchecked")
+	public List<Project> getProjects(Usr user) throws WaktuGeneralException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
-		@SuppressWarnings("unchecked")
-		List<ProjectStaff> projStaff = em.createQuery(
-				"SELECT ps FROM ProjectStaff ps JOIN ps.user u WHERE u.usrid = '"
-						+ user.getId() + "'").getResultList();
+		List<Project> projects;
 
-		ArrayList<Project> projects = new ArrayList<Project>();
-		for (ProjectStaff ps : projStaff) {
-			projects.add(ps.getProject());
+		try {
+			projects = em
+					.createQuery(
+							"SELECT p FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE u.usrid = '"
+									+ user.getId() + "'").getResultList();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
 		}
-
-		em.close();
 		return projects;
 	}
 
@@ -82,22 +69,28 @@ public class ProjectStaffController extends QSignalEmitter {
 	 * 
 	 * @param project
 	 */
-	public List<Usr> getUsers(Project project) {
+	@SuppressWarnings("unchecked")
+	public List<Usr> getUsers(Project project) throws WaktuGeneralException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
-		@SuppressWarnings("unchecked")
-		List<ProjectStaff> projStaff = em.createQuery(
-				"SELECT ps FROM ProjectStaff ps JOIN ps.project p WHERE p.projectid = '"
-						+ project.getId() + "'").getResultList();
+		List<Usr> users;
 
-		ArrayList<Usr> usrs = new ArrayList<Usr>();
-		for (ProjectStaff ps : projStaff) {
-			usrs.add(ps.getUser());
+		try {
+			users = em
+					.createQuery(
+							"SELECT u FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE p.projectid = '"
+									+ project.getId() + "'").getResultList();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
 		}
-
-		em.close();
-		return usrs;
+		return users;
 	}
 
 	/**
@@ -105,42 +98,67 @@ public class ProjectStaffController extends QSignalEmitter {
 	 * @param user
 	 * @param project
 	 */
-	public boolean removeUser(Usr user, Project project) {
+	public ProjectStaff addProjectStaff(Usr user, Project project)
+			throws WaktuGeneralException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+		ProjectStaff newProjectStaff = new ProjectStaff(user, project);
+
+		try {
+			em.getTransaction().begin();
+			em.persist(newProjectStaff);
+			em.getTransaction().commit();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
+
+		add.emit(newProjectStaff);
+		logger.info("projectStaff " + newProjectStaff + " added");
+		return newProjectStaff;
+	}
+
+	/**
+	 * 
+	 * @param user
+	 * @param project
+	 * @return
+	 */
+	public void removeUser(Usr user, Project project)
+			throws WaktuGeneralException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
-		em.getTransaction().begin();
-		ProjectStaff projStaff = (ProjectStaff) em
-				.createQuery(
-						"SELECT ps FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE p.projectid = '"
-								+ project.getId()
-								+ "' AND u.usrid = '"
-								+ user.getId() + "'").getSingleResult();
-		System.err.println(projStaff.getUser().getFirstname());
-		System.err.println(projStaff.getUser().getId());
-		ProjectStaff projectStaffToRemove = em.find(ProjectStaff.class, projStaff.getId());
-		em.remove(projectStaffToRemove);
-		em.getTransaction().commit();
-		em.close();
-		removed.emit(projectStaffToRemove);
-		return true;
+		ProjectStaff projectStaffToRemove;
 
-		// ProjectStaff projectStaffToRemove = null;
-		// for (ProjectStaff ps : projStaff) {
-		//
-		// if ((ps.getProject().getId() == project.getId())
-		// && (ps.getUser().getId() == user.getId())) {
-		// projectStaffToRemove = ps;
-		//
-		// em.remove(projectStaffToRemove);
-		// em.close();
-		// return true;
-		// }
-		// }
-		// removed.emit(projectStaffToRemove);
-		//
-		// em.close();
-		// return false;
+		try {
+			em.getTransaction().begin();
+			projectStaffToRemove = (ProjectStaff) em
+					.createQuery(
+							"SELECT ps FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE p.projectid = '"
+									+ project.getId()
+									+ "' AND u.usrid = '"
+									+ user.getId() + "'").getSingleResult();
+			// ProjectStaff projectStaffToRemove = em.find(ProjectStaff.class,
+			// projStaff.getId());
+			em.remove(projectStaffToRemove);
+			em.getTransaction().commit();
+		} catch (IllegalStateException e) {
+			throw new WaktuGeneralException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuGeneralException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuGeneralException("General problem");
+		} finally {
+			em.close();
+		}
+		removed.emit(projectStaffToRemove);
+		logger.info("projectStaff " + projectStaffToRemove + " deleted");
 	}
-	
+
 }

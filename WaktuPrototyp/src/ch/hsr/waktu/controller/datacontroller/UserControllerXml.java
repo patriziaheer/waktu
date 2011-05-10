@@ -52,7 +52,13 @@ public class UserControllerXml extends UserController implements UserControllerI
 
 	@Override
 	public LinkedList<Usr> getAllUsers() {
-		return XmlUtil.getUsersFromXml(userFilePath);
+		try {
+			return XmlUtil.getUsersFromXml(userFilePath);
+		} catch (WaktuException e) {
+			// TODO remove try-catch, add throws
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override

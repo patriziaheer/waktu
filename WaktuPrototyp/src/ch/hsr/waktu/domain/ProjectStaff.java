@@ -41,6 +41,11 @@ public class ProjectStaff {
 	}
 
 	@Override
+	public String toString() {
+		return id + " " + project.getProjectIdentifier() + " " + user.getUsername();
+	}
+	
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof ProjectStaff) {
 			ProjectStaff ps = (ProjectStaff)obj;

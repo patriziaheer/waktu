@@ -4,6 +4,7 @@ import com.trolltech.qt.gui.QComboBox;
 
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.controller.datacontroller.UserController;
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.SystemRole;
@@ -31,8 +32,13 @@ public class ComboBoxData {
 	
 	public static void createProjectForUserComboBox(QComboBox cmb, Usr currUser) {
 		cmb.clear();
-		for (Project proj : ProjectController.getInstance().getActiveProjects(currUser)) {
-			cmb.addItem(proj.toString(), proj);
+		try {
+			for (Project proj : ProjectController.getInstance().getActiveProjects(currUser)) {
+				cmb.addItem(proj.toString(), proj);
+			}
+		} catch (WaktuGeneralException e) {
+			// TODO PH: unhandled exception
+			e.printStackTrace();
 		}
 	}
 	
@@ -47,8 +53,13 @@ public class ComboBoxData {
 	
 	public static void createActiveProjectComboBox(QComboBox cmb) {
 		cmb.clear();
-		for (Project project : ProjectController.getInstance().getActiveProjects()) {
-			cmb.addItem(project.toString(), project);
+		try {
+			for (Project project : ProjectController.getInstance().getActiveProjects()) {
+				cmb.addItem(project.toString(), project);
+			}
+		} catch (WaktuGeneralException e) {
+			// TODO PH: unhandled exception
+			e.printStackTrace();
 		}
 	}
 	
