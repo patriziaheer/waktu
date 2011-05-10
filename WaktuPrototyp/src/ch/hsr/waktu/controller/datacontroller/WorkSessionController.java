@@ -5,6 +5,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 
@@ -86,10 +87,8 @@ public class WorkSessionController extends QSignalEmitter {
 
 		List<WorkSession> workSessionsByDate;
 		try {
-			workSessionsByDate = em.createQuery(
-					"SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE ws.startTime = '"
-							+ date.toString("yyyy-MM-dd") + "' AND u.usrid = '"
-							+ user.getId() + "'").getResultList();
+			Query q = em.createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE ws.startTime >= '" + date.toString("yyyy-MM-dd") + " 00:00:00" + "' AND ws.endTime <= '" + date.toString("yyyy-MM-dd") + " 23:59:59" + "' AND u.usrid = '"+user.getId()+"'");
+			workSessionsByDate = q.getResultList();
 		} catch (IllegalStateException e) {
 			throw new WaktuGeneralException("Database problem");
 		} catch (IllegalArgumentException e) {
