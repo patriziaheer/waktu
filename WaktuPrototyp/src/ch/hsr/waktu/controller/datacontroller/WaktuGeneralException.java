@@ -10,13 +10,9 @@ public class WaktuGeneralException extends Exception {
 	WaktuGeneralException() {
 		
 	}
-<<<<<<< HEAD
 	
 	public WaktuGeneralException(String message) {
-=======
-	
-	public WaktuGeneralException(String message) {
->>>>>>> 590efe9fae3d6ec5103b6030d9bddcb845a7f01b
+
 		this.message = message;
 	}
 	
