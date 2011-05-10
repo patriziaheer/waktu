@@ -40,7 +40,7 @@ public class ProjectStaffView extends QWidget {
 
 		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 		
-		if (GuiController.getInstance().canAddProjectStaff(project) == false) {
+		if (GuiController.getInstance().canAddProjectStaff() == false) {
 			ui.cmbUsers.setVisible(false);
 			ui.btnAdd.setVisible(false);
 			updateProjectStaffModel();

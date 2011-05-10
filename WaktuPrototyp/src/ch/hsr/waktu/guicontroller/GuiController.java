@@ -37,15 +37,15 @@ public class GuiController {
 
 	/**
 	 * 
-	 * @param user
 	 */
-	public boolean canAddProjectStaff(Project project){
+	public boolean canAddProjectStaff(){
 		return true;
 		/*if(ProjectController.getInstance().getProject(project.getId()).getProjectManager().equals(loggedInUser)) {
 			return PermissionTable.getPermission(SystemAction.AddUserToOwnProjects, loggedInUser.getRole(), project);
 		}
 		return PermissionTable.getPermission(SystemAction.AddUserToAllProjects, loggedInUser.getRole(), project);*/
 	}
+
 
 	/**
 	 * 
