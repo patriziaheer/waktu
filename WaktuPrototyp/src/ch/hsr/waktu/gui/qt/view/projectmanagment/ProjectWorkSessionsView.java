@@ -1,6 +1,7 @@
 package ch.hsr.waktu.gui.qt.view.projectmanagment;
 
 import ch.hsr.waktu.controller.TimeController;
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
@@ -20,18 +21,23 @@ public class ProjectWorkSessionsView extends QWidget {
 	private Project project;
 	private ProjectWorkSessionModel workSessionModel;
 	private TableSortFilterModel filterModel = new TableSortFilterModel();
+	public Signal1<String> errorMessage = new Signal1<String>();
 	
 	public ProjectWorkSessionsView(Project project) {
 		ui.setupUi(this);
 		this.project = project;
-		workSessionModel = new ProjectWorkSessionModel(this.project);
+		try {
+			ComboBoxData.createUserComboBox(ui.cmbUser);
+			ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, project);
+			workSessionModel = new ProjectWorkSessionModel(this.project);
+		} catch (WaktuGeneralException e) {
+			errorMessage.emit(e.getMessage());
+		}
 		filterModel.setDynamicSortFilter(true);
 		filterModel.setSourceModel(workSessionModel);
 		ui.tblWorkSessions.setModel(filterModel);
 		ui.tblWorkSessions.horizontalHeader().setStretchLastSection(true);
 
-		ComboBoxData.createUserComboBox(ui.cmbUser);
-		ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, project);
 		ui.cmbUser.setCurrentIndex(-1);
 		ui.cmbWorkpackage.setCurrentIndex(-1);
 		ui.btnAddFilter.clicked.connect(this, "addFilter()");
@@ -95,7 +101,11 @@ public class ProjectWorkSessionsView extends QWidget {
 	}
 	
 	private void updateWorkSessionTable() {
-		workSessionModel.updateWorkSessionModel();
+		try {
+			workSessionModel.updateWorkSessionModel();
+		} catch (WaktuGeneralException e) {
+			errorMessage.emit(e.getMessage());
+		}
 		workSessionModel.layoutAboutToBeChanged.emit();
 		workSessionModel.dataChanged.emit(workSessionModel.index(0, 0),
 				workSessionModel.index(workSessionModel.rowCount(),

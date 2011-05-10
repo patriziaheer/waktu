@@ -25,17 +25,21 @@ public class GuiController {
 	 * 
 	 * @param user
 	 */
-	public boolean canAddProject(Usr loggedInUser){
+	public boolean canAddProject(){
 		return true;
 		/*SystemRole systemRole = loggedInUser.getRole();
 		return PermissionTable.getPermission(SystemAction.AddProjects, systemRole, null);*/
+	}
+	
+	public boolean canModifyProject() {
+		return true;
 	}
 
 	/**
 	 * 
 	 * @param user
 	 */
-	public boolean canAddProjectStaff(Usr loggedInUser, Project project){
+	public boolean canAddProjectStaff(Project project){
 		return true;
 		/*if(ProjectController.getInstance().getProject(project.getId()).getProjectManager().equals(loggedInUser)) {
 			return PermissionTable.getPermission(SystemAction.AddUserToOwnProjects, loggedInUser.getRole(), project);
@@ -52,6 +56,13 @@ public class GuiController {
 		//return PermissionTable.getPermission(SystemAction.AddUser, loggedInUser.getRole(), null);
 	}
 
+	public boolean canModifyUser() {
+		return true;
+	}
+
+	public boolean canModifyUser(Usr usrToModify) {
+		return true;
+	}
 	/**
 	 * 
 	 * @param user

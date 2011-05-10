@@ -18,15 +18,11 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 
 	private Project project;
 	private List<WorkPackage> workPackages;
+	public Signal1<String> errorMessage = new Signal1<String>();
 
 	public ProjectWorkPackageModel(Project project) {
 		this.project = project;
-		try {
-			workPackages = WorkPackageController.getInstance().getActiveWorkPackages(project);
-		} catch (WaktuGeneralException e) {
-			// TODO PH: unhandled exceptions
-			e.printStackTrace();
-		}
+		updateWorkPackageModel();
 	}
 
 	@Override
@@ -112,8 +108,7 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 		try {
 			WorkPackageController.getInstance().updateWorkPackage(workPackage);
 		} catch (WaktuGeneralException e) {
-			// TODO PH: unhandled exceptions
-			e.printStackTrace();
+			errorMessage.emit(e.getMessage());
 		}
 		return false;
 	}
@@ -132,8 +127,7 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 		try {
 			workPackages = WorkPackageController.getInstance().getActiveWorkPackages(project);
 		} catch (WaktuGeneralException e) {
-			// TODO PH: unhandled exceptions
-			e.printStackTrace();
+			errorMessage.emit(e.getMessage());
 		}
 	}
 

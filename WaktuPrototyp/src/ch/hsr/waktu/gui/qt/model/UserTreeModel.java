@@ -18,13 +18,8 @@ public class UserTreeModel extends QTreeModel {
 	
 	private List<Usr> usrs;
 	
-	public UserTreeModel() {
-		try {
-			usrs = UserController.getInstance().getActiveUsers();
-		} catch (WaktuGeneralException e) {
-			// TODO PH: exception handling
-			e.printStackTrace();
-		}
+	public UserTreeModel() throws WaktuGeneralException {
+		updateUsrModel();
 	}
 
 	@Override
@@ -85,12 +80,7 @@ public class UserTreeModel extends QTreeModel {
 		return super.data(value, role);
 	}
 	
-	public void updateUsrModel() {
-		try {
-			usrs = UserController.getInstance().getActiveUsers();
-		} catch (WaktuGeneralException e) {
-			// TODO PH: exception handling
-			e.printStackTrace();
-		}
+	public void updateUsrModel() throws WaktuGeneralException {
+		usrs = UserController.getInstance().getActiveUsers();
 	}
 }

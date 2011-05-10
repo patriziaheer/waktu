@@ -1,9 +1,9 @@
 package ch.hsr.waktu.gui.qt.view;
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.gui.qt.model.ProjectTreeModel;
 import ch.hsr.waktu.gui.qt.model.SortFilterModel;
-import ch.hsr.waktu.gui.qt.view.Ui_ManagmentDetails;
 import ch.hsr.waktu.gui.qt.view.projectmanagment.ProjectDataView;
 import ch.hsr.waktu.gui.qt.view.projectmanagment.ProjectStaffView;
 import ch.hsr.waktu.gui.qt.view.projectmanagment.ProjectWorkPackageView;
@@ -23,16 +23,22 @@ import com.trolltech.qt.gui.QWidget;
 public class ProjectDetails extends QWidget {
 
 	private Ui_ManagmentDetails ui = new Ui_ManagmentDetails();
-	private ProjectTreeModel model = new ProjectTreeModel();
+	private ProjectTreeModel projectTreeModel;
 	private QSplitter splitter;
 	private QWidget currWidget = new QWidget();
-	
 	private SortFilterModel filterModel = new SortFilterModel();
+	public Signal1<String> errorMessage = new Signal1<String>();
 	
 	public ProjectDetails() {
 		ui.setupUi(this);
+		try {
+			projectTreeModel = new ProjectTreeModel();
+		} catch (WaktuGeneralException e) {
+			showErrorMessage(e.getMessage());
+		}
+		
 		filterModel.setDynamicSortFilter(true);
-		filterModel.setSourceModel(model);
+		filterModel.setSourceModel(projectTreeModel);
 		ui.treeView.setModel(filterModel);
 		
 		splitter = new QSplitter(Qt.Orientation.Horizontal);
@@ -53,19 +59,23 @@ public class ProjectDetails extends QWidget {
 	@SuppressWarnings("unused")
 	private void selectionChanged() {
 		QModelIndex selectedIndex = filterModel.mapToSource(ui.treeView.selectionModel().selectedIndexes().get(0));
-		Object selected = model.indexToValue(selectedIndex);
-		Object parent = model.indexToValue(model.parent(selectedIndex));
+		Object selected = projectTreeModel.indexToValue(selectedIndex);
+		Object parent = projectTreeModel.indexToValue(projectTreeModel.parent(selectedIndex));
 		if (selected instanceof ProjectController.ProjectProperties) {
 			if (currWidget != null) {
 				currWidget.setParent(null);
 			}
 			switch ((ProjectController.ProjectProperties)selected) {
 			case Data: {
-				currWidget = new ProjectDataView((Project)parent);
+				ProjectDataView projectDataView = new ProjectDataView((Project)parent);
+				projectDataView.errorMessage.connect(this, "showErrorMessage(String)");
+				currWidget = projectDataView;
 			}
 			break;
 			case WorkPackages: {
-				currWidget = new ProjectWorkPackageView((Project)parent);
+				ProjectWorkPackageView projectWorkPackageView = new ProjectWorkPackageView((Project)parent);
+				projectWorkPackageView.errorMessage.connect(this, "showErrorMessage(String)");
+				currWidget = projectWorkPackageView;
 			}
 			break;
 			case WorkSessions: {
@@ -73,7 +83,9 @@ public class ProjectDetails extends QWidget {
 			}
 			break;
 			case ProjectStaff: {
-				currWidget = new ProjectStaffView((Project)parent);
+				ProjectStaffView projectStaffView = new ProjectStaffView((Project)parent);
+				projectStaffView.errorMessage.connect(this, "showErrorMessage(String)");
+				currWidget = projectStaffView;
 			}
 			}
 			splitter.addWidget(currWidget);
@@ -83,13 +95,13 @@ public class ProjectDetails extends QWidget {
 	@SuppressWarnings("unused")
 	private void textFilterChanged() {
 		System.out.println("filter changed");
-		model.layoutAboutToBeChanged.emit();
+		projectTreeModel.layoutAboutToBeChanged.emit();
         Qt.CaseSensitivity caseSensitivity = Qt.CaseSensitivity.CaseInsensitive;
 
         QRegExp regExp = new QRegExp(ui.lineEdit.text(),
                                      caseSensitivity, QRegExp.PatternSyntax.RegExp);
         filterModel.setFilterRegExp(regExp);
-        model.layoutChanged.emit();
+        projectTreeModel.layoutChanged.emit();
 	}
 	
 	@SuppressWarnings("unused")
@@ -103,11 +115,15 @@ public class ProjectDetails extends QWidget {
 	}
 
 	private void updateTable() {
-		model.updateProjectsModel();
-		model.layoutAboutToBeChanged.emit();
-		model.dataChanged.emit(model.index(0, 0), model.index(model.rowCount(), model.columnCount()));
-		filterModel.dataChanged.emit(filterModel.index(0, 0), filterModel.index(model.rowCount(), model.columnCount()));
-        model.layoutChanged.emit();
+		try {
+			projectTreeModel.updateProjectsModel();
+		} catch (WaktuGeneralException e) {
+			showErrorMessage(e.getMessage());
+		}
+		projectTreeModel.layoutAboutToBeChanged.emit();
+		projectTreeModel.dataChanged.emit(projectTreeModel.index(0, 0), projectTreeModel.index(projectTreeModel.rowCount(), projectTreeModel.columnCount()));
+		filterModel.dataChanged.emit(filterModel.index(0, 0), filterModel.index(projectTreeModel.rowCount(), projectTreeModel.columnCount()));
+        projectTreeModel.layoutChanged.emit();
 	}
 	
 	@Override
@@ -135,6 +151,10 @@ public class ProjectDetails extends QWidget {
 	@SuppressWarnings("unused")
 	private void translate() {
         ui.retranslateUi(this);
+	}
+	
+	private void showErrorMessage(String errorMessageString) {
+		errorMessage.emit(errorMessageString);
 	}
 	
 }

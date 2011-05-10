@@ -62,6 +62,7 @@
    </widget>
    <addaction name="menuFile"/>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <action name="actionClose">
    <property name="text">
     <string>Close</string>

@@ -1,9 +1,9 @@
 package ch.hsr.waktu.gui.qt.view;
 import ch.hsr.waktu.controller.datacontroller.UserController;
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.gui.qt.model.SortFilterModel;
 import ch.hsr.waktu.gui.qt.model.UserTreeModel;
-import ch.hsr.waktu.gui.qt.view.Ui_ManagmentDetails;
 import ch.hsr.waktu.gui.qt.view.usermanagment.UserDataView;
 import ch.hsr.waktu.gui.qt.view.usermanagment.UserProjectsView;
 import ch.hsr.waktu.gui.qt.view.usermanagment.UserWorkSessionsView;
@@ -22,16 +22,22 @@ import com.trolltech.qt.gui.QWidget;
 public class UserDetails extends QWidget {
 
 	private Ui_ManagmentDetails ui = new Ui_ManagmentDetails();
-	private UserTreeModel model = new UserTreeModel();
+	private UserTreeModel userTreeModel;
 	private QSplitter splitter;
 	private QWidget currWidget = new QWidget();
-	
 	private SortFilterModel filterModel = new SortFilterModel();
+	public Signal1<String> errorMessage = new Signal1<String>();
 	
 	public UserDetails() {
 		ui.setupUi(this);
+		
+		try {
+			userTreeModel = new UserTreeModel();
+		} catch (WaktuGeneralException e) {
+			showErrorMessage(e.getMessage());
+		}
 		filterModel.setDynamicSortFilter(true);
-		filterModel.setSourceModel(model);
+		filterModel.setSourceModel(userTreeModel);
 		ui.treeView.setModel(filterModel);
 		
 		splitter = new QSplitter(Qt.Orientation.Horizontal);
@@ -53,23 +59,29 @@ public class UserDetails extends QWidget {
 	@SuppressWarnings("unused")
 	private void selectionChanged() {
 		QModelIndex selectedIndex = filterModel.mapToSource(ui.treeView.selectionModel().selectedIndexes().get(0));
-		Object selected = model.indexToValue(selectedIndex);
-		Object parent = model.indexToValue(model.parent(selectedIndex));
+		Object selected = userTreeModel.indexToValue(selectedIndex);
+		Object parent = userTreeModel.indexToValue(userTreeModel.parent(selectedIndex));
 		if (selected instanceof UserController.UserProperties) {
 			if (currWidget != null) {
 				currWidget.setParent(null);
 			}
 			switch ((UserController.UserProperties)selected) {
 			case Data: {
-				currWidget = new UserDataView((Usr)parent);
+				UserDataView userDataView = new UserDataView((Usr)parent);
+				userDataView.errorMessage.connect(this, "showErrorMessage(String)");
+				currWidget = userDataView;
 			}
 			break;
 			case Projects: {
-				currWidget = new UserProjectsView((Usr)parent);
+				UserProjectsView userProjectsView = new UserProjectsView((Usr)parent);
+				userProjectsView.errorMessage.connect(this, "showErrorMessage(String)");
+				currWidget = userProjectsView;
 			}
 			break;
 			case WorkSessions: {
-				currWidget = new UserWorkSessionsView((Usr)parent);
+				UserWorkSessionsView userWorkSessionsView = new UserWorkSessionsView((Usr)parent);
+				userWorkSessionsView.errorMessage.connect(this, "showErrorMessage(String)");
+				currWidget = userWorkSessionsView;
 			}
 			}
 			splitter.addWidget(currWidget);
@@ -79,13 +91,13 @@ public class UserDetails extends QWidget {
 	@SuppressWarnings("unused")
 	private void textFilterChanged() {
 		System.out.println("filter changed");
-		model.layoutAboutToBeChanged.emit();
+		userTreeModel.layoutAboutToBeChanged.emit();
         Qt.CaseSensitivity caseSensitivity = Qt.CaseSensitivity.CaseInsensitive;
 
         QRegExp regExp = new QRegExp(ui.lineEdit.text(),
                                      caseSensitivity, QRegExp.PatternSyntax.RegExp);
         filterModel.setFilterRegExp(regExp);
-        model.layoutChanged.emit();
+        userTreeModel.layoutChanged.emit();
 	}
 	
 	@SuppressWarnings("unused")
@@ -99,10 +111,10 @@ public class UserDetails extends QWidget {
 	}
 
 	private void updateTable() {
-		model.layoutAboutToBeChanged.emit();
-		model.dataChanged.emit(model.index(0, 0), model.index(model.rowCount(), model.columnCount()));
-		filterModel.dataChanged.emit(filterModel.index(0, 0), filterModel.index(model.rowCount(), model.columnCount()));
-        model.layoutChanged.emit();
+		userTreeModel.layoutAboutToBeChanged.emit();
+		userTreeModel.dataChanged.emit(userTreeModel.index(0, 0), userTreeModel.index(userTreeModel.rowCount(), userTreeModel.columnCount()));
+		filterModel.dataChanged.emit(filterModel.index(0, 0), filterModel.index(userTreeModel.rowCount(), userTreeModel.columnCount()));
+        userTreeModel.layoutChanged.emit();
 	}
 	
 	@Override
@@ -130,5 +142,9 @@ public class UserDetails extends QWidget {
 	@SuppressWarnings("unused")
 	private void translate() {
         ui.retranslateUi(this);
+	}
+	
+	private void showErrorMessage(String errorMessageString) {
+		errorMessage.emit(errorMessageString);
 	}
 }

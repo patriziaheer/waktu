@@ -28,14 +28,9 @@ public class FavoriteModel extends QAbstractItemModel {
 	private Usr usr;
 	private QModelIndex editable = null;
 
-	public FavoriteModel(Usr usr) {
+	public FavoriteModel(Usr usr) throws WaktuGeneralException {
 		this.usr = usr;
-		try {
-			favorites = FavoriteController.getInstance().getFavorites(usr);
-		} catch (WaktuGeneralException e) {
-			// TODO exception handling
-			e.printStackTrace();
-		}
+		updateFavoriteModel();
 	}
 
 	@Override
@@ -145,13 +140,8 @@ public class FavoriteModel extends QAbstractItemModel {
 		}
 	}
 	
-	public void updateFavoriteModel() {
-		try {
-			favorites = FavoriteController.getInstance().getFavorites(usr);
-		} catch (WaktuGeneralException e) {
-			// TODO exception handling
-			e.printStackTrace();
-		}
+	public void updateFavoriteModel() throws WaktuGeneralException {
+		favorites = FavoriteController.getInstance().getFavorites(usr);
 	}
 	
 	public Favorite getFavorite(int row) {
