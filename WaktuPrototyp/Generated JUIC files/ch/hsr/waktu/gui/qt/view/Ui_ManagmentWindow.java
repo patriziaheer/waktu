@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ManagmentWindow.jui'
 **
-** Created: Mo. Mai 9 13:41:05 2011
+** Created: Di. Mai 10 11:08:07 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -27,6 +27,7 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
     public QMenuBar menubar;
     public QMenu menuFile;
     public QMenu menuLanguage;
+    public QStatusBar statusBar;
 
     public Ui_ManagmentWindow() { super(); }
 
@@ -68,13 +69,15 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         menuLanguage = new QMenu(menuFile);
         menuLanguage.setObjectName("menuLanguage");
         ManagmentWindow.setMenuBar(menubar);
+        statusBar = new QStatusBar(ManagmentWindow);
+        statusBar.setObjectName("statusBar");
+        ManagmentWindow.setStatusBar(statusBar);
 
         menubar.addAction(menuFile.menuAction());
         menuFile.addAction(actionAddProject);
         menuFile.addAction(actionAddUser);
         menuFile.addAction(menuLanguage.menuAction());
         menuFile.addAction(actionClose);
-        menuLanguage.addSeparator();
         menuLanguage.addAction(actionEN);
         menuLanguage.addAction(actionDE);
         retranslateUi(ManagmentWindow);
