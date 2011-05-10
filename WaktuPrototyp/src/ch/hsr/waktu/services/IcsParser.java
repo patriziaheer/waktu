@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.WorkSession;
 
 import com.trolltech.qt.core.QDate;
@@ -54,8 +55,9 @@ public class IcsParser {
 	 *
 	 * @param  filePath path to the .ics file to parse.
 	 * @return a linked list containing all WorkSessions extracted from input file.
+	 * @throws WaktuGeneralException 
 	 */
-	public static LinkedList<WorkSession> parseIcsFile(String filePath) {
+	public static LinkedList<WorkSession> parseIcsFile(String filePath) throws WaktuGeneralException {
 		
 		LinkedList<WorkSession> calendar = new LinkedList<WorkSession>();
 		
@@ -65,7 +67,7 @@ public class IcsParser {
 		try {
 			br = new BufferedReader(new FileReader(new File(filePath)));
 		} catch (Exception e) {
-			return null;
+			throw new WaktuGeneralException("Error reading File: " + filePath);
 		}
 					
 		String currentLine;

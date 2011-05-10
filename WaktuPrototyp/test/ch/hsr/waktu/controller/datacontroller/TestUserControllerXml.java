@@ -3,6 +3,7 @@ package ch.hsr.waktu.controller.datacontroller;
 import static org.junit.Assert.*;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -83,46 +84,46 @@ public class TestUserControllerXml {
 	}
 	
 	@Test
-	public void getAllUsers() {
-		LinkedList<Usr> userList = UserControllerXml.getInstance().getAllUsers();
+	public void getAllUsers() throws WaktuGeneralException {
+		List<Usr> userList = UserControllerXml.getInstance().getAllUsers();
 		
 		assertUserListEquality(allUsersReferenceList, userList);
 	}
 	
 	@Test
-	public void getActiveUsers() {
-		LinkedList<Usr> userList = UserControllerXml.getInstance().getActiveUsers();
+	public void getActiveUsers() throws WaktuGeneralException {
+		List<Usr> userList = UserControllerXml.getInstance().getActiveUsers();
 		
 		assertUserListEquality(activeUsersReferenceList, userList);
 	}
 	
 	@Test
-	public void getInactiveUsers() {
-		LinkedList<Usr> userList = UserControllerXml.getInstance().getInactiveUsers();
+	public void getInactiveUsers() throws WaktuGeneralException {
+		List<Usr> userList = UserControllerXml.getInstance().getInactiveUsers();
 		
 		assertUserListEquality(inactiveUsersReferenceList, userList);
 	}
 	
 	@Test
-	public void getProjectManagers() {
-		LinkedList<Usr> userList = UserControllerXml.getInstance().getProjectManagers();
+	public void getProjectManagers() throws WaktuGeneralException {
+		List<Usr> userList = UserControllerXml.getInstance().getProjectManagers();
 		
 		assertUserListEquality(projectManagersReferenceList, userList);
 	}
 	
 	@Test
-	public void getUser_ValidUser() {
+	public void getUser_ValidUser() throws WaktuGeneralException {
 		Usr user = UserControllerXml.getInstance().getUser("chucknorris");
 		assertEquals(allUsersReferenceList.get(5), user);
 	}
 	
 	@Test
-	public void getUser_InvalidUser() {
+	public void getUser_InvalidUser_throwsWaktuGeneralException() throws WaktuGeneralException {
 		Usr user = UserControllerXml.getInstance().getUser("räuberhotzenplotz");
 		assertEquals(null, user);
 	}
 
-	private void assertUserListEquality(LinkedList<Usr> userReferenceList, LinkedList<Usr> userList) {
+	private void assertUserListEquality(LinkedList<Usr> userReferenceList, List<Usr> userList) {
 		for(int i=0; i<userList.size(); i++) {
 			assertEquals(userReferenceList.get(i), userList.get(i));
 		}

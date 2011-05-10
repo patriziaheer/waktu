@@ -12,6 +12,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Favorite;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
@@ -19,7 +20,7 @@ import ch.hsr.waktu.domain.WorkSession;
 
 public class XmlUtil {
 	
-	private static Document parseXmlFile(String filePath) {
+	private static Document parseXmlFile(String filePath) throws WaktuGeneralException {
 		File file = new File(filePath);
 		try {
 			return DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(file);
@@ -27,11 +28,9 @@ public class XmlUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new WaktuGeneralException("File could not be opened");
 		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new WaktuGeneralException("Wrong parser configuration");
 		}
 		return null;
 	}
@@ -41,7 +40,7 @@ public class XmlUtil {
 		//TODO
 	}
 	
-	public static LinkedList<WorkSession> getWorkSessionsFromXml(String filePath) {
+	public static LinkedList<WorkSession> getWorkSessionsFromXml(String filePath) throws WaktuGeneralException {
 		//TODO
 		if(filePath == null) {
 			return null;
@@ -60,7 +59,7 @@ public class XmlUtil {
 		
 	}
 	
-	public static LinkedList<Usr> getUsersFromXml(String filePath) {
+	public static LinkedList<Usr> getUsersFromXml(String filePath) throws WaktuGeneralException {
 		if(filePath == null) {
 			return null;
 		}

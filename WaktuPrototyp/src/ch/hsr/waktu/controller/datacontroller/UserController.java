@@ -8,10 +8,10 @@ import org.apache.log4j.Logger;
 
 import ch.hsr.waktu.controller.BusinessRuleController;
 import ch.hsr.waktu.controller.PersistenceController;
-import ch.hsr.waktu.controller.UsernameController;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.services.Md5;
+import ch.hsr.waktu.services.UsernameUtil;
 
 import com.trolltech.qt.QSignalEmitter;
 
@@ -20,8 +20,7 @@ import com.trolltech.qt.QSignalEmitter;
  * @version 1.0
  * @created 01-Apr-2011 15:36:30
  */
-public class UserController extends QSignalEmitter implements
-		UserControllerInterface {
+public class UserController  extends QSignalEmitter {
 
 	public enum UserProperties {
 		Data, Projects, WorkSessions
@@ -183,7 +182,7 @@ public class UserController extends QSignalEmitter implements
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
-		Usr newUsr = new Usr(UsernameController.generateUsername(firstname,
+		Usr newUsr = new Usr(generateUsername(firstname,
 				lastname), firstname, lastname, Md5.hash(password), pensum,
 				role, holiday);
 		
@@ -242,6 +241,10 @@ public class UserController extends QSignalEmitter implements
 		update.emit();
 		logger.info("user " + usr + " updated");
 
+	}
+	
+	private String generateUsername(String firstname, String name) throws WaktuGeneralException {
+		return UsernameUtil.generateUsername(getAllUsers(), firstname, name);
 	}
 
 }
