@@ -2,7 +2,6 @@ package ch.hsr.waktu.services;
 
 import java.util.List;
 
-import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Usr;
 

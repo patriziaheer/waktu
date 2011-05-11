@@ -1,5 +1,6 @@
 package ch.hsr.waktu.controller;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import javax.persistence.EntityManager;
 
 import org.apache.log4j.Logger;
 
+import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Permission;
 import ch.hsr.waktu.domain.SystemRole;
 
@@ -28,15 +30,14 @@ public class PermissionController extends QSignalEmitter {
 		return theInstance;
 	}
 
-	@SuppressWarnings("unused")
 	private Logger logger = Logger.getLogger(PermissionController.class);
 	public Signal0 update = new Signal0();
 	public Signal1<Permission> add = new Signal1<Permission>();
 
-	private static List<Permission> permissionTable;
+	// private static List<Permission> permissionTable;
 
 	protected PermissionController() {
-		permissionTable = getPermissionTable();
+		// permissionTable = getPermissionTable();
 	}
 
 	private List<Permission> getPermissionTable() {
@@ -70,36 +71,45 @@ public class PermissionController extends QSignalEmitter {
 
 	}
 
-	public ArrayList<PermissionNode> getPermissionNodes() {
+	public ArrayList<PermissionNode> getPermissionNodes()
+			throws IllegalArgumentException, IllegalAccessException {
 		ArrayList<PermissionNode> list = new ArrayList<PermissionNode>();
 
-		for (Permission perm : permissionTable) {
-			
-			list.add(new PermissionNode(perm.getSystemRole(), "addFavorite", perm.getAddFavorite()));
-			list.add(new PermissionNode(perm.getSystemRole(), "addProject", perm.getAddProject()));
-			list.add(new PermissionNode(perm.getSystemRole(), "addUser", perm.getAddUser()));
-			list.add(new PermissionNode(perm.getSystemRole(), "deleteFavorite", perm.getDeleteFavorite()));
-			list.add(new PermissionNode(perm.getSystemRole(), "updateFavorite", perm.getUpdateFavorite()));
-			list.add(new PermissionNode(perm.getSystemRole(), "updateProject", perm.getUpdateProject()));
-			list.add(new PermissionNode(perm.getSystemRole(), "updateUser", perm.getUpdateUser()));
+		for (Permission p : getPermissionTable()) {
+			Field[] allPermissions = Permission.class.getFields();
+			for (Field f : allPermissions) {
+				list.add(new PermissionNode(p.getSystemRole(), f.getName()
+						.toString(), f.getBoolean(p)));
+			}
 		}
 
 		return list;
 
 	}
 
-	public boolean checkPermission(String method) {
+	public void checkPermission(String method) throws WaktuGeneralException {
 
-		
-		
-		
-		for (PermissionNode pn : getPermissionNodes()) {
-			if((pn.getSystemRole().equals(LoginController.getInstance().getLoggedInUser().getSystemRole())) && (pn.getMethod().equals(method))) {
-				return pn.getPermission();
+		StackTraceElement[] trace = new Throwable().getStackTrace();
+		boolean permission = false;
+		try {
+			for (PermissionNode pn : getPermissionNodes()) {
+				if ((pn.getSystemRole().equals(LoginController.getInstance()
+						.getLoggedInUser().getSystemRole()))
+						&& (pn.getMethod().equals(trace[1].getMethodName()))) {
+					permission = pn.getPermission();
+					System.out.println(permission);
+				}
 			}
+		} catch (Exception e) {
+			throw new WaktuGeneralException("checkPermission() error");
 		}
 
-		return false;
+		if (permission) {
+			logger.info("Permission allowed: " + LoginController.getInstance().getLoggedInUser() + " " + trace[1].getMethodName() + "()");
+			return;
+		}
+		logger.info("Permission denied: " + LoginController.getInstance().getLoggedInUser() + " " + trace[1].getMethodName() + "()");
+		throw new WaktuGeneralException("permission denied");
 	}
 }
 
@@ -124,7 +134,7 @@ class PermissionNode {
 	public boolean getPermission() {
 		return permission;
 	}
-	
+
 	public String getMethod() {
 		return method;
 	}
