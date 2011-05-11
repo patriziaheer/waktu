@@ -8,6 +8,7 @@ import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 
 import com.trolltech.qt.core.QAbstractItemModel;
+import com.trolltech.qt.core.QCoreApplication;
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.QSize;
 import com.trolltech.qt.core.Qt;
@@ -55,9 +56,9 @@ public class ProjectStaffModel extends QAbstractItemModel {
 				&& Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
 			case 0:
-				return "Name";
+				return QCoreApplication.translate("ProjectStaffModel", "Name");
 			case 1:
-				return "Firstname";
+				return QCoreApplication.translate("ProjectStaffModel", "Firstname");
 			case 2:
 				return "";
 			}

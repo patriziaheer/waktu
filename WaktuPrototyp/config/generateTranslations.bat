@@ -17,19 +17,26 @@ lupdate "..\src\ch\hsr\waktu\gui\qt\view\LoginView.java" -ts LoginView_de.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\ManagmentView.java" -ts ManagmentView_de.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\TimeView.java" -ts TimeView_de.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\CalendarWidget.java" -ts CalendarWidget_de.ts
+lupdate "..\src\ch\hsr\waktu\gui\qt\view\ProjectDetails.java" -ts ProjectDetails_de.ts
+lupdate "..\src\ch\hsr\waktu\gui\qt\view\UserDetails.java" -ts UserDetails_de.ts
 
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\projectmanagment\ProjectDataView.java" -ts ProjectDataView_de.ts
-lupdate "..\src\ch\hsr\waktu\gui\qt\view\ProjectDetails.java" -ts ProjectDetails_de.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\projectmanagment\ProjectStaffView.java" -ts ProjectStaffView_de.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\projectmanagment\ProjectWorkPackageView.java" -ts ProjectWorkPackageView_de.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\projectmanagment\ProjectWorkSessionsView.java" -ts ProjectWorkSessionsView_de.ts
 
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\usermanagment\UserDataView.java" -ts UserDataView_de.ts
-lupdate "..\src\ch\hsr\waktu\gui\qt\view\UserDetails.java" -ts UserDetails_de.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\usermanagment\UserProjectsView.java" -ts UserProjectsView_de.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\usermanagment\UserWorkSessionsView.java" -ts UserWorkSessionsView_de.ts
 
 
+lupdate "..\src\ch\hsr\waktu\gui\qt\model\FavoriteModel.java" -ts FavoriteModel_de.ts
+lupdate "..\src\ch\hsr\waktu\gui\qt\model\ProjectStaffModel.java" -ts ProjectStaffModel_de.ts
+lupdate "..\src\ch\hsr\waktu\gui\qt\model\ProjectWorkPackageModel.java" -ts ProjectWorkPackageModel_de.ts
+lupdate "..\src\ch\hsr\waktu\gui\qt\model\ProjectWorkSessionModel.java" -ts ProjectWorkSessionModel_de.ts
+lupdate "..\src\ch\hsr\waktu\gui\qt\model\UserProjectsModel.java" -ts UserProjectsModel_de.ts
+lupdate "..\src\ch\hsr\waktu\gui\qt\model\UserWorkSessionModel.java" -ts UserWorkSessionModel_de.ts
+lupdate "..\src\ch\hsr\waktu\gui\qt\model\WorkSessionModel.java" -ts WorkSessionModel_de.ts
 
 
 
@@ -53,16 +60,23 @@ lupdate "..\src\ch\hsr\waktu\gui\qt\view\LoginView.java" -ts LoginView_en.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\ManagmentView.java" -ts ManagmentView_en.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\TimeView.java" -ts TimeView_en.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\CalendarWidget.java" -ts CalendarWidget_en.ts
+lupdate "..\src\ch\hsr\waktu\gui\qt\view\ProjectDetails.java" -ts Projectentails_en.ts
+lupdate "..\src\ch\hsr\waktu\gui\qt\view\UserDetails.java" -ts UserDetails_en.ts
 
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\projectmanagment\ProjectDataView.java" -ts ProjectDataView_en.ts
-lupdate "..\src\ch\hsr\waktu\gui\qt\view\ProjectDetails.java" -ts Projectentails_en.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\projectmanagment\ProjectStaffView.java" -ts ProjectStaffView_en.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\projectmanagment\ProjectWorkPackageView.java" -ts ProjectWorkPackageView_en.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\projectmanagment\ProjectWorkSessionsView.java" -ts ProjectWorkSessionsView_en.ts
 
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\usermanagment\UserDataView.java" -ts UserDataView_en.ts
-lupdate "..\src\ch\hsr\waktu\gui\qt\view\UserDetails.java" -ts UserDetails_en.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\usermanagment\UserProjectsView.java" -ts UserProjectsView_en.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\usermanagment\UserWorkSessionsView.java" -ts UserWorkSessionsView_en.ts
 
 
+lupdate "..\src\ch\hsr\waktu\gui\qt\model\FavoriteModel.java" -ts FavoriteModel_en.ts
+lupdate "..\src\ch\hsr\waktu\gui\qt\model\ProjectStaffModel.java" -ts ProjectStaffModel_en.ts
+lupdate "..\src\ch\hsr\waktu\gui\qt\model\ProjectWorkPackageModel.java" -ts ProjectWorkPackageModel_en.ts
+lupdate "..\src\ch\hsr\waktu\gui\qt\model\ProjectWorkSessionModel.java" -ts ProjectWorkSessionModel_en.ts
+lupdate "..\src\ch\hsr\waktu\gui\qt\model\UserProjectsModel.java" -ts UserProjectsModel_en.ts
+lupdate "..\src\ch\hsr\waktu\gui\qt\model\UserWorkSessionModel.java" -ts UserWorkSessionModel_en.ts
+lupdate "..\src\ch\hsr\waktu\gui\qt\model\WorkSessionModel.java" -ts WorkSessionModel_en.ts

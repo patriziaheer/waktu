@@ -5,6 +5,7 @@ import ch.hsr.waktu.guicontroller.GuiController;
 import ch.hsr.waktu.guicontroller.LanguageController;
 import ch.hsr.waktu.guicontroller.LanguageController.Language;
 
+import com.trolltech.qt.core.QCoreApplication;
 import com.trolltech.qt.gui.QBrush;
 import com.trolltech.qt.gui.QColor;
 import com.trolltech.qt.gui.QMainWindow;
@@ -80,8 +81,8 @@ public class ManagmentView extends QMainWindow {
 	}
 
 	private void changeText() {
-		ui.tabWidget.setTabText(0, com.trolltech.qt.core.QCoreApplication.translate("ManagmentView",("Projects"), null));
-		ui.tabWidget.setTabText(1, com.trolltech.qt.core.QCoreApplication.translate("ManagmentView",("Users"), null));
+		ui.tabWidget.setTabText(0, QCoreApplication.translate("ManagmentView",("Projects"), null));
+		ui.tabWidget.setTabText(1, QCoreApplication.translate("ManagmentView",("Users"), null));
 	}
 
 	private void setStatusBarText(String text) {

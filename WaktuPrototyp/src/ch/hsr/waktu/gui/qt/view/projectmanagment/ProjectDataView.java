@@ -8,6 +8,7 @@ import ch.hsr.waktu.gui.qt.model.ComboBoxData;
 import ch.hsr.waktu.guicontroller.GuiController;
 import ch.hsr.waktu.guicontroller.LanguageController;
 
+import com.trolltech.qt.core.QCoreApplication;
 import com.trolltech.qt.gui.QWidget;
 
 public class ProjectDataView extends QWidget {
@@ -29,8 +30,7 @@ public class ProjectDataView extends QWidget {
 		ProjectController.getInstance().update.connect(this, "updateData()");
 		ProjectController.getInstance().add.connect(this, "addData(Project)");
 
-		LanguageController.getInstance().languageChanged.connect(this,
-				"translate()");
+		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 
 		setFields();
 	}
@@ -39,8 +39,7 @@ public class ProjectDataView extends QWidget {
 		if (project != null) {
 			if (GuiController.getInstance().canModifyProject()) {
 				ui.btnAdd.setVisible(true);
-				ui.btnAdd.setText(com.trolltech.qt.core.QCoreApplication
-						.translate("ProjectDataView", "Save", null));
+				ui.btnAdd.setText(QCoreApplication.translate("ProjectDataView", "Save", null));
 
 				ui.txtDescription.setText(project.getDescription());
 				ui.txtDescription.setEnabled(true);
@@ -53,7 +52,7 @@ public class ProjectDataView extends QWidget {
 
 				ui.txtPlannedTime.setValue(project.getPlannedTime());
 				ui.txtPlannedTime.setEnabled(true);
-				
+
 				ui.checkBox.setChecked(!project.isActive());
 				ui.checkBox.setEnabled(true);
 
@@ -98,12 +97,8 @@ public class ProjectDataView extends QWidget {
 
 	private void addNewProject() {
 		try {
-			project = ProjectController.getInstance().addProject(
-					ui.txtProjectnumber.text(),
-					ui.txtDescription.text(),
-					(Usr) ui.cmbProjectManager
-							.itemData(ui.cmbProjectManager.currentIndex()),
-					ui.txtPlannedTime.value());
+			project = ProjectController.getInstance().addProject(ui.txtProjectnumber.text(), ui.txtDescription.text(),
+					(Usr) ui.cmbProjectManager.itemData(ui.cmbProjectManager.currentIndex()), ui.txtPlannedTime.value());
 		} catch (WaktuGeneralException e) {
 			errorMessage.emit(e.getMessage());
 		}
@@ -112,7 +107,7 @@ public class ProjectDataView extends QWidget {
 	private void saveProject() {
 		project.setDescription(ui.lblDescription.text());
 		project.setPlannedTime(ui.txtPlannedTime.value());
-		project.setProjectManager((Usr)ui.cmbProjectManager.itemData(ui.cmbProjectManager.currentIndex()));
+		project.setProjectManager((Usr) ui.cmbProjectManager.itemData(ui.cmbProjectManager.currentIndex()));
 		project.setActiveState(!ui.checkBox.isChecked());
 		try {
 			ProjectController.getInstance().updateProject(project);
@@ -120,7 +115,6 @@ public class ProjectDataView extends QWidget {
 			errorMessage.emit(e.getMessage());
 		}
 	}
-
 
 	@SuppressWarnings("unused")
 	private void updateData() {
@@ -140,11 +134,9 @@ public class ProjectDataView extends QWidget {
 
 	private void changeText() {
 		if (project != null) {
-			ui.btnAdd.setText(com.trolltech.qt.core.QCoreApplication.translate(
-					"ProjectDataView", "Save", null));
+			ui.btnAdd.setText(QCoreApplication.translate("ProjectDataView", "Save", null));
 		} else {
-			ui.btnAdd.setText(com.trolltech.qt.core.QCoreApplication.translate(
-					"ProjectDataView", "Add", null));
+			ui.btnAdd.setText(QCoreApplication.translate("ProjectDataView", "Add", null));
 		}
 	}
 }

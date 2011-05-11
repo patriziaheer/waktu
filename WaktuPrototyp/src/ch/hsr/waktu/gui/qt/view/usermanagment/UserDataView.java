@@ -1,4 +1,5 @@
 package ch.hsr.waktu.gui.qt.view.usermanagment;
+
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.SystemRole;
@@ -7,24 +8,24 @@ import ch.hsr.waktu.gui.qt.model.ComboBoxData;
 import ch.hsr.waktu.guicontroller.GuiController;
 import ch.hsr.waktu.guicontroller.LanguageController;
 
+import com.trolltech.qt.core.QCoreApplication;
 import com.trolltech.qt.gui.QWidget;
 
-
-public class UserDataView extends QWidget{
+public class UserDataView extends QWidget {
 
 	private Ui_UserData ui = new Ui_UserData();
 	private Usr usr;
 	public Signal1<String> errorMessage = new Signal1<String>();
-	
+
 	public UserDataView(Usr user) {
 		this.usr = user;
 		ui.setupUi(this);
 		ui.btnAdd.clicked.connect(this, "addClicked()");
 		ComboBoxData.createSystemRoleComboBox(ui.cmbRole);
-		
+
 		UserController.getInstance().update.connect(this, "updateData()");
 		UserController.getInstance().add.connect(this, "addData(Usr)");
-		
+
 		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 		setFields();
 	}
@@ -33,29 +34,28 @@ public class UserDataView extends QWidget{
 		if (usr != null) {
 			if (GuiController.getInstance().canModifyUser()) {
 				ui.grpOverview.setVisible(true);
-				
+
 				ui.btnAdd.setVisible(true);
-				ui.btnAdd.setText(com.trolltech.qt.core.QCoreApplication
-						.translate("UserDataView", "Save", null));
+				ui.btnAdd.setText(QCoreApplication.translate("UserDataView", "Save", null));
 				ui.lblUsername.setVisible(true);
 				ui.txtUserName.setVisible(true);
 				ui.txtUserName.setEnabled(false);
-				
+
 				ui.txtName.setText(usr.getName());
 				ui.txtName.setEnabled(true);
-				
+
 				ui.txtFirstname.setText(usr.getFirstname());
 				ui.txtFirstname.setEnabled(true);
-				
+
 				ui.txtPassword.setText("");
 				ui.txtPassword.setEnabled(true);
-				
+
 				ui.txtPensum.setValue(usr.getPensum());
 				ui.txtPensum.setEnabled(true);
-				
+
 				ui.txtHolidays.setValue(usr.getHoliday());
 				ui.txtHolidays.setEnabled(true);
-				
+
 				ui.checkBox.setChecked(!usr.isActive());
 				ui.checkBox.setVisible(true);
 			} else {
@@ -64,26 +64,26 @@ public class UserDataView extends QWidget{
 				ui.lblUsername.setVisible(true);
 				ui.txtUserName.setVisible(true);
 				ui.txtUserName.setEnabled(false);
-				
+
 				ui.txtName.setText(usr.getName());
 				ui.txtName.setEnabled(false);
-				
+
 				ui.txtFirstname.setText(usr.getFirstname());
 				ui.txtFirstname.setEnabled(false);
-				
+
 				ui.txtPassword.setText("");
 				if (GuiController.getInstance().canModifyUser(usr)) {
 					ui.txtPassword.setEnabled(true);
 				} else {
 					ui.txtPassword.setEnabled(false);
 				}
-				
+
 				ui.txtPensum.setValue(usr.getPensum());
 				ui.txtPensum.setEnabled(false);
-				
+
 				ui.txtHolidays.setValue(usr.getHoliday());
 				ui.txtHolidays.setEnabled(false);
-				
+
 				ui.checkBox.setChecked(!usr.isActive());
 				ui.checkBox.setVisible(false);
 			}
@@ -101,7 +101,7 @@ public class UserDataView extends QWidget{
 			ui.checkBox.setVisible(true);
 		}
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void addClicked() {
 		if (usr == null) {
@@ -114,7 +114,8 @@ public class UserDataView extends QWidget{
 
 	private void addNewUser() {
 		try {
-			usr = UserController.getInstance().addUser(ui.txtFirstname.text(), ui.txtName.text(), ui.txtPassword.text(), ui.txtPensum.value(), (SystemRole)ui.cmbRole.itemData(ui.cmbRole.currentIndex()), ui.txtHolidays.value());
+			usr = UserController.getInstance().addUser(ui.txtFirstname.text(), ui.txtName.text(), ui.txtPassword.text(), ui.txtPensum.value(),
+					(SystemRole) ui.cmbRole.itemData(ui.cmbRole.currentIndex()), ui.txtHolidays.value());
 		} catch (WaktuGeneralException e) {
 			errorMessage.emit(e.getMessage());
 		}
@@ -133,12 +134,12 @@ public class UserDataView extends QWidget{
 			errorMessage.emit(e.getMessage());
 		}
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void updateData() {
 		setFields();
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void addData(Usr usr) {
 		setFields();
@@ -146,18 +147,16 @@ public class UserDataView extends QWidget{
 
 	@SuppressWarnings("unused")
 	private void translate() {
-        ui.retranslateUi(this);
-        changeText();
+		ui.retranslateUi(this);
+		changeText();
 	}
 
 	private void changeText() {
 		if (usr != null) {
-			ui.btnAdd.setText(com.trolltech.qt.core.QCoreApplication.translate(
-					"ProjectDataView", "Save", null));
+			ui.btnAdd.setText(QCoreApplication.translate("ProjectDataView", "Save", null));
 		} else {
-			ui.btnAdd.setText(com.trolltech.qt.core.QCoreApplication.translate(
-					"ProjectDataView", "Add", null));
+			ui.btnAdd.setText(QCoreApplication.translate("ProjectDataView", "Add", null));
 		}
 	}
-	
+
 }

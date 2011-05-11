@@ -9,6 +9,7 @@ import ch.hsr.waktu.gui.qt.view.usermanagment.UserProjectsView;
 import ch.hsr.waktu.gui.qt.view.usermanagment.UserWorkSessionsView;
 import ch.hsr.waktu.guicontroller.LanguageController;
 
+import com.trolltech.qt.core.QCoreApplication;
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.QRegExp;
 import com.trolltech.qt.core.Qt;
@@ -120,7 +121,7 @@ public class UserDetails extends QWidget {
 	@Override
 	protected void contextMenuEvent(QContextMenuEvent event) {
         QMenu menu = new QMenu(this);
-        QAction closeAction = new QAction(com.trolltech.qt.core.QCoreApplication.translate("UserDetails",("Close"),null),menu);
+        QAction closeAction = new QAction(QCoreApplication.translate("UserDetails",("Close"),null),menu);
         closeAction.triggered.connect(this, "closeWindow()");
         menu.addAction(closeAction);
         menu.exec(event.globalPos());
