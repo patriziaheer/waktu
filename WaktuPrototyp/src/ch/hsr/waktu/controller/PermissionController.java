@@ -70,7 +70,7 @@ public class PermissionController extends QSignalEmitter {
 
 	}
 
-	public ArrayList<PermissionNode> getPermissions() {
+	public ArrayList<PermissionNode> getPermissionNodes() {
 		ArrayList<PermissionNode> list = new ArrayList<PermissionNode>();
 
 		for (Permission perm : permissionTable) {
@@ -90,7 +90,10 @@ public class PermissionController extends QSignalEmitter {
 
 	public boolean checkPermission(String method) {
 
-		for (PermissionNode pn : getPermissions()) {
+		
+		
+		
+		for (PermissionNode pn : getPermissionNodes()) {
 			if((pn.getSystemRole().equals(LoginController.getInstance().getLoggedInUser().getSystemRole())) && (pn.getMethod().equals(method))) {
 				return pn.getPermission();
 			}
