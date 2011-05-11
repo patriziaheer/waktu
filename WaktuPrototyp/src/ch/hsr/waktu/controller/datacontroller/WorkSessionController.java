@@ -84,7 +84,6 @@ public class WorkSessionController extends QSignalEmitter {
 			throws WaktuGeneralException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
-
 		List<WorkSession> workSessionsByDate;
 		try {
 			Query q = em.createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE ws.startTime >= '" + date.toString("yyyy-MM-dd") + " 00:00:00" + "' AND ws.endTime <= '" + date.toString("yyyy-MM-dd") + " 23:59:59" + "' AND u.usrid = '"+user.getId()+"'");
@@ -165,6 +164,14 @@ public class WorkSessionController extends QSignalEmitter {
 				.createEntityManager();
 		WorkSession newWorkSession = new WorkSession(user, workPackage,
 				startTime, endTime, description);
+		
+		//TODO: SS: GregorianCalendar <-> TIMESTAMP in POSTGRESQL-Mapping
+		//problem: JPA saves GregorianCalendar-Dates with wrong month in DB (eg. 6 instead of 5)
+		//quick fix: subtract 1 from GregorianCalendar.MONTH
+		newWorkSession.getStart().set(GregorianCalendar.MONTH, newWorkSession.getStart().get(GregorianCalendar.MONTH)-1);
+		newWorkSession.getEnd().set(GregorianCalendar.MONTH, newWorkSession.getEnd().get(GregorianCalendar.MONTH)-1);
+		
+		
 		try {
 			em.getTransaction().begin();
 			em.persist(newWorkSession);
@@ -193,11 +200,21 @@ public class WorkSessionController extends QSignalEmitter {
 			em.getTransaction().begin();
 			updateWorkSession = em.find(WorkSession.class, workSession.getId());
 
-			updateWorkSession.setUser(workSession.getUser());
-			updateWorkSession.setWorkPackage(workSession.getWorkPackage());
-			updateWorkSession.setStart(workSession.getStart());
-			updateWorkSession.setEnd(workSession.getEnd());
-			updateWorkSession.setDescription(workSession.getDescription());
+//			updateWorkSession.setUser(workSession.getUser());
+//			updateWorkSession.setWorkPackage(workSession.getWorkPackage());
+//			updateWorkSession.setStart(workSession.getStart());
+//			updateWorkSession.setEnd(workSession.getEnd());
+//			updateWorkSession.setDescription(workSession.getDescription());
+			
+			em.merge(workSession);
+			
+			System.err.println("userid" + updateWorkSession.getUser().getId());
+			
+			//TODO: SS: GregorianCalendar <-> TIMESTAMP in POSTGRESQL-Mapping
+			//problem: JPA saves GregorianCalendar-Dates with wrong month in DB (eg. 6 instead of 5)
+			//quick fix: subtract 1 from GregorianCalendar.MONTH
+			updateWorkSession.getStart().set(GregorianCalendar.MONTH, updateWorkSession.getStart().get(GregorianCalendar.MONTH)-1);
+			updateWorkSession.getEnd().set(GregorianCalendar.MONTH, updateWorkSession.getEnd().get(GregorianCalendar.MONTH)-1);
 
 			em.getTransaction().commit();
 		} catch (IllegalStateException e) {
