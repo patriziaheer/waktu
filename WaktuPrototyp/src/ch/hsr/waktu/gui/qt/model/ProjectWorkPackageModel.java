@@ -8,6 +8,7 @@ import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.WorkPackage;
 
 import com.trolltech.qt.core.QAbstractItemModel;
+import com.trolltech.qt.core.QCoreApplication;
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.QSize;
 import com.trolltech.qt.core.Qt;
@@ -69,9 +70,9 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 		if (Qt.ItemDataRole.DisplayRole == role && Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
 			case 0:
-				return tr("Description");
+				return QCoreApplication.translate("ProjectWorkPackageModel", "Description");
 			case 1:
-				return tr("Inactiv");
+				return QCoreApplication.translate("ProjectWorkPackageModel", "Inactiv");
 			}
 		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Vertical == orientation) {
 			return new QSize(0, 20);

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ManagmentWindow.jui'
 **
-** Created: Di. Mai 10 11:08:07 2011
+** Created: Mi 11. Mai 13:24:47 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!

@@ -9,6 +9,7 @@ import ch.hsr.waktu.domain.WorkSession;
 import ch.hsr.waktu.services.TimeUtil;
 
 import com.trolltech.qt.core.QAbstractItemModel;
+import com.trolltech.qt.core.QCoreApplication;
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.QSize;
 import com.trolltech.qt.core.Qt;
@@ -54,12 +55,12 @@ public class UserWorkSessionModel extends QAbstractItemModel {
 	public Object headerData(int section, Orientation orientation, int role) {
 		if (Qt.ItemDataRole.DisplayRole == role && Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
-			case 0: return tr("Project");
-			case 1: return tr("WorkPackage");
-			case 2: return tr("Desciption");
-			case 3: return tr("Start");
-			case 4: return tr("End");
-			case 5: return tr("Duration");
+			case 0: return QCoreApplication.translate("UserWorkSessionModel", "Project");
+			case 1: return QCoreApplication.translate("UserWorkSessionModel", "WorkPackage");
+			case 2: return QCoreApplication.translate("UserWorkSessionModel", "Desciption");
+			case 3: return QCoreApplication.translate("UserWorkSessionModel", "Start");
+			case 4: return QCoreApplication.translate("UserWorkSessionModel", "End");
+			case 5: return QCoreApplication.translate("UserWorkSessionModel", "Duration");
 			}
  		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Vertical == orientation) {
 			return new QSize(0,20);

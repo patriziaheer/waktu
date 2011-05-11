@@ -11,6 +11,7 @@ import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.services.TimeUtil;
 
 import com.trolltech.qt.core.QAbstractItemModel;
+import com.trolltech.qt.core.QCoreApplication;
 import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.core.QDateTime;
 import com.trolltech.qt.core.QModelIndex;
@@ -67,11 +68,11 @@ public class FavoriteModel extends QAbstractItemModel {
 				&& Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
 			case 0:
-				return "Workpackage";
+				return QCoreApplication.translate("FavoriteModel", "Workpackage");
 			case 1:
-				return "Start";
+				return QCoreApplication.translate("FavoriteModel", "Start");
 			case 2:
-				return "End";
+				return QCoreApplication.translate("FavoriteModel", "End");
 			case 3:
 				return "";
 			}

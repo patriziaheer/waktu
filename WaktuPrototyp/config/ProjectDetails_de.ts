@@ -4,7 +4,7 @@
 <context>
     <name>.ProjectDetails</name>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/view/ProjectDetails.java" line="116"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/ProjectDetails.java" line="132"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>

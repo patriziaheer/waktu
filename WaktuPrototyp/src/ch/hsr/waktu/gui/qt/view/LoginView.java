@@ -7,6 +7,7 @@ import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.guicontroller.LanguageController;
 import ch.hsr.waktu.guicontroller.LanguageController.Language;
 
+import com.trolltech.qt.core.QCoreApplication;
 import com.trolltech.qt.core.Qt.CursorShape;
 import com.trolltech.qt.gui.QAction;
 import com.trolltech.qt.gui.QApplication;
@@ -93,6 +94,11 @@ public class LoginView extends QDialog {
 	}
 
 	@SuppressWarnings("unused")
+	private void closeClicked() {
+		QApplication.exit();
+	}
+
+	@SuppressWarnings("unused")
 	private void translateDE() {
 		LanguageController.getInstance().setCurrLanguage(Language.DE);
 	}
@@ -108,21 +114,16 @@ public class LoginView extends QDialog {
 		changeText();
 	}
 
-	@SuppressWarnings("unused")
-	private void closeClicked() {
-		QApplication.exit();
-	}
-
 	private void changeText() {
-		fileMenu.setTitle(com.trolltech.qt.core.QCoreApplication.translate(
+		fileMenu.setTitle(QCoreApplication.translate(
 				"LoginView", "File", null));
-		languageMenu.setTitle(com.trolltech.qt.core.QCoreApplication.translate(
+		languageMenu.setTitle(QCoreApplication.translate(
 				"LoginView", "language", null));
-		translateDEAction.setText(com.trolltech.qt.core.QCoreApplication
+		translateDEAction.setText(QCoreApplication
 				.translate("LoginView", "DE", null));
-		translateENAction.setText(com.trolltech.qt.core.QCoreApplication
+		translateENAction.setText(QCoreApplication
 				.translate("LoginView", "EN", null));
-		closeAction.setText(com.trolltech.qt.core.QCoreApplication.translate(
+		closeAction.setText(QCoreApplication.translate(
 				"LoginView", "Close", null));
 	}
 }
