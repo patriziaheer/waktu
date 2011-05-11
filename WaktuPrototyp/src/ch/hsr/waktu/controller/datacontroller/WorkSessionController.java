@@ -1,6 +1,5 @@
 package ch.hsr.waktu.controller.datacontroller;
 
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -14,11 +13,9 @@ import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.domain.WorkSession;
-import ch.hsr.waktu.services.TimeUtil;
 
 import com.trolltech.qt.QSignalEmitter;
 import com.trolltech.qt.core.QDate;
-import com.trolltech.qt.core.QDateTime;
 
 /**
  * @author simon.staeheli
@@ -98,31 +95,6 @@ public class WorkSessionController extends QSignalEmitter {
 			em.close();
 		}
 		return workSessionsByDate;
-	}
-
-	// TODO: MF: Wird diese Methode noch gebraucht?
-	public List<WorkSession> getWorkSessionsStartingAt(Usr user, QDate startDate) {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
-
-		@SuppressWarnings("unchecked")
-		List<WorkSession> workSessionsByUser = em.createQuery(
-				"SELECT ws FROM WorkSession ws ORDER BY ws.id").getResultList();
-
-		ArrayList<WorkSession> workSessions = new ArrayList<WorkSession>();
-		for (WorkSession ws : workSessionsByUser) {
-			if (ws.getUser().equals(user)
-					&& ws.getStart().equals(
-							TimeUtil.convertQDateTimeToGregorian(new QDateTime(
-									startDate, null)))) {
-				workSessions.add(ws);
-				// logger.info("WORKSESSION: " + ws.toString());
-			}
-
-		}
-
-		em.close();
-		return workSessions;
 	}
 
 	@SuppressWarnings("unchecked")
