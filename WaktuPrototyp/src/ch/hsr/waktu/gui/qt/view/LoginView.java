@@ -1,6 +1,6 @@
 package ch.hsr.waktu.gui.qt.view;
 
-import ch.hsr.waktu.controller.PermissionController;
+import ch.hsr.waktu.controller.LoginController;
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Usr;
@@ -66,7 +66,7 @@ public class LoginView extends QDialog {
 	private void loginClicked() {
 		try {
 			this.setCursor(new QCursor(CursorShape.WaitCursor));
-			if (PermissionController.getInstance().login(ui.txtUsername.text(),
+			if (LoginController.getInstance().login(ui.txtUsername.text(),
 					ui.txtPassword.text())) {
 				Usr usr = UserController.getInstance().getUser(
 						ui.txtUsername.text());

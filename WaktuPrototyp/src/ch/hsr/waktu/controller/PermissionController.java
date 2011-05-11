@@ -7,12 +7,8 @@ import javax.persistence.EntityManager;
 
 import org.apache.log4j.Logger;
 
-import ch.hsr.waktu.controller.datacontroller.UserController;
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Permission;
 import ch.hsr.waktu.domain.SystemRole;
-import ch.hsr.waktu.domain.Usr;
-import ch.hsr.waktu.services.Md5;
 
 import com.trolltech.qt.QSignalEmitter;
 
@@ -37,44 +33,10 @@ public class PermissionController extends QSignalEmitter {
 	public Signal0 update = new Signal0();
 	public Signal1<Permission> add = new Signal1<Permission>();
 
-	private static Usr loggedInUser;
 	private static List<Permission> permissionTable;
 
 	protected PermissionController() {
 		permissionTable = getPermissionTable();
-	}
-
-	public Usr getLoggedInUser() {
-		return loggedInUser;
-	}
-
-	private void setLoggedInUser(Usr user) {
-		loggedInUser = user;
-	}
-
-	/**
-	 * 
-	 * @param user
-	 */
-	public void logout() {
-		setLoggedInUser(null);
-	}
-
-	/**
-	 * 
-	 * @param username
-	 * @throws WaktuGeneralException 
-	 */
-	public boolean login(String username, String password) throws WaktuGeneralException {
-		if (canLogin(username)) {
-			Usr user = UserController.getInstance().getUser(username);
-			String passwordHash = Md5.hash(password);
-			if (user.getPasswordHash().equals(passwordHash)) {
-				setLoggedInUser(user);
-				return true;
-			}
-		}
-		return false;
 	}
 
 	private List<Permission> getPermissionTable() {
@@ -108,23 +70,6 @@ public class PermissionController extends QSignalEmitter {
 
 	}
 
-	/**
-	 * 
-	 * @param username
-	 * @param password
-	 */
-	public boolean canLogin(String username) {
-
-		try {
-			if (UserController.getInstance().getUser(username) != null) {
-				return true;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
-
 	public ArrayList<PermissionNode> getPermissions() {
 		ArrayList<PermissionNode> list = new ArrayList<PermissionNode>();
 
@@ -146,7 +91,7 @@ public class PermissionController extends QSignalEmitter {
 	public boolean checkPermission(String method) {
 
 		for (PermissionNode pn : getPermissions()) {
-			if((pn.getSystemRole().equals(loggedInUser.getSystemRole())) && (pn.getMethod().equals(method))) {
+			if((pn.getSystemRole().equals(LoginController.getInstance().getLoggedInUser().getSystemRole())) && (pn.getMethod().equals(method))) {
 				return pn.getPermission();
 			}
 		}

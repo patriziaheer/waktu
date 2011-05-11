@@ -38,7 +38,7 @@ public class TimeController {
 		LinkedList<WorkSession> workSessionsWithinRange = new LinkedList<WorkSession>();
 		for(QDate d = fromDate; fromDate.daysTo(toDate) >= 0; d.addDays(1)) {
 			try {
-				for(WorkSession ws: WorkSessionController.getInstance().getWorkSessionsStartingAt(user, d)) {
+				for(WorkSession ws: WorkSessionController.getInstance().getWorkSessions(user, d)) {
 					if(ws.getEnd().before(toDate)) {
 						workSessionsWithinRange.add(ws);
 					} else {

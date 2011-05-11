@@ -32,18 +32,18 @@ public class TestPermissionController {
 	
 	@Test
 	public void canLogin_InvalidUsername_False() {		
-		assertEquals(false, PermissionController.getInstance().canLogin("boaheyistdaseinlangerungültigername"));
+		assertEquals(false, LoginController.getInstance().canLogin("boaheyistdaseinlangerungültigername"));
 	}
 	
 	@Test
 	public void canLogin_ValidUsername_True() {
-		assertEquals(true, PermissionController.getInstance().canLogin("chucknorris"));
+		assertEquals(true, LoginController.getInstance().canLogin("chucknorris"));
 	}
 	
 	@Test
 	public void login_InvalidPassword_False() {
 		try {
-			assertEquals(false, PermissionController.getInstance().login("mickeymouse", "falschespasswort"));
+			assertEquals(false, LoginController.getInstance().login("mickeymouse", "falschespasswort"));
 		} catch (WaktuGeneralException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -53,7 +53,7 @@ public class TestPermissionController {
 	@Test
 	public void login_InvalidUsername_False() {
 		try {
-			assertEquals(false, PermissionController.getInstance().login("üngültigernameh", "whatever"));
+			assertEquals(false, LoginController.getInstance().login("üngültigernameh", "whatever"));
 		} catch (WaktuGeneralException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -63,7 +63,7 @@ public class TestPermissionController {
 	@Test
 	public void login_ValidUsernamePassword_True() {
 		try {
-			assertEquals(true, PermissionController.getInstance().login("chucknorris", "1337"));
+			assertEquals(true, LoginController.getInstance().login("chucknorris", "1337"));
 		} catch (WaktuGeneralException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,8 +72,8 @@ public class TestPermissionController {
 	
 	@Test
 	public void logout_LoggedInUserIsNull() {
-		PermissionController.getInstance().logout();
-		assertEquals(null, PermissionController.getInstance().getLoggedInUser());
+		LoginController.getInstance().logout();
+		assertEquals(null, LoginController.getInstance().getLoggedInUser());
 	}
 	
 }
