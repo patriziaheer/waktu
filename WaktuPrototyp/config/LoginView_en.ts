@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.0" language="en_US">
 <context>
     <name>LoginView</name>
     <message>
         <location filename="../src/ch/hsr/waktu/gui/qt/view/LoginView.java" line="80"/>
         <source>Username or Password wrong</source>
-        <translation type="unfinished"></translation>
+        <translation>Username or Password wrong</translation>
     </message>
     <message>
         <location filename="../src/ch/hsr/waktu/gui/qt/view/LoginView.java" line="118"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>File</translation>
     </message>
     <message>
         <location filename="../src/ch/hsr/waktu/gui/qt/view/LoginView.java" line="120"/>
         <source>language</source>
-        <translation type="unfinished"></translation>
+        <translation>Language</translation>
     </message>
     <message>
         <location filename="../src/ch/hsr/waktu/gui/qt/view/LoginView.java" line="122"/>
         <source>DE</source>
-        <translation type="unfinished"></translation>
+        <translation>GER</translation>
     </message>
     <message>
         <location filename="../src/ch/hsr/waktu/gui/qt/view/LoginView.java" line="124"/>
         <source>EN</source>
-        <translation type="unfinished"></translation>
+        <translation>EN</translation>
     </message>
     <message>
         <location filename="../src/ch/hsr/waktu/gui/qt/view/LoginView.java" line="126"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Close</translation>
     </message>
 </context>
 </TS>

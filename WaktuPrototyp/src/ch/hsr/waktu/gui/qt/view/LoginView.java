@@ -12,6 +12,7 @@ import com.trolltech.qt.core.Qt.CursorShape;
 import com.trolltech.qt.gui.QAction;
 import com.trolltech.qt.gui.QApplication;
 import com.trolltech.qt.gui.QBrush;
+import com.trolltech.qt.gui.QCloseEvent;
 import com.trolltech.qt.gui.QColor;
 import com.trolltech.qt.gui.QCursor;
 import com.trolltech.qt.gui.QDialog;
@@ -74,7 +75,7 @@ public class LoginView extends QDialog {
 				TimeView timeView = new TimeView(usr);
 				timeView.show();
 				this.setCursor(new QCursor(CursorShape.ArrowCursor));
-				close();
+				setVisible(false);
 			} else {
 				setStatus(com.trolltech.qt.core.QCoreApplication
 						.translate("LoginView", "Username or Password wrong",
@@ -126,4 +127,10 @@ public class LoginView extends QDialog {
 		closeAction.setText(QCoreApplication.translate(
 				"LoginView", "Close", null));
 	}
+	
+	@Override
+	protected void closeEvent(QCloseEvent arg__1) {
+		QApplication.exit();
+	}
+	
 }

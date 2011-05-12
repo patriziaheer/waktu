@@ -1,10 +1,13 @@
 QWidget {
 	background-color: white;
-	font-size: 12px;
+	font: "Arial" 14px;
 	color: black;
 }
 QPushButton {
 	background-color: #E0E0E0;
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 5px;
 }
 QPushButton:hover {
    background-color: #C6C6C6;
@@ -21,7 +24,8 @@ QPushButton:default {
 }
 
 QLineEdit {
-    border: 2px solid gray;
+    border: 1px solid gray;
+    border-radius: 3px;
     padding: 0 2px;
     background: white;
     selection-background-color: darkgray;
@@ -69,14 +73,35 @@ QComboBox::drop-down {
 }
 
 
-QSpinBox {
+QSpinBox, QDateEdit, QTimeEdit, QDateTimeEdit {
     padding-right: 15px;
-    border-width: 3;
+    border-radius: 3px;
+    border: 1px solid gray;
+}
+
+
+QMenuBar {
+    background-color: #E0E0E0;
+}
+
+QMenuBar::item {
+    padding: 5px 4px;
+    background: transparent;
+}
+
+QMenuBar::item:pressed {
+    background: #C6C6C6;
 }
 
 QMenu {
-    background-color: white;  sets background of the menu 
-    border: 1px solid black; 
+    background-color: #DEDBDB;
+    border: 1px solid lightgray;
+    spacing: 10px;  spacing between menu bar items 
+    padding: 5px 4px;
+}
+
+QMenu:hover {
+	background-color: #E0E0E0;
 }
 
 QMenu::item {
@@ -85,31 +110,13 @@ QMenu::item {
     background-color: transparent; 
 }
 
-QMenu::item:selected {  when user selects item using mouse or keyboard 
-    background-color: #E0E0E0;
+QMenu::item:pressed {
+    background: lightgray;
 }
 
-
-QMenuBar {
-    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                                      stop:0 lightgray, stop:1 darkgray);
+QMenu::item:hover {
+	background-color: #E0E0E0;
 }
-
-QMenuBar::item {
-    spacing: 3px;  spacing between menu bar items 
-    padding: 1px 4px;
-    background: transparent;
-    border-radius: 4px;
-}
-
-QMenuBar::item:selected {  when selected using mouse or keyboard 
-    background: #a8a8a8;
-}
-
-QMenuBar::item:pressed {
-    background: #888888;
-}
-
 
 
 QTabBar::pane { /* The tab widget frame */
@@ -226,9 +233,9 @@ QScrollBar:vertical {
 
 QGroupBox {
     background-color: white;
-    border: 2px solid gray;
-    border-radius: 5px;
-    margin-top: 1ex;  leave space at the top for the title 
+    border: 1px solid gray;
+    border-radius: 3px;
+    margin-top: 2ex;  leave space at the top for the title 
 }
 
 QGroupBox::title {
@@ -236,5 +243,7 @@ QGroupBox::title {
     subcontrol-position: top center;  position at the top center 
     padding: 0 3px;
     background-color: white;
+    margin-left: 4px;
+    margin-right: 3px;
 }
 
