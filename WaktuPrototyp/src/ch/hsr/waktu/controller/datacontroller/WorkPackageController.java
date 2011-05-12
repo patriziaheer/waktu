@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 import org.apache.log4j.Logger;
 
+import ch.hsr.waktu.controller.PermissionController;
 import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.WorkPackage;
@@ -49,6 +50,11 @@ public class WorkPackageController extends QSignalEmitter {
 				.createEntityManager();
 
 		List<WorkPackage> activeWorkPackages;
+		
+		if(!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
 		try {
 			activeWorkPackages = em.createQuery(
 					"SELECT wp FROM WorkPackage wp WHERE wp.active = TRUE").getResultList();
@@ -76,6 +82,11 @@ public class WorkPackageController extends QSignalEmitter {
 				.createEntityManager();
 
 		List<WorkPackage> allWorkPackages;
+		
+		if(!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
 		try {
 			allWorkPackages = em.createQuery(
 					"SELECT wp FROM WorkPackage wp").getResultList();
@@ -103,6 +114,11 @@ public class WorkPackageController extends QSignalEmitter {
 				.createEntityManager();
 
 		List<WorkPackage> inactiveWorkPackages;
+		
+		if(!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
 		try {
 			inactiveWorkPackages = em.createQuery(
 					"SELECT wp FROM WorkPackage wp WHERE wp.active = FALSE")
@@ -130,6 +146,11 @@ public class WorkPackageController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		WorkPackage newWorkPackage = new WorkPackage(project, description);
+		
+		if(!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
 		try {
 			em.getTransaction().begin();
 			em.persist(newWorkPackage);
@@ -159,6 +180,11 @@ public class WorkPackageController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		WorkPackage updateWorkPackage;
+		
+		if(!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
 		try {
 			em.getTransaction().begin();
 			updateWorkPackage = em.find(WorkPackage.class, workPackage.getId());

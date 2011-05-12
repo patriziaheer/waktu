@@ -8,6 +8,8 @@ import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 
+import ch.hsr.waktu.controller.BusinessRuleController;
+import ch.hsr.waktu.controller.PermissionController;
 import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
@@ -55,6 +57,11 @@ public class WorkSessionController extends QSignalEmitter {
 				.createEntityManager();
 
 		List<WorkSession> workSessionsByUser;
+		
+		if(!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
 		try {
 			workSessionsByUser = em.createQuery(
 					"SELECT ws FROM WorkSession ws JOIN ws.userref u WHERE u.usrid = '"
@@ -83,6 +90,11 @@ public class WorkSessionController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		List<WorkSession> workSessionsByDate;
+		
+		if(!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
 		try {
 			Query q = em.createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE ws.startTime >= '" + date.toString("yyyy-MM-dd") + " 00:00:00" + "' AND ws.endTime <= '" + date.toString("yyyy-MM-dd") + " 23:59:59" + "' AND u.usrid = '"+user.getId()+"'");
 			workSessionsByDate = q.getResultList();
@@ -105,6 +117,11 @@ public class WorkSessionController extends QSignalEmitter {
 				.createEntityManager();
 
 		List<WorkSession> workSessionsByProject;
+		
+		if(!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
 		try {
 			workSessionsByProject = em
 					.createQuery(
@@ -145,6 +162,12 @@ public class WorkSessionController extends QSignalEmitter {
 		newWorkSession.getEnd().set(GregorianCalendar.MONTH, newWorkSession.getEnd().get(GregorianCalendar.MONTH)-1);
 		
 		
+		if(!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
+		BusinessRuleController.check(newWorkSession);
+		
 		try {
 			em.getTransaction().begin();
 			em.persist(newWorkSession);
@@ -168,6 +191,14 @@ public class WorkSessionController extends QSignalEmitter {
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
+		
+		
+		if(!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
+		BusinessRuleController.check(workSession);
+		
 		WorkSession updateWorkSession;
 		try {
 			em.getTransaction().begin();
@@ -209,6 +240,11 @@ public class WorkSessionController extends QSignalEmitter {
 	 */
 	public void removeWorkSession(WorkSession workSession)
 			throws WaktuException {
+		
+		if(!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		try {

@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 import org.apache.log4j.Logger;
 
+import ch.hsr.waktu.controller.PermissionController;
 import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.ProjectStaff;
@@ -48,7 +49,11 @@ public class ProjectStaffController extends QSignalEmitter {
 				.createEntityManager();
 
 		List<Project> projects;
-
+		
+		if(!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
 		try {
 			projects = em
 					.createQuery(
@@ -76,7 +81,11 @@ public class ProjectStaffController extends QSignalEmitter {
 				.createEntityManager();
 
 		List<Usr> users;
-
+		
+		if(!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
 		try {
 			users = em
 					.createQuery(
@@ -104,7 +113,11 @@ public class ProjectStaffController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		ProjectStaff newProjectStaff = new ProjectStaff(user, project);
-
+		
+		if(!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
 		try {
 			em.getTransaction().begin();
 			em.persist(newProjectStaff);
@@ -136,7 +149,11 @@ public class ProjectStaffController extends QSignalEmitter {
 				.createEntityManager();
 
 		ProjectStaff projectStaffToRemove;
-
+		
+		if(!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
 		try {
 			em.getTransaction().begin();
 			projectStaffToRemove = (ProjectStaff) em

@@ -27,7 +27,7 @@ public class GuiController {
 	 */
 	public boolean canAddProject() {
 		try {
-			return PermissionController.getInstance().checkPermission(
+			return PermissionController.checkPermission(
 					"addProject");
 		} catch (WaktuException e) {
 			logger.info(e.getMessage());
@@ -37,7 +37,7 @@ public class GuiController {
 
 	public boolean canModifyProject() {
 		try {
-			return PermissionController.getInstance().checkPermission(
+			return PermissionController.checkPermission(
 					"updateProject");
 		} catch (WaktuException e) {
 			logger.info(e.getMessage());
@@ -50,7 +50,7 @@ public class GuiController {
 	 */
 	public boolean canAddProjectStaff() {
 		try {
-			return PermissionController.getInstance().checkPermission(
+			return PermissionController.checkPermission(
 					"addProjectStaff");
 		} catch (WaktuException e) {
 			logger.info(e.getMessage());
@@ -64,8 +64,7 @@ public class GuiController {
 	 */
 	public boolean canAddUser() {
 		try {
-			return PermissionController.getInstance()
-					.checkPermission("addUser");
+			return PermissionController.checkPermission("addUser");
 		} catch (WaktuException e) {
 			logger.info(e.getMessage());
 		}
@@ -74,7 +73,7 @@ public class GuiController {
 
 	public boolean canModifyUser() {
 		try {
-			return PermissionController.getInstance().checkPermission(
+			return PermissionController.checkPermission(
 					"updateUser");
 		} catch (WaktuException e) {
 			logger.info(e.getMessage());
@@ -89,7 +88,7 @@ public class GuiController {
 	public boolean canModifyUser(Usr usrToModify) {
 		boolean permission = false;
 		try {
-			permission = PermissionController.getInstance().checkPermission("updateUser");
+			permission = PermissionController.checkPermission("updateUser");
 		} catch (WaktuException e) {
 			logger.info(e.getMessage());
 		}
@@ -108,7 +107,7 @@ public class GuiController {
 	public boolean canAddWorkPackage(Project project) {
 		boolean permission = false;
 		try {
-			permission = PermissionController.getInstance().checkPermission("addWorkPackage");
+			permission = PermissionController.checkPermission("addWorkPackage");
 		} catch (WaktuException e) {
 			logger.info(e.getMessage());
 		}

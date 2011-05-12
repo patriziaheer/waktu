@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import org.apache.log4j.Logger;
 
 import ch.hsr.waktu.controller.BusinessRuleController;
+import ch.hsr.waktu.controller.PermissionController;
 import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
@@ -21,20 +22,17 @@ import com.trolltech.qt.QSignalEmitter;
  * @version 1.0
  * @created 01-Apr-2011 15:36:30
  */
-public class UserController  extends QSignalEmitter {
+public class UserController extends QSignalEmitter {
 
 	public enum UserProperties {
 		Data, Projects, WorkSessions
 	}
-	
-	private static BusinessRuleController bc;
 
 	private static UserController theInstance = null;
 
 	public static UserController getInstance() {
 		if (theInstance == null) {
 			theInstance = new UserController();
-			bc = new BusinessRuleController();
 		}
 		return theInstance;
 	}
@@ -57,6 +55,11 @@ public class UserController  extends QSignalEmitter {
 				.createEntityManager();
 
 		List<Usr> activeUsers;
+
+		if (!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+
 		try {
 			activeUsers = em.createQuery(
 					"SELECT u FROM Usr u WHERE u.active = 'TRUE'")
@@ -80,9 +83,13 @@ public class UserController  extends QSignalEmitter {
 				.createEntityManager();
 
 		List<Usr> allUsers;
+
+		if (!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+
 		try {
-			allUsers = em.createQuery("SELECT u FROM Usr u")
-					.getResultList();
+			allUsers = em.createQuery("SELECT u FROM Usr u").getResultList();
 		} catch (IllegalStateException e) {
 			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
@@ -102,6 +109,11 @@ public class UserController  extends QSignalEmitter {
 				.createEntityManager();
 
 		List<Usr> inactiveUsers;
+
+		if (!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+
 		try {
 			inactiveUsers = em.createQuery(
 					"SELECT u FROM Usr u WHERE u.active = 'FALSE'")
@@ -125,6 +137,11 @@ public class UserController  extends QSignalEmitter {
 				.createEntityManager();
 
 		List<Usr> allProjectManagers;
+
+		if (!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+
 		try {
 			allProjectManagers = em.createQuery(
 					"SELECT u FROM Project p JOIN p.projectManager u")
@@ -151,6 +168,7 @@ public class UserController  extends QSignalEmitter {
 				.createEntityManager();
 
 		Usr usr;
+
 		try {
 			usr = (Usr) em
 					.createQuery(
@@ -178,16 +196,18 @@ public class UserController  extends QSignalEmitter {
 	 * @param role
 	 */
 	public Usr addUser(String firstname, String lastname, String password,
-			int pensum, SystemRole role, double holiday)
-			throws WaktuException {
+			int pensum, SystemRole role, double holiday) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
-		Usr newUsr = new Usr(generateUsername(firstname,
-				lastname), firstname, lastname, Md5.hash(password), pensum,
-				role, holiday);
-		
-		bc.check(newUsr);
+		Usr newUsr = new Usr(generateUsername(firstname, lastname), firstname,
+				lastname, Md5.hash(password), pensum, role, holiday);
+
+		if (!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+
+		BusinessRuleController.check(newUsr);
 
 		try {
 			em.getTransaction().begin();
@@ -217,6 +237,12 @@ public class UserController  extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
+		if (!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+
+		BusinessRuleController.check(usr);
+
 		try {
 			em.getTransaction().begin();
 			Usr updateUsr = em.find(Usr.class, usr.getId());
@@ -243,8 +269,9 @@ public class UserController  extends QSignalEmitter {
 		logger.info("user " + usr + " updated");
 
 	}
-	
-	private String generateUsername(String firstname, String name) throws WaktuException {
+
+	private String generateUsername(String firstname, String name)
+			throws WaktuException {
 		return UsernameUtil.generateUsername(getAllUsers(), firstname, name);
 	}
 

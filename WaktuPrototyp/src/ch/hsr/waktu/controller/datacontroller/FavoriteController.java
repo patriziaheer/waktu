@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 
 import org.apache.log4j.Logger;
 
+import ch.hsr.waktu.controller.PermissionController;
 import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.domain.Favorite;
 import ch.hsr.waktu.domain.Usr;
@@ -51,6 +52,10 @@ public class FavoriteController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		
+		if(!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
 		List<Favorite> allFavoritesOfUsr;		
 		try {
 			allFavoritesOfUsr = em.createQuery("SELECT f FROM Favorite f ORDER BY f.id").getResultList();
@@ -78,6 +83,11 @@ public class FavoriteController extends QSignalEmitter {
 				.createEntityManager();
 		Favorite newFavorite = new Favorite(user, workPackage, startTime,
 				endTime);
+		
+		if(!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
 		try {
 			em.getTransaction().begin();
 			em.persist(newFavorite);
@@ -106,6 +116,11 @@ public class FavoriteController extends QSignalEmitter {
 	public void updateFavorite(Favorite favorite) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
+		
+		if(!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
 		try {
 			em.getTransaction().begin();
 			Favorite updateFavorite = em.find(Favorite.class, favorite.getId());
@@ -134,6 +149,11 @@ public class FavoriteController extends QSignalEmitter {
 	public void removeFavorite(Favorite favorite) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
+		
+		if(!PermissionController.checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
 		try {
 			em.getTransaction().begin();
 			em.remove(em.find(Favorite.class, favorite.getId()));

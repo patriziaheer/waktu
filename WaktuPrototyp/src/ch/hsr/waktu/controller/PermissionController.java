@@ -21,23 +21,11 @@ import com.trolltech.qt.QSignalEmitter;
  */
 public class PermissionController extends QSignalEmitter {
 
-	private static PermissionController theInstance = null;
-
-	public static PermissionController getInstance() {
-		if (theInstance == null) {
-			theInstance = new PermissionController();
-		}
-		return theInstance;
-	}
-
-	private Logger logger = Logger.getLogger(PermissionController.class);
+	private static Logger logger = Logger.getLogger(PermissionController.class);
 	public Signal0 update = new Signal0();
 	public Signal1<Permission> add = new Signal1<Permission>();
 
-	protected PermissionController() {
-	}
-
-	private List<Permission> getPermissionTable() {
+	private static List<Permission> getPermissionTable() {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -64,7 +52,7 @@ public class PermissionController extends QSignalEmitter {
 
 	}
 
-	public ArrayList<PermissionNode> getPermissionNodes()
+	public static ArrayList<PermissionNode> getPermissionNodes()
 			throws IllegalArgumentException, IllegalAccessException {
 		ArrayList<PermissionNode> list = new ArrayList<PermissionNode>();
 
@@ -80,12 +68,12 @@ public class PermissionController extends QSignalEmitter {
 
 	}
 
-	public boolean checkPermission() throws WaktuException {
+	public static boolean checkPermission() throws WaktuException {
 		StackTraceElement[] trace = new Throwable().getStackTrace();
 		return checkPermission(trace[1].getMethodName());
 	}
 
-	public boolean checkPermission(String method) throws WaktuException {
+	public static boolean checkPermission(String method) throws WaktuException {
 
 		boolean permission = false;
 		try {
