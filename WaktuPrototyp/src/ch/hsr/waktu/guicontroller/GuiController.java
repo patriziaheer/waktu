@@ -2,11 +2,14 @@ package ch.hsr.waktu.guicontroller;
 
 import org.apache.log4j.Logger;
 
+import ch.hsr.waktu.controller.LoginController;
+import ch.hsr.waktu.controller.PermissionController;
+import ch.hsr.waktu.services.WaktuException;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 
 public class GuiController {
-	
+
 	private static GuiController theInstance = null;
 
 	public static GuiController getInstance() {
@@ -16,63 +19,105 @@ public class GuiController {
 		return theInstance;
 	}
 
-	@SuppressWarnings("unused")
 	private Logger logger = Logger.getLogger(GuiController.class);
 
-	
 	/**
 	 * 
 	 * @param user
 	 */
-	public boolean canAddProject(){
-		return true;
-		/*SystemRole systemRole = loggedInUser.getRole();
-		return PermissionTable.getPermission(SystemAction.AddProjects, systemRole, null);*/
-	}
-	
-	public boolean canModifyProject() {
-		return true;
-	}
-
-	/**
-	 * 
-	 */
-	public boolean canAddProjectStaff(){
-		return true;
-		/*if(ProjectController.getInstance().getProject(project.getId()).getProjectManager().equals(loggedInUser)) {
-			return PermissionTable.getPermission(SystemAction.AddUserToOwnProjects, loggedInUser.getRole(), project);
+	public boolean canAddProject() {
+		try {
+			return PermissionController.getInstance().checkPermission(
+					"addProject");
+		} catch (WaktuException e) {
+			logger.info(e.getMessage());
 		}
-		return PermissionTable.getPermission(SystemAction.AddUserToAllProjects, loggedInUser.getRole(), project);*/
+		return false;
 	}
 
+	public boolean canModifyProject() {
+		try {
+			return PermissionController.getInstance().checkPermission(
+					"updateProject");
+		} catch (WaktuException e) {
+			logger.info(e.getMessage());
+		}
+		return false;
+	}
+
+	/**
+	 * 
+	 */
+	public boolean canAddProjectStaff() {
+		try {
+			return PermissionController.getInstance().checkPermission(
+					"addProjectStaff");
+		} catch (WaktuException e) {
+			logger.info(e.getMessage());
+		}
+		return false;
+	}
 
 	/**
 	 * 
 	 * @param user
 	 */
-	public boolean canAddUser(){
-		return true; 
-		//return PermissionTable.getPermission(SystemAction.AddUser, loggedInUser.getRole(), null);
+	public boolean canAddUser() {
+		try {
+			return PermissionController.getInstance()
+					.checkPermission("addUser");
+		} catch (WaktuException e) {
+			logger.info(e.getMessage());
+		}
+		return false;
 	}
 
 	public boolean canModifyUser() {
-		return true;
+		try {
+			return PermissionController.getInstance().checkPermission(
+					"updateUser");
+		} catch (WaktuException e) {
+			logger.info(e.getMessage());
+		}
+		return false;
 	}
 
-	public boolean canModifyUser(Usr usrToModify) {
-		return true;
-	}
 	/**
-	 * 
+	 * Checks if current logged in user is usrToModify.
 	 * @param user
 	 */
-	public boolean canAddWorkPackage(Project project){
-		return true;
-		/*if(ProjectController.getInstance().getProject(project.getId()).getProjectManager().equals(loggedInUser)) {
-			return PermissionTable.getPermission(SystemAction.CreateOwnWorkPackages, loggedInUser.getRole(), project);
+	public boolean canModifyUser(Usr usrToModify) {
+		boolean permission = false;
+		try {
+			permission = PermissionController.getInstance().checkPermission("updateUser");
+		} catch (WaktuException e) {
+			logger.info(e.getMessage());
 		}
-		return PermissionTable.getPermission(SystemAction.CreateAllWorkPackages, loggedInUser.getRole(), project);*/
+		
+		if(!usrToModify.equals(LoginController.getInstance().getLoggedInUser())) {
+			permission = false;
+		}
+		
+		return permission;
 	}
 
+	/**
+	 * Checks if current logged in user is project manager of project.
+	 * @param user
+	 */
+	public boolean canAddWorkPackage(Project project) {
+		boolean permission = false;
+		try {
+			permission = PermissionController.getInstance().checkPermission("addWorkPackage");
+		} catch (WaktuException e) {
+			logger.info(e.getMessage());
+		}
+		
+		if(!project.getProjectManager().equals(LoginController.getInstance().getLoggedInUser())) {
+			permission = false;
+		}
+		
+		return permission;
+	}
 
 }

@@ -34,10 +34,7 @@ public class PermissionController extends QSignalEmitter {
 	public Signal0 update = new Signal0();
 	public Signal1<Permission> add = new Signal1<Permission>();
 
-	// private static List<Permission> permissionTable;
-
 	protected PermissionController() {
-		// permissionTable = getPermissionTable();
 	}
 
 	private List<Permission> getPermissionTable() {
@@ -52,13 +49,9 @@ public class PermissionController extends QSignalEmitter {
 		return permissions;
 	}
 
-	public Permission addPermission(SystemRole systemRole, boolean addUser,
-			boolean updateUser, boolean addProject, boolean updateProject,
-			boolean addFavorite, boolean updateFavorite, boolean deleteFavorite) {
+	public Permission addPermission(SystemRole systemRole) {
 
-		Permission newPermission = new Permission(systemRole, addUser,
-				updateUser, addProject, updateProject, addFavorite,
-				updateFavorite, deleteFavorite);
+		Permission newPermission = new Permission(systemRole);
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		em.getTransaction().begin();
@@ -87,17 +80,20 @@ public class PermissionController extends QSignalEmitter {
 
 	}
 
-	public void checkPermission(String method) throws WaktuException {
-
+	public boolean checkPermission() throws WaktuException {
 		StackTraceElement[] trace = new Throwable().getStackTrace();
+		return checkPermission(trace[1].getMethodName());
+	}
+
+	public boolean checkPermission(String method) throws WaktuException {
+
 		boolean permission = false;
 		try {
 			for (PermissionNode pn : getPermissionNodes()) {
 				if ((pn.getSystemRole().equals(LoginController.getInstance()
 						.getLoggedInUser().getSystemRole()))
-						&& (pn.getMethod().equals(trace[1].getMethodName()))) {
+						&& (pn.getMethod().equals(method))) {
 					permission = pn.getPermission();
-					System.out.println(permission);
 				}
 			}
 		} catch (Exception e) {
@@ -105,11 +101,16 @@ public class PermissionController extends QSignalEmitter {
 		}
 
 		if (permission) {
-			logger.info("Permission allowed: " + LoginController.getInstance().getLoggedInUser() + " " + trace[1].getMethodName() + "()");
-			return;
+			logger.info("Permission allowed: "
+					+ LoginController.getInstance().getLoggedInUser() + " "
+					+ method + "()");
+			return permission;
 		}
-		logger.info("Permission denied: " + LoginController.getInstance().getLoggedInUser() + " " + trace[1].getMethodName() + "()");
-		throw new WaktuException("permission denied");
+
+		logger.info("Permission denied: "
+				+ LoginController.getInstance().getLoggedInUser() + " "
+				+ method + "()");
+		return permission;
 	}
 }
 

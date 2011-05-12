@@ -49,6 +49,13 @@ public class TestTimeUtil {
 		assertEquals(refFirstDayOfWeek, TimeUtil.getFirstDayOfWeek(new QDate(2008, 3, 2)));
 	}
 	
+//	@Test
+//	public void getWeekBoundaries() {
+//		QDate[] refStartDateEndDate = {new QDate(), new QDate()};
+//		
+//		boundaryEquality(startDateEndDate);
+//	}
+	
 //rly necessary? only tests Qt's behaviour
 //	@Test
 //	public void calculateTimespanInSecondsYearMonthDayHrsMinsSecsDifference() {
