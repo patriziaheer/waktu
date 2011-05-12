@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 import org.apache.log4j.Logger;
 
+import ch.hsr.waktu.controller.PermissionController;
 import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
@@ -184,6 +185,12 @@ public class ProjectController extends QSignalEmitter {
 
 		Project newProject = new Project(projectIdentifier, description,
 				projectManager, plannedTime);
+		try {
+			
+			PermissionController.getInstance().checkPermission("addProject");
+		} catch (WaktuGeneralException e) {
+			System.err.println(e);
+		}
 
 		try {
 			em.getTransaction().begin();

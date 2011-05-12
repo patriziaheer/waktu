@@ -9,6 +9,11 @@ public class BusinessRuleController {
 
 	private Logger logger = Logger.getLogger(BusinessRuleController.class);
 	
+	/**
+	 * Checks if the accordant user has access rights to the specified method.
+	 * @param Usr usr
+	 * @throws WaktuGeneralException
+	 */
 	public void check(Usr usr) throws WaktuGeneralException {
 
 		if(usr.getHoliday() < 0) {
