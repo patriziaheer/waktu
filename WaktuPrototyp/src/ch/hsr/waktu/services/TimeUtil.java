@@ -54,8 +54,9 @@ public class TimeUtil {
 		return startDayEndDay;
 	}
 	
-	private static int getFirstDayOfWeek(QDate date) {
-		return date.day() - date.dayOfWeek();
+	static int getFirstDayOfWeek(QDate date) {
+		QDate adjustedDate = date.clone();
+		return adjustedDate.addDays(-date.dayOfWeek() + 1).day();
 	}
 	
 	public static QDate[] getYearBoundaries(QDate date) {

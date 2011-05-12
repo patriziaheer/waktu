@@ -72,7 +72,12 @@ public class UserWorkSessionsView extends QWidget{
 		filterModel.setEnd(end);
 		
 		//TODO add filter
-		ui.lblTotalTime.setText(""+TimeController.calculateWorktime(usr, start, end));
+		try {
+			ui.lblTotalTime.setText(""+TimeController.calculateWorktime(usr, start, end));
+		} catch (WaktuException e) {
+			// TODO Exception handling
+			e.printStackTrace();
+		}
 	}
 	
 	@SuppressWarnings("unused")
