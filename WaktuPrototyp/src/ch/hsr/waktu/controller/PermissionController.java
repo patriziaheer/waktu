@@ -49,9 +49,7 @@ public class PermissionController extends QSignalEmitter {
 		return permissions;
 	}
 
-	public Permission addPermission(SystemRole systemRole, boolean addUser,
-			boolean updateUser, boolean addProject, boolean updateProject,
-			boolean addFavorite, boolean updateFavorite, boolean deleteFavorite) {
+	public Permission addPermission(SystemRole systemRole) {
 
 		Permission newPermission = new Permission(systemRole);
 		EntityManager em = PersistenceController.getInstance().getEMF()
