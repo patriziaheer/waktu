@@ -185,12 +185,11 @@ public class ProjectController extends QSignalEmitter {
 
 		Project newProject = new Project(projectIdentifier, description,
 				projectManager, plannedTime);
-		try {
-			
-			PermissionController.getInstance().checkPermission("addProject");
-		} catch (WaktuGeneralException e) {
-			System.err.println(e);
+		
+		if(!PermissionController.getInstance().checkPermission()) {
+			throw new WaktuGeneralException("Permission denied");
 		}
+	
 
 		try {
 			em.getTransaction().begin();
