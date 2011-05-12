@@ -253,6 +253,7 @@ public class CalendarWidget extends QWidget{
 	@SuppressWarnings("unused")
 	private void translate() {
 		ui.retranslateUi(this);
+		updateCalendar();
 	}
 
 	

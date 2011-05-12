@@ -60,7 +60,7 @@ lupdate "..\src\ch\hsr\waktu\gui\qt\view\LoginView.java" -ts LoginView_en.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\ManagmentView.java" -ts ManagmentView_en.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\TimeView.java" -ts TimeView_en.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\CalendarWidget.java" -ts CalendarWidget_en.ts
-lupdate "..\src\ch\hsr\waktu\gui\qt\view\ProjectDetails.java" -ts Projectentails_en.ts
+lupdate "..\src\ch\hsr\waktu\gui\qt\view\ProjectDetails.java" -ts ProjectDetails_en.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\UserDetails.java" -ts UserDetails_en.ts
 
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\projectmanagment\ProjectDataView.java" -ts ProjectDataView_en.ts

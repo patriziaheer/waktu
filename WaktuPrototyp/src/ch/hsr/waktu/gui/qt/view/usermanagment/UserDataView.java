@@ -74,6 +74,8 @@ public class UserDataView extends QWidget {
 				ui.txtPassword.setText("");
 				if (GuiController.getInstance().canModifyUser(usr)) {
 					ui.txtPassword.setEnabled(true);
+					ui.btnAdd.setVisible(true);
+					ui.btnAdd.setText(QCoreApplication.translate("UserDataView", "Save", null));
 				} else {
 					ui.txtPassword.setEnabled(false);
 				}
@@ -153,9 +155,9 @@ public class UserDataView extends QWidget {
 
 	private void changeText() {
 		if (usr != null) {
-			ui.btnAdd.setText(QCoreApplication.translate("ProjectDataView", "Save", null));
+			ui.btnAdd.setText(QCoreApplication.translate("UserDataView", "Save", null));
 		} else {
-			ui.btnAdd.setText(QCoreApplication.translate("ProjectDataView", "Add", null));
+			ui.btnAdd.setText(QCoreApplication.translate("UserDataView", "Add", null));
 		}
 	}
 
