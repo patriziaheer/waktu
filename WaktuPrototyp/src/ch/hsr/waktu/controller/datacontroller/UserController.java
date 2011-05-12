@@ -12,6 +12,7 @@ import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.services.Md5;
 import ch.hsr.waktu.services.UsernameUtil;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
 
@@ -51,7 +52,7 @@ public class UserController  extends QSignalEmitter {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Usr> getActiveUsers() throws WaktuGeneralException {
+	public List<Usr> getActiveUsers() throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -61,11 +62,11 @@ public class UserController  extends QSignalEmitter {
 					"SELECT u FROM Usr u WHERE u.active = 'TRUE'")
 					.getResultList();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -74,7 +75,7 @@ public class UserController  extends QSignalEmitter {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Usr> getAllUsers() throws WaktuGeneralException {
+	public List<Usr> getAllUsers() throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -83,11 +84,11 @@ public class UserController  extends QSignalEmitter {
 			allUsers = em.createQuery("SELECT u FROM Usr u")
 					.getResultList();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -96,7 +97,7 @@ public class UserController  extends QSignalEmitter {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Usr> getInactiveUsers() throws WaktuGeneralException {
+	public List<Usr> getInactiveUsers() throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -106,11 +107,11 @@ public class UserController  extends QSignalEmitter {
 					"SELECT u FROM Usr u WHERE u.active = 'FALSE'")
 					.getResultList();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -119,7 +120,7 @@ public class UserController  extends QSignalEmitter {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Usr> getProjectManagers() throws WaktuGeneralException {
+	public List<Usr> getProjectManagers() throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -129,11 +130,11 @@ public class UserController  extends QSignalEmitter {
 					"SELECT u FROM Project p JOIN p.projectManager u")
 					.getResultList();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -145,7 +146,7 @@ public class UserController  extends QSignalEmitter {
 	 * 
 	 * @param loginName
 	 */
-	public Usr getUser(String username) throws WaktuGeneralException {
+	public Usr getUser(String username) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -156,11 +157,11 @@ public class UserController  extends QSignalEmitter {
 							"SELECT u FROM Usr u WHERE u.username = '"
 									+ username + "'").getSingleResult();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -178,7 +179,7 @@ public class UserController  extends QSignalEmitter {
 	 */
 	public Usr addUser(String firstname, String lastname, String password,
 			int pensum, SystemRole role, double holiday)
-			throws WaktuGeneralException {
+			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -193,11 +194,11 @@ public class UserController  extends QSignalEmitter {
 			em.persist(newUsr);
 			em.getTransaction().commit();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -212,7 +213,7 @@ public class UserController  extends QSignalEmitter {
 	 * 
 	 * @param usr
 	 */
-	public void updateUser(Usr usr) throws WaktuGeneralException {
+	public void updateUser(Usr usr) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -230,11 +231,11 @@ public class UserController  extends QSignalEmitter {
 
 			em.getTransaction().commit();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -243,7 +244,7 @@ public class UserController  extends QSignalEmitter {
 
 	}
 	
-	private String generateUsername(String firstname, String name) throws WaktuGeneralException {
+	private String generateUsername(String firstname, String name) throws WaktuException {
 		return UsernameUtil.generateUsername(getAllUsers(), firstname, name);
 	}
 

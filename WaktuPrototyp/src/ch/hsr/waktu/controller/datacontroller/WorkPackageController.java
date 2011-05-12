@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.WorkPackage;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
 
@@ -40,10 +41,10 @@ public class WorkPackageController extends QSignalEmitter {
 	/**
 	 * 
 	 * @param project
-	 * @throws WaktuGeneralException 
+	 * @throws WaktuException 
 	 */
 	@SuppressWarnings("unchecked")
-	public List<WorkPackage> getActiveWorkPackages(Project project) throws WaktuGeneralException {
+	public List<WorkPackage> getActiveWorkPackages(Project project) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -52,11 +53,11 @@ public class WorkPackageController extends QSignalEmitter {
 			activeWorkPackages = em.createQuery(
 					"SELECT wp FROM WorkPackage wp WHERE wp.active = TRUE").getResultList();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -66,11 +67,11 @@ public class WorkPackageController extends QSignalEmitter {
 	/**
 	 * 
 	 * @param project
-	 * @throws WaktuGeneralException
+	 * @throws WaktuException
 	 */
 	@SuppressWarnings("unchecked")
 	public List<WorkPackage> getAllWorkPackages(Project project)
-			throws WaktuGeneralException {
+			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -79,11 +80,11 @@ public class WorkPackageController extends QSignalEmitter {
 			allWorkPackages = em.createQuery(
 					"SELECT wp FROM WorkPackage wp").getResultList();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -93,11 +94,11 @@ public class WorkPackageController extends QSignalEmitter {
 	/**
 	 * 
 	 * @param project
-	 * @throws WaktuGeneralException
+	 * @throws WaktuException
 	 */
 	@SuppressWarnings("unchecked")
 	public List<WorkPackage> getInactiveWorkPackages(Project project)
-			throws WaktuGeneralException {
+			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -107,11 +108,11 @@ public class WorkPackageController extends QSignalEmitter {
 					"SELECT wp FROM WorkPackage wp WHERE wp.active = FALSE")
 					.getResultList();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -122,10 +123,10 @@ public class WorkPackageController extends QSignalEmitter {
 	 * 
 	 * @param project
 	 * @param description
-	 * @throws WaktuGeneralException
+	 * @throws WaktuException
 	 */
 	public WorkPackage addWorkPackage(Project project, String description)
-			throws WaktuGeneralException {
+			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		WorkPackage newWorkPackage = new WorkPackage(project, description);
@@ -134,11 +135,11 @@ public class WorkPackageController extends QSignalEmitter {
 			em.persist(newWorkPackage);
 			em.getTransaction().commit();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -151,10 +152,10 @@ public class WorkPackageController extends QSignalEmitter {
 	/**
 	 * 
 	 * @param workPackage
-	 * @throws WaktuGeneralException
+	 * @throws WaktuException
 	 */
 	public void updateWorkPackage(WorkPackage workPackage)
-			throws WaktuGeneralException {
+			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		WorkPackage updateWorkPackage;
@@ -168,11 +169,11 @@ public class WorkPackageController extends QSignalEmitter {
 
 			em.getTransaction().commit();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}

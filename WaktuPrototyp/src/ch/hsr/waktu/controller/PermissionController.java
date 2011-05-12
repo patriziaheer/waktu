@@ -8,9 +8,9 @@ import javax.persistence.EntityManager;
 
 import org.apache.log4j.Logger;
 
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Permission;
 import ch.hsr.waktu.domain.SystemRole;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
 
@@ -87,7 +87,7 @@ public class PermissionController extends QSignalEmitter {
 
 	}
 
-	public void checkPermission(String method) throws WaktuGeneralException {
+	public void checkPermission(String method) throws WaktuException {
 
 		StackTraceElement[] trace = new Throwable().getStackTrace();
 		boolean permission = false;
@@ -101,7 +101,7 @@ public class PermissionController extends QSignalEmitter {
 				}
 			}
 		} catch (Exception e) {
-			throw new WaktuGeneralException("checkPermission() error");
+			throw new WaktuException("checkPermission() error");
 		}
 
 		if (permission) {
@@ -109,7 +109,7 @@ public class PermissionController extends QSignalEmitter {
 			return;
 		}
 		logger.info("Permission denied: " + LoginController.getInstance().getLoggedInUser() + " " + trace[1].getMethodName() + "()");
-		throw new WaktuGeneralException("permission denied");
+		throw new WaktuException("permission denied");
 	}
 }
 

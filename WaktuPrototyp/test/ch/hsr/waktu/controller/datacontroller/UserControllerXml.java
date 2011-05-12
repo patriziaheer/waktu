@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.services.UsernameUtil;
+import ch.hsr.waktu.services.WaktuException;
 import ch.hsr.waktu.services.XmlUtil;
 
 public class UserControllerXml extends UserController {
@@ -31,7 +32,7 @@ public class UserControllerXml extends UserController {
 	
 	@Override
 	public Usr addUser(String firstname, String lastname, String password,
-			int pensum, SystemRole role, double holiday) throws WaktuGeneralException {
+			int pensum, SystemRole role, double holiday) throws WaktuException {
 		LinkedList<Usr> allUsers = getAllUsers();
 		Usr newUser = new Usr(UsernameUtil.generateUsername(getAllUsers(), firstname, lastname), firstname, lastname, password, pensum, role, holiday);
 		allUsers.add(newUser);
@@ -40,7 +41,7 @@ public class UserControllerXml extends UserController {
 	}
 
 	@Override
-	public LinkedList<Usr> getActiveUsers() throws WaktuGeneralException {
+	public LinkedList<Usr> getActiveUsers() throws WaktuException {
 		LinkedList<Usr> activeUsers = new LinkedList<Usr>();
 		for(Usr u: getAllUsers()) {
 			if(u.isActive()) {
@@ -51,12 +52,12 @@ public class UserControllerXml extends UserController {
 	}
 
 	@Override
-	public LinkedList<Usr> getAllUsers() throws WaktuGeneralException {
+	public LinkedList<Usr> getAllUsers() throws WaktuException {
 			return XmlUtil.getUsersFromXml(userFilePath);
 	}
 
 	@Override
-	public LinkedList<Usr> getInactiveUsers() throws WaktuGeneralException {
+	public LinkedList<Usr> getInactiveUsers() throws WaktuException {
 		LinkedList<Usr> inactiveUsers = new LinkedList<Usr>();
 		for(Usr u: getAllUsers()) {
 			if(!u.isActive()) {
@@ -67,7 +68,7 @@ public class UserControllerXml extends UserController {
 	}
 
 	@Override
-	public LinkedList<Usr> getProjectManagers() throws WaktuGeneralException {
+	public LinkedList<Usr> getProjectManagers() throws WaktuException {
 		LinkedList<Usr> projectManagers = new LinkedList<Usr>();
 		for(Usr u: getAllUsers()) {
 			if(u.getSystemRole().equals(SystemRole.PROJECTMANAGER)) {
@@ -78,7 +79,7 @@ public class UserControllerXml extends UserController {
 	}
 
 	@Override
-	public Usr getUser(String username) throws WaktuGeneralException {
+	public Usr getUser(String username) throws WaktuException {
 		for(Usr u: getAllUsers()) {
 			if(u.getUsername().equals(username)) {
 				return u;
@@ -87,7 +88,7 @@ public class UserControllerXml extends UserController {
 		return null;
 	}
 
-	public void updateUser(Usr user) throws WaktuGeneralException {
+	public void updateUser(Usr user) throws WaktuException {
 		for(Usr u: getAllUsers()) {
 			if(u.equals(user)) {
 				u.setActiveState(user.isActive());

@@ -1,7 +1,6 @@
 package ch.hsr.waktu.gui.qt.view.projectmanagment;
 
 import ch.hsr.waktu.controller.TimeController;
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
@@ -11,6 +10,7 @@ import ch.hsr.waktu.gui.qt.model.ComboBoxData;
 import ch.hsr.waktu.gui.qt.model.ProjectWorkSessionModel;
 import ch.hsr.waktu.gui.qt.model.TableSortFilterModel;
 import ch.hsr.waktu.guicontroller.LanguageController;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.gui.QWidget;
@@ -30,7 +30,7 @@ public class ProjectWorkSessionsView extends QWidget {
 			ComboBoxData.createUserComboBox(ui.cmbUser);
 			ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, project);
 			workSessionModel = new ProjectWorkSessionModel(this.project);
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 		filterModel.setDynamicSortFilter(true);
@@ -103,7 +103,7 @@ public class ProjectWorkSessionsView extends QWidget {
 	private void updateWorkSessionTable() {
 		try {
 			workSessionModel.updateWorkSessionModel();
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 		workSessionModel.layoutAboutToBeChanged.emit();

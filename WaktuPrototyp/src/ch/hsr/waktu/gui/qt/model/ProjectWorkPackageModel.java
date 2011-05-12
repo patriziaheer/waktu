@@ -2,10 +2,10 @@ package ch.hsr.waktu.gui.qt.model;
 
 import java.util.List;
 
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.WorkPackage;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.core.QAbstractItemModel;
 import com.trolltech.qt.core.QCoreApplication;
@@ -108,7 +108,7 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 		}
 		try {
 			WorkPackageController.getInstance().updateWorkPackage(workPackage);
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 		return false;
@@ -127,7 +127,7 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 	public void updateWorkPackageModel() {
 		try {
 			workPackages = WorkPackageController.getInstance().getActiveWorkPackages(project);
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 	}

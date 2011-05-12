@@ -2,11 +2,11 @@ package ch.hsr.waktu.gui.qt.model;
 
 import java.util.List;
 
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.WorkSession;
 import ch.hsr.waktu.services.TimeUtil;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.core.QAbstractItemModel;
 import com.trolltech.qt.core.QCoreApplication;
@@ -20,7 +20,7 @@ public class ProjectWorkSessionModel extends QAbstractItemModel {
 	private Project project;
 	private List<WorkSession> workSessions;
 
-	public ProjectWorkSessionModel(Project project) throws WaktuGeneralException {
+	public ProjectWorkSessionModel(Project project) throws WaktuException {
 		this.project = project;
 		updateWorkSessionModel();
 	}
@@ -95,7 +95,7 @@ public class ProjectWorkSessionModel extends QAbstractItemModel {
 		return null;
 	}
 
-	public void updateWorkSessionModel() throws WaktuGeneralException {
+	public void updateWorkSessionModel() throws WaktuException {
 		workSessions = WorkSessionController.getInstance().getWorkSessions(
 				project);
 	}

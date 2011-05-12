@@ -1,7 +1,6 @@
 package ch.hsr.waktu.gui.qt.view.usermanagment;
 
 import ch.hsr.waktu.controller.datacontroller.ProjectStaffController;
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.ProjectStaff;
 import ch.hsr.waktu.domain.Usr;
@@ -10,6 +9,7 @@ import ch.hsr.waktu.gui.qt.model.UserProjectsModel;
 import ch.hsr.waktu.gui.qt.view.IndexButton;
 import ch.hsr.waktu.guicontroller.GuiController;
 import ch.hsr.waktu.guicontroller.LanguageController;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.gui.QIcon;
@@ -28,7 +28,7 @@ public class UserProjectsView extends QWidget {
 		try {
 			ComboBoxData.createActiveProjectComboBox(ui.cmbProjects);
 			projectsModel = new UserProjectsModel(usr);
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 		ui.tblProjects.setModel(projectsModel);
@@ -66,7 +66,7 @@ public class UserProjectsView extends QWidget {
 
 				ui.tblProjects.setIndexWidget(currIndex, deleteButton);
 			}
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 	}
@@ -77,7 +77,7 @@ public class UserProjectsView extends QWidget {
 			Project proj = ProjectStaffController.getInstance()
 					.getProjects(usr).get(btn.getIndex().row());
 			ProjectStaffController.getInstance().removeUser(usr, proj);
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 	}
@@ -89,7 +89,7 @@ public class UserProjectsView extends QWidget {
 					usr,
 					(Project) ui.cmbProjects.itemData(ui.cmbProjects
 							.currentIndex()));
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 	}
@@ -107,7 +107,7 @@ public class UserProjectsView extends QWidget {
 	private void updateTable() {
 		try {
 			projectsModel.updateProjectsModel();
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 		projectsModel.layoutAboutToBeChanged.emit();

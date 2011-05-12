@@ -3,9 +3,9 @@ package ch.hsr.waktu.gui.qt.model;
 import java.util.List;
 
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.Qt;
@@ -19,7 +19,7 @@ public class ProjectTreeModel extends QTreeModel {
 
 	private List<Project> projects;
 
-	public ProjectTreeModel() throws WaktuGeneralException {
+	public ProjectTreeModel() throws WaktuException {
 		updateProjectsModel();
 	}
 
@@ -82,7 +82,7 @@ public class ProjectTreeModel extends QTreeModel {
 		return super.data(value, role);
 	}
 
-	public void updateProjectsModel() throws WaktuGeneralException {
+	public void updateProjectsModel() throws WaktuException {
 		projects = ProjectController.getInstance().getActiveProjects();
 	}
 

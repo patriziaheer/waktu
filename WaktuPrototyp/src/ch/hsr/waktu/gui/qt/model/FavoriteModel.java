@@ -5,10 +5,10 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import ch.hsr.waktu.controller.datacontroller.FavoriteController;
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Favorite;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.services.TimeUtil;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.core.QAbstractItemModel;
 import com.trolltech.qt.core.QCoreApplication;
@@ -29,7 +29,7 @@ public class FavoriteModel extends QAbstractItemModel {
 	private Usr usr;
 	private QModelIndex editable = null;
 
-	public FavoriteModel(Usr usr) throws WaktuGeneralException {
+	public FavoriteModel(Usr usr) throws WaktuException {
 		this.usr = usr;
 		updateFavoriteModel();
 	}
@@ -141,7 +141,7 @@ public class FavoriteModel extends QAbstractItemModel {
 		}
 	}
 	
-	public void updateFavoriteModel() throws WaktuGeneralException {
+	public void updateFavoriteModel() throws WaktuException {
 		favorites = FavoriteController.getInstance().getFavorites(usr);
 	}
 	

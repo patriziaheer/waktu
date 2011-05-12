@@ -6,11 +6,11 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkSession;
 import ch.hsr.waktu.services.TimeUtil;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.core.QAbstractItemModel;
 import com.trolltech.qt.core.QCoreApplication;
@@ -31,7 +31,7 @@ public class WorkSessionModel extends QAbstractItemModel {
 	private QModelIndex editable = null;
 	private QDate date;
 	
-	public WorkSessionModel(Usr usr, QDate date) throws WaktuGeneralException {
+	public WorkSessionModel(Usr usr, QDate date) throws WaktuException {
 		this.date = date;
 		updateModel(usr, date);
 	}
@@ -150,7 +150,7 @@ public class WorkSessionModel extends QAbstractItemModel {
 		return workSessions.get(row);
 	}
 	
-	public void updateModel(Usr usr, QDate date) throws WaktuGeneralException {
+	public void updateModel(Usr usr, QDate date) throws WaktuException {
 		workSessions = WorkSessionController.getInstance().getWorkSessions(usr, date);
 	}
 

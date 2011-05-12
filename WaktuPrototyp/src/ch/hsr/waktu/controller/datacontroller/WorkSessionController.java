@@ -13,6 +13,7 @@ import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.domain.WorkSession;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
 import com.trolltech.qt.core.QDate;
@@ -45,11 +46,11 @@ public class WorkSessionController extends QSignalEmitter {
 	/**
 	 * 
 	 * @param user
-	 * @throws WaktuGeneralException
+	 * @throws WaktuException
 	 */
 	@SuppressWarnings("unchecked")
 	public List<WorkSession> getWorkSessions(Usr user)
-			throws WaktuGeneralException {
+			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -59,11 +60,11 @@ public class WorkSessionController extends QSignalEmitter {
 					"SELECT ws FROM WorkSession ws JOIN ws.userref u WHERE u.usrid = '"
 							+ user.getId() + "'").getResultList();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -74,11 +75,11 @@ public class WorkSessionController extends QSignalEmitter {
 	 * 
 	 * @param user
 	 * @param date
-	 * @throws WaktuGeneralException
+	 * @throws WaktuException
 	 */
 	@SuppressWarnings("unchecked")
 	public List<WorkSession> getWorkSessions(Usr user, QDate date)
-			throws WaktuGeneralException {
+			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		List<WorkSession> workSessionsByDate;
@@ -86,11 +87,11 @@ public class WorkSessionController extends QSignalEmitter {
 			Query q = em.createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE ws.startTime >= '" + date.toString("yyyy-MM-dd") + " 00:00:00" + "' AND ws.endTime <= '" + date.toString("yyyy-MM-dd") + " 23:59:59" + "' AND u.usrid = '"+user.getId()+"'");
 			workSessionsByDate = q.getResultList();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -99,7 +100,7 @@ public class WorkSessionController extends QSignalEmitter {
 
 	@SuppressWarnings("unchecked")
 	public List<WorkSession> getWorkSessions(Project project)
-			throws WaktuGeneralException {
+			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -110,11 +111,11 @@ public class WorkSessionController extends QSignalEmitter {
 							"SELECT ws FROM WorkSession ws JOIN ws.workpackageref wp JOIN wp.project p WHERE p.projectid = '"
 									+ project.getId() + "'").getResultList();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -127,11 +128,11 @@ public class WorkSessionController extends QSignalEmitter {
 	 * @param workPackage
 	 * @param startTime
 	 * @param endTime
-	 * @throws WaktuGeneralException
+	 * @throws WaktuException
 	 */
 	public WorkSession addWorkSession(Usr user, WorkPackage workPackage,
 			GregorianCalendar startTime, GregorianCalendar endTime,
-			String description) throws WaktuGeneralException {
+			String description) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		WorkSession newWorkSession = new WorkSession(user, workPackage,
@@ -149,11 +150,11 @@ public class WorkSessionController extends QSignalEmitter {
 			em.persist(newWorkSession);
 			em.getTransaction().commit();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -164,7 +165,7 @@ public class WorkSessionController extends QSignalEmitter {
 	}
 
 	public void updateWorkSession(WorkSession workSession)
-			throws WaktuGeneralException {
+			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		WorkSession updateWorkSession;
@@ -190,11 +191,11 @@ public class WorkSessionController extends QSignalEmitter {
 
 			em.getTransaction().commit();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -207,7 +208,7 @@ public class WorkSessionController extends QSignalEmitter {
 	 * @param workSession
 	 */
 	public void removeWorkSession(WorkSession workSession)
-			throws WaktuGeneralException {
+			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		try {
@@ -215,11 +216,11 @@ public class WorkSessionController extends QSignalEmitter {
 			em.remove(em.find(WorkSession.class, workSession.getId()));
 			em.getTransaction().commit();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}

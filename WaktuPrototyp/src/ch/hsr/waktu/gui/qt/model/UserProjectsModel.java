@@ -3,9 +3,9 @@ package ch.hsr.waktu.gui.qt.model;
 import java.util.List;
 
 import ch.hsr.waktu.controller.datacontroller.ProjectStaffController;
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.core.QAbstractItemModel;
 import com.trolltech.qt.core.QCoreApplication;
@@ -19,7 +19,7 @@ public class UserProjectsModel extends QAbstractItemModel {
 	private Usr usr;
 	private List<Project> projects;
 
-	public UserProjectsModel(Usr usr) throws WaktuGeneralException {
+	public UserProjectsModel(Usr usr) throws WaktuException {
 		this.usr = usr;
 		updateProjectsModel();
 	}
@@ -79,7 +79,7 @@ public class UserProjectsModel extends QAbstractItemModel {
 		return null;
 	}
 
-	public void updateProjectsModel() throws WaktuGeneralException {
+	public void updateProjectsModel() throws WaktuException {
 		projects = ProjectStaffController.getInstance().getProjects(usr);
 	}
 

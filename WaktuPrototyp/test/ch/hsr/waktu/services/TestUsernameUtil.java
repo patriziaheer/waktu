@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.controller.datacontroller.UserControllerXml;
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 
 public class TestUsernameUtil {
 
@@ -30,19 +29,19 @@ public class TestUsernameUtil {
 	}
 	
 	@Test
-	public void generateUsername_UsernameNameNotYetPresentInUserBase() throws WaktuGeneralException {
+	public void generateUsername_UsernameNameNotYetPresentInUserBase() throws WaktuException {
 		assertEquals("fritzmuster", UsernameUtil.generateUsername(
 				UserController.getInstance().getAllUsers(), "Fritz", "Muster"));
 	}
 	
 	@Test
-	public void generateUsername_UsernameNameNotYetPresentInUserBaseTwoFirstnames() throws WaktuGeneralException {
+	public void generateUsername_UsernameNameNotYetPresentInUserBaseTwoFirstnames() throws WaktuException {
 		assertEquals("kareemabduljabbar", UsernameUtil.generateUsername(
 				UserController.getInstance().getAllUsers(), "Kareem Abdul", "Jabbar"));
 	}
 	
 	@Test
-	public void generateUsername_UsernameNameAlreadyPresentInUserBase() throws WaktuGeneralException {
+	public void generateUsername_UsernameNameAlreadyPresentInUserBase() throws WaktuException {
 		assertEquals("hansmuster3", UsernameUtil.generateUsername(
 				UserController.getInstance().getAllUsers(), "Hans", "Muster"));
 	}

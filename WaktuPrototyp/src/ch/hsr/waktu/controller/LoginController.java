@@ -3,9 +3,9 @@ package ch.hsr.waktu.controller;
 import org.apache.log4j.Logger;
 
 import ch.hsr.waktu.controller.datacontroller.UserController;
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.services.Md5;
+import ch.hsr.waktu.services.WaktuException;
 
 public class LoginController {
 
@@ -42,9 +42,9 @@ public class LoginController {
 	/**
 	 * 
 	 * @param username
-	 * @throws WaktuGeneralException 
+	 * @throws WaktuException 
 	 */
-	public boolean login(String username, String password) throws WaktuGeneralException {
+	public boolean login(String username, String password) throws WaktuException {
 		if (canLogin(username)) {
 			Usr user = UserController.getInstance().getUser(username);
 			String passwordHash = Md5.hash(password);

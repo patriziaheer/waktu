@@ -1,6 +1,5 @@
 package ch.hsr.waktu.gui.qt.view;
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.gui.qt.model.ProjectTreeModel;
 import ch.hsr.waktu.gui.qt.model.SortFilterModel;
@@ -9,6 +8,7 @@ import ch.hsr.waktu.gui.qt.view.projectmanagment.ProjectStaffView;
 import ch.hsr.waktu.gui.qt.view.projectmanagment.ProjectWorkPackageView;
 import ch.hsr.waktu.gui.qt.view.projectmanagment.ProjectWorkSessionsView;
 import ch.hsr.waktu.guicontroller.LanguageController;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.QRegExp;
@@ -33,7 +33,7 @@ public class ProjectDetails extends QWidget {
 		ui.setupUi(this);
 		try {
 			projectTreeModel = new ProjectTreeModel();
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			showErrorMessage(e.getMessage());
 		}
 		
@@ -117,7 +117,7 @@ public class ProjectDetails extends QWidget {
 	private void updateTable() {
 		try {
 			projectTreeModel.updateProjectsModel();
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			showErrorMessage(e.getMessage());
 		}
 		projectTreeModel.layoutAboutToBeChanged.emit();

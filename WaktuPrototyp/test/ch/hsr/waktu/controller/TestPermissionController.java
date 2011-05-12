@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.controller.datacontroller.UserControllerXml;
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
+import ch.hsr.waktu.services.WaktuException;
 
 public class TestPermissionController {
 
@@ -44,7 +44,7 @@ public class TestPermissionController {
 	public void login_InvalidPassword_False() {
 		try {
 			assertEquals(false, LoginController.getInstance().login("mickeymouse", "falschespasswort"));
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -54,7 +54,7 @@ public class TestPermissionController {
 	public void login_InvalidUsername_False() {
 		try {
 			assertEquals(false, LoginController.getInstance().login("üngültigernameh", "whatever"));
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -64,7 +64,7 @@ public class TestPermissionController {
 	public void login_ValidUsernamePassword_True() {
 		try {
 			assertEquals(true, LoginController.getInstance().login("chucknorris", "1337"));
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

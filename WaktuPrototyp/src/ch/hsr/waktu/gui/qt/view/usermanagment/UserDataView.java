@@ -1,12 +1,12 @@
 package ch.hsr.waktu.gui.qt.view.usermanagment;
 
 import ch.hsr.waktu.controller.datacontroller.UserController;
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.gui.qt.model.ComboBoxData;
 import ch.hsr.waktu.guicontroller.GuiController;
 import ch.hsr.waktu.guicontroller.LanguageController;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.core.QCoreApplication;
 import com.trolltech.qt.gui.QWidget;
@@ -116,7 +116,7 @@ public class UserDataView extends QWidget {
 		try {
 			usr = UserController.getInstance().addUser(ui.txtFirstname.text(), ui.txtName.text(), ui.txtPassword.text(), ui.txtPensum.value(),
 					(SystemRole) ui.cmbRole.itemData(ui.cmbRole.currentIndex()), ui.txtHolidays.value());
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 	}
@@ -130,7 +130,7 @@ public class UserDataView extends QWidget {
 		usr.setActiveState(!ui.checkBox.isChecked());
 		try {
 			UserController.getInstance().updateUser(usr);
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 	}

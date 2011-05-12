@@ -2,12 +2,12 @@ package ch.hsr.waktu.gui.qt.model;
 
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.controller.datacontroller.UserController;
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.gui.QComboBox;
 
@@ -21,14 +21,14 @@ public class ComboBoxData {
 	}
 
 	public static void createProjectManagerComboBox(QComboBox cmb)
-			throws WaktuGeneralException {
+			throws WaktuException {
 		cmb.clear();
 		for (Usr usr : UserController.getInstance().getProjectManagers()) {
 			cmb.addItem(usr.toString(), usr);
 		}
 	}
 
-	public static void createProjectForUserComboBox(QComboBox cmb, Usr currUser) throws WaktuGeneralException {
+	public static void createProjectForUserComboBox(QComboBox cmb, Usr currUser) throws WaktuException {
 		cmb.clear();
 		for (Project proj : ProjectController.getInstance().getActiveProjects(
 				currUser)) {
@@ -36,7 +36,7 @@ public class ComboBoxData {
 		}
 	}
 
-	public static void createWorkPackageComboBox(QComboBox cmb, Project project) throws WaktuGeneralException {
+	public static void createWorkPackageComboBox(QComboBox cmb, Project project) throws WaktuException {
 		cmb.clear();
 		if (project != null) {
 				for (WorkPackage wp : WorkPackageController.getInstance()
@@ -46,7 +46,7 @@ public class ComboBoxData {
 		}
 	}
 
-	public static void createActiveProjectComboBox(QComboBox cmb) throws WaktuGeneralException {
+	public static void createActiveProjectComboBox(QComboBox cmb) throws WaktuException {
 		cmb.clear();
 			for (Project project : ProjectController.getInstance()
 					.getActiveProjects()) {
@@ -55,7 +55,7 @@ public class ComboBoxData {
 	}
 
 	public static void createUserComboBox(QComboBox cmb)
-			throws WaktuGeneralException {
+			throws WaktuException {
 		cmb.clear();
 			for (Usr usr : UserController.getInstance().getActiveUsers()) {
 				cmb.addItem(usr.toString(), usr);

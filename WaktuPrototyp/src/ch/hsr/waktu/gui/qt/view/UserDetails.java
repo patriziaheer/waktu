@@ -1,6 +1,5 @@
 package ch.hsr.waktu.gui.qt.view;
 import ch.hsr.waktu.controller.datacontroller.UserController;
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.gui.qt.model.SortFilterModel;
 import ch.hsr.waktu.gui.qt.model.UserTreeModel;
@@ -8,6 +7,7 @@ import ch.hsr.waktu.gui.qt.view.usermanagment.UserDataView;
 import ch.hsr.waktu.gui.qt.view.usermanagment.UserProjectsView;
 import ch.hsr.waktu.gui.qt.view.usermanagment.UserWorkSessionsView;
 import ch.hsr.waktu.guicontroller.LanguageController;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.core.QCoreApplication;
 import com.trolltech.qt.core.QModelIndex;
@@ -34,7 +34,7 @@ public class UserDetails extends QWidget {
 		
 		try {
 			userTreeModel = new UserTreeModel();
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			showErrorMessage(e.getMessage());
 		}
 		filterModel.setDynamicSortFilter(true);

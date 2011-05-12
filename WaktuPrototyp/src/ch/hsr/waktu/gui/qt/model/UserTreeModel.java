@@ -2,8 +2,8 @@ package ch.hsr.waktu.gui.qt.model;
 import java.util.List;
 
 import ch.hsr.waktu.controller.datacontroller.UserController;
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.Qt;
@@ -18,7 +18,7 @@ public class UserTreeModel extends QTreeModel {
 	
 	private List<Usr> usrs;
 	
-	public UserTreeModel() throws WaktuGeneralException {
+	public UserTreeModel() throws WaktuException {
 		updateUsrModel();
 	}
 
@@ -80,7 +80,7 @@ public class UserTreeModel extends QTreeModel {
 		return super.data(value, role);
 	}
 	
-	public void updateUsrModel() throws WaktuGeneralException {
+	public void updateUsrModel() throws WaktuException {
 		usrs = UserController.getInstance().getActiveUsers();
 	}
 }

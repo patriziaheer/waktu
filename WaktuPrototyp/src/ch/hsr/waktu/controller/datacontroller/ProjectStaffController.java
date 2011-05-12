@@ -10,6 +10,7 @@ import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.ProjectStaff;
 import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
 
@@ -42,7 +43,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	 * @param user
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Project> getProjects(Usr user) throws WaktuGeneralException {
+	public List<Project> getProjects(Usr user) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -54,11 +55,11 @@ public class ProjectStaffController extends QSignalEmitter {
 							"SELECT p FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE u.usrid = '"
 									+ user.getId() + "'").getResultList();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -70,7 +71,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	 * @param project
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Usr> getUsers(Project project) throws WaktuGeneralException {
+	public List<Usr> getUsers(Project project) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -82,11 +83,11 @@ public class ProjectStaffController extends QSignalEmitter {
 							"SELECT u FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE p.projectid = '"
 									+ project.getId() + "'").getResultList();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -99,7 +100,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	 * @param project
 	 */
 	public ProjectStaff addProjectStaff(Usr user, Project project)
-			throws WaktuGeneralException {
+			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		ProjectStaff newProjectStaff = new ProjectStaff(user, project);
@@ -109,11 +110,11 @@ public class ProjectStaffController extends QSignalEmitter {
 			em.persist(newProjectStaff);
 			em.getTransaction().commit();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -130,7 +131,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	 * @return
 	 */
 	public void removeUser(Usr user, Project project)
-			throws WaktuGeneralException {
+			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -149,11 +150,11 @@ public class ProjectStaffController extends QSignalEmitter {
 			em.remove(projectStaffToRemove);
 			em.getTransaction().commit();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}

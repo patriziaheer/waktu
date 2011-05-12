@@ -6,6 +6,7 @@ import com.trolltech.qt.QSignalEmitter;
 
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.services.WaktuException;
 
 abstract class AbstractUserController  extends QSignalEmitter {
 	private static AbstractUserController theInstance = null;
@@ -22,17 +23,17 @@ abstract class AbstractUserController  extends QSignalEmitter {
 //	}
 	
 	abstract Usr addUser(String firstname, String lastname,
-			String password, int pensum, SystemRole role, double holiday) throws WaktuGeneralException;
+			String password, int pensum, SystemRole role, double holiday) throws WaktuException;
 	
-	abstract List<Usr> getActiveUsers() throws WaktuGeneralException;
+	abstract List<Usr> getActiveUsers() throws WaktuException;
 
-	abstract List<Usr> getAllUsers() throws WaktuGeneralException;
+	abstract List<Usr> getAllUsers() throws WaktuException;
 
-	abstract List<Usr> getInactiveUsers() throws WaktuGeneralException;
+	abstract List<Usr> getInactiveUsers() throws WaktuException;
 	
-	abstract List<Usr> getProjectManagers() throws WaktuGeneralException;
+	abstract List<Usr> getProjectManagers() throws WaktuException;
 	
-	abstract Usr getUser(String username) throws WaktuGeneralException;
+	abstract Usr getUser(String username) throws WaktuException;
 
-	abstract void updateUser(Usr user) throws WaktuGeneralException;
+	abstract void updateUser(Usr user) throws WaktuException;
 }

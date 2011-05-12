@@ -1,7 +1,6 @@
 package ch.hsr.waktu.gui.qt.view.projectmanagment;
 
 import ch.hsr.waktu.controller.datacontroller.ProjectStaffController;
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.ProjectStaff;
 import ch.hsr.waktu.domain.Usr;
@@ -10,6 +9,7 @@ import ch.hsr.waktu.gui.qt.model.ProjectStaffModel;
 import ch.hsr.waktu.gui.qt.view.IndexButton;
 import ch.hsr.waktu.guicontroller.GuiController;
 import ch.hsr.waktu.guicontroller.LanguageController;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.gui.QIcon;
@@ -28,7 +28,7 @@ public class ProjectStaffView extends QWidget {
 		try {
 			ComboBoxData.createUserComboBox(ui.cmbUsers);
 			projectStaffModel = new ProjectStaffModel(project);
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 		ui.tblWorkStaff.setModel(projectStaffModel);
@@ -60,7 +60,7 @@ public class ProjectStaffView extends QWidget {
 				
 				ui.tblWorkStaff.setIndexWidget(currIndex, deleteButton);
 			}
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 	}
@@ -70,7 +70,7 @@ public class ProjectStaffView extends QWidget {
 		try {
 			Usr user = ProjectStaffController.getInstance().getUsers(project).get(btn.getIndex().row());
 			ProjectStaffController.getInstance().removeUser(user, project);
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 	}
@@ -79,7 +79,7 @@ public class ProjectStaffView extends QWidget {
 	private void addUser() {
 		try {
 			ProjectStaffController.getInstance().addProjectStaff((Usr)ui.cmbUsers.itemData(ui.cmbUsers.currentIndex()), project);
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 	}
@@ -97,7 +97,7 @@ public class ProjectStaffView extends QWidget {
 	private void updateTable() {
 		try {
 			projectStaffModel.updateProjectStaffModel();
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 		projectStaffModel.layoutAboutToBeChanged.emit();

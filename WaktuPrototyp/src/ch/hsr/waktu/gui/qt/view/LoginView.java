@@ -2,10 +2,10 @@ package ch.hsr.waktu.gui.qt.view;
 
 import ch.hsr.waktu.controller.LoginController;
 import ch.hsr.waktu.controller.datacontroller.UserController;
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.guicontroller.LanguageController;
 import ch.hsr.waktu.guicontroller.LanguageController.Language;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.core.QCoreApplication;
 import com.trolltech.qt.core.Qt.CursorShape;
@@ -81,7 +81,7 @@ public class LoginView extends QDialog {
 								null));
 				this.setCursor(new QCursor(CursorShape.ArrowCursor));
 			}
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			setStatus(e.getMessage());
 		}
 	}

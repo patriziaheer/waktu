@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 
 import ch.hsr.waktu.controller.datacontroller.FavoriteController;
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Favorite;
@@ -19,6 +18,7 @@ import ch.hsr.waktu.gui.qt.view.IndexButton.EditStatus;
 import ch.hsr.waktu.guicontroller.LanguageController;
 import ch.hsr.waktu.guicontroller.LanguageController.Language;
 import ch.hsr.waktu.services.TimeUtil;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.core.QDateTime;
 import com.trolltech.qt.core.QModelIndex;
@@ -79,7 +79,7 @@ public class TimeView extends QMainWindow {
 			workSessionModel = new WorkSessionModel(currUser,
 					calendar.getCurrentDate());
 			favoriteModel = new FavoriteModel(currUser);
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}
 		ui.cmbProject.currentIndexChanged.connect(this, "projectChanged()");
@@ -167,7 +167,7 @@ public class TimeView extends QMainWindow {
 
 				ui.tblWorksessions.setIndexWidget(currIndex, w);
 			}
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}
 	}
@@ -197,7 +197,7 @@ public class TimeView extends QMainWindow {
 
 				ui.tblFavorites.setIndexWidget(currIndex, w);
 			}
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}
 	}
@@ -206,7 +206,7 @@ public class TimeView extends QMainWindow {
 		updateFavoriteModel();
 		try {
 			favoriteModel.updateFavoriteModel();
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 
 			setStatusBarText(e.getMessage());
 		}
@@ -222,7 +222,7 @@ public class TimeView extends QMainWindow {
 		updateWorkSessionModel();
 		try {
 			workSessionModel.updateModel(currUser, calendar.getCurrentDate());
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}
 		workSessionModel.layoutAboutToBeChanged.emit();
@@ -288,7 +288,7 @@ public class TimeView extends QMainWindow {
 						workPackage, TimeUtil.convertQDateTimeToGregorian(start),
 						TimeUtil.convertQDateTimeToGregorian(end),
 						ui.txtDescription.text());
-			} catch (WaktuGeneralException e) {
+			} catch (WaktuException e) {
 				setStatusBarText(e.getMessage());
 			}
 		}
@@ -343,7 +343,7 @@ public class TimeView extends QMainWindow {
 				WorkSessionController.getInstance().addWorkSession(currUser,
 						wp, TimeUtil.convertQDateTimeToGregorian(start),
 						TimeUtil.convertQDateTimeToGregorian(end), "");
-			} catch (WaktuGeneralException e) {
+			} catch (WaktuException e) {
 				setStatusBarText(e.getMessage());
 			}
 		} else {
@@ -383,7 +383,7 @@ public class TimeView extends QMainWindow {
 						workPackage,
 						TimeUtil.convertQDateTimeToGregorian(start),
 						TimeUtil.convertQDateTimeToGregorian(end));
-			} catch (WaktuGeneralException e) {
+			} catch (WaktuException e) {
 				setStatusBarText(e.getMessage());
 			}
 		}
@@ -394,7 +394,7 @@ public class TimeView extends QMainWindow {
 		try {
 			ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage,
 					(Project) ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}
 	}
@@ -454,7 +454,7 @@ public class TimeView extends QMainWindow {
 	private void workSessionUpdated() {
 		try {
 			workSessionModel.updateModel(currUser, calendar.getCurrentDate());
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}
 		workSessionModel.layoutAboutToBeChanged.emit();
@@ -493,7 +493,7 @@ public class TimeView extends QMainWindow {
 					WorkSessionController.getInstance().updateWorkSession(
 							workSessionModel.getWorkSession(btn.getIndex()
 									.row()));
-				} catch (WaktuGeneralException e) {
+				} catch (WaktuException e) {
 					setStatusBarText(e.getMessage());
 				}
 			}
@@ -510,7 +510,7 @@ public class TimeView extends QMainWindow {
 							.getWorkSessions(currUser,
 									calendar.getCurrentDate())
 							.get(btn.getIndex().row()));
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}
 
@@ -547,7 +547,7 @@ public class TimeView extends QMainWindow {
 			FavoriteController.getInstance().removeFavorite(
 					FavoriteController.getInstance().getFavorites(currUser)
 							.get(btn.getIndex().row()));
-		} catch (WaktuGeneralException e) {
+		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}
 	}

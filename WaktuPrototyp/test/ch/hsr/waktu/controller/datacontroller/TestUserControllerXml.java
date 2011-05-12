@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.services.WaktuException;
 
 public class TestUserControllerXml {
 
@@ -84,41 +85,41 @@ public class TestUserControllerXml {
 	}
 	
 	@Test
-	public void getAllUsers() throws WaktuGeneralException {
+	public void getAllUsers() throws WaktuException {
 		List<Usr> userList = UserControllerXml.getInstance().getAllUsers();
 		
 		assertUserListEquality(allUsersReferenceList, userList);
 	}
 	
 	@Test
-	public void getActiveUsers() throws WaktuGeneralException {
+	public void getActiveUsers() throws WaktuException {
 		List<Usr> userList = UserControllerXml.getInstance().getActiveUsers();
 		
 		assertUserListEquality(activeUsersReferenceList, userList);
 	}
 	
 	@Test
-	public void getInactiveUsers() throws WaktuGeneralException {
+	public void getInactiveUsers() throws WaktuException {
 		List<Usr> userList = UserControllerXml.getInstance().getInactiveUsers();
 		
 		assertUserListEquality(inactiveUsersReferenceList, userList);
 	}
 	
 	@Test
-	public void getProjectManagers() throws WaktuGeneralException {
+	public void getProjectManagers() throws WaktuException {
 		List<Usr> userList = UserControllerXml.getInstance().getProjectManagers();
 		
 		assertUserListEquality(projectManagersReferenceList, userList);
 	}
 	
 	@Test
-	public void getUser_ValidUser() throws WaktuGeneralException {
+	public void getUser_ValidUser() throws WaktuException {
 		Usr user = UserControllerXml.getInstance().getUser("chucknorris");
 		assertEquals(allUsersReferenceList.get(5), user);
 	}
 	
 	@Test
-	public void getUser_InvalidUser_throwsWaktuGeneralException() throws WaktuGeneralException {
+	public void getUser_InvalidUser_throwsWaktuGeneralException() throws WaktuException {
 		Usr user = UserControllerXml.getInstance().getUser("räuberhotzenplotz");
 		assertEquals(null, user);
 	}

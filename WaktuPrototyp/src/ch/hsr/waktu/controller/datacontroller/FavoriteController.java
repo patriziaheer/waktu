@@ -11,6 +11,7 @@ import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.domain.Favorite;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
 
@@ -42,11 +43,11 @@ public class FavoriteController extends QSignalEmitter {
 	/**
 	 * 
 	 * @param Usr user
-	 * @throws WaktuGeneralException
+	 * @throws WaktuException
 	 */
 	
 	@SuppressWarnings("unchecked")
-	public List<Favorite> getFavorites(Usr user) throws WaktuGeneralException {
+	public List<Favorite> getFavorites(Usr user) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		
@@ -54,11 +55,11 @@ public class FavoriteController extends QSignalEmitter {
 		try {
 			allFavoritesOfUsr = em.createQuery("SELECT f FROM Favorite f ORDER BY f.id").getResultList();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -72,7 +73,7 @@ public class FavoriteController extends QSignalEmitter {
 	 * @param endTime
 	 */
 	public Favorite addFavorite(Usr user, WorkPackage workPackage,
-			GregorianCalendar startTime, GregorianCalendar endTime) throws WaktuGeneralException {
+			GregorianCalendar startTime, GregorianCalendar endTime) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		Favorite newFavorite = new Favorite(user, workPackage, startTime,
@@ -82,11 +83,11 @@ public class FavoriteController extends QSignalEmitter {
 			em.persist(newFavorite);
 			em.getTransaction().commit();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -99,10 +100,10 @@ public class FavoriteController extends QSignalEmitter {
 	/**
 	 * 
 	 * @param favorite
-	 * @throws WaktuGeneralException
+	 * @throws WaktuException
 	 */
 
-	public void updateFavorite(Favorite favorite) throws WaktuGeneralException {
+	public void updateFavorite(Favorite favorite) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		try {
@@ -112,11 +113,11 @@ public class FavoriteController extends QSignalEmitter {
 			updateFavorite.setEndTime(favorite.getEndTime());
 			em.getTransaction().commit();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}
@@ -127,10 +128,10 @@ public class FavoriteController extends QSignalEmitter {
 	/**
 	 * 
 	 * @param favorite
-	 * @throws WaktuGeneralException
+	 * @throws WaktuException
 	 */
 
-	public void removeFavorite(Favorite favorite) throws WaktuGeneralException {
+	public void removeFavorite(Favorite favorite) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		try {
@@ -138,11 +139,11 @@ public class FavoriteController extends QSignalEmitter {
 			em.remove(em.find(Favorite.class, favorite.getId()));
 			em.getTransaction().commit();
 		} catch (IllegalStateException e) {
-			throw new WaktuGeneralException("Database problem");
+			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
-			throw new WaktuGeneralException("Illegal Argument");
+			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuGeneralException("General problem");
+			throw new WaktuException("General problem");
 		} finally {
 			em.close();
 		}

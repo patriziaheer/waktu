@@ -1,12 +1,12 @@
 package ch.hsr.waktu.gui.qt.view.projectmanagment;
 
-import ch.hsr.waktu.controller.datacontroller.WaktuGeneralException;
 import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.gui.qt.model.ProjectWorkPackageModel;
 import ch.hsr.waktu.guicontroller.GuiController;
 import ch.hsr.waktu.guicontroller.LanguageController;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.gui.QWidget;
 
@@ -44,7 +44,7 @@ public class ProjectWorkPackageView extends QWidget{
 		if (ui.txtDescription.text().isEmpty() == false) {
 			try {
 				WorkPackageController.getInstance().addWorkPackage(project, ui.txtDescription.text());
-			} catch (WaktuGeneralException e) {
+			} catch (WaktuException e) {
 				showErrorMessage(e.getMessage());
 			}
 			ui.txtDescription.setText("");
