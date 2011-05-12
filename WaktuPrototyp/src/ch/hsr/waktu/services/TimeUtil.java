@@ -40,4 +40,27 @@ public class TimeUtil {
 		return new GregorianCalendar(date.year(), date.month(), date.day());
 	}
 	
+	public static QDate[] getMonthBoundaries(QDate date) {
+		//TODO
+		QDate[] startDayEndDay = {new QDate(date.year(), date.month(), 1), 
+				new QDate(date.year(), date.month(), date.daysInMonth())};
+		return startDayEndDay;
+	}
+	
+	public static QDate[] getWeekBoundaries(QDate date) {
+		//TODO
+		QDate[] startDayEndDay = {new QDate(date.year(), date.month(), getFirstDayOfWeek(date)), 
+				new QDate(date.year(), date.month(), getFirstDayOfWeek(date) + 6)};
+		return startDayEndDay;
+	}
+	
+	private static int getFirstDayOfWeek(QDate date) {
+		return date.day() - date.dayOfWeek();
+	}
+	
+	public static QDate[] getYearBoundaries(QDate date) {
+		QDate[] startDayEndDay = {new QDate(date.year(), 1, 1), 
+				new QDate(date.year(), 12, 31)};
+		return startDayEndDay;
+	}
 }

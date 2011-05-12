@@ -13,6 +13,7 @@ import com.trolltech.qt.core.QDate;
 
 public class TimeController {
 	public static final double HOURS_PER_WORKDAY = 8.5;
+	public static final int NUMBER_OF_WORKDAYS = 5;
 	
 	public static double calculateWorktimeForProject(Project project, WorkPackage workPackage, Usr usr, QDate start, QDate end) {
 		//TODO: added by PH => null for parameters means no filter
@@ -24,13 +25,13 @@ public class TimeController {
 	}
 	
 	public static double calculateWorktimeForWeek(Usr user, QDate date) {
-		//TODO 
-		return 0.0;
+		QDate[] weekStartDateEndDate = TimeUtil.getMonthBoundaries(date);
+		return calculateWorktime(user, weekStartDateEndDate[0], weekStartDateEndDate[1]);
 	}
 	
 	public static double calculateWorktimeForMonth(Usr user, QDate date) {
-		//TODO 
-		return 0.0;
+		QDate[] monthStartDateEndDate = TimeUtil.getMonthBoundaries(date);
+		return calculateWorktime(user, monthStartDateEndDate[0], monthStartDateEndDate[1]);
 	}
 	
 	public static double calculateWorktime(Usr user, QDate fromDate, QDate toDate) {
@@ -60,12 +61,16 @@ public class TimeController {
 	}
 	
 	public static double getPlannedTime(Usr user, QDate currMonth) {
-		// TODO: remove weekenddays
-		return currMonth.daysInMonth() * user.getPensum() * HOURS_PER_WORKDAY;
+		return currMonth.daysInMonth() * getNumberOfWorkdays(user) * HOURS_PER_WORKDAY;
 	}
 	
 	public static double getPlannedTime(Usr user, QDate fromDate, QDate toDate) {
-		return fromDate.daysTo(toDate) * user.getPensum() * HOURS_PER_WORKDAY;
+		return fromDate.daysTo(toDate) * getNumberOfWorkdays(user) * HOURS_PER_WORKDAY;
+	}
+	
+	private static float getNumberOfWorkdays(Usr user) {
+		//TODO: subtract holidays
+		return user.getPensum() / 100 * NUMBER_OF_WORKDAYS;
 	}
 
 }
