@@ -9,7 +9,7 @@ import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.services.WaktuException;
 
 abstract class AbstractUserController  extends QSignalEmitter {
-	private static AbstractUserController theInstance = null;
+//	private static AbstractUserController theInstance = null;
 
 //	public static AbstractUserController getInstance() {
 //		if (theInstance == null) {

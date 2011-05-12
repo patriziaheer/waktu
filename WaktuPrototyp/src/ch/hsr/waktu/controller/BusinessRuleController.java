@@ -3,7 +3,6 @@ package ch.hsr.waktu.controller;
 import org.apache.log4j.Logger;
 
 import ch.hsr.waktu.domain.Project;
-import ch.hsr.waktu.domain.ProjectStaff;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkSession;
 import ch.hsr.waktu.services.WaktuException;
