@@ -27,34 +27,42 @@ public class TestTimeUtil {
 	
 	@Test
 	public void getFirstDayOfWeek_Monday() {
-		int refFirstDayOfWeek = new QDate(2011, 5, 9).day();
+		QDate refFirstDayOfWeek = new QDate(2011, 5, 9);
 		assertEquals(refFirstDayOfWeek, TimeUtil.getFirstDayOfWeek(new QDate(2011, 5, 9)));
 	}
 	
 	@Test
 	public void getFirstDayOfWeek_Saturday() {
-		int refFirstDayOfWeek = new QDate(2011, 5, 9).day();
+		QDate refFirstDayOfWeek = new QDate(2011, 5, 9);
 		assertEquals(refFirstDayOfWeek, TimeUtil.getFirstDayOfWeek(new QDate(2011, 5, 14)));
 	}
 	
 	@Test
 	public void getFirstDayOfWeek_Sunday() {
-		int refFirstDayOfWeek = new QDate(2011, 5, 9).day();
+		QDate refFirstDayOfWeek = new QDate(2011, 5, 9);
 		assertEquals(refFirstDayOfWeek, TimeUtil.getFirstDayOfWeek(new QDate(2011, 5, 15)));
 	}
 	
 	@Test
-	public void getFirstDayOfWeek_DateInMarchLeapyear() {
-		int refFirstDayOfWeek = new QDate(2008, 2, 25).day();
+	public void getFirstDayOfWeek_WeekSpanningOverFebruaryMarchLeapyear() {
+		QDate refFirstDayOfWeek = new QDate(2008, 2, 25);
 		assertEquals(refFirstDayOfWeek, TimeUtil.getFirstDayOfWeek(new QDate(2008, 3, 2)));
 	}
 	
-//	@Test
-//	public void getWeekBoundaries() {
-//		QDate[] refStartDateEndDate = {new QDate(), new QDate()};
-//		
-//		boundaryEquality(startDateEndDate);
-//	}
+	@Test
+	public void getWeekBoundaries_WeekSpanningOverFebruaryMarchLeapyear() {
+		QDate[] refStartDateEndDate = {new QDate(2008, 2, 25), new QDate(2008, 3, 2)};		
+		assertBoundaryEquality(refStartDateEndDate, TimeUtil.getWeekBoundaries(
+				new QDate(2008, 3, 1)));
+	}
+
+	private void assertBoundaryEquality(QDate[] refStartDateEndDate,
+			QDate[] weekBoundaries) {
+			for(int i=0; i < 2; i++) {
+				System.out.println("assertEquals");
+				assertEquals(refStartDateEndDate[i], weekBoundaries[i]);
+			}
+	}
 	
 //rly necessary? only tests Qt's behaviour
 //	@Test
@@ -115,7 +123,7 @@ public class TestTimeUtil {
 
 //TODO BeforeTime is after afterTime
 //	@Test
-//	public void calculateTimespanBeforeTimeAfterTimeSwitched_TODO()Ê{
+//	public void calculateTimespanBeforeTimeAfterTimeSwitched_NegativeTimespan()Ê{
 //		
 //	}
 }

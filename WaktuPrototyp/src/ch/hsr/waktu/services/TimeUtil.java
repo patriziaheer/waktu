@@ -49,14 +49,19 @@ public class TimeUtil {
 	
 	public static QDate[] getWeekBoundaries(QDate date) {
 		//TODO
-		QDate[] startDayEndDay = {new QDate(date.year(), date.month(), getFirstDayOfWeek(date)), 
-				new QDate(date.year(), date.month(), getFirstDayOfWeek(date) + 6)};
+		QDate[] startDayEndDay = {new QDate(date.year(), getFirstDayOfWeek(date).month(), getFirstDayOfWeek(date).day()), 
+				new QDate(date.year(), getLastDayOfWeek(date).month(), getLastDayOfWeek(date).day())};
 		return startDayEndDay;
 	}
 	
-	static int getFirstDayOfWeek(QDate date) {
-		QDate adjustedDate = date.clone();
-		return adjustedDate.addDays(-date.dayOfWeek() + 1).day();
+	private static QDate getLastDayOfWeek(QDate date) {
+		QDate lastDay = getFirstDayOfWeek(date).clone();
+		return lastDay.addDays(6);
+	}
+
+	static QDate getFirstDayOfWeek(QDate date) {
+		QDate firstDay = date.clone();
+		return firstDay.addDays(-date.dayOfWeek() + 1);
 	}
 	
 	public static QDate[] getYearBoundaries(QDate date) {
