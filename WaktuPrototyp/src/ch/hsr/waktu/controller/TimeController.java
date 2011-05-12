@@ -1,7 +1,5 @@
 package ch.hsr.waktu.controller;
 
-import java.util.LinkedList;
-
 import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
@@ -37,17 +35,18 @@ public class TimeController {
 	
 	public static double calculateWorktime(Usr user, QDate fromDate, QDate toDate) throws WaktuException {
 		int worktime = 0;
-		LinkedList<WorkSession> workSessionsWithinRange = new LinkedList<WorkSession>();
-		for(QDate d = fromDate; fromDate.daysTo(toDate) >= 0; d.addDays(1)) {
+		//LinkedList<WorkSession> workSessionsWithinRange = new LinkedList<WorkSession>();
+		for(QDate d = fromDate; d.daysTo(toDate) >= 0; d = d.addDays(1)) {
 				for(WorkSession ws: WorkSessionController.getInstance().getWorkSessions(user, d)) {
 					if(ws.getEnd().before(toDate)) {
-						workSessionsWithinRange.add(ws);
+						worktime += TimeUtil.calculateTimespanInSeconds(ws.getStart(), ws.getEnd());
+						//workSessionsWithinRange.add(ws);
 					}
 				}		
 		}
-		for(WorkSession ws: workSessionsWithinRange) {
+		/*for(WorkSession ws: workSessionsWithinRange) {
 			worktime += TimeUtil.calculateTimespanInSeconds(ws.getStart(), ws.getEnd());
-		}
+		}*/
 		return worktime/3600;
 	}
 	

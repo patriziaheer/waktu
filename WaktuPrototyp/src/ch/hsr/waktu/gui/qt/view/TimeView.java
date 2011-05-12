@@ -2,6 +2,7 @@ package ch.hsr.waktu.gui.qt.view;
 
 import org.apache.log4j.Logger;
 
+import ch.hsr.waktu.controller.TimeController;
 import ch.hsr.waktu.controller.datacontroller.FavoriteController;
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
@@ -20,6 +21,7 @@ import ch.hsr.waktu.guicontroller.LanguageController.Language;
 import ch.hsr.waktu.services.TimeUtil;
 import ch.hsr.waktu.services.WaktuException;
 
+import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.core.QDateTime;
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.QTime;
@@ -234,20 +236,28 @@ public class TimeView extends QMainWindow {
 	}
 
 	private void updateTimeInfos() {
-		/*
-		 * ui.lblPlannedDay.setText(""+TimeController.HOURS_PER_WORKDAY);
-		 * ui.lblPlannedMonth.setText(""+TimeController.getPlannedTime(currUser,
-		 * calendar.getCurrentDate()));
-		 * ui.lblToday.setText(""+TimeController.calculateWorktime(currUser,
-		 * calendar.getCurrentDate(), calendar.getCurrentDate()));
-		 * ui.lblCurrentWeek
-		 * .setText(""+TimeController.calculateWorktimeForWeek(currUser,
-		 * calendar.getCurrentDate()));
-		 * ui.lblCurrentMonth.setText(""+TimeController
-		 * .calculateWorktimeForMonth(currUser, calendar.getCurrentDate()));
-		 * ui.lblOvertime.setText(""+TimeController.calculateOvertime(currUser,
-		 * new QDate(01,01,1900), new QDate(31,12,2999)));
-		 */
+		ui.lblPlannedDay.setText("" + TimeController.HOURS_PER_WORKDAY);
+		ui.lblPlannedMonth.setText(""
+				+ TimeController.getPlannedTime(currUser,
+						calendar.getCurrentDate()));
+		try {
+			ui.lblToday.setText(""
+					+ TimeController.calculateWorktime(currUser,
+							calendar.getCurrentDate(),
+							calendar.getCurrentDate()));
+			ui.lblCurrentWeek.setText(""
+					+ TimeController.calculateWorktimeForWeek(currUser,
+							calendar.getCurrentDate()));
+			ui.lblCurrentMonth.setText(""
+					+ TimeController.calculateWorktimeForMonth(currUser,
+							calendar.getCurrentDate()));
+			ui.lblOvertime.setText(""
+					+ TimeController.calculateOvertime(currUser, new QDate(01,
+							01, 1900), new QDate(31, 12, 2999)));
+		} catch (WaktuException e) {
+			setStatusBarText(e.getMessage());
+		}
+
 	}
 
 	@SuppressWarnings("unused")
@@ -274,11 +284,11 @@ public class TimeView extends QMainWindow {
 		} else {
 			Project project;
 			try {
-				project = ProjectController.getInstance()
-						.getActiveProjects().get(ui.cmbProject.currentIndex());
+				project = ProjectController.getInstance().getActiveProjects()
+						.get(ui.cmbProject.currentIndex());
 				WorkPackage workPackage = WorkPackageController.getInstance()
-				.getActiveWorkPackages(project)
-				.get(ui.cmbWorkpackage.currentIndex());
+						.getActiveWorkPackages(project)
+						.get(ui.cmbWorkpackage.currentIndex());
 				QDateTime start = new QDateTime();
 				start.setDate(calendar.getCurrentDate());
 				start.setTime(ui.txtStart.time());
@@ -286,7 +296,8 @@ public class TimeView extends QMainWindow {
 				end.setDate(calendar.getCurrentDate());
 				end.setTime(ui.txtEnd.time());
 				WorkSessionController.getInstance().addWorkSession(currUser,
-						workPackage, TimeUtil.convertQDateTimeToGregorian(start),
+						workPackage,
+						TimeUtil.convertQDateTimeToGregorian(start),
 						TimeUtil.convertQDateTimeToGregorian(end),
 						ui.txtDescription.text());
 			} catch (WaktuException e) {
@@ -394,7 +405,8 @@ public class TimeView extends QMainWindow {
 	private void projectChanged() {
 		try {
 			ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage,
-					(Project) ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
+					(Project) ui.cmbProject.itemData(ui.cmbProject
+							.currentIndex()));
 		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}
@@ -557,7 +569,7 @@ public class TimeView extends QMainWindow {
 	private void translate() {
 		ui.retranslateUi(this);
 	}
-	
+
 	@Override
 	protected void closeEvent(QCloseEvent arg__1) {
 		QApplication.exit();
