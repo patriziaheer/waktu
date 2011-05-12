@@ -8,6 +8,7 @@ import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.domain.WorkSession;
 import ch.hsr.waktu.services.TimeUtil;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.core.QDate;
 
@@ -20,39 +21,29 @@ public class TimeController {
 		return 0.0;
 	}
 	
-	public static double calculateOvertime(Usr user, QDate fromDate, QDate toDate) {
+	public static double calculateOvertime(Usr user, QDate fromDate, QDate toDate) throws WaktuException {
 		return calculateWorktime(user, fromDate, toDate) - getPlannedTime(user, fromDate, toDate);
 	}
 	
-	public static double calculateWorktimeForWeek(Usr user, QDate date) {
+	public static double calculateWorktimeForWeek(Usr user, QDate date) throws WaktuException {
 		QDate[] weekStartDateEndDate = TimeUtil.getMonthBoundaries(date);
 		return calculateWorktime(user, weekStartDateEndDate[0], weekStartDateEndDate[1]);
 	}
 	
-	public static double calculateWorktimeForMonth(Usr user, QDate date) {
+	public static double calculateWorktimeForMonth(Usr user, QDate date) throws WaktuException {
 		QDate[] monthStartDateEndDate = TimeUtil.getMonthBoundaries(date);
 		return calculateWorktime(user, monthStartDateEndDate[0], monthStartDateEndDate[1]);
 	}
 	
-	public static double calculateWorktime(Usr user, QDate fromDate, QDate toDate) {
+	public static double calculateWorktime(Usr user, QDate fromDate, QDate toDate) throws WaktuException {
 		int worktime = 0;
 		LinkedList<WorkSession> workSessionsWithinRange = new LinkedList<WorkSession>();
 		for(QDate d = fromDate; fromDate.daysTo(toDate) >= 0; d.addDays(1)) {
-			try {
 				for(WorkSession ws: WorkSessionController.getInstance().getWorkSessions(user, d)) {
 					if(ws.getEnd().before(toDate)) {
 						workSessionsWithinRange.add(ws);
-					} else {
-						WorkSession trimmedWs = new WorkSession();
-						trimmedWs.setStart(ws.getStart());
-						trimmedWs.setEnd(TimeUtil.convertQDateToGregorian(toDate));
-						workSessionsWithinRange.add(trimmedWs);
 					}
-					
-				}
-			} catch(Exception e) {
-				return worktime;
-			}			
+				}		
 		}
 		for(WorkSession ws: workSessionsWithinRange) {
 			worktime += TimeUtil.calculateTimespanInSeconds(ws.getStart(), ws.getEnd());
