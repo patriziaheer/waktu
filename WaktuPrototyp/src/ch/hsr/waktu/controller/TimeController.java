@@ -13,7 +13,7 @@ import com.trolltech.qt.core.QDate;
 
 public class TimeController {
 	public static final double HOURS_PER_WORKDAY = 8.5;
-	public static final int NUMBER_OF_WORKDAYS = 5;
+	public static final int NUMBER_OF_WORKDAYS_PER_WEEK = 5;
 	
 	public static double calculateWorktimeForProject(Project project, WorkPackage workPackage, Usr usr, QDate start, QDate end) {
 		//TODO: added by PH => null for parameters means no filter
@@ -70,7 +70,7 @@ public class TimeController {
 	
 	private static float getNumberOfWorkdays(Usr user) {
 		//TODO: subtract holidays
-		return user.getPensum() / 100 * NUMBER_OF_WORKDAYS;
+		return user.getPensum() / 100 * NUMBER_OF_WORKDAYS_PER_WEEK;
 	}
 
 }
