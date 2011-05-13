@@ -73,8 +73,14 @@ QComboBox::drop-down {
 }
 
 
-QSpinBox, QDateEdit, QTimeEdit, QDateTimeEdit {
+QDateEdit, QTimeEdit, QDateTimeEdit {
     padding-right: 10px;
+    border-radius: 3px;
+    border: 1px solid gray;
+}
+
+QSpinBox {
+    padding-right: 10px;  make room for the arrows 
     border-radius: 3px;
     border: 1px solid gray;
 }

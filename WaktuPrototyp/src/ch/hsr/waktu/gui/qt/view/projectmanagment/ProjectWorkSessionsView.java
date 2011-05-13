@@ -51,13 +51,16 @@ public class ProjectWorkSessionsView extends QWidget {
 		ui.txtEnd.setDate(new QDate(01,01,1900));
 
 		LanguageController.getInstance().languageChanged.connect(this, "translate()");
+		
+		ui.txtEnd.setVisible(false);
+		ui.txtStart.setVisible(false);
 	}
 	
 	@SuppressWarnings("unused")
 	private void addFilter() {
 		filterModel.setUsr((Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()));
 		filterModel.setWorkPackage((WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()));
-		QDate start = null;
+		/*QDate start = null;
 		QDate end = null;
 		
 		if (ui.txtStart.date().toString("dd.MM.yyyy").equals("01.01.2000") == false) {
@@ -67,9 +70,9 @@ public class ProjectWorkSessionsView extends QWidget {
 			end = ui.txtEnd.date();
 		}
 		filterModel.setStart(start);
-		filterModel.setEnd(end);
+		filterModel.setEnd(end);*/
 		
-		ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), (Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()), start, end));
+		ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), (Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()), null, null));
 	}
 	
 	@SuppressWarnings("unused")

@@ -131,6 +131,9 @@ public class TimeView extends QMainWindow {
 		ui.actionEN.triggered.connect(this, "translateEN()");
 		LanguageController.getInstance().languageChanged.connect(this,
 				"translate()");
+		
+		ui.txtStart.setDisplayFormat("HH:mm");
+		ui.txtEnd.setDisplayFormat("HH:mm");
 
 		updateWorkSessionModel();
 		updateFavoriteModel();
