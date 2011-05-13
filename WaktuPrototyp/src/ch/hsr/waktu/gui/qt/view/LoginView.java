@@ -19,7 +19,9 @@ import com.trolltech.qt.gui.QDialog;
 import com.trolltech.qt.gui.QMenu;
 import com.trolltech.qt.gui.QMenuBar;
 import com.trolltech.qt.gui.QPalette;
+import com.trolltech.qt.gui.QPixmap;
 import com.trolltech.qt.gui.QPalette.ColorRole;
+import com.trolltech.qt.gui.QSplashScreen;
 
 public class LoginView extends QDialog {
 
@@ -70,12 +72,17 @@ public class LoginView extends QDialog {
 			this.setCursor(new QCursor(CursorShape.WaitCursor));
 			if (LoginController.getInstance().login(ui.txtUsername.text(),
 					ui.txtPassword.text())) {
+		        QSplashScreen splashScreen = new QSplashScreen(new QPixmap("classpath:icons/logo.png"));
+		        splashScreen.show();
+		        splashScreen.showMessage("Login...");
+		        
 				Usr usr = UserController.getInstance().getUser(
 						ui.txtUsername.text());
 				TimeView timeView = new TimeView(usr);
 				timeView.show();
 				this.setCursor(new QCursor(CursorShape.ArrowCursor));
 				setVisible(false);
+				splashScreen.finish(timeView);
 			} else {
 				setStatus(com.trolltech.qt.core.QCoreApplication
 						.translate("LoginView", "Username or Password wrong",

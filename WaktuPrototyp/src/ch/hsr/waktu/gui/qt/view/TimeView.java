@@ -340,7 +340,12 @@ public class TimeView extends QMainWindow {
 					.selectionModel().selectedRows().get(0).row());
 			WorkPackage wp = favorite.getWorkPackageID();
 			Project project = wp.getProject();
-			ui.cmbProject.setCurrentIndex(ui.cmbProject.findData(project));
+			try {
+				//ui.cmbProject.
+				ui.cmbProject.setCurrentIndex(ProjectController.getInstance().getActiveProjects().indexOf(project));
+			} catch (WaktuException e) {
+				setStatusBarText(e.getMessage());
+			}
 			ui.cmbWorkpackage.setCurrentIndex(ui.cmbWorkpackage.findData(wp));
 		} else {
 			setStatusBarText("Select a Favorite");

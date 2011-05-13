@@ -24,16 +24,21 @@ public class PermissionController extends QSignalEmitter {
 	private static Logger logger = Logger.getLogger(PermissionController.class);
 	public Signal0 update = new Signal0();
 	public Signal1<Permission> add = new Signal1<Permission>();
+	private static List<Permission> permissions = null;
 
 	private static List<Permission> getPermissionTable() {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+		if (permissions == null) {
+			EntityManager em = PersistenceController.getInstance().getEMF()
+					.createEntityManager();
 
-		@SuppressWarnings("unchecked")
-		List<Permission> permissions = em.createQuery(
-				"SELECT p FROM Permission p").getResultList();
+			@SuppressWarnings("unchecked")
+			List<Permission> perm = em.createQuery(
+					"SELECT p FROM Permission p").getResultList();
 
-		em.close();
+			em.close();
+			permissions = perm;
+		}
+
 		return permissions;
 	}
 
