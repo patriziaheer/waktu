@@ -14,6 +14,9 @@ import com.trolltech.qt.core.QFile;
 import com.trolltech.qt.core.QIODevice;
 import com.trolltech.qt.core.QTextStream;
 import com.trolltech.qt.gui.QApplication;
+import com.trolltech.qt.gui.QIcon;
+import com.trolltech.qt.gui.QPixmap;
+import com.trolltech.qt.gui.QSplashScreen;
 
 
 public class WaktuApplication {
@@ -30,6 +33,13 @@ public class WaktuApplication {
     	//QApplication.initialize(args);
     	//QApplication.setStyle(new QPlastiqueStyle());
         QApplication app = new QApplication(args);
+        QApplication.setWindowIcon(new QIcon("classpath:icons/logo_without_text.png"));
+        
+        QSplashScreen splashScreen = new QSplashScreen(new QPixmap("classpath:icons/logo.png"));
+        splashScreen.show();
+        splashScreen.showMessage("Initialize Application...");
+        QApplication.processEvents();
+        
         String sheet = getStyleSheet("classpath:stylesheet.txt");
         app.setStyleSheet(sheet);
     	LanguageController.getInstance().setCurrLanguage(Language.DE);
@@ -38,6 +48,7 @@ public class WaktuApplication {
        	LoginView loginView = new LoginView();
        	loginView.show();
        	
+       	splashScreen.finish(loginView);
 
         QApplication.exec();
     }

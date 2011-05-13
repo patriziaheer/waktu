@@ -36,9 +36,11 @@ import com.trolltech.qt.gui.QComboBox;
 import com.trolltech.qt.gui.QHBoxLayout;
 import com.trolltech.qt.gui.QIcon;
 import com.trolltech.qt.gui.QItemSelectionModel.SelectionFlag;
+import com.trolltech.qt.gui.QLabel;
 import com.trolltech.qt.gui.QMainWindow;
 import com.trolltech.qt.gui.QPalette;
 import com.trolltech.qt.gui.QPalette.ColorRole;
+import com.trolltech.qt.gui.QPixmap;
 import com.trolltech.qt.gui.QSplitter;
 import com.trolltech.qt.gui.QVBoxLayout;
 import com.trolltech.qt.gui.QWidget;
@@ -59,13 +61,21 @@ public class TimeView extends QMainWindow {
 		managmentView = new ManagmentView(currUser);
 		calendar = new CalendarWidget();
 		calendar.dayChanged.connect(this, "dayChanged()");
+		QLabel logo = new QLabel();
+		logo.setPixmap(new QPixmap("classpath:icons/logo_klein.png"));
+		
+		QWidget wCalLogo = new QWidget();
+		QHBoxLayout calLogoLayout = new QHBoxLayout();
+		calLogoLayout.addWidget(logo);
+		calLogoLayout.addWidget(calendar);
+		wCalLogo.setLayout(calLogoLayout);
 
 		ui.setupUi(this);
 		QSplitter splitter = new QSplitter(Orientation.Vertical);
 		QWidget widget = new QWidget();
 		QVBoxLayout layout = new QVBoxLayout();
 		widget.setLayout(layout);
-		layout.addWidget(calendar);
+		layout.addWidget(wCalLogo);
 		layout.addWidget(ui.widget);
 		layout.addWidget(ui.grpWorksessions);
 		layout.setMargin(0);

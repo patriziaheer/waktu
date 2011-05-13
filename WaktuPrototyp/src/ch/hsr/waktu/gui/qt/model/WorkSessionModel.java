@@ -151,6 +151,7 @@ public class WorkSessionModel extends QAbstractItemModel {
 	}
 	
 	public void updateModel(Usr usr, QDate date) throws WaktuException {
+		this.date = date;
 		workSessions = WorkSessionController.getInstance().getWorkSessions(usr, date);
 	}
 

@@ -110,7 +110,9 @@ public class Project {
 		hashCode += 31 * projectid;
 		hashCode += 31 * projectIdentifier.hashCode();
 		hashCode += 31 * description.hashCode();
-		hashCode += 31 * projectManager.hashCode();
+		if (projectManager != null) {
+			hashCode += 31 * projectManager.hashCode();
+		}
 		hashCode += 31 * plannedTime;
 		return hashCode;
 	}

@@ -26,7 +26,7 @@ public class ProjectDetails extends QWidget {
 	private ProjectTreeModel projectTreeModel;
 	private QSplitter splitter;
 	private QWidget currWidget = new QWidget();
-	private SortFilterModel filterModel = new SortFilterModel();
+	private SortFilterModel filterModel;
 	public Signal1<String> errorMessage = new Signal1<String>();
 	
 	public ProjectDetails() {
@@ -37,6 +37,7 @@ public class ProjectDetails extends QWidget {
 			showErrorMessage(e.getMessage());
 		}
 		
+		filterModel = new SortFilterModel();
 		filterModel.setDynamicSortFilter(true);
 		filterModel.setSourceModel(projectTreeModel);
 		ui.treeView.setModel(filterModel);

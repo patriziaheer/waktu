@@ -46,6 +46,7 @@ public class WorkPackageController extends QSignalEmitter {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<WorkPackage> getActiveWorkPackages(Project project) throws WaktuException {
+		//TODO filter nach projekt
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'CalendarWidget.jui'
 **
-** Created: Mo. Mai 9 13:41:05 2011
+** Created: Fr. Mai 13 13:50:59 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -55,7 +55,7 @@ public class Ui_Calendar implements com.trolltech.qt.QUiForm<QWidget>
         btnMo.setMinimumSize(new QSize(35, 35));
         btnMo.setMaximumSize(new QSize(35, 35));
 
-        gridLayout.addWidget(btnMo, 1, 7, 1, 1);
+        gridLayout.addWidget(btnMo, 1, 6, 1, 1);
 
         btnMi = new QPushButton(Calendar);
         btnMi.setObjectName("btnMi");
@@ -67,7 +67,7 @@ public class Ui_Calendar implements com.trolltech.qt.QUiForm<QWidget>
         btnMi.setMinimumSize(new QSize(35, 35));
         btnMi.setMaximumSize(new QSize(35, 35));
 
-        gridLayout.addWidget(btnMi, 1, 9, 1, 2);
+        gridLayout.addWidget(btnMi, 1, 8, 1, 2);
 
         btnFri = new QPushButton(Calendar);
         btnFri.setObjectName("btnFri");
@@ -79,7 +79,7 @@ public class Ui_Calendar implements com.trolltech.qt.QUiForm<QWidget>
         btnFri.setMinimumSize(new QSize(35, 35));
         btnFri.setMaximumSize(new QSize(35, 35));
 
-        gridLayout.addWidget(btnFri, 1, 12, 1, 1);
+        gridLayout.addWidget(btnFri, 1, 11, 1, 1);
 
         btnSo = new QPushButton(Calendar);
         btnSo.setObjectName("btnSo");
@@ -91,7 +91,7 @@ public class Ui_Calendar implements com.trolltech.qt.QUiForm<QWidget>
         btnSo.setMinimumSize(new QSize(35, 35));
         btnSo.setMaximumSize(new QSize(35, 35));
 
-        gridLayout.addWidget(btnSo, 1, 14, 1, 1);
+        gridLayout.addWidget(btnSo, 1, 13, 1, 1);
 
         btnSa = new QPushButton(Calendar);
         btnSa.setObjectName("btnSa");
@@ -103,7 +103,7 @@ public class Ui_Calendar implements com.trolltech.qt.QUiForm<QWidget>
         btnSa.setMinimumSize(new QSize(35, 35));
         btnSa.setMaximumSize(new QSize(35, 35));
 
-        gridLayout.addWidget(btnSa, 1, 13, 1, 1);
+        gridLayout.addWidget(btnSa, 1, 12, 1, 1);
 
         btnDo = new QPushButton(Calendar);
         btnDo.setObjectName("btnDo");
@@ -115,7 +115,7 @@ public class Ui_Calendar implements com.trolltech.qt.QUiForm<QWidget>
         btnDo.setMinimumSize(new QSize(35, 35));
         btnDo.setMaximumSize(new QSize(35, 35));
 
-        gridLayout.addWidget(btnDo, 1, 11, 1, 1);
+        gridLayout.addWidget(btnDo, 1, 10, 1, 1);
 
         btnDi = new QPushButton(Calendar);
         btnDi.setObjectName("btnDi");
@@ -127,13 +127,13 @@ public class Ui_Calendar implements com.trolltech.qt.QUiForm<QWidget>
         btnDi.setMinimumSize(new QSize(35, 35));
         btnDi.setMaximumSize(new QSize(35, 35));
 
-        gridLayout.addWidget(btnDi, 1, 8, 1, 1);
+        gridLayout.addWidget(btnDi, 1, 7, 1, 1);
 
         lblBis = new QLabel(Calendar);
         lblBis.setObjectName("lblBis");
         lblBis.setAlignment(com.trolltech.qt.core.Qt.AlignmentFlag.createQFlags(com.trolltech.qt.core.Qt.AlignmentFlag.AlignCenter));
 
-        gridLayout.addWidget(lblBis, 0, 11, 1, 1);
+        gridLayout.addWidget(lblBis, 0, 10, 1, 1);
 
         btnRight = new QPushButton(Calendar);
         btnRight.setObjectName("btnRight");
@@ -145,7 +145,7 @@ public class Ui_Calendar implements com.trolltech.qt.QUiForm<QWidget>
         btnRight.setMinimumSize(new QSize(35, 35));
         btnRight.setMaximumSize(new QSize(35, 35));
 
-        gridLayout.addWidget(btnRight, 0, 14, 1, 1);
+        gridLayout.addWidget(btnRight, 0, 13, 1, 1);
 
         btnLeft = new QPushButton(Calendar);
         btnLeft.setObjectName("btnLeft");
@@ -157,27 +157,27 @@ public class Ui_Calendar implements com.trolltech.qt.QUiForm<QWidget>
         btnLeft.setMinimumSize(new QSize(35, 35));
         btnLeft.setMaximumSize(new QSize(35, 35));
 
-        gridLayout.addWidget(btnLeft, 0, 7, 1, 1);
+        gridLayout.addWidget(btnLeft, 0, 6, 1, 1);
 
         lblEnd = new QLabel(Calendar);
         lblEnd.setObjectName("lblEnd");
 
-        gridLayout.addWidget(lblEnd, 0, 12, 1, 2);
+        gridLayout.addWidget(lblEnd, 0, 11, 1, 2);
 
         lblStart = new QLabel(Calendar);
         lblStart.setObjectName("lblStart");
         lblStart.setAlignment(com.trolltech.qt.core.Qt.AlignmentFlag.createQFlags(com.trolltech.qt.core.Qt.AlignmentFlag.AlignRight,com.trolltech.qt.core.Qt.AlignmentFlag.AlignVCenter));
 
-        gridLayout.addWidget(lblStart, 0, 8, 1, 3);
+        gridLayout.addWidget(lblStart, 0, 7, 1, 3);
 
         horizontalSpacer = new QSpacerItem(40, 20, com.trolltech.qt.gui.QSizePolicy.Policy.Expanding, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
 
-        gridLayout.addItem(horizontalSpacer, 1, 2, 1, 1);
+        gridLayout.addItem(horizontalSpacer, 1, 1, 1, 1);
 
         lblCurrDate = new QLabel(Calendar);
         lblCurrDate.setObjectName("lblCurrDate");
 
-        gridLayout.addWidget(lblCurrDate, 1, 3, 1, 1);
+        gridLayout.addWidget(lblCurrDate, 1, 2, 1, 1);
 
         retranslateUi(Calendar);
 
