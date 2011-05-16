@@ -87,15 +87,13 @@ public class TimeView extends QMainWindow {
 
 		try {
 			ComboBoxData.createProjectForUserComboBox(ui.cmbProject, currUser);
-			ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage,
-					(Project) ui.cmbProject.itemData(ui.cmbProject
-							.currentIndex()));
 			workSessionModel = new WorkSessionModel(currUser,
 					calendar.getCurrentDate());
 			favoriteModel = new FavoriteModel(currUser);
 		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}
+		ui.cmbProject.setCurrentIndex(-1);
 		ui.cmbProject.currentIndexChanged.connect(this, "projectChanged()");
 
 		ui.actionOpenManagment.triggered.connect(this, "managmentClicked()");
@@ -427,6 +425,7 @@ public class TimeView extends QMainWindow {
 			ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage,
 					(Project) ui.cmbProject.itemData(ui.cmbProject
 							.currentIndex()));
+			ui.cmbWorkpackage.setCurrentIndex(-1);
 		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}
