@@ -50,7 +50,7 @@ public class ProjectStaffController extends QSignalEmitter {
 
 		List<Project> projects;
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		
@@ -82,7 +82,7 @@ public class ProjectStaffController extends QSignalEmitter {
 
 		List<Usr> users;
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		
@@ -114,7 +114,7 @@ public class ProjectStaffController extends QSignalEmitter {
 				.createEntityManager();
 		ProjectStaff newProjectStaff = new ProjectStaff(user, project);
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		
@@ -150,7 +150,7 @@ public class ProjectStaffController extends QSignalEmitter {
 
 		ProjectStaff projectStaffToRemove;
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		

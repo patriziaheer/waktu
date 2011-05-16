@@ -25,7 +25,21 @@ public class PermissionController extends QSignalEmitter {
 	public Signal0 update = new Signal0();
 	public Signal1<Permission> add = new Signal1<Permission>();
 	private static List<Permission> permissions = null;
+	private static ArrayList<PermissionNode> allPermissionNodes = null;
+	private static PermissionController theInstance = null;
 
+	public static PermissionController getInstance() throws WaktuException {
+		if (theInstance == null) {
+			theInstance = new PermissionController();
+		}
+		try {
+			allPermissionNodes = getPermissionNodes(); 
+		} catch(IllegalAccessException e) {
+			throw new WaktuException(e.getMessage());
+		}
+		return theInstance;
+	}
+	
 	private static List<Permission> getPermissionTable() {
 		if (permissions == null) {
 			EntityManager em = PersistenceController.getInstance().getEMF()
@@ -57,8 +71,7 @@ public class PermissionController extends QSignalEmitter {
 
 	}
 
-	public static ArrayList<PermissionNode> getPermissionNodes()
-			throws IllegalArgumentException, IllegalAccessException {
+	public static ArrayList<PermissionNode> getPermissionNodes() throws IllegalArgumentException, IllegalAccessException {
 		ArrayList<PermissionNode> list = new ArrayList<PermissionNode>();
 
 		for (Permission p : getPermissionTable()) {
@@ -73,16 +86,16 @@ public class PermissionController extends QSignalEmitter {
 
 	}
 
-	public static boolean checkPermission() throws WaktuException {
+	public boolean checkPermission() throws WaktuException {
 		StackTraceElement[] trace = new Throwable().getStackTrace();
 		return checkPermission(trace[1].getMethodName());
 	}
 
-	public static boolean checkPermission(String method) throws WaktuException {
+	public boolean checkPermission(String method) throws WaktuException {
 
 		boolean permission = false;
 		try {
-			for (PermissionNode pn : getPermissionNodes()) {
+			for (PermissionNode pn : allPermissionNodes) {
 				if ((pn.getSystemRole().equals(LoginController.getInstance()
 						.getLoggedInUser().getSystemRole()))
 						&& (pn.getMethod().equals(method))) {

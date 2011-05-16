@@ -58,7 +58,7 @@ public class WorkSessionController extends QSignalEmitter {
 
 		List<WorkSession> workSessionsByUser;
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		
@@ -91,7 +91,7 @@ public class WorkSessionController extends QSignalEmitter {
 				.createEntityManager();
 		List<WorkSession> workSessionsByDate;
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		
@@ -118,7 +118,7 @@ public class WorkSessionController extends QSignalEmitter {
 
 		List<WorkSession> workSessionsByProject = null;
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		
@@ -165,7 +165,7 @@ public class WorkSessionController extends QSignalEmitter {
 		newWorkSession.getEnd().set(GregorianCalendar.MONTH, newWorkSession.getEnd().get(GregorianCalendar.MONTH)-1);
 		
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		
@@ -196,7 +196,7 @@ public class WorkSessionController extends QSignalEmitter {
 				.createEntityManager();
 		
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		
@@ -244,7 +244,7 @@ public class WorkSessionController extends QSignalEmitter {
 	public void removeWorkSession(WorkSession workSession)
 			throws WaktuException {
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		

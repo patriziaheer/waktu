@@ -52,7 +52,7 @@ public class WorkPackageController extends QSignalEmitter {
 
 		List<WorkPackage> activeWorkPackages;
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		
@@ -84,7 +84,7 @@ public class WorkPackageController extends QSignalEmitter {
 
 		List<WorkPackage> allWorkPackages;
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		
@@ -116,7 +116,7 @@ public class WorkPackageController extends QSignalEmitter {
 
 		List<WorkPackage> inactiveWorkPackages;
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		
@@ -148,7 +148,7 @@ public class WorkPackageController extends QSignalEmitter {
 				.createEntityManager();
 		WorkPackage newWorkPackage = new WorkPackage(project, description);
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		
@@ -182,7 +182,7 @@ public class WorkPackageController extends QSignalEmitter {
 				.createEntityManager();
 		WorkPackage updateWorkPackage;
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		

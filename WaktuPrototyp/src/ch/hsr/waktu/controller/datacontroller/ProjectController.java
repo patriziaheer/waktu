@@ -48,7 +48,7 @@ public class ProjectController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}	
 		
@@ -76,7 +76,7 @@ public class ProjectController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}	
 		
@@ -103,7 +103,7 @@ public class ProjectController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}	
 		
@@ -129,7 +129,7 @@ public class ProjectController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}	
 		
@@ -155,7 +155,7 @@ public class ProjectController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}	
 		
@@ -206,7 +206,7 @@ public class ProjectController extends QSignalEmitter {
 		Project newProject = new Project(projectIdentifier, description,
 				projectManager, plannedTime);
 	
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}	
 		
@@ -240,7 +240,7 @@ public class ProjectController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}	
 		

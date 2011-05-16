@@ -56,7 +56,7 @@ public class UserController extends QSignalEmitter {
 
 		List<Usr> activeUsers;
 
-		if (!PermissionController.checkPermission()) {
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 
@@ -84,7 +84,7 @@ public class UserController extends QSignalEmitter {
 
 		List<Usr> allUsers;
 
-		if (!PermissionController.checkPermission()) {
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 
@@ -110,7 +110,7 @@ public class UserController extends QSignalEmitter {
 
 		List<Usr> inactiveUsers;
 
-		if (!PermissionController.checkPermission()) {
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 
@@ -138,7 +138,7 @@ public class UserController extends QSignalEmitter {
 
 		List<Usr> allProjectManagers;
 
-		if (!PermissionController.checkPermission()) {
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 
@@ -203,7 +203,7 @@ public class UserController extends QSignalEmitter {
 		Usr newUsr = new Usr(generateUsername(firstname, lastname), firstname,
 				lastname, Md5.hash(password), pensum, role, holiday);
 
-		if (!PermissionController.checkPermission()) {
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 
@@ -237,7 +237,7 @@ public class UserController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
-		if (!PermissionController.checkPermission()) {
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 

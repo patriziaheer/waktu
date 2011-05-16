@@ -52,7 +52,7 @@ public class FavoriteController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		
@@ -84,7 +84,7 @@ public class FavoriteController extends QSignalEmitter {
 		Favorite newFavorite = new Favorite(user, workPackage, startTime,
 				endTime);
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		
@@ -117,7 +117,7 @@ public class FavoriteController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		
@@ -150,7 +150,7 @@ public class FavoriteController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		
-		if(!PermissionController.checkPermission()) {
+		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		
