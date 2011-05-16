@@ -116,7 +116,7 @@ public class WorkSessionController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
-		List<WorkSession> workSessionsByProject;
+		List<WorkSession> workSessionsByProject = null;
 		
 		if(!PermissionController.checkPermission()) {
 			throw new WaktuException("Permission denied");
@@ -125,13 +125,16 @@ public class WorkSessionController extends QSignalEmitter {
 		try {
 			workSessionsByProject = em
 					.createQuery(
-							"SELECT ws FROM WorkSession ws JOIN ws.workpackageref wp JOIN wp.project p WHERE p.projectid = '"
+							"SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN wp.project p WHERE p.projectid = '"
 									+ project.getId() + "'").getResultList();
 		} catch (IllegalStateException e) {
+			logger.error(e.getMessage());
 			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
+			logger.error(e.getMessage());
 			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			throw new WaktuException("General problem");
 		} finally {
 			em.close();
