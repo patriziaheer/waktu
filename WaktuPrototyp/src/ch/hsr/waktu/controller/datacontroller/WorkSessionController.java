@@ -111,6 +111,72 @@ public class WorkSessionController extends QSignalEmitter {
 	}
 
 	@SuppressWarnings("unchecked")
+	// TODO: to implement
+	public List<WorkSession> getWorkSessions(WorkPackage workPackage)
+			throws WaktuException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		List<WorkSession> workSessionsByProject = null;
+		
+		if(!PermissionController.getInstance().checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
+		try {
+			workSessionsByProject = em
+					.createQuery(
+							"SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN wp.project p WHERE p.projectid = '"
+									+ workPackage.getId() + "'").getResultList();
+		} catch (IllegalStateException e) {
+			logger.error(e.getMessage());
+			throw new WaktuException("Database problem");
+		} catch (IllegalArgumentException e) {
+			logger.error(e.getMessage());
+			throw new WaktuException("Illegal Argument");
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			throw new WaktuException("General problem");
+		} finally {
+			em.close();
+		}
+		return workSessionsByProject;
+	}
+
+	@SuppressWarnings("unchecked")
+	// TODO: to implement
+	public List<WorkSession> getWorkSessions(WorkPackage workPackage, Usr usr) throws WaktuException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+
+		List<WorkSession> workSessionsByProject = null;
+		
+		if(!PermissionController.getInstance().checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
+		try {
+			workSessionsByProject = em
+					.createQuery(
+							"SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN wp.project p WHERE p.projectid = '"
+									+ workPackage.getId() + "'").getResultList();
+		} catch (IllegalStateException e) {
+			logger.error(e.getMessage());
+			throw new WaktuException("Database problem");
+		} catch (IllegalArgumentException e) {
+			logger.error(e.getMessage());
+			throw new WaktuException("Illegal Argument");
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			throw new WaktuException("General problem");
+		} finally {
+			em.close();
+		}
+		return workSessionsByProject;
+	}
+	
+
+	@SuppressWarnings("unchecked")
 	public List<WorkSession> getWorkSessions(Project project)
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
@@ -141,7 +207,107 @@ public class WorkSessionController extends QSignalEmitter {
 		}
 		return workSessionsByProject;
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<WorkSession> getWorkSessions(Project project, Usr usr)
+	// TODO: implement..
+	throws WaktuException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+		.createEntityManager();
+		
+		List<WorkSession> workSessionsByProject = null;
+		
+		if(!PermissionController.getInstance().checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
+		try {
+			workSessionsByProject = em
+			.createQuery(
+					"SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN wp.project p WHERE p.projectid = '"
+					+ project.getId() + "'").getResultList();
+		} catch (IllegalStateException e) {
+			logger.error(e.getMessage());
+			throw new WaktuException("Database problem");
+		} catch (IllegalArgumentException e) {
+			logger.error(e.getMessage());
+			throw new WaktuException("Illegal Argument");
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			throw new WaktuException("General problem");
+		} finally {
+			em.close();
+		}
+		return workSessionsByProject;
+	}
 
+	/**
+	 * 
+	 * @param user
+	 * @param date
+	 * @throws WaktuException
+	 */
+	@SuppressWarnings("unchecked")
+	public List<WorkSession> getWorkSessions(Project project, QDate start, QDate end)
+			throws WaktuException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+		List<WorkSession> workSessionsByDate = null;
+//		
+//		if(!PermissionController.getInstance().checkPermission()) {
+//			throw new WaktuException("Permission denied");
+//		}
+//		
+//		try {
+//			Query q = em.createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE ws.startTime >= '" + date.toString("yyyy-MM-dd") + " 00:00:00" + "' AND ws.endTime <= '" + date.toString("yyyy-MM-dd") + " 23:59:59" + "' AND u.usrid = '"+user.getId()+"'");
+//			workSessionsByDate = q.getResultList();
+//		} catch (IllegalStateException e) {
+//			throw new WaktuException("Database problem");
+//		} catch (IllegalArgumentException e) {
+//			throw new WaktuException("Illegal Argument");
+//		} catch (Exception e) {
+//			throw new WaktuException("General problem");
+//		} finally {
+//			em.close();
+//		}
+		return workSessionsByDate;
+	}
+	
+	/**
+	 * 
+	 * @param user
+	 * @param date
+	 * @throws WaktuException
+	 */
+	@SuppressWarnings("unchecked")
+	// TODO: to implement
+	public List<WorkSession> getWorkSessions(Project project, Usr usr, QDate start, QDate end)
+			throws WaktuException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+		List<WorkSession> workSessionsByDate = null;
+//		
+//		if(!PermissionController.getInstance().checkPermission()) {
+//			throw new WaktuException("Permission denied");
+//		}
+//		
+//		try {
+//			Query q = em.createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE ws.startTime >= '" + date.toString("yyyy-MM-dd") + " 00:00:00" + "' AND ws.endTime <= '" + date.toString("yyyy-MM-dd") + " 23:59:59" + "' AND u.usrid = '"+user.getId()+"'");
+//			workSessionsByDate = q.getResultList();
+//		} catch (IllegalStateException e) {
+//			throw new WaktuException("Database problem");
+//		} catch (IllegalArgumentException e) {
+//			throw new WaktuException("Illegal Argument");
+//		} catch (Exception e) {
+//			throw new WaktuException("General problem");
+//		} finally {
+//			em.close();
+//		}
+		return workSessionsByDate;
+	}
+	
+	
 	/**
 	 * 
 	 * @param user
