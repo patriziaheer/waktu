@@ -11,6 +11,7 @@ import com.trolltech.qt.core.QDateTime;
 import com.trolltech.qt.core.QTime;
 
 public class TestTimeUtil {
+	
 	@Test
 	public void convertGregorianToQDateTime_YearMonthDayHrsMinsSecs() {
 		assertEquals(new QDateTime(new QDate(2011, 4, 27), new QTime(15, 32, 23)), 
@@ -136,7 +137,7 @@ public class TestTimeUtil {
 
 //TODO BeforeTime is after afterTime
 //	@Test
-//	public void calculateTimespanBeforeTimeAfterTimeSwitched_NegativeTimespan()Ê{
+//	public void calculateTimespanBeforeTimeAfterTimeSwitched_NegativeTimespan()ï¿½{
 //		
 //	}
 }
