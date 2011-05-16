@@ -36,12 +36,16 @@ public class WorkSessionController extends QSignalEmitter {
 		return theInstance;
 	}
 
+	public static void setInstance(WorkSessionController instance) {
+		theInstance = instance;
+	}
+
 	private Logger logger = Logger.getLogger(WorkSessionController.class);
 	public Signal0 update = new Signal0();
 	public Signal1<WorkSession> add = new Signal1<WorkSession>();
 	public Signal1<WorkSession> removed = new Signal1<WorkSession>();
 
-	private WorkSessionController() {
+	protected WorkSessionController() {
 
 	}
 
@@ -51,17 +55,16 @@ public class WorkSessionController extends QSignalEmitter {
 	 * @throws WaktuException
 	 */
 	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(Usr user)
-			throws WaktuException {
+	public List<WorkSession> getWorkSessions(Usr user) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		List<WorkSession> workSessionsByUser;
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		try {
 			workSessionsByUser = em.createQuery(
 					"SELECT ws FROM WorkSession ws JOIN ws.userref u WHERE u.usrid = '"
@@ -90,13 +93,20 @@ public class WorkSessionController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		List<WorkSession> workSessionsByDate;
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		try {
-			Query q = em.createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE ws.startTime >= '" + date.toString("yyyy-MM-dd") + " 00:00:00" + "' AND ws.endTime <= '" + date.toString("yyyy-MM-dd") + " 23:59:59" + "' AND u.usrid = '"+user.getId()+"'");
+			Query q = em
+					.createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE ws.startTime >= '"
+							+ date.toString("yyyy-MM-dd")
+							+ " 00:00:00"
+							+ "' AND ws.endTime <= '"
+							+ date.toString("yyyy-MM-dd")
+							+ " 23:59:59"
+							+ "' AND u.usrid = '" + user.getId() + "'");
 			workSessionsByDate = q.getResultList();
 		} catch (IllegalStateException e) {
 			throw new WaktuException("Database problem");
@@ -111,23 +121,21 @@ public class WorkSessionController extends QSignalEmitter {
 	}
 
 	@SuppressWarnings("unchecked")
-	// TODO: to implement
 	public List<WorkSession> getWorkSessions(WorkPackage workPackage)
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		List<WorkSession> workSessionsByProject = null;
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		try {
-			workSessionsByProject = em
-					.createQuery(
-							"SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN wp.project p WHERE p.projectid = '"
-									+ workPackage.getId() + "'").getResultList();
+			workSessionsByProject = em.createQuery(
+					"SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp WHERE wp.id = '"
+							+ workPackage.getId() + "'").getResultList();
 		} catch (IllegalStateException e) {
 			logger.error(e.getMessage());
 			throw new WaktuException("Database problem");
@@ -144,22 +152,24 @@ public class WorkSessionController extends QSignalEmitter {
 	}
 
 	@SuppressWarnings("unchecked")
-	// TODO: to implement
-	public List<WorkSession> getWorkSessions(WorkPackage workPackage, Usr usr) throws WaktuException {
+	public List<WorkSession> getWorkSessions(WorkPackage workPackage, Usr usr)
+			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		List<WorkSession> workSessionsByProject = null;
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		try {
 			workSessionsByProject = em
 					.createQuery(
-							"SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN wp.project p WHERE p.projectid = '"
-									+ workPackage.getId() + "'").getResultList();
+							"SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN ws.userRef u WHERE wp.id = '"
+									+ workPackage.getId()
+									+ "' AND u.usrid = '"
+									+ usr.getId() + "'").getResultList();
 		} catch (IllegalStateException e) {
 			logger.error(e.getMessage());
 			throw new WaktuException("Database problem");
@@ -174,7 +184,6 @@ public class WorkSessionController extends QSignalEmitter {
 		}
 		return workSessionsByProject;
 	}
-	
 
 	@SuppressWarnings("unchecked")
 	public List<WorkSession> getWorkSessions(Project project)
@@ -183,11 +192,11 @@ public class WorkSessionController extends QSignalEmitter {
 				.createEntityManager();
 
 		List<WorkSession> workSessionsByProject = null;
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		try {
 			workSessionsByProject = em
 					.createQuery(
@@ -207,26 +216,26 @@ public class WorkSessionController extends QSignalEmitter {
 		}
 		return workSessionsByProject;
 	}
-	
-	
+
 	@SuppressWarnings("unchecked")
 	public List<WorkSession> getWorkSessions(Project project, Usr usr)
-	// TODO: implement..
-	throws WaktuException {
+			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
-		.createEntityManager();
-		
+				.createEntityManager();
+
 		List<WorkSession> workSessionsByProject = null;
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		try {
 			workSessionsByProject = em
-			.createQuery(
-					"SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN wp.project p WHERE p.projectid = '"
-					+ project.getId() + "'").getResultList();
+					.createQuery(
+							"SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN wp.project p JOIN ws.userRef u WHERE p.projectid = '"
+									+ project.getId()
+									+ "' AND u.usrid = '"
+									+ usr.getId() + "'").getResultList();
 		} catch (IllegalStateException e) {
 			logger.error(e.getMessage());
 			throw new WaktuException("Database problem");
@@ -249,31 +258,42 @@ public class WorkSessionController extends QSignalEmitter {
 	 * @throws WaktuException
 	 */
 	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(Project project, QDate start, QDate end)
-			throws WaktuException {
+	public List<WorkSession> getWorkSessions(Project project, QDate start,
+			QDate end) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		List<WorkSession> workSessionsByDate = null;
-//		
-//		if(!PermissionController.getInstance().checkPermission()) {
-//			throw new WaktuException("Permission denied");
-//		}
-//		
-//		try {
-//			Query q = em.createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE ws.startTime >= '" + date.toString("yyyy-MM-dd") + " 00:00:00" + "' AND ws.endTime <= '" + date.toString("yyyy-MM-dd") + " 23:59:59" + "' AND u.usrid = '"+user.getId()+"'");
-//			workSessionsByDate = q.getResultList();
-//		} catch (IllegalStateException e) {
-//			throw new WaktuException("Database problem");
-//		} catch (IllegalArgumentException e) {
-//			throw new WaktuException("Illegal Argument");
-//		} catch (Exception e) {
-//			throw new WaktuException("General problem");
-//		} finally {
-//			em.close();
-//		}
+
+		if (!PermissionController.getInstance().checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+
+		try {
+			Query q = em
+					.createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE ws.startTime >= '"
+							+ start.toString("yyyy-MM-dd")
+							+ " 00:00:00"
+							+ "' AND ws.endTime <= '"
+							+ start.toString("yyyy-MM-dd")
+							+ " 23:59:59"
+							+ "' AND ws.startTime >= '"
+							+ end.toString("yyyy-MM-dd")
+							+ " 00:00:00"
+							+ "' AND ws.endTime <= '"
+							+ end.toString("yyyy-MM-dd") + " 23:59:59" + "'");
+			workSessionsByDate = q.getResultList();
+		} catch (IllegalStateException e) {
+			throw new WaktuException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuException("General problem");
+		} finally {
+			em.close();
+		}
 		return workSessionsByDate;
 	}
-	
+
 	/**
 	 * 
 	 * @param user
@@ -281,33 +301,42 @@ public class WorkSessionController extends QSignalEmitter {
 	 * @throws WaktuException
 	 */
 	@SuppressWarnings("unchecked")
-	// TODO: to implement
-	public List<WorkSession> getWorkSessions(Project project, Usr usr, QDate start, QDate end)
-			throws WaktuException {
+	public List<WorkSession> getWorkSessions(Project project, Usr usr,
+			QDate start, QDate end) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		List<WorkSession> workSessionsByDate = null;
-//		
-//		if(!PermissionController.getInstance().checkPermission()) {
-//			throw new WaktuException("Permission denied");
-//		}
-//		
-//		try {
-//			Query q = em.createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE ws.startTime >= '" + date.toString("yyyy-MM-dd") + " 00:00:00" + "' AND ws.endTime <= '" + date.toString("yyyy-MM-dd") + " 23:59:59" + "' AND u.usrid = '"+user.getId()+"'");
-//			workSessionsByDate = q.getResultList();
-//		} catch (IllegalStateException e) {
-//			throw new WaktuException("Database problem");
-//		} catch (IllegalArgumentException e) {
-//			throw new WaktuException("Illegal Argument");
-//		} catch (Exception e) {
-//			throw new WaktuException("General problem");
-//		} finally {
-//			em.close();
-//		}
+
+		if (!PermissionController.getInstance().checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+
+		try {
+			Query q = em
+					.createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u JOIN ws.workPackageRef wp JOIN wp.project p WHERE p.projectid = '" + project.getId() + "' ws.startTime >= '"
+							+ start.toString("yyyy-MM-dd")
+							+ " 00:00:00"
+							+ "' AND ws.endTime <= '"
+							+ start.toString("yyyy-MM-dd")
+							+ " 23:59:59"
+							+ "' AND ws.startTime >= '"
+							+ end.toString("yyyy-MM-dd")
+							+ " 00:00:00"
+							+ "' AND ws.endTime <= '"
+							+ end.toString("yyyy-MM-dd") + " 23:59:59" + "'");
+			workSessionsByDate = q.getResultList();
+		} catch (IllegalStateException e) {
+			throw new WaktuException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuException("General problem");
+		} finally {
+			em.close();
+		}
 		return workSessionsByDate;
 	}
-	
-	
+
 	/**
 	 * 
 	 * @param user
@@ -323,20 +352,22 @@ public class WorkSessionController extends QSignalEmitter {
 				.createEntityManager();
 		WorkSession newWorkSession = new WorkSession(user, workPackage,
 				startTime, endTime, description);
-		
-		//TODO: SS: GregorianCalendar <-> TIMESTAMP in POSTGRESQL-Mapping
-		//problem: JPA saves GregorianCalendar-Dates with wrong month in DB (eg. 6 instead of 5)
-		//quick fix: subtract 1 from GregorianCalendar.MONTH
-		newWorkSession.getStart().set(GregorianCalendar.MONTH, newWorkSession.getStart().get(GregorianCalendar.MONTH)-1);
-		newWorkSession.getEnd().set(GregorianCalendar.MONTH, newWorkSession.getEnd().get(GregorianCalendar.MONTH)-1);
-		
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		// TODO: SS: GregorianCalendar <-> TIMESTAMP in POSTGRESQL-Mapping
+		// problem: JPA saves GregorianCalendar-Dates with wrong month in DB
+		// (eg. 6 instead of 5)
+		// quick fix: subtract 1 from GregorianCalendar.MONTH
+		newWorkSession.getStart().set(GregorianCalendar.MONTH,
+				newWorkSession.getStart().get(GregorianCalendar.MONTH) - 1);
+		newWorkSession.getEnd().set(GregorianCalendar.MONTH,
+				newWorkSession.getEnd().get(GregorianCalendar.MONTH) - 1);
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		BusinessRuleController.check(newWorkSession);
-		
+
 		try {
 			em.getTransaction().begin();
 			em.persist(newWorkSession);
@@ -360,34 +391,40 @@ public class WorkSessionController extends QSignalEmitter {
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
-		
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		BusinessRuleController.check(workSession);
-		
+
 		WorkSession updateWorkSession;
 		try {
 			em.getTransaction().begin();
 			updateWorkSession = em.find(WorkSession.class, workSession.getId());
 
-//			updateWorkSession.setUser(workSession.getUser());
-//			updateWorkSession.setWorkPackage(workSession.getWorkPackage());
-//			updateWorkSession.setStart(workSession.getStart());
-//			updateWorkSession.setEnd(workSession.getEnd());
-//			updateWorkSession.setDescription(workSession.getDescription());
-			
+			// updateWorkSession.setUser(workSession.getUser());
+			// updateWorkSession.setWorkPackage(workSession.getWorkPackage());
+			// updateWorkSession.setStart(workSession.getStart());
+			// updateWorkSession.setEnd(workSession.getEnd());
+			// updateWorkSession.setDescription(workSession.getDescription());
+
 			em.merge(workSession);
-			
+
 			System.err.println("userid" + updateWorkSession.getUser().getId());
-			
-			//TODO: SS: GregorianCalendar <-> TIMESTAMP in POSTGRESQL-Mapping
-			//problem: JPA saves GregorianCalendar-Dates with wrong month in DB (eg. 6 instead of 5)
-			//quick fix: subtract 1 from GregorianCalendar.MONTH
-			updateWorkSession.getStart().set(GregorianCalendar.MONTH, updateWorkSession.getStart().get(GregorianCalendar.MONTH)-1);
-			updateWorkSession.getEnd().set(GregorianCalendar.MONTH, updateWorkSession.getEnd().get(GregorianCalendar.MONTH)-1);
+
+			// TODO: SS: GregorianCalendar <-> TIMESTAMP in POSTGRESQL-Mapping
+			// problem: JPA saves GregorianCalendar-Dates with wrong month in DB
+			// (eg. 6 instead of 5)
+			// quick fix: subtract 1 from GregorianCalendar.MONTH
+			updateWorkSession.getStart()
+					.set(GregorianCalendar.MONTH,
+							updateWorkSession.getStart().get(
+									GregorianCalendar.MONTH) - 1);
+			updateWorkSession.getEnd()
+					.set(GregorianCalendar.MONTH,
+							updateWorkSession.getEnd().get(
+									GregorianCalendar.MONTH) - 1);
 
 			em.getTransaction().commit();
 		} catch (IllegalStateException e) {
@@ -409,11 +446,11 @@ public class WorkSessionController extends QSignalEmitter {
 	 */
 	public void removeWorkSession(WorkSession workSession)
 			throws WaktuException {
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		try {
