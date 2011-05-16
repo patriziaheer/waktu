@@ -13,7 +13,7 @@ public class TestMd5 {
 	}
 	
 	//MD5 strings from: http://www.miraclesalad.com/webtools/md5.php
-	//© 2010, Sunny Walker
+	//ÔøΩ 2010, Sunny Walker
 	@Test
 	public void hash_LowerCaseInput() {
 		assertEquals("61a60170273e74a5be90355ffe8e86ad", Md5.hash("aabbcc"));
@@ -31,7 +31,7 @@ public class TestMd5 {
 	 
 	@Test
 	public void hash_SpecialCharactersInput() {
-		assertEquals("fa7837e812ed19536055330e59300d9d", Md5.hash("+\"*ç%&/()=?`!£,.-öä$<§|\\"));
+		assertEquals("fa7837e812ed19536055330e59300d9d", Md5.hash("+\"*√ß%&/()=?`!¬£,.-√∂√§$<¬ß|\\"));
 	}
 	
 }

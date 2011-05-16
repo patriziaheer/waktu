@@ -25,7 +25,7 @@ public class TestUserControllerXml {
 	public void initializeReferenceUserLists() {
 		Usr u1 = new Usr("patriziaheer","Patrizia","Heer","81dc9bdb52d04dc20036dbd8313ed055", 100, SystemRole.ADMIN, 12);
 		allUsersReferenceList.add(u1);
-		Usr u2 = new Usr("simonstäheli","Simon","Stäheli","81dc9bdb52d04dc20036dbd8313ed055", 100, SystemRole.ADMIN, 12);
+		Usr u2 = new Usr("simonst√§heli","Simon","St√§heli","81dc9bdb52d04dc20036dbd8313ed055", 100, SystemRole.ADMIN, 12);
 		allUsersReferenceList.add(u2);
 		Usr u3 = new Usr("mikefisler","Mike","Fisler","81dc9bdb52d04dc20036dbd8313ed055", 100, SystemRole.ADMIN, 12);
 		allUsersReferenceList.add(u3);
@@ -120,7 +120,7 @@ public class TestUserControllerXml {
 	
 	@Test
 	public void getUser_InvalidUser_throwsWaktuGeneralException() throws WaktuException {
-		Usr user = UserControllerXml.getInstance().getUser("räuberhotzenplotz");
+		Usr user = UserControllerXml.getInstance().getUser("rÔøΩuberhotzenplotz");
 		assertEquals(null, user);
 	}
 
