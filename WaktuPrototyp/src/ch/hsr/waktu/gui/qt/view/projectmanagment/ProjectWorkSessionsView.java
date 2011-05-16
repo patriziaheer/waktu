@@ -45,7 +45,12 @@ public class ProjectWorkSessionsView extends QWidget {
 		ui.cmbWorkpackage.setCurrentIndex(-1);
 		ui.btnAddFilter.clicked.connect(this, "addFilter()");
 		ui.btnRemoveFilter.clicked.connect(this, "removeFilter()");
-		ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, null, null, null, null));
+		try {
+			ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, null, null, null, null));
+		} catch (WaktuException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		WorkSessionController.getInstance().add.connect(this, "added(WorkSession)");
 		WorkSessionController.getInstance().removed.connect(this, "removed(WorkSession)");
@@ -73,18 +78,33 @@ public class ProjectWorkSessionsView extends QWidget {
 			filterModel.setStart(start);
 			filterModel.setEnd(end);
 			
-			ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), (Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()), start, end));
+			try {
+				ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), (Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()), start, end));
+			} catch (WaktuException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			filterModel.setStart(null);
 			filterModel.setEnd(null);
-			ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), (Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()), null, null));
+			try {
+				ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), (Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()), null, null));
+			} catch (WaktuException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
 	}
 	
 	@SuppressWarnings("unused")
 	private void removeFilter() {
-		ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, null, null, null, null));
+		try {
+			ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, null, null, null, null));
+		} catch (WaktuException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ui.cmbUser.setCurrentIndex(-1);
 		ui.cmbWorkpackage.setCurrentIndex(-1);
 		ui.txtStart.setDate(new QDate(01, 01, 1900));

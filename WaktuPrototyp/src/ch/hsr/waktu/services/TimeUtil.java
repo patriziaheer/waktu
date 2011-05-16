@@ -55,7 +55,7 @@ public class TimeUtil {
 	}
 	
 	private static QDate getLastDayOfWeek(QDate date) {
-		QDate lastDay = getFirstDayOfWeek(date).clone();
+		QDate lastDay = getFirstDayOfWeek(date);
 		return lastDay.addDays(6);
 	}
 
