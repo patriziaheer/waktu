@@ -23,8 +23,12 @@ public class ProjectStaffView extends QWidget {
 	public Signal1<String> errorMessage = new Signal1<String>();
 	
 	public ProjectStaffView(Project project) {
-		ui.setupUi(this);
 		this.project = project;
+		
+	}
+
+	public void initialize() {
+		ui.setupUi(this);
 		try {
 			ComboBoxData.createUserComboBox(ui.cmbUsers);
 			projectStaffModel = new ProjectStaffModel(project);
@@ -45,7 +49,6 @@ public class ProjectStaffView extends QWidget {
 			ui.btnAdd.setVisible(false);
 			updateProjectStaffModel();
 		}
-		
 	}
 	
 	private void updateProjectStaffModel() {

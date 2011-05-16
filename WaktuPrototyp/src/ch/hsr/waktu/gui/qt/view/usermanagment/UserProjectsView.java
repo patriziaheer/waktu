@@ -23,8 +23,11 @@ public class UserProjectsView extends QWidget {
 	public Signal1<String> errorMessage = new Signal1<String>();
 
 	public UserProjectsView(Usr usr) {
-		ui.setupUi(this);
 		this.usr = usr;
+	}
+
+	public void initialize() {
+		ui.setupUi(this);
 		try {
 			ComboBoxData.createActiveProjectComboBox(ui.cmbProjects);
 			projectsModel = new UserProjectsModel(usr);

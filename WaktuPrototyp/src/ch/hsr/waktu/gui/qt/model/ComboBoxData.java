@@ -28,7 +28,8 @@ public class ComboBoxData {
 		}
 	}
 
-	public static void createProjectForUserComboBox(QComboBox cmb, Usr currUser) throws WaktuException {
+	public static void createProjectForUserComboBox(QComboBox cmb, Usr currUser)
+			throws WaktuException {
 		cmb.clear();
 		for (Project proj : ProjectController.getInstance().getActiveProjects(
 				currUser)) {
@@ -36,30 +37,65 @@ public class ComboBoxData {
 		}
 	}
 
-	public static void createWorkPackageComboBox(QComboBox cmb, Project project) throws WaktuException {
+	public static void createProjectForUserComboBox(QComboBox cmb,
+			Usr currUser, Project project) throws WaktuException {
+		cmb.clear();
+		int i = 0;
+		int currIndex = 0;
+		for (Project proj : ProjectController.getInstance().getActiveProjects(
+				currUser)) {
+			cmb.addItem(proj.toString(), proj);
+			if (proj.equals(project)) {
+				currIndex = i;
+			}
+			i++;
+		}
+		cmb.setCurrentIndex(currIndex);
+	}
+
+	public static void createWorkPackageComboBox(QComboBox cmb, Project project)
+			throws WaktuException {
 		cmb.clear();
 		if (project != null) {
-				for (WorkPackage wp : WorkPackageController.getInstance()
-						.getActiveWorkPackages(project)) {
-					cmb.addItem(wp.toString(), wp);
-				}
+			for (WorkPackage wp : WorkPackageController.getInstance()
+					.getActiveWorkPackages(project)) {
+				cmb.addItem(wp.toString(), wp);
+			}
 		}
 	}
 
-	public static void createActiveProjectComboBox(QComboBox cmb) throws WaktuException {
+	public static void createWorkPackageComboBox(QComboBox cmb,
+			Project project, WorkPackage workPackage) throws WaktuException {
 		cmb.clear();
-			for (Project project : ProjectController.getInstance()
-					.getActiveProjects()) {
-				cmb.addItem(project.toString(), project);
+		int i = 0;
+		int currIndex = 0;
+		if (project != null) {
+			for (WorkPackage wp : WorkPackageController.getInstance()
+					.getActiveWorkPackages(project)) {
+				cmb.addItem(wp.toString(), wp);
+				if (wp.equals(workPackage)) {
+					currIndex = i;
+				}
+				i++;
 			}
+		}
+		cmb.setCurrentIndex(currIndex);
 	}
 
-	public static void createUserComboBox(QComboBox cmb)
+	public static void createActiveProjectComboBox(QComboBox cmb)
 			throws WaktuException {
 		cmb.clear();
-			for (Usr usr : UserController.getInstance().getActiveUsers()) {
-				cmb.addItem(usr.toString(), usr);
-			}
+		for (Project project : ProjectController.getInstance()
+				.getActiveProjects()) {
+			cmb.addItem(project.toString(), project);
+		}
+	}
+
+	public static void createUserComboBox(QComboBox cmb) throws WaktuException {
+		cmb.clear();
+		for (Usr usr : UserController.getInstance().getActiveUsers()) {
+			cmb.addItem(usr.toString(), usr);
+		}
 	}
 
 }

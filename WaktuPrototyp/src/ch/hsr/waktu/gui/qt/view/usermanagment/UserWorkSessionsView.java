@@ -24,8 +24,11 @@ public class UserWorkSessionsView extends QWidget{
 	public Signal1<String> errorMessage = new Signal1<String>();
 	
 	public UserWorkSessionsView(Usr usr) {
-		ui.setupUi(this);
 		this.usr = usr;
+	}
+
+	public void initialize() {
+		ui.setupUi(this);
 		
 		try {
 			ComboBoxData.createActiveProjectComboBox(ui.cmbProject);

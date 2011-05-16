@@ -19,6 +19,9 @@ public class ProjectWorkPackageView extends QWidget{
 	
 	public ProjectWorkPackageView(Project project) {
 		this.project = project;
+	}
+
+	public void initialize() {
 		ui.setupUi(this);
 		workPackageModel = new ProjectWorkPackageModel(project);
 		workPackageModel.errorMessage.connect(this, "showErrorMessage(String)");

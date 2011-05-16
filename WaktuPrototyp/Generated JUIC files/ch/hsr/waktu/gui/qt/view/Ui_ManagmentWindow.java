@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ManagmentWindow.jui'
 **
-** Created: Mi 11. Mai 13:24:47 2011
+** Created: Mo. Mai 16 08:50:42 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -34,7 +34,7 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
     public void setupUi(QMainWindow ManagmentWindow)
     {
         ManagmentWindow.setObjectName("ManagmentWindow");
-        ManagmentWindow.resize(new QSize(850, 574).expandedTo(ManagmentWindow.minimumSizeHint()));
+        ManagmentWindow.resize(new QSize(1115, 584).expandedTo(ManagmentWindow.minimumSizeHint()));
         ManagmentWindow.setMinimumSize(new QSize(650, 0));
         actionClose = new QAction(ManagmentWindow);
         actionClose.setObjectName("actionClose");
@@ -63,7 +63,7 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         ManagmentWindow.setCentralWidget(centralwidget);
         menubar = new QMenuBar(ManagmentWindow);
         menubar.setObjectName("menubar");
-        menubar.setGeometry(new QRect(0, 0, 850, 22));
+        menubar.setGeometry(new QRect(0, 0, 1115, 22));
         menuFile = new QMenu(menubar);
         menuFile.setObjectName("menuFile");
         menuLanguage = new QMenu(menuFile);

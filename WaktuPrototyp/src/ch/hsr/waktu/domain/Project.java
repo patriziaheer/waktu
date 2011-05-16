@@ -94,8 +94,8 @@ public class Project {
 				proj.description.equals(description) && 
 				proj.projectid == projectid &&
 				proj.active == active &&
-				proj.plannedTime == plannedTime &&
-				proj.projectManager.equals(projectManager)) {
+				proj.plannedTime == plannedTime /*&&
+				proj.projectManager.equals(projectManager)*/) {
 					return true;
 			} else {
 				return false;

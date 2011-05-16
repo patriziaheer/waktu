@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ProjectWorkSessions.jui'
 **
-** Created: Mi 11. Mai 13:24:47 2011
+** Created: Mo. Mai 16 09:12:25 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -23,15 +23,16 @@ public class Ui_ProjectWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
     public QDateEdit txtEnd;
     public QPushButton btnAddFilter;
     public QPushButton btnRemoveFilter;
-    public QLabel lblTotalTime;
     public QLabel lblTotalTimeText;
+    public QCheckBox chkFilterDate;
+    public QLabel lblTotalTime;
 
     public Ui_ProjectWorkSessions() { super(); }
 
     public void setupUi(QWidget ProjectWorkSessions)
     {
         ProjectWorkSessions.setObjectName("ProjectWorkSessions");
-        ProjectWorkSessions.resize(new QSize(716, 358).expandedTo(ProjectWorkSessions.minimumSizeHint()));
+        ProjectWorkSessions.resize(new QSize(795, 359).expandedTo(ProjectWorkSessions.minimumSizeHint()));
         gridLayout = new QGridLayout(ProjectWorkSessions);
         gridLayout.setObjectName("gridLayout");
         cmbWorkpackage = new QComboBox(ProjectWorkSessions);
@@ -57,7 +58,7 @@ public class Ui_ProjectWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
         tblWorkSessions = new QTableView(ProjectWorkSessions);
         tblWorkSessions.setObjectName("tblWorkSessions");
 
-        gridLayout.addWidget(tblWorkSessions, 1, 0, 1, 7);
+        gridLayout.addWidget(tblWorkSessions, 1, 0, 1, 8);
 
         txtStart = new QDateEdit(ProjectWorkSessions);
         txtStart.setObjectName("txtStart");
@@ -101,10 +102,10 @@ public class Ui_ProjectWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
         sizePolicy5.setVerticalStretch((byte)0);
         sizePolicy5.setHeightForWidth(btnAddFilter.sizePolicy().hasHeightForWidth());
         btnAddFilter.setSizePolicy(sizePolicy5);
-        btnAddFilter.setMinimumSize(new QSize(90, 0));
-        btnAddFilter.setMaximumSize(new QSize(90, 16777215));
+        btnAddFilter.setMinimumSize(new QSize(100, 0));
+        btnAddFilter.setMaximumSize(new QSize(100, 16777215));
 
-        gridLayout.addWidget(btnAddFilter, 0, 5, 1, 1);
+        gridLayout.addWidget(btnAddFilter, 0, 6, 1, 1);
 
         btnRemoveFilter = new QPushButton(ProjectWorkSessions);
         btnRemoveFilter.setObjectName("btnRemoveFilter");
@@ -116,18 +117,30 @@ public class Ui_ProjectWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
         btnRemoveFilter.setMinimumSize(new QSize(110, 0));
         btnRemoveFilter.setMaximumSize(new QSize(110, 16777215));
 
-        gridLayout.addWidget(btnRemoveFilter, 0, 6, 1, 1);
-
-        lblTotalTime = new QLabel(ProjectWorkSessions);
-        lblTotalTime.setObjectName("lblTotalTime");
-
-        gridLayout.addWidget(lblTotalTime, 2, 6, 1, 1);
+        gridLayout.addWidget(btnRemoveFilter, 0, 7, 1, 1);
 
         lblTotalTimeText = new QLabel(ProjectWorkSessions);
         lblTotalTimeText.setObjectName("lblTotalTimeText");
         lblTotalTimeText.setAlignment(com.trolltech.qt.core.Qt.AlignmentFlag.createQFlags(com.trolltech.qt.core.Qt.AlignmentFlag.AlignRight,com.trolltech.qt.core.Qt.AlignmentFlag.AlignVCenter));
 
-        gridLayout.addWidget(lblTotalTimeText, 2, 5, 1, 1);
+        gridLayout.addWidget(lblTotalTimeText, 2, 6, 1, 1);
+
+        chkFilterDate = new QCheckBox(ProjectWorkSessions);
+        chkFilterDate.setObjectName("chkFilterDate");
+        QSizePolicy sizePolicy7 = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Fixed, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
+        sizePolicy7.setHorizontalStretch((byte)0);
+        sizePolicy7.setVerticalStretch((byte)0);
+        sizePolicy7.setHeightForWidth(chkFilterDate.sizePolicy().hasHeightForWidth());
+        chkFilterDate.setSizePolicy(sizePolicy7);
+        chkFilterDate.setMinimumSize(new QSize(90, 0));
+        chkFilterDate.setMaximumSize(new QSize(90, 16777215));
+
+        gridLayout.addWidget(chkFilterDate, 0, 5, 1, 1);
+
+        lblTotalTime = new QLabel(ProjectWorkSessions);
+        lblTotalTime.setObjectName("lblTotalTime");
+
+        gridLayout.addWidget(lblTotalTime, 2, 7, 1, 1);
 
         retranslateUi(ProjectWorkSessions);
 
@@ -142,8 +155,9 @@ public class Ui_ProjectWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
         txtEnd.setDisplayFormat(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "dd.MM.yy", null));
         btnAddFilter.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "Add Filter", null));
         btnRemoveFilter.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "Remove Filter", null));
-        lblTotalTime.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "0.0h", null));
         lblTotalTimeText.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "Total Time:", null));
+        chkFilterDate.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "Datefilter?", null));
+        lblTotalTime.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectWorkSessions", "0.0h", null));
     } // retranslateUi
 
 }

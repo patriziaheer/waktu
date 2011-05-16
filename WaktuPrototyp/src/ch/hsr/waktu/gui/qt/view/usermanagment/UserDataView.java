@@ -19,13 +19,18 @@ public class UserDataView extends QWidget {
 
 	public UserDataView(Usr user) {
 		this.usr = user;
+	}
+
+	public void initialize() {
 		ui.setupUi(this);
 		ui.btnAdd.clicked.connect(this, "addClicked()");
 		ComboBoxData.createSystemRoleComboBox(ui.cmbRole);
 
 		UserController.getInstance().update.connect(this, "updateData()");
 		UserController.getInstance().add.connect(this, "addData(Usr)");
-
+		
+		ui.txtUnvisbileField.setVisible(false);
+		
 		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 		setFields();
 	}

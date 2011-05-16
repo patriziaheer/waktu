@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>716</width>
-    <height>358</height>
+    <width>795</width>
+    <height>359</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,7 +34,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="7">
+   <item row="1" column="0" colspan="8">
     <widget class="QTableView" name="tblWorkSessions"/>
    </item>
    <item row="0" column="2">
@@ -106,7 +106,7 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="5">
+   <item row="0" column="6">
     <widget class="QPushButton" name="btnAddFilter">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -116,13 +116,13 @@
      </property>
      <property name="minimumSize">
       <size>
-       <width>90</width>
+       <width>100</width>
        <height>0</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>90</width>
+       <width>100</width>
        <height>16777215</height>
       </size>
      </property>
@@ -131,7 +131,7 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="6">
+   <item row="0" column="7">
     <widget class="QPushButton" name="btnRemoveFilter">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -157,19 +157,44 @@
     </widget>
    </item>
    <item row="2" column="6">
-    <widget class="QLabel" name="lblTotalTime">
-     <property name="text">
-      <string>0.0h</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="5">
     <widget class="QLabel" name="lblTotalTimeText">
      <property name="text">
       <string>Total Time:</string>
      </property>
      <property name="alignment">
       <set>com.trolltech.qt.core.Qt.AlignmentFlag.AlignRight|com.trolltech.qt.core.Qt.AlignmentFlag.AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="5">
+    <widget class="QCheckBox" name="chkFilterDate">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>90</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>90</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Datefilter?</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="7">
+    <widget class="QLabel" name="lblTotalTime">
+     <property name="text">
+      <string>0.0h</string>
      </property>
     </widget>
    </item>

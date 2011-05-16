@@ -19,6 +19,9 @@ public class ProjectDataView extends QWidget {
 
 	public ProjectDataView(Project project) {
 		this.project = project;
+	}
+
+	public void initialize() {
 		ui.setupUi(this);
 		ui.btnAdd.clicked.connect(this, "addClicked()");
 		try {
@@ -29,6 +32,8 @@ public class ProjectDataView extends QWidget {
 
 		ProjectController.getInstance().update.connect(this, "updateData()");
 		ProjectController.getInstance().add.connect(this, "addData(Project)");
+		
+		ui.txtUnvisibleField.setVisible(false);
 
 		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 

@@ -24,8 +24,11 @@ public class ProjectWorkSessionsView extends QWidget {
 	public Signal1<String> errorMessage = new Signal1<String>();
 	
 	public ProjectWorkSessionsView(Project project) {
-		ui.setupUi(this);
 		this.project = project;
+	}
+
+	public void initialize() {
+		ui.setupUi(this);
 		try {
 			ComboBoxData.createUserComboBox(ui.cmbUser);
 			ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, project);
@@ -51,28 +54,32 @@ public class ProjectWorkSessionsView extends QWidget {
 		ui.txtEnd.setDate(new QDate(01,01,1900));
 
 		LanguageController.getInstance().languageChanged.connect(this, "translate()");
-		
-		ui.txtEnd.setVisible(false);
-		ui.txtStart.setVisible(false);
 	}
 	
 	@SuppressWarnings("unused")
 	private void addFilter() {
 		filterModel.setUsr((Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()));
 		filterModel.setWorkPackage((WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()));
-		/*QDate start = null;
-		QDate end = null;
-		
-		if (ui.txtStart.date().toString("dd.MM.yyyy").equals("01.01.2000") == false) {
-			start = ui.txtStart.date(); 
+		if (ui.chkFilterDate.isChecked()) {
+			QDate start = null;
+			QDate end = null;
+			
+			if (ui.txtStart.date().toString("dd.MM.yyyy").equals("01.01.2000") == false) {
+				start = ui.txtStart.date(); 
+			}
+			if (ui.txtEnd.date().toString("dd.MM.yyyy").equals("01.01.2000") == false) {
+				end = ui.txtEnd.date();
+			}
+			filterModel.setStart(start);
+			filterModel.setEnd(end);
+			
+			ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), (Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()), start, end));
+		} else {
+			filterModel.setStart(null);
+			filterModel.setEnd(null);
+			ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), (Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()), null, null));
+			
 		}
-		if (ui.txtEnd.date().toString("dd.MM.yyyy").equals("01.01.2000") == false) {
-			end = ui.txtEnd.date();
-		}
-		filterModel.setStart(start);
-		filterModel.setEnd(end);*/
-		
-		ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), (Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()), null, null));
 	}
 	
 	@SuppressWarnings("unused")

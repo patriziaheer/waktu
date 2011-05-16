@@ -70,22 +70,28 @@ public class ProjectDetails extends QWidget {
 			case Data: {
 				ProjectDataView projectDataView = new ProjectDataView((Project)parent);
 				projectDataView.errorMessage.connect(this, "showErrorMessage(String)");
+				projectDataView.initialize();
 				currWidget = projectDataView;
 			}
 			break;
 			case WorkPackages: {
 				ProjectWorkPackageView projectWorkPackageView = new ProjectWorkPackageView((Project)parent);
 				projectWorkPackageView.errorMessage.connect(this, "showErrorMessage(String)");
+				projectWorkPackageView.initialize();
 				currWidget = projectWorkPackageView;
 			}
 			break;
 			case WorkSessions: {
-				currWidget = new ProjectWorkSessionsView((Project)parent);
+				ProjectWorkSessionsView projectWorkSessionsView = new ProjectWorkSessionsView((Project)parent);
+				projectWorkSessionsView.errorMessage.connect(this, "showErrorMessage(String)");
+				projectWorkSessionsView.initialize();
+				currWidget = projectWorkSessionsView;
 			}
 			break;
 			case ProjectStaff: {
 				ProjectStaffView projectStaffView = new ProjectStaffView((Project)parent);
 				projectStaffView.errorMessage.connect(this, "showErrorMessage(String)");
+				projectStaffView.initialize();
 				currWidget = projectStaffView;
 			}
 			}
