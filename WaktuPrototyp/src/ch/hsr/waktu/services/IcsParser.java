@@ -3,7 +3,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import ch.hsr.waktu.domain.WorkSession;
 
@@ -56,9 +56,9 @@ public class IcsParser {
 	 * @return a linked list containing all WorkSessions extracted from input file.
 	 * @throws WaktuException 
 	 */
-	public static LinkedList<WorkSession> parseIcsFile(String filePath) throws WaktuException {
+	public static ArrayList<WorkSession> parseIcsFile(String filePath) throws WaktuException {
 		
-		LinkedList<WorkSession> calendar = new LinkedList<WorkSession>();
+		ArrayList<WorkSession> calendar = new ArrayList<WorkSession>();
 		
 		BufferedReader br;
 		

@@ -2,8 +2,6 @@ package ch.hsr.waktu.domain;
 
 import java.util.GregorianCalendar;
 
-import ch.hsr.waktu.services.TimeUtil;
-
 /**
  * @author simon.staeheli
  * @version 1.0
@@ -77,7 +75,7 @@ public class WorkSession {
 	
 	@Override
 	public String toString() {
-		return id + " " + userRef + " " + workPackageRef.getDescription() + " " + TimeUtil.convertGregorianToQDateTime(startTime) + " - " + TimeUtil.convertGregorianToQDateTime(endTime);
+		return id + ""; //+ " " + userRef + " " + workPackageRef.getDescription() + " " + TimeUtil.convertGregorianToQDateTime(startTime) + " - " + TimeUtil.convertGregorianToQDateTime(endTime);
 	}
 
 	@Override

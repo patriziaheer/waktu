@@ -353,6 +353,7 @@
     </widget>
     <addaction name="actionAdd_to_Favorites"/>
     <addaction name="menuLanguage"/>
+    <addaction name="actionIcs_Import"/>
     <addaction name="actionClose"/>
    </widget>
    <addaction name="menuFile"/>
@@ -381,6 +382,11 @@
   <action name="actionDE">
    <property name="text">
     <string>DE</string>
+   </property>
+  </action>
+  <action name="actionIcs_Import">
+   <property name="text">
+    <string>Ics Import</string>
    </property>
   </action>
  </widget>

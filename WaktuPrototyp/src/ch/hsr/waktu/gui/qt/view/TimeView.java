@@ -33,6 +33,7 @@ import com.trolltech.qt.gui.QBrush;
 import com.trolltech.qt.gui.QCloseEvent;
 import com.trolltech.qt.gui.QColor;
 import com.trolltech.qt.gui.QComboBox;
+import com.trolltech.qt.gui.QFileDialog;
 import com.trolltech.qt.gui.QHBoxLayout;
 import com.trolltech.qt.gui.QIcon;
 import com.trolltech.qt.gui.QItemSelectionModel.SelectionFlag;
@@ -141,6 +142,8 @@ public class TimeView extends QMainWindow {
 		ui.actionEN.triggered.connect(this, "translateEN()");
 		LanguageController.getInstance().languageChanged.connect(this,
 				"translate()");
+		
+		ui.actionIcs_Import.triggered.connect(this, "icsImportClicked()");
 		
 		ui.txtStart.setDisplayFormat("HH:mm");
 		ui.txtEnd.setDisplayFormat("HH:mm");
@@ -585,6 +588,15 @@ public class TimeView extends QMainWindow {
 	@SuppressWarnings("unused")
 	private void translate() {
 		ui.retranslateUi(this);
+	}
+	
+	@SuppressWarnings("unused")
+	private void icsImportClicked() {
+		String fileName = QFileDialog.getOpenFileName(this,tr("Open Image"), "", new QFileDialog.Filter(tr("Ics Files (*.ics)")));
+		if (fileName.isEmpty() == false) {
+			IcsImportView icsImport = new IcsImportView(fileName);
+			icsImport.show();
+		}
 	}
 
 	@Override

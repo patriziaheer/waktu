@@ -2,8 +2,8 @@ package ch.hsr.waktu.services;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.LinkedList;
 
 import org.junit.After;
 import org.junit.Before;
@@ -16,7 +16,7 @@ public class TestIcsParser {
 	private WorkSession ws1 = new WorkSession();
 	private WorkSession ws2 = new WorkSession();
 	private WorkSession ws3 = new WorkSession();
-	private LinkedList<WorkSession> calendar = new LinkedList<WorkSession>();
+	private ArrayList<WorkSession> calendar = new ArrayList<WorkSession>();
 	//TODO file nicht vorhanden -> Fehlermeldung
 	@Before
 	public void setUp() {
@@ -44,54 +44,54 @@ public class TestIcsParser {
 	
 	@Test
 	public void parseIcsFile_allBeginVeventMissing_noEventsProcessed() throws WaktuException {
-		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/allBeginVeventMissing.ics");
+		ArrayList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/allBeginVeventMissing.ics");
 		assertEquals(0, testCalendar.size());
 	}
 
 	@Test
 	public void parseIcsFile_endVCalendarMissing_allEventsProcessedNoException() throws WaktuException {
-		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/endVCalendarMissing.ics");
+		ArrayList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/endVCalendarMissing.ics");
 		assertCalendarValidity(testCalendar, 3);
 	}
 	
 	@Test
 	public void parseIcsFile_Normal() throws WaktuException {
-		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/normal.ics");
+		ArrayList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/normal.ics");
 		assertCalendarValidity(testCalendar, 3);
 	}
 
 	@Test
 	public void parseIcsFile_invalidTimeDelimiter_onlyValidEventsProcessed() throws WaktuException {
-		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/invalidTimeDelimiter.ics");
+		ArrayList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/invalidTimeDelimiter.ics");
 		assertCalendarValidity(testCalendar, 2);
 	}
 	
 	@Test
 	public void parseIcsFile_invalidTimeFormat_onlyValidEventsProcessed() throws WaktuException {
-		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/invalidTimeFormat.ics");
+		ArrayList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/invalidTimeFormat.ics");
 		assertCalendarValidity(testCalendar, 1);
 	}
 	
 	@Test
 	public void parseIcsFile_startTimeEndTimeMissing_onlyValidEventsProcessed() throws WaktuException {
-		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/startTimeEndTimeMissing.ics");
+		ArrayList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/startTimeEndTimeMissing.ics");
 		assertCalendarValidity(testCalendar, 1);
 	}
 	
 	@Test
 	public void parseIcsFile_summaryMissing_onlyValidEventsProcessed() throws WaktuException {
-		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/summaryMissing.ics");
+		ArrayList<WorkSession> testCalendar = IcsParser.parseIcsFile("./test/testdata/summaryMissing.ics");
 		assertCalendarValidity(testCalendar, 2);
 	}
 	
 	@Test(expected=WaktuException.class)
 	public void parseIcsFile_invalidFilepathInArgument_NullReturnedWaktuGeneralException() throws WaktuException {
-		LinkedList<WorkSession> testCalendar = IcsParser.parseIcsFile(null);
+		ArrayList<WorkSession> testCalendar = IcsParser.parseIcsFile(null);
 		assertEquals(null, testCalendar);
 	}
 	
 	
-	private void assertCalendarValidity(LinkedList<WorkSession> testCalendar, int noOfValidEntries) {
+	private void assertCalendarValidity(ArrayList<WorkSession> testCalendar, int noOfValidEntries) {
 		for(int i=0; i < noOfValidEntries; i++) {
 			assertEquals(calendar.get(i).getDescription(), testCalendar.get(i).getDescription());
 		}

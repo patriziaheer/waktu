@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'TimeWindow.jui'
 **
-** Created: Mi 11. Mai 13:24:47 2011
+** Created: Mo. Mai 16 14:57:03 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -19,6 +19,7 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
     public QAction actionAdd_to_Favorites;
     public QAction actionEN;
     public QAction actionDE;
+    public QAction actionIcs_Import;
     public QWidget centralwidget;
     public QGridLayout gridLayout;
     public QGroupBox grpWorksessions;
@@ -86,6 +87,8 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         actionEN.setObjectName("actionEN");
         actionDE = new QAction(TimeWindow);
         actionDE.setObjectName("actionDE");
+        actionIcs_Import = new QAction(TimeWindow);
+        actionIcs_Import.setObjectName("actionIcs_Import");
         centralwidget = new QWidget(TimeWindow);
         centralwidget.setObjectName("centralwidget");
         gridLayout = new QGridLayout(centralwidget);
@@ -327,6 +330,7 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         menuManagment.addAction(actionOpenManagment);
         menuFile.addAction(actionAdd_to_Favorites);
         menuFile.addAction(menuLanguage.menuAction());
+        menuFile.addAction(actionIcs_Import);
         menuFile.addAction(actionClose);
         menuLanguage.addAction(actionEN);
         menuLanguage.addAction(actionDE);
@@ -343,6 +347,7 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         actionAdd_to_Favorites.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Add to Favorites", null));
         actionEN.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "EN", null));
         actionDE.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "DE", null));
+        actionIcs_Import.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Ics Import", null));
         grpWorksessions.setTitle(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Worksessions", null));
         grpOverview.setTitle(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Overview", null));
         lblPlannedDayText.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Worktime per day:", null));
