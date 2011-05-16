@@ -22,7 +22,7 @@ public class BusinessRuleController {
 			logger.info("Negative holiday");
 			throw new WaktuException("Negative holiday");
 		}
-		if(usr.getPensum() < 0) {
+		if(usr.getPensum() < 1) {
 			logger.info("Negative pensum");
 			throw new WaktuException("Negative pensum");
 		}
