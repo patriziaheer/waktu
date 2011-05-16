@@ -87,8 +87,16 @@ public class TimeView extends QMainWindow {
 
 		try {
 			ComboBoxData.createProjectForUserComboBox(ui.cmbProject, currUser);
+		} catch (WaktuException e) {
+			setStatusBarText(e.getMessage());
+		}
+		try {
 			workSessionModel = new WorkSessionModel(currUser,
 					calendar.getCurrentDate());
+		} catch (WaktuException e) {
+			setStatusBarText(e.getMessage());
+		}
+		try {
 			favoriteModel = new FavoriteModel(currUser);
 		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
