@@ -3,6 +3,8 @@ package ch.hsr.waktu.application;
 
 
 
+import java.net.URL;
+
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -25,17 +27,18 @@ public class WaktuApplication {
 	
 
     public static void main(String[] args) {
-    	
     	//ClassLoader loader = WaktuApplication.class.getClassLoader();
 		//PropertyConfigurator.configure(loader.getResource("settings").getFile());
-    	PropertyConfigurator.configure("settings");
+		ClassLoader loader = WaktuApplication.class.getClassLoader();
+		URL url = loader.getResource("settings");
+    	PropertyConfigurator.configure(url);
     	logger.info("Initialize Application");
     	//QApplication.initialize(args);
     	//QApplication.setStyle(new QPlastiqueStyle());
         QApplication app = new QApplication(args);
         QApplication.setWindowIcon(new QIcon("classpath:icons/logo_without_text.png"));
         
-        QSplashScreen splashScreen = new QSplashScreen(new QPixmap("classpath:icons/logo.png"));
+        QSplashScreen splashScreen = new QSplashScreen(new QPixmap("classpath:icons/logo.gif"));
         splashScreen.show();
         splashScreen.showMessage("Initialize Application...");
         QApplication.processEvents();

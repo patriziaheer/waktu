@@ -16,11 +16,14 @@ import com.trolltech.qt.gui.QCloseEvent;
 import com.trolltech.qt.gui.QColor;
 import com.trolltech.qt.gui.QCursor;
 import com.trolltech.qt.gui.QDialog;
+import com.trolltech.qt.gui.QHBoxLayout;
+import com.trolltech.qt.gui.QLabel;
 import com.trolltech.qt.gui.QMenu;
 import com.trolltech.qt.gui.QMenuBar;
+import com.trolltech.qt.gui.QMovie;
 import com.trolltech.qt.gui.QPalette;
-import com.trolltech.qt.gui.QPixmap;
 import com.trolltech.qt.gui.QPalette.ColorRole;
+import com.trolltech.qt.gui.QPixmap;
 import com.trolltech.qt.gui.QSplashScreen;
 
 public class LoginView extends QDialog {
@@ -72,16 +75,27 @@ public class LoginView extends QDialog {
 			this.setCursor(new QCursor(CursorShape.WaitCursor));
 			if (LoginController.getInstance().login(ui.txtUsername.text(),
 					ui.txtPassword.text())) {
-		        QSplashScreen splashScreen = new QSplashScreen(new QPixmap("classpath:icons/logo.png"));
+		        QSplashScreen splashScreen = new QSplashScreen(new QPixmap("classpath:icons/logo.gif"));
 		        splashScreen.show();
+		        QMovie mov = new QMovie("classpath:icons/logo.gif");
+		        QLabel lbl = new QLabel();
+		        lbl.setMovie(mov);
+		        splashScreen.setLayout(new QHBoxLayout());
+		        mov.start();
+		        splashScreen.layout().addWidget(lbl);
 		        splashScreen.showMessage("Login...");
-		        
+		        QApplication.processEvents();
 				Usr usr = UserController.getInstance().getUser(
 						ui.txtUsername.text());
+		        QApplication.processEvents();
 				TimeView timeView = new TimeView(usr);
+		        QApplication.processEvents();
 				timeView.show();
+		        QApplication.processEvents();
 				this.setCursor(new QCursor(CursorShape.ArrowCursor));
+		        QApplication.processEvents();
 				setVisible(false);
+		        QApplication.processEvents();
 				splashScreen.finish(timeView);
 			} else {
 				setStatus(com.trolltech.qt.core.QCoreApplication

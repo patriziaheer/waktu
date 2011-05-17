@@ -39,9 +39,9 @@ import com.trolltech.qt.gui.QIcon;
 import com.trolltech.qt.gui.QItemSelectionModel.SelectionFlag;
 import com.trolltech.qt.gui.QLabel;
 import com.trolltech.qt.gui.QMainWindow;
+import com.trolltech.qt.gui.QMovie;
 import com.trolltech.qt.gui.QPalette;
 import com.trolltech.qt.gui.QPalette.ColorRole;
-import com.trolltech.qt.gui.QPixmap;
 import com.trolltech.qt.gui.QSplitter;
 import com.trolltech.qt.gui.QVBoxLayout;
 import com.trolltech.qt.gui.QWidget;
@@ -63,7 +63,10 @@ public class TimeView extends QMainWindow {
 		calendar = new CalendarWidget();
 		calendar.dayChanged.connect(this, "dayChanged()");
 		QLabel logo = new QLabel();
-		logo.setPixmap(new QPixmap("classpath:icons/logo_klein.png"));
+		//logo.setPixmap(new QPixmap("classpath:icons/logo_klein.png"));
+		QMovie mov = new QMovie("classpath:icons/logo.gif");
+		logo.setMovie(mov);
+		mov.start();
 		
 		QWidget wCalLogo = new QWidget();
 		QHBoxLayout calLogoLayout = new QHBoxLayout();
