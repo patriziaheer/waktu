@@ -27,20 +27,18 @@ public class XmlUtil {
 		try {
 			return DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(file);
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new WaktuException("SAX problem");		
 		} catch (IOException e) {
 			throw new WaktuException("File could not be opened");
 		} catch (ParserConfigurationException e) {
 			throw new WaktuException("Wrong parser configuration");
 		}
-		return null;
 	}
 	
-	@SuppressWarnings("unused")
-	private static void saveXmlFile(String filePath, Document document) {
-		//TODO
-	}
+//	@SuppressWarnings("unused")
+//	private static void saveXmlFile(String filePath, Document document) {
+//		//TODO
+//	}
 	
 	public static LinkedList<WorkSession> getWorkSessionsFromXml(String filePath) throws WaktuException {
 		//TODO
@@ -51,24 +49,24 @@ public class XmlUtil {
 		LinkedList<WorkSession> worksessions = new LinkedList<WorkSession>();
 		NodeList workSessionNodeList = document.getElementsByTagName("WorkSession");
 		for(int i = 0; i < workSessionNodeList.getLength(); i++) {
-			Node wsnl = workSessionNodeList.item(i);
+			Node node = workSessionNodeList.item(i);
 			WorkSession ws = new WorkSession();
-			ws.setDescription(getTextContentOf(wsnl, "description"));
-			ws.setUser(getUserContentOf(wsnl, "user"));
-			ws.setStart(getTimeContentOf(wsnl, "start"));
-			ws.setEnd(getTimeContentOf(wsnl, "end"));
-			ws.setWorkPackage(getWorkPackageContentOf(wsnl, "workPackage"));
+			ws.setDescription(getTextContentOf(node, "description"));
+			ws.setUser(getUserContentOf(node, "user"));
+			ws.setStart(getTimeContentOf(node, "start"));
+			ws.setEnd(getTimeContentOf(node, "end"));
+			ws.setWorkPackage(getWorkPackageContentOf(node, "workPackage"));
 			worksessions.add(ws);
 		}
 		return worksessions;
 	}
 	
-	private static WorkPackage getWorkPackageContentOf(Node wsnl, String string) {
+	private static WorkPackage getWorkPackageContentOf(Node node, String string) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	private static GregorianCalendar getTimeContentOf(Node wsnl, String string) {
+	private static GregorianCalendar getTimeContentOf(Node node, String string) {
 		// TODO Auto-generated method stub
 		return null;
 	}

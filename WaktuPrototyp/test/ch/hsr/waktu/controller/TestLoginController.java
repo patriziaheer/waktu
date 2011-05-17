@@ -10,7 +10,7 @@ import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.controller.datacontroller.UserControllerXml;
 import ch.hsr.waktu.services.WaktuException;
 
-public class TestPermissionController {
+public class TestLoginController {
 
 	private UserController previousUserController;
 	
@@ -28,46 +28,30 @@ public class TestPermissionController {
 	public void restorePreviousControllers() {
 		UserController.setInstance(previousUserController);
 	}
-
 	
 	@Test
-	public void canLogin_InvalidUsername_False() {		
-		assertEquals(false, LoginController.getInstance().canLogin("boaheyistdaseinlangerungŸltigername"));
+	public void canLogin_InvalidUsername_False() throws WaktuException {		
+		assertEquals(false, LoginController.getInstance().canLogin("boaheyistdaseinlangerungï¿½ltigername"));
 	}
 	
 	@Test
-	public void canLogin_ValidUsername_True() {
+	public void canLogin_ValidUsername_True() throws WaktuException {
 		assertEquals(true, LoginController.getInstance().canLogin("chucknorris"));
 	}
 	
 	@Test
-	public void login_InvalidPassword_False() {
-		try {
-			assertEquals(false, LoginController.getInstance().login("mickeymouse", "falschespasswort"));
-		} catch (WaktuException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void login_InvalidPassword_False() throws WaktuException {
+		assertEquals(false, LoginController.getInstance().login("mickeymouse", "falschespasswort"));
 	}
 	
 	@Test
-	public void login_InvalidUsername_False() {
-		try {
-			assertEquals(false, LoginController.getInstance().login("ŸngŸltigernameh", "whatever"));
-		} catch (WaktuException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void login_InvalidUsername_False() throws WaktuException {
+		assertEquals(false, LoginController.getInstance().login("ï¿½ngï¿½ltigernameh", "whatever"));
 	}
 	
 	@Test
-	public void login_ValidUsernamePassword_True() {
-		try {
-			assertEquals(true, LoginController.getInstance().login("chucknorris", "1337"));
-		} catch (WaktuException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void login_ValidUsernamePassword_True() throws WaktuException {
+		assertEquals(true, LoginController.getInstance().login("chucknorris", "1337"));
 	}
 	
 	@Test
@@ -75,5 +59,4 @@ public class TestPermissionController {
 		LoginController.getInstance().logout();
 		assertEquals(null, LoginController.getInstance().getLoggedInUser());
 	}
-	
 }

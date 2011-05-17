@@ -60,15 +60,11 @@ public class LoginController {
 	 * 
 	 * @param username
 	 * @param password
+	 * @throws WaktuException 
 	 */
-	public boolean canLogin(String username) {
-
-		try {
-			if (UserController.getInstance().getUser(username) != null) {
-				return true;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+	public boolean canLogin(String username) throws WaktuException {
+		if (UserController.getInstance().getUser(username) != null) {
+			return true;
 		}
 		return false;
 	}
