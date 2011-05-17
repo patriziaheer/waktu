@@ -7,9 +7,7 @@ import java.util.ArrayList;
 
 import ch.hsr.waktu.domain.WorkSession;
 
-import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.core.QDateTime;
-import com.trolltech.qt.core.QTime;
 
 public class IcsParser {
 
@@ -86,12 +84,12 @@ public class IcsParser {
 								
 						} else if(currentLine.startsWith("DTSTART")) { 
 							//start time read
-							QDateTime startTime = stringToQDateTime(currentLine);
+							QDateTime startTime = TimeUtil.stringToQDateTime(stripTag(currentLine));
 							tmpWs.setStart(TimeUtil.convertQDateTimeToGregorian(startTime));
 							
 						} else if(currentLine.startsWith("DTEND")) { 
 							//end time read
-							QDateTime endTime = stringToQDateTime(currentLine);
+							QDateTime endTime = TimeUtil.stringToQDateTime(stripTag(currentLine));
 							tmpWs.setEnd(TimeUtil.convertQDateTimeToGregorian(endTime));
 
 						}
@@ -120,45 +118,6 @@ public class IcsParser {
 			return false;
 		}
 		return (workSession.getDescription() != null && workSession.getStart() != null && workSession.getEnd() != null);
-	}
-
-	/**
-	 * Converts an .ics dateTime string into a QDateTime object
-	 *
-	 * The format of the input dateTimeString is yyyyMMddThhmmss, where yyyy denotes the year,
-	 * MM the month, dd the day, 'T' a delimiter, hh the hour, mm the minutes, ss the seconds.
-	 * Failing to pass the dateTimeString in this format will result in undesirable DateTime Objects 
-	 * or a @throws IndexOutOfBoundsException may be thrown in case the dateTimeString is too short.
-	 * <p>
-	 * Example dateTimeString:
-	 * 20110221T124714Z
-	 * <p>
-	 * Date: 20110221 (2010-02-21)
-	 * Time: 124714 (12:47:14)
-	 * 
-	 *
-	 * @param  dateTimeString string containing a date and a time.
-	 * @return QDateTime Instance (a Qt DateTime Object, which Combines QDate and QTime).
-	 */
-	private static QDateTime stringToQDateTime(String dateTimeString) {
-		String[] dateTime = splitTimeDateString(stripTag(dateTimeString));
-		int year = new Integer(dateTime[0].substring(0, 4));
-		int month = new Integer(dateTime[0].substring(4, 6));
-		int day = new Integer(dateTime[0].substring(6, 8));
-		int hours = new Integer(dateTime[1].substring(0,2));
-		int minutes = new Integer(dateTime[1].substring(2,4));
-		int seconds = new Integer(dateTime[1].substring(4,6));
-		return new QDateTime(new QDate(year, month, day), new QTime(hours, minutes, seconds));
-	}
-
-	/**
-	 * Splits a string containing a date followed by a time in two separate strings.
-	 *
-	 * @param  timeDateString string containing date and time delimited by 'T'  
-	 * @return array containing a date- and a time-string
-	 */
-	private static String[] splitTimeDateString(String timeDateString) {
-		return timeDateString.split("T"); 
 	}
 	
 	/**
