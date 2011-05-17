@@ -32,7 +32,15 @@ public class UserWorkSessionsView extends QWidget{
 		
 		try {
 			ComboBoxData.createActiveProjectComboBox(ui.cmbProject);
+		} catch (WaktuException e) {
+			errorMessage.emit(e.getMessage());
+		}
+		try {
 			ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
+		} catch (WaktuException e) {
+			errorMessage.emit(e.getMessage());
+		}
+		try {
 			workSessionModel = new UserWorkSessionModel(usr);
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
