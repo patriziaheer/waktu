@@ -58,7 +58,7 @@ public class WorkPackageController extends QSignalEmitter {
 		
 		try {
 			activeWorkPackages = em.createQuery(
-					"SELECT wp FROM WorkPackage wp WHERE wp.active = TRUE").getResultList();
+					"SELECT wp FROM WorkPackage wp JOIN wp.project p WHERE wp.active = TRUE AND p.projectid = '" + project.getId() + "'").getResultList();
 		} catch (IllegalStateException e) {
 			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {

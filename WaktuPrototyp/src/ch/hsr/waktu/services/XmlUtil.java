@@ -2,6 +2,7 @@ package ch.hsr.waktu.services;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -12,9 +13,11 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.Favorite;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.domain.WorkSession;
 
 public class XmlUtil {
@@ -41,30 +44,47 @@ public class XmlUtil {
 	
 	public static LinkedList<WorkSession> getWorkSessionsFromXml(String filePath) throws WaktuException {
 		//TODO
-		if(filePath == null) {
-			return null;
-		}
 		Document document = parseXmlFile(filePath);
 		if(document == null) {
 			return null;
 		}
 		LinkedList<WorkSession> worksessions = new LinkedList<WorkSession>();
-		
-		
+		NodeList workSessionNodeList = document.getElementsByTagName("WorkSession");
+		for(int i = 0; i < workSessionNodeList.getLength(); i++) {
+			Node wsnl = workSessionNodeList.item(i);
+			WorkSession ws = new WorkSession();
+			ws.setDescription(getTextContentOf(wsnl, "description"));
+			ws.setUser(getUserContentOf(wsnl, "user"));
+			ws.setStart(getTimeContentOf(wsnl, "start"));
+			ws.setEnd(getTimeContentOf(wsnl, "end"));
+			ws.setWorkPackage(getWorkPackageContentOf(wsnl, "workPackage"));
+			worksessions.add(ws);
+		}
 		return worksessions;
 	}
 	
+	private static WorkPackage getWorkPackageContentOf(Node wsnl, String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private static GregorianCalendar getTimeContentOf(Node wsnl, String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	public static void saveWorkSessionsToXml(String filePath, LinkedList<WorkSession> workSessions) {
 		
 	}
 	
 	public static LinkedList<Usr> getUsersFromXml(String filePath) throws WaktuException {
-		if(filePath == null) {
-			return null;
-		}
+		
 		LinkedList<Usr> users = new LinkedList<Usr>();
 		
 		Document document = parseXmlFile(filePath);
+		if(document == null) {
+			return null;
+		}
 		NodeList usrs = document.getElementsByTagName("Usr");
 		for(int i = 0; i < usrs.getLength(); i++) {
 			Node usr = usrs.item(i);
@@ -123,5 +143,9 @@ public class XmlUtil {
 			}
 		}
 		return null;
+	}
+	
+	private static Usr getUserContentOf(Node element, String name) throws WaktuException {
+		return UserController.getInstance().getUser(name);
 	}
 }
