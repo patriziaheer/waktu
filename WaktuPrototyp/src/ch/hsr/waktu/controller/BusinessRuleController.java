@@ -23,8 +23,8 @@ public class BusinessRuleController {
 			throw new WaktuException("Negative holiday");
 		}
 		if(usr.getPensum() < 1) {
-			logger.info("Negative pensum");
-			throw new WaktuException("Negative pensum");
+			logger.info("Pensum too low, must be between 1 - 100%");
+			throw new WaktuException("Pensum too low, must be between 1 - 100%");
 		}
 		if(usr.getPensum() > 100) {
 			logger.info("Pensum higher than 100%");

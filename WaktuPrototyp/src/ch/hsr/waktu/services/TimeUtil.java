@@ -12,24 +12,30 @@ import com.trolltech.qt.core.QTime;
 public class TimeUtil {
 	private static Logger logger = Logger.getLogger(TimeUtil.class);
 	
-	//TODO: Konvertier-Methoden refactoren gem�ss DKellers Aussage..
+	//TODO: Konvertier-Methoden refactoren gemäss DKellers Aussage.. MF: wtf?
 	public static QDateTime convertGregorianToQDateTime(GregorianCalendar dateTime) {
-		QDate date = new QDate(dateTime.get(GregorianCalendar.YEAR), dateTime.get(GregorianCalendar.MONTH), dateTime.get(GregorianCalendar.DAY_OF_MONTH));
-		QTime time = new QTime(dateTime.get(GregorianCalendar.HOUR_OF_DAY), dateTime.get(GregorianCalendar.MINUTE), dateTime.get(GregorianCalendar.SECOND));
+		QDate date = new QDate(dateTime.get(GregorianCalendar.YEAR), 
+				dateTime.get(GregorianCalendar.MONTH), dateTime.get(GregorianCalendar.DAY_OF_MONTH));
+		QTime time = new QTime(dateTime.get(GregorianCalendar.HOUR_OF_DAY), 
+				dateTime.get(GregorianCalendar.MINUTE), dateTime.get(GregorianCalendar.SECOND));
 		return new QDateTime(date, time);
 	}
 	
 	public static GregorianCalendar convertQDateTimeToGregorian(QDateTime dateTime) {
 		QDate date = dateTime.date();
 		QTime time = dateTime.time();
-		GregorianCalendar gregCal = new GregorianCalendar(date.year(), date.month(), date.day(), time.hour(), time.minute(), time.second());
-		logger.info(gregCal.get(Calendar.DAY_OF_MONTH) + "." + gregCal.get(Calendar.MONTH) + "." + gregCal.get(Calendar.YEAR));
+		GregorianCalendar gregCal = new GregorianCalendar(date.year(), date.month(), date.day(), 
+				time.hour(), time.minute(), time.second());
+		logger.info(gregCal.get(Calendar.DAY_OF_MONTH) + "." + gregCal.get(Calendar.MONTH) + 
+				"." + gregCal.get(Calendar.YEAR));
 		logger.info(gregCal.get(Calendar.HOUR) + ":" + gregCal.get(Calendar.MINUTE));
 		return gregCal;
 	}
 	
-	public static int calculateTimespanInSeconds(GregorianCalendar timeBefore, GregorianCalendar timeAfter) {
-		return calculateTimespanInSeconds(convertGregorianToQDateTime(timeBefore), convertGregorianToQDateTime(timeAfter));
+	public static int calculateTimespanInSeconds(GregorianCalendar timeBefore, 
+			GregorianCalendar timeAfter) {
+		return calculateTimespanInSeconds(convertGregorianToQDateTime(timeBefore), 
+				convertGregorianToQDateTime(timeAfter));
 	}
 	
 	public static int calculateTimespanInSeconds(QDateTime timeBefore, QDateTime timeAfter) {
@@ -49,7 +55,8 @@ public class TimeUtil {
 	
 	public static QDate[] getWeekBoundaries(QDate date) {
 		//TODO
-		QDate[] startDayEndDay = {new QDate(date.year(), getFirstDayOfWeek(date).month(), getFirstDayOfWeek(date).day()), 
+		QDate[] startDayEndDay = {new QDate(date.year(), getFirstDayOfWeek(date).month(), 
+				getFirstDayOfWeek(date).day()), 
 				new QDate(date.year(), getLastDayOfWeek(date).month(), getLastDayOfWeek(date).day())};
 		return startDayEndDay;
 	}

@@ -148,4 +148,12 @@ public class FavoriteModel extends QAbstractItemModel {
 	public Favorite getFavorite(int row) {
 		return favorites.get(row);
 	}
+	
+	@Override
+	public int hashCode() {
+		int hashCode = 31;
+		hashCode += 23 * favorites.hashCode();
+		hashCode += 23 * usr.hashCode();
+		return hashCode;
+	}
 }
