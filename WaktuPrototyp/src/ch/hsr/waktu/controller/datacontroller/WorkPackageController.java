@@ -38,6 +38,33 @@ public class WorkPackageController extends QSignalEmitter {
 	private WorkPackageController() {
 
 	}
+	
+	/**
+	 * 
+	 * @param loginName
+	 */
+	public WorkPackage getWorkPackage(int workPackageId) throws WaktuException {
+		EntityManager em = PersistenceController.getInstance().getEMF()
+				.createEntityManager();
+		
+		if(!PermissionController.getInstance().checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}	
+		
+		WorkPackage workPackage;
+		try {
+			workPackage = em.find(WorkPackage.class, workPackageId);
+		} catch (IllegalStateException e) {
+			throw new WaktuException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuException("General problem");
+		} finally {
+			em.close();
+		}
+		return workPackage;
+	}
 
 	/**
 	 * 

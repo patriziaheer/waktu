@@ -17,12 +17,12 @@ public class LoginController {
 		}
 		return theInstance;
 	}
-	
+
 	@SuppressWarnings("unused")
 	private Logger logger = Logger.getLogger(PermissionController.class);
-	
+
 	private static Usr loggedInUser;
-	
+
 	public Usr getLoggedInUser() {
 		return loggedInUser;
 	}
@@ -30,7 +30,7 @@ public class LoginController {
 	private void setLoggedInUser(Usr user) {
 		loggedInUser = user;
 	}
-	
+
 	/**
 	 * 
 	 * @param user
@@ -42,9 +42,10 @@ public class LoginController {
 	/**
 	 * 
 	 * @param username
-	 * @throws WaktuException 
+	 * @throws WaktuException
 	 */
-	public boolean login(String username, String password) throws WaktuException {
+	public boolean login(String username, String password)
+			throws WaktuException {
 		if (canLogin(username)) {
 			Usr user = UserController.getInstance().getUser(username);
 			String passwordHash = Md5.hash(password);
@@ -55,7 +56,7 @@ public class LoginController {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * 
 	 * @param username
@@ -63,10 +64,12 @@ public class LoginController {
 	 * @throws WaktuException 
 	 */
 	public boolean canLogin(String username) throws WaktuException {
+
 		if (UserController.getInstance().getUser(username) != null) {
 			return true;
 		}
+
 		return false;
 	}
-	
+
 }
