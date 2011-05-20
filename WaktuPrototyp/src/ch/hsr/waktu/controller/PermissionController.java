@@ -32,14 +32,22 @@ public class PermissionController extends QSignalEmitter {
 		if (theInstance == null) {
 			theInstance = new PermissionController();
 		}
-		try {
-			allPermissionNodes = getPermissionNodes(); 
-		} catch(IllegalAccessException e) {
-			throw new WaktuException(e.getMessage());
-		}
 		return theInstance;
 	}
 	
+	private PermissionController() {
+		try {
+			allPermissionNodes = getPermissionNodes();
+			System.out.println("size:" + allPermissionNodes.size());
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
+
 	private static List<Permission> getPermissionTable() {
 		if (permissions == null) {
 			EntityManager em = PersistenceController.getInstance().getEMF()
@@ -52,14 +60,14 @@ public class PermissionController extends QSignalEmitter {
 			em.close();
 			permissions = perm;
 		}
-
+		System.out.println("pm list" + permissions.size());
 		return permissions;
 	}
 
 	public Permission addPermission(SystemRole systemRole) {
 
 		Permission newPermission = new Permission(systemRole);
-		EntityManager em = PersistenceController.getInstance().getEMF()
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 		em.getTransaction().begin();
 		em.persist(newPermission);
@@ -85,6 +93,18 @@ public class PermissionController extends QSignalEmitter {
 		return list;
 
 	}
+	
+	public void reloadPermissions() throws WaktuException {
+		try {
+			permissions = null;
+			allPermissionNodes = getPermissionNodes();
+		} catch(IllegalAccessException e) {
+			throw new WaktuException("General problem");
+		} catch(IllegalArgumentException e) {
+			throw new WaktuException("General problem");
+		}
+
+	}
 
 	public boolean checkPermission() throws WaktuException {
 		StackTraceElement[] trace = new Throwable().getStackTrace();
@@ -92,10 +112,12 @@ public class PermissionController extends QSignalEmitter {
 	}
 
 	public boolean checkPermission(String method) throws WaktuException {
-
 		boolean permission = false;
 		try {
+			System.out.println("lla");
+			System.out.print(LoginController.getInstance().getLoggedInUser().getSystemRole() + " / ");
 			for (PermissionNode pn : allPermissionNodes) {
+				System.out.println(pn.getSystemRole() + " " + pn.getPermission());
 				if ((pn.getSystemRole().equals(LoginController.getInstance()
 						.getLoggedInUser().getSystemRole()))
 						&& (pn.getMethod().equals(method))) {

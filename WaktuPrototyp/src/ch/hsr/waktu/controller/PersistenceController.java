@@ -8,20 +8,30 @@ import org.apache.log4j.Logger;
 
 public class PersistenceController {
 	private static PersistenceController theInstance = null;
+	private static String PERSISTENCE_UNIT_NAME = null;
 	
-	public static PersistenceController getInstance() {
+	public static PersistenceController getInstance(String persistenceUnit) {
 		if (theInstance == null) {
 			theInstance = new PersistenceController();
+			PERSISTENCE_UNIT_NAME = persistenceUnit;
+		}
+		return theInstance;
+	}
+	
+	public static PersistenceController getInstance() {
+		
+		if(theInstance == null) {
+//			throw new WaktuException("Please initialize with persistenceUnit");
+			return null;
 		}
 		return theInstance;
 	}
 	
 	private Logger logger = Logger.getLogger(PersistenceController.class);
-	private static String PERSISTENCE_UNIT_NAME = "waktu";
-	private EntityManagerFactory emf;
+		private EntityManagerFactory emf;
 	protected EntityManager em;
 	
-	private  PersistenceController() {
+	protected  PersistenceController() {
 	}
 	
 	public EntityManagerFactory getEMF() {

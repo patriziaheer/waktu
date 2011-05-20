@@ -5,13 +5,15 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
+import org.apache.log4j.PropertyConfigurator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import ch.hsr.waktu.TestSuite;
 import ch.hsr.waktu.domain.WorkSession;
 
-public class TestIcsParser {
+public class TestIcsParser extends TestSuite {
 	
 	private WorkSession ws1 = new WorkSession();
 	private WorkSession ws2 = new WorkSession();
@@ -32,6 +34,10 @@ public class TestIcsParser {
 		ws3.setStart(new GregorianCalendar(2010, 8, 9, 13, 10, 0));
 		ws3.setEnd(new GregorianCalendar(2010, 8, 9, 15, 0, 0));
 		calendar.add(ws3);
+		
+    	PropertyConfigurator.configure("settings");
+
+		
 	}
 	
 	@After 

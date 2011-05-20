@@ -6,11 +6,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import ch.hsr.waktu.TestSuite;
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.controller.datacontroller.UserControllerXml;
 import ch.hsr.waktu.services.WaktuException;
 
-public class TestPermissionController {
+public class TestPermissionController extends TestSuite{
 
 	private UserController previousUserController;
 	
@@ -32,7 +33,7 @@ public class TestPermissionController {
 	
 	@Test
 	public void canLogin_InvalidUsername_False() {		
-		assertEquals(false, LoginController.getInstance().canLogin("boaheyistdaseinlangerungŸltigername"));
+		assertEquals(false, LoginController.getInstance().canLogin("boaheyistdaseinlangerungï¿½ltigername"));
 	}
 	
 	@Test
@@ -53,7 +54,7 @@ public class TestPermissionController {
 	@Test
 	public void login_InvalidUsername_False() {
 		try {
-			assertEquals(false, LoginController.getInstance().login("ŸngŸltigernameh", "whatever"));
+			assertEquals(false, LoginController.getInstance().login("ï¿½ngï¿½ltigernameh", "whatever"));
 		} catch (WaktuException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
