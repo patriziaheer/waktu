@@ -62,10 +62,10 @@ public class FavoriteModel extends QAbstractItemModel {
 			}
 		} else if (Qt.ItemDataRole.SizeHintRole == role) {
 			switch (index.column()) {
-			case 0: return new QSize(150, 50);
-			case 1: return new QSize(44, 50);
-			case 2: return new QSize(44, 50);
-			case 3: return new QSize(10, 50);
+			case 0: return new QSize(150, 60);
+			case 1: return new QSize(44, 60);
+			case 2: return new QSize(44, 60);
+			case 3: return new QSize(10, 60);
 			}
 			
 		}
@@ -87,7 +87,14 @@ public class FavoriteModel extends QAbstractItemModel {
 				return "";
 			}
 		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Vertical == orientation) {
-			return new QSize(0,50);
+			return new QSize(0,60);
+		}  else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Vertical == orientation) {
+			switch (section) {
+			case 0: return new QSize(150, 60);
+			case 1: return new QSize(44, 60);
+			case 2: return new QSize(44, 60);
+			case 3: return new QSize(10, 60);
+			}
 		} 
 		return super.headerData(section, orientation, role);
 	}

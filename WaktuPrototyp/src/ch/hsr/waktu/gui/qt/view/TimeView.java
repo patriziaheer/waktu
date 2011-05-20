@@ -141,9 +141,9 @@ public class TimeView extends QMainWindow {
 				"workSessionRemoved(WorkSession)");
 
 		ui.tblWorksessions.setModel(workSessionModel);
-		ui.tblWorksessions.resizeColumnsToContents();
 		ui.tblFavorites.setModel(favoriteModel);
 		ui.tblFavorites.resizeColumnsToContents();
+		ui.tblWorksessions.resizeColumnsToContents();
 
 		ui.actionAdd_to_Favorites.triggered.connect(this, "addToFavorites()");
 		ui.actionOpenManagment.triggered.connect(this, "managmentClicked()");

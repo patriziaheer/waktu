@@ -12,7 +12,6 @@ import com.trolltech.qt.core.Qt.CursorShape;
 import com.trolltech.qt.gui.QAction;
 import com.trolltech.qt.gui.QApplication;
 import com.trolltech.qt.gui.QBrush;
-import com.trolltech.qt.gui.QCloseEvent;
 import com.trolltech.qt.gui.QColor;
 import com.trolltech.qt.gui.QCursor;
 import com.trolltech.qt.gui.QDialog;
@@ -63,7 +62,7 @@ public class LoginView extends QDialog {
 
 	@SuppressWarnings("unused")
 	private void cancelClicked() {
-		QApplication.exit();
+		System.exit(0);
 	}
 
 	@SuppressWarnings("unused")
@@ -101,7 +100,7 @@ public class LoginView extends QDialog {
 
 	@SuppressWarnings("unused")
 	private void closeClicked() {
-		QApplication.exit();
+		QApplication.exit(0);
 	}
 
 	@SuppressWarnings("unused")
@@ -133,9 +132,5 @@ public class LoginView extends QDialog {
 				"LoginView", "Close", null));
 	}
 	
-	@Override
-	protected void closeEvent(QCloseEvent arg__1) {
-		QApplication.exit();
-	}
 	
 }
