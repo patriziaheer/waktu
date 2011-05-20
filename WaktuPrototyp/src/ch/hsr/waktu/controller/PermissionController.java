@@ -60,7 +60,6 @@ public class PermissionController extends QSignalEmitter {
 			em.close();
 			permissions = perm;
 		}
-		System.out.println("pm list" + permissions.size());
 		return permissions;
 	}
 
@@ -114,10 +113,7 @@ public class PermissionController extends QSignalEmitter {
 	public boolean checkPermission(String method) throws WaktuException {
 		boolean permission = false;
 		try {
-			System.out.println("lla");
-			System.out.print(LoginController.getInstance().getLoggedInUser().getSystemRole() + " / ");
 			for (PermissionNode pn : allPermissionNodes) {
-				System.out.println(pn.getSystemRole() + " " + pn.getPermission());
 				if ((pn.getSystemRole().equals(LoginController.getInstance()
 						.getLoggedInUser().getSystemRole()))
 						&& (pn.getMethod().equals(method))) {
