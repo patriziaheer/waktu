@@ -27,14 +27,10 @@ public class WaktuApplication {
 	
 
     public static void main(String[] args) {
-    	//ClassLoader loader = WaktuApplication.class.getClassLoader();
-		//PropertyConfigurator.configure(loader.getResource("settings").getFile());
 		ClassLoader loader = WaktuApplication.class.getClassLoader();
 		URL url = loader.getResource("settings");
     	PropertyConfigurator.configure(url);
     	logger.info("Initialize Application");
-    	//QApplication.initialize(args);
-    	//QApplication.setStyle(new QPlastiqueStyle());
         QApplication app = new QApplication(args);
         QApplication.setWindowIcon(new QIcon("classpath:icons/logo_without_text.png"));
         

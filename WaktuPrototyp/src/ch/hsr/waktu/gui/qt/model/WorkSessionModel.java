@@ -48,15 +48,26 @@ public class WorkSessionModel extends QAbstractItemModel {
 
 	@Override
 	public Object data(QModelIndex index, int role) {
-		if (Qt.ItemDataRole.DisplayRole == role || role == Qt.ItemDataRole.EditRole) {
+		if (Qt.ItemDataRole.DisplayRole == role 
+				|| Qt.ItemDataRole.EditRole == role
+				|| Qt.ItemDataRole.ToolTipRole == role) {
 			WorkSession workSession = workSessions.get(index.row());
 			switch (index.column()) {
-			case 0: return workSession.getWorkPackage().getProject();
-			case 1: return workSession.getWorkPackage(); 
+			case 0: return workSession.getWorkPackage().getProject().getDescription();
+			case 1: return workSession.getWorkPackage().getDescription(); 
 			case 2: return workSession.getDescription();
 			case 3: return TimeUtil.convertGregorianToQDateTime(workSession.getStart()).time();
 			case 4: return TimeUtil.convertGregorianToQDateTime(workSession.getEnd()).time();
 			case 5: return "";
+			}
+		} else if (Qt.ItemDataRole.SizeHintRole == role) {
+			switch (index.column()) {
+			case 0: return new QSize(100, 50);
+			case 1: return new QSize(100, 50);
+			case 2: return new QSize(100, 50);
+			case 3: return new QSize(44, 50);
+			case 4: return new QSize(44, 50);
+			case 5: return new QSize(30, 50);
 			}
 		}
 		return null;

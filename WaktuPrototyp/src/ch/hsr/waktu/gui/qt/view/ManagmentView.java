@@ -6,9 +6,12 @@ import ch.hsr.waktu.guicontroller.LanguageController;
 import ch.hsr.waktu.guicontroller.LanguageController.Language;
 
 import com.trolltech.qt.core.QCoreApplication;
+import com.trolltech.qt.gui.QAction;
 import com.trolltech.qt.gui.QBrush;
 import com.trolltech.qt.gui.QColor;
+import com.trolltech.qt.gui.QContextMenuEvent;
 import com.trolltech.qt.gui.QMainWindow;
+import com.trolltech.qt.gui.QMenu;
 import com.trolltech.qt.gui.QPalette;
 import com.trolltech.qt.gui.QPalette.ColorRole;
 
@@ -95,6 +98,39 @@ public class ManagmentView extends QMainWindow {
 	@SuppressWarnings("unused")
 	private void showErrorMessage(String errorMessage) {
 		setStatusBarText(errorMessage);
+	}
+
+	@Override
+	protected void contextMenuEvent(QContextMenuEvent event) {
+		QMenu menu = new QMenu(this);
+		QAction actionAddProject = new QAction(QCoreApplication.translate(
+				"UserDetails", ("Add Project"), null), menu);
+		actionAddProject.triggered.connect(this, "addProject()");
+		
+		QAction actionAddUser = new QAction(QCoreApplication.translate(
+				"UserDetails", ("Add User"), null), menu);
+		actionAddUser.triggered.connect(this, "addUser()");
+		
+		QMenu languageMenu = new QMenu(QCoreApplication.translate(
+				"UserDetails", ("Language"), null), menu);
+		QAction actionDE = new QAction(QCoreApplication.translate(
+				"UserDetails", ("DE"), null), menu);
+		actionDE.triggered.connect(this, "translateDE()");
+		QAction actionEN = new QAction(QCoreApplication.translate(
+				"UserDetails", ("EN"), null), menu);
+		actionEN.triggered.connect(this, "translateEN()");
+		languageMenu.addAction(actionEN);
+		languageMenu.addAction(actionDE);
+		
+		QAction closeAction = new QAction(QCoreApplication.translate(
+				"UserDetails", ("Close"), null), menu);
+		closeAction.triggered.connect(this, "closeWindow()");
+		
+		menu.addAction(actionAddProject);
+		menu.addAction(actionAddUser);
+		menu.addMenu(languageMenu);
+		menu.addAction(closeAction);
+		menu.exec(event.globalPos());
 	}
 	
 }

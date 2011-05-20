@@ -1,10 +1,10 @@
 # Der Root-Logger hat den Level DEBUG
-log4j.rootLogger=DEBUG, stdout, file
+log4j.rootLogger=DEBUG, file
 
 # Wir haben einen Appender mit der Destionation Konsole
 log4j.appender.stdout=org.apache.log4j.ConsoleAppender
 
-# FŸr diesen Appender verwenden wir eine Layout
+# Fï¿½r diesen Appender verwenden wir eine Layout
 log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
 
 # Datum im ISO-Format ISO-8601 anzeigen
