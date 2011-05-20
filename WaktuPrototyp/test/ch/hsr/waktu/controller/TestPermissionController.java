@@ -33,12 +33,22 @@ public class TestPermissionController extends TestSuite{
 	
 	@Test
 	public void canLogin_InvalidUsername_False() {		
-		assertEquals(false, LoginController.getInstance().canLogin("boaheyistdaseinlangerung�ltigername"));
+		try {
+			assertEquals(false, LoginController.getInstance().canLogin("boaheyistdaseinlangerung�ltigername"));
+		} catch (WaktuException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
 	public void canLogin_ValidUsername_True() {
-		assertEquals(true, LoginController.getInstance().canLogin("chucknorris"));
+		try {
+			assertEquals(true, LoginController.getInstance().canLogin("chucknorris"));
+		} catch (WaktuException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
