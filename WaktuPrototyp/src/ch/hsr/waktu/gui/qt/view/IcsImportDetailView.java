@@ -26,10 +26,10 @@ public class IcsImportDetailView extends QWidget {
 		ui.setupUi(this);
 		try {
 			ComboBoxData.createActiveProjectComboBox(ui.cmbProject);
-			ui.cmbProject.setCurrentIndex(-1);
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
+		ui.cmbProject.setCurrentIndex(-1);
 		ui.dteStart.setDateTime(TimeUtil
 				.convertGregorianToQDateTime(workSession.getStart()));
 		ui.dteEnd.setDateTime(TimeUtil.convertGregorianToQDateTime(workSession

@@ -13,9 +13,6 @@ import ch.hsr.waktu.services.WaktuException;
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.QRegExp;
 import com.trolltech.qt.core.Qt;
-import com.trolltech.qt.gui.QAction;
-import com.trolltech.qt.gui.QContextMenuEvent;
-import com.trolltech.qt.gui.QMenu;
 import com.trolltech.qt.gui.QSplitter;
 import com.trolltech.qt.gui.QWidget;
 
@@ -133,15 +130,6 @@ public class ProjectDetails extends QWidget {
         projectTreeModel.layoutChanged.emit();
 	}
 	
-	@Override
-	protected void contextMenuEvent(QContextMenuEvent event) {
-        QMenu menu = new QMenu(this);
-        QAction closeAction = new QAction(tr("Close"),menu);
-        closeAction.triggered.connect(this, "closeWindow()");
-        menu.addAction(closeAction);
-        menu.exec(event.globalPos());
-	}
-	
 	@SuppressWarnings("unused")
 	private void closeWindow() {
 		setVisible(false);
@@ -151,7 +139,9 @@ public class ProjectDetails extends QWidget {
 		if (currWidget != null) {
 			currWidget.setParent(null);
 		}
-		currWidget = new ProjectDataView(null);
+		ProjectDataView projectDataView = new ProjectDataView(null);
+		projectDataView.initialize();
+		currWidget = projectDataView;
 		splitter.addWidget(currWidget);
 	}
 	

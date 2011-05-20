@@ -30,6 +30,10 @@ public class UserProjectsView extends QWidget {
 		ui.setupUi(this);
 		try {
 			ComboBoxData.createActiveProjectComboBox(ui.cmbProjects);
+		} catch (WaktuException e) {
+			errorMessage.emit(e.getMessage());
+		}
+		try {
 			projectsModel = new UserProjectsModel(usr);
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());

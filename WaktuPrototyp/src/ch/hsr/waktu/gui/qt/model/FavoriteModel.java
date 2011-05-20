@@ -46,11 +46,13 @@ public class FavoriteModel extends QAbstractItemModel {
 
 	@Override
 	public Object data(QModelIndex index, int role) {
-		if (Qt.ItemDataRole.DisplayRole == role || role == Qt.ItemDataRole.EditRole) {
+		if (Qt.ItemDataRole.DisplayRole == role 
+				|| Qt.ItemDataRole.EditRole == role 
+				|| Qt.ItemDataRole.ToolTipRole == role) {
 			Favorite fav = favorites.get(index.row());
 			switch (index.column()) {
 			case 0:
-				return fav.getWorkPackageID().getProject() + " - " + fav.getWorkPackageID();
+				return fav.getWorkPackageID().getProject().getDescription() + " - " + fav.getWorkPackageID();
 			case 1:
 				return TimeUtil.convertGregorianToQDateTime(fav.getStartTime()).time();
 			case 2:
@@ -58,6 +60,14 @@ public class FavoriteModel extends QAbstractItemModel {
 			case 3: 
 				return "";
 			}
+		} else if (Qt.ItemDataRole.SizeHintRole == role) {
+			switch (index.column()) {
+			case 0: return new QSize(150, 50);
+			case 1: return new QSize(44, 50);
+			case 2: return new QSize(44, 50);
+			case 3: return new QSize(10, 50);
+			}
+			
 		}
 		return null;
 	}
@@ -77,7 +87,7 @@ public class FavoriteModel extends QAbstractItemModel {
 				return "";
 			}
 		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Vertical == orientation) {
-			return new QSize(0,20);
+			return new QSize(0,50);
 		} 
 		return super.headerData(section, orientation, role);
 	}

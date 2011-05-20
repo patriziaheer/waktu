@@ -21,6 +21,7 @@ import ch.hsr.waktu.guicontroller.LanguageController.Language;
 import ch.hsr.waktu.services.TimeUtil;
 import ch.hsr.waktu.services.WaktuException;
 
+import com.trolltech.qt.core.QCoreApplication;
 import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.core.QDateTime;
 import com.trolltech.qt.core.QModelIndex;
@@ -28,14 +29,17 @@ import com.trolltech.qt.core.QTime;
 import com.trolltech.qt.core.Qt.Orientation;
 import com.trolltech.qt.gui.QAbstractItemView.SelectionBehavior;
 import com.trolltech.qt.gui.QAbstractItemView.SelectionMode;
+import com.trolltech.qt.gui.QAction;
 import com.trolltech.qt.gui.QApplication;
 import com.trolltech.qt.gui.QBrush;
 import com.trolltech.qt.gui.QCloseEvent;
 import com.trolltech.qt.gui.QColor;
 import com.trolltech.qt.gui.QComboBox;
+import com.trolltech.qt.gui.QContextMenuEvent;
 import com.trolltech.qt.gui.QFileDialog;
 import com.trolltech.qt.gui.QHBoxLayout;
 import com.trolltech.qt.gui.QIcon;
+import com.trolltech.qt.gui.QMenu;
 import com.trolltech.qt.gui.QItemSelectionModel.SelectionFlag;
 import com.trolltech.qt.gui.QLabel;
 import com.trolltech.qt.gui.QMainWindow;
@@ -104,8 +108,6 @@ public class TimeView extends QMainWindow {
 		ui.cmbProject.setCurrentIndex(-1);
 		ui.cmbProject.currentIndexChanged.connect(this, "projectChanged()");
 
-		ui.actionOpenManagment.triggered.connect(this, "managmentClicked()");
-		ui.actionClose.triggered.connect(this, "closeApp()");
 
 		// worksession slots
 		ui.btnReset.clicked.connect(this, "resetClicked()");
@@ -115,17 +117,14 @@ public class TimeView extends QMainWindow {
 		ui.btnWorkPackageOnly.clicked.connect(this, "workPackageOnlyClicked()");
 
 		ui.tblFavorites.horizontalHeader().setStretchLastSection(true);
-		ui.tblFavorites.resizeColumnsToContents();
 		ui.tblFavorites.setSelectionMode(SelectionMode.SingleSelection);
 		ui.tblFavorites.setSelectionBehavior(SelectionBehavior.SelectRows);
 
-		// ui.tblWorksessions.horizontalHeader().setStretchLastSection(true);
-		ui.tblWorksessions.resizeColumnsToContents();
+		ui.tblWorksessions.horizontalHeader().setStretchLastSection(true);
 		ui.tblWorksessions.setSelectionMode(SelectionMode.SingleSelection);
 		ui.tblWorksessions.setSelectionBehavior(SelectionBehavior.SelectRows);
 		ui.tblWorksessions.horizontalHeader().resizeSection(0, 200);
 
-		ui.actionAdd_to_Favorites.triggered.connect(this, "addToFavorites()");
 
 		FavoriteController.getInstance().add.connect(this,
 				"favoriteAdded(Favorite)");
@@ -142,14 +141,18 @@ public class TimeView extends QMainWindow {
 				"workSessionRemoved(WorkSession)");
 
 		ui.tblWorksessions.setModel(workSessionModel);
+		ui.tblWorksessions.resizeColumnsToContents();
 		ui.tblFavorites.setModel(favoriteModel);
+		ui.tblFavorites.resizeColumnsToContents();
 
+		ui.actionAdd_to_Favorites.triggered.connect(this, "addToFavorites()");
+		ui.actionOpenManagment.triggered.connect(this, "managmentClicked()");
+		ui.actionClose.triggered.connect(this, "closeApp()");
 		ui.actionDE.triggered.connect(this, "translateDE()");
 		ui.actionEN.triggered.connect(this, "translateEN()");
-		LanguageController.getInstance().languageChanged.connect(this,
-				"translate()");
-		
 		ui.actionIcs_Import.triggered.connect(this, "icsImportClicked()");
+
+		LanguageController.getInstance().languageChanged.connect(this,"translate()");
 		
 		ui.txtStart.setDisplayFormat("HH:mm");
 		ui.txtEnd.setDisplayFormat("HH:mm");
@@ -609,5 +612,46 @@ public class TimeView extends QMainWindow {
 	@Override
 	protected void closeEvent(QCloseEvent arg__1) {
 		QApplication.exit();
+	}
+	
+	@Override
+	protected void contextMenuEvent(QContextMenuEvent event) {
+		QMenu menu = new QMenu(this);
+		
+		QAction addToFavorites = new QAction(QCoreApplication.translate(
+				"TimeView", ("Add to Favorites")), menu);
+		addToFavorites.triggered.connect(this, "addToFavorites()");
+		
+		QAction managmentAction = new QAction(QCoreApplication.translate(
+				"TimeView", ("Open Managment")), menu);
+		managmentAction.triggered.connect(this, "managmentClicked()");
+		
+		QAction icsImport = new QAction(QCoreApplication.translate(
+				"TimeView", ("Ics Import")), menu);
+		icsImport.triggered.connect(this, "icsImportClicked()");
+		
+		QMenu languageMenu = new QMenu(QCoreApplication.translate(
+				"TimeView", ("Language")), menu);
+		QAction actionDE = new QAction(QCoreApplication.translate(
+				"TimeView", ("DE")), menu);
+		actionDE.triggered.connect(this, "translateDE()");
+		QAction actionEN = new QAction(QCoreApplication.translate(
+				"TimeView", ("EN")), menu);
+		actionEN.triggered.connect(this, "translateEN()");
+		languageMenu.addAction(actionEN);
+		languageMenu.addAction(actionDE);
+		
+		
+		QAction closeAction = new QAction(QCoreApplication.translate(
+				"TimeView", ("Close")), menu);
+		closeAction.triggered.connect(this, "closeApp()");
+
+		menu.addAction(addToFavorites);
+		menu.addAction(managmentAction);
+		menu.addAction(icsImport);
+		menu.addMenu(languageMenu);
+		menu.addAction(closeAction);
+		
+		menu.exec(event.globalPos());
 	}
 }

@@ -10,13 +10,9 @@ import ch.hsr.waktu.gui.qt.view.usermanagment.UserWorkSessionsView;
 import ch.hsr.waktu.guicontroller.LanguageController;
 import ch.hsr.waktu.services.WaktuException;
 
-import com.trolltech.qt.core.QCoreApplication;
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.QRegExp;
 import com.trolltech.qt.core.Qt;
-import com.trolltech.qt.gui.QAction;
-import com.trolltech.qt.gui.QContextMenuEvent;
-import com.trolltech.qt.gui.QMenu;
 import com.trolltech.qt.gui.QSplitter;
 import com.trolltech.qt.gui.QWidget;
 
@@ -133,6 +129,11 @@ public class UserDetails extends QWidget {
 	}
 
 	private void updateTable() {
+		try {
+			userTreeModel.updateUsrModel();
+		} catch (WaktuException e) {
+			showErrorMessage(e.getMessage());
+		}
 		userTreeModel.layoutAboutToBeChanged.emit();
 		userTreeModel.dataChanged.emit(
 				userTreeModel.index(0, 0),
@@ -145,16 +146,6 @@ public class UserDetails extends QWidget {
 		userTreeModel.layoutChanged.emit();
 	}
 
-	@Override
-	protected void contextMenuEvent(QContextMenuEvent event) {
-		QMenu menu = new QMenu(this);
-		QAction closeAction = new QAction(QCoreApplication.translate(
-				"UserDetails", ("Close"), null), menu);
-		closeAction.triggered.connect(this, "closeWindow()");
-		menu.addAction(closeAction);
-		menu.exec(event.globalPos());
-	}
-
 	@SuppressWarnings("unused")
 	private void closeWindow() {
 		setVisible(false);
@@ -164,7 +155,9 @@ public class UserDetails extends QWidget {
 		if (currWidget != null) {
 			currWidget.setParent(null);
 		}
-		currWidget = new UserDataView(null);
+		UserDataView userDataView = new UserDataView(null);
+		userDataView.initialize();
+		currWidget = userDataView;;
 		splitter.addWidget(currWidget);
 	}
 

@@ -36,8 +36,8 @@ public class WorkSessionController extends QSignalEmitter {
 		return theInstance;
 	}
 
-	public static void setInstance(WorkSessionController instance) {
-		theInstance = instance;
+	public static void setInstance(WorkSessionController workSessionController) {
+		theInstance = workSessionController;
 	}
 
 	private Logger logger = Logger.getLogger(WorkSessionController.class);
@@ -468,5 +468,27 @@ public class WorkSessionController extends QSignalEmitter {
 		}
 		removed.emit(workSession);
 		logger.info("workSession " + workSession + " deleted");
+	}
+
+	public List<WorkSession> getWorkSessions(WorkPackage workPackage, QDate fromDate,
+			QDate toDate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<WorkSession> getWorkSessions(Usr user, QDate fromDate, QDate toDate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<WorkSession> getWorkSessions(Project project, WorkPackage workPackage) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<WorkSession> getWorkSessions(Project project, WorkPackage workPackage,
+			Usr usr) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

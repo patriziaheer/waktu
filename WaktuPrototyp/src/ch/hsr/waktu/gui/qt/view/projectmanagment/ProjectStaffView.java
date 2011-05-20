@@ -31,6 +31,10 @@ public class ProjectStaffView extends QWidget {
 		ui.setupUi(this);
 		try {
 			ComboBoxData.createUserComboBox(ui.cmbUsers);
+		} catch (WaktuException e) {
+			errorMessage.emit(e.getMessage());
+		}
+		try {
 			projectStaffModel = new ProjectStaffModel(project);
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
