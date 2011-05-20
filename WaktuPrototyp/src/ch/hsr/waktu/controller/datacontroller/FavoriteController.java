@@ -49,7 +49,7 @@ public class FavoriteController extends QSignalEmitter {
 	
 	@SuppressWarnings("unchecked")
 	public List<Favorite> getFavorites(Usr user) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 		
 		if(!PermissionController.getInstance().checkPermission()) {
@@ -79,7 +79,7 @@ public class FavoriteController extends QSignalEmitter {
 	 */
 	public Favorite addFavorite(Usr user, WorkPackage workPackage,
 			GregorianCalendar startTime, GregorianCalendar endTime) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 		Favorite newFavorite = new Favorite(user, workPackage, startTime,
 				endTime);
@@ -114,7 +114,7 @@ public class FavoriteController extends QSignalEmitter {
 	 */
 
 	public void updateFavorite(Favorite favorite) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 		
 		if(!PermissionController.getInstance().checkPermission()) {
@@ -147,7 +147,7 @@ public class FavoriteController extends QSignalEmitter {
 	 */
 
 	public void removeFavorite(Favorite favorite) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 		
 		if(!PermissionController.getInstance().checkPermission()) {

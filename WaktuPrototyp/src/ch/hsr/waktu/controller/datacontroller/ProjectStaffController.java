@@ -45,7 +45,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Project> getProjects(Usr user) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
 		List<Project> projects;
@@ -77,7 +77,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Usr> getUsers(Project project) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
 		List<Usr> users;
@@ -110,7 +110,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	 */
 	public ProjectStaff addProjectStaff(Usr user, Project project)
 			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 		ProjectStaff newProjectStaff = new ProjectStaff(user, project);
 		
@@ -145,7 +145,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	 */
 	public void removeUser(Usr user, Project project)
 			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
 		ProjectStaff projectStaffToRemove;

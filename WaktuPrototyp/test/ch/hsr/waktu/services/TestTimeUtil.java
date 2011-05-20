@@ -6,11 +6,13 @@ import java.util.GregorianCalendar;
 
 import org.junit.Test;
 
+import ch.hsr.waktu.TestSuite;
+
 import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.core.QDateTime;
 import com.trolltech.qt.core.QTime;
 
-public class TestTimeUtil {
+public class TestTimeUtil extends TestSuite {
 	
 	@Test
 	public void convertGregorianToQDateTime_YearMonthDayHrsMinsSecs() {
@@ -73,7 +75,6 @@ public class TestTimeUtil {
 	private void assertBoundaryEquality(QDate[] refStartDateEndDate,
 			QDate[] weekBoundaries) {
 			for(int i=0; i < 2; i++) {
-				System.out.println("assertEquals");
 				assertEquals(refStartDateEndDate[i], weekBoundaries[i]);
 			}
 	}

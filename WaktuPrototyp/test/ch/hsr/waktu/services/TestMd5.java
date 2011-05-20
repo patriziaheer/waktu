@@ -4,9 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 //import java.io.UnsupportedEncodingException;
+import ch.hsr.waktu.TestSuite;
 import ch.hsr.waktu.services.Md5;
 
-public class TestMd5 {
+public class TestMd5 extends TestSuite {
 	@Test
 	public void hash_NullInput() {
 		assertEquals(null, Md5.hash(null));

@@ -39,22 +39,7 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 	@Override
 	public Object data(QModelIndex index, int role) {
 		WorkPackage workPackage = workPackages.get(index.row());
-		if (Qt.ItemDataRole.DisplayRole == role) {
-			switch (index.column()) {
-			case 0:
-				return workPackage.getDescription();
-			case 1:
-				return "";
-			}
-		} else if (Qt.ItemDataRole.CheckStateRole == role) {
-			if (index.column() == 1) {
-				if (workPackage.isActive()) {
-					return Qt.CheckState.Unchecked;
-				} else {
-					return Qt.CheckState.Checked;
-				}
-			}
-		} else if (Qt.ItemDataRole.EditRole == role) {
+		if (Qt.ItemDataRole.DisplayRole == role || Qt.ItemDataRole.EditRole == role) {
 			switch (index.column()) {
 			case 0:
 				return workPackage.getDescription();
@@ -102,7 +87,7 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 			return true;
 		}
 		case 1: {
-			workPackage.setActiveState((Integer)value != 0);
+			workPackage.setActiveState((Boolean)value);
 			return true;
 		}
 		}
@@ -126,10 +111,13 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 	
 	public void updateWorkPackageModel() {
 		try {
-			workPackages = WorkPackageController.getInstance().getActiveWorkPackages(project);
+			workPackages = WorkPackageController.getInstance().getAllWorkPackages(project);
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 	}
 
+	public WorkPackage getWorkPackage(int row) {
+		return workPackages.get(row);
+	}
 }

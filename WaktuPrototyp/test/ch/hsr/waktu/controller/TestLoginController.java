@@ -6,11 +6,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import ch.hsr.waktu.TestSuite;
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.controller.datacontroller.UserControllerXml;
 import ch.hsr.waktu.services.WaktuException;
 
-public class TestLoginController {
+
+public class TestLoginController extends TestSuite{
 
 	private UserController previousUserController;
 	
@@ -46,7 +48,7 @@ public class TestLoginController {
 	
 	@Test
 	public void login_InvalidUsername_False() throws WaktuException {
-		assertEquals(false, LoginController.getInstance().login("�ng�ltigernameh", "whatever"));
+			assertEquals(false, LoginController.getInstance().login("�ng�ltigernameh", "whatever"));
 	}
 	
 	@Test

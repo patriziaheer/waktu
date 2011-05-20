@@ -4,10 +4,12 @@ import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.gui.qt.model.ProjectWorkPackageModel;
+import ch.hsr.waktu.gui.qt.view.IndexCheckbox;
 import ch.hsr.waktu.guicontroller.GuiController;
 import ch.hsr.waktu.guicontroller.LanguageController;
 import ch.hsr.waktu.services.WaktuException;
 
+import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.gui.QWidget;
 
 public class ProjectWorkPackageView extends QWidget{
@@ -40,6 +42,25 @@ public class ProjectWorkPackageView extends QWidget{
 		}
 
 		LanguageController.getInstance().languageChanged.connect(this, "translate()");
+		
+		updateWorkPackageModel();
+	}
+	
+	private void updateWorkPackageModel() {
+		try {
+			for (int i = 0; i < WorkPackageController.getInstance().getActiveWorkPackages(project).size(); i++) {
+				QModelIndex currIndex = workPackageModel.index(i,
+						workPackageModel.columnCount() - 1);
+				WorkPackage wp = workPackageModel.getWorkPackage(currIndex.row());
+				IndexCheckbox chk = new IndexCheckbox(currIndex, wp);
+				chk.errorMessage.connect(this, "showErrorMessage(String)");
+				chk.setChecked(!wp.isActive());
+				
+				ui.tblWorkPackages.setIndexWidget(currIndex, chk);
+			}
+		} catch (WaktuException e) {
+			errorMessage.emit(e.getMessage());
+		}
 	}
 	
 	@SuppressWarnings("unused")
@@ -65,6 +86,7 @@ public class ProjectWorkPackageView extends QWidget{
 	@SuppressWarnings("unused")
 	private void updated() {
 		workPackageModel.updateWorkPackageModel();
+		updateWorkPackageModel();
 		workPackageModel.layoutAboutToBeChanged.emit();
 		workPackageModel.dataChanged.emit(workPackageModel.index(0, 0), workPackageModel.index(workPackageModel.rowCount(), workPackageModel.columnCount()));
 		workPackageModel.layoutChanged.emit();

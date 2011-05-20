@@ -34,18 +34,22 @@ public class ProjectController extends QSignalEmitter {
 		}
 		return theInstance;
 	}
+	
+	public static void setInstance(ProjectController projectControllerInstance) {
+		theInstance = projectControllerInstance;
+	}
 
 	private Logger logger = Logger.getLogger(ProjectController.class);
 	public Signal0 update = new Signal0();
 	public Signal1<Project> add = new Signal1<Project>();
 
-	private ProjectController() {
+	protected ProjectController() {
 		logger.info("constructor");
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Project> getActiveProjects() throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 		
 		if(!PermissionController.getInstance().checkPermission()) {
@@ -73,7 +77,7 @@ public class ProjectController extends QSignalEmitter {
 	@SuppressWarnings("unchecked")
 	public List<Project> getActiveProjects(Usr usr)
 			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 		
 		if(!PermissionController.getInstance().checkPermission()) {
@@ -100,7 +104,7 @@ public class ProjectController extends QSignalEmitter {
 
 	@SuppressWarnings("unchecked")
 	public List<Project> getAllProjects() throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 		
 		if(!PermissionController.getInstance().checkPermission()) {
@@ -126,7 +130,7 @@ public class ProjectController extends QSignalEmitter {
 
 	@SuppressWarnings("unchecked")
 	public List<Project> getInactiveProjects() throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 		
 		if(!PermissionController.getInstance().checkPermission()) {
@@ -152,7 +156,7 @@ public class ProjectController extends QSignalEmitter {
 	}
 
 	public Project getProject(int projectId) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 		
 		if(!PermissionController.getInstance().checkPermission()) {
@@ -200,7 +204,7 @@ public class ProjectController extends QSignalEmitter {
 	 */
 	public Project addProject(String projectIdentifier, String description,
 			Usr projectManager, int plannedTime) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
 		Project newProject = new Project(projectIdentifier, description,
@@ -237,7 +241,7 @@ public class ProjectController extends QSignalEmitter {
 	 */
 
 	public void updateProject(Project project) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 		
 		if(!PermissionController.getInstance().checkPermission()) {
