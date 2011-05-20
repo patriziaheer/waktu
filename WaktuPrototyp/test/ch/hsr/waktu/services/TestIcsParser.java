@@ -34,10 +34,7 @@ public class TestIcsParser extends TestSuite {
 		ws3.setStart(new GregorianCalendar(2010, 8, 9, 13, 10, 0));
 		ws3.setEnd(new GregorianCalendar(2010, 8, 9, 15, 0, 0));
 		calendar.add(ws3);
-		
-    	PropertyConfigurator.configure("settings");
-
-		
+				
 	}
 	
 	@After 
