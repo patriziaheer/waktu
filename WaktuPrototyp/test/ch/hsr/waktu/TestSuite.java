@@ -5,6 +5,8 @@ import java.net.URL;
 import org.apache.log4j.PropertyConfigurator;
 import org.junit.Before;
 
+import ch.hsr.waktu.controller.PersistenceController;
+
 import com.trolltech.qt.gui.QApplication;
 
 public class TestSuite {
@@ -21,5 +23,7 @@ public class TestSuite {
 		ClassLoader loader = TestSuite.class.getClassLoader();
 		URL url = loader.getResource("testsettings");
     	PropertyConfigurator.configure(url);
+    	
+    	PersistenceController.getInstance("waktutest");
 	}
 }

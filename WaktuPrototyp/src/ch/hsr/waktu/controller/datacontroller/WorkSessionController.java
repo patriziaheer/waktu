@@ -411,7 +411,6 @@ public class WorkSessionController extends QSignalEmitter {
 
 			em.merge(workSession);
 
-			System.err.println("userid" + updateWorkSession.getUser().getId());
 
 			// TODO: SS: GregorianCalendar <-> TIMESTAMP in POSTGRESQL-Mapping
 			// problem: JPA saves GregorianCalendar-Dates with wrong month in DB

@@ -3,3 +3,4 @@ log4j.log
 bin
 AddTestData.java
 persistence.log
+testlog4j.log

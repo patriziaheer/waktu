@@ -90,7 +90,7 @@ public class WorkPackageController extends QSignalEmitter {
 		
 		try {
 			allWorkPackages = em.createQuery(
-					"SELECT wp FROM WorkPackage wp").getResultList();
+					"SELECT wp FROM WorkPackage wp JOIN wp.project p WHERE p.projectid = '" + project.getId() + "'").getResultList();
 		} catch (IllegalStateException e) {
 			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
@@ -100,6 +100,7 @@ public class WorkPackageController extends QSignalEmitter {
 		} finally {
 			em.close();
 		}
+		System.out.println(allWorkPackages.size());
 		return allWorkPackages;
 	}
 
@@ -190,9 +191,10 @@ public class WorkPackageController extends QSignalEmitter {
 			em.getTransaction().begin();
 			updateWorkPackage = em.find(WorkPackage.class, workPackage.getId());
 
-			updateWorkPackage.setDescription(workPackage.getDescription());
-			updateWorkPackage.setProject(workPackage.getProject());
-			updateWorkPackage.setActiveState(workPackage.isActive());
+//			updateWorkPackage.setDescription(workPackage.getDescription());
+//			updateWorkPackage.setProject(workPackage.getProject());
+//			updateWorkPackage.setActiveState(workPackage.isActive());
+			em.merge(workPackage);
 
 			em.getTransaction().commit();
 		} catch (IllegalStateException e) {
