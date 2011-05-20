@@ -9,11 +9,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import ch.hsr.waktu.TestSuite;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.services.WaktuException;
 
-public class TestUserControllerXml {
+public class TestUserControllerXml extends TestSuite {
 
 	private LinkedList<Usr> allUsersReferenceList = new LinkedList<Usr>();
 	private LinkedList<Usr> inactiveUsersReferenceList = new LinkedList<Usr>();

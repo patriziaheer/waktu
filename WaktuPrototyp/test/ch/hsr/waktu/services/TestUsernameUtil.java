@@ -6,10 +6,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import ch.hsr.waktu.TestSuite;
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.controller.datacontroller.UserControllerXml;
 
-public class TestUsernameUtil {
+public class TestUsernameUtil extends TestSuite {
 
 	private UserController previousUserController;
 	

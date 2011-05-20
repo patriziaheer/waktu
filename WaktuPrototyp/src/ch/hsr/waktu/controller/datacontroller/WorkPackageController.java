@@ -47,7 +47,7 @@ public class WorkPackageController extends QSignalEmitter {
 	@SuppressWarnings("unchecked")
 	public List<WorkPackage> getActiveWorkPackages(Project project) throws WaktuException {
 		//TODO filter nach projekt
-		EntityManager em = PersistenceController.getInstance().getEMF()
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
 		List<WorkPackage> activeWorkPackages;
@@ -79,7 +79,7 @@ public class WorkPackageController extends QSignalEmitter {
 	@SuppressWarnings("unchecked")
 	public List<WorkPackage> getAllWorkPackages(Project project)
 			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
 		List<WorkPackage> allWorkPackages;
@@ -111,7 +111,7 @@ public class WorkPackageController extends QSignalEmitter {
 	@SuppressWarnings("unchecked")
 	public List<WorkPackage> getInactiveWorkPackages(Project project)
 			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
 		List<WorkPackage> inactiveWorkPackages;
@@ -144,7 +144,7 @@ public class WorkPackageController extends QSignalEmitter {
 	 */
 	public WorkPackage addWorkPackage(Project project, String description)
 			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 		WorkPackage newWorkPackage = new WorkPackage(project, description);
 		
@@ -178,7 +178,7 @@ public class WorkPackageController extends QSignalEmitter {
 	 */
 	public void updateWorkPackage(WorkPackage workPackage)
 			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 		WorkPackage updateWorkPackage;
 		
