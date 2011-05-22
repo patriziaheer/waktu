@@ -6,7 +6,7 @@ public class Permission {
 	public boolean getActiveUsers = true;
 	public boolean getAllUsers = true;
 	public boolean getInactiveUsers = true;
-	public boolean getProjectManager = true;
+	public boolean getProjectManagers = true;
 	public boolean getUser = true;
 	public boolean addUser = true;
 	public boolean updateUser = true;

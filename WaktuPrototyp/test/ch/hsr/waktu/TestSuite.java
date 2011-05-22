@@ -2,8 +2,11 @@ package ch.hsr.waktu;
 
 import java.net.URL;
 
+import javax.persistence.EntityManager;
+
 import org.apache.log4j.PropertyConfigurator;
-import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 
 import ch.hsr.waktu.controller.PersistenceController;
 
@@ -11,19 +14,42 @@ import com.trolltech.qt.gui.QApplication;
 
 public class TestSuite {
 	
-	private boolean run = false;
+	private static boolean runFirstTime = true;
 	
-	@Before
-	public void testSuiteSetUp() {
+	@BeforeClass
+	public static void testSuiteSetUp() {
 		
-		if(run) {
+		if(runFirstTime) {
 			String[] args = {};
 			QApplication.initialize(args);
+			ClassLoader loader = TestSuite.class.getClassLoader();
+			URL url = loader.getResource("testsettings");
+			PropertyConfigurator.configure(url);
+			
+			PersistenceController.getInstance("waktutest");
+			
+			runFirstTime = false;
 		}
-		ClassLoader loader = TestSuite.class.getClassLoader();
-		URL url = loader.getResource("testsettings");
-    	PropertyConfigurator.configure(url);
-    	
-    	PersistenceController.getInstance("waktutest");
+		EntityManager em = PersistenceController.getInstance("waktutest")
+		.getEMF().createEntityManager();
+		
+		em.getTransaction().begin();
+		em.createNativeQuery(
+				"TRUNCATE TABLE favorite, permission, projectstaff, worksession, workpackage, project, usr")
+				.executeUpdate();
+		em.getTransaction().commit();
+		System.out.print("<all>");
+	}
+	
+	@AfterClass
+	public static void afterAll() {
+		EntityManager em = PersistenceController.getInstance("waktutest")
+				.getEMF().createEntityManager();
+		em.getTransaction().begin();
+		em.createNativeQuery(
+				"TRUNCATE TABLE favorite, permission, projectstaff, worksession, workpackage, project, usr")
+				.executeUpdate();
+		em.getTransaction().commit();
+		System.out.println("</all>");
 	}
 }
