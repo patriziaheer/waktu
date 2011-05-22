@@ -1,0 +1,37 @@
+<projectStaffs>
+	<projectStaff>
+		<id>1</id>
+		<user>patriziaheer</user>
+		<project>Waktu</project>
+	</projectStaff>
+	<projectStaff>
+		<id>2</id>
+		<user>simonstäheli</user>
+		<project>Waktu</project>
+	</projectStaff>
+	<projectStaff>
+		<id>3</id>
+		<user>mikefisler</user>
+		<project>Waktu</project>
+	</projectStaff>
+	<projectStaff>
+		<id>4</id>
+		<user>patriziaheer</user>
+		<project>Avec</project>
+	</projectStaff>
+	<projectStaff>
+		<id>5</id>
+		<user>simonstäheli</user>
+		<project>Avec</project>
+	</projectStaff>
+	<projectStaff>
+		<id>5</id>
+		<user>simonstäheli</user>
+		<project>SBB</project>
+	</projectStaff>
+	<projectStaff>
+		<id>6</id>
+		<user>mikefisler</user>
+		<project>SBB</project>
+	</projectStaff>
+</projectStaffs>

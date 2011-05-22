@@ -82,4 +82,5 @@ public class ProjectStaffModel extends QAbstractItemModel {
 	public void updateProjectStaffModel() throws WaktuException {
 		usrs = ProjectStaffController.getInstance().getUsers(project);
 	}
+
 }

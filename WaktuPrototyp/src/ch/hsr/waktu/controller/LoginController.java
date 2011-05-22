@@ -61,6 +61,7 @@ public class LoginController {
 	 * 
 	 * @param username
 	 * @param password
+	 * @throws WaktuException 
 	 */
 	public boolean canLogin(String username) throws WaktuException {
 

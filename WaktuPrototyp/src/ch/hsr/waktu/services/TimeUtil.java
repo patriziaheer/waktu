@@ -12,24 +12,30 @@ import com.trolltech.qt.core.QTime;
 public class TimeUtil {
 	private static Logger logger = Logger.getLogger(TimeUtil.class);
 	
-	//TODO: Konvertier-Methoden refactoren gem‰ss DKellers Aussage..
+	//TODO: Konvertier-Methoden refactoren gem√§ss DKellers Aussage.. MF: wtf?
 	public static QDateTime convertGregorianToQDateTime(GregorianCalendar dateTime) {
-		QDate date = new QDate(dateTime.get(GregorianCalendar.YEAR), dateTime.get(GregorianCalendar.MONTH), dateTime.get(GregorianCalendar.DAY_OF_MONTH));
-		QTime time = new QTime(dateTime.get(GregorianCalendar.HOUR_OF_DAY), dateTime.get(GregorianCalendar.MINUTE), dateTime.get(GregorianCalendar.SECOND));
+		QDate date = new QDate(dateTime.get(GregorianCalendar.YEAR), 
+				dateTime.get(GregorianCalendar.MONTH), dateTime.get(GregorianCalendar.DAY_OF_MONTH));
+		QTime time = new QTime(dateTime.get(GregorianCalendar.HOUR_OF_DAY), 
+				dateTime.get(GregorianCalendar.MINUTE), dateTime.get(GregorianCalendar.SECOND));
 		return new QDateTime(date, time);
 	}
 	
 	public static GregorianCalendar convertQDateTimeToGregorian(QDateTime dateTime) {
 		QDate date = dateTime.date();
 		QTime time = dateTime.time();
-		GregorianCalendar gregCal = new GregorianCalendar(date.year(), date.month(), date.day(), time.hour(), time.minute(), time.second());
-		logger.info(gregCal.get(Calendar.DAY_OF_MONTH) + "." + gregCal.get(Calendar.MONTH) + "." + gregCal.get(Calendar.YEAR));
+		GregorianCalendar gregCal = new GregorianCalendar(date.year(), date.month(), date.day(), 
+				time.hour(), time.minute(), time.second());
+		logger.info(gregCal.get(Calendar.DAY_OF_MONTH) + "." + gregCal.get(Calendar.MONTH) + 
+				"." + gregCal.get(Calendar.YEAR));
 		logger.info(gregCal.get(Calendar.HOUR) + ":" + gregCal.get(Calendar.MINUTE));
 		return gregCal;
 	}
 	
-	public static int calculateTimespanInSeconds(GregorianCalendar timeBefore, GregorianCalendar timeAfter) {
-		return calculateTimespanInSeconds(convertGregorianToQDateTime(timeBefore), convertGregorianToQDateTime(timeAfter));
+	public static int calculateTimespanInSeconds(GregorianCalendar timeBefore, 
+			GregorianCalendar timeAfter) {
+		return calculateTimespanInSeconds(convertGregorianToQDateTime(timeBefore), 
+				convertGregorianToQDateTime(timeAfter));
 	}
 	
 	public static int calculateTimespanInSeconds(QDateTime timeBefore, QDateTime timeAfter) {
@@ -49,7 +55,8 @@ public class TimeUtil {
 	
 	public static QDate[] getWeekBoundaries(QDate date) {
 		//TODO
-		QDate[] startDayEndDay = {new QDate(date.year(), getFirstDayOfWeek(date).month(), getFirstDayOfWeek(date).day()), 
+		QDate[] startDayEndDay = {new QDate(date.year(), getFirstDayOfWeek(date).month(), 
+				getFirstDayOfWeek(date).day()), 
 				new QDate(date.year(), getLastDayOfWeek(date).month(), getLastDayOfWeek(date).day())};
 		return startDayEndDay;
 	}
@@ -68,5 +75,44 @@ public class TimeUtil {
 		QDate[] startDayEndDay = {new QDate(date.year(), 1, 1), 
 				new QDate(date.year(), 12, 31)};
 		return startDayEndDay;
+	}
+	
+	/**
+	 * Converts an .ics dateTime string into a QDateTime object
+	 *
+	 * The format of the input dateTimeString is yyyyMMddThhmmss, where yyyy denotes the year,
+	 * MM the month, dd the day, 'T' a delimiter, hh the hour, mm the minutes, ss the seconds.
+	 * Failing to pass the dateTimeString in this format will result in undesirable DateTime Objects 
+	 * or a @throws IndexOutOfBoundsException may be thrown in case the dateTimeString is too short.
+	 * <p>
+	 * Example dateTimeString:
+	 * 20110221T124714Z
+	 * <p>
+	 * Date: 20110221 (2010-02-21)
+	 * Time: 124714 (12:47:14)
+	 * 
+	 *
+	 * @param  dateTimeString string containing a date and a time.
+	 * @return QDateTime Instance (a Qt DateTime Object, which Combines QDate and QTime).
+	 */
+	static QDateTime stringToQDateTime(String dateTimeString) {
+		String[] dateTime = splitTimeDateString(dateTimeString);
+		int year = new Integer(dateTime[0].substring(0, 4));
+		int month = new Integer(dateTime[0].substring(4, 6));
+		int day = new Integer(dateTime[0].substring(6, 8));
+		int hours = new Integer(dateTime[1].substring(0,2));
+		int minutes = new Integer(dateTime[1].substring(2,4));
+		int seconds = new Integer(dateTime[1].substring(4,6));
+		return new QDateTime(new QDate(year, month, day), new QTime(hours, minutes, seconds));
+	}
+
+	/**
+	 * Splits a string containing a date followed by a time in two separate strings.
+	 *
+	 * @param  timeDateString string containing date and time delimited by 'T'  
+	 * @return array containing a date- and a time-string
+	 */
+	private static String[] splitTimeDateString(String timeDateString) {
+		return timeDateString.split("T"); 
 	}
 }

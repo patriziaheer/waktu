@@ -34,12 +34,16 @@ public class ProjectController extends QSignalEmitter {
 		}
 		return theInstance;
 	}
+	
+	public static void setInstance(ProjectController projectControllerInstance) {
+		theInstance = projectControllerInstance;
+	}
 
 	private Logger logger = Logger.getLogger(ProjectController.class);
 	public Signal0 update = new Signal0();
 	public Signal1<Project> add = new Signal1<Project>();
 
-	private ProjectController() {
+	protected ProjectController() {
 		logger.info("constructor");
 	}
 

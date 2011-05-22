@@ -13,8 +13,12 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import com.trolltech.qt.core.QDateTime;
+
+import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.Favorite;
+import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
@@ -27,20 +31,18 @@ public class XmlUtil {
 		try {
 			return DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(file);
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new WaktuException("SAX problem");		
 		} catch (IOException e) {
 			throw new WaktuException("File could not be opened");
 		} catch (ParserConfigurationException e) {
 			throw new WaktuException("Wrong parser configuration");
 		}
-		return null;
 	}
 	
-	@SuppressWarnings("unused")
-	private static void saveXmlFile(String filePath, Document document) {
-		//TODO
-	}
+//	@SuppressWarnings("unused")
+//	private static void saveXmlFile(String filePath, Document document) {
+//		//TODO
+//	}
 	
 	public static LinkedList<WorkSession> getWorkSessionsFromXml(String filePath) throws WaktuException {
 		//TODO
@@ -51,26 +53,29 @@ public class XmlUtil {
 		LinkedList<WorkSession> worksessions = new LinkedList<WorkSession>();
 		NodeList workSessionNodeList = document.getElementsByTagName("WorkSession");
 		for(int i = 0; i < workSessionNodeList.getLength(); i++) {
-			Node wsnl = workSessionNodeList.item(i);
+			Node node = workSessionNodeList.item(i);
 			WorkSession ws = new WorkSession();
-			ws.setDescription(getTextContentOf(wsnl, "description"));
-			ws.setUser(getUserContentOf(wsnl, "user"));
-			ws.setStart(getTimeContentOf(wsnl, "start"));
-			ws.setEnd(getTimeContentOf(wsnl, "end"));
-			ws.setWorkPackage(getWorkPackageContentOf(wsnl, "workPackage"));
+			ws.setDescription(getTextContentOf(node, "description"));
+			ws.setUser(getUserContentOf(node, "user"));
+			ws.setStart(getTimeContentOf(node, "start"));
+			ws.setEnd(getTimeContentOf(node, "end"));
+			ws.setWorkPackage(getWorkPackageContentOf(node, "workPackage"));
 			worksessions.add(ws);
 		}
 		return worksessions;
 	}
 	
-	private static WorkPackage getWorkPackageContentOf(Node wsnl, String string) {
-		// TODO Auto-generated method stub
+	private static WorkPackage getWorkPackageContentOf(Node node, String string) throws WaktuException {
+		WorkPackage wp = new WorkPackage();
+		wp.setActiveState(XmlUtil.getBooleanContentOf(node, "active"));
+		wp.setDescription(getTextContentOf(node, "description"));
+		wp.setProject(getProjectContentOf(node, "project"));
 		return null;
 	}
 
-	private static GregorianCalendar getTimeContentOf(Node wsnl, String string) {
+	private static Project getProjectContentOf(Node node, String string) throws WaktuException {
 		// TODO Auto-generated method stub
-		return null;
+		return ProjectController.getInstance().getProject(getIntegerContentOf(node, string));
 	}
 
 	public static void saveWorkSessionsToXml(String filePath, LinkedList<WorkSession> workSessions) {
@@ -102,9 +107,9 @@ public class XmlUtil {
 		return users;
 	}
 	
-	public static void saveUsersToXml(String filePath, LinkedList<Usr> users) {
-		//TODO
-	}
+//	public static void saveUsersToXml(String filePath, LinkedList<Usr> users) {
+//		//TODO
+//	}
 	
 	public static LinkedList<Favorite> getFavoritesFromXml(String filePath) {
 		if(filePath == null) {
@@ -147,5 +152,9 @@ public class XmlUtil {
 	
 	private static Usr getUserContentOf(Node element, String name) throws WaktuException {
 		return UserController.getInstance().getUser(name);
+	}
+	
+	private static GregorianCalendar getTimeContentOf(Node element, String name) {
+		return new GregorianCalendar();
 	}
 }

@@ -3,3 +3,8 @@ log4j.log
 bin
 AddTestData.java
 persistence.log
+testlog4j.log
+<<<<<<< HEAD
+=======
+testlog4j.log.1
+>>>>>>> 3e5dc2fa021965478498a3b37d5af5ae1a045ecd

@@ -30,15 +30,15 @@ public class UserControllerXml extends UserController {
 		
 	}
 	
-	@Override
-	public Usr addUser(String firstname, String lastname, String password,
-			int pensum, SystemRole role, double holiday) throws WaktuException {
-		LinkedList<Usr> allUsers = getAllUsers();
-		Usr newUser = new Usr(UsernameUtil.generateUsername(getAllUsers(), firstname, lastname), firstname, lastname, password, pensum, role, holiday);
-		allUsers.add(newUser);
-		XmlUtil.saveUsersToXml(userFilePath, allUsers);
-		return newUser;
-	}
+//	@Override
+//	public Usr addUser(String firstname, String lastname, String password,
+//			int pensum, SystemRole role, double holiday) throws WaktuException {
+//		LinkedList<Usr> allUsers = getAllUsers();
+//		Usr newUser = new Usr(UsernameUtil.generateUsername(getAllUsers(), firstname, lastname), firstname, lastname, password, pensum, role, holiday);
+//		allUsers.add(newUser);
+//		XmlUtil.saveUsersToXml(userFilePath, allUsers);
+//		return newUser;
+//	}
 
 	@Override
 	public LinkedList<Usr> getActiveUsers() throws WaktuException {
