@@ -9,6 +9,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
 import ch.hsr.waktu.controller.PersistenceController;
+import ch.hsr.waktu.controller.datacontroller.UserController;
 
 import com.trolltech.qt.gui.QApplication;
 
@@ -20,6 +21,9 @@ public class TestSuite {
 	public static void testSuiteSetUp() {
 		
 		if(runFirstTime) {
+			@SuppressWarnings("unused")
+			UserController uc = UserController.getInstance();
+			
 			String[] args = {};
 			QApplication.initialize(args);
 			ClassLoader loader = TestSuite.class.getClassLoader();

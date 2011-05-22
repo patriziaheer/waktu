@@ -19,12 +19,13 @@ public class TestLoginController extends TestSuite{
 	@Before
 	public void storePreviousControllers() {
 		previousUserController = UserController.getInstance();
-	}
-	
-	@Before
-	public void setFakeControllers() {
 		UserController.setInstance(new UserControllerXml());
 	}
+	
+//	@Before
+//	public void setFakeControllers() {
+//		UserController.setInstance(new UserControllerXml());
+//	}
 	
 	@After
 	public void restorePreviousControllers() {
