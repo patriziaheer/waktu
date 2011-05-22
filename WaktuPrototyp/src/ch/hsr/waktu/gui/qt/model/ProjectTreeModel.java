@@ -18,8 +18,10 @@ import com.trolltech.qt.gui.QTreeModel;
 public class ProjectTreeModel extends QTreeModel {
 
 	private List<Project> projects;
+	private boolean showInactivs;
 
-	public ProjectTreeModel() throws WaktuException {
+	public ProjectTreeModel(boolean showInactivs) throws WaktuException {
+		this.showInactivs = showInactivs;
 		updateProjectsModel();
 	}
 
@@ -83,7 +85,15 @@ public class ProjectTreeModel extends QTreeModel {
 	}
 
 	public void updateProjectsModel() throws WaktuException {
-		projects = ProjectController.getInstance().getActiveProjects();
+		if (showInactivs) {
+			projects = ProjectController.getInstance().getAllProjects();
+		} else {
+			projects = ProjectController.getInstance().getActiveProjects();
+		}
+	}
+	
+	public void setShowInactivs(boolean showInactivs) {
+		this.showInactivs = showInactivs;
 	}
 
 }

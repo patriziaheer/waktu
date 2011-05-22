@@ -29,7 +29,7 @@ public class UserDetails extends QWidget {
 		ui.setupUi(this);
 
 		try {
-			userTreeModel = new UserTreeModel();
+			userTreeModel = new UserTreeModel(false);
 		} catch (WaktuException e) {
 			showErrorMessage(e.getMessage());
 		}
@@ -67,7 +67,7 @@ public class UserDetails extends QWidget {
 			if (currWidget != null) {
 				currWidget.setParent(null);
 			}
-			UserDataView userDataView = new UserDataView((Usr) parent);
+			UserDataView userDataView = new UserDataView((Usr) selected);
 			userDataView.errorMessage.connect(this, "showErrorMessage(String)");
 			userDataView.initialize();
 			currWidget = userDataView;
@@ -168,5 +168,10 @@ public class UserDetails extends QWidget {
 
 	private void showErrorMessage(String errorMessageString) {
 		errorMessage.emit(errorMessageString);
+	}
+	
+	public void showInactive(boolean inactivs) {
+		userTreeModel.setShowInactivs(inactivs);
+		updateTable();
 	}
 }

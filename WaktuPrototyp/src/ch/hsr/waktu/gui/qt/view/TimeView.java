@@ -5,10 +5,12 @@ import org.apache.log4j.Logger;
 import ch.hsr.waktu.controller.TimeController;
 import ch.hsr.waktu.controller.datacontroller.FavoriteController;
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
+import ch.hsr.waktu.controller.datacontroller.ProjectStaffController;
 import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Favorite;
 import ch.hsr.waktu.domain.Project;
+import ch.hsr.waktu.domain.ProjectStaff;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.domain.WorkSession;
@@ -39,10 +41,10 @@ import com.trolltech.qt.gui.QContextMenuEvent;
 import com.trolltech.qt.gui.QFileDialog;
 import com.trolltech.qt.gui.QHBoxLayout;
 import com.trolltech.qt.gui.QIcon;
-import com.trolltech.qt.gui.QMenu;
 import com.trolltech.qt.gui.QItemSelectionModel.SelectionFlag;
 import com.trolltech.qt.gui.QLabel;
 import com.trolltech.qt.gui.QMainWindow;
+import com.trolltech.qt.gui.QMenu;
 import com.trolltech.qt.gui.QPalette;
 import com.trolltech.qt.gui.QPalette.ColorRole;
 import com.trolltech.qt.gui.QPixmap;
@@ -139,6 +141,13 @@ public class TimeView extends QMainWindow {
 				"workSessionUpdated()");
 		WorkSessionController.getInstance().removed.connect(this,
 				"workSessionRemoved(WorkSession)");
+		
+		ProjectStaffController.getInstance().add.connect(this, "projectStaffChanged(ProjectStaff)");
+		ProjectStaffController.getInstance().removed.connect(this, "projectStaffChanged(ProjectStaff)");
+		ProjectController.getInstance().add.connect(this, "projectsAdded(Project)");
+		ProjectController.getInstance().update.connect(this, "projectsUpdated()");
+		WorkPackageController.getInstance().add.connect(this, "workPackageAdded(WorkPackage)");
+		WorkPackageController.getInstance().update.connect(this, "workPackageUpdated()");
 
 		ui.tblWorksessions.setModel(workSessionModel);
 		ui.tblFavorites.setModel(favoriteModel);
@@ -639,8 +648,7 @@ public class TimeView extends QMainWindow {
 				"TimeView", ("EN")), menu);
 		actionEN.triggered.connect(this, "translateEN()");
 		languageMenu.addAction(actionEN);
-		languageMenu.addAction(actionDE);
-		
+		languageMenu.addAction(actionDE);		
 		
 		QAction closeAction = new QAction(QCoreApplication.translate(
 				"TimeView", ("Close")), menu);
@@ -654,4 +662,29 @@ public class TimeView extends QMainWindow {
 		
 		menu.exec(event.globalPos());
 	}
+
+	@SuppressWarnings("unused")
+	private void projectStaffChanged(ProjectStaff projectStaff) {
+	}
+	
+	@SuppressWarnings("unused")
+	private void projectsAdded(Project project) {
+		
+	}
+	
+	@SuppressWarnings("unused")
+	private void projectsUpdated() {
+		
+	}
+	
+	@SuppressWarnings("unused")
+	private void workPackageAdded(WorkPackage workPackage) {
+		
+	}
+	
+	@SuppressWarnings("unused")
+	private void workPackageUpdated() {
+		
+	}
 }
+

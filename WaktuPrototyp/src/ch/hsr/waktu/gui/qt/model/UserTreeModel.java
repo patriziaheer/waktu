@@ -17,8 +17,10 @@ import com.trolltech.qt.gui.QTreeModel;
 public class UserTreeModel extends QTreeModel {
 	
 	private List<Usr> usrs;
+	private boolean showInactivs;
 	
-	public UserTreeModel() throws WaktuException {
+	public UserTreeModel(boolean showInactivs) throws WaktuException {
+		this.showInactivs = showInactivs;
 		updateUsrModel();
 	}
 
@@ -81,6 +83,14 @@ public class UserTreeModel extends QTreeModel {
 	}
 	
 	public void updateUsrModel() throws WaktuException {
-		usrs = UserController.getInstance().getActiveUsers();
+		if (showInactivs) {
+			usrs = UserController.getInstance().getAllUsers();
+		} else {
+			usrs = UserController.getInstance().getActiveUsers();
+		}
+	}
+	
+	public void setShowInactivs(boolean showInactivs){
+		this.showInactivs = showInactivs;
 	}
 }

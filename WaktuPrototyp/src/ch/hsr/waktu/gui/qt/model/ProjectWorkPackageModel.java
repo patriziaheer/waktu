@@ -61,6 +61,8 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 			}
 		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Vertical == orientation) {
 			return new QSize(0, 20);
+		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Horizontal == orientation) {
+			return new QSize(0, 20);
 		}
 		return super.headerData(section, orientation, role);
 	}

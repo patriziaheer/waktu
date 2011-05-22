@@ -52,7 +52,7 @@ public class FavoriteModel extends QAbstractItemModel {
 			Favorite fav = favorites.get(index.row());
 			switch (index.column()) {
 			case 0:
-				return fav.getWorkPackageID().getProject().getDescription() + " - " + fav.getWorkPackageID();
+				return fav.getWorkPackageID().getProject().getDescription() + "\n" + fav.getWorkPackageID();
 			case 1:
 				return TimeUtil.convertGregorianToQDateTime(fav.getStartTime()).time();
 			case 2:
@@ -63,8 +63,8 @@ public class FavoriteModel extends QAbstractItemModel {
 		} else if (Qt.ItemDataRole.SizeHintRole == role) {
 			switch (index.column()) {
 			case 0: return new QSize(150, 60);
-			case 1: return new QSize(44, 60);
-			case 2: return new QSize(44, 60);
+			case 1: return new QSize(50, 60);
+			case 2: return new QSize(50, 60);
 			case 3: return new QSize(10, 60);
 			}
 			
@@ -88,11 +88,11 @@ public class FavoriteModel extends QAbstractItemModel {
 			}
 		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Vertical == orientation) {
 			return new QSize(0,60);
-		}  else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Vertical == orientation) {
+		}  else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
 			case 0: return new QSize(150, 60);
-			case 1: return new QSize(44, 60);
-			case 2: return new QSize(44, 60);
+			case 1: return new QSize(50, 60);
+			case 2: return new QSize(50, 60);
 			case 3: return new QSize(10, 60);
 			}
 		} 

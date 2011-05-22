@@ -44,6 +44,9 @@ public class ManagmentView extends QMainWindow {
 		ui.actionDE.triggered.connect(this, "translateDE()");
 		ui.actionEN.triggered.connect(this, "translateEN()");
 		
+		ui.actionShow_Inactiv_Projects.changed.connect(this, "showInactivProjectsChanged()");
+		ui.actionInactiv_Users.changed.connect(this, "showInactivUsersChanged()");
+		
 		
 		
 		LanguageController.getInstance().languageChanged.connect(this, "translate()");
@@ -133,4 +136,13 @@ public class ManagmentView extends QMainWindow {
 		menu.exec(event.globalPos());
 	}
 	
+	@SuppressWarnings("unused")
+	private void showInactivProjectsChanged() {
+		projectDetails.showInactive(ui.actionShow_Inactiv_Projects.isChecked());
+	}
+	
+	@SuppressWarnings("unused")
+	private void showInactivUsersChanged() {
+		userDetails.showInactive(ui.actionInactiv_Users.isChecked());
+	}
 }

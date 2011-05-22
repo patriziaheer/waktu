@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ManagmentWindow.jui'
 **
-** Created: Mo. Mai 16 08:50:42 2011
+** Created: Fr. Mai 20 13:10:20 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -20,6 +20,8 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
     public QAction actionAddUser;
     public QAction actionEN;
     public QAction actionDE;
+    public QAction actionShow_Inactiv_Projects;
+    public QAction actionInactiv_Users;
     public QWidget centralwidget;
     public QGridLayout gridLayout_2;
     public QTabWidget tabWidget;
@@ -27,6 +29,7 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
     public QMenuBar menubar;
     public QMenu menuFile;
     public QMenu menuLanguage;
+    public QMenu menuView;
     public QStatusBar statusBar;
 
     public Ui_ManagmentWindow() { super(); }
@@ -48,6 +51,12 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         actionEN.setObjectName("actionEN");
         actionDE = new QAction(ManagmentWindow);
         actionDE.setObjectName("actionDE");
+        actionShow_Inactiv_Projects = new QAction(ManagmentWindow);
+        actionShow_Inactiv_Projects.setObjectName("actionShow_Inactiv_Projects");
+        actionShow_Inactiv_Projects.setCheckable(true);
+        actionInactiv_Users = new QAction(ManagmentWindow);
+        actionInactiv_Users.setObjectName("actionInactiv_Users");
+        actionInactiv_Users.setCheckable(true);
         centralwidget = new QWidget(ManagmentWindow);
         centralwidget.setObjectName("centralwidget");
         gridLayout_2 = new QGridLayout(centralwidget);
@@ -68,18 +77,23 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         menuFile.setObjectName("menuFile");
         menuLanguage = new QMenu(menuFile);
         menuLanguage.setObjectName("menuLanguage");
+        menuView = new QMenu(menubar);
+        menuView.setObjectName("menuView");
         ManagmentWindow.setMenuBar(menubar);
         statusBar = new QStatusBar(ManagmentWindow);
         statusBar.setObjectName("statusBar");
         ManagmentWindow.setStatusBar(statusBar);
 
         menubar.addAction(menuFile.menuAction());
+        menubar.addAction(menuView.menuAction());
         menuFile.addAction(actionAddProject);
         menuFile.addAction(actionAddUser);
         menuFile.addAction(menuLanguage.menuAction());
         menuFile.addAction(actionClose);
         menuLanguage.addAction(actionEN);
         menuLanguage.addAction(actionDE);
+        menuView.addAction(actionShow_Inactiv_Projects);
+        menuView.addAction(actionInactiv_Users);
         retranslateUi(ManagmentWindow);
 
         tabWidget.setCurrentIndex(0);
@@ -97,9 +111,12 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         actionAddUser.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Add User", null));
         actionEN.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "EN", null));
         actionDE.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "DE", null));
+        actionShow_Inactiv_Projects.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Inactiv Projects", null));
+        actionInactiv_Users.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Inactiv Users", null));
         tabWidget.setTabText(tabWidget.indexOf(tabProject), com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Projekte", null));
         menuFile.setTitle(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "File", null));
         menuLanguage.setTitle(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Language", null));
+        menuView.setTitle(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "View", null));
     } // retranslateUi
 
 }

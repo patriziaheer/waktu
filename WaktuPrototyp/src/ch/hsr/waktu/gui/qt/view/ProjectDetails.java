@@ -29,7 +29,7 @@ public class ProjectDetails extends QWidget {
 	public ProjectDetails() {
 		ui.setupUi(this);
 		try {
-			projectTreeModel = new ProjectTreeModel();
+			projectTreeModel = new ProjectTreeModel(false);
 		} catch (WaktuException e) {
 			showErrorMessage(e.getMessage());
 		}
@@ -59,7 +59,15 @@ public class ProjectDetails extends QWidget {
 		QModelIndex selectedIndex = filterModel.mapToSource(ui.treeView.selectionModel().selectedIndexes().get(0));
 		Object selected = projectTreeModel.indexToValue(selectedIndex);
 		Object parent = projectTreeModel.indexToValue(projectTreeModel.parent(selectedIndex));
-		if (selected instanceof ProjectController.ProjectProperties) {
+		if (selected instanceof Project) {
+			if (currWidget != null) {
+				currWidget.setParent(null);
+			}
+			ProjectDataView projectDataView = new ProjectDataView((Project) selected);
+			projectDataView.errorMessage.connect(this, "showErrorMessage(String)");
+			projectDataView.initialize();
+			currWidget = projectDataView;
+		} else if (selected instanceof ProjectController.ProjectProperties) {
 			if (currWidget != null) {
 				currWidget.setParent(null);
 			}
@@ -92,8 +100,8 @@ public class ProjectDetails extends QWidget {
 				currWidget = projectStaffView;
 			}
 			}
-			splitter.addWidget(currWidget);
 		}
+		splitter.addWidget(currWidget);
 	}
 	
 	@SuppressWarnings("unused")
@@ -154,4 +162,8 @@ public class ProjectDetails extends QWidget {
 		errorMessage.emit(errorMessageString);
 	}
 	
+	public void showInactive(boolean inactivs) {
+		projectTreeModel.setShowInactivs(inactivs);
+		updateTable();
+	}
 }
