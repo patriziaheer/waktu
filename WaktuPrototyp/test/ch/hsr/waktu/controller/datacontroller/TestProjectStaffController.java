@@ -37,7 +37,6 @@ public class TestProjectStaffController extends TestSuite {
 	static Project p4;
 	static Project p5;
 
-	@SuppressWarnings("unused")
 	@BeforeClass
 	public static void before() {
 	

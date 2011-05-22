@@ -40,7 +40,6 @@ public class TestableUserController extends UserController {
 		} finally {
 			em.close();
 		}
-		System.out.println("add user done");
 		return newUsr;
 	}
 }

@@ -127,7 +127,6 @@ public class WorkPackageController extends QSignalEmitter {
 		} finally {
 			em.close();
 		}
-		System.out.println(allWorkPackages.size());
 		return allWorkPackages;
 	}
 
