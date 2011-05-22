@@ -17,7 +17,7 @@ public class Permission {
 	public boolean addProject = true;
 	public boolean updateProject = true;
 	public boolean getProjects = true;
-	public boolean getUsrs = true;
+	public boolean getUsers = true;
 	public boolean addProjectStaff = true;
 	public boolean removeUser = true;
 	public boolean getFavorites = true;
