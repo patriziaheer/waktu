@@ -27,6 +27,7 @@ public class Permission {
 	public boolean getActiveWorkPackages = true;
 	public boolean getInactiveWorkPackages = true;
 	public boolean getAllWorkPackages = true;
+	public boolean getWorkPackage = true;
 	public boolean addWorkPackage = true;
 	public boolean updateWorkPackage = true;
 	public boolean getWorkSessions = true;
