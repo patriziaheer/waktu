@@ -51,6 +51,7 @@ public class ProjectStaffView extends QWidget {
 		if (GuiController.getInstance().canAddProjectStaff() == false) {
 			ui.cmbUsers.setVisible(false);
 			ui.btnAdd.setVisible(false);
+		} else {
 			updateProjectStaffModel();
 		}
 	}
@@ -110,7 +111,7 @@ public class ProjectStaffView extends QWidget {
 		projectStaffModel.layoutAboutToBeChanged.emit();
 		projectStaffModel.dataChanged.emit(projectStaffModel.index(0, 0), projectStaffModel.index(projectStaffModel.rowCount(), projectStaffModel.columnCount()));
 		projectStaffModel.layoutChanged.emit();
-		if (GuiController.getInstance().canAddProjectStaff() == false) {
+		if (GuiController.getInstance().canAddProjectStaff() == true) {
 			updateProjectStaffModel();
 		}
 	}

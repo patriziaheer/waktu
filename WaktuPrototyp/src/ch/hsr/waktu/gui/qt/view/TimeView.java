@@ -665,26 +665,57 @@ public class TimeView extends QMainWindow {
 
 	@SuppressWarnings("unused")
 	private void projectStaffChanged(ProjectStaff projectStaff) {
+		Project project = (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex());
+		try {
+			ComboBoxData.createProjectForUserComboBox(ui.cmbProject, currUser, project);
+		} catch (WaktuException e) {
+			setStatusBarText(e.getMessage());
+		}
+		ui.cmbWorkpackage.clear();
 	}
 	
 	@SuppressWarnings("unused")
 	private void projectsAdded(Project project) {
-		
+		Project proj = (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex());
+		try {
+			ComboBoxData.createProjectForUserComboBox(ui.cmbProject, currUser, proj);
+		} catch (WaktuException e) {
+			setStatusBarText(e.getMessage());
+		}
+		ui.cmbWorkpackage.clear();
 	}
 	
 	@SuppressWarnings("unused")
 	private void projectsUpdated() {
-		
+		Project project = (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex());
+		try {
+			ComboBoxData.createProjectForUserComboBox(ui.cmbProject, currUser, project);
+		} catch (WaktuException e) {
+			setStatusBarText(e.getMessage());
+		}
+		ui.cmbWorkpackage.clear();
 	}
 	
 	@SuppressWarnings("unused")
 	private void workPackageAdded(WorkPackage workPackage) {
-		
+		Project project = (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex());
+		WorkPackage wp = (WorkPackage) ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex());
+		try {
+			ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, project, wp);
+		} catch (WaktuException e) {
+			setStatusBarText(e.getMessage());
+		}
 	}
 	
 	@SuppressWarnings("unused")
 	private void workPackageUpdated() {
-		
+		Project project = (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex());
+		WorkPackage wp = (WorkPackage) ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex());
+		try {
+			ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, project, wp);
+		} catch (WaktuException e) {
+			setStatusBarText(e.getMessage());
+		}
 	}
 }
 

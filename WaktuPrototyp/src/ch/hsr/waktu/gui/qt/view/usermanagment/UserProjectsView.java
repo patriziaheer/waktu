@@ -53,6 +53,7 @@ public class UserProjectsView extends QWidget {
 		if (GuiController.getInstance().canAddProjectStaff() == false) {
 			ui.btnAdd.setVisible(false);
 			ui.cmbProjects.setVisible(false);
+		} else {
 			updateProjectModel();
 		}
 	}
@@ -123,7 +124,9 @@ public class UserProjectsView extends QWidget {
 				projectsModel.index(projectsModel.rowCount(),
 						projectsModel.columnCount()));
 		projectsModel.layoutChanged.emit();
-		updateProjectModel();
+		if (GuiController.getInstance().canAddProjectStaff() == true) {
+			updateProjectModel();
+		}
 	}
 
 	@SuppressWarnings("unused")
