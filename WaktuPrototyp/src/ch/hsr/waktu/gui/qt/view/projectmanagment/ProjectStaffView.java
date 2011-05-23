@@ -41,6 +41,7 @@ public class ProjectStaffView extends QWidget {
 		}
 		ui.tblWorkStaff.setModel(projectStaffModel);
 		ui.tblWorkStaff.horizontalHeader().setStretchLastSection(true);
+		ui.tblWorkStaff.resizeRowsToContents();
 		ui.btnAdd.clicked.connect(this, "addUser()");
 		
 		ProjectStaffController.getInstance().add.connect(this, "added(ProjectStaff)");

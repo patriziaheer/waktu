@@ -40,6 +40,7 @@ public class UserProjectsView extends QWidget {
 		}
 		ui.tblProjects.setModel(projectsModel);
 		ui.tblProjects.horizontalHeader().setStretchLastSection(true);
+		ui.tblProjects.resizeRowsToContents();
 		ui.btnAdd.clicked.connect(this, "addProject()");
 
 		ProjectStaffController.getInstance().add.connect(this,

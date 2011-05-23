@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'UserData.jui'
 **
-** Created: Mo. Mai 16 09:40:49 2011
+** Created: Mo. Mai 23 11:19:09 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -48,11 +48,16 @@ public class Ui_UserData implements com.trolltech.qt.QUiForm<QWidget>
     public void setupUi(QWidget UserData)
     {
         UserData.setObjectName("UserData");
-        UserData.resize(new QSize(650, 415).expandedTo(UserData.minimumSizeHint()));
-        UserData.setMinimumSize(new QSize(650, 0));
+        UserData.resize(new QSize(800, 415).expandedTo(UserData.minimumSizeHint()));
+        QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Minimum, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
+        sizePolicy.setHorizontalStretch((byte)0);
+        sizePolicy.setVerticalStretch((byte)0);
+        sizePolicy.setHeightForWidth(UserData.sizePolicy().hasHeightForWidth());
+        UserData.setSizePolicy(sizePolicy);
+        UserData.setMinimumSize(new QSize(800, 360));
         gridLayout = new QGridLayout(UserData);
+        gridLayout.setMargin(12);
         gridLayout.setObjectName("gridLayout");
-        gridLayout.setContentsMargins(12, 0, 0, 0);
         lblName = new QLabel(UserData);
         lblName.setObjectName("lblName");
 

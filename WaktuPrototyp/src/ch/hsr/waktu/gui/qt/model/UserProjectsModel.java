@@ -46,6 +46,11 @@ public class UserProjectsModel extends QAbstractItemModel {
 			case 2:
 				return "";
 			}
+		} else if (Qt.ItemDataRole.SizeHintRole == role) {
+			switch (index.column()) {
+			case 0: return new QSize(250, 20);
+			case 1: return new QSize(50, 20);
+			}
 		}
 		return null;
 	}
@@ -65,7 +70,12 @@ public class UserProjectsModel extends QAbstractItemModel {
 		} else if (Qt.ItemDataRole.SizeHintRole == role
 				&& Qt.Orientation.Vertical == orientation) {
 			return new QSize(0, 20);
-		}
+		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Horizontal == orientation) {
+			switch (section) {
+			case 0: return new QSize(250, 20);
+			case 1: return new QSize(50, 20);
+			}
+		} 
 		return super.headerData(section, orientation, role);
 	}
 

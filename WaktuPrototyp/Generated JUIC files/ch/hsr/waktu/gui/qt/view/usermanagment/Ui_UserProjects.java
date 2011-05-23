@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'UserProjects.jui'
 **
-** Created: Mi 11. Mai 13:24:47 2011
+** Created: Mo. Mai 23 11:19:09 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -24,11 +24,16 @@ public class Ui_UserProjects implements com.trolltech.qt.QUiForm<QWidget>
     public void setupUi(QWidget UserProjects)
     {
         UserProjects.setObjectName("UserProjects");
-        UserProjects.resize(new QSize(650, 338).expandedTo(UserProjects.minimumSizeHint()));
-        UserProjects.setMinimumSize(new QSize(650, 0));
+        UserProjects.resize(new QSize(800, 360).expandedTo(UserProjects.minimumSizeHint()));
+        QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Minimum, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
+        sizePolicy.setHorizontalStretch((byte)0);
+        sizePolicy.setVerticalStretch((byte)0);
+        sizePolicy.setHeightForWidth(UserProjects.sizePolicy().hasHeightForWidth());
+        UserProjects.setSizePolicy(sizePolicy);
+        UserProjects.setMinimumSize(new QSize(800, 360));
         gridLayout = new QGridLayout(UserProjects);
+        gridLayout.setMargin(12);
         gridLayout.setObjectName("gridLayout");
-        gridLayout.setContentsMargins(12, 0, 0, 0);
         tblProjects = new QTableView(UserProjects);
         tblProjects.setObjectName("tblProjects");
 
@@ -41,11 +46,11 @@ public class Ui_UserProjects implements com.trolltech.qt.QUiForm<QWidget>
 
         btnAdd = new QPushButton(UserProjects);
         btnAdd.setObjectName("btnAdd");
-        QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Minimum, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
-        sizePolicy.setHorizontalStretch((byte)0);
-        sizePolicy.setVerticalStretch((byte)0);
-        sizePolicy.setHeightForWidth(btnAdd.sizePolicy().hasHeightForWidth());
-        btnAdd.setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1 = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Minimum, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
+        sizePolicy1.setHorizontalStretch((byte)0);
+        sizePolicy1.setVerticalStretch((byte)0);
+        sizePolicy1.setHeightForWidth(btnAdd.sizePolicy().hasHeightForWidth());
+        btnAdd.setSizePolicy(sizePolicy1);
 
         gridLayout.addWidget(btnAdd, 1, 1, 1, 1);
 

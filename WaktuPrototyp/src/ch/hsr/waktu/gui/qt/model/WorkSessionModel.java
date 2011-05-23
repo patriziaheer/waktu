@@ -60,6 +60,15 @@ public class WorkSessionModel extends QAbstractItemModel {
 			case 4: return TimeUtil.convertGregorianToQDateTime(workSession.getEnd()).time();
 			case 5: return "";
 			}
+		} else if (Qt.ItemDataRole.SizeHintRole == role) {
+			switch (index.column()) {
+			case 0: return new QSize(170, 20);
+			case 1: return new QSize(170, 20);
+			case 2: return new QSize(170, 20);
+			case 3: return new QSize(44, 20);
+			case 4: return new QSize(44, 20);
+			case 5: return new QSize(30, 20);
+			}
 		}
 		return null;
 	}

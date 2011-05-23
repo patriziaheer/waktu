@@ -50,6 +50,7 @@ public class UserWorkSessionsView extends QWidget{
 		filterModel.setSourceModel(workSessionModel);
 		ui.tblWorkSessions.setModel(filterModel);
 		ui.tblWorkSessions.horizontalHeader().setStretchLastSection(true);
+		ui.tblWorkSessions.resizeRowsToContents();
 		
 		WorkSessionController.getInstance().add.connect(this, "added(WorkSession)");
 		WorkSessionController.getInstance().removed.connect(this, "removed(WorkSession)");
@@ -60,8 +61,12 @@ public class UserWorkSessionsView extends QWidget{
 		ui.cmbWorkpackage.setCurrentIndex(-1);
 		ui.btnAddFilter.clicked.connect(this, "addFilter()");
 		ui.btnRemoveFilter.clicked.connect(this, "removeFilter()");
-		//TODO
-		//ui.lblTotalTime.setText(""+TimeController.calc(project, null, null, null, null));
+
+		try {
+			ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForUser(usr, null, null, null, null));
+		} catch (WaktuException e) {
+			errorMessage.emit(e.getMessage());
+		}
 		
 		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 	}

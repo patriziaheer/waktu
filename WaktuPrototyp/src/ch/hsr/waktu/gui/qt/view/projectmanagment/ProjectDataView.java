@@ -33,7 +33,6 @@ public class ProjectDataView extends QWidget {
 		ProjectController.getInstance().update.connect(this, "updateData()");
 		ProjectController.getInstance().add.connect(this, "addData(Project)");
 		
-		ui.txtUnvisibleField.setVisible(false);
 
 		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 

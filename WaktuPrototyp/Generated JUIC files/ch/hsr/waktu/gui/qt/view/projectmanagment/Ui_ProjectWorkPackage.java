@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ProjectWorkPackage.jui'
 **
-** Created: Mi 11. Mai 13:24:47 2011
+** Created: Mo. Mai 23 11:05:20 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -24,7 +24,13 @@ public class Ui_ProjectWorkPackage implements com.trolltech.qt.QUiForm<QWidget>
     public void setupUi(QWidget ProjectWorkPackage)
     {
         ProjectWorkPackage.setObjectName("ProjectWorkPackage");
-        ProjectWorkPackage.resize(new QSize(400, 300).expandedTo(ProjectWorkPackage.minimumSizeHint()));
+        ProjectWorkPackage.resize(new QSize(800, 360).expandedTo(ProjectWorkPackage.minimumSizeHint()));
+        QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Minimum, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
+        sizePolicy.setHorizontalStretch((byte)0);
+        sizePolicy.setVerticalStretch((byte)0);
+        sizePolicy.setHeightForWidth(ProjectWorkPackage.sizePolicy().hasHeightForWidth());
+        ProjectWorkPackage.setSizePolicy(sizePolicy);
+        ProjectWorkPackage.setMinimumSize(new QSize(800, 360));
         gridLayout = new QGridLayout(ProjectWorkPackage);
         gridLayout.setObjectName("gridLayout");
         tblWorkPackages = new QTableView(ProjectWorkPackage);

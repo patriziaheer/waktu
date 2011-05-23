@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ProjectStaff.jui'
 **
-** Created: Mi 11. Mai 13:24:47 2011
+** Created: Mo. Mai 23 11:05:20 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -24,7 +24,13 @@ public class Ui_ProjectStaff implements com.trolltech.qt.QUiForm<QWidget>
     public void setupUi(QWidget ProjectStaff)
     {
         ProjectStaff.setObjectName("ProjectStaff");
-        ProjectStaff.resize(new QSize(506, 338).expandedTo(ProjectStaff.minimumSizeHint()));
+        ProjectStaff.resize(new QSize(800, 360).expandedTo(ProjectStaff.minimumSizeHint()));
+        QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Minimum, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
+        sizePolicy.setHorizontalStretch((byte)0);
+        sizePolicy.setVerticalStretch((byte)0);
+        sizePolicy.setHeightForWidth(ProjectStaff.sizePolicy().hasHeightForWidth());
+        ProjectStaff.setSizePolicy(sizePolicy);
+        ProjectStaff.setMinimumSize(new QSize(800, 360));
         gridLayout = new QGridLayout(ProjectStaff);
         gridLayout.setObjectName("gridLayout");
         tblWorkStaff = new QTableView(ProjectStaff);
@@ -39,11 +45,11 @@ public class Ui_ProjectStaff implements com.trolltech.qt.QUiForm<QWidget>
 
         btnAdd = new QPushButton(ProjectStaff);
         btnAdd.setObjectName("btnAdd");
-        QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Minimum, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
-        sizePolicy.setHorizontalStretch((byte)0);
-        sizePolicy.setVerticalStretch((byte)0);
-        sizePolicy.setHeightForWidth(btnAdd.sizePolicy().hasHeightForWidth());
-        btnAdd.setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1 = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Minimum, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
+        sizePolicy1.setHorizontalStretch((byte)0);
+        sizePolicy1.setVerticalStretch((byte)0);
+        sizePolicy1.setHeightForWidth(btnAdd.sizePolicy().hasHeightForWidth());
+        btnAdd.setSizePolicy(sizePolicy1);
 
         gridLayout.addWidget(btnAdd, 1, 1, 1, 1);
 

@@ -48,6 +48,7 @@ public class ProjectWorkSessionsView extends QWidget {
 		filterModel.setSourceModel(workSessionModel);
 		ui.tblWorkSessions.setModel(filterModel);
 		ui.tblWorkSessions.horizontalHeader().setStretchLastSection(true);
+		ui.tblWorkSessions.resizeRowsToContents();
 
 		ui.cmbUser.setCurrentIndex(-1);
 		ui.cmbWorkpackage.setCurrentIndex(-1);

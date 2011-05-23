@@ -24,6 +24,7 @@ public class CalendarWidget extends QWidget{
 		ui.btnSo.clicked.connect(this, "soClicked()");
 		ui.btnLeft.clicked.connect(this, "leftClicked()");
 		ui.btnRight.clicked.connect(this, "rightClicked()");
+		ui.btnToday.clicked.connect(this, "todayClicked()");
 		
 		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 		
@@ -46,8 +47,8 @@ public class CalendarWidget extends QWidget{
 
 	@SuppressWarnings("unused")
 	private void moClicked() {
-		resetButtonEnabled();
-		ui.btnMo.setEnabled(false);
+		//resetButtonEnabled();
+		//ui.btnMo.setEnabled(false);
 
 		if (currDate.dayOfWeek() == 7) {
 			currDate = currDate.addDays(-6);
@@ -60,8 +61,8 @@ public class CalendarWidget extends QWidget{
 
 	@SuppressWarnings("unused")
 	private void diClicked() {
-		resetButtonEnabled();
-		ui.btnDi.setEnabled(false);
+		//resetButtonEnabled();
+		//ui.btnDi.setEnabled(false);
 
 		switch (currDate.dayOfWeek()) {
 		case 7: {
@@ -82,8 +83,8 @@ public class CalendarWidget extends QWidget{
 
 	@SuppressWarnings("unused")
 	private void miClicked() {
-		resetButtonEnabled();
-		ui.btnMi.setEnabled(false);
+		//resetButtonEnabled();
+		//ui.btnMi.setEnabled(false);
 
 		switch (currDate.dayOfWeek()) {
 		case 7: {
@@ -104,8 +105,8 @@ public class CalendarWidget extends QWidget{
 
 	@SuppressWarnings("unused")
 	private void doClicked() {
-		resetButtonEnabled();
-		ui.btnDo.setEnabled(false);
+		//resetButtonEnabled();
+		//ui.btnDo.setEnabled(false);
 
 		switch (currDate.dayOfWeek()) {
 		case 7: {
@@ -127,8 +128,8 @@ public class CalendarWidget extends QWidget{
 
 	@SuppressWarnings("unused")
 	private void friClicked() {
-		resetButtonEnabled();
-		ui.btnFri.setEnabled(false);
+		//resetButtonEnabled();
+		//ui.btnFri.setEnabled(false);
 
 		switch (currDate.dayOfWeek()) {
 		case 7: {
@@ -151,8 +152,8 @@ public class CalendarWidget extends QWidget{
 
 	@SuppressWarnings("unused")
 	private void saClicked() {
-		resetButtonEnabled();
-		ui.btnSa.setEnabled(false);
+		//resetButtonEnabled();
+		//ui.btnSa.setEnabled(false);
 
 		switch (currDate.dayOfWeek()) {
 		case 7: {
@@ -176,8 +177,8 @@ public class CalendarWidget extends QWidget{
 
 	@SuppressWarnings("unused")
 	private void soClicked() {
-		resetButtonEnabled();
-		ui.btnSo.setEnabled(false);
+		//resetButtonEnabled();
+		//ui.btnSo.setEnabled(false);
 
 		currDate = currDate.addDays(7 - currDate.dayOfWeek());
 		System.out.println(currDate.toString());
@@ -200,6 +201,8 @@ public class CalendarWidget extends QWidget{
 		ui.lblCurrDate.setText(currDate.toString("dd.MM.yy"));
 		QDate startDate = new QDate();
 		QDate endDate = new QDate();
+
+		resetButtonEnabled();
 
 		switch (currDate.dayOfWeek()) {
 		case 1: {
@@ -248,6 +251,12 @@ public class CalendarWidget extends QWidget{
 		ui.lblStart.setText(startDate.toString("dd.MM.yy"));
 		ui.lblEnd.setText(endDate.toString("dd.MM.yy"));
 		dayChanged.emit();
+	}
+	
+	@SuppressWarnings("unused")
+	private void todayClicked() {
+		currDate = QDate.currentDate();
+		updateCalendar();
 	}
 
 	@SuppressWarnings("unused")

@@ -32,7 +32,7 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="6">
+   <item row="1" column="7">
     <widget class="QPushButton" name="btnMo">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -57,7 +57,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="8" colspan="2">
+   <item row="1" column="9" colspan="2">
     <widget class="QPushButton" name="btnMi">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -82,7 +82,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="11">
+   <item row="1" column="12">
     <widget class="QPushButton" name="btnFri">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -107,7 +107,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="13">
+   <item row="1" column="14">
     <widget class="QPushButton" name="btnSo">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -132,7 +132,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="12">
+   <item row="1" column="13">
     <widget class="QPushButton" name="btnSa">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -157,7 +157,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="10">
+   <item row="1" column="11">
     <widget class="QPushButton" name="btnDo">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -182,7 +182,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="7">
+   <item row="1" column="8">
     <widget class="QPushButton" name="btnDi">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -207,7 +207,7 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="10">
+   <item row="0" column="11">
     <widget class="QLabel" name="lblBis">
      <property name="text">
       <string>-</string>
@@ -217,7 +217,7 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="13">
+   <item row="0" column="14">
     <widget class="QPushButton" name="btnRight">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -242,7 +242,7 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="6">
+   <item row="0" column="7">
     <widget class="QPushButton" name="btnLeft">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -267,14 +267,14 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="11" colspan="2">
+   <item row="0" column="12" colspan="2">
     <widget class="QLabel" name="lblEnd">
      <property name="text">
       <string/>
      </property>
     </widget>
    </item>
-   <item row="0" column="7" colspan="3">
+   <item row="0" column="8" colspan="3">
     <widget class="QLabel" name="lblStart">
      <property name="text">
       <string/>
@@ -299,8 +299,54 @@
    </item>
    <item row="1" column="2">
     <widget class="QLabel" name="lblCurrDate">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>65</width>
+       <height>35</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>65</width>
+       <height>35</height>
+      </size>
+     </property>
      <property name="text">
-      <string/>
+      <string>23.05.11</string>
+     </property>
+     <property name="alignment">
+      <set>com.trolltech.qt.core.Qt.AlignmentFlag.AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QPushButton" name="btnToday">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>65</width>
+       <height>35</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>65</width>
+       <height>35</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Today</string>
      </property>
     </widget>
    </item>

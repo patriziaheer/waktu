@@ -30,6 +30,7 @@ public class ProjectWorkPackageView extends QWidget{
 		
 		ui.tblWorkPackages.setModel(workPackageModel);
 		ui.tblWorkPackages.horizontalHeader().setStretchLastSection(true);
+		ui.tblWorkPackages.resizeRowsToContents();
 		
 		ui.btnAdd.clicked.connect(this, "addClicked()");
 		WorkPackageController.getInstance().add.connect(this, "addData(WorkPackage)");

@@ -12,6 +12,7 @@ import com.trolltech.qt.core.QAbstractItemModel;
 import com.trolltech.qt.core.QCoreApplication;
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.QSize;
+import com.trolltech.qt.core.QTime;
 import com.trolltech.qt.core.Qt;
 import com.trolltech.qt.core.Qt.Orientation;
 
@@ -45,7 +46,21 @@ public class UserWorkSessionModel extends QAbstractItemModel {
 			case 2: return workSession.getDescription();
 			case 3: return TimeUtil.convertGregorianToQDateTime(workSession.getStart());
 			case 4: return TimeUtil.convertGregorianToQDateTime(workSession.getEnd());
-			case 5: return TimeUtil.calculateTimespanInSeconds(workSession.getStart(), workSession.getEnd());
+			case 5: {
+				QTime duration = new QTime(0,0,0);
+				duration = duration.addSecs(TimeUtil.calculateTimespanInSeconds(
+						workSession.getStart(), workSession.getEnd()));
+				return duration.toString("hh:mm");
+			}
+			}
+		} else if (Qt.ItemDataRole.SizeHintRole == role) {
+			switch (index.column()) {
+			case 0: return new QSize(170, 20);
+			case 1: return new QSize(170, 20);
+			case 2: return new QSize(170, 20);
+			case 3: return new QSize(44, 20);
+			case 4: return new QSize(44, 20);
+			case 5: return new QSize(30, 20);
 			}
 		}
 		return null;
@@ -64,6 +79,15 @@ public class UserWorkSessionModel extends QAbstractItemModel {
 			}
  		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Vertical == orientation) {
 			return new QSize(0,20);
+		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Horizontal == orientation) {
+			switch (section) {
+			case 0: return new QSize(170, 20);
+			case 1: return new QSize(170, 20);
+			case 2: return new QSize(170, 20);
+			case 3: return new QSize(44, 20);
+			case 4: return new QSize(44, 20);
+			case 5: return new QSize(30, 20);
+			}
 		} 
 		return super.headerData(section, orientation, role);
 	}
