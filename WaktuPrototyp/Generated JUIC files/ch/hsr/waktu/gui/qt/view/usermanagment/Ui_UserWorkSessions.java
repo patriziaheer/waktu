@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'UserWorkSessions.jui'
 **
-** Created: Mi 11. Mai 13:25:54 2011
+** Created: Mo. Mai 23 09:22:35 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -25,6 +25,7 @@ public class Ui_UserWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
     public QPushButton btnRemoveFilter;
     public QLabel lblTotalTime;
     public QLabel lblTotalTimeText;
+    public QCheckBox chkFilterDate;
 
     public Ui_UserWorkSessions() { super(); }
 
@@ -59,7 +60,7 @@ public class Ui_UserWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
         tblWorkSessions = new QTableView(UserWorkSessions);
         tblWorkSessions.setObjectName("tblWorkSessions");
 
-        gridLayout.addWidget(tblWorkSessions, 1, 0, 1, 7);
+        gridLayout.addWidget(tblWorkSessions, 1, 0, 1, 8);
 
         txtStart = new QDateEdit(UserWorkSessions);
         txtStart.setObjectName("txtStart");
@@ -97,23 +98,28 @@ public class Ui_UserWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
         btnAddFilter = new QPushButton(UserWorkSessions);
         btnAddFilter.setObjectName("btnAddFilter");
 
-        gridLayout.addWidget(btnAddFilter, 0, 5, 1, 1);
+        gridLayout.addWidget(btnAddFilter, 0, 6, 1, 1);
 
         btnRemoveFilter = new QPushButton(UserWorkSessions);
         btnRemoveFilter.setObjectName("btnRemoveFilter");
 
-        gridLayout.addWidget(btnRemoveFilter, 0, 6, 1, 1);
+        gridLayout.addWidget(btnRemoveFilter, 0, 7, 1, 1);
 
         lblTotalTime = new QLabel(UserWorkSessions);
         lblTotalTime.setObjectName("lblTotalTime");
 
-        gridLayout.addWidget(lblTotalTime, 2, 6, 1, 1);
+        gridLayout.addWidget(lblTotalTime, 2, 7, 1, 1);
 
         lblTotalTimeText = new QLabel(UserWorkSessions);
         lblTotalTimeText.setObjectName("lblTotalTimeText");
         lblTotalTimeText.setAlignment(com.trolltech.qt.core.Qt.AlignmentFlag.createQFlags(com.trolltech.qt.core.Qt.AlignmentFlag.AlignRight,com.trolltech.qt.core.Qt.AlignmentFlag.AlignVCenter));
 
-        gridLayout.addWidget(lblTotalTimeText, 2, 5, 1, 1);
+        gridLayout.addWidget(lblTotalTimeText, 2, 6, 1, 1);
+
+        chkFilterDate = new QCheckBox(UserWorkSessions);
+        chkFilterDate.setObjectName("chkFilterDate");
+
+        gridLayout.addWidget(chkFilterDate, 0, 5, 1, 1);
 
         retranslateUi(UserWorkSessions);
 
@@ -128,6 +134,7 @@ public class Ui_UserWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
         btnRemoveFilter.setText(com.trolltech.qt.core.QCoreApplication.translate("UserWorkSessions", "Remove Filter", null));
         lblTotalTime.setText(com.trolltech.qt.core.QCoreApplication.translate("UserWorkSessions", "0.0h", null));
         lblTotalTimeText.setText(com.trolltech.qt.core.QCoreApplication.translate("UserWorkSessions", "Total Time:", null));
+        chkFilterDate.setText(com.trolltech.qt.core.QCoreApplication.translate("UserWorkSessions", "Datefilter?", null));
     } // retranslateUi
 
 }

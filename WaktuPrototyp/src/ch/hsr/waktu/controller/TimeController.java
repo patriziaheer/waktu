@@ -35,6 +35,11 @@ public class TimeController {
 		return 0.0;
 	}
 	
+	public static double calculateWorktimeForUser(Usr usr, Project project, WorkPackage workPackage, QDate start, QDate end) throws WaktuException {
+		//TODO
+		return 0.0;
+	}
+	
 	private static double calculateWorktime(Project project) throws WaktuException {
 		double worktime = 0;
 

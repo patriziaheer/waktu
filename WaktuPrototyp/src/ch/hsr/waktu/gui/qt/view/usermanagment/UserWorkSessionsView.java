@@ -70,35 +70,47 @@ public class UserWorkSessionsView extends QWidget{
 	private void addFilter() {
 		filterModel.setProject((Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
 		filterModel.setWorkPackage((WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()));
-		QDate start = null;
-		QDate end = null;
-		
-		if (ui.txtStart.date().toString("dd.MM.yyyy").equals("01.01.2000") == false) {
-			start = ui.txtStart.date(); 
-		}
-		if (ui.txtEnd.date().toString("dd.MM.yyyy").equals("01.01.2000") == false) {
-			end = ui.txtEnd.date();
-		}
-		filterModel.setStart(start);
-		filterModel.setEnd(end);
-		
-		//TODO add filter
-		try {
-			ui.lblTotalTime.setText(""+TimeController.calculateWorktime(usr, start, end));
-		} catch (WaktuException e) {
-			// TODO Exception handling
-			e.printStackTrace();
+		if (ui.chkFilterDate.isChecked()) {
+			QDate start = null;
+			QDate end = null;
+			
+			if (ui.txtStart.date().toString("dd.MM.yyyy").equals("01.01.2000") == false) {
+				start = ui.txtStart.date(); 
+			}
+			if (ui.txtEnd.date().toString("dd.MM.yyyy").equals("01.01.2000") == false) {
+				end = ui.txtEnd.date();
+			}
+			filterModel.setStart(start);
+			filterModel.setEnd(end);
+			
+			try {
+				ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForUser(usr, (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()), (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), start, end));
+			} catch (WaktuException e) {
+				errorMessage.emit(e.getMessage());
+			}
+		} else {
+			filterModel.setStart(null);
+			filterModel.setEnd(null);
+			try {
+				ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForUser(usr, (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()), (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), null, null));
+			} catch (WaktuException e) {
+				errorMessage.emit(e.getMessage());
+			}
 		}
 	}
 	
 	@SuppressWarnings("unused")
 	private void removeFilter() {
-		//TODO
-		//ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, null, null, null, null));
+		try {
+			ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForUser(usr, null, null, null, null));
+		} catch (WaktuException e) {
+			errorMessage.emit(e.getMessage());
+		}
 		ui.cmbProject.setCurrentIndex(-1);
 		ui.cmbWorkpackage.setCurrentIndex(-1);
 		ui.txtStart.setDate(new QDate(01, 01, 1900));
 		ui.txtEnd.setDate(new QDate(01, 01, 1900));
+		ui.chkFilterDate.setChecked(false);
 		filterModel.setUsr(null);
 		filterModel.setWorkPackage(null);
 		filterModel.setStart(null);

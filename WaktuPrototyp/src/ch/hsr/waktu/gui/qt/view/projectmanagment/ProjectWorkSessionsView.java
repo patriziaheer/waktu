@@ -56,8 +56,7 @@ public class ProjectWorkSessionsView extends QWidget {
 		try {
 			ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, null, null, null, null));
 		} catch (WaktuException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			errorMessage.emit(e.getMessage());
 		}
 		
 		WorkSessionController.getInstance().add.connect(this, "added(WorkSession)");
@@ -89,8 +88,7 @@ public class ProjectWorkSessionsView extends QWidget {
 			try {
 				ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), (Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()), start, end));
 			} catch (WaktuException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				errorMessage.emit(e.getMessage());
 			}
 		} else {
 			filterModel.setStart(null);
@@ -98,10 +96,8 @@ public class ProjectWorkSessionsView extends QWidget {
 			try {
 				ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), (Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()), null, null));
 			} catch (WaktuException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				errorMessage.emit(e.getMessage());
 			}
-			
 		}
 	}
 	
@@ -110,13 +106,13 @@ public class ProjectWorkSessionsView extends QWidget {
 		try {
 			ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, null, null, null, null));
 		} catch (WaktuException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			errorMessage.emit(e.getMessage());
 		}
 		ui.cmbUser.setCurrentIndex(-1);
 		ui.cmbWorkpackage.setCurrentIndex(-1);
 		ui.txtStart.setDate(new QDate(01, 01, 1900));
 		ui.txtEnd.setDate(new QDate(01, 01, 1900));
+		ui.chkFilterDate.setChecked(false);
 		filterModel.setUsr(null);
 		filterModel.setWorkPackage(null);
 		filterModel.setStart(null);
