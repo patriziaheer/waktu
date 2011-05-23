@@ -96,11 +96,21 @@ public class ProjectStaffView extends QWidget {
 	@SuppressWarnings("unused")
 	private void added(ProjectStaff projectStaff) {
 		updateTable();
+		try {
+			ComboBoxData.createUserProjectStaffComboBox(ui.cmbUsers, project);
+		} catch (WaktuException e) {
+			errorMessage.emit(e.getMessage());
+		}
 	}
 
 	@SuppressWarnings("unused")
 	private void removed(ProjectStaff projectStaff) {
 		updateTable();
+		try {
+			ComboBoxData.createUserProjectStaffComboBox(ui.cmbUsers, project);
+		} catch (WaktuException e) {
+			errorMessage.emit(e.getMessage());
+		}
 	}
 	
 	private void updateTable() {

@@ -27,6 +27,7 @@ public class WaktuApplication {
 	
 
     public static void main(String[] args) {
+    	System.setProperty("com.apple.mrj.application.apple.menu.about.name", "ImageRotator");
 		ClassLoader loader = WaktuApplication.class.getClassLoader();
 		URL url = loader.getResource("settings");
     	PropertyConfigurator.configure(url);

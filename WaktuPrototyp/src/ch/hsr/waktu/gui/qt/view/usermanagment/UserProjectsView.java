@@ -106,11 +106,21 @@ public class UserProjectsView extends QWidget {
 	@SuppressWarnings("unused")
 	private void added(ProjectStaff projectStaff) {
 		updateTable();
+		try {
+			ComboBoxData.createProjectProjectStaffComboBox(ui.cmbProjects, usr);
+		} catch (WaktuException e) {
+			errorMessage.emit(e.getMessage());
+		}
 	}
 
 	@SuppressWarnings("unused")
 	private void removed(ProjectStaff projectStaff) {
 		updateTable();
+		try {
+			ComboBoxData.createProjectProjectStaffComboBox(ui.cmbProjects, usr);
+		} catch (WaktuException e) {
+			errorMessage.emit(e.getMessage());
+		}
 	}
 
 	private void updateTable() {

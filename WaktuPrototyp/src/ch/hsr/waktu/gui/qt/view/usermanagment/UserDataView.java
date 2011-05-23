@@ -1,14 +1,18 @@
 package ch.hsr.waktu.gui.qt.view.usermanagment;
 
+import ch.hsr.waktu.controller.TimeController;
 import ch.hsr.waktu.controller.datacontroller.UserController;
+import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.domain.WorkSession;
 import ch.hsr.waktu.gui.qt.model.ComboBoxData;
 import ch.hsr.waktu.guicontroller.GuiController;
 import ch.hsr.waktu.guicontroller.LanguageController;
 import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.core.QCoreApplication;
+import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.gui.QWidget;
 
 public class UserDataView extends QWidget {
@@ -29,10 +33,15 @@ public class UserDataView extends QWidget {
 		UserController.getInstance().update.connect(this, "updateData()");
 		UserController.getInstance().add.connect(this, "addData(Usr)");
 		
+		WorkSessionController.getInstance().add.connect(this, "workSessionChanged(WorkSession)");
+		WorkSessionController.getInstance().update.connect(this, "workSessionUpdated()");
+		WorkSessionController.getInstance().removed.connect(this, "workSessionChanged(WorkSession)");
+		
 		ui.txtUnvisbileField.setVisible(false);
 		
 		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 		setFields();
+		updateTimeInfos();
 	}
 
 	private void setFields() {
@@ -108,6 +117,19 @@ public class UserDataView extends QWidget {
 			ui.checkBox.setVisible(true);
 		}
 	}
+	
+	private void updateTimeInfos() {
+		ui.lblPlannedDay.setText("" + TimeController.HOURS_PER_WORKDAY);
+		try {
+			ui.lblOvertime.setText(""
+					+ TimeController.calculateOvertime(usr, new QDate(01,
+							01, 1900), new QDate(31, 12, 2999)));
+			ui.lblHolidays.setText(usr.getHoliday()+"");
+		} catch (WaktuException e) {
+			errorMessage.emit(e.getMessage());
+		}
+
+	}
 
 	@SuppressWarnings("unused")
 	private void addClicked() {
@@ -145,11 +167,13 @@ public class UserDataView extends QWidget {
 	@SuppressWarnings("unused")
 	private void updateData() {
 		setFields();
+		updateTimeInfos();
 	}
 
 	@SuppressWarnings("unused")
 	private void addData(Usr usr) {
 		setFields();
+		updateTimeInfos();
 	}
 
 	@SuppressWarnings("unused")
@@ -165,5 +189,16 @@ public class UserDataView extends QWidget {
 			ui.btnAdd.setText(QCoreApplication.translate("UserDataView", "Add", null));
 		}
 	}
+
+	@SuppressWarnings("unused")
+	private void workSessionUpdated() {
+		updateTimeInfos();
+	}
+	
+	@SuppressWarnings("unused")
+	private void workSessionChanged(WorkSession workSession) {
+		updateTimeInfos();
+	}
+	
 
 }
