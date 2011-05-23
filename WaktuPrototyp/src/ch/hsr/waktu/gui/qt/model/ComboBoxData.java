@@ -1,6 +1,7 @@
 package ch.hsr.waktu.gui.qt.model;
 
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
+import ch.hsr.waktu.controller.datacontroller.ProjectStaffController;
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.domain.Project;
@@ -53,6 +54,15 @@ public class ComboBoxData {
 		cmb.setCurrentIndex(currIndex);
 	}
 
+	public static void createAllWorkPackageComboBox(QComboBox cmb, Project proj)
+			throws WaktuException {
+		cmb.clear();
+		for (WorkPackage wp : WorkPackageController.getInstance().getAllWorkPackages(proj)) {
+			cmb.addItem(wp.toString(), wp);
+		}
+	}
+
+
 	public static void createWorkPackageComboBox(QComboBox cmb, Project project)
 			throws WaktuException {
 		cmb.clear();
@@ -95,6 +105,28 @@ public class ComboBoxData {
 		cmb.clear();
 		for (Usr usr : UserController.getInstance().getActiveUsers()) {
 			cmb.addItem(usr.toString(), usr);
+		}
+	}
+
+	public static void createUserProjectStaffComboBox(QComboBox cmb, Project project) throws WaktuException {
+		cmb.clear();
+		for (Usr usr : ProjectStaffController.getInstance().getNonProjectUsers(project)) {
+			cmb.addItem(usr.toString(), usr);
+		}
+	}
+
+	public static void createProjectProjectStaffComboBox(QComboBox cmb, Usr user) throws WaktuException {
+		cmb.clear();
+		for (Project project: ProjectStaffController.getInstance().getNonUserProjects(user)) {
+			cmb.addItem(project.toString(), project);
+		}
+	}
+
+	public static void createAllProjectComboBox(QComboBox cmb) throws WaktuException  {
+		cmb.clear();
+		for (Project project : ProjectController.getInstance()
+				.getAllProjects()) {
+			cmb.addItem(project.toString(), project);
 		}
 	}
 

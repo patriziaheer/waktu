@@ -20,6 +20,7 @@ public class IcsImportView extends QWidget{
 	private QLabel lblStatus;
 	
 	public IcsImportView(String path) {
+		setWindowTitle("ICS Import");
 		QVBoxLayout gLayout = new QVBoxLayout();
 		this.setLayout(gLayout);
 		tabWidget = new QTabWidget(this);
@@ -35,7 +36,7 @@ public class IcsImportView extends QWidget{
 				icsImportDetailView.errorMessage.connect(this, "setErrorMessage(String)");
 				icsImportDetailView.closeMe.connect(this, "closeTab(IcsImportDetailView)");
 				icsImportDetailView.initialize();
-				tabWidget.addTab(icsImportDetailView, "");
+				tabWidget.addTab(icsImportDetailView, workSession.getDescription());
 			}
 		} catch (WaktuException e) {
 			setErrorMessage(e.getMessage());

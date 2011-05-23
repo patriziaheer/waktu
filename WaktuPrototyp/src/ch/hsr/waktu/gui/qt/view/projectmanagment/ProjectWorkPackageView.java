@@ -1,5 +1,7 @@
 package ch.hsr.waktu.gui.qt.view.projectmanagment;
 
+import java.util.List;
+
 import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.WorkPackage;
@@ -49,13 +51,13 @@ public class ProjectWorkPackageView extends QWidget{
 	
 	private void updateWorkPackageModel() {
 		try {
-			for (int i = 0; i < WorkPackageController.getInstance().getActiveWorkPackages(project).size(); i++) {
+			List<WorkPackage> wps = WorkPackageController.getInstance().getAllWorkPackages(project);
+			for (int i = 0; i < wps.size(); i++) {
 				QModelIndex currIndex = workPackageModel.index(i,
 						workPackageModel.columnCount() - 1);
 				WorkPackage wp = workPackageModel.getWorkPackage(currIndex.row());
-				IndexCheckbox chk = new IndexCheckbox(currIndex, wp);
+				IndexCheckbox chk = new IndexCheckbox(currIndex, wp, !wp.isActive());
 				chk.errorMessage.connect(this, "showErrorMessage(String)");
-				chk.setChecked(!wp.isActive());
 				
 				ui.tblWorkPackages.setIndexWidget(currIndex, chk);
 			}
@@ -75,22 +77,23 @@ public class ProjectWorkPackageView extends QWidget{
 			ui.txtDescription.setText("");
 		}
 	}
-	
-	@SuppressWarnings("unused")
-	private void addData(WorkPackage workPackage) {
+
+	public void updateTable() {
 		workPackageModel.updateWorkPackageModel();
 		workPackageModel.layoutAboutToBeChanged.emit();
 		workPackageModel.dataChanged.emit(workPackageModel.index(0, 0), workPackageModel.index(workPackageModel.rowCount(), workPackageModel.columnCount()));
 		workPackageModel.layoutChanged.emit();
+		updateWorkPackageModel();
+	}
+	
+	@SuppressWarnings("unused")
+	private void addData(WorkPackage workPackage) {
+		updateTable();
 	}
 	
 	@SuppressWarnings("unused")
 	private void updated() {
-		workPackageModel.updateWorkPackageModel();
-		updateWorkPackageModel();
-		workPackageModel.layoutAboutToBeChanged.emit();
-		workPackageModel.dataChanged.emit(workPackageModel.index(0, 0), workPackageModel.index(workPackageModel.rowCount(), workPackageModel.columnCount()));
-		workPackageModel.layoutChanged.emit();
+		updateTable();
 	}
 	
 	@SuppressWarnings("unused")

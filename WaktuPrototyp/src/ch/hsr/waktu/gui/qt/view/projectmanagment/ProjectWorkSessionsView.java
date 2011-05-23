@@ -35,7 +35,7 @@ public class ProjectWorkSessionsView extends QWidget {
 			errorMessage.emit(e.getMessage());
 		}
 		try {
-			ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, project);
+			ComboBoxData.createAllWorkPackageComboBox(ui.cmbWorkpackage, project);
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}

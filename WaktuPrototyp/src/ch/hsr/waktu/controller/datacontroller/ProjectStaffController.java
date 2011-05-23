@@ -1,5 +1,6 @@
 package ch.hsr.waktu.controller.datacontroller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -70,6 +71,11 @@ public class ProjectStaffController extends QSignalEmitter {
 		}
 		return projects;
 	}
+	
+	public List<Project> getNonUserProjects(Usr user) {
+		//TODO
+		return new ArrayList<Project>();
+	}
 
 	/**
 	 * 
@@ -101,6 +107,11 @@ public class ProjectStaffController extends QSignalEmitter {
 			em.close();
 		}
 		return users;
+	}
+	
+	public List<Usr> getNonProjectUsers(Project project) {
+		//TODO
+		return new ArrayList<Usr>();
 	}
 
 	/**

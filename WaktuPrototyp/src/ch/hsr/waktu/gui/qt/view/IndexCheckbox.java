@@ -13,7 +13,8 @@ public class IndexCheckbox extends QCheckBox {
 	private WorkPackage workPackage;
 	public Signal1<String> errorMessage = new Signal1<String>();
 	
-	public IndexCheckbox(QModelIndex index, WorkPackage wp) {
+	public IndexCheckbox(QModelIndex index, WorkPackage wp, boolean state) {
+		setChecked(state);
 		stateChanged.connect(this, "stateChanged()");
 		this.index = index;
 		this.workPackage = wp;

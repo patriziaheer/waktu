@@ -31,12 +31,12 @@ public class UserWorkSessionsView extends QWidget{
 		ui.setupUi(this);
 		
 		try {
-			ComboBoxData.createActiveProjectComboBox(ui.cmbProject);
+			ComboBoxData.createAllProjectComboBox(ui.cmbProject);
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 		try {
-			ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
+			ComboBoxData.createAllWorkPackageComboBox(ui.cmbWorkpackage, (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
