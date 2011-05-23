@@ -1,6 +1,5 @@
 package ch.hsr.waktu.controller.datacontroller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -50,11 +49,11 @@ public class ProjectStaffController extends QSignalEmitter {
 				.createEntityManager();
 
 		List<Project> projects;
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		try {
 			projects = em
 					.createQuery(
@@ -71,10 +70,31 @@ public class ProjectStaffController extends QSignalEmitter {
 		}
 		return projects;
 	}
-	
-	public List<Project> getNonUserProjects(Usr user) {
-		//TODO
-		return new ArrayList<Project>();
+
+	@SuppressWarnings("unchecked")
+	public List<Project> getProjectsWhereUserIsNotMember(Usr user) throws WaktuException {
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+				.createEntityManager();
+
+		List<Project> nonUserProjects;
+
+		if (!PermissionController.getInstance().checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+
+		try {
+			nonUserProjects = em
+							.createQuery("SELECT p FROM Project p WHERE p.projectid NOT IN (SELECT pr.projectid FROM ProjectStaff ps JOIN ps.project pr JOIN ps.user u WHERE u.usrid = " + user.getId() + ")").getResultList();
+		} catch (IllegalStateException e) {
+			throw new WaktuException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuException("Illegal Argument" + e.getMessage());
+		} catch (Exception e) {
+			throw new WaktuException("General problem" + e.getMessage());
+		} finally {
+			em.close();
+		}
+		return nonUserProjects;
 	}
 
 	/**
@@ -87,11 +107,11 @@ public class ProjectStaffController extends QSignalEmitter {
 				.createEntityManager();
 
 		List<Usr> users;
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		try {
 			users = em
 					.createQuery(
@@ -108,10 +128,31 @@ public class ProjectStaffController extends QSignalEmitter {
 		}
 		return users;
 	}
-	
-	public List<Usr> getNonProjectUsers(Project project) {
-		//TODO
-		return new ArrayList<Usr>();
+
+	@SuppressWarnings("unchecked")
+	public List<Usr> getUsersNotMemberOf(Project project) throws WaktuException {
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+				.createEntityManager();
+
+		List<Usr> users;
+
+		if (!PermissionController.getInstance().checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+
+		try {
+			users = em
+					.createQuery("SELECT u FROM Usr u WHERE u.usrid NOT IN (SELECT us.usrid FROM ProjectStaff ps JOIN ps.user us JOIN ps.project p WHERE p.projectid = " + project.getId() + ")").getResultList();
+		} catch (IllegalStateException e) {
+			throw new WaktuException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuException("Illegal Argument" + e.getMessage());
+		} catch (Exception e) {
+			throw new WaktuException("General problem" + e.getMessage());
+		} finally {
+			em.close();
+		}
+		return users;
 	}
 
 	/**
@@ -124,11 +165,11 @@ public class ProjectStaffController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		ProjectStaff newProjectStaff = new ProjectStaff(user, project);
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		try {
 			em.getTransaction().begin();
 			em.persist(newProjectStaff);
@@ -154,17 +195,16 @@ public class ProjectStaffController extends QSignalEmitter {
 	 * @param project
 	 * @return
 	 */
-	public void removeUser(Usr user, Project project)
-			throws WaktuException {
+	public void removeUser(Usr user, Project project) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
 		ProjectStaff projectStaffToRemove;
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		try {
 			em.getTransaction().begin();
 			projectStaffToRemove = (ProjectStaff) em

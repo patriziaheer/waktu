@@ -124,6 +124,24 @@ public class TestProjectStaffController extends TestSuite {
 	}
 	
 	@Test
+	public void getUsersNotMemberOf() throws WaktuException {
+		assertEquals(3,psc.getUsersNotMemberOf(p1).size());
+		assertEquals(3,psc.getUsersNotMemberOf(p2).size());
+		assertEquals(2,psc.getUsersNotMemberOf(p3).size());
+		assertEquals(3,psc.getUsersNotMemberOf(p4).size());
+		assertEquals(4,psc.getUsersNotMemberOf(p5).size());
+	}
+	
+	@Test
+	public void getProjectsWhereUserIsNotMember() throws WaktuException {
+		assertEquals(2,psc.getProjectsWhereUserIsNotMember(usr1).size());
+		assertEquals(2,psc.getProjectsWhereUserIsNotMember(usr2).size());
+		assertEquals(2,psc.getProjectsWhereUserIsNotMember(usr3).size());
+		assertEquals(2,psc.getProjectsWhereUserIsNotMember(usr4).size());
+		assertEquals(2,psc.getProjectsWhereUserIsNotMember(usr5).size());
+	}
+	
+	@Test
 	public void testRemoveProjectStaff() throws WaktuException {
 		psc.removeUser(usr1, p3);
 		psc.removeUser(usr3, p3);

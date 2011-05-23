@@ -34,6 +34,8 @@ public class Permission {
 	public boolean addWorkSession = true;
 	public boolean updateWorkSession = true;
 	public boolean removeWorkSession = true;
+	public boolean getProjectsWhereUserIsNotMember = true;
+	public boolean getUsersNotMemberOf = true;
 
 	public Permission() {
 
