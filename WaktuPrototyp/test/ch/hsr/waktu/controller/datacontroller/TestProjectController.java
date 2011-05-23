@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import javax.persistence.EntityManager;
 
+import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -29,6 +30,8 @@ public class TestProjectController extends TestSuite {
 	static Usr usr2;
 	static Project p4;
 	static Project p5;
+	
+	static Logger logger = Logger.getLogger(TestProjectController.class);
 
 	@SuppressWarnings("unused")
 	@BeforeClass
@@ -71,7 +74,7 @@ public class TestProjectController extends TestSuite {
 			psc.addProjectStaff(usr3, p1);
 
 		} catch (WaktuException e) {
-			System.out.println("TestProjectController failed \n" + e.getMessage() + "\n" + e.getStackTrace()[0] + "\n" + e.getStackTrace()[1] + "\n" + e.getStackTrace()[2]);
+			logger.error("TestProjectController failed \n" + e.getMessage() + "\n" + e.getStackTrace()[0] + "\n" + e.getStackTrace()[1] + "\n" + e.getStackTrace()[2]);
 		}
 	}
 

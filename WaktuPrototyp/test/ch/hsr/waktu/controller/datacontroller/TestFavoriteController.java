@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import javax.persistence.EntityManager;
 
+import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -37,6 +38,9 @@ public class TestFavoriteController extends TestSuite {
 	static WorkPackage w1, w2, w3, w4, w5;
 	static Favorite f1, f2, f3, f4, f5;
 	static Usr usr1, usr2, usr3, usr4, usr5;
+	
+	static Logger logger = Logger.getLogger(TestFavoriteController.class);
+
 
 	@BeforeClass
 	public static void before() {
@@ -78,7 +82,7 @@ public class TestFavoriteController extends TestSuite {
 			f5 = fc.addFavorite(usr2, w3, TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-25 10:00","yyyy-MM-dd hh:mm")), TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-25 12:00","yyyy-MM-dd hh:mm")));
 
 		} catch (WaktuException e) {
-			System.out.println("TestUserController failed" + e.getMessage());
+			logger.error("TestUserController failed" + e.getMessage());
 		}
 	}
 

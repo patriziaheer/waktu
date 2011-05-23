@@ -42,7 +42,6 @@ public class TestSuite {
 				"TRUNCATE TABLE favorite, permission, projectstaff, worksession, workpackage, project, usr")
 				.executeUpdate();
 		em.getTransaction().commit();
-		System.out.print("<all>");
 	}
 	
 	@AfterClass
@@ -54,6 +53,5 @@ public class TestSuite {
 				"TRUNCATE TABLE favorite, permission, projectstaff, worksession, workpackage, project, usr")
 				.executeUpdate();
 		em.getTransaction().commit();
-		System.out.println("</all>");
 	}
 }

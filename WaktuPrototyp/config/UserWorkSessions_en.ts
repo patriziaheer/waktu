@@ -4,32 +4,37 @@
 <context>
     <name>UserWorkSessions</name>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="125"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="144"/>
         <source>WorkSessions</source>
         <translation>Worksessions</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="126"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="145"/>
         <source>-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="127"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="146"/>
+        <source>Datefilter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="147"/>
         <source>Add Filter</source>
         <translation>Add Filter</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="128"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="148"/>
         <source>Remove Filter</source>
         <translation>Remove Filter</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="129"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="150"/>
         <source>0.0h</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="130"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="149"/>
         <source>Total Time:</source>
         <translation>Total Time:</translation>
     </message>

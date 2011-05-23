@@ -106,7 +106,6 @@ public class ProjectDetails extends QWidget {
 	
 	@SuppressWarnings("unused")
 	private void textFilterChanged() {
-		System.out.println("filter changed");
 		projectTreeModel.layoutAboutToBeChanged.emit();
         Qt.CaseSensitivity caseSensitivity = Qt.CaseSensitivity.CaseInsensitive;
 

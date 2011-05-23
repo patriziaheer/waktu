@@ -55,7 +55,6 @@ public class CalendarWidget extends QWidget{
 		} else {
 			currDate = currDate.addDays((currDate.dayOfWeek() - 1) * -1);
 		}
-		System.out.println(currDate.toString());
 		updateCalendar();
 	}
 
@@ -77,7 +76,6 @@ public class CalendarWidget extends QWidget{
 			currDate = currDate.addDays((currDate.dayOfWeek() - 2) * -1);
 		}
 		}
-		System.out.println(currDate.toString());
 		updateCalendar();
 	}
 
@@ -99,7 +97,6 @@ public class CalendarWidget extends QWidget{
 			currDate = currDate.addDays((currDate.dayOfWeek() - 3) * -1);
 		}
 		}
-		System.out.println(currDate.toString());
 		updateCalendar();
 	}
 
@@ -122,7 +119,6 @@ public class CalendarWidget extends QWidget{
 			currDate = currDate.addDays((currDate.dayOfWeek() - 4) * -1);
 		}
 		}
-		System.out.println(currDate.toString());
 		updateCalendar();
 	}
 
@@ -146,7 +142,6 @@ public class CalendarWidget extends QWidget{
 			currDate = currDate.addDays((currDate.dayOfWeek() - 5) * -1);
 		}
 		}
-		System.out.println(currDate.toString());
 		updateCalendar();
 	}
 
@@ -171,7 +166,6 @@ public class CalendarWidget extends QWidget{
 			currDate = currDate.addDays((currDate.dayOfWeek() - 6) * -1);
 		}
 		}
-		System.out.println(currDate.toString());
 		updateCalendar();
 	}
 
@@ -181,7 +175,6 @@ public class CalendarWidget extends QWidget{
 		//ui.btnSo.setEnabled(false);
 
 		currDate = currDate.addDays(7 - currDate.dayOfWeek());
-		System.out.println(currDate.toString());
 		updateCalendar();
 	}
 

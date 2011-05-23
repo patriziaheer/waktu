@@ -4,9 +4,8 @@
 <context>
     <name>.ProjectDetails</name>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/view/ProjectDetails.java" line="132"/>
         <source>Close</source>
-        <translation>Close</translation>
+        <translation type="obsolete">Close</translation>
     </message>
 </context>
 </TS>
