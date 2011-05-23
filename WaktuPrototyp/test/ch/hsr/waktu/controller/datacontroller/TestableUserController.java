@@ -36,7 +36,7 @@ public class TestableUserController extends UserController {
 		} catch (IllegalArgumentException e) {
 			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			throw new WaktuException("General problem:" + e.getMessage());
 		} finally {
 			em.close();
 		}

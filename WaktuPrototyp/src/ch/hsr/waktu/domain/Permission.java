@@ -6,7 +6,7 @@ public class Permission {
 	public boolean getActiveUsers = true;
 	public boolean getAllUsers = true;
 	public boolean getInactiveUsers = true;
-	public boolean getProjectManager = true;
+	public boolean getProjectManagers = true;
 	public boolean getUser = true;
 	public boolean addUser = true;
 	public boolean updateUser = true;
@@ -17,7 +17,7 @@ public class Permission {
 	public boolean addProject = true;
 	public boolean updateProject = true;
 	public boolean getProjects = true;
-	public boolean getUsrs = true;
+	public boolean getUsers = true;
 	public boolean addProjectStaff = true;
 	public boolean removeUser = true;
 	public boolean getFavorites = true;
@@ -27,6 +27,7 @@ public class Permission {
 	public boolean getActiveWorkPackages = true;
 	public boolean getInactiveWorkPackages = true;
 	public boolean getAllWorkPackages = true;
+	public boolean getWorkPackage = true;
 	public boolean addWorkPackage = true;
 	public boolean updateWorkPackage = true;
 	public boolean getWorkSessions = true;

@@ -38,7 +38,6 @@ public class PermissionController extends QSignalEmitter {
 	private PermissionController() {
 		try {
 			allPermissionNodes = getPermissionNodes();
-			System.out.println("size:" + allPermissionNodes.size());
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

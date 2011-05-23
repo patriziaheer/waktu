@@ -110,7 +110,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	 */
 	public ProjectStaff addProjectStaff(Usr user, Project project)
 			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		ProjectStaff newProjectStaff = new ProjectStaff(user, project);
 		

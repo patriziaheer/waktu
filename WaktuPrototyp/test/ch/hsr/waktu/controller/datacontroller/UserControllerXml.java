@@ -4,7 +4,6 @@ import java.util.LinkedList;
 
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
-import ch.hsr.waktu.services.UsernameUtil;
 import ch.hsr.waktu.services.WaktuException;
 import ch.hsr.waktu.services.XmlUtil;
 

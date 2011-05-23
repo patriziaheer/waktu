@@ -127,7 +127,6 @@ public class WorkPackageController extends QSignalEmitter {
 		} finally {
 			em.close();
 		}
-		System.out.println(allWorkPackages.size());
 		return allWorkPackages;
 	}
 
@@ -150,7 +149,7 @@ public class WorkPackageController extends QSignalEmitter {
 		
 		try {
 			inactiveWorkPackages = em.createQuery(
-					"SELECT wp FROM WorkPackage wp WHERE wp.active = FALSE")
+					"SELECT wp FROM WorkPackage wp JOIN wp.project p WHERE wp.active = FALSE AND p.projectid = '" + project.getId() + "'")
 					.getResultList();
 		} catch (IllegalStateException e) {
 			throw new WaktuException("Database problem");

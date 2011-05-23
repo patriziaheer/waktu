@@ -13,8 +13,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import com.trolltech.qt.core.QDateTime;
-
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.Favorite;
