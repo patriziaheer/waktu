@@ -671,7 +671,13 @@ public class TimeView extends QMainWindow {
 		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}
-		ui.cmbWorkpackage.clear();
+		if (project != null) {
+			try {
+				ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, project);
+			} catch (WaktuException e) {
+				setStatusBarText(e.getMessage());
+			}
+		}
 	}
 	
 	@SuppressWarnings("unused")
@@ -682,7 +688,13 @@ public class TimeView extends QMainWindow {
 		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}
-		ui.cmbWorkpackage.clear();
+		if (project != null) {
+			try {
+				ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, project);
+			} catch (WaktuException e) {
+				setStatusBarText(e.getMessage());
+			}
+		}
 	}
 	
 	@SuppressWarnings("unused")
@@ -693,7 +705,13 @@ public class TimeView extends QMainWindow {
 		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}
-		ui.cmbWorkpackage.clear();
+		if (project != null) {
+			try {
+				ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, project);
+			} catch (WaktuException e) {
+				setStatusBarText(e.getMessage());
+			}
+		}
 	}
 	
 	@SuppressWarnings("unused")
