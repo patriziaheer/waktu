@@ -67,7 +67,7 @@ public class WorkSessionController extends QSignalEmitter {
 
 		try {
 			workSessionsByUser = em.createQuery(
-					"SELECT ws FROM WorkSession ws JOIN ws.userref u WHERE u.usrid = '"
+					"SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE u.usrid = '"
 							+ user.getId() + "'").getResultList();
 		} catch (IllegalStateException e) {
 			throw new WaktuException("Database problem");
@@ -118,6 +118,40 @@ public class WorkSessionController extends QSignalEmitter {
 			em.close();
 		}
 		return workSessionsByDate;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<WorkSession> getWorkSessions(Usr user, QDate fromDate,
+			QDate toDate) throws WaktuException {
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+				.createEntityManager();
+		List<WorkSession> workSessionsByUserAndDate = null;
+
+		if (!PermissionController.getInstance().checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+
+		try {
+			Query q = em
+					.createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE ws.startTime >= '"
+							+ fromDate.toString("yyyy-MM-dd")
+							+ " 00:00:00"
+							+ "' AND ws.endTime <= '"
+							+ toDate.toString("yyyy-MM-dd")
+							+ " 23:59:59"
+							+ "' AND u.usrid = '" + user.getId() + "'");
+			workSessionsByUserAndDate = q.getResultList();
+		} catch (IllegalStateException e) {
+			throw new WaktuException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuException("General problem");
+		} finally {
+			em.close();
+		}
+		return workSessionsByUserAndDate;
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -183,6 +217,37 @@ public class WorkSessionController extends QSignalEmitter {
 			em.close();
 		}
 		return workSessionsByProject;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<WorkSession> getWorkSessions(WorkPackage workPackage,
+			QDate fromDate, QDate toDate) throws WaktuException {
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+				.createEntityManager();
+		List<WorkSession> workSessionsByDateAndWorkPackage = null;
+
+		if (!PermissionController.getInstance().checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+
+		try {
+			Query q = em
+					.createQuery("SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp WHERE ws.startTime >= '"
+							+ fromDate.toString("yyyy-MM-dd")
+							+ " 00:00:00"
+							+ "' AND ws.endTime <= '"
+							+ toDate.toString("yyyy-MM-dd") + " 23:59:59" + "' AND wp.id = '"+workPackage.getId()+"'");
+			workSessionsByDateAndWorkPackage = q.getResultList();
+		} catch (IllegalStateException e) {
+			throw new WaktuException("Database problem");
+		} catch (IllegalArgumentException e) {
+			throw new WaktuException("Illegal Argument");
+		} catch (Exception e) {
+			throw new WaktuException("General problem");
+		} finally {
+			em.close();
+		}
+		return workSessionsByDateAndWorkPackage;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -270,17 +335,11 @@ public class WorkSessionController extends QSignalEmitter {
 
 		try {
 			Query q = em
-					.createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE ws.startTime >= '"
+					.createQuery("SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN wp.project p WHERE ws.startTime >= '"
 							+ start.toString("yyyy-MM-dd")
 							+ " 00:00:00"
 							+ "' AND ws.endTime <= '"
-							+ start.toString("yyyy-MM-dd")
-							+ " 23:59:59"
-							+ "' AND ws.startTime >= '"
-							+ end.toString("yyyy-MM-dd")
-							+ " 00:00:00"
-							+ "' AND ws.endTime <= '"
-							+ end.toString("yyyy-MM-dd") + " 23:59:59" + "'");
+							+ end.toString("yyyy-MM-dd") + " 23:59:59" + "' AND p.projectid = '"+project.getId()+"'");
 			workSessionsByDate = q.getResultList();
 		} catch (IllegalStateException e) {
 			throw new WaktuException("Database problem");
@@ -313,14 +372,10 @@ public class WorkSessionController extends QSignalEmitter {
 
 		try {
 			Query q = em
-					.createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u JOIN ws.workPackageRef wp JOIN wp.project p WHERE p.projectid = '" + project.getId() + "' ws.startTime >= '"
+					.createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u JOIN ws.workPackageRef wp JOIN wp.project p WHERE p.projectid = '"
+							+ project.getId()
+							+ "' AND u.usrid = '"+usr.getId()+"' AND ws.startTime >= '"
 							+ start.toString("yyyy-MM-dd")
-							+ " 00:00:00"
-							+ "' AND ws.endTime <= '"
-							+ start.toString("yyyy-MM-dd")
-							+ " 23:59:59"
-							+ "' AND ws.startTime >= '"
-							+ end.toString("yyyy-MM-dd")
 							+ " 00:00:00"
 							+ "' AND ws.endTime <= '"
 							+ end.toString("yyyy-MM-dd") + " 23:59:59" + "'");
@@ -411,7 +466,6 @@ public class WorkSessionController extends QSignalEmitter {
 
 			em.merge(workSession);
 
-
 			// TODO: SS: GregorianCalendar <-> TIMESTAMP in POSTGRESQL-Mapping
 			// problem: JPA saves GregorianCalendar-Dates with wrong month in DB
 			// (eg. 6 instead of 5)
@@ -467,27 +521,5 @@ public class WorkSessionController extends QSignalEmitter {
 		}
 		removed.emit(workSession);
 		logger.info("workSession " + workSession + " deleted");
-	}
-
-	public List<WorkSession> getWorkSessions(WorkPackage workPackage, QDate fromDate,
-			QDate toDate) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<WorkSession> getWorkSessions(Usr user, QDate fromDate, QDate toDate) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<WorkSession> getWorkSessions(Project project, WorkPackage workPackage) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<WorkSession> getWorkSessions(Project project, WorkPackage workPackage,
-			Usr usr) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
