@@ -17,10 +17,10 @@
 			<basic name="endTime">
 				<temporal>TIME</temporal>
 			</basic>
-			<one-to-one name="workPackageId" fetch="LAZY">
+			<one-to-one name="workPackage" fetch="LAZY">
 				<join-column name="workPackage"/>
 			</one-to-one>
-			<one-to-one name="usrId" fetch="LAZY">
+			<one-to-one name="usr" fetch="LAZY">
 				<join-column name="usr"/>
 			</one-to-one>
 		</attributes>

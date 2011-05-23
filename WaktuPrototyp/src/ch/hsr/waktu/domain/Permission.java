@@ -23,7 +23,7 @@ public class Permission {
 	public boolean getFavorites = true;
 	public boolean addFavorite = true;
 	public boolean updateFavorite = true;
-	public boolean deleteFavorite = true;
+	public boolean removeFavorite = true;
 	public boolean getActiveWorkPackages = true;
 	public boolean getInactiveWorkPackages = true;
 	public boolean getAllWorkPackages = true;

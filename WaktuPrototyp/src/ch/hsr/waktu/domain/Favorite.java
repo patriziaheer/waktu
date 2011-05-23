@@ -12,16 +12,16 @@ public class Favorite {
 	private int id;
 	private GregorianCalendar endTime;
 	private GregorianCalendar startTime;
-	private Usr usrId;
-	private WorkPackage workPackageId;
+	private Usr usr;
+	private WorkPackage workPackage;
 
 	public Favorite(){
 
 	}
 
 	public Favorite(Usr userId, WorkPackage workPackage, GregorianCalendar startTime, GregorianCalendar endTime){
-		this.usrId = userId;
-		this.workPackageId = workPackage;
+		this.usr = userId;
+		this.workPackage = workPackage;
 		this.startTime = startTime;
 		this.endTime = endTime;
 	}
@@ -46,20 +46,20 @@ public class Favorite {
 		this.startTime = startTime;
 	}
 
-	public Usr getUserID() {
-		return usrId;
+	public Usr getUser() {
+		return usr;
 	}
 
-	public void setUserID(Usr userID) {
-		usrId = userID;
+	public void setUser(Usr usr) {
+		this.usr = usr;
 	}
 
 	public WorkPackage getWorkPackageID() {
-		return workPackageId;
+		return workPackage;
 	}
 
 	public void setWorkPackageID(WorkPackage workPackageID) {
-		workPackageId = workPackageID;
+		workPackage = workPackageID;
 	}
 
 	@Override
@@ -69,8 +69,8 @@ public class Favorite {
 			if (fav.id == id &&
 			fav.endTime.equals(endTime) &&
 			fav.startTime.equals(startTime) &&
-			fav.usrId.equals(usrId) &&
-			fav.workPackageId.equals(workPackageId)) {
+			fav.usr.equals(usr) &&
+			fav.workPackage.equals(workPackage)) {
 				return true;
 			}
 		}
@@ -83,14 +83,14 @@ public class Favorite {
 		hashCode += 31 * id;
 		hashCode += 31 * endTime.hashCode();
 		hashCode += 31 * startTime.hashCode();
-		hashCode += 31 * usrId.hashCode();
-		hashCode += 31 * workPackageId.hashCode();
+		hashCode += 31 * usr.hashCode();
+		hashCode += 31 * workPackage.hashCode();
 		return hashCode;
 	}
 	
 	@Override
 	public String toString() {
-		return id + startTime.toString() + endTime.toString() + workPackageId.getDescription() + usrId.getUsername();
+		return id + startTime.toString() + endTime.toString() + workPackage.getDescription() + usr.getUsername();
 	}
 	
 }
