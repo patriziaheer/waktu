@@ -58,7 +58,7 @@ public class FavoriteController extends QSignalEmitter {
 		
 		List<Favorite> allFavoritesOfUsr;		
 		try {
-			allFavoritesOfUsr = em.createQuery("SELECT f FROM Favorite f ORDER BY f.id").getResultList();
+			allFavoritesOfUsr = em.createQuery("SELECT f FROM Favorite f JOIN f.usr u WHERE u.usrid = '"+user.getId()+"' ORDER BY f.id").getResultList();
 		} catch (IllegalStateException e) {
 			throw new WaktuException("Database problem");
 		} catch (IllegalArgumentException e) {
@@ -121,11 +121,12 @@ public class FavoriteController extends QSignalEmitter {
 			throw new WaktuException("Permission denied");
 		}
 		
+		Favorite updateFavorite;
+		
 		try {
 			em.getTransaction().begin();
-			Favorite updateFavorite = em.find(Favorite.class, favorite.getId());
-			updateFavorite.setStartTime(favorite.getStartTime());
-			updateFavorite.setEndTime(favorite.getEndTime());
+			updateFavorite = em.find(Favorite.class, favorite.getId());
+			em.merge(favorite);
 			em.getTransaction().commit();
 		} catch (IllegalStateException e) {
 			throw new WaktuException("Database problem");
@@ -137,7 +138,7 @@ public class FavoriteController extends QSignalEmitter {
 			em.close();
 		}
 		update.emit();
-		logger.info("favorite " + favorite.getId() + " updated");
+		logger.info("favorite " + updateFavorite.getId() + " updated");
 	}
 	
 	/**
