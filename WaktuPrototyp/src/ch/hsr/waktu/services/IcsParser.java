@@ -77,24 +77,7 @@ public class IcsParser {
 					//Appointment begin
 					tmpWs = new WorkSession();
 					
-					while(!((currentLine = br.readLine()) == null || currentLine.startsWith("END:VEVENT"))) {
-						if(currentLine.contains("SUMMARY:")) { 
-							//title read
-							tmpWs.setDescription(stripTag(currentLine));
-								
-						} else if(currentLine.startsWith("DTSTART")) { 
-							//start time read
-							QDateTime startTime = TimeUtil.stringToQDateTime(stripTag(currentLine));
-							tmpWs.setStart(TimeUtil.convertQDateTimeToGregorian(startTime));
-							
-						} else if(currentLine.startsWith("DTEND")) { 
-							//end time read
-							QDateTime endTime = TimeUtil.stringToQDateTime(stripTag(currentLine));
-							tmpWs.setEnd(TimeUtil.convertQDateTimeToGregorian(endTime));
-
-						}
-						
-					} 
+					processEventLine(br, tmpWs); 
 					//Appointment end
 					if(isValidWorkSession(tmpWs)) {
 						calendar.add(tmpWs);
@@ -111,6 +94,29 @@ public class IcsParser {
 		}
 
 		return calendar;
+	}
+
+	private static void processEventLine(BufferedReader br, WorkSession tmpWs)
+			throws IOException {
+		String currentLine;
+		while(!((currentLine = br.readLine()) == null || currentLine.startsWith("END:VEVENT"))) {
+			if(currentLine.contains("SUMMARY:")) { 
+				//title read
+				tmpWs.setDescription(stripTag(currentLine));
+					
+			} else if(currentLine.startsWith("DTSTART")) { 
+				//start time read
+				QDateTime startTime = TimeUtil.stringToQDateTime(stripTag(currentLine));
+				tmpWs.setStart(TimeUtil.convertQDateTimeToGregorian(startTime));
+				
+			} else if(currentLine.startsWith("DTEND")) { 
+				//end time read
+				QDateTime endTime = TimeUtil.stringToQDateTime(stripTag(currentLine));
+				tmpWs.setEnd(TimeUtil.convertQDateTimeToGregorian(endTime));
+
+			}
+			
+		}
 	}
 
 	private static boolean isValidWorkSession(WorkSession workSession) {
