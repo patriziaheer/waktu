@@ -81,11 +81,12 @@ public class TimeController {
 	}
 
 	private static double calculateWorktime(Project project,
-			WorkPackage workPackage) {
+			WorkPackage workPackage) throws WaktuException {
 		double worktime = 0;
 
 		try {
-			for(WorkSession ws: WorkSessionController.getInstance().getWorkSessions(project, workPackage)) {
+			//TODO: project removed
+			for(WorkSession ws: WorkSessionController.getInstance().getWorkSessions(workPackage)) {
 				worktime += TimeUtil.calculateTimespanInSeconds(ws.getStart(), ws.getEnd());
 			}
 		} catch (NullPointerException e) {
@@ -95,12 +96,13 @@ public class TimeController {
 	}
 
 	private static double calculateWorktime(Project project,
-			WorkPackage workPackage, Usr usr) {
+			WorkPackage workPackage, Usr usr) throws WaktuException {
 		double worktime = 0;
 
 		try {
+			//TODO: project removed
 			for (WorkSession ws : WorkSessionController.getInstance()
-					.getWorkSessions(project, workPackage, usr)) {
+					.getWorkSessions(workPackage, usr)) {
 				worktime += TimeUtil.calculateTimespanInSeconds(ws.getStart(),
 						ws.getEnd());
 			}
@@ -110,7 +112,7 @@ public class TimeController {
 		return worktime/3600;
 	}
 	
-	private static double calculateWorktime(Project project, WorkPackage workPackage, QDate fromDate, QDate toDate) {
+	private static double calculateWorktime(Project project, WorkPackage workPackage, QDate fromDate, QDate toDate) throws WaktuException {
 		double worktime = 0;
 
 		try {
