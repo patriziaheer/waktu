@@ -29,10 +29,10 @@ public class ManagmentView extends QMainWindow {
 		ui.tabWidget.removeTab(0);
 		projectDetails = new ProjectDetails();
 		projectDetails.errorMessage.connect(this, "showErrorMessage(String)");
-		ui.tabWidget.addTab(projectDetails, QCoreApplication.translate("ManagmentView",("Projects"), null));
+		ui.tabWidget.addTab(projectDetails, QCoreApplication.translate("ManagmentView","Projects"));
 		userDetails = new UserDetails(); 
 		userDetails.errorMessage.connect(this, "showErrorMessage(String)");
-		ui.tabWidget.addTab(userDetails, QCoreApplication.translate("ManagmentView",("Users"), null));
+		ui.tabWidget.addTab(userDetails, QCoreApplication.translate("ManagmentView","Users"));
 		
 		ui.actionAddUser.setVisible(GuiController.getInstance().canAddUser());
 		ui.actionAddProject.setVisible(GuiController.getInstance().canAddProject());
@@ -87,8 +87,8 @@ public class ManagmentView extends QMainWindow {
 	}
 
 	private void changeText() {
-		ui.tabWidget.setTabText(0, QCoreApplication.translate("ManagmentView",("Projects"), null));
-		ui.tabWidget.setTabText(1, QCoreApplication.translate("ManagmentView",("Users"), null));
+		ui.tabWidget.setTabText(0, QCoreApplication.translate("ManagmentView","Projects"));
+		ui.tabWidget.setTabText(1, QCoreApplication.translate("ManagmentView","Users"));
 	}
 
 	private void setStatusBarText(String text) {
@@ -107,26 +107,26 @@ public class ManagmentView extends QMainWindow {
 	protected void contextMenuEvent(QContextMenuEvent event) {
 		QMenu menu = new QMenu(this);
 		QAction actionAddProject = new QAction(QCoreApplication.translate(
-				"ManagmentView", ("Add Project"), null), menu);
+				"ManagmentView", "Add Project"), menu);
 		actionAddProject.triggered.connect(this, "addProject()");
 		
 		QAction actionAddUser = new QAction(QCoreApplication.translate(
-				"ManagmentView", ("Add User"), null), menu);
+				"ManagmentView", "Add User"), menu);
 		actionAddUser.triggered.connect(this, "addUser()");
 		
 		QMenu languageMenu = new QMenu(QCoreApplication.translate(
-				"ManagmentView", ("Language"), null), menu);
+				"ManagmentView", "Language"), menu);
 		QAction actionDE = new QAction(QCoreApplication.translate(
-				"ManagmentView", ("DE"), null), menu);
+				"ManagmentView", "DE"), menu);
 		actionDE.triggered.connect(this, "translateDE()");
 		QAction actionEN = new QAction(QCoreApplication.translate(
-				"ManagmentView", ("EN"), null), menu);
+				"ManagmentView", "EN"), menu);
 		actionEN.triggered.connect(this, "translateEN()");
 		languageMenu.addAction(actionEN);
 		languageMenu.addAction(actionDE);
 		
 		QAction closeAction = new QAction(QCoreApplication.translate(
-				"ManagmentView", ("Close"), null), menu);
+				"ManagmentView", "Close"), menu);
 		closeAction.triggered.connect(this, "closeWindow()");
 		
 		menu.addAction(actionAddProject);
