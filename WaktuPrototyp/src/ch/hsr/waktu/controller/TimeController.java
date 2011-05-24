@@ -156,15 +156,14 @@ public class TimeController {
 	}
 	
 	public static double getPlannedTime(Usr user, QDate currMonth) {
-		return getNumberOfWorkdaysForMonth(user, currMonth) * HOURS_PER_WORKDAY;
+		return roundToTenth(getNumberOfWorkdaysForMonth(user, currMonth) * HOURS_PER_WORKDAY);
 	}
 	
 	public static double getPlannedTime(Usr user, QDate fromDate, QDate toDate) {
 		return fromDate.daysTo(toDate) * getNumberOfWorkdays(user, fromDate, toDate) * HOURS_PER_WORKDAY;
 	}
 
-	//TODO: Method needed?
-	public static double getNumberOfWorkdaysForMonth(Usr user, QDate currMonth) {
+	private static double getNumberOfWorkdaysForMonth(Usr user, QDate currMonth) {
 		return user.getPensum() / 100.0 * getNumberOfWorkdays(user, 
 				TimeUtil.getMonthBoundaries(currMonth)[0], 
 				TimeUtil.getMonthBoundaries(currMonth)[1]);
@@ -178,6 +177,10 @@ public class TimeController {
 			}
 		}
 		return user.getPensum() / 100.0 * days;
+	}
+
+	private static double roundToTenth(double d) {
+		return Math.round( d * 10. ) / 10.;
 	}
 
 }
