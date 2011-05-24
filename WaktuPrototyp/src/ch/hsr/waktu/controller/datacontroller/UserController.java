@@ -93,7 +93,7 @@ public class UserController extends QSignalEmitter {
 
 	@SuppressWarnings("unchecked")
 	public List<Usr> getAllUsers() throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		List<Usr> allUsers = null;
@@ -150,7 +150,7 @@ public class UserController extends QSignalEmitter {
 
 		try {
 			allProjectManagers = em.createQuery(
-					"SELECT u FROM Project p JOIN p.projectManager u ORDER BY u.firstname")
+					"SELECT u FROM Usr u JOIN u.systemRole s WHERE u.systemRole = ch.hsr.waktu.domain.SystemRole.PROJECTMANAGER OR u.systemRole = ch.hsr.waktu.domain.SystemRole.ADMIN ORDER BY u.firstname")
 					.getResultList();
 		} catch (Exception e) {
 			handleException(e);			
