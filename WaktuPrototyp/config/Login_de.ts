@@ -25,31 +25,4 @@
         <translation>Abbrechen</translation>
     </message>
 </context>
-<context>
-    <name>LoginView</name>
-    <message>
-        <source>File</source>
-        <translation type="obsolete">Datei</translation>
-    </message>
-    <message>
-        <source>language</source>
-        <translation type="obsolete">Sprache</translation>
-    </message>
-    <message>
-        <source>DE</source>
-        <translation type="obsolete">Deutsch</translation>
-    </message>
-    <message>
-        <source>EN</source>
-        <translation type="obsolete">Englisch</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="obsolete">Beenden</translation>
-    </message>
-    <message>
-        <source>Username or Password wrong</source>
-        <translation type="obsolete">Benutzername oder Passwort falsch</translation>
-    </message>
-</context>
 </TS>

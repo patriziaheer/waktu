@@ -25,31 +25,4 @@
         <translation>Cancel</translation>
     </message>
 </context>
-<context>
-    <name>LoginView</name>
-    <message>
-        <source>File</source>
-        <translation type="obsolete">File</translation>
-    </message>
-    <message>
-        <source>language</source>
-        <translation type="obsolete">Language</translation>
-    </message>
-    <message>
-        <source>DE</source>
-        <translation type="obsolete">German</translation>
-    </message>
-    <message>
-        <source>EN</source>
-        <translation type="obsolete">Englisch</translation>
-    </message>
-    <message>
-        <source>Username or Password wrong</source>
-        <translation type="obsolete">Username or Password wrong</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="obsolete">Close</translation>
-    </message>
-</context>
 </TS>

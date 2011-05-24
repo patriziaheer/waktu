@@ -6,12 +6,12 @@
     <message>
         <location filename="../src/ch/hsr/waktu/gui/qt/model/UserProjectsModel.java" line="64"/>
         <source>ProjectIdentifier</source>
-        <translation>Projectidentifier:</translation>
+        <translation>Projectidentifier</translation>
     </message>
     <message>
         <location filename="../src/ch/hsr/waktu/gui/qt/model/UserProjectsModel.java" line="66"/>
         <source>Description</source>
-        <translation></translation>
+        <translation>Description</translation>
     </message>
 </context>
 </TS>
