@@ -762,4 +762,22 @@
         <translation>Total Time:</translation>
     </message>
 </context>
+<context>
+    <name>UserProperties</name>
+    <message>
+        <location filename="../src/ch/hsr/waktu/controller/datacontroller/UserController.java" line="32"/>
+        <source>Data</source>
+        <translation>Data</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/controller/datacontroller/UserController.java" line="38"/>
+        <source>Projects</source>
+        <translation>Projects</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/controller/datacontroller/UserController.java" line="44"/>
+        <source>WorkSessions</source>
+        <translation>Work Sessions</translation>
+    </message>
+</context>
 </TS>
