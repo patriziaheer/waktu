@@ -13,4 +13,11 @@ public enum SystemRole {
 	public int getIndex() {
 		return index;
 	}
+	
+	public String toString() {
+		if(this.getIndex() == 0) {
+			return "Admin";
+		}
+		return "Hallo";
+	}
 }
