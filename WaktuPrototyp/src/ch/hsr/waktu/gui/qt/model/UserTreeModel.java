@@ -78,6 +78,16 @@ public class UserTreeModel extends QTreeModel {
 				font.setPointSize(10);
 				return font;
 			}
+			case Qt.ItemDataRole.ForegroundRole: {
+				if (value instanceof Usr) {
+					Usr usr = (Usr)value;
+					if (usr.isActive() == false) {
+						return QColor.red;
+					}
+				} else {
+					return QColor.black;
+				}
+			}
 			case Qt.ItemDataRole.DecorationRole: {
 				if (value instanceof Usr) {
 					Usr usr = (Usr)value;
