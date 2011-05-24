@@ -10,9 +10,9 @@
 			<property name="eclipselink.logging.session" value="false"/>
 			<property name="eclipselink.logging.timestamp" value="false"/>
 			<property name="eclipselink.logging.exceptions" value="false"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://waktu.phew.ch:5432/waktu"/>
-			<property name="javax.persistence.jdbc.user" value="usr_waktu"/>
-			<property name="javax.persistence.jdbc.password" value="waktu!2010"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/waktu"/>
+			<property name="javax.persistence.jdbc.user" value="postgres"/>
+			<property name="javax.persistence.jdbc.password" value="postgres"/>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
 			<property name="eclipselink.jdbc.read-connections.min" value="1"/>
 			<property name="eclipselink.jdbc.write-connections.min" value="1"/>
@@ -29,9 +29,9 @@
 			<property name="eclipselink.logging.session" value="false"/>
 			<property name="eclipselink.logging.timestamp" value="false"/>
 			<property name="eclipselink.logging.exceptions" value="false"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://waktu.phew.ch:5432/waktutest"/>
-			<property name="javax.persistence.jdbc.user" value="usr_waktu"/>
-			<property name="javax.persistence.jdbc.password" value="waktu!2010"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/waktutest"/>
+			<property name="javax.persistence.jdbc.user" value="postgres"/>
+			<property name="javax.persistence.jdbc.password" value="postgres"/>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
 			<property name="eclipselink.jdbc.read-connections.min" value="1"/>
 			<property name="eclipselink.jdbc.write-connections.min" value="1"/>

@@ -51,15 +51,11 @@ public class WorkPackageController extends QSignalEmitter {
 			throw new WaktuException("Permission denied");
 		}	
 		
-		WorkPackage workPackage;
+		WorkPackage workPackage = null;
 		try {
 			workPackage = em.find(WorkPackage.class, workPackageId);
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -77,7 +73,7 @@ public class WorkPackageController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
-		List<WorkPackage> activeWorkPackages;
+		List<WorkPackage> activeWorkPackages = null;
 		
 		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
@@ -86,12 +82,8 @@ public class WorkPackageController extends QSignalEmitter {
 		try {
 			activeWorkPackages = em.createQuery(
 					"SELECT wp FROM WorkPackage wp JOIN wp.project p WHERE wp.active = TRUE AND p.projectid = '" + project.getId() + "'").getResultList();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -109,7 +101,7 @@ public class WorkPackageController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
-		List<WorkPackage> allWorkPackages;
+		List<WorkPackage> allWorkPackages = null;
 		
 		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
@@ -118,12 +110,8 @@ public class WorkPackageController extends QSignalEmitter {
 		try {
 			allWorkPackages = em.createQuery(
 					"SELECT wp FROM WorkPackage wp JOIN wp.project p WHERE p.projectid = '" + project.getId() + "'").getResultList();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -141,7 +129,7 @@ public class WorkPackageController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
-		List<WorkPackage> inactiveWorkPackages;
+		List<WorkPackage> inactiveWorkPackages = null;
 		
 		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
@@ -151,12 +139,8 @@ public class WorkPackageController extends QSignalEmitter {
 			inactiveWorkPackages = em.createQuery(
 					"SELECT wp FROM WorkPackage wp JOIN wp.project p WHERE wp.active = FALSE AND p.projectid = '" + project.getId() + "'")
 					.getResultList();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -171,24 +155,21 @@ public class WorkPackageController extends QSignalEmitter {
 	 */
 	public WorkPackage addWorkPackage(Project project, String description)
 			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
-		WorkPackage newWorkPackage = new WorkPackage(project, description);
 		
 		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		
+		WorkPackage newWorkPackage = new WorkPackage(project, description);
+		
 		try {
 			em.getTransaction().begin();
 			em.persist(newWorkPackage);
 			em.getTransaction().commit();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -207,7 +188,6 @@ public class WorkPackageController extends QSignalEmitter {
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
-		WorkPackage updateWorkPackage;
 		
 		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
@@ -215,25 +195,29 @@ public class WorkPackageController extends QSignalEmitter {
 		
 		try {
 			em.getTransaction().begin();
-			updateWorkPackage = em.find(WorkPackage.class, workPackage.getId());
-
-//			updateWorkPackage.setDescription(workPackage.getDescription());
-//			updateWorkPackage.setProject(workPackage.getProject());
-//			updateWorkPackage.setActiveState(workPackage.isActive());
 			em.merge(workPackage);
 
 			em.getTransaction().commit();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
 		update.emit();
-		logger.info("workPackage " + updateWorkPackage + " updated");
+		logger.info("workPackage " + workPackage + " updated");
+	}
+	
+	private void handleException(Exception e) throws WaktuException{
+		if(e instanceof IllegalArgumentException) {
+			logger.error(e + e.getMessage());
+			throw new WaktuException("Database problem");
+		} else if (e instanceof IllegalStateException) {
+			logger.error(e + e.getMessage());
+			throw new WaktuException("Illegal argument");
+		} else {
+			logger.error(e + e.getMessage());
+			throw new WaktuException("General Problem");
+		}
 	}
 
 }

@@ -51,10 +51,10 @@ public class UserController extends QSignalEmitter {
 
 	@SuppressWarnings("unchecked")
 	public List<Usr> getActiveUsers() throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
-		List<Usr> activeUsers;
+		List<Usr> activeUsers = null;
 
 		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
@@ -64,12 +64,8 @@ public class UserController extends QSignalEmitter {
 			activeUsers = em.createQuery(
 					"SELECT u FROM Usr u WHERE u.active = 'TRUE'")
 					.getResultList();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -82,7 +78,7 @@ public class UserController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
-		List<Usr> allUsers;
+		List<Usr> allUsers = null;
 
 		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
@@ -90,12 +86,8 @@ public class UserController extends QSignalEmitter {
 
 		try {
 			allUsers = em.createQuery("SELECT u FROM Usr u").getResultList();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -108,7 +100,7 @@ public class UserController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
-		List<Usr> inactiveUsers;
+		List<Usr> inactiveUsers = null;
 
 		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
@@ -118,12 +110,8 @@ public class UserController extends QSignalEmitter {
 			inactiveUsers = em.createQuery(
 					"SELECT u FROM Usr u WHERE u.active = 'FALSE'")
 					.getResultList();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -136,7 +124,7 @@ public class UserController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
-		List<Usr> allProjectManagers;
+		List<Usr> allProjectManagers = null;
 
 		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
@@ -146,12 +134,8 @@ public class UserController extends QSignalEmitter {
 			allProjectManagers = em.createQuery(
 					"SELECT u FROM Project p JOIN p.projectManager u")
 					.getResultList();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -167,19 +151,15 @@ public class UserController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
-		Usr usr;
+		Usr usr = null;
 
 		try {
 			usr = (Usr) em
 					.createQuery(
 							"SELECT u FROM Usr u WHERE u.username = '"
 									+ username + "'").getSingleResult();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -213,12 +193,8 @@ public class UserController extends QSignalEmitter {
 			em.getTransaction().begin();
 			em.persist(newUsr);
 			em.getTransaction().commit();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -234,7 +210,7 @@ public class UserController extends QSignalEmitter {
 	 * @param usr
 	 */
 	public void updateUser(Usr usr) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		if (!PermissionController.getInstance().checkPermission()) {
@@ -245,23 +221,10 @@ public class UserController extends QSignalEmitter {
 
 		try {
 			em.getTransaction().begin();
-			Usr updateUsr = em.find(Usr.class, usr.getId());
-
-			updateUsr.setName(usr.getName());
-			updateUsr.setFirstname(usr.getFirstname());
-			updateUsr.setHoliday(usr.getHoliday());
-			updateUsr.setActiveState(usr.isActive());
-			updateUsr.setPasswordHash(usr.getPasswordHash());
-			updateUsr.setPensum(usr.getPensum());
-			updateUsr.setSystemRole(usr.getSystemRole());
-
+			em.merge(usr);
 			em.getTransaction().commit();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -273,6 +236,19 @@ public class UserController extends QSignalEmitter {
 	protected String generateUsername(String firstname, String name)
 			throws WaktuException {
 		return UsernameUtil.generateUsername(getAllUsers(), firstname, name);
+	}
+	
+	private void handleException(Exception e) throws WaktuException{
+		if(e instanceof IllegalArgumentException) {
+			logger.error(e + e.getMessage());
+			throw new WaktuException("Database problem");
+		} else if (e instanceof IllegalStateException) {
+			logger.error(e + e.getMessage());
+			throw new WaktuException("Illegal argument");
+		} else {
+			logger.error(e + e.getMessage());
+			throw new WaktuException("General Problem");
+		}
 	}
 
 }

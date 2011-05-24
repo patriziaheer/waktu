@@ -36,7 +36,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	public Signal1<ProjectStaff> removed = new Signal1<ProjectStaff>();
 
 	private ProjectStaffController() {
-		logger.info("Constructor");
+
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class ProjectStaffController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
-		List<Project> projects;
+		List<Project> projects = null;
 
 		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
@@ -57,14 +57,10 @@ public class ProjectStaffController extends QSignalEmitter {
 		try {
 			projects = em
 					.createQuery(
-							"SELECT p FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE u.usrid = '"
+							"SELECT p FROM ProjdectStaff ps JOIN ps.project p JOIN ps.user u WHERE u.usrid = '"
 									+ user.getId() + "'").getResultList();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -76,7 +72,7 @@ public class ProjectStaffController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
-		List<Project> nonUserProjects;
+		List<Project> nonUserProjects = null;
 
 		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
@@ -85,12 +81,8 @@ public class ProjectStaffController extends QSignalEmitter {
 		try {
 			nonUserProjects = em
 							.createQuery("SELECT p FROM Project p WHERE p.projectid NOT IN (SELECT pr.projectid FROM ProjectStaff ps JOIN ps.project pr JOIN ps.user u WHERE u.usrid = " + user.getId() + ")").getResultList();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument" + e.getMessage());
 		} catch (Exception e) {
-			throw new WaktuException("General problem" + e.getMessage());
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -106,7 +98,7 @@ public class ProjectStaffController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
-		List<Usr> users;
+		List<Usr> users = null;
 
 		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
@@ -117,12 +109,8 @@ public class ProjectStaffController extends QSignalEmitter {
 					.createQuery(
 							"SELECT u FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE p.projectid = '"
 									+ project.getId() + "'").getResultList();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -134,7 +122,7 @@ public class ProjectStaffController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
-		List<Usr> users;
+		List<Usr> users = null;
 
 		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
@@ -143,12 +131,8 @@ public class ProjectStaffController extends QSignalEmitter {
 		try {
 			users = em
 					.createQuery("SELECT u FROM Usr u WHERE u.usrid NOT IN (SELECT us.usrid FROM ProjectStaff ps JOIN ps.user us JOIN ps.project p WHERE p.projectid = " + project.getId() + ")").getResultList();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument" + e.getMessage());
 		} catch (Exception e) {
-			throw new WaktuException("General problem" + e.getMessage());
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -174,12 +158,8 @@ public class ProjectStaffController extends QSignalEmitter {
 			em.getTransaction().begin();
 			em.persist(newProjectStaff);
 			em.getTransaction().commit();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -199,7 +179,7 @@ public class ProjectStaffController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
-		ProjectStaff projectStaffToRemove;
+		ProjectStaff projectStaffToRemove = null;
 
 		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
@@ -217,17 +197,25 @@ public class ProjectStaffController extends QSignalEmitter {
 			// projStaff.getId());
 			em.remove(projectStaffToRemove);
 			em.getTransaction().commit();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
 		removed.emit(projectStaffToRemove);
 		logger.info("projectStaff " + projectStaffToRemove + " deleted");
 	}
-
+	
+	private void handleException(Exception e) throws WaktuException{
+		if(e instanceof IllegalArgumentException) {
+			logger.error(e + e.getMessage());
+			throw new WaktuException("Database problem");
+		} else if (e instanceof IllegalStateException) {
+			logger.error(e + e.getMessage());
+			throw new WaktuException("Illegal argument");
+		} else {
+			logger.error(e + e.getMessage());
+			throw new WaktuException("General Problem" + e.getMessage());
+		}
+	}
 }

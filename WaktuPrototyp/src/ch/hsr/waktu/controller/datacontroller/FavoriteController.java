@@ -49,22 +49,18 @@ public class FavoriteController extends QSignalEmitter {
 	
 	@SuppressWarnings("unchecked")
 	public List<Favorite> getFavorites(Usr user) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		
 		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		
-		List<Favorite> allFavoritesOfUsr;		
+		List<Favorite> allFavoritesOfUsr = null;		
 		try {
 			allFavoritesOfUsr = em.createQuery("SELECT f FROM Favorite f JOIN f.usr u WHERE u.usrid = '"+user.getId()+"' ORDER BY f.id").getResultList();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -79,25 +75,22 @@ public class FavoriteController extends QSignalEmitter {
 	 */
 	public Favorite addFavorite(Usr user, WorkPackage workPackage,
 			GregorianCalendar startTime, GregorianCalendar endTime) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
-		Favorite newFavorite = new Favorite(user, workPackage, startTime,
-				endTime);
 		
 		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		
+		Favorite newFavorite = new Favorite(user, workPackage, startTime,
+				endTime);
+		
 		try {
 			em.getTransaction().begin();
 			em.persist(newFavorite);
 			em.getTransaction().commit();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -114,31 +107,25 @@ public class FavoriteController extends QSignalEmitter {
 	 */
 
 	public void updateFavorite(Favorite favorite) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		
 		if(!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
 		
-		Favorite updateFavorite;
-		
 		try {
 			em.getTransaction().begin();
-			updateFavorite = em.find(Favorite.class, favorite.getId());
+			em.find(Favorite.class, favorite.getId());
 			em.merge(favorite);
 			em.getTransaction().commit();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
 		update.emit();
-		logger.info("favorite " + updateFavorite.getId() + " updated");
+		logger.info("favorite " + favorite.getId() + " updated");
 	}
 	
 	/**
@@ -148,7 +135,7 @@ public class FavoriteController extends QSignalEmitter {
 	 */
 
 	public void removeFavorite(Favorite favorite) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		
 		if(!PermissionController.getInstance().checkPermission()) {
@@ -159,17 +146,26 @@ public class FavoriteController extends QSignalEmitter {
 			em.getTransaction().begin();
 			em.remove(em.find(Favorite.class, favorite.getId()));
 			em.getTransaction().commit();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
 		removed.emit(favorite);
 		logger.info("favorite " + favorite + " deleted");
+	}
+	
+	private void handleException(Exception e) throws WaktuException{
+		if(e instanceof IllegalArgumentException) {
+			logger.error(e + e.getMessage());
+			throw new WaktuException("Database problem");
+		} else if (e instanceof IllegalStateException) {
+			logger.error(e + e.getMessage());
+			throw new WaktuException("Illegal argument");
+		} else {
+			logger.error(e + e.getMessage());
+			throw new WaktuException("General Problem");
+		}
 	}
 
 }
