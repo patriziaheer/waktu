@@ -1,9 +1,14 @@
 package ch.hsr.waktu.controller;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
+import ch.hsr.waktu.controller.datacontroller.ProjectController;
+import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.domain.WorkSession;
 import ch.hsr.waktu.services.WaktuException;
 
@@ -40,6 +45,14 @@ public class BusinessRuleController {
 			throw new WaktuException("Negative planned time");			
 		}
 		
+		List<Project> allProjects = ProjectController.getInstance().getAllProjects();
+		for(Project p : allProjects) {
+			System.out.println(p.getProjectIdentifier() + " // " + project.getProjectIdentifier());
+			if(p.getProjectIdentifier().equals(project.getProjectIdentifier())){
+				logger.info("Project identifier already exists");
+				throw new WaktuException("Project identifier already exists");
+			}
+		}
 	}
 	
 	public static void check(WorkSession workPackage) throws WaktuException {
@@ -49,5 +62,16 @@ public class BusinessRuleController {
 			throw new WaktuException("Start time is after end time");			
 		}
 		
+	}
+	
+	public static void check(WorkPackage workPackage) throws WaktuException {
+
+		List<WorkPackage> allWorkPackages = WorkPackageController.getInstance().getAllWorkPackages(workPackage.getProject());
+		for(WorkPackage wp : allWorkPackages) {
+			if(wp.getDescription().equals(workPackage.getDescription())){
+				logger.info("Work package name already exists");
+				throw new WaktuException("Work package name already exists");
+			}
+		}
 	}
 }
