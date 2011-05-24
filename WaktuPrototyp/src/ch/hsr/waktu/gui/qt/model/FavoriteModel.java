@@ -90,10 +90,10 @@ public class FavoriteModel extends QAbstractItemModel {
 			return new QSize(0,60);
 		}  else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
-			case 0: return new QSize(150, 20);
-			case 1: return new QSize(50, 20);
-			case 2: return new QSize(50, 20);
-			case 3: return new QSize(10, 20);
+			case 0: return new QSize(150, 30);
+			case 1: return new QSize(50, 30);
+			case 2: return new QSize(50, 30);
+			case 3: return new QSize(10, 30);
 			}
 		} 
 		return super.headerData(section, orientation, role);

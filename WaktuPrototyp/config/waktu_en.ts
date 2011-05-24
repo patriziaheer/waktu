@@ -2,95 +2,87 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="en_US">
 <context>
-    <name>WorkSessionModel</name>
-    <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/WorkSessionModel.java" line="69"/>
-        <source>Project</source>
-        <translation>Project</translation>
-    </message>
-    <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/WorkSessionModel.java" line="70"/>
-        <source>WorkPackage</source>
-        <translation>Workpackage</translation>
-    </message>
-    <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/WorkSessionModel.java" line="71"/>
-        <source>Description</source>
-        <translation>Description</translation>
-    </message>
-    <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/WorkSessionModel.java" line="72"/>
-        <source>Start</source>
-        <translation>Start</translation>
-    </message>
-    <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/WorkSessionModel.java" line="73"/>
-        <source>End</source>
-        <translation>End</translation>
-    </message>
-</context>
-<context>
     <name>Calendar</name>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="189"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="210"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="190"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="211"/>
         <source>Mon</source>
         <translation>Mon</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="191"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="212"/>
         <source>Wed</source>
         <translation>Wed</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="192"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="213"/>
         <source>Fri</source>
         <translation>Fri</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="193"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="214"/>
         <source>Sun</source>
         <translation>Sun</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="194"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="215"/>
         <source>Sat</source>
         <translation>Sat</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="195"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="216"/>
         <source>Thu</source>
         <translation>Thu</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="196"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="217"/>
         <source>Tue</source>
         <translation>Tue</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="197"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="218"/>
         <source>-</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="219"/>
+        <source>&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="220"/>
+        <source>&lt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="223"/>
+        <source>23.05.11</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="224"/>
+        <source>Today</source>
+        <translation>Today</translation>
     </message>
 </context>
 <context>
     <name>FavoriteModel</name>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/FavoriteModel.java" line="71"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/FavoriteModel.java" line="81"/>
         <source>Workpackage</source>
         <translation>Workpackage</translation>
     </message>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/FavoriteModel.java" line="73"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/FavoriteModel.java" line="83"/>
         <source>Start</source>
         <translation>Start</translation>
     </message>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/FavoriteModel.java" line="75"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/FavoriteModel.java" line="85"/>
         <source>End</source>
         <translation>End</translation>
     </message>
@@ -122,32 +114,77 @@
 <context>
     <name>LoginView</name>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/view/LoginView.java" line="80"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/LoginView.java" line="86"/>
         <source>Username or Password wrong</source>
         <translation>Username or Password wrong</translation>
     </message>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/view/LoginView.java" line="118"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/LoginView.java" line="124"/>
         <source>File</source>
         <translation>File</translation>
     </message>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/view/LoginView.java" line="120"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/LoginView.java" line="126"/>
         <source>language</source>
         <translation>Language</translation>
     </message>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/view/LoginView.java" line="122"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/LoginView.java" line="128"/>
         <source>DE</source>
         <translation>GER</translation>
     </message>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/view/LoginView.java" line="124"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/LoginView.java" line="130"/>
         <source>EN</source>
         <translation>EN</translation>
     </message>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/view/LoginView.java" line="126"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/LoginView.java" line="132"/>
+        <source>Close</source>
+        <translation>Close</translation>
+    </message>
+</context>
+<context>
+    <name>ManagmentView</name>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/ManagmentView.java" line="32"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/ManagmentView.java" line="90"/>
+        <source>Projects</source>
+        <translation>Projects</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/ManagmentView.java" line="35"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/ManagmentView.java" line="91"/>
+        <source>Users</source>
+        <translation>Users</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/ManagmentView.java" line="110"/>
+        <source>Add Project</source>
+        <translation>Add Project</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/ManagmentView.java" line="114"/>
+        <source>Add User</source>
+        <translation>Add User</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/ManagmentView.java" line="118"/>
+        <source>Language</source>
+        <translation>Language</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/ManagmentView.java" line="120"/>
+        <source>DE</source>
+        <translation>GER</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/ManagmentView.java" line="123"/>
+        <source>EN</source>
+        <translation>EN</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/ManagmentView.java" line="129"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
@@ -155,91 +192,134 @@
 <context>
     <name>ManagmentWindow</name>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="59"/>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="100"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="71"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="121"/>
         <source>Projekte</source>
         <translation>Projects</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="93"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="111"/>
         <source>Managment Window</source>
         <translation>Managment</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="94"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="112"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="95"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="113"/>
         <source>Add</source>
         <translation>Add</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="96"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="114"/>
         <source>Add Project</source>
         <translation>Add Project</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="97"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="115"/>
         <source>Add User</source>
         <translation>Add User</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="98"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="116"/>
         <source>EN</source>
         <translation>EN</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="99"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="117"/>
         <source>DE</source>
         <translation>GER</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="101"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="118"/>
+        <source>Inactiv Projects</source>
+        <translation>Show inactiv Projects</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="119"/>
+        <source>Inactiv Users</source>
+        <translation>Show inactiv users</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="120"/>
+        <source>Logout</source>
+        <translation>Logout</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="122"/>
         <source>File</source>
         <translation>File</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="102"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="123"/>
         <source>Language</source>
         <translation>Language</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="124"/>
+        <source>View</source>
+        <translation>View</translation>
+    </message>
+</context>
+<context>
+    <name>ProjectProperties</name>
+    <message>
+        <location filename="../src/ch/hsr/waktu/controller/datacontroller/ProjectController.java" line="30"/>
+        <source>Data</source>
+        <translation>Data</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/controller/datacontroller/ProjectController.java" line="36"/>
+        <source>WorkPackages</source>
+        <translation>Work Packages</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/controller/datacontroller/ProjectController.java" line="42"/>
+        <source>ProjectStaff</source>
+        <translation>Project Staff</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/controller/datacontroller/ProjectController.java" line="48"/>
+        <source>WorkSessions</source>
+        <translation>Work Sessions</translation>
     </message>
 </context>
 <context>
     <name>ProjectData</name>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="99"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="111"/>
         <source>ProjectData</source>
         <translation>Project Data</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="100"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="112"/>
         <source>Projectnumber:</source>
-        <translation>Project Number:</translation>
+        <translation>Project Identifier:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="101"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="113"/>
         <source>Projectdescription:</source>
         <translation>Project Description:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="102"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="114"/>
         <source>Projectmanager:</source>
         <translation>Project Manager:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="103"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="115"/>
         <source>Planned Time:</source>
         <translation>Planned Time:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="104"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="116"/>
         <source>add</source>
         <translation>add</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="105"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="117"/>
         <source>Inactiv</source>
         <translation>Inactiv</translation>
     </message>
@@ -258,20 +338,19 @@
 <context>
     <name>.ProjectDetails</name>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/view/ProjectDetails.java" line="132"/>
         <source>Close</source>
-        <translation>Close</translation>
+        <translation type="obsolete">Close</translation>
     </message>
 </context>
 <context>
     <name>ProjectStaff</name>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectStaff.java" line="57"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectStaff.java" line="63"/>
         <source>WorkPackage</source>
-        <translation>Workpackage</translation>
+        <translation>Work Package</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectStaff.java" line="58"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectStaff.java" line="64"/>
         <source>Add</source>
         <translation>add</translation>
     </message>
@@ -279,12 +358,12 @@
 <context>
     <name>ProjectStaffModel</name>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectStaffModel.java" line="59"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectStaffModel.java" line="65"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectStaffModel.java" line="61"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectStaffModel.java" line="67"/>
         <source>Firstname</source>
         <translation>Firstname</translation>
     </message>
@@ -292,12 +371,12 @@
 <context>
     <name>ProjectWorkPackage</name>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkPackage.java" line="52"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkPackage.java" line="58"/>
         <source>WorkPackage</source>
-        <translation>Workpackage</translation>
+        <translation>Work Package</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkPackage.java" line="53"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkPackage.java" line="59"/>
         <source>Add</source>
         <translation>add</translation>
     </message>
@@ -305,12 +384,12 @@
 <context>
     <name>ProjectWorkPackageModel</name>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectWorkPackageModel.java" line="73"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectWorkPackageModel.java" line="63"/>
         <source>Description</source>
         <translation>Description</translation>
     </message>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectWorkPackageModel.java" line="75"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectWorkPackageModel.java" line="65"/>
         <source>Inactiv</source>
         <translation>Inactiv</translation>
     </message>
@@ -318,32 +397,32 @@
 <context>
     <name>ProjectWorkSessionModel</name>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectWorkSessionModel.java" line="69"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectWorkSessionModel.java" line="82"/>
         <source>WorkPackage</source>
         <translation>Workpackage</translation>
     </message>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectWorkSessionModel.java" line="71"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectWorkSessionModel.java" line="84"/>
         <source>Desciption</source>
         <translation>Description</translation>
     </message>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectWorkSessionModel.java" line="73"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectWorkSessionModel.java" line="86"/>
         <source>User</source>
         <translation>User</translation>
     </message>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectWorkSessionModel.java" line="75"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectWorkSessionModel.java" line="88"/>
         <source>Start</source>
         <translation>Start</translation>
     </message>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectWorkSessionModel.java" line="77"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectWorkSessionModel.java" line="90"/>
         <source>End</source>
         <translation>End</translation>
     </message>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectWorkSessionModel.java" line="79"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectWorkSessionModel.java" line="92"/>
         <source>Duration</source>
         <translation>Duration</translation>
     </message>
@@ -351,415 +430,313 @@
 <context>
     <name>ProjectWorkSessions</name>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="139"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="167"/>
         <source>WorkSessions</source>
-        <translation type="unfinished">Worksessions</translation>
+        <translation>Work Sessions</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="140"/>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="142"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="168"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="170"/>
         <source>dd.MM.yy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="141"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="169"/>
         <source>-</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="143"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="171"/>
+        <source>Datefilter</source>
+        <translation>Datefilter</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="172"/>
         <source>Add Filter</source>
         <translation>Add Filter</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="144"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="173"/>
         <source>Remove Filter</source>
         <translation>Remove Filter</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="145"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="175"/>
         <source>0.0h</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="146"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="174"/>
         <source>Total Time:</source>
         <translation>Total Time:</translation>
+    </message>
+</context>
+<context>
+    <name>SystemRole</name>
+    <message>
+        <location filename="../src/ch/hsr/waktu/domain/SystemRole.java" line="10"/>
+        <source>Admin</source>
+        <translation>Administrator</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/domain/SystemRole.java" line="16"/>
+        <source>ProjectManager</source>
+        <translation>Project Manager</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/domain/SystemRole.java" line="22"/>
+        <source>Employee</source>
+        <translation>Employee</translation>
+    </message>
+</context>
+<context>
+    <name>.TimeView</name>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/TimeView.java" line="621"/>
+        <source>Open ICS File</source>
+        <translation>Import Ics File</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/TimeView.java" line="621"/>
+        <source>Ics Files (*.ics)</source>
+        <translation>Ics Files (*.ics)</translation>
+    </message>
+</context>
+<context>
+    <name>TimeView</name>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/TimeView.java" line="646"/>
+        <source>Add to Favorites</source>
+        <translation>Add to Favorites</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/TimeView.java" line="650"/>
+        <source>Open Managment</source>
+        <translation>Open Managment</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/TimeView.java" line="654"/>
+        <source>Ics Import</source>
+        <translation>Ics Import</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/TimeView.java" line="658"/>
+        <source>Language</source>
+        <translation>Language</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/TimeView.java" line="660"/>
+        <source>DE</source>
+        <translation>GER</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/TimeView.java" line="663"/>
+        <source>EN</source>
+        <translation>EN</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/TimeView.java" line="669"/>
+        <source>Logout</source>
+        <translation>Logout</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/view/TimeView.java" line="673"/>
+        <source>Close</source>
+        <translation>Close</translation>
     </message>
 </context>
 <context>
     <name>TimeWindow</name>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="340"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="348"/>
         <source>Time Window</source>
         <translation>Time Window</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="341"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="349"/>
         <source>Close</source>
         <translation>Exit</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="342"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="350"/>
         <source>Open</source>
         <translation>Open</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="343"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="351"/>
         <source>Add to Favorites</source>
         <translation>Add to Favorites</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="344"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="352"/>
         <source>EN</source>
         <translation>EN</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="345"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="353"/>
         <source>DE</source>
         <translation>GER</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="346"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="354"/>
+        <source>Ics Import</source>
+        <translation>Ics Import</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="355"/>
+        <source>Logout</source>
+        <translation>Logout</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="356"/>
         <source>Worksessions</source>
         <translation>Worksessions</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="347"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="357"/>
         <source>Overview</source>
         <translation>Overview</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="348"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="358"/>
         <source>Worktime per day:</source>
         <translation>Worktime per day:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="349"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="359"/>
         <source>Worktime today:</source>
         <translation>Worktime today:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="350"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="360"/>
         <source>Worktime current Week:</source>
         <translation>Worked current Week:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="351"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="361"/>
         <source>Overtime:</source>
         <translation>Overtime:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="352"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="362"/>
         <source>Worktime current Month:</source>
         <translation>Worked current Month:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="353"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="363"/>
         <source>Worktime for March:</source>
         <translation>Worktime this Month:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="354"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="364"/>
         <source>Holidays</source>
         <translation>Holidays:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="355"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="365"/>
         <source>8.2h</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="356"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="366"/>
         <source>164.4h</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="357"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="367"/>
         <source>0.0h</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="358"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="368"/>
         <source>20.4h</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="359"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="369"/>
         <source>45.3h</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="360"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="370"/>
         <source>2.4h</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="361"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="371"/>
         <source>12.3d</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="362"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="372"/>
         <source>Create Worksession</source>
         <translation>Create Worksession</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="363"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="373"/>
         <source>Time:</source>
         <translation>Time:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="364"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="374"/>
         <source>-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="365"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="375"/>
         <source>Project:</source>
         <translation>Project:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="366"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="376"/>
         <source>Work Package:</source>
-        <translation>Workpackage:</translation>
+        <translation>Work Package:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="367"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="377"/>
         <source>Description:</source>
         <translation>Description:</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="368"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="378"/>
         <source>reset</source>
         <translation>reset</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="369"/>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="371"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="379"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="381"/>
         <source>create</source>
-        <translation>create</translation>
+        <translation>Create Work Session </translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="370"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="380"/>
         <source>Favorites</source>
         <translation>Favorites</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="372"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="382"/>
         <source>Workpackage only</source>
-        <translation>Workpackage only</translation>
+        <translation>Work Package only</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="373"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="383"/>
         <source>Time only</source>
         <translation>Time only</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="374"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="384"/>
         <source>Managment</source>
-        <translation type="unfinished">Management</translation>
+        <translation>Management</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="375"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="385"/>
         <source>File</source>
         <translation>File</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="376"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="386"/>
         <source>Language</source>
         <translation>Language</translation>
-    </message>
-</context>
-<context>
-    <name>UserData</name>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="191"/>
-        <source>UserData</source>
-        <translation>Userdata</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="192"/>
-        <source>Name:</source>
-        <translation type="unfinished">Name:</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="193"/>
-        <source>Pensum:</source>
-        <translation>Pensum:</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="194"/>
-        <source>Role:</source>
-        <translation>Role:</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="195"/>
-        <source>Holidays:</source>
-        <translation>Holidays:</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="196"/>
-        <source>Overview</source>
-        <translation>Overview</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="197"/>
-        <source>Worktime per day:</source>
-        <translation>Worktime per day:</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="198"/>
-        <source>Overtime:</source>
-        <translation>Overtime:</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="199"/>
-        <source>Holidays</source>
-        <translation>Holidays:</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="200"/>
-        <source>8.2h</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="201"/>
-        <source>2.4h</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="202"/>
-        <source>12.3d</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="203"/>
-        <source>add</source>
-        <translation>add</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="204"/>
-        <source>Inactiv</source>
-        <translation>Inactiv</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="205"/>
-        <source>Firstname:</source>
-        <translation>Firstname:</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="206"/>
-        <source>Password:</source>
-        <translation>Password:</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="207"/>
-        <source>Username:</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>UserDataView</name>
-    <message>
-        <source>Save</source>
-        <translation>Save</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation>Add</translation>
-    </message>
-</context>
-<context>
-    <name>UserProjects</name>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserProjects.java" line="59"/>
-        <source>UserProjects</source>
-        <translation>Projects</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserProjects.java" line="60"/>
-        <source>Add</source>
-        <translation>add</translation>
-    </message>
-</context>
-<context>
-    <name>UserProjectsModel</name>
-    <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/UserProjectsModel.java" line="59"/>
-        <source>ProjectIdentifier</source>
-        <translation>Projectidentifier:</translation>
-    </message>
-    <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/UserProjectsModel.java" line="61"/>
-        <source>Description</source>
-        <translation></translation>
-    </message>
-</context>
-<context>
-    <name>UserWorkSessionModel</name>
-    <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/UserWorkSessionModel.java" line="58"/>
-        <source>Project</source>
-        <translation>Project</translation>
-    </message>
-    <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/UserWorkSessionModel.java" line="59"/>
-        <source>WorkPackage</source>
-        <translation>Workpackage</translation>
-    </message>
-    <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/UserWorkSessionModel.java" line="60"/>
-        <source>Desciption</source>
-        <translation>Description</translation>
-    </message>
-    <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/UserWorkSessionModel.java" line="61"/>
-        <source>Start</source>
-        <translation>Start</translation>
-    </message>
-    <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/UserWorkSessionModel.java" line="62"/>
-        <source>End</source>
-        <translation>End</translation>
-    </message>
-    <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/UserWorkSessionModel.java" line="63"/>
-        <source>Duration</source>
-        <translation>Duration</translation>
-    </message>
-</context>
-<context>
-    <name>UserWorkSessions</name>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="125"/>
-        <source>WorkSessions</source>
-        <translation>Worksessions</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="126"/>
-        <source>-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="127"/>
-        <source>Add Filter</source>
-        <translation>Add Filter</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="128"/>
-        <source>Remove Filter</source>
-        <translation>Remove Filter</translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="129"/>
-        <source>0.0h</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="130"/>
-        <source>Total Time:</source>
-        <translation>Total Time:</translation>
     </message>
 </context>
 <context>
@@ -778,6 +755,273 @@
         <location filename="../src/ch/hsr/waktu/controller/datacontroller/UserController.java" line="44"/>
         <source>WorkSessions</source>
         <translation>Work Sessions</translation>
+    </message>
+</context>
+<context>
+    <name>UserData</name>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="202"/>
+        <source>UserData</source>
+        <translation>Userdata</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="203"/>
+        <source>Name:</source>
+        <translation>Name:</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="204"/>
+        <source>Pensum:</source>
+        <translation>Pensum:</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="205"/>
+        <source>Role:</source>
+        <translation>Role:</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="206"/>
+        <source>Holidays:</source>
+        <translation>Holidays:</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="207"/>
+        <source>Overview</source>
+        <translation>Overview</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="208"/>
+        <source>Worktime per day:</source>
+        <translation>Worktime per day:</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="209"/>
+        <source>Overtime:</source>
+        <translation>Overtime:</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="210"/>
+        <source>Holidays</source>
+        <translation>Holidays:</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="211"/>
+        <source>8.2h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="212"/>
+        <source>2.4h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="213"/>
+        <source>12.3d</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="214"/>
+        <source>add</source>
+        <translation>add</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="215"/>
+        <source>Inactiv</source>
+        <translation>Inactiv</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="216"/>
+        <source>Firstname:</source>
+        <translation>Firstname:</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="217"/>
+        <source>Password:</source>
+        <translation>Password:</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserData.java" line="218"/>
+        <source>Username:</source>
+        <translation>Username:</translation>
+    </message>
+</context>
+<context>
+    <name>UserDataView</name>
+    <message>
+        <source>Save</source>
+        <translation>Save</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Add</translation>
+    </message>
+</context>
+<context>
+    <name>UserProjects</name>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserProjects.java" line="64"/>
+        <source>UserProjects</source>
+        <translation>Projects</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserProjects.java" line="65"/>
+        <source>Add</source>
+        <translation>add</translation>
+    </message>
+</context>
+<context>
+    <name>UserProjectsModel</name>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/UserProjectsModel.java" line="64"/>
+        <source>ProjectIdentifier</source>
+        <translation>Projectidentifier</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/UserProjectsModel.java" line="66"/>
+        <source>Description</source>
+        <translation>Description</translation>
+    </message>
+</context>
+<context>
+    <name>UserWorkSessionModel</name>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/UserWorkSessionModel.java" line="73"/>
+        <source>Project</source>
+        <translation>Projekt</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/UserWorkSessionModel.java" line="74"/>
+        <source>WorkPackage</source>
+        <translation>Arbeitspaket</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/UserWorkSessionModel.java" line="75"/>
+        <source>Desciption</source>
+        <translation>Beschreibung</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/UserWorkSessionModel.java" line="76"/>
+        <source>Start</source>
+        <translation>Start</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/UserWorkSessionModel.java" line="77"/>
+        <source>End</source>
+        <translation>End</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/UserWorkSessionModel.java" line="78"/>
+        <source>Duration</source>
+        <translation>Dauer</translation>
+    </message>
+</context>
+<context>
+    <name>UserWorkSessions</name>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="144"/>
+        <source>WorkSessions</source>
+        <translation>Work Sessions</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="145"/>
+        <source>-</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="146"/>
+        <source>Datefilter</source>
+        <translation>Datefilter</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="147"/>
+        <source>Add Filter</source>
+        <translation>Add Filter</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="148"/>
+        <source>Remove Filter</source>
+        <translation>Remove Filter</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="150"/>
+        <source>0.0h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="149"/>
+        <source>Total Time:</source>
+        <translation>Total Time:</translation>
+    </message>
+</context>
+<context>
+    <name>WorkSessionModel</name>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/WorkSessionModel.java" line="80"/>
+        <source>Project</source>
+        <translation>Project</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/WorkSessionModel.java" line="81"/>
+        <source>WorkPackage</source>
+        <translation>Work Package</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/WorkSessionModel.java" line="82"/>
+        <source>Description</source>
+        <translation>Description</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/WorkSessionModel.java" line="83"/>
+        <source>Start</source>
+        <translation>Start</translation>
+    </message>
+    <message>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/WorkSessionModel.java" line="84"/>
+        <source>End</source>
+        <translation>End</translation>
+    </message>
+</context>
+<context>
+    <name>IcsImport</name>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_IcsImport.java" line="106"/>
+        <source>Import</source>
+        <translation>Import</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_IcsImport.java" line="107"/>
+        <source>Project:</source>
+        <translation>Project:</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_IcsImport.java" line="108"/>
+        <source>Workpackage:</source>
+        <translation>Work Package:</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_IcsImport.java" line="109"/>
+        <source>Start:</source>
+        <translation>Start:</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_IcsImport.java" line="110"/>
+        <source>End:</source>
+        <translation>End:</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_IcsImport.java" line="111"/>
+        <source>Discard Worksession</source>
+        <translation>Discard Work Session</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_IcsImport.java" line="112"/>
+        <source>Import Worksession</source>
+        <translation>Import Work Session</translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_IcsImport.java" line="113"/>
+        <source>Description:</source>
+        <translation>Description:</translation>
     </message>
 </context>
 </TS>

@@ -49,7 +49,7 @@ public class ManagmentView extends QMainWindow {
 		ui.actionInactiv_Users.changed.connect(this, "showInactivUsersChanged()");
 		ui.actionLogout.triggered.connect(this, "logoutClicked()");
 		
-		
+		setLanguageChecked();
 		
 		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 	}
@@ -86,6 +86,8 @@ public class ManagmentView extends QMainWindow {
 	private void translate() {
         ui.retranslateUi(this);
         changeText();
+        
+		setLanguageChecked();
 	}
 
 	private void changeText() {
@@ -120,12 +122,21 @@ public class ManagmentView extends QMainWindow {
 				"ManagmentView", "Language"), menu);
 		QAction actionDE = new QAction(QCoreApplication.translate(
 				"ManagmentView", "DE"), menu);
+		actionDE.setCheckable(true);
 		actionDE.triggered.connect(this, "translateDE()");
 		QAction actionEN = new QAction(QCoreApplication.translate(
 				"ManagmentView", "EN"), menu);
+		actionEN.setCheckable(true);
 		actionEN.triggered.connect(this, "translateEN()");
 		languageMenu.addAction(actionEN);
 		languageMenu.addAction(actionDE);
+		if (LanguageController.getInstance().getCurrLanguage() == Language.DE) {
+			actionDE.setChecked(true);
+			actionEN.setChecked(false);
+		} else if (LanguageController.getInstance().getCurrLanguage() == Language.EN) {
+			actionDE.setChecked(false);
+			actionEN.setChecked(true);
+		}
 
 		QAction logoutAction = new QAction(QCoreApplication.translate(
 				"TimeView", "Logout"), menu);
@@ -156,5 +167,15 @@ public class ManagmentView extends QMainWindow {
 	@SuppressWarnings("unused")
 	private void logoutClicked() {
 		logout.emit();
+	}
+	
+	private void setLanguageChecked() {
+		if (LanguageController.getInstance().getCurrLanguage() == Language.DE) {
+			ui.actionDE.setChecked(true);
+			ui.actionEN.setChecked(false);
+		} else if (LanguageController.getInstance().getCurrLanguage() == Language.EN) {
+			ui.actionDE.setChecked(false);
+			ui.actionEN.setChecked(true);
+		}
 	}
 }
