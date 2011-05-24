@@ -87,7 +87,7 @@ public class ProjectTreeModel extends QTreeModel {
 			}
 		}
 		case Qt.ItemDataRole.SizeHintRole:
-			return new QSize(200, 15);
+			return new QSize(200, 20);
 		}
 		return super.data(value, role);
 	}
