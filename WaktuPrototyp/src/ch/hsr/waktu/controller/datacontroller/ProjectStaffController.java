@@ -57,7 +57,7 @@ public class ProjectStaffController extends QSignalEmitter {
 		try {
 			projects = em
 					.createQuery(
-							"SELECT p FROM ProjdectStaff ps JOIN ps.project p JOIN ps.user u WHERE u.usrid = '"
+							"SELECT p FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE u.usrid = '"
 									+ user.getId() + "'").getResultList();
 		} catch (Exception e) {
 			handleException(e);			
