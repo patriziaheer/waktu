@@ -288,6 +288,7 @@ public class TimeView extends QMainWindow {
 			ui.lblOvertime.setText(""
 					+ TimeController.calculateOvertime(currUser, new QDate(01,
 							01, 1900), new QDate(31, 12, 2999)));
+			ui.lblHolidays.setText(currUser.getHoliday()+"");
 		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}
@@ -342,7 +343,7 @@ public class TimeView extends QMainWindow {
 
 	@SuppressWarnings("unused")
 	private void timeOnlyClicked() {
-		if (ui.tblFavorites.selectionModel().selectedRows().size() >= 0) {
+		if (ui.tblFavorites.selectionModel().selectedRows().size() > 0) {
 			Favorite favorite = favoriteModel.getFavorite(ui.tblFavorites
 					.selectionModel().selectedRows().get(0).row());
 			ui.txtStart.setTime(TimeUtil.convertGregorianToQDateTime(
@@ -356,13 +357,17 @@ public class TimeView extends QMainWindow {
 
 	@SuppressWarnings("unused")
 	private void workPackageOnlyClicked() {
-		if (ui.tblFavorites.selectionModel().selectedRows().size() >= 0) {
+		if (ui.tblFavorites.selectionModel().selectedRows().size() > 0) {
 			Favorite favorite = favoriteModel.getFavorite(ui.tblFavorites
 					.selectionModel().selectedRows().get(0).row());
 			WorkPackage wp = favorite.getWorkPackageID();
 			Project project = wp.getProject();
 			try {
 				ComboBoxData.createProjectForUserComboBox(ui.cmbProject, currUser, project);
+			} catch (WaktuException e) {
+				setStatusBarText(e.getMessage());
+			}
+			try {
 				ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, project, wp);
 			} catch (WaktuException e) {
 				setStatusBarText(e.getMessage());
@@ -374,7 +379,7 @@ public class TimeView extends QMainWindow {
 
 	@SuppressWarnings("unused")
 	private void createFavoriteClicked() {
-		if (ui.tblFavorites.selectionModel().selectedRows().size() >= 0) {
+		if (ui.tblFavorites.selectionModel().selectedRows().size() > 0) {
 			Favorite favorite = favoriteModel.getFavorite(ui.tblFavorites
 					.selectionModel().selectedRows().get(0).row());
 			WorkPackage wp = favorite.getWorkPackageID();
@@ -386,7 +391,7 @@ public class TimeView extends QMainWindow {
 
 			QDateTime end = new QDateTime();
 			end.setDate(calendar.getCurrentDate());
-			start.setTime(TimeUtil.convertGregorianToQDateTime(
+			end.setTime(TimeUtil.convertGregorianToQDateTime(
 					favorite.getEndTime()).time());
 
 			try {

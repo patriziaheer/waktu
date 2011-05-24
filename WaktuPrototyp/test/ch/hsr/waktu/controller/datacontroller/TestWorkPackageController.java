@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import javax.persistence.EntityManager;
 
+import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -31,6 +32,9 @@ public class TestWorkPackageController extends TestSuite {
 	static Usr usr1, usr2, usr3, usr4, usr5;
 	static Project p1, p2, p3, p4, p5;
 	static WorkPackage w1, w2, w3, w4, w5, w6, w7, w8, w9, w10, w11, w12, w13, w14, w15, w16, w17, w18, w19, w20, w21, w22, w23, w24, w25;
+	
+	static Logger logger = Logger.getLogger(TestWorkPackageController.class);
+
 	
 	@BeforeClass
 	public static void before() {
@@ -107,7 +111,7 @@ public class TestWorkPackageController extends TestSuite {
 			
 			
 		} catch (WaktuException e) {
-			System.out.println("TestWorkPackageController failed \n" + e.getMessage() + "\n" + e.getStackTrace()[0] + "\n" + e.getStackTrace()[1] + "\n" + e.getStackTrace()[2]);
+			logger.error("TestWorkPackageController failed \n" + e.getMessage() + "\n" + e.getStackTrace()[0] + "\n" + e.getStackTrace()[1] + "\n" + e.getStackTrace()[2]);
 		}
 	}
 

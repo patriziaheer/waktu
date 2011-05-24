@@ -4,58 +4,68 @@
 <context>
     <name>Calendar</name>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="189"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="210"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="190"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="211"/>
         <source>Mon</source>
         <translation>Mon</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="191"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="212"/>
         <source>Wed</source>
         <translation>Wed</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="192"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="213"/>
         <source>Fri</source>
         <translation>Fri</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="193"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="214"/>
         <source>Sun</source>
         <translation>Sun</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="194"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="215"/>
         <source>Sat</source>
         <translation>Sat</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="195"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="216"/>
         <source>Thu</source>
         <translation>Thu</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="196"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="217"/>
         <source>Tue</source>
         <translation>Tue</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="197"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="218"/>
         <source>-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="198"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="219"/>
         <source>&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="199"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="220"/>
         <source>&lt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="223"/>
+        <source>23.05.11</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="224"/>
+        <source>Today</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

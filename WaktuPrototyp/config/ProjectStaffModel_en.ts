@@ -4,12 +4,12 @@
 <context>
     <name>ProjectStaffModel</name>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectStaffModel.java" line="59"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectStaffModel.java" line="65"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectStaffModel.java" line="61"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectStaffModel.java" line="67"/>
         <source>Firstname</source>
         <translation>Firstname</translation>
     </message>

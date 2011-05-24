@@ -90,7 +90,7 @@ public class IcsParser {
 		try {
 			br.close();
 		} catch (IOException e) {
-			System.out.println("IO Exception occurred");
+			throw new WaktuException("IO problem");
 		}
 
 		return calendar;

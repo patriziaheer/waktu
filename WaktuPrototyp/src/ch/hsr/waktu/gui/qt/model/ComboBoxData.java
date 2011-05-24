@@ -110,14 +110,14 @@ public class ComboBoxData {
 
 	public static void createUserProjectStaffComboBox(QComboBox cmb, Project project) throws WaktuException {
 		cmb.clear();
-		for (Usr usr : ProjectStaffController.getInstance().getNonProjectUsers(project)) {
+		for (Usr usr : ProjectStaffController.getInstance().getUsersNotMemberOf(project)) {
 			cmb.addItem(usr.toString(), usr);
 		}
 	}
 
 	public static void createProjectProjectStaffComboBox(QComboBox cmb, Usr user) throws WaktuException {
 		cmb.clear();
-		for (Project project: ProjectStaffController.getInstance().getNonUserProjects(user)) {
+		for (Project project: ProjectStaffController.getInstance().getProjectsWhereUserIsNotMember(user)) {
 			cmb.addItem(project.toString(), project);
 		}
 	}

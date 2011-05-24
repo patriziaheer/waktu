@@ -4,17 +4,17 @@
 <context>
     <name>FavoriteModel</name>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/FavoriteModel.java" line="71"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/FavoriteModel.java" line="81"/>
         <source>Workpackage</source>
         <translation>Arbeitspaket</translation>
     </message>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/FavoriteModel.java" line="73"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/FavoriteModel.java" line="83"/>
         <source>Start</source>
         <translation>Start</translation>
     </message>
     <message>
-        <location filename="../src/ch/hsr/waktu/gui/qt/model/FavoriteModel.java" line="75"/>
+        <location filename="../src/ch/hsr/waktu/gui/qt/model/FavoriteModel.java" line="85"/>
         <source>End</source>
         <translation>End</translation>
     </message>

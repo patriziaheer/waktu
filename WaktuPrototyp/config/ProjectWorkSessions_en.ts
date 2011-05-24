@@ -4,38 +4,43 @@
 <context>
     <name>ProjectWorkSessions</name>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="139"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="167"/>
         <source>WorkSessions</source>
         <translation type="unfinished">Worksessions</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="140"/>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="142"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="168"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="170"/>
         <source>dd.MM.yy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="141"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="169"/>
         <source>-</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="143"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="171"/>
+        <source>Datefilter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="172"/>
         <source>Add Filter</source>
         <translation>Add Filter</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="144"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="173"/>
         <source>Remove Filter</source>
         <translation>Remove Filter</translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="145"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="175"/>
         <source>0.0h</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="146"/>
+        <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="174"/>
         <source>Total Time:</source>
         <translation>Total Time:</translation>
     </message>

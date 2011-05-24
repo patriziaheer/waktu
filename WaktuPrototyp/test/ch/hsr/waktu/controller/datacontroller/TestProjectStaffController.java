@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import javax.persistence.EntityManager;
 
+import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -36,6 +37,9 @@ public class TestProjectStaffController extends TestSuite {
 	static Project p3;
 	static Project p4;
 	static Project p5;
+	
+	static Logger logger = Logger.getLogger(TestProjectStaffController.class);
+
 
 	@BeforeClass
 	public static void before() {
@@ -84,7 +88,7 @@ public class TestProjectStaffController extends TestSuite {
 			psc.addProjectStaff(usr5, p5);
 
 		} catch (WaktuException e) {
-			System.out.println("TestProjectStaffController failed \n" + e.getMessage() + "\n" + e.getStackTrace()[0] + "\n" + e.getStackTrace()[1] + "\n" + e.getStackTrace()[2]);
+			logger.error("TestProjectStaffController failed \n" + e.getMessage() + "\n" + e.getStackTrace()[0] + "\n" + e.getStackTrace()[1] + "\n" + e.getStackTrace()[2]);
 		}
 	}
 
@@ -121,6 +125,24 @@ public class TestProjectStaffController extends TestSuite {
 	@Test
 	public void testGetUsersByProject() throws WaktuException {
 		assertEquals(2,psc.getUsers(p5).size());
+	}
+	
+	@Test
+	public void getUsersNotMemberOf() throws WaktuException {
+		assertEquals(3,psc.getUsersNotMemberOf(p1).size());
+		assertEquals(3,psc.getUsersNotMemberOf(p2).size());
+		assertEquals(2,psc.getUsersNotMemberOf(p3).size());
+		assertEquals(3,psc.getUsersNotMemberOf(p4).size());
+		assertEquals(4,psc.getUsersNotMemberOf(p5).size());
+	}
+	
+	@Test
+	public void getProjectsWhereUserIsNotMember() throws WaktuException {
+		assertEquals(2,psc.getProjectsWhereUserIsNotMember(usr1).size());
+		assertEquals(2,psc.getProjectsWhereUserIsNotMember(usr2).size());
+		assertEquals(2,psc.getProjectsWhereUserIsNotMember(usr3).size());
+		assertEquals(2,psc.getProjectsWhereUserIsNotMember(usr4).size());
+		assertEquals(2,psc.getProjectsWhereUserIsNotMember(usr5).size());
 	}
 	
 	@Test
