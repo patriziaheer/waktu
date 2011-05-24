@@ -47,8 +47,6 @@ public class BusinessRuleController {
 		
 		List<Project> allProjects = ProjectController.getInstance().getAllProjects();
 		for(Project p : allProjects) {
-			System.out.println(p.getProjectIdentifier() + " // " + project.getProjectIdentifier());
-			System.out.println(p.equals(project));
 			if(p.getProjectIdentifier().equals(project.getProjectIdentifier()) && p.getId() != project.getId()){
 				logger.info("Project identifier already exists");
 				throw new WaktuException("Project identifier already exists");
