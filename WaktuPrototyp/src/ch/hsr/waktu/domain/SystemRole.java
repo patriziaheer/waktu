@@ -1,16 +1,25 @@
 package ch.hsr.waktu.domain;
 
+import com.trolltech.qt.core.QCoreApplication;
+
 public enum SystemRole {
-//	ADMIN, PROJECTMANAGER, EMPLOYEE
-	ADMIN(0), PROJECTMANAGER(1), EMPLOYEE(2);
-	
-	private int index;
-	
-	SystemRole(int index) {
-		this.index = index;
-	}
-	
-	public int getIndex() {
-		return index;
+
+	ADMIN {
+		@Override
+		public String toString() {
+			return QCoreApplication.translate("SystemRole", "Admin");
+		}
+	}, 
+	PROJECTMANAGER {
+		@Override
+		public String toString() {
+			return QCoreApplication.translate("SystemRole", "ProjectManager");
+		}
+	},  
+	EMPLOYEE {
+		@Override
+		public String toString() {
+			return QCoreApplication.translate("SystemRole", "Employee");
+		}
 	}
 }

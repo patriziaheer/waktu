@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ProjectData.jui'
 **
-** Created: Mo. Mai 23 11:05:20 2011
+** Created: Di. Mai 24 10:26:33 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -88,6 +88,7 @@ public class Ui_ProjectData implements com.trolltech.qt.QUiForm<QWidget>
 
         txtPlannedTime = new QSpinBox(ProjectData);
         txtPlannedTime.setObjectName("txtPlannedTime");
+        txtPlannedTime.setMaximum(1000000);
 
         gridLayout.addWidget(txtPlannedTime, 3, 1, 1, 2);
 

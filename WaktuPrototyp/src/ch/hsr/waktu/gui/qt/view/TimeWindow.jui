@@ -354,6 +354,7 @@
     <addaction name="actionAdd_to_Favorites"/>
     <addaction name="menuLanguage"/>
     <addaction name="actionIcs_Import"/>
+    <addaction name="actionLogout"/>
     <addaction name="actionClose"/>
    </widget>
    <addaction name="menuFile"/>
@@ -387,6 +388,11 @@
   <action name="actionIcs_Import">
    <property name="text">
     <string>Ics Import</string>
+   </property>
+  </action>
+  <action name="actionLogout">
+   <property name="text">
+    <string>Logout</string>
    </property>
   </action>
  </widget>

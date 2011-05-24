@@ -10,9 +10,11 @@ import ch.hsr.waktu.services.WaktuException;
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.core.Qt;
 import com.trolltech.qt.core.Qt.Orientation;
+import com.trolltech.qt.gui.QBrush;
+import com.trolltech.qt.gui.QColor;
 import com.trolltech.qt.gui.QFont;
-import com.trolltech.qt.gui.QIcon;
-import com.trolltech.qt.gui.QPixmap;
+import com.trolltech.qt.gui.QPalette;
+import com.trolltech.qt.gui.QPalette.ColorRole;
 import com.trolltech.qt.gui.QTreeModel;
 
 public class ProjectTreeModel extends QTreeModel {
@@ -71,15 +73,30 @@ public class ProjectTreeModel extends QTreeModel {
 		case Qt.ItemDataRole.ToolTipRole: {
 			return value.toString();
 		}
-		case Qt.ItemDataRole.DecorationRole: {
-			QIcon icon = new QIcon(new QPixmap("classpath:PfeilDown.JPG"));
-			return icon;
-		}
-		case Qt.ItemDataRole.FontRole:
+		case Qt.ItemDataRole.FontRole: {
 			QFont font = new QFont();
 			font.setBold(true);
 			font.setPointSize(10);
 			return font;
+		}
+		case Qt.ItemDataRole.DecorationRole: {
+			if (value instanceof Project) {
+				Project proj = (Project)value;
+				if (proj.isActive() == false) {
+					QPalette palette = new QPalette();
+					palette.setBrush(ColorRole.WindowText, new QBrush(QColor.red));
+					return palette;
+				} else {
+					QPalette palette = new QPalette();
+					palette.setBrush(ColorRole.WindowText, new QBrush(QColor.green));
+					return palette;
+				}
+			} else {
+				QPalette palette = new QPalette();
+				palette.setBrush(ColorRole.WindowText, new QBrush(QColor.yellow));
+				return palette;
+			}
+		}
 		}
 		return super.data(value, role);
 	}

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ManagmentWindow.jui'
 **
-** Created: Fr. Mai 20 13:10:20 2011
+** Created: Di. Mai 24 10:16:44 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -22,6 +22,7 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
     public QAction actionDE;
     public QAction actionShow_Inactiv_Projects;
     public QAction actionInactiv_Users;
+    public QAction actionLogout;
     public QWidget centralwidget;
     public QGridLayout gridLayout_2;
     public QTabWidget tabWidget;
@@ -57,6 +58,8 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         actionInactiv_Users = new QAction(ManagmentWindow);
         actionInactiv_Users.setObjectName("actionInactiv_Users");
         actionInactiv_Users.setCheckable(true);
+        actionLogout = new QAction(ManagmentWindow);
+        actionLogout.setObjectName("actionLogout");
         centralwidget = new QWidget(ManagmentWindow);
         centralwidget.setObjectName("centralwidget");
         gridLayout_2 = new QGridLayout(centralwidget);
@@ -89,6 +92,7 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         menuFile.addAction(actionAddProject);
         menuFile.addAction(actionAddUser);
         menuFile.addAction(menuLanguage.menuAction());
+        menuFile.addAction(actionLogout);
         menuFile.addAction(actionClose);
         menuLanguage.addAction(actionEN);
         menuLanguage.addAction(actionDE);
@@ -113,6 +117,7 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         actionDE.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "DE", null));
         actionShow_Inactiv_Projects.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Inactiv Projects", null));
         actionInactiv_Users.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Inactiv Users", null));
+        actionLogout.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Logout", null));
         tabWidget.setTabText(tabWidget.indexOf(tabProject), com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Projekte", null));
         menuFile.setTitle(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "File", null));
         menuLanguage.setTitle(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Language", null));

@@ -14,6 +14,7 @@ import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
+import com.trolltech.qt.core.QCoreApplication;
 
 /**
  * @author simon.staeheli
@@ -23,7 +24,30 @@ import com.trolltech.qt.QSignalEmitter;
 public class ProjectController extends QSignalEmitter {
 
 	public enum ProjectProperties {
-		Data, WorkPackages, ProjectStaff, WorkSessions
+		Data {
+			@Override
+			public String toString() {
+				return QCoreApplication.translate("ProjectProperties", "Data");
+			}
+		}, 
+		WorkPackages {
+			@Override
+			public String toString() {
+				return QCoreApplication.translate("ProjectProperties", "WorkPackages");
+			}
+		}, 
+		ProjectStaff {
+			@Override
+			public String toString() {
+				return QCoreApplication.translate("ProjectProperties", "ProjectStaff");
+			}
+		}, 
+		WorkSessions {
+			@Override
+			public String toString() {
+				return QCoreApplication.translate("ProjectProperties", "WorkSessions");
+			}
+		}
 	}
 
 	private static ProjectController theInstance = null;

@@ -40,6 +40,11 @@ lupdate "..\src\ch\hsr\waktu\gui\qt\model\UserWorkSessionModel.java" -ts UserWor
 lupdate "..\src\ch\hsr\waktu\gui\qt\model\WorkSessionModel.java" -ts WorkSessionModel_de.ts
 
 
+lupdate "..\src\ch\hsr\waktu\controller\datacontroller\UserController.java" -ts UserController_de.ts
+lupdate "..\src\ch\hsr\waktu\controller\datacontroller\ProjectController.java" -ts ProjectController_de.ts
+lupdate "..\src\ch\hsr\waktu\domain\SystemRole.java" -ts SystemRole_de.ts
+
+
 
 
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_LoginDialog.java" -ts Login_en.ts
@@ -82,3 +87,7 @@ lupdate "..\src\ch\hsr\waktu\gui\qt\model\ProjectWorkSessionModel.java" -ts Proj
 lupdate "..\src\ch\hsr\waktu\gui\qt\model\UserProjectsModel.java" -ts UserProjectsModel_en.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\model\UserWorkSessionModel.java" -ts UserWorkSessionModel_en.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\model\WorkSessionModel.java" -ts WorkSessionModel_en.ts
+
+lupdate "..\src\ch\hsr\waktu\controller\datacontroller\UserController.java" -ts UserController_en.ts
+lupdate "..\src\ch\hsr\waktu\controller\datacontroller\ProjectController.java" -ts ProjectController_en.ts
+lupdate "..\src\ch\hsr\waktu\domain\SystemRole.java" -ts SystemRole_en.ts

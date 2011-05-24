@@ -21,6 +21,7 @@ public class ManagmentView extends QMainWindow {
 	//private Usr currUsr;
 	private ProjectDetails projectDetails;
 	private UserDetails userDetails;
+	public Signal0 logout = new Signal0();
 	
 	public ManagmentView(Usr usr) {
 		//currUsr = usr;
@@ -46,6 +47,7 @@ public class ManagmentView extends QMainWindow {
 		
 		ui.actionShow_Inactiv_Projects.changed.connect(this, "showInactivProjectsChanged()");
 		ui.actionInactiv_Users.changed.connect(this, "showInactivUsersChanged()");
+		ui.actionLogout.triggered.connect(this, "logoutClicked()");
 		
 		
 		
@@ -124,6 +126,10 @@ public class ManagmentView extends QMainWindow {
 		actionEN.triggered.connect(this, "translateEN()");
 		languageMenu.addAction(actionEN);
 		languageMenu.addAction(actionDE);
+
+		QAction logoutAction = new QAction(QCoreApplication.translate(
+				"TimeView", "Logout"), menu);
+		logoutAction.triggered.connect(this, "logoutClicked()");
 		
 		QAction closeAction = new QAction(QCoreApplication.translate(
 				"ManagmentView", "Close"), menu);
@@ -132,6 +138,7 @@ public class ManagmentView extends QMainWindow {
 		menu.addAction(actionAddProject);
 		menu.addAction(actionAddUser);
 		menu.addMenu(languageMenu);
+		menu.addAction(logoutAction);
 		menu.addAction(closeAction);
 		menu.exec(event.globalPos());
 	}
@@ -144,5 +151,10 @@ public class ManagmentView extends QMainWindow {
 	@SuppressWarnings("unused")
 	private void showInactivUsersChanged() {
 		userDetails.showInactive(ui.actionInactiv_Users.isChecked());
+	}
+	
+	@SuppressWarnings("unused")
+	private void logoutClicked() {
+		logout.emit();
 	}
 }

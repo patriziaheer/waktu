@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'TimeWindow.jui'
 **
-** Created: Mo. Mai 16 14:57:03 2011
+** Created: Di. Mai 24 10:16:44 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -20,6 +20,7 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
     public QAction actionEN;
     public QAction actionDE;
     public QAction actionIcs_Import;
+    public QAction actionLogout;
     public QWidget centralwidget;
     public QGridLayout gridLayout;
     public QGroupBox grpWorksessions;
@@ -89,6 +90,8 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         actionDE.setObjectName("actionDE");
         actionIcs_Import = new QAction(TimeWindow);
         actionIcs_Import.setObjectName("actionIcs_Import");
+        actionLogout = new QAction(TimeWindow);
+        actionLogout.setObjectName("actionLogout");
         centralwidget = new QWidget(TimeWindow);
         centralwidget.setObjectName("centralwidget");
         gridLayout = new QGridLayout(centralwidget);
@@ -331,6 +334,7 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         menuFile.addAction(actionAdd_to_Favorites);
         menuFile.addAction(menuLanguage.menuAction());
         menuFile.addAction(actionIcs_Import);
+        menuFile.addAction(actionLogout);
         menuFile.addAction(actionClose);
         menuLanguage.addAction(actionEN);
         menuLanguage.addAction(actionDE);
@@ -348,6 +352,7 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         actionEN.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "EN", null));
         actionDE.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "DE", null));
         actionIcs_Import.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Ics Import", null));
+        actionLogout.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Logout", null));
         grpWorksessions.setTitle(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Worksessions", null));
         grpOverview.setTitle(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Overview", null));
         lblPlannedDayText.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Worktime per day:", null));

@@ -120,6 +120,33 @@ public class WorkPackageController extends QSignalEmitter {
 
 	/**
 	 * 
+	 * @throws WaktuException
+	 */
+	@SuppressWarnings("unchecked")
+	public List<WorkPackage> getAllWorkPackages()
+			throws WaktuException {
+		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+				.createEntityManager();
+
+		List<WorkPackage> allWorkPackages = null;
+		
+		if(!PermissionController.getInstance().checkPermission()) {
+			throw new WaktuException("Permission denied");
+		}
+		
+		try {
+			allWorkPackages = em.createQuery(
+					"SELECT wp FROM WorkPackage wp").getResultList();
+		} catch (Exception e) {
+			handleException(e);			
+		} finally {
+			em.close();
+		}
+		return allWorkPackages;
+	}
+
+	/**
+	 * 
 	 * @param project
 	 * @throws WaktuException
 	 */

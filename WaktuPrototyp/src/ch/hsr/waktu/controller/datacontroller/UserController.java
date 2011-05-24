@@ -16,6 +16,7 @@ import ch.hsr.waktu.services.UsernameUtil;
 import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
+import com.trolltech.qt.core.QCoreApplication;
 
 /**
  * @author simon.staeheli
@@ -23,9 +24,26 @@ import com.trolltech.qt.QSignalEmitter;
  * @created 01-Apr-2011 15:36:30
  */
 public class UserController extends QSignalEmitter {
-
+	
 	public enum UserProperties {
-		Data, Projects, WorkSessions
+		Data {
+			@Override
+			public String toString() {
+				return QCoreApplication.translate("UserProperties", "Data");
+			}
+		}, 
+		Projects {
+			@Override
+			public String toString() {
+				return QCoreApplication.translate("UserProperties", "Projects");
+			}
+		}, 
+		WorkSessions {
+			@Override
+			public String toString() {
+				return QCoreApplication.translate("UserProperties", "WorkSessions");
+			}
+		}
 	}
 
 	private static UserController theInstance = null;

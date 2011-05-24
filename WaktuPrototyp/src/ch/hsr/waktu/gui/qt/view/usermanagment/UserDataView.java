@@ -59,6 +59,7 @@ public class UserDataView extends QWidget {
 				ui.lblUsername.setVisible(true);
 				ui.txtUserName.setVisible(true);
 				ui.txtUserName.setEnabled(false);
+				ui.txtUserName.setText(usr.getUsername());
 
 				ui.txtName.setText(usr.getName());
 				ui.txtName.setEnabled(true);
@@ -83,6 +84,7 @@ public class UserDataView extends QWidget {
 				ui.lblUsername.setVisible(true);
 				ui.txtUserName.setVisible(true);
 				ui.txtUserName.setEnabled(false);
+				ui.txtUserName.setText(usr.getUsername());
 
 				ui.txtName.setText(usr.getName());
 				ui.txtName.setEnabled(false);

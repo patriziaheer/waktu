@@ -104,4 +104,5 @@ public class ProjectWorkPackageView extends QWidget{
 	private void showErrorMessage(String errorMessageString) {
 		errorMessage.emit(errorMessageString);
 	}
+	
 }

@@ -88,7 +88,11 @@
     </widget>
    </item>
    <item row="3" column="1" colspan="2">
-    <widget class="QSpinBox" name="txtPlannedTime"/>
+    <widget class="QSpinBox" name="txtPlannedTime">
+     <property name="maximum">
+      <number>1000000</number>
+     </property>
+    </widget>
    </item>
    <item row="2" column="1" colspan="2">
     <widget class="QComboBox" name="cmbProjectManager"/>

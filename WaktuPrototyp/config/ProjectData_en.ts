@@ -11,7 +11,7 @@
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="111"/>
         <source>Projectnumber:</source>
-        <translation>Project Number:</translation>
+        <translation>Project Identifier:</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectData.java" line="112"/>
