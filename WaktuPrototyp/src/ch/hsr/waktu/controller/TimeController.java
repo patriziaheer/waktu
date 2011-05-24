@@ -140,7 +140,7 @@ public class TimeController {
 	}
 	
 	public static double calculateWorktimeForWeek(Usr user, QDate date) throws WaktuException {
-		QDate[] weekStartDateEndDate = TimeUtil.getMonthBoundaries(date);
+		QDate[] weekStartDateEndDate = TimeUtil.getWeekBoundaries(date);
 		return calculateWorktime(user, weekStartDateEndDate[0], weekStartDateEndDate[1]);
 	}
 	
