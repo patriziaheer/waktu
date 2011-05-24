@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/ch/hsr/waktu/gui/qt/model/UserWorkSessionModel.java" line="74"/>
         <source>WorkPackage</source>
-        <translation>Workpackage</translation>
+        <translation>Work Package</translation>
     </message>
     <message>
         <location filename="../src/ch/hsr/waktu/gui/qt/model/UserWorkSessionModel.java" line="75"/>

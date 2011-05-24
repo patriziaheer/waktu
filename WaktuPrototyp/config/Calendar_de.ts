@@ -66,7 +66,8 @@
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_Calendar.java" line="224"/>
         <source>Today</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Heute</translatorcomment>
+        <translation></translation>
     </message>
 </context>
 </TS>

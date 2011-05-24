@@ -36,7 +36,7 @@
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="350"/>
         <source>Ics Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Ics Import</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="351"/>
@@ -141,7 +141,7 @@
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="371"/>
         <source>Work Package:</source>
-        <translation>Arbeitspacket</translation>
+        <translation>Arbeitspaket:</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="372"/>
@@ -167,7 +167,7 @@
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="377"/>
         <source>Workpackage only</source>
-        <translation>Nur Arbeitspacket</translation>
+        <translation>Nur Arbeitspaket</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_TimeWindow.java" line="378"/>

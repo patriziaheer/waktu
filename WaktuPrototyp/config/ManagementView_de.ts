@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
+<<<<<<< HEAD
 <TS version="2.0">
 <context>
     <name>ManagmentView</name>
@@ -44,6 +45,43 @@
         <location filename="../src/ch/hsr/waktu/gui/qt/view/ManagmentView.java" line="129"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
+=======
+<TS version="2.0" language="de_CH">
+<context>
+    <name>ManagmentView</name>
+    <message>
+        <source>Projects</source>
+        <translation>Projekte</translation>
+    </message>
+    <message>
+        <source>Users</source>
+        <translation>Benutzer</translation>
+    </message>
+    <message>
+        <source>Add Project</source>
+        <translation>Projekt hinzufügen</translation>
+    </message>
+    <message>
+        <source>Add User</source>
+        <translation>Benutzer hinzufügen</translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation>Sprache</translation>
+    </message>
+    <message>
+        <source>DE</source>
+        <translatorcomment>DE</translatorcomment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>EN</source>
+        <translation>EN</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Schliessen</translation>
+>>>>>>> ee0a88190c8e16ee5c7a1613043e01749105aacb
     </message>
 </context>
 </TS>

@@ -17,7 +17,7 @@
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="108"/>
         <source>Close</source>
-        <translation>Beenden</translation>
+        <translation>Schliessen</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="109"/>
@@ -47,12 +47,14 @@
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="114"/>
         <source>Inactiv Projects</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Zeige Inaktive Projekte</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="115"/>
         <source>Inactiv Users</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Zeige inaktive Benutzer</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="117"/>
@@ -67,7 +69,8 @@
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="119"/>
         <source>View</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Anzeige</translatorcomment>
+        <translation></translation>
     </message>
 </context>
 </TS>

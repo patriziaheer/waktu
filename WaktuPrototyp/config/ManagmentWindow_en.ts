@@ -47,12 +47,12 @@
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="114"/>
         <source>Inactiv Projects</source>
-        <translation type="unfinished"></translation>
+        <translation>Show inactiv Projects</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="115"/>
         <source>Inactiv Users</source>
-        <translation type="unfinished"></translation>
+        <translation>Show inactiv users</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="117"/>
@@ -67,7 +67,7 @@
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="119"/>
         <source>View</source>
-        <translation type="unfinished"></translation>
+        <translation>View</translation>
     </message>
 </context>
 </TS>
