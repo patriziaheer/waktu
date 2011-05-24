@@ -79,7 +79,6 @@ public class TimeController {
 		double worktime = 0;
 
 		try {
-			//TODO: project removed
 			for(WorkSession ws: WorkSessionController.getInstance().getWorkSessions(workPackage)) {
 				worktime += TimeUtil.calculateTimespanInSeconds(ws.getStart(), ws.getEnd());
 			}
@@ -94,7 +93,6 @@ public class TimeController {
 		double worktime = 0;
 
 		try {
-			//TODO: project removed
 			for (WorkSession ws : WorkSessionController.getInstance()
 					.getWorkSessions(workPackage, usr)) {
 				worktime += TimeUtil.calculateTimespanInSeconds(ws.getStart(),
@@ -158,32 +156,28 @@ public class TimeController {
 	}
 	
 	public static double getPlannedTime(Usr user, QDate currMonth) {
-		return getNumberOfWorkdays(user, currMonth) * HOURS_PER_WORKDAY;
+		return getNumberOfWorkdaysForMonth(user, currMonth) * HOURS_PER_WORKDAY;
 	}
 	
 	public static double getPlannedTime(Usr user, QDate fromDate, QDate toDate) {
 		return fromDate.daysTo(toDate) * getNumberOfWorkdays(user, fromDate, toDate) * HOURS_PER_WORKDAY;
 	}
-	
-	private static double getNumberOfWorkdays(Usr user, QDate currMonth) {
-		QDate start = new QDate(currMonth.year(), currMonth.month(), 1);
-		QDate end = new QDate(currMonth.year(), currMonth.month(), currMonth.daysInMonth());
-		return user.getPensum() / 100.0 * getNumberOfWorkdays(start, end);
+
+	//TODO: Method needed?
+	public static double getNumberOfWorkdaysForMonth(Usr user, QDate currMonth) {
+		return user.getPensum() / 100.0 * getNumberOfWorkdays(user, 
+				TimeUtil.getMonthBoundaries(currMonth)[0], 
+				TimeUtil.getMonthBoundaries(currMonth)[1]);
 	}
 	
 	private static double getNumberOfWorkdays(Usr user, QDate fromDate, QDate toDate) {
-		return user.getPensum() / 100.0 * getNumberOfWorkdays(fromDate, toDate);
-	}
-
-	
-	private static int getNumberOfWorkdays(QDate start, QDate end) {
 		int days = 0;
-		for (QDate d = start; d.compareTo(end) <= 0; d = d.addDays(1)) {
+		for (QDate d = fromDate; d.compareTo(toDate) <= 0; d = d.addDays(1)) {
 			if (d.dayOfWeek() != 6 && d.dayOfWeek() != 7) {
 				days++;
 			}
 		}
-		return days;
+		return user.getPensum() / 100.0 * days;
 	}
 
 }
