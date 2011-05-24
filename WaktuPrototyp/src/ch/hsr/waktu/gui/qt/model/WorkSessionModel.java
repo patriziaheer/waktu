@@ -88,12 +88,12 @@ public class WorkSessionModel extends QAbstractItemModel {
 			return new QSize(0,20);
 		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
-			case 0: return new QSize(170, 25);
-			case 1: return new QSize(170, 25);
-			case 2: return new QSize(170, 25);
-			case 3: return new QSize(44, 25);
-			case 4: return new QSize(44, 25);
-			case 5: return new QSize(30, 25);
+			case 0: return new QSize(170, 30);
+			case 1: return new QSize(170, 30);
+			case 2: return new QSize(170, 30);
+			case 3: return new QSize(44, 30);
+			case 4: return new QSize(44, 30);
+			case 5: return new QSize(30, 30);
 			}
 		} 
 		return null;

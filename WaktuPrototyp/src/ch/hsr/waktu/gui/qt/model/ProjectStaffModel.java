@@ -73,9 +73,9 @@ public class ProjectStaffModel extends QAbstractItemModel {
 			return new QSize(0, 20);
 		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
-			case 0: return new QSize(400, 20);
-			case 1: return new QSize(400, 20);
-			case 2: return new QSize(50, 20);
+			case 0: return new QSize(400, 30);
+			case 1: return new QSize(400, 30);
+			case 2: return new QSize(50, 30);
 			}
 		} 
 		return super.headerData(section, orientation, role);

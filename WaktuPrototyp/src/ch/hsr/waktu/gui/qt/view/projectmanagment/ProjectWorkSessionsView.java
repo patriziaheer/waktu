@@ -49,7 +49,7 @@ public class ProjectWorkSessionsView extends QWidget {
 		ui.btnAddFilter.clicked.connect(this, "addFilter()");
 		ui.btnRemoveFilter.clicked.connect(this, "removeFilter()");
 		try {
-			ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, null, null, null, null));
+			ui.lblTotalTime.setText(""+TimeController.calculateWorktime(null, project, null, null, null));
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
@@ -84,7 +84,7 @@ public class ProjectWorkSessionsView extends QWidget {
 			filterModel.setEnd(end);
 			
 			try {
-				ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), (Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()), start, end));
+				ui.lblTotalTime.setText(""+TimeController.calculateWorktime((Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()), project, (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), start, end));
 			} catch (WaktuException e) {
 				errorMessage.emit(e.getMessage());
 			}
@@ -92,7 +92,7 @@ public class ProjectWorkSessionsView extends QWidget {
 			filterModel.setStart(null);
 			filterModel.setEnd(null);
 			try {
-				ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), (Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()), null, null));
+				ui.lblTotalTime.setText(""+TimeController.calculateWorktime((Usr)ui.cmbUser.itemData(ui.cmbUser.currentIndex()), project, (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), null, null));
 			} catch (WaktuException e) {
 				errorMessage.emit(e.getMessage());
 			}
@@ -102,7 +102,7 @@ public class ProjectWorkSessionsView extends QWidget {
 	@SuppressWarnings("unused")
 	private void removeFilter() {
 		try {
-			ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForProject(project, null, null, null, null));
+			ui.lblTotalTime.setText(""+TimeController.calculateWorktime(null, project, null, null, null));
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}

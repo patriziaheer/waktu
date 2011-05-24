@@ -96,12 +96,12 @@ public class ProjectWorkSessionModel extends QAbstractItemModel {
 			return new QSize(0, 20);
 		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
-			case 0: return new QSize(170, 20);
-			case 1: return new QSize(170, 20);
-			case 2: return new QSize(170, 20);
-			case 3: return new QSize(44, 20);
-			case 4: return new QSize(44, 20);
-			case 5: return new QSize(30, 20);
+			case 0: return new QSize(170, 30);
+			case 1: return new QSize(170, 30);
+			case 2: return new QSize(170, 30);
+			case 3: return new QSize(44, 30);
+			case 4: return new QSize(44, 30);
+			case 5: return new QSize(30, 30);
 			}
 		} 
 		return super.headerData(section, orientation, role);

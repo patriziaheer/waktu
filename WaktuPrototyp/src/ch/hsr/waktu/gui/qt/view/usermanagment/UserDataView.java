@@ -28,7 +28,6 @@ public class UserDataView extends QWidget {
 	public void initialize() {
 		ui.setupUi(this);
 		ui.btnAdd.clicked.connect(this, "addClicked()");
-		ComboBoxData.createSystemRoleComboBox(ui.cmbRole);
 
 		UserController.getInstance().update.connect(this, "updateData()");
 		UserController.getInstance().add.connect(this, "addData(Usr)");
@@ -78,6 +77,8 @@ public class UserDataView extends QWidget {
 
 				ui.checkBox.setChecked(!usr.isActive());
 				ui.checkBox.setVisible(true);
+				
+				ComboBoxData.createSystemRoleComboBox(ui.cmbRole, usr.getSystemRole());
 			} else {
 				ui.grpOverview.setVisible(true);
 				ui.btnAdd.setVisible(false);
@@ -110,6 +111,9 @@ public class UserDataView extends QWidget {
 
 				ui.checkBox.setChecked(!usr.isActive());
 				ui.checkBox.setVisible(false);
+				
+				ui.cmbRole.setEnabled(false);
+				ComboBoxData.createSystemRoleComboBox(ui.cmbRole, usr.getSystemRole());
 			}
 		} else {
 			ui.grpOverview.setVisible(false);
@@ -123,6 +127,7 @@ public class UserDataView extends QWidget {
 			ui.txtPensum.setEnabled(true);
 			ui.txtHolidays.setEnabled(true);
 			ui.checkBox.setVisible(true);
+			ComboBoxData.createSystemRoleComboBox(ui.cmbRole, null);
 		}
 	}
 

@@ -12,9 +12,8 @@ import com.trolltech.qt.core.QDate;
 
 public class TimeController {
 	public static final double HOURS_PER_WORKDAY = 8.5;
-	public static final int NUMBER_OF_WORKDAYS_PER_WEEK = 5;
 	
-	public static double calculateWorktimeForProject(Project project, WorkPackage workPackage, Usr usr, QDate start, QDate end) throws WaktuException {
+	public static double calculateWorktime(Usr usr, Project project, WorkPackage workPackage, QDate start, QDate end) throws WaktuException {
 		if(workPackage == null && usr != null && start != null && end != null) {
 			return calculateWorktime(project, usr, start, end);
 		} else if(workPackage != null && usr == null && start != null && end != null) {
@@ -32,11 +31,6 @@ public class TimeController {
 		} else if(workPackage == null && usr == null && start == null && end == null) {
 			return calculateWorktime(project);
 		}
-		return 0.0;
-	}
-	
-	public static double calculateWorktimeForUser(Usr usr, Project project, WorkPackage workPackage, QDate start, QDate end) throws WaktuException {
-		//TODO
 		return 0.0;
 	}
 	
@@ -164,16 +158,32 @@ public class TimeController {
 	}
 	
 	public static double getPlannedTime(Usr user, QDate currMonth) {
-		return currMonth.daysInMonth() * getNumberOfWorkdays(user) * HOURS_PER_WORKDAY;
+		return getNumberOfWorkdays(user, currMonth) * HOURS_PER_WORKDAY;
 	}
 	
 	public static double getPlannedTime(Usr user, QDate fromDate, QDate toDate) {
-		return fromDate.daysTo(toDate) * getNumberOfWorkdays(user) * HOURS_PER_WORKDAY;
+		return fromDate.daysTo(toDate) * getNumberOfWorkdays(user, fromDate, toDate) * HOURS_PER_WORKDAY;
 	}
 	
-	private static float getNumberOfWorkdays(Usr user) {
-		//TODO: subtract holidays
-		return user.getPensum() / 100 * NUMBER_OF_WORKDAYS_PER_WEEK;
+	private static double getNumberOfWorkdays(Usr user, QDate currMonth) {
+		QDate start = new QDate(currMonth.year(), currMonth.month(), 1);
+		QDate end = new QDate(currMonth.year(), currMonth.month(), currMonth.daysInMonth());
+		return user.getPensum() / 100.0 * getNumberOfWorkdays(start, end);
+	}
+	
+	private static double getNumberOfWorkdays(Usr user, QDate fromDate, QDate toDate) {
+		return user.getPensum() / 100.0 * getNumberOfWorkdays(fromDate, toDate);
+	}
+
+	
+	private static int getNumberOfWorkdays(QDate start, QDate end) {
+		int days = 0;
+		for (QDate d = start; d.compareTo(end) <= 0; d = d.addDays(1)) {
+			if (d.dayOfWeek() != 6 && d.dayOfWeek() != 7) {
+				days++;
+			}
+		}
+		return days;
 	}
 
 }

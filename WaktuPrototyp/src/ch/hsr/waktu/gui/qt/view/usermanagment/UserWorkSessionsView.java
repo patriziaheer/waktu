@@ -57,7 +57,7 @@ public class UserWorkSessionsView extends QWidget{
 		ui.btnRemoveFilter.clicked.connect(this, "removeFilter()");
 
 		try {
-			ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForUser(usr, null, null, null, null));
+			ui.lblTotalTime.setText(""+TimeController.calculateWorktime(usr, null, null, null, null));
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
@@ -89,7 +89,7 @@ public class UserWorkSessionsView extends QWidget{
 			filterModel.setEnd(end);
 			
 			try {
-				ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForUser(usr, (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()), (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), start, end));
+				ui.lblTotalTime.setText(""+TimeController.calculateWorktime(usr, (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()), (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), start, end));
 			} catch (WaktuException e) {
 				errorMessage.emit(e.getMessage());
 			}
@@ -97,7 +97,7 @@ public class UserWorkSessionsView extends QWidget{
 			filterModel.setStart(null);
 			filterModel.setEnd(null);
 			try {
-				ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForUser(usr, (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()), (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), null, null));
+				ui.lblTotalTime.setText(""+TimeController.calculateWorktime(usr, (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()), (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), null, null));
 			} catch (WaktuException e) {
 				errorMessage.emit(e.getMessage());
 			}
@@ -107,7 +107,7 @@ public class UserWorkSessionsView extends QWidget{
 	@SuppressWarnings("unused")
 	private void removeFilter() {
 		try {
-			ui.lblTotalTime.setText(""+TimeController.calculateWorktimeForUser(usr, null, null, null, null));
+			ui.lblTotalTime.setText(""+TimeController.calculateWorktime(usr, null, null, null, null));
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
@@ -168,6 +168,7 @@ public class UserWorkSessionsView extends QWidget{
 			} else {
 				ComboBoxData.createAllWorkPackageComboBox(ui.cmbWorkpackage, proj);
 			}
+			ui.cmbWorkpackage.setCurrentIndex(-1);
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}

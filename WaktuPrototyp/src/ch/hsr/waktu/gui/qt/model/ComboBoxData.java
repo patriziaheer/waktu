@@ -14,11 +14,18 @@ import com.trolltech.qt.gui.QComboBox;
 
 public class ComboBoxData {
 
-	public static void createSystemRoleComboBox(QComboBox cmb) {
+	public static void createSystemRoleComboBox(QComboBox cmb, SystemRole currRole) {
 		cmb.clear();
+		int i = 0;
+		int currIndex = -1;
 		for (SystemRole role : SystemRole.values()) {
-			cmb.addItem(role.name(), role);
+			if (currRole == role) {
+				currIndex = i;
+			}
+			i++;
+			cmb.addItem(role.getName(), role);
 		}
+		cmb.setCurrentIndex(currIndex);
 	}
 
 	public static void createProjectManagerComboBox(QComboBox cmb)
