@@ -453,16 +453,9 @@ public class WorkSessionController extends QSignalEmitter {
 
 		BusinessRuleController.check(workSession);
 
-		WorkSession updateWorkSession;
 		try {
 			em.getTransaction().begin();
-			updateWorkSession = em.find(WorkSession.class, workSession.getId());
-
-			// updateWorkSession.setUser(workSession.getUser());
-			// updateWorkSession.setWorkPackage(workSession.getWorkPackage());
-			// updateWorkSession.setStart(workSession.getStart());
-			// updateWorkSession.setEnd(workSession.getEnd());
-			// updateWorkSession.setDescription(workSession.getDescription());
+			em.find(WorkSession.class, workSession.getId());
 
 			em.merge(workSession);
 
@@ -470,27 +463,23 @@ public class WorkSessionController extends QSignalEmitter {
 			// problem: JPA saves GregorianCalendar-Dates with wrong month in DB
 			// (eg. 6 instead of 5)
 			// quick fix: subtract 1 from GregorianCalendar.MONTH
-			updateWorkSession.getStart()
-					.set(GregorianCalendar.MONTH,
-							updateWorkSession.getStart().get(
-									GregorianCalendar.MONTH) - 1);
-			updateWorkSession.getEnd()
-					.set(GregorianCalendar.MONTH,
-							updateWorkSession.getEnd().get(
-									GregorianCalendar.MONTH) - 1);
+//			updateWorkSession.getStart()
+//					.set(GregorianCalendar.MONTH,
+//							updateWorkSession.getStart().get(
+//									GregorianCalendar.MONTH) - 1);
+//			updateWorkSession.getEnd()
+//					.set(GregorianCalendar.MONTH,
+//							updateWorkSession.getEnd().get(
+//									GregorianCalendar.MONTH) - 1);
 
 			em.getTransaction().commit();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
 		update.emit();
-		logger.info("workSession " + updateWorkSession + " updated");
+		logger.info("workSession " + workSession + " updated");
 	}
 
 	/**
@@ -521,5 +510,18 @@ public class WorkSessionController extends QSignalEmitter {
 		}
 		removed.emit(workSession);
 		logger.info("workSession " + workSession + " deleted");
+	}
+	
+	private void handleException(Exception e) throws WaktuException{
+		if(e instanceof IllegalArgumentException) {
+			logger.error(e + e.getMessage());
+			throw new WaktuException("Database problem");
+		} else if (e instanceof IllegalStateException) {
+			logger.error(e + e.getMessage());
+			throw new WaktuException("Illegal argument");
+		} else {
+			logger.error(e + e.getMessage());
+			throw new WaktuException("General Problem");
+		}
 	}
 }

@@ -6,7 +6,7 @@
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="167"/>
         <source>WorkSessions</source>
-        <translation type="unfinished">Worksessions</translation>
+        <translation>Work Sessions</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="168"/>
@@ -22,7 +22,7 @@
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="171"/>
         <source>Datefilter</source>
-        <translation type="unfinished"></translation>
+        <translation>Datefilter</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectWorkSessions.java" line="172"/>

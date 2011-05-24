@@ -32,14 +32,18 @@ public class UserDataView extends QWidget {
 
 		UserController.getInstance().update.connect(this, "updateData()");
 		UserController.getInstance().add.connect(this, "addData(Usr)");
-		
-		WorkSessionController.getInstance().add.connect(this, "workSessionChanged(WorkSession)");
-		WorkSessionController.getInstance().update.connect(this, "workSessionUpdated()");
-		WorkSessionController.getInstance().removed.connect(this, "workSessionChanged(WorkSession)");
-		
+
+		WorkSessionController.getInstance().add.connect(this,
+				"workSessionChanged(WorkSession)");
+		WorkSessionController.getInstance().update.connect(this,
+				"workSessionUpdated()");
+		WorkSessionController.getInstance().removed.connect(this,
+				"workSessionChanged(WorkSession)");
+
 		ui.txtUnvisbileField.setVisible(false);
-		
-		LanguageController.getInstance().languageChanged.connect(this, "translate()");
+
+		LanguageController.getInstance().languageChanged.connect(this,
+				"translate()");
 		setFields();
 		updateTimeInfos();
 	}
@@ -50,10 +54,12 @@ public class UserDataView extends QWidget {
 				ui.grpOverview.setVisible(true);
 
 				ui.btnAdd.setVisible(true);
-				ui.btnAdd.setText(QCoreApplication.translate("UserDataView", "Save", null));
+				ui.btnAdd.setText(QCoreApplication.translate("UserDataView",
+						"Save", null));
 				ui.lblUsername.setVisible(true);
 				ui.txtUserName.setVisible(true);
 				ui.txtUserName.setEnabled(false);
+				ui.txtUserName.setText(usr.getUsername());
 
 				ui.txtName.setText(usr.getName());
 				ui.txtName.setEnabled(true);
@@ -78,6 +84,7 @@ public class UserDataView extends QWidget {
 				ui.lblUsername.setVisible(true);
 				ui.txtUserName.setVisible(true);
 				ui.txtUserName.setEnabled(false);
+				ui.txtUserName.setText(usr.getUsername());
 
 				ui.txtName.setText(usr.getName());
 				ui.txtName.setEnabled(false);
@@ -89,7 +96,8 @@ public class UserDataView extends QWidget {
 				if (GuiController.getInstance().canModifyUser(usr)) {
 					ui.txtPassword.setEnabled(true);
 					ui.btnAdd.setVisible(true);
-					ui.btnAdd.setText(QCoreApplication.translate("UserDataView", "Save", null));
+					ui.btnAdd.setText(QCoreApplication.translate(
+							"UserDataView", "Save", null));
 				} else {
 					ui.txtPassword.setEnabled(false);
 				}
@@ -117,14 +125,14 @@ public class UserDataView extends QWidget {
 			ui.checkBox.setVisible(true);
 		}
 	}
-	
+
 	private void updateTimeInfos() {
 		ui.lblPlannedDay.setText("" + TimeController.HOURS_PER_WORKDAY);
 		try {
 			ui.lblOvertime.setText(""
-					+ TimeController.calculateOvertime(usr, new QDate(01,
-							01, 1900), new QDate(31, 12, 2999)));
-			ui.lblHolidays.setText(usr.getHoliday()+"");
+					+ TimeController.calculateOvertime(usr, new QDate(01, 01,
+							1900), new QDate(31, 12, 2999)));
+			ui.lblHolidays.setText(usr.getHoliday() + "");
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
@@ -143,8 +151,14 @@ public class UserDataView extends QWidget {
 
 	private void addNewUser() {
 		try {
-			usr = UserController.getInstance().addUser(ui.txtFirstname.text(), ui.txtName.text(), ui.txtPassword.text(), ui.txtPensum.value(),
-					(SystemRole) ui.cmbRole.itemData(ui.cmbRole.currentIndex()), ui.txtHolidays.value());
+			usr = UserController.getInstance()
+					.addUser(
+							ui.txtFirstname.text(),
+							ui.txtName.text(),
+							ui.txtPassword.text(),
+							ui.txtPensum.value(),
+							(SystemRole) ui.cmbRole.itemData(ui.cmbRole
+									.currentIndex()), ui.txtHolidays.value());
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
@@ -184,9 +198,11 @@ public class UserDataView extends QWidget {
 
 	private void changeText() {
 		if (usr != null) {
-			ui.btnAdd.setText(QCoreApplication.translate("UserDataView", "Save", null));
+			ui.btnAdd.setText(QCoreApplication.translate("UserDataView",
+					"Save", null));
 		} else {
-			ui.btnAdd.setText(QCoreApplication.translate("UserDataView", "Add", null));
+			ui.btnAdd.setText(QCoreApplication.translate("UserDataView", "Add",
+					null));
 		}
 	}
 
@@ -194,11 +210,10 @@ public class UserDataView extends QWidget {
 	private void workSessionUpdated() {
 		updateTimeInfos();
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void workSessionChanged(WorkSession workSession) {
 		updateTimeInfos();
 	}
-	
 
 }

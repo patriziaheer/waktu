@@ -1,6 +1,7 @@
 package ch.hsr.waktu.gui.qt.view.projectmanagment;
 
 import ch.hsr.waktu.controller.datacontroller.ProjectStaffController;
+import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.ProjectStaff;
 import ch.hsr.waktu.domain.Usr;
@@ -49,6 +50,9 @@ public class ProjectStaffView extends QWidget {
 
 		LanguageController.getInstance().languageChanged.connect(this, "translate()");
 		
+		UserController.getInstance().add.connect(this, "userAdded(Usr)");
+		UserController.getInstance().update.connect(this, "userChanged()");
+		
 		if (GuiController.getInstance().canAddProjectStaff() == false) {
 			ui.cmbUsers.setVisible(false);
 			ui.btnAdd.setVisible(false);
@@ -95,22 +99,21 @@ public class ProjectStaffView extends QWidget {
 	
 	@SuppressWarnings("unused")
 	private void added(ProjectStaff projectStaff) {
-		updateTable();
-		try {
-			ComboBoxData.createUserProjectStaffComboBox(ui.cmbUsers, project);
-		} catch (WaktuException e) {
-			errorMessage.emit(e.getMessage());
-		}
+		updateData();
 	}
 
 	@SuppressWarnings("unused")
 	private void removed(ProjectStaff projectStaff) {
+		updateData();
+	}
+	
+	private void updateData() {
 		updateTable();
 		try {
 			ComboBoxData.createUserProjectStaffComboBox(ui.cmbUsers, project);
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
-		}
+		}	
 	}
 	
 	private void updateTable() {
@@ -130,6 +133,16 @@ public class ProjectStaffView extends QWidget {
 	@SuppressWarnings("unused")
 	private void translate() {
         ui.retranslateUi(this);
+	}
+	
+	@SuppressWarnings("unused")
+	private void userAdded(Usr usr) {
+		updateData();
+	}
+	
+	@SuppressWarnings("unused")
+	private void userChanged() {
+		updateData();
 	}
 	
 }

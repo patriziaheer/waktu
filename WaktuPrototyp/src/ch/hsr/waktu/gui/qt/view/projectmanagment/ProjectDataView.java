@@ -109,7 +109,7 @@ public class ProjectDataView extends QWidget {
 	}
 
 	private void saveProject() {
-		project.setDescription(ui.lblDescription.text());
+		project.setDescription(ui.txtDescription.text());
 		project.setPlannedTime(ui.txtPlannedTime.value());
 		project.setProjectManager((Usr) ui.cmbProjectManager.itemData(ui.cmbProjectManager.currentIndex()));
 		project.setActiveState(!ui.checkBox.isChecked());

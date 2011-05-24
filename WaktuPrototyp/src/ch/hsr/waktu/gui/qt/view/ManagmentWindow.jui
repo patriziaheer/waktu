@@ -58,6 +58,7 @@
     <addaction name="actionAddProject"/>
     <addaction name="actionAddUser"/>
     <addaction name="menuLanguage"/>
+    <addaction name="actionLogout"/>
     <addaction name="actionClose"/>
    </widget>
    <widget class="QMenu" name="menuView">
@@ -115,6 +116,11 @@
    </property>
    <property name="text">
     <string>Inactiv Users</string>
+   </property>
+  </action>
+  <action name="actionLogout">
+   <property name="text">
+    <string>Logout</string>
    </property>
   </action>
  </widget>

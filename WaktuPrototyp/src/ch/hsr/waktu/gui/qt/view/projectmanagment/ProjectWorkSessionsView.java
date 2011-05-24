@@ -1,6 +1,8 @@
 package ch.hsr.waktu.gui.qt.view.projectmanagment;
 
 import ch.hsr.waktu.controller.TimeController;
+import ch.hsr.waktu.controller.datacontroller.UserController;
+import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
@@ -29,16 +31,8 @@ public class ProjectWorkSessionsView extends QWidget {
 
 	public void initialize() {
 		ui.setupUi(this);
-		try {
-			ComboBoxData.createUserComboBox(ui.cmbUser);
-		} catch (WaktuException e) {
-			errorMessage.emit(e.getMessage());
-		}
-		try {
-			ComboBoxData.createAllWorkPackageComboBox(ui.cmbWorkpackage, project);
-		} catch (WaktuException e) {
-			errorMessage.emit(e.getMessage());
-		}
+		userCombo();
+		workPackageCombo();
 		try {
 			workSessionModel = new ProjectWorkSessionModel(this.project);
 		} catch (WaktuException e) {
@@ -67,6 +61,9 @@ public class ProjectWorkSessionsView extends QWidget {
 		ui.txtEnd.setDate(new QDate(01,01,1900));
 
 		LanguageController.getInstance().languageChanged.connect(this, "translate()");
+		
+		WorkPackageController.getInstance().update.connect(this, "workPackageCombo()");
+		UserController.getInstance().update.connect(this, "userCombo()");
 	}
 	
 	@SuppressWarnings("unused")
@@ -153,5 +150,20 @@ public class ProjectWorkSessionsView extends QWidget {
         ui.retranslateUi(this);
 	}
 	
+	private void workPackageCombo() {
+		try {
+			ComboBoxData.createAllWorkPackageComboBox(ui.cmbWorkpackage, project);
+		} catch (WaktuException e) {
+			errorMessage.emit(e.getMessage());
+		}
+	}
 
+	private void userCombo() {
+		try {
+			ComboBoxData.createUserComboBox(ui.cmbUser);
+		} catch (WaktuException e) {
+			errorMessage.emit(e.getMessage());
+		}
+	}
+	
 }

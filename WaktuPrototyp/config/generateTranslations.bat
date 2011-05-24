@@ -2,6 +2,7 @@ lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_LoginDialog.java" -
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_ManagmentWindow.java" -ts ManagmentWindow_de.ts
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_TimeWindow.java" -ts TimeWindow_de.ts
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_Calendar.java" -ts Calendar_de.ts
+lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_IcsImport.java" -ts Ui_IcsImport_de.ts
 
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\projectmanagment\Ui_ProjectData.java" -ts ProjectData_de.ts
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\projectmanagment\Ui_ProjectStaff.java" -ts ProjectStaff_de.ts
@@ -14,7 +15,7 @@ lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\usermanagment\Ui_UserW
 
 
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\LoginView.java" -ts LoginView_de.ts
-lupdate "..\src\ch\hsr\waktu\gui\qt\view\ManagmentView.java" -ts ManagmentView_de.ts
+lupdate "..\src\ch\hsr\waktu\gui\qt\view\ManagmentView.java" -ts ManagementView_de.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\TimeView.java" -ts TimeView_de.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\CalendarWidget.java" -ts CalendarWidget_de.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\ProjectDetails.java" -ts ProjectDetails_de.ts
@@ -39,12 +40,18 @@ lupdate "..\src\ch\hsr\waktu\gui\qt\model\UserWorkSessionModel.java" -ts UserWor
 lupdate "..\src\ch\hsr\waktu\gui\qt\model\WorkSessionModel.java" -ts WorkSessionModel_de.ts
 
 
+lupdate "..\src\ch\hsr\waktu\controller\datacontroller\UserController.java" -ts UserController_de.ts
+lupdate "..\src\ch\hsr\waktu\controller\datacontroller\ProjectController.java" -ts ProjectController_de.ts
+lupdate "..\src\ch\hsr\waktu\domain\SystemRole.java" -ts SystemRole_de.ts
+
+
 
 
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_LoginDialog.java" -ts Login_en.ts
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_ManagmentWindow.java" -ts ManagmentWindow_en.ts
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_TimeWindow.java" -ts TimeWindow_en.ts
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_Calendar.java" -ts Calendar_en.ts
+lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_IcsImport.java" -ts Ui_IcsImport_en.ts
 
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\projectmanagment\Ui_ProjectData.java" -ts ProjectData_en.ts
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\projectmanagment\Ui_ProjectStaff.java" -ts ProjectStaff_en.ts
@@ -57,7 +64,7 @@ lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\usermanagment\Ui_UserW
 
 
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\LoginView.java" -ts LoginView_en.ts
-lupdate "..\src\ch\hsr\waktu\gui\qt\view\ManagmentView.java" -ts ManagmentView_en.ts
+lupdate "..\src\ch\hsr\waktu\gui\qt\view\ManagmentView.java" -ts ManagementView_en.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\TimeView.java" -ts TimeView_en.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\CalendarWidget.java" -ts CalendarWidget_en.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\view\ProjectDetails.java" -ts ProjectDetails_en.ts
@@ -80,3 +87,7 @@ lupdate "..\src\ch\hsr\waktu\gui\qt\model\ProjectWorkSessionModel.java" -ts Proj
 lupdate "..\src\ch\hsr\waktu\gui\qt\model\UserProjectsModel.java" -ts UserProjectsModel_en.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\model\UserWorkSessionModel.java" -ts UserWorkSessionModel_en.ts
 lupdate "..\src\ch\hsr\waktu\gui\qt\model\WorkSessionModel.java" -ts WorkSessionModel_en.ts
+
+lupdate "..\src\ch\hsr\waktu\controller\datacontroller\UserController.java" -ts UserController_en.ts
+lupdate "..\src\ch\hsr\waktu\controller\datacontroller\ProjectController.java" -ts ProjectController_en.ts
+lupdate "..\src\ch\hsr\waktu\domain\SystemRole.java" -ts SystemRole_en.ts

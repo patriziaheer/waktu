@@ -62,6 +62,14 @@ public class ComboBoxData {
 		}
 	}
 
+	public static void createAllWorkPackageComboBox(QComboBox cmb)
+			throws WaktuException {
+		cmb.clear();
+		for (WorkPackage wp : WorkPackageController.getInstance().getAllWorkPackages()) {
+			cmb.addItem(wp.toString(), wp);
+		}
+	}
+
 
 	public static void createWorkPackageComboBox(QComboBox cmb, Project project)
 			throws WaktuException {

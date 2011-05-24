@@ -6,7 +6,7 @@
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectStaff.java" line="63"/>
         <source>WorkPackage</source>
-        <translation>Workpackage</translation>
+        <translation>Work Package</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/projectmanagment/Ui_ProjectStaff.java" line="64"/>

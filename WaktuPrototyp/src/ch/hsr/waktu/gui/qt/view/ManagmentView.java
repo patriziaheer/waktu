@@ -21,6 +21,7 @@ public class ManagmentView extends QMainWindow {
 	//private Usr currUsr;
 	private ProjectDetails projectDetails;
 	private UserDetails userDetails;
+	public Signal0 logout = new Signal0();
 	
 	public ManagmentView(Usr usr) {
 		//currUsr = usr;
@@ -29,10 +30,10 @@ public class ManagmentView extends QMainWindow {
 		ui.tabWidget.removeTab(0);
 		projectDetails = new ProjectDetails();
 		projectDetails.errorMessage.connect(this, "showErrorMessage(String)");
-		ui.tabWidget.addTab(projectDetails, com.trolltech.qt.core.QCoreApplication.translate("ManagmentView",("Projects"), null));
+		ui.tabWidget.addTab(projectDetails, QCoreApplication.translate("ManagmentView","Projects"));
 		userDetails = new UserDetails(); 
 		userDetails.errorMessage.connect(this, "showErrorMessage(String)");
-		ui.tabWidget.addTab(userDetails, com.trolltech.qt.core.QCoreApplication.translate("ManagmentView",("Users"), null));
+		ui.tabWidget.addTab(userDetails, QCoreApplication.translate("ManagmentView","Users"));
 		
 		ui.actionAddUser.setVisible(GuiController.getInstance().canAddUser());
 		ui.actionAddProject.setVisible(GuiController.getInstance().canAddProject());
@@ -46,6 +47,7 @@ public class ManagmentView extends QMainWindow {
 		
 		ui.actionShow_Inactiv_Projects.changed.connect(this, "showInactivProjectsChanged()");
 		ui.actionInactiv_Users.changed.connect(this, "showInactivUsersChanged()");
+		ui.actionLogout.triggered.connect(this, "logoutClicked()");
 		
 		
 		
@@ -87,8 +89,8 @@ public class ManagmentView extends QMainWindow {
 	}
 
 	private void changeText() {
-		ui.tabWidget.setTabText(0, QCoreApplication.translate("ManagmentView",("Projects"), null));
-		ui.tabWidget.setTabText(1, QCoreApplication.translate("ManagmentView",("Users"), null));
+		ui.tabWidget.setTabText(0, QCoreApplication.translate("ManagmentView","Projects"));
+		ui.tabWidget.setTabText(1, QCoreApplication.translate("ManagmentView","Users"));
 	}
 
 	private void setStatusBarText(String text) {
@@ -107,31 +109,36 @@ public class ManagmentView extends QMainWindow {
 	protected void contextMenuEvent(QContextMenuEvent event) {
 		QMenu menu = new QMenu(this);
 		QAction actionAddProject = new QAction(QCoreApplication.translate(
-				"UserDetails", ("Add Project"), null), menu);
+				"ManagmentView", "Add Project"), menu);
 		actionAddProject.triggered.connect(this, "addProject()");
 		
 		QAction actionAddUser = new QAction(QCoreApplication.translate(
-				"UserDetails", ("Add User"), null), menu);
+				"ManagmentView", "Add User"), menu);
 		actionAddUser.triggered.connect(this, "addUser()");
 		
 		QMenu languageMenu = new QMenu(QCoreApplication.translate(
-				"UserDetails", ("Language"), null), menu);
+				"ManagmentView", "Language"), menu);
 		QAction actionDE = new QAction(QCoreApplication.translate(
-				"UserDetails", ("DE"), null), menu);
+				"ManagmentView", "DE"), menu);
 		actionDE.triggered.connect(this, "translateDE()");
 		QAction actionEN = new QAction(QCoreApplication.translate(
-				"UserDetails", ("EN"), null), menu);
+				"ManagmentView", "EN"), menu);
 		actionEN.triggered.connect(this, "translateEN()");
 		languageMenu.addAction(actionEN);
 		languageMenu.addAction(actionDE);
+
+		QAction logoutAction = new QAction(QCoreApplication.translate(
+				"TimeView", "Logout"), menu);
+		logoutAction.triggered.connect(this, "logoutClicked()");
 		
 		QAction closeAction = new QAction(QCoreApplication.translate(
-				"UserDetails", ("Close"), null), menu);
+				"ManagmentView", "Close"), menu);
 		closeAction.triggered.connect(this, "closeWindow()");
 		
 		menu.addAction(actionAddProject);
 		menu.addAction(actionAddUser);
 		menu.addMenu(languageMenu);
+		menu.addAction(logoutAction);
 		menu.addAction(closeAction);
 		menu.exec(event.globalPos());
 	}
@@ -144,5 +151,10 @@ public class ManagmentView extends QMainWindow {
 	@SuppressWarnings("unused")
 	private void showInactivUsersChanged() {
 		userDetails.showInactive(ui.actionInactiv_Users.isChecked());
+	}
+	
+	@SuppressWarnings("unused")
+	private void logoutClicked() {
+		logout.emit();
 	}
 }

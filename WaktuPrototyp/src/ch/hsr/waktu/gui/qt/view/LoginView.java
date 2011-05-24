@@ -78,7 +78,7 @@ public class LoginView extends QDialog {
 				TimeView timeView = new TimeView(usr);
 				timeView.show();
 				this.setCursor(new QCursor(CursorShape.ArrowCursor));
-				setVisible(false);
+				close();
 				splashScreen.finish(timeView);
 			} else {
 				setStatus(com.trolltech.qt.core.QCoreApplication

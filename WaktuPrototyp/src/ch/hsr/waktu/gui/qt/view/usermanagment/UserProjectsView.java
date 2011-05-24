@@ -1,5 +1,6 @@
 package ch.hsr.waktu.gui.qt.view.usermanagment;
 
+import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.controller.datacontroller.ProjectStaffController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.ProjectStaff;
@@ -57,6 +58,9 @@ public class UserProjectsView extends QWidget {
 		} else {
 			updateProjectModel();
 		}
+		
+		ProjectController.getInstance().add.connect(this, "projectAdded(Project)");
+		ProjectController.getInstance().update.connect(this, "projectUpdated()");
 	}
 
 	private void updateProjectModel() {
@@ -105,16 +109,15 @@ public class UserProjectsView extends QWidget {
 
 	@SuppressWarnings("unused")
 	private void added(ProjectStaff projectStaff) {
-		updateTable();
-		try {
-			ComboBoxData.createProjectProjectStaffComboBox(ui.cmbProjects, usr);
-		} catch (WaktuException e) {
-			errorMessage.emit(e.getMessage());
-		}
+		updateData();
 	}
 
 	@SuppressWarnings("unused")
 	private void removed(ProjectStaff projectStaff) {
+		updateData();
+	}
+	
+	private void updateData() {
 		updateTable();
 		try {
 			ComboBoxData.createProjectProjectStaffComboBox(ui.cmbProjects, usr);
@@ -143,5 +146,15 @@ public class UserProjectsView extends QWidget {
 	@SuppressWarnings("unused")
 	private void translate() {
 		ui.retranslateUi(this);
+	}
+	
+	@SuppressWarnings("unused")
+	private void projectAdded(Project proj) {
+		updateData();
+	}
+	
+	@SuppressWarnings("unused")
+	private void projectUpdated() {
+		updateData();
 	}
 }

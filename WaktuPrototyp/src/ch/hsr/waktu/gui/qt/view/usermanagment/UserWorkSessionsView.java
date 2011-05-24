@@ -1,6 +1,8 @@
 package ch.hsr.waktu.gui.qt.view.usermanagment;
 
 import ch.hsr.waktu.controller.TimeController;
+import ch.hsr.waktu.controller.datacontroller.ProjectController;
+import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
@@ -30,16 +32,8 @@ public class UserWorkSessionsView extends QWidget{
 	public void initialize() {
 		ui.setupUi(this);
 		
-		try {
-			ComboBoxData.createAllProjectComboBox(ui.cmbProject);
-		} catch (WaktuException e) {
-			errorMessage.emit(e.getMessage());
-		}
-		try {
-			ComboBoxData.createAllWorkPackageComboBox(ui.cmbWorkpackage, (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
-		} catch (WaktuException e) {
-			errorMessage.emit(e.getMessage());
-		}
+		projectCombo();
+		workPackageCombo(null);
 		try {
 			workSessionModel = new UserWorkSessionModel(usr);
 		} catch (WaktuException e) {
@@ -69,6 +63,12 @@ public class UserWorkSessionsView extends QWidget{
 		}
 		
 		LanguageController.getInstance().languageChanged.connect(this, "translate()");
+		
+		WorkPackageController.getInstance().add.connect(this, "workPackageAdded(WorkPackage)");
+		WorkPackageController.getInstance().update.connect(this, "workPackageUpdated()");
+		
+		ProjectController.getInstance().add.connect(this, "projectAdded(Project)");
+		ProjectController.getInstance().update.connect(this, "projectUpdated()");
 	}
 	
 	@SuppressWarnings("unused")
@@ -125,11 +125,7 @@ public class UserWorkSessionsView extends QWidget{
 	
 	@SuppressWarnings("unused")
 	private void projectChanged() {
-		try {
-			ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
-		} catch (WaktuException e) {
-			errorMessage.emit(e.getMessage());
-		}
+		workPackageCombo((Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
 	}
 
 	@SuppressWarnings("unused")
@@ -163,6 +159,47 @@ public class UserWorkSessionsView extends QWidget{
 	@SuppressWarnings("unused")
 	private void translate() {
         ui.retranslateUi(this);
+	}
+
+	private void workPackageCombo(Project proj) {
+		try {
+			if (proj == null) {
+				ComboBoxData.createAllWorkPackageComboBox(ui.cmbWorkpackage);
+			} else {
+				ComboBoxData.createAllWorkPackageComboBox(ui.cmbWorkpackage, proj);
+			}
+		} catch (WaktuException e) {
+			errorMessage.emit(e.getMessage());
+		}
+	}
+
+	public void projectCombo() {
+		try {
+			ComboBoxData.createAllProjectComboBox(ui.cmbProject);
+		} catch (WaktuException e) {
+			errorMessage.emit(e.getMessage());
+		}
+	}
+	
+
+	@SuppressWarnings("unused")
+	private void workPackageAdded(WorkPackage workPackage) {
+		workPackageCombo((Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
+	}
+	
+	@SuppressWarnings("unused")
+	private void workPackageUpdated() {
+		workPackageCombo((Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
+	}
+	
+	@SuppressWarnings("unused")
+	private void projectAdded(Project project) {
+		projectCombo();
+	}
+	
+	@SuppressWarnings("unused")
+	private void projectUpdated() {
+		projectCombo();
 	}
 	
 }

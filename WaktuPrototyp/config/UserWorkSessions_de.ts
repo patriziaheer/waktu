@@ -16,7 +16,7 @@
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="146"/>
         <source>Datefilter</source>
-        <translation type="unfinished"></translation>
+        <translation>Datumsfilter</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/usermanagment/Ui_UserWorkSessions.java" line="147"/>
