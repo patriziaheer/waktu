@@ -80,7 +80,7 @@ public class UserController extends QSignalEmitter {
 
 		try {
 			activeUsers = em.createQuery(
-					"SELECT u FROM Usr u WHERE u.active = 'TRUE'")
+					"SELECT u FROM Usr u WHERE u.active = 'TRUE' ORDER BY u.firstname")
 					.getResultList();
 		} catch (Exception e) {
 			handleException(e);			
@@ -103,7 +103,7 @@ public class UserController extends QSignalEmitter {
 		}
 
 		try {
-			allUsers = em.createQuery("SELECT u FROM Usr u").getResultList();
+			allUsers = em.createQuery("SELECT u FROM Usr u ORDER BY u.firstname").getResultList();
 		} catch (Exception e) {
 			handleException(e);			
 		} finally {
@@ -126,7 +126,7 @@ public class UserController extends QSignalEmitter {
 
 		try {
 			inactiveUsers = em.createQuery(
-					"SELECT u FROM Usr u WHERE u.active = 'FALSE'")
+					"SELECT u FROM Usr u WHERE u.active = 'FALSE' ORDER BY u.firstname")
 					.getResultList();
 		} catch (Exception e) {
 			handleException(e);			
@@ -150,7 +150,7 @@ public class UserController extends QSignalEmitter {
 
 		try {
 			allProjectManagers = em.createQuery(
-					"SELECT u FROM Project p JOIN p.projectManager u")
+					"SELECT u FROM Project p JOIN p.projectManager u ORDER BY u.firstname")
 					.getResultList();
 		} catch (Exception e) {
 			handleException(e);			
