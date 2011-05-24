@@ -161,6 +161,8 @@ public class TimeView extends QMainWindow {
 		ui.actionEN.triggered.connect(this, "translateEN()");
 		ui.actionIcs_Import.triggered.connect(this, "icsImportClicked()");
 		ui.actionLogout.triggered.connect(this, "logoutClicked()");
+		
+		setLanguageChecked();
 
 		LanguageController.getInstance().languageChanged.connect(this,"translate()");
 		managmentView.logout.connect(this, "logoutClicked()");
@@ -174,7 +176,7 @@ public class TimeView extends QMainWindow {
 	}
 
 	private void setStatusBarText(String text) {
-		ui.statusBar.showMessage(text, 2000);
+		ui.statusBar.showMessage(text, 5000);
 		QPalette palette = ui.statusBar.palette();
 		palette.setBrush(ColorRole.WindowText, new QBrush(QColor.red));
 		ui.statusBar.setPalette(palette);
@@ -244,7 +246,9 @@ public class TimeView extends QMainWindow {
 	private void updateFavoriteTable() {
 		updateFavoriteModel();
 		try {
-			favoriteModel.updateFavoriteModel();
+			if (favoriteModel != null) {
+				favoriteModel.updateFavoriteModel();
+			}
 		} catch (WaktuException e) {
 
 			setStatusBarText(e.getMessage());
@@ -260,7 +264,9 @@ public class TimeView extends QMainWindow {
 	private void updateWorkSessionTable() {
 		updateWorkSessionModel();
 		try {
-			workSessionModel.updateModel(currUser, calendar.getCurrentDate());
+			if (workSessionModel != null) {
+				workSessionModel.updateModel(currUser, calendar.getCurrentDate());
+			}
 		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}
@@ -614,6 +620,7 @@ public class TimeView extends QMainWindow {
 	@SuppressWarnings("unused")
 	private void translate() {
 		ui.retranslateUi(this);
+		setLanguageChecked();
 	}
 	
 	@SuppressWarnings("unused")
@@ -658,12 +665,22 @@ public class TimeView extends QMainWindow {
 				"TimeView", "Language"), menu);
 		QAction actionDE = new QAction(QCoreApplication.translate(
 				"TimeView", "DE"), menu);
+		actionDE.setCheckable(true);
 		actionDE.triggered.connect(this, "translateDE()");
 		QAction actionEN = new QAction(QCoreApplication.translate(
 				"TimeView", "EN"), menu);
+		actionEN.setCheckable(true);
 		actionEN.triggered.connect(this, "translateEN()");
 		languageMenu.addAction(actionEN);
 		languageMenu.addAction(actionDE);
+		if (LanguageController.getInstance().getCurrLanguage() == Language.DE) {
+			actionDE.setChecked(true);
+			actionEN.setChecked(false);
+		} else if (LanguageController.getInstance().getCurrLanguage() == Language.EN) {
+			actionDE.setChecked(false);
+			actionEN.setChecked(true);
+		}
+
 		
 		QAction logoutAction = new QAction(QCoreApplication.translate(
 				"TimeView", "Logout"), menu);
@@ -731,6 +748,16 @@ public class TimeView extends QMainWindow {
 			ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, project, wp);
 		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
+		}
+	}
+	
+	private void setLanguageChecked() {
+		if (LanguageController.getInstance().getCurrLanguage() == Language.DE) {
+			ui.actionDE.setChecked(true);
+			ui.actionEN.setChecked(false);
+		} else if (LanguageController.getInstance().getCurrLanguage() == Language.EN) {
+			ui.actionDE.setChecked(false);
+			ui.actionEN.setChecked(true);
 		}
 	}
 }

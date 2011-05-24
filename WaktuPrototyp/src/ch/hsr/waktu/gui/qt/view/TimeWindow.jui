@@ -376,11 +376,17 @@
    </property>
   </action>
   <action name="actionEN">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>EN</string>
    </property>
   </action>
   <action name="actionDE">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>DE</string>
    </property>

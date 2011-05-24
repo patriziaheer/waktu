@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ManagmentWindow.jui'
 **
-** Created: Di. Mai 24 10:16:44 2011
+** Created: Di. Mai 24 13:33:31 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -50,8 +50,10 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         actionAddUser.setObjectName("actionAddUser");
         actionEN = new QAction(ManagmentWindow);
         actionEN.setObjectName("actionEN");
+        actionEN.setCheckable(true);
         actionDE = new QAction(ManagmentWindow);
         actionDE.setObjectName("actionDE");
+        actionDE.setCheckable(true);
         actionShow_Inactiv_Projects = new QAction(ManagmentWindow);
         actionShow_Inactiv_Projects.setObjectName("actionShow_Inactiv_Projects");
         actionShow_Inactiv_Projects.setCheckable(true);

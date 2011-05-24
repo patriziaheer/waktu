@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'TimeWindow.jui'
 **
-** Created: Di. Mai 24 10:16:44 2011
+** Created: Di. Mai 24 13:33:31 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -86,8 +86,10 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         actionAdd_to_Favorites.setObjectName("actionAdd_to_Favorites");
         actionEN = new QAction(TimeWindow);
         actionEN.setObjectName("actionEN");
+        actionEN.setCheckable(true);
         actionDE = new QAction(TimeWindow);
         actionDE.setObjectName("actionDE");
+        actionDE.setCheckable(true);
         actionIcs_Import = new QAction(TimeWindow);
         actionIcs_Import.setObjectName("actionIcs_Import");
         actionLogout = new QAction(TimeWindow);

@@ -98,10 +98,10 @@ public class UserProjectsView extends QWidget {
 	@SuppressWarnings("unused")
 	private void addProject() {
 		try {
-			ProjectStaffController.getInstance().addProjectStaff(
-					usr,
-					(Project) ui.cmbProjects.itemData(ui.cmbProjects
-							.currentIndex()));
+			Project proj = (Project) ui.cmbProjects.itemData(ui.cmbProjects.currentIndex());
+			if (proj != null) {
+				ProjectStaffController.getInstance().addProjectStaff(usr, proj);
+			}
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}

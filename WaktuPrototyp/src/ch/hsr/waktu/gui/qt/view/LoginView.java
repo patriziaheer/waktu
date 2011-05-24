@@ -41,8 +41,10 @@ public class LoginView extends QDialog {
 		fileMenu = new QMenu();
 		languageMenu = new QMenu();
 		translateDEAction = new QAction(languageMenu);
+		translateDEAction.setCheckable(true);
 		translateDEAction.triggered.connect(this, "translateDE()");
 		translateENAction = new QAction(languageMenu);
+		translateENAction.setCheckable(true);
 		translateENAction.triggered.connect(this, "translateEN()");
 		closeAction = new QAction(fileMenu);
 		closeAction.triggered.connect(this, "closeClicked()");
@@ -58,6 +60,8 @@ public class LoginView extends QDialog {
 
 		this.layout().setMenuBar(menuBar);
 		changeText();
+		
+		setLanguageChecked();
 	}
 
 	@SuppressWarnings("unused")
@@ -117,6 +121,7 @@ public class LoginView extends QDialog {
 	private void translate() {
 		ui.retranslateUi(this);
 		changeText();
+		setLanguageChecked();
 	}
 
 	private void changeText() {
@@ -130,6 +135,16 @@ public class LoginView extends QDialog {
 				.translate("LoginView", "EN", null));
 		closeAction.setText(QCoreApplication.translate(
 				"LoginView", "Close", null));
+	}
+	
+	private void setLanguageChecked() {
+		if (LanguageController.getInstance().getCurrLanguage() == Language.DE) {
+			translateDEAction.setChecked(true);
+			translateENAction.setChecked(false);
+		} else if (LanguageController.getInstance().getCurrLanguage() == Language.EN) {
+			translateDEAction.setChecked(false);
+			translateENAction.setChecked(true);
+		}
 	}
 	
 	

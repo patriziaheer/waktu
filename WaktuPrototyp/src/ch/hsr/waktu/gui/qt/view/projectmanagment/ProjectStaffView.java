@@ -91,7 +91,10 @@ public class ProjectStaffView extends QWidget {
 	@SuppressWarnings("unused")
 	private void addUser() {
 		try {
-			ProjectStaffController.getInstance().addProjectStaff((Usr)ui.cmbUsers.itemData(ui.cmbUsers.currentIndex()), project);
+			Usr usr = (Usr)ui.cmbUsers.itemData(ui.cmbUsers.currentIndex());
+			if (usr != null) {
+				ProjectStaffController.getInstance().addProjectStaff(usr, project);
+			}
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}

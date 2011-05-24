@@ -2,7 +2,7 @@ lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_LoginDialog.java" -
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_ManagmentWindow.java" -ts ManagmentWindow_de.ts
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_TimeWindow.java" -ts TimeWindow_de.ts
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_Calendar.java" -ts Calendar_de.ts
-lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_IcsImport.java" -ts Ui_IcsImport_de.ts
+lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_IcsImport.java" -ts IcsImport_de.ts
 
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\projectmanagment\Ui_ProjectData.java" -ts ProjectData_de.ts
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\projectmanagment\Ui_ProjectStaff.java" -ts ProjectStaff_de.ts
@@ -51,7 +51,7 @@ lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_LoginDialog.java" -
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_ManagmentWindow.java" -ts ManagmentWindow_en.ts
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_TimeWindow.java" -ts TimeWindow_en.ts
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_Calendar.java" -ts Calendar_en.ts
-lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_IcsImport.java" -ts Ui_IcsImport_en.ts
+lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\Ui_IcsImport.java" -ts IcsImport_en.ts
 
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\projectmanagment\Ui_ProjectData.java" -ts ProjectData_en.ts
 lupdate "..\Generated JUIC files\ch\hsr\waktu\gui\qt\view\projectmanagment\Ui_ProjectStaff.java" -ts ProjectStaff_en.ts
