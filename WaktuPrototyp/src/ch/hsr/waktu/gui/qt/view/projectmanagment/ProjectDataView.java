@@ -93,6 +93,11 @@ public class ProjectDataView extends QWidget {
 			ui.txtPlannedTime.setEnabled(true);
 			ui.checkBox.setEnabled(true);
 			ui.cmbProjectManager.setEnabled(true);
+			try {
+				ComboBoxData.createProjectManagerComboBox(ui.cmbProjectManager, null);
+			} catch (WaktuException e) {
+				errorMessage.emit(e.getMessage());
+			}
 		}
 	}
 
