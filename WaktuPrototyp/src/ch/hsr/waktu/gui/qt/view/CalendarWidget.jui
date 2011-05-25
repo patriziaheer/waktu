@@ -28,6 +28,9 @@
     <height>100</height>
    </size>
   </property>
+  <property name="focusPolicy">
+   <enum>com.trolltech.qt.core.Qt.FocusPolicy.TabFocus</enum>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
@@ -362,6 +365,18 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>btnToday</tabstop>
+  <tabstop>btnLeft</tabstop>
+  <tabstop>btnRight</tabstop>
+  <tabstop>btnMo</tabstop>
+  <tabstop>btnDi</tabstop>
+  <tabstop>btnMi</tabstop>
+  <tabstop>btnDo</tabstop>
+  <tabstop>btnFri</tabstop>
+  <tabstop>btnSa</tabstop>
+  <tabstop>btnSo</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

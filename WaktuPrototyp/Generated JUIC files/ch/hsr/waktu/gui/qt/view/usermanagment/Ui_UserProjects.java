@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'UserProjects.jui'
 **
-** Created: Mo. Mai 23 11:19:09 2011
+** Created: Mi. Mai 25 17:38:32 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -31,6 +31,7 @@ public class Ui_UserProjects implements com.trolltech.qt.QUiForm<QWidget>
         sizePolicy.setHeightForWidth(UserProjects.sizePolicy().hasHeightForWidth());
         UserProjects.setSizePolicy(sizePolicy);
         UserProjects.setMinimumSize(new QSize(800, 360));
+        UserProjects.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         gridLayout = new QGridLayout(UserProjects);
         gridLayout.setMargin(12);
         gridLayout.setObjectName("gridLayout");
@@ -51,9 +52,12 @@ public class Ui_UserProjects implements com.trolltech.qt.QUiForm<QWidget>
         sizePolicy1.setVerticalStretch((byte)0);
         sizePolicy1.setHeightForWidth(btnAdd.sizePolicy().hasHeightForWidth());
         btnAdd.setSizePolicy(sizePolicy1);
+        btnAdd.setDefault(true);
 
         gridLayout.addWidget(btnAdd, 1, 1, 1, 1);
 
+        QWidget.setTabOrder(tblProjects, cmbProjects);
+        QWidget.setTabOrder(cmbProjects, btnAdd);
         retranslateUi(UserProjects);
 
         UserProjects.connectSlotsByName();

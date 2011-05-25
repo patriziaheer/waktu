@@ -246,6 +246,8 @@ public class TimeView extends QMainWindow {
 		try {
 			if (favoriteModel != null) {
 				favoriteModel.updateFavoriteModel();
+			} else {
+				favoriteModel = new FavoriteModel(currUser);
 			}
 		} catch (WaktuException e) {
 
@@ -257,6 +259,7 @@ public class TimeView extends QMainWindow {
 				favoriteModel.index(favoriteModel.rowCount(),
 						favoriteModel.columnCount()));
 		favoriteModel.layoutChanged.emit();
+		updateTimeInfos();
 	}
 
 	private void updateWorkSessionTable() {
@@ -264,6 +267,8 @@ public class TimeView extends QMainWindow {
 		try {
 			if (workSessionModel != null) {
 				workSessionModel.updateModel(currUser, calendar.getCurrentDate());
+			} else {
+				workSessionModel = new WorkSessionModel(currUser, calendar.getCurrentDate());
 			}
 		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
@@ -273,6 +278,7 @@ public class TimeView extends QMainWindow {
 				workSessionModel.index(workSessionModel.rowCount(),
 						workSessionModel.columnCount()));
 		workSessionModel.layoutChanged.emit();
+		updateTimeInfos();
 	}
 
 	private void updateTimeInfos() {
@@ -515,17 +521,7 @@ public class TimeView extends QMainWindow {
 
 	@SuppressWarnings("unused")
 	private void workSessionUpdated() {
-		try {
-			workSessionModel.updateModel(currUser, calendar.getCurrentDate());
-		} catch (WaktuException e) {
-			setStatusBarText(e.getMessage());
-		}
-		workSessionModel.layoutAboutToBeChanged.emit();
-		workSessionModel.dataChanged.emit(workSessionModel.index(0, 0),
-				workSessionModel.index(workSessionModel.rowCount(),
-						workSessionModel.columnCount()));
-		workSessionModel.layoutChanged.emit();
-		updateTimeInfos();
+		updateWorkSessionTable();
 	}
 
 	@SuppressWarnings("unused")

@@ -10,6 +10,9 @@
     <height>536</height>
    </rect>
   </property>
+  <property name="focusPolicy">
+   <enum>com.trolltech.qt.core.Qt.FocusPolicy.TabFocus</enum>
+  </property>
   <property name="windowTitle">
    <string>Time Window</string>
   </property>
@@ -402,6 +405,20 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>txtStart</tabstop>
+  <tabstop>txtEnd</tabstop>
+  <tabstop>cmbProject</tabstop>
+  <tabstop>cmbWorkpackage</tabstop>
+  <tabstop>txtDescription</tabstop>
+  <tabstop>btnReset</tabstop>
+  <tabstop>btnCreate</tabstop>
+  <tabstop>tblFavorites</tabstop>
+  <tabstop>btnTimeOnly</tabstop>
+  <tabstop>btnWorkPackageOnly</tabstop>
+  <tabstop>btnCreateFavorite</tabstop>
+  <tabstop>tblWorksessions</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

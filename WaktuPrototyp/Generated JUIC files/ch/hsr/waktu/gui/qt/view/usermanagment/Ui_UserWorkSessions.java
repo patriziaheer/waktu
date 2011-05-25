@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'UserWorkSessions.jui'
 **
-** Created: Mo. Mai 23 11:18:32 2011
+** Created: Mi. Mai 25 17:38:32 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -40,6 +40,7 @@ public class Ui_UserWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
         sizePolicy.setHeightForWidth(UserWorkSessions.sizePolicy().hasHeightForWidth());
         UserWorkSessions.setSizePolicy(sizePolicy);
         UserWorkSessions.setMinimumSize(new QSize(800, 360));
+        UserWorkSessions.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         gridLayout = new QGridLayout(UserWorkSessions);
         gridLayout.setMargin(12);
         gridLayout.setObjectName("gridLayout");
@@ -115,6 +116,7 @@ public class Ui_UserWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
 
         btnAddFilter = new QPushButton(UserWorkSessions);
         btnAddFilter.setObjectName("btnAddFilter");
+        btnAddFilter.setDefault(true);
 
         gridLayout.addWidget(btnAddFilter, 0, 3, 1, 1);
 
@@ -134,6 +136,13 @@ public class Ui_UserWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
 
         gridLayout.addWidget(lblTotalTime, 2, 4, 1, 1);
 
+        QWidget.setTabOrder(cmbProject, cmbWorkpackage);
+        QWidget.setTabOrder(cmbWorkpackage, txtStart);
+        QWidget.setTabOrder(txtStart, txtEnd);
+        QWidget.setTabOrder(txtEnd, chkFilterDate);
+        QWidget.setTabOrder(chkFilterDate, btnAddFilter);
+        QWidget.setTabOrder(btnAddFilter, btnRemoveFilter);
+        QWidget.setTabOrder(btnRemoveFilter, tblWorkSessions);
         retranslateUi(UserWorkSessions);
 
         UserWorkSessions.connectSlotsByName();

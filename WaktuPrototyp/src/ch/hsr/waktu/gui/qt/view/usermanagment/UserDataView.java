@@ -39,8 +39,6 @@ public class UserDataView extends QWidget {
 		WorkSessionController.getInstance().removed.connect(this,
 				"workSessionChanged(WorkSession)");
 
-		ui.txtUnvisbileField.setVisible(false);
-
 		LanguageController.getInstance().languageChanged.connect(this,
 				"translate()");
 		setFields();
@@ -131,7 +129,7 @@ public class UserDataView extends QWidget {
 			ui.cmbRole.setEnabled(true);
 		}
 	}
-
+	
 	private void updateTimeInfos() {
 		ui.lblPlannedDay.setText("" + TimeController.HOURS_PER_WORKDAY);
 		try {

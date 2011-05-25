@@ -121,7 +121,11 @@ public class ProjectStaffView extends QWidget {
 	
 	private void updateTable() {
 		try {
-			projectStaffModel.updateProjectStaffModel();
+			if (projectStaffModel != null) {
+				projectStaffModel.updateProjectStaffModel();
+			} else {
+				projectStaffModel = new ProjectStaffModel(project);
+			}
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}

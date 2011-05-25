@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'CalendarWidget.jui'
 **
-** Created: Mi. Mai 25 16:28:25 2011
+** Created: Mi. Mai 25 17:38:32 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -45,6 +45,7 @@ public class Ui_Calendar implements com.trolltech.qt.QUiForm<QWidget>
         Calendar.setSizePolicy(sizePolicy);
         Calendar.setMinimumSize(new QSize(0, 100));
         Calendar.setMaximumSize(new QSize(16777215, 100));
+        Calendar.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         gridLayout = new QGridLayout(Calendar);
         gridLayout.setObjectName("gridLayout");
         btnMo = new QPushButton(Calendar);
@@ -207,6 +208,15 @@ public class Ui_Calendar implements com.trolltech.qt.QUiForm<QWidget>
 
         gridLayout.addWidget(lblLogo, 0, 0, 2, 1);
 
+        QWidget.setTabOrder(btnToday, btnLeft);
+        QWidget.setTabOrder(btnLeft, btnRight);
+        QWidget.setTabOrder(btnRight, btnMo);
+        QWidget.setTabOrder(btnMo, btnDi);
+        QWidget.setTabOrder(btnDi, btnMi);
+        QWidget.setTabOrder(btnMi, btnDo);
+        QWidget.setTabOrder(btnDo, btnFri);
+        QWidget.setTabOrder(btnFri, btnSa);
+        QWidget.setTabOrder(btnSa, btnSo);
         retranslateUi(Calendar);
 
         Calendar.connectSlotsByName();

@@ -128,7 +128,11 @@ public class UserProjectsView extends QWidget {
 
 	private void updateTable() {
 		try {
-			projectsModel.updateProjectsModel();
+			if (projectsModel != null) {
+				projectsModel.updateProjectsModel();
+			} else {
+				projectsModel = new UserProjectsModel(usr);
+			}
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}

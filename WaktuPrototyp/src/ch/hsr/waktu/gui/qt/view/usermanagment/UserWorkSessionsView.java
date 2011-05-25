@@ -145,7 +145,11 @@ public class UserWorkSessionsView extends QWidget{
 	
 	private void updateWorkSessionTable() {
 		try {
-			workSessionModel.updateWorkSessionModel();
+			if (workSessionModel != null) {
+				workSessionModel.updateWorkSessionModel();
+			} else {
+				workSessionModel = new UserWorkSessionModel(usr);
+			}
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}

@@ -34,7 +34,7 @@ public class ProjectWorkSessionsView extends QWidget {
 		userCombo();
 		workPackageCombo();
 		try {
-			workSessionModel = new ProjectWorkSessionModel(this.project);
+			workSessionModel = new ProjectWorkSessionModel(project);
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
@@ -134,7 +134,11 @@ public class ProjectWorkSessionsView extends QWidget {
 	
 	private void updateWorkSessionTable() {
 		try {
-			workSessionModel.updateWorkSessionModel();
+			if (workSessionModel != null) {
+				workSessionModel.updateWorkSessionModel();
+			} else {
+				workSessionModel = new ProjectWorkSessionModel(project);
+			}
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}

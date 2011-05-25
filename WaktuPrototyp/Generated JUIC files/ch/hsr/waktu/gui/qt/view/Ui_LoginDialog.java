@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'LoginDialog.jui'
 **
-** Created: Mo. Mai 9 13:41:05 2011
+** Created: Mi. Mai 25 17:38:32 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -36,6 +36,7 @@ public class Ui_LoginDialog implements com.trolltech.qt.QUiForm<QDialog>
         LoginDialog.setSizePolicy(sizePolicy);
         LoginDialog.setMinimumSize(new QSize(400, 150));
         LoginDialog.setMaximumSize(new QSize(400, 150));
+        LoginDialog.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         LoginDialog.setSizeGripEnabled(false);
         LoginDialog.setModal(false);
         gridLayout = new QGridLayout(LoginDialog);
@@ -78,6 +79,9 @@ public class Ui_LoginDialog implements com.trolltech.qt.QUiForm<QDialog>
 
         gridLayout.addWidget(lblStatus, 3, 0, 1, 3);
 
+        QWidget.setTabOrder(txtUsername, txtPassword);
+        QWidget.setTabOrder(txtPassword, btnCancel);
+        QWidget.setTabOrder(btnCancel, btnLogin);
         retranslateUi(LoginDialog);
 
         LoginDialog.connectSlotsByName();

@@ -22,6 +22,9 @@
     <height>360</height>
    </size>
   </property>
+  <property name="focusPolicy">
+   <enum>com.trolltech.qt.core.Qt.FocusPolicy.TabFocus</enum>
+  </property>
   <property name="windowTitle">
    <string>UserProjects</string>
   </property>
@@ -46,10 +49,18 @@
      <property name="text">
       <string>Add</string>
      </property>
+     <property name="default">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>tblProjects</tabstop>
+  <tabstop>cmbProjects</tabstop>
+  <tabstop>btnAdd</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

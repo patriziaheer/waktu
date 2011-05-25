@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'TimeWindow.jui'
 **
-** Created: Mi. Mai 25 16:19:40 2011
+** Created: Mi. Mai 25 17:38:32 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -78,6 +78,7 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
     {
         TimeWindow.setObjectName("TimeWindow");
         TimeWindow.resize(new QSize(701, 536).expandedTo(TimeWindow.minimumSizeHint()));
+        TimeWindow.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         actionClose = new QAction(TimeWindow);
         actionClose.setObjectName("actionClose");
         actionOpenManagment = new QAction(TimeWindow);
@@ -329,6 +330,17 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         menuLanguage = new QMenu(menuFile);
         menuLanguage.setObjectName("menuLanguage");
         TimeWindow.setMenuBar(menuBar);
+        QWidget.setTabOrder(txtStart, txtEnd);
+        QWidget.setTabOrder(txtEnd, cmbProject);
+        QWidget.setTabOrder(cmbProject, cmbWorkpackage);
+        QWidget.setTabOrder(cmbWorkpackage, txtDescription);
+        QWidget.setTabOrder(txtDescription, btnReset);
+        QWidget.setTabOrder(btnReset, btnCreate);
+        QWidget.setTabOrder(btnCreate, tblFavorites);
+        QWidget.setTabOrder(tblFavorites, btnTimeOnly);
+        QWidget.setTabOrder(btnTimeOnly, btnWorkPackageOnly);
+        QWidget.setTabOrder(btnWorkPackageOnly, btnCreateFavorite);
+        QWidget.setTabOrder(btnCreateFavorite, tblWorksessions);
 
         menuBar.addAction(menuFile.menuAction());
         menuBar.addAction(menuManagment.menuAction());

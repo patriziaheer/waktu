@@ -22,6 +22,9 @@
     <height>360</height>
    </size>
   </property>
+  <property name="focusPolicy">
+   <enum>com.trolltech.qt.core.Qt.FocusPolicy.TabFocus</enum>
+  </property>
   <property name="windowTitle">
    <string>ProjectData</string>
   </property>
@@ -112,6 +115,14 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>txtProjectnumber</tabstop>
+  <tabstop>txtDescription</tabstop>
+  <tabstop>cmbProjectManager</tabstop>
+  <tabstop>txtPlannedTime</tabstop>
+  <tabstop>checkBox</tabstop>
+  <tabstop>btnAdd</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

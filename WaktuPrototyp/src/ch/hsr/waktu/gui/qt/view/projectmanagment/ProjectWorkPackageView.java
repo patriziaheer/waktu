@@ -79,7 +79,11 @@ public class ProjectWorkPackageView extends QWidget{
 	}
 
 	public void updateTable() {
-		workPackageModel.updateWorkPackageModel();
+		if (workPackageModel != null) {
+			workPackageModel.updateWorkPackageModel();
+		} else {
+			workPackageModel = new ProjectWorkPackageModel(project);
+		}
 		workPackageModel.layoutAboutToBeChanged.emit();
 		workPackageModel.dataChanged.emit(workPackageModel.index(0, 0), workPackageModel.index(workPackageModel.rowCount(), workPackageModel.columnCount()));
 		workPackageModel.layoutChanged.emit();

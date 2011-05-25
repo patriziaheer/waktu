@@ -22,6 +22,9 @@
     <height>360</height>
    </size>
   </property>
+  <property name="focusPolicy">
+   <enum>com.trolltech.qt.core.Qt.FocusPolicy.TabFocus</enum>
+  </property>
   <property name="windowTitle">
    <string>WorkSessions</string>
   </property>

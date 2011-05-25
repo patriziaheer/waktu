@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ProjectWorkSessions.jui'
 **
-** Created: Mo. Mai 23 11:18:32 2011
+** Created: Mi. Mai 25 17:38:32 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -40,6 +40,7 @@ public class Ui_ProjectWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
         sizePolicy.setHeightForWidth(ProjectWorkSessions.sizePolicy().hasHeightForWidth());
         ProjectWorkSessions.setSizePolicy(sizePolicy);
         ProjectWorkSessions.setMinimumSize(new QSize(800, 360));
+        ProjectWorkSessions.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         gridLayout = new QGridLayout(ProjectWorkSessions);
         gridLayout.setObjectName("gridLayout");
         cmbWorkpackage = new QComboBox(ProjectWorkSessions);

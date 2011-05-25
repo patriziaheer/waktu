@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'UserData.jui'
 **
-** Created: Mo. Mai 23 11:19:09 2011
+** Created: Mi. Mai 25 17:38:32 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -41,7 +41,6 @@ public class Ui_UserData implements com.trolltech.qt.QUiForm<QWidget>
     public QLabel lblPassword;
     public QLabel lblUsername;
     public QLineEdit txtUserName;
-    public QLineEdit txtUnvisbileField;
 
     public Ui_UserData() { super(); }
 
@@ -55,49 +54,50 @@ public class Ui_UserData implements com.trolltech.qt.QUiForm<QWidget>
         sizePolicy.setHeightForWidth(UserData.sizePolicy().hasHeightForWidth());
         UserData.setSizePolicy(sizePolicy);
         UserData.setMinimumSize(new QSize(800, 360));
+        UserData.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         gridLayout = new QGridLayout(UserData);
         gridLayout.setMargin(12);
         gridLayout.setObjectName("gridLayout");
         lblName = new QLabel(UserData);
         lblName.setObjectName("lblName");
 
-        gridLayout.addWidget(lblName, 2, 0, 1, 1);
+        gridLayout.addWidget(lblName, 1, 0, 1, 1);
 
         txtName = new QLineEdit(UserData);
         txtName.setObjectName("txtName");
 
-        gridLayout.addWidget(txtName, 2, 1, 1, 3);
+        gridLayout.addWidget(txtName, 1, 1, 1, 3);
 
         txtFirstname = new QLineEdit(UserData);
         txtFirstname.setObjectName("txtFirstname");
 
-        gridLayout.addWidget(txtFirstname, 3, 1, 1, 3);
+        gridLayout.addWidget(txtFirstname, 2, 1, 1, 3);
 
         lblPensum = new QLabel(UserData);
         lblPensum.setObjectName("lblPensum");
 
-        gridLayout.addWidget(lblPensum, 5, 0, 1, 1);
+        gridLayout.addWidget(lblPensum, 4, 0, 1, 1);
 
         txtPensum = new QSpinBox(UserData);
         txtPensum.setObjectName("txtPensum");
         txtPensum.setMaximum(100);
 
-        gridLayout.addWidget(txtPensum, 5, 1, 1, 3);
+        gridLayout.addWidget(txtPensum, 4, 1, 1, 3);
 
         lblRole = new QLabel(UserData);
         lblRole.setObjectName("lblRole");
 
-        gridLayout.addWidget(lblRole, 6, 0, 1, 1);
+        gridLayout.addWidget(lblRole, 5, 0, 1, 1);
 
         cmbRole = new QComboBox(UserData);
         cmbRole.setObjectName("cmbRole");
 
-        gridLayout.addWidget(cmbRole, 6, 1, 1, 3);
+        gridLayout.addWidget(cmbRole, 5, 1, 1, 3);
 
         lblHolidaysText2 = new QLabel(UserData);
         lblHolidaysText2.setObjectName("lblHolidaysText2");
 
-        gridLayout.addWidget(lblHolidaysText2, 7, 0, 1, 1);
+        gridLayout.addWidget(lblHolidaysText2, 6, 0, 1, 1);
 
         grpOverview = new QGroupBox(UserData);
         grpOverview.setObjectName("grpOverview");
@@ -135,63 +135,67 @@ public class Ui_UserData implements com.trolltech.qt.QUiForm<QWidget>
         gridLayout_5.addWidget(lblHolidays, 1, 3, 1, 1);
 
 
-        gridLayout.addWidget(grpOverview, 11, 0, 1, 4);
+        gridLayout.addWidget(grpOverview, 10, 0, 1, 4);
 
         btnAdd = new QPushButton(UserData);
         btnAdd.setObjectName("btnAdd");
+        btnAdd.setDefault(true);
 
-        gridLayout.addWidget(btnAdd, 9, 3, 1, 1);
+        gridLayout.addWidget(btnAdd, 8, 3, 1, 1);
 
         horizontalSpacer = new QSpacerItem(40, 20, com.trolltech.qt.gui.QSizePolicy.Policy.Expanding, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
 
-        gridLayout.addItem(horizontalSpacer, 9, 1, 1, 2);
+        gridLayout.addItem(horizontalSpacer, 8, 1, 1, 2);
 
         txtHolidays = new QDoubleSpinBox(UserData);
         txtHolidays.setObjectName("txtHolidays");
 
-        gridLayout.addWidget(txtHolidays, 7, 1, 1, 3);
+        gridLayout.addWidget(txtHolidays, 6, 1, 1, 3);
 
         verticalSpacer = new QSpacerItem(20, 40, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum, com.trolltech.qt.gui.QSizePolicy.Policy.Expanding);
 
-        gridLayout.addItem(verticalSpacer, 10, 2, 1, 1);
+        gridLayout.addItem(verticalSpacer, 9, 2, 1, 1);
 
         checkBox = new QCheckBox(UserData);
         checkBox.setObjectName("checkBox");
 
-        gridLayout.addWidget(checkBox, 8, 1, 1, 1);
+        gridLayout.addWidget(checkBox, 7, 1, 1, 1);
 
         lblFirstname = new QLabel(UserData);
         lblFirstname.setObjectName("lblFirstname");
 
-        gridLayout.addWidget(lblFirstname, 3, 0, 1, 1);
+        gridLayout.addWidget(lblFirstname, 2, 0, 1, 1);
 
         txtPassword = new QLineEdit(UserData);
         txtPassword.setObjectName("txtPassword");
         txtPassword.setEchoMode(com.trolltech.qt.gui.QLineEdit.EchoMode.Password);
 
-        gridLayout.addWidget(txtPassword, 4, 1, 1, 3);
+        gridLayout.addWidget(txtPassword, 3, 1, 1, 3);
 
         lblPassword = new QLabel(UserData);
         lblPassword.setObjectName("lblPassword");
 
-        gridLayout.addWidget(lblPassword, 4, 0, 1, 1);
+        gridLayout.addWidget(lblPassword, 3, 0, 1, 1);
 
         lblUsername = new QLabel(UserData);
         lblUsername.setObjectName("lblUsername");
 
-        gridLayout.addWidget(lblUsername, 1, 0, 1, 1);
+        gridLayout.addWidget(lblUsername, 0, 0, 1, 1);
 
         txtUserName = new QLineEdit(UserData);
         txtUserName.setObjectName("txtUserName");
         txtUserName.setEnabled(false);
 
-        gridLayout.addWidget(txtUserName, 1, 1, 1, 3);
+        gridLayout.addWidget(txtUserName, 0, 1, 1, 3);
 
-        txtUnvisbileField = new QLineEdit(UserData);
-        txtUnvisbileField.setObjectName("txtUnvisbileField");
-
-        gridLayout.addWidget(txtUnvisbileField, 0, 1, 1, 1);
-
+        QWidget.setTabOrder(txtUserName, txtName);
+        QWidget.setTabOrder(txtName, txtFirstname);
+        QWidget.setTabOrder(txtFirstname, txtPassword);
+        QWidget.setTabOrder(txtPassword, txtPensum);
+        QWidget.setTabOrder(txtPensum, cmbRole);
+        QWidget.setTabOrder(cmbRole, txtHolidays);
+        QWidget.setTabOrder(txtHolidays, checkBox);
+        QWidget.setTabOrder(checkBox, btnAdd);
         retranslateUi(UserData);
 
         UserData.connectSlotsByName();

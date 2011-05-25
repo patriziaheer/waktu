@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ManagmentWindow.jui'
 **
-** Created: Di. Mai 24 13:33:31 2011
+** Created: Mi. Mai 25 17:38:32 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -40,6 +40,7 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         ManagmentWindow.setObjectName("ManagmentWindow");
         ManagmentWindow.resize(new QSize(1115, 584).expandedTo(ManagmentWindow.minimumSizeHint()));
         ManagmentWindow.setMinimumSize(new QSize(650, 0));
+        ManagmentWindow.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         actionClose = new QAction(ManagmentWindow);
         actionClose.setObjectName("actionClose");
         actionAdd = new QAction(ManagmentWindow);
