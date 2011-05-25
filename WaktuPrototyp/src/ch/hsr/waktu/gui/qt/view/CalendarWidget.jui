@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>646</width>
+    <width>649</width>
     <height>100</height>
    </rect>
   </property>
@@ -347,6 +347,16 @@
      </property>
      <property name="text">
       <string>Today</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" rowspan="2">
+    <widget class="QLabel" name="lblLogo">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>../../../../../../../resources/icons/logo_klein.png</pixmap>
      </property>
     </widget>
    </item>

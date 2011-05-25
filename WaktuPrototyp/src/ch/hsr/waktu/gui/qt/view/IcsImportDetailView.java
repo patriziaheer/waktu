@@ -43,9 +43,9 @@ public class IcsImportDetailView extends QWidget {
 	@SuppressWarnings("unused")
 	private void projectChanged() {
 		try {
-			ComboBoxData.createWorkPackageComboBox(ui.cmbWorkPackage,
+			ComboBoxData.createActiveWorkPackageComboBox(ui.cmbWorkPackage,
 					(Project) ui.cmbProject.itemData(ui.cmbProject
-							.currentIndex()));
+							.currentIndex()), null);
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}

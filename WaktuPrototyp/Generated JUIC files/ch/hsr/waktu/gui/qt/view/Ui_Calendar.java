@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'CalendarWidget.jui'
 **
-** Created: Mo. Mai 23 11:00:14 2011
+** Created: Mi. Mai 25 16:28:25 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -30,13 +30,14 @@ public class Ui_Calendar implements com.trolltech.qt.QUiForm<QWidget>
     public QSpacerItem horizontalSpacer;
     public QLabel lblCurrDate;
     public QPushButton btnToday;
+    public QLabel lblLogo;
 
     public Ui_Calendar() { super(); }
 
     public void setupUi(QWidget Calendar)
     {
         Calendar.setObjectName("Calendar");
-        Calendar.resize(new QSize(646, 100).expandedTo(Calendar.minimumSizeHint()));
+        Calendar.resize(new QSize(649, 100).expandedTo(Calendar.minimumSizeHint()));
         QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Preferred, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
         sizePolicy.setHorizontalStretch((byte)0);
         sizePolicy.setVerticalStretch((byte)0);
@@ -200,6 +201,12 @@ public class Ui_Calendar implements com.trolltech.qt.QUiForm<QWidget>
 
         gridLayout.addWidget(btnToday, 0, 2, 1, 1);
 
+        lblLogo = new QLabel(Calendar);
+        lblLogo.setObjectName("lblLogo");
+        lblLogo.setPixmap(new QPixmap(("../../../../../../../resources/icons/logo_klein.png")));
+
+        gridLayout.addWidget(lblLogo, 0, 0, 2, 1);
+
         retranslateUi(Calendar);
 
         Calendar.connectSlotsByName();
@@ -222,6 +229,7 @@ public class Ui_Calendar implements com.trolltech.qt.QUiForm<QWidget>
         lblStart.setText("");
         lblCurrDate.setText(com.trolltech.qt.core.QCoreApplication.translate("Calendar", "23.05.11", null));
         btnToday.setText(com.trolltech.qt.core.QCoreApplication.translate("Calendar", "Today", null));
+        lblLogo.setText("");
     } // retranslateUi
 
 }

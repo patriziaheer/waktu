@@ -42,12 +42,10 @@ import com.trolltech.qt.gui.QFileDialog;
 import com.trolltech.qt.gui.QHBoxLayout;
 import com.trolltech.qt.gui.QIcon;
 import com.trolltech.qt.gui.QItemSelectionModel.SelectionFlag;
-import com.trolltech.qt.gui.QLabel;
 import com.trolltech.qt.gui.QMainWindow;
 import com.trolltech.qt.gui.QMenu;
 import com.trolltech.qt.gui.QPalette;
 import com.trolltech.qt.gui.QPalette.ColorRole;
-import com.trolltech.qt.gui.QPixmap;
 import com.trolltech.qt.gui.QSplitter;
 import com.trolltech.qt.gui.QVBoxLayout;
 import com.trolltech.qt.gui.QWidget;
@@ -68,21 +66,21 @@ public class TimeView extends QMainWindow {
 		managmentView = new ManagmentView(currUser);
 		calendar = new CalendarWidget();
 		calendar.dayChanged.connect(this, "dayChanged()");
-		QLabel logo = new QLabel();
-		logo.setPixmap(new QPixmap("classpath:icons/logo_klein.png"));
+		//QLabel logo = new QLabel();
+		//logo.setPixmap(new QPixmap("classpath:icons/logo_klein.png"));
 		
-		QWidget wCalLogo = new QWidget();
-		QHBoxLayout calLogoLayout = new QHBoxLayout();
-		calLogoLayout.addWidget(logo);
-		calLogoLayout.addWidget(calendar);
-		wCalLogo.setLayout(calLogoLayout);
+		//QWidget wCalLogo = new QWidget();
+		//QHBoxLayout calLogoLayout = new QHBoxLayout();
+		//calLogoLayout.addWidget(logo);
+		//calLogoLayout.addWidget(calendar);
+		//wCalLogo.setLayout(calLogoLayout);
 
 		ui.setupUi(this);
 		QSplitter splitter = new QSplitter(Orientation.Vertical);
 		QWidget widget = new QWidget();
 		QVBoxLayout layout = new QVBoxLayout();
 		widget.setLayout(layout);
-		layout.addWidget(wCalLogo);
+		layout.addWidget(calendar);
 		layout.addWidget(ui.widget);
 		layout.addWidget(ui.grpWorksessions);
 		layout.setMargin(0);
@@ -92,7 +90,7 @@ public class TimeView extends QMainWindow {
 		splitter.setCollapsible(0, false);
 
 		try {
-			ComboBoxData.createProjectForUserComboBox(ui.cmbProject, currUser);
+			ComboBoxData.createProjectForUserComboBox(ui.cmbProject, currUser, null);
 		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}
@@ -376,7 +374,7 @@ public class TimeView extends QMainWindow {
 				setStatusBarText(e.getMessage());
 			}
 			try {
-				ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, project, wp);
+				ComboBoxData.createActiveWorkPackageComboBox(ui.cmbWorkpackage, project, wp);
 			} catch (WaktuException e) {
 				setStatusBarText(e.getMessage());
 			}
@@ -455,9 +453,9 @@ public class TimeView extends QMainWindow {
 	@SuppressWarnings("unused")
 	private void projectChanged() {
 		try {
-			ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage,
+			ComboBoxData.createActiveWorkPackageComboBox(ui.cmbWorkpackage,
 					(Project) ui.cmbProject.itemData(ui.cmbProject
-							.currentIndex()));
+							.currentIndex()), null);
 			ui.cmbWorkpackage.setCurrentIndex(-1);
 		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
@@ -734,7 +732,7 @@ public class TimeView extends QMainWindow {
 		}
 		if (project != null) {
 			try {
-				ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, project);
+				ComboBoxData.createActiveWorkPackageComboBox(ui.cmbWorkpackage, project, null);
 			} catch (WaktuException e) {
 				setStatusBarText(e.getMessage());
 			}
@@ -745,7 +743,7 @@ public class TimeView extends QMainWindow {
 		Project project = (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex());
 		WorkPackage wp = (WorkPackage) ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex());
 		try {
-			ComboBoxData.createWorkPackageComboBox(ui.cmbWorkpackage, project, wp);
+			ComboBoxData.createActiveWorkPackageComboBox(ui.cmbWorkpackage, project, wp);
 		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}

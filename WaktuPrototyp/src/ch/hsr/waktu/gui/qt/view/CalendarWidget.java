@@ -3,6 +3,7 @@ package ch.hsr.waktu.gui.qt.view;
 import ch.hsr.waktu.guicontroller.LanguageController;
 
 import com.trolltech.qt.core.QDate;
+import com.trolltech.qt.gui.QPixmap;
 import com.trolltech.qt.gui.QWidget;
 
 public class CalendarWidget extends QWidget{ 
@@ -13,6 +14,7 @@ public class CalendarWidget extends QWidget{
 	
 	public CalendarWidget() {
 		ui.setupUi(this);
+		ui.lblLogo.setPixmap(new QPixmap("classpath:icons/logo_klein.png"));
 		
 		// calendar slots
 		ui.btnMo.clicked.connect(this, "moClicked()");
