@@ -175,6 +175,7 @@ public class UserDataView extends QWidget {
 		usr.setPensum(ui.txtPensum.value());
 		usr.setHoliday(ui.txtHolidays.value());
 		usr.setActiveState(!ui.checkBox.isChecked());
+		usr.setSystemRole((SystemRole)ui.cmbRole.itemData(ui.cmbRole.currentIndex()));
 		try {
 			UserController.getInstance().updateUser(usr);
 		} catch (WaktuException e) {

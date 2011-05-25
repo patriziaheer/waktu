@@ -22,7 +22,7 @@ public class TimeController {
 			return calculateWorktime(project, workPackage, usr);
 		} else if(workPackage != null && usr == null && start == null && end == null) {
 			return calculateWorktime(project, workPackage);
-		} else if(workPackage == null && usr != null && start == null && end == null) {
+		} else if(workPackage == null && usr != null && start == null && end == null && project != null) {
 			return calculateWorktime(project, usr);
 		} else if(workPackage != null && usr == null && start == null && end == null) {
 			return calculateWorktime(project, workPackage);
@@ -30,10 +30,27 @@ public class TimeController {
 			return calculateWorktime(project, start, end);
 		} else if(workPackage == null && usr == null && start == null && end == null) {
 			return calculateWorktime(project);
+		} else if(workPackage == null && project == null && start == null && end == null) {
+			return calculateWorktime(usr);
 		}
 		return 0.0;
 	}
 	
+	private static double calculateWorktime(Usr usr) {
+		double worktime = 0;
+
+		try {
+			for(WorkSession ws: WorkSessionController.getInstance().getWorkSessions(usr)) {
+				worktime += TimeUtil.calculateTimespanInSeconds(ws.getStart(), ws.getEnd());
+			}
+		} catch (NullPointerException e) {
+			return 0;
+		} catch (WaktuException e) {
+			return 0;
+		}		
+		return worktime/3600;
+	}
+
 	private static double calculateWorktime(Project project) throws WaktuException {
 		double worktime = 0;
 
