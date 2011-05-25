@@ -59,7 +59,7 @@ public class WorkSessionController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
-		List<WorkSession> workSessionsByUser;
+		List<WorkSession> workSessionsByUser = null;
 
 		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
@@ -69,12 +69,8 @@ public class WorkSessionController extends QSignalEmitter {
 			workSessionsByUser = em.createQuery(
 					"SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE u.usrid = '"
 							+ user.getId() + "'").getResultList();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -92,7 +88,7 @@ public class WorkSessionController extends QSignalEmitter {
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
-		List<WorkSession> workSessionsByDate;
+		List<WorkSession> workSessionsByDate = null;
 
 		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
@@ -108,12 +104,8 @@ public class WorkSessionController extends QSignalEmitter {
 							+ " 23:59:59"
 							+ "' AND u.usrid = '" + user.getId() + "'");
 			workSessionsByDate = q.getResultList();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -141,12 +133,8 @@ public class WorkSessionController extends QSignalEmitter {
 							+ " 23:59:59"
 							+ "' AND u.usrid = '" + user.getId() + "'");
 			workSessionsByUserAndDate = q.getResultList();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -170,15 +158,8 @@ public class WorkSessionController extends QSignalEmitter {
 			workSessionsByProject = em.createQuery(
 					"SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp WHERE wp.id = '"
 							+ workPackage.getId() + "'").getResultList();
-		} catch (IllegalStateException e) {
-			logger.error(e.getMessage());
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			logger.error(e.getMessage());
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			logger.error(e.getMessage());
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -204,15 +185,8 @@ public class WorkSessionController extends QSignalEmitter {
 									+ workPackage.getId()
 									+ "' AND u.usrid = '"
 									+ usr.getId() + "'").getResultList();
-		} catch (IllegalStateException e) {
-			logger.error(e.getMessage());
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			logger.error(e.getMessage());
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			logger.error(e.getMessage());
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -238,12 +212,8 @@ public class WorkSessionController extends QSignalEmitter {
 							+ "' AND ws.endTime <= '"
 							+ toDate.toString("yyyy-MM-dd") + " 23:59:59" + "' AND wp.id = '"+workPackage.getId()+"'");
 			workSessionsByDateAndWorkPackage = q.getResultList();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -267,15 +237,8 @@ public class WorkSessionController extends QSignalEmitter {
 					.createQuery(
 							"SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN wp.project p WHERE p.projectid = '"
 									+ project.getId() + "'").getResultList();
-		} catch (IllegalStateException e) {
-			logger.error(e.getMessage());
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			logger.error(e.getMessage());
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			logger.error(e.getMessage());
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -301,15 +264,8 @@ public class WorkSessionController extends QSignalEmitter {
 									+ project.getId()
 									+ "' AND u.usrid = '"
 									+ usr.getId() + "'").getResultList();
-		} catch (IllegalStateException e) {
-			logger.error(e.getMessage());
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			logger.error(e.getMessage());
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			logger.error(e.getMessage());
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -341,12 +297,8 @@ public class WorkSessionController extends QSignalEmitter {
 							+ "' AND ws.endTime <= '"
 							+ end.toString("yyyy-MM-dd") + " 23:59:59" + "' AND p.projectid = '"+project.getId()+"'");
 			workSessionsByDate = q.getResultList();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -380,12 +332,8 @@ public class WorkSessionController extends QSignalEmitter {
 							+ "' AND ws.endTime <= '"
 							+ end.toString("yyyy-MM-dd") + " 23:59:59" + "'");
 			workSessionsByDate = q.getResultList();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -427,12 +375,8 @@ public class WorkSessionController extends QSignalEmitter {
 			em.getTransaction().begin();
 			em.persist(newWorkSession);
 			em.getTransaction().commit();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem:" + e.getMessage());
+			handleException(e);			
 		} finally {
 			em.close();
 		}
@@ -450,28 +394,25 @@ public class WorkSessionController extends QSignalEmitter {
 		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
+		// TODO: SS: GregorianCalendar <-> TIMESTAMP in POSTGRESQL-Mapping
+		// problem: JPA saves GregorianCalendar-Dates with wrong month in DB
+		// (eg. 6 instead of 5)
+		// quick fix: subtract 1 from GregorianCalendar.MONTH
+		workSession.getStart()
+		.set(GregorianCalendar.MONTH,
+				workSession.getStart().get(
+						GregorianCalendar.MONTH) - 1);
+		workSession.getEnd()
+		.set(GregorianCalendar.MONTH,
+				workSession.getEnd().get(
+						GregorianCalendar.MONTH) - 1);
 
 		BusinessRuleController.check(workSession);
 
 		try {
 			em.getTransaction().begin();
 			em.find(WorkSession.class, workSession.getId());
-
 			em.merge(workSession);
-
-			// TODO: SS: GregorianCalendar <-> TIMESTAMP in POSTGRESQL-Mapping
-			// problem: JPA saves GregorianCalendar-Dates with wrong month in DB
-			// (eg. 6 instead of 5)
-			// quick fix: subtract 1 from GregorianCalendar.MONTH
-//			updateWorkSession.getStart()
-//					.set(GregorianCalendar.MONTH,
-//							updateWorkSession.getStart().get(
-//									GregorianCalendar.MONTH) - 1);
-//			updateWorkSession.getEnd()
-//					.set(GregorianCalendar.MONTH,
-//							updateWorkSession.getEnd().get(
-//									GregorianCalendar.MONTH) - 1);
-
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			handleException(e);			
@@ -499,12 +440,8 @@ public class WorkSessionController extends QSignalEmitter {
 			em.getTransaction().begin();
 			em.remove(em.find(WorkSession.class, workSession.getId()));
 			em.getTransaction().commit();
-		} catch (IllegalStateException e) {
-			throw new WaktuException("Database problem");
-		} catch (IllegalArgumentException e) {
-			throw new WaktuException("Illegal Argument");
 		} catch (Exception e) {
-			throw new WaktuException("General problem");
+			handleException(e);			
 		} finally {
 			em.close();
 		}

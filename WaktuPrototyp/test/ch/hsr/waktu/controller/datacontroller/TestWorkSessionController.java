@@ -227,7 +227,9 @@ public class TestWorkSessionController extends TestSuite {
 		
 		wsc.updateWorkSession(ws1);
 		
-		assertEquals(ws1, wsc.getWorkSessions(ws1.getWorkPackage().getProject(), ws1.getUser(), QDate.fromString("2011-05-02","yyyy-MM-dd"), QDate.fromString("2011-05-02","yyyy-MM-dd")).get(0));
+		WorkSession temp = wsc.getWorkSessions(ws1.getWorkPackage().getProject(), ws1.getUser(), QDate.fromString("2011-05-02","yyyy-MM-dd"), QDate.fromString("2011-05-02","yyyy-MM-dd")).get(0);
+		
+		assertEquals(ws1, temp);
 		
 		//Set previous test data to assure the data integrity
 		ws1.setDescription("doijfrjwa");
