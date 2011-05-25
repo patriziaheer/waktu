@@ -128,6 +128,7 @@ public class UserDataView extends QWidget {
 			ui.txtHolidays.setEnabled(true);
 			ui.checkBox.setVisible(true);
 			ComboBoxData.createSystemRoleComboBox(ui.cmbRole, null);
+			ui.cmbRole.setEnabled(true);
 		}
 	}
 
@@ -205,9 +206,11 @@ public class UserDataView extends QWidget {
 		if (usr != null) {
 			ui.btnAdd.setText(QCoreApplication.translate("UserDataView",
 					"Save", null));
+			ComboBoxData.createSystemRoleComboBox(ui.cmbRole, usr.getSystemRole());
 		} else {
 			ui.btnAdd.setText(QCoreApplication.translate("UserDataView", "Add",
 					null));
+			ComboBoxData.createSystemRoleComboBox(ui.cmbRole, null);
 		}
 	}
 

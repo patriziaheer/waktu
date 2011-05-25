@@ -24,11 +24,6 @@ public class ProjectDataView extends QWidget {
 	public void initialize() {
 		ui.setupUi(this);
 		ui.btnAdd.clicked.connect(this, "addClicked()");
-		try {
-			ComboBoxData.createProjectManagerComboBox(ui.cmbProjectManager);
-		} catch (WaktuException e) {
-			errorMessage.emit(e.getMessage());
-		}
 
 		ProjectController.getInstance().update.connect(this, "updateData()");
 		ProjectController.getInstance().add.connect(this, "addData(Project)");
@@ -59,6 +54,11 @@ public class ProjectDataView extends QWidget {
 
 				ui.checkBox.setChecked(!project.isActive());
 				ui.checkBox.setEnabled(true);
+				try {
+					ComboBoxData.createProjectManagerComboBox(ui.cmbProjectManager, project.getProjectManager());
+				} catch (WaktuException e) {
+					errorMessage.emit(e.getMessage());
+				}
 
 			} else {
 				ui.btnAdd.setVisible(false);
@@ -77,6 +77,12 @@ public class ProjectDataView extends QWidget {
 
 				ui.checkBox.setChecked(!project.isActive());
 				ui.checkBox.setEnabled(false);
+				try {
+					ComboBoxData.createProjectManagerComboBox(ui.cmbProjectManager, project.getProjectManager());
+				} catch (WaktuException e) {
+					errorMessage.emit(e.getMessage());
+				}
+				ui.cmbProjectManager.setEnabled(false);
 			}
 		} else {
 			ui.btnAdd.setVisible(true);
@@ -86,6 +92,7 @@ public class ProjectDataView extends QWidget {
 			ui.txtPlannedTime.setEnabled(true);
 			ui.txtPlannedTime.setEnabled(true);
 			ui.checkBox.setEnabled(true);
+			ui.cmbProjectManager.setEnabled(true);
 		}
 	}
 

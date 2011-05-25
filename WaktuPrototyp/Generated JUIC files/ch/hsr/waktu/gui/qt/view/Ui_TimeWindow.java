@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'TimeWindow.jui'
 **
-** Created: Di. Mai 24 13:33:31 2011
+** Created: Mi. Mai 25 16:19:40 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -77,7 +77,7 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
     public void setupUi(QMainWindow TimeWindow)
     {
         TimeWindow.setObjectName("TimeWindow");
-        TimeWindow.resize(new QSize(784, 731).expandedTo(TimeWindow.minimumSizeHint()));
+        TimeWindow.resize(new QSize(701, 536).expandedTo(TimeWindow.minimumSizeHint()));
         actionClose = new QAction(TimeWindow);
         actionClose.setObjectName("actionClose");
         actionOpenManagment = new QAction(TimeWindow);
@@ -200,7 +200,7 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         sizePolicy.setVerticalStretch((byte)0);
         sizePolicy.setHeightForWidth(grpCreateWorksession.sizePolicy().hasHeightForWidth());
         grpCreateWorksession.setSizePolicy(sizePolicy);
-        grpCreateWorksession.setMinimumSize(new QSize(350, 0));
+        grpCreateWorksession.setMinimumSize(new QSize(310, 0));
         gridLayout_2 = new QGridLayout(grpCreateWorksession);
         gridLayout_2.setObjectName("gridLayout_2");
         lblTime = new QLabel(grpCreateWorksession);
@@ -321,7 +321,7 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         TimeWindow.setStatusBar(statusBar);
         menuBar = new QMenuBar(TimeWindow);
         menuBar.setObjectName("menuBar");
-        menuBar.setGeometry(new QRect(0, 0, 784, 22));
+        menuBar.setGeometry(new QRect(0, 0, 701, 22));
         menuManagment = new QMenu(menuBar);
         menuManagment.setObjectName("menuManagment");
         menuFile = new QMenu(menuBar);
