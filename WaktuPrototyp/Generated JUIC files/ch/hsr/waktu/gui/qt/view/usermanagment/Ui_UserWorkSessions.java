@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'UserWorkSessions.jui'
 **
-** Created: Mi. Mai 25 17:38:32 2011
+** Created: Do 26. Mai 07:35:08 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!

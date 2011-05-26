@@ -15,6 +15,8 @@ import ch.hsr.waktu.services.WaktuException;
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.gui.QIcon;
 import com.trolltech.qt.gui.QWidget;
+import com.trolltech.qt.gui.QAbstractItemView.SelectionBehavior;
+import com.trolltech.qt.gui.QAbstractItemView.SelectionMode;
 
 public class ProjectStaffView extends QWidget {
 	
@@ -43,6 +45,9 @@ public class ProjectStaffView extends QWidget {
 		ui.tblWorkStaff.setModel(projectStaffModel);
 		ui.tblWorkStaff.horizontalHeader().setStretchLastSection(true);
 		ui.tblWorkStaff.resizeRowsToContents();
+		ui.tblWorkStaff.setSelectionMode(SelectionMode.SingleSelection);
+		ui.tblWorkStaff.setSelectionBehavior(SelectionBehavior.SelectRows);
+		
 		ui.btnAdd.clicked.connect(this, "addUser()");
 		
 		ProjectStaffController.getInstance().add.connect(this, "added(ProjectStaff)");
