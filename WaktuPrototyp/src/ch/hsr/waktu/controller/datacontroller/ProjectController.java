@@ -276,4 +276,9 @@ public class ProjectController extends QSignalEmitter {
 			throw new WaktuException("General Problem");
 		}
 	}
+
+	public Project getProject(String projectIdentifier) throws WaktuException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

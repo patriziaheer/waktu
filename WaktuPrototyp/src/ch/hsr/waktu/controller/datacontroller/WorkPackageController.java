@@ -35,7 +35,7 @@ public class WorkPackageController extends QSignalEmitter {
 	public Signal0 update = new Signal0();
 	public Signal1<WorkPackage> add = new Signal1<WorkPackage>();
 
-	private WorkPackageController() {
+	protected WorkPackageController() {
 
 	}
 	
@@ -245,6 +245,11 @@ public class WorkPackageController extends QSignalEmitter {
 			logger.error(e + e.getMessage());
 			throw new WaktuException("General Problem");
 		}
+	}
+
+	public WorkPackage getWorkPackage(String description) throws WaktuException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,26 +1,26 @@
-<projects>
-	<project>
+<Projects>
+	<Project>
 		<projectid>1</projectid>
 		<projectIdentifier>Waktu</projectIdentifier>
 		<description>SE2p</description>
 		<projectManager>patriziaheeer</projectManager>
 		<active>true</active>
 		<plannedTime>342</plannedTime>
-	</project>
-	<project>
+	</Project>
+	<Project>
 		<projectid>2</projectid>
 		<projectIdentifier>Avec</projectIdentifier>
 		<description>SE2p</description>
 		<projectManager>simonstäheli</projectManager>
 		<active>true</active>
 		<plannedTime>240</plannedTime>
-	</project>
-	<project>
+	</Project>
+	<Project>
 		<projectid>3</projectid>
 		<projectIdentifier>SBB</projectIdentifier>
 		<description>ÖV</description>
 		<projectManager>mikefisler</projectManager>
 		<active>true</active>
 		<plannedTime>120</plannedTime>
-	</project>
-</projects>
+	</Project>
+</Projects>

@@ -20,7 +20,7 @@
 		<description>code review</description>
 		<user>patriziaheer</user>
 		<start>20110517T130930</start>
-		<end>20110517T130930</end>
+		<end>20110517T150930</end>
 		<WorkPackage>Domain</WorkPackage>
 	</WorkSession>
 	<WorkSession>
@@ -44,7 +44,7 @@
 		<description></description>
 		<user>mikefisler</user>
 		<start>20110517T193000</start>
-		<end>20110517T07000</end>
+		<end>20110517T070000</end>
 		<WorkPackage>SBB</WorkPackage>
 	</WorkSession>
 </WorkSessions>
