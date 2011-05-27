@@ -3,6 +3,7 @@ package ch.hsr.waktu.controller.datacontroller;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 
 import org.apache.log4j.Logger;
 
@@ -176,6 +177,8 @@ public class UserController extends QSignalEmitter {
 					.createQuery(
 							"SELECT u FROM Usr u WHERE u.username = '"
 									+ username + "'").getSingleResult();
+		} catch (NoResultException e) {
+			throw new WaktuException("User or password wrong!");
 		} catch (Exception e) {
 			handleException(e);			
 		} finally {
