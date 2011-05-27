@@ -58,7 +58,7 @@ public class ProjectStaffController extends QSignalEmitter {
 			projects = em
 					.createQuery(
 							"SELECT p FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE u.usrid = '"
-									+ user.getId() + "'").getResultList();
+									+ user.getId() + "' ORDER by p.projectIdentifier ASC").getResultList();
 		} catch (Exception e) {
 			handleException(e);			
 		} finally {
@@ -80,7 +80,7 @@ public class ProjectStaffController extends QSignalEmitter {
 
 		try {
 			nonUserProjects = em
-							.createQuery("SELECT p FROM Project p WHERE p.projectid NOT IN (SELECT pr.projectid FROM ProjectStaff ps JOIN ps.project pr JOIN ps.user u WHERE u.usrid = " + user.getId() + ")").getResultList();
+							.createQuery("SELECT p FROM Project p WHERE p.projectid NOT IN (SELECT pr.projectid FROM ProjectStaff ps JOIN ps.project pr JOIN ps.user u WHERE u.usrid = " + user.getId() + ")  ORDER by p.projectIdentifier ASC").getResultList();
 		} catch (Exception e) {
 			handleException(e);			
 		} finally {
