@@ -72,7 +72,6 @@ public class LoginView extends QDialog {
 	@SuppressWarnings("unused")
 	private void loginClicked() {
 		try {
-			this.setCursor(new QCursor(CursorShape.WaitCursor));
 			if (LoginController.getInstance().login(ui.txtUsername.text(),
 					ui.txtPassword.text())) {
 		        QSplashScreen splashScreen = new QSplashScreen(new QPixmap("classpath:icons/logo.png"));
@@ -88,11 +87,9 @@ public class LoginView extends QDialog {
 				setStatus(com.trolltech.qt.core.QCoreApplication
 						.translate("LoginView", "Username or Password wrong",
 								null));
-				this.setCursor(new QCursor(CursorShape.ArrowCursor));
 			}
 		} catch (WaktuException e) {
 			setStatus(e.getMessage());
-			this.setCursor(new QCursor(CursorShape.ArrowCursor));
 		}
 	}
 
