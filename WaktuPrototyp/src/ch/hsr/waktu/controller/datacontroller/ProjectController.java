@@ -83,7 +83,7 @@ public class ProjectController extends QSignalEmitter {
 		List<Project> allActiveProjects = null;
 		try {
 			allActiveProjects = em.createQuery(
-					"SELECT p FROM Project p WHERE p.active = TRUE")
+					"SELECT p FROM Project p WHERE p.active = TRUE ORDER BY p.projectIdentifier ASC")
 					.getResultList();
 		} catch (Exception e) {
 			handleException(e);			
@@ -108,7 +108,7 @@ public class ProjectController extends QSignalEmitter {
 		try {
 			activeProjectsOfUser = em.createQuery(
 					"SELECT p FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE u.usrid = '"
-							+ usr.getId() + "'").getResultList();
+							+ usr.getId() + "' ORDER BY p.projectIdentifier ASC").getResultList();
 		} catch (Exception e) {
 			handleException(e);			
 		} finally {
@@ -129,7 +129,7 @@ public class ProjectController extends QSignalEmitter {
 		
 		List<Project> allProjects = null;
 		try {
-			allProjects = em.createQuery("SELECT p FROM Project p")
+			allProjects = em.createQuery("SELECT p FROM Project p ORDER BY p.projectIdentifier ASC")
 					.getResultList();
 		} catch (Exception e) {
 			handleException(e);			
@@ -152,7 +152,7 @@ public class ProjectController extends QSignalEmitter {
 		List<Project> allInactiveProjects = null;
 		try {
 			allInactiveProjects = em.createQuery(
-					"SELECT p FROM Project p WHERE p.active = FALSE")
+					"SELECT p FROM Project p WHERE p.active = FALSE ORDER BY p.projectIdentifier ASC")
 					.getResultList();
 		} catch (Exception e) {
 			handleException(e);			
