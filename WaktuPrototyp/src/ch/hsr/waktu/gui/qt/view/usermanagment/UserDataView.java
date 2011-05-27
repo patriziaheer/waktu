@@ -186,13 +186,11 @@ public class UserDataView extends QWidget {
 	@SuppressWarnings("unused")
 	private void updateData() {
 		setFields();
-		updateTimeInfos();
 	}
 
 	@SuppressWarnings("unused")
 	private void addData(Usr usr) {
 		setFields();
-		updateTimeInfos();
 	}
 
 	@SuppressWarnings("unused")
@@ -215,12 +213,16 @@ public class UserDataView extends QWidget {
 
 	@SuppressWarnings("unused")
 	private void workSessionUpdated() {
-		updateTimeInfos();
+		if (usr != null) {
+			updateTimeInfos();
+		}
 	}
 
 	@SuppressWarnings("unused")
 	private void workSessionChanged(WorkSession workSession) {
-		updateTimeInfos();
+		if (usr != null) {
+			updateTimeInfos();
+		}
 	}
 
 }
