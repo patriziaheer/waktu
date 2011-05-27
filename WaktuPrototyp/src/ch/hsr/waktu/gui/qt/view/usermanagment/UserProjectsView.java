@@ -15,6 +15,8 @@ import ch.hsr.waktu.services.WaktuException;
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.gui.QIcon;
 import com.trolltech.qt.gui.QWidget;
+import com.trolltech.qt.gui.QAbstractItemView.SelectionBehavior;
+import com.trolltech.qt.gui.QAbstractItemView.SelectionMode;
 
 public class UserProjectsView extends QWidget {
 
@@ -42,6 +44,9 @@ public class UserProjectsView extends QWidget {
 		ui.tblProjects.setModel(projectsModel);
 		ui.tblProjects.horizontalHeader().setStretchLastSection(true);
 		ui.tblProjects.resizeRowsToContents();
+		ui.tblProjects.setSelectionMode(SelectionMode.SingleSelection);
+		ui.tblProjects.setSelectionBehavior(SelectionBehavior.SelectRows);
+		
 		ui.btnAdd.clicked.connect(this, "addProject()");
 
 		ProjectStaffController.getInstance().add.connect(this,

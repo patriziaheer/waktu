@@ -13,6 +13,8 @@ import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.gui.QWidget;
+import com.trolltech.qt.gui.QAbstractItemView.SelectionBehavior;
+import com.trolltech.qt.gui.QAbstractItemView.SelectionMode;
 
 public class ProjectWorkPackageView extends QWidget{
 	
@@ -33,6 +35,8 @@ public class ProjectWorkPackageView extends QWidget{
 		ui.tblWorkPackages.setModel(workPackageModel);
 		ui.tblWorkPackages.horizontalHeader().setStretchLastSection(true);
 		ui.tblWorkPackages.resizeRowsToContents();
+		ui.tblWorkPackages.setSelectionMode(SelectionMode.SingleSelection);
+		ui.tblWorkPackages.setSelectionBehavior(SelectionBehavior.SelectRows);
 		
 		ui.btnAdd.clicked.connect(this, "addClicked()");
 		WorkPackageController.getInstance().add.connect(this, "addData(WorkPackage)");

@@ -15,7 +15,7 @@ public class TimeUtil {
 	//TODO: Konvertier-Methoden refactoren gemäss DKellers Aussage.. MF: wtf?
 	public static QDateTime convertGregorianToQDateTime(GregorianCalendar dateTime) {
 		QDate date = new QDate(dateTime.get(GregorianCalendar.YEAR), 
-				dateTime.get(GregorianCalendar.MONTH), dateTime.get(GregorianCalendar.DAY_OF_MONTH));
+				dateTime.get(GregorianCalendar.MONTH)+1, dateTime.get(GregorianCalendar.DAY_OF_MONTH));
 		QTime time = new QTime(dateTime.get(GregorianCalendar.HOUR_OF_DAY), 
 				dateTime.get(GregorianCalendar.MINUTE), dateTime.get(GregorianCalendar.SECOND));
 		return new QDateTime(date, time);

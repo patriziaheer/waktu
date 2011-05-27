@@ -16,6 +16,8 @@ import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.gui.QWidget;
+import com.trolltech.qt.gui.QAbstractItemView.SelectionBehavior;
+import com.trolltech.qt.gui.QAbstractItemView.SelectionMode;
 
 public class ProjectWorkSessionsView extends QWidget {
 	
@@ -43,6 +45,8 @@ public class ProjectWorkSessionsView extends QWidget {
 		ui.tblWorkSessions.setModel(filterModel);
 		ui.tblWorkSessions.horizontalHeader().setStretchLastSection(true);
 		ui.tblWorkSessions.resizeRowsToContents();
+		ui.tblWorkSessions.setSelectionMode(SelectionMode.SingleSelection);
+		ui.tblWorkSessions.setSelectionBehavior(SelectionBehavior.SelectRows);
 
 		ui.cmbUser.setCurrentIndex(-1);
 		ui.cmbWorkpackage.setCurrentIndex(-1);
@@ -108,8 +112,8 @@ public class ProjectWorkSessionsView extends QWidget {
 		}
 		ui.cmbUser.setCurrentIndex(-1);
 		ui.cmbWorkpackage.setCurrentIndex(-1);
-		ui.txtStart.setDate(new QDate(01, 01, 1900));
-		ui.txtEnd.setDate(new QDate(01, 01, 1900));
+		ui.txtStart.setDate(null);
+		ui.txtEnd.setDate(null);
 		ui.chkFilterDate.setChecked(false);
 		filterModel.setUsr(null);
 		filterModel.setWorkPackage(null);

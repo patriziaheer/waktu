@@ -288,7 +288,7 @@ public class TimeView extends QMainWindow {
 						calendar.getCurrentDate()));
 		try {
 			ui.lblToday.setText(""
-					+ TimeController.calculateWorktime(currUser,
+					+ TimeController.calculateWorktime(currUser, null, null,
 							calendar.getCurrentDate(),
 							calendar.getCurrentDate()));
 			ui.lblCurrentWeek.setText(""
