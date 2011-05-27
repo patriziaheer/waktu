@@ -92,6 +92,7 @@ public class LoginView extends QDialog {
 			}
 		} catch (WaktuException e) {
 			setStatus(e.getMessage());
+			this.setCursor(new QCursor(CursorShape.ArrowCursor));
 		}
 	}
 

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'UserData.jui'
 **
-** Created: Do 26. Mai 07:35:08 2011
+** Created: Fr. Mai 27 10:56:35 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -80,6 +80,7 @@ public class Ui_UserData implements com.trolltech.qt.QUiForm<QWidget>
 
         txtPensum = new QSpinBox(UserData);
         txtPensum.setObjectName("txtPensum");
+        txtPensum.setMinimum(1);
         txtPensum.setMaximum(100);
 
         gridLayout.addWidget(txtPensum, 4, 1, 1, 3);
