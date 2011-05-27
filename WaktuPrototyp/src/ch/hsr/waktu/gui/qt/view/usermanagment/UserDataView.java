@@ -42,7 +42,6 @@ public class UserDataView extends QWidget {
 		LanguageController.getInstance().languageChanged.connect(this,
 				"translate()");
 		setFields();
-		updateTimeInfos();
 	}
 
 	private void setFields() {
@@ -113,6 +112,7 @@ public class UserDataView extends QWidget {
 				ui.cmbRole.setEnabled(false);
 				ComboBoxData.createSystemRoleComboBox(ui.cmbRole, usr.getSystemRole());
 			}
+			updateTimeInfos();
 		} else {
 			ui.grpOverview.setVisible(false);
 			ui.btnAdd.setVisible(true);
