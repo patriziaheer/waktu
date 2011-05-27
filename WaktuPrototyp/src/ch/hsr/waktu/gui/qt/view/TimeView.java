@@ -331,11 +331,7 @@ public class TimeView extends QMainWindow {
 		} else {
 			Project project;
 			try {
-				project = ProjectController.getInstance().getActiveProjects()
-						.get(ui.cmbProject.currentIndex());
-				WorkPackage workPackage = WorkPackageController.getInstance()
-						.getActiveWorkPackages(project)
-						.get(ui.cmbWorkpackage.currentIndex());
+				WorkPackage workPackage = (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex());
 				QDateTime start = new QDateTime();
 				start.setDate(calendar.getCurrentDate());
 				start.setTime(ui.txtStart.time());
@@ -433,12 +429,7 @@ public class TimeView extends QMainWindow {
 		} else {
 
 			try {
-
-				Project project = ProjectController.getInstance()
-						.getActiveProjects().get(ui.cmbProject.currentIndex());
-				WorkPackage workPackage = WorkPackageController.getInstance()
-						.getActiveWorkPackages(project)
-						.get(ui.cmbWorkpackage.currentIndex());
+				WorkPackage workPackage = (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex());
 				QDateTime start = new QDateTime();
 				start.setDate(calendar.getCurrentDate());
 				start.setTime(ui.txtStart.time());
