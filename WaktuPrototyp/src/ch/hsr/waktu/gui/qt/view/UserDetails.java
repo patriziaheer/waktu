@@ -1,5 +1,8 @@
 package ch.hsr.waktu.gui.qt.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.gui.qt.model.SortFilterModel;
@@ -40,6 +43,10 @@ public class UserDetails extends QWidget {
 		splitter = new QSplitter(Qt.Orientation.Horizontal);
 		splitter.addWidget(ui.widget);
 		splitter.addWidget(currWidget);
+		List<Integer> sizes = new ArrayList<Integer>();
+		sizes.add(50);
+		sizes.add(800);
+		splitter.setSizes(sizes);
 
 		ui.gridLayout.removeWidget(ui.widget);
 		ui.gridLayout.addWidget(splitter);
