@@ -235,7 +235,7 @@
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="118"/>
         <source>Inactiv Projects</source>
-        <translation>Zeige Inaktive Projekte</translation>
+        <translation>Zeige inaktive Projekte</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_ManagmentWindow.java" line="119"/>
