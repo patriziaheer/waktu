@@ -136,7 +136,7 @@ public class WorkPackageController extends QSignalEmitter {
 		
 		try {
 			allWorkPackages = em.createQuery(
-					"SELECT wp FROM WorkPackage wp").getResultList();
+					"SELECT wp FROM WorkPackage wp JOIN wp.project p ORDER BY p.projectIdentifier ASC, wp.description ASC").getResultList();
 		} catch (Exception e) {
 			handleException(e);			
 		} finally {
