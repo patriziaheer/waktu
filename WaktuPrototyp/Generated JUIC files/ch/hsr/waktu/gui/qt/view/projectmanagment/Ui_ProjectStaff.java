@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ProjectStaff.jui'
 **
-** Created: Do 26. Mai 07:32:54 2011
+** Created: Fr. Mai 27 11:08:26 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -24,13 +24,13 @@ public class Ui_ProjectStaff implements com.trolltech.qt.QUiForm<QWidget>
     public void setupUi(QWidget ProjectStaff)
     {
         ProjectStaff.setObjectName("ProjectStaff");
-        ProjectStaff.resize(new QSize(800, 360).expandedTo(ProjectStaff.minimumSizeHint()));
+        ProjectStaff.resize(new QSize(700, 360).expandedTo(ProjectStaff.minimumSizeHint()));
         QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Minimum, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
         sizePolicy.setHorizontalStretch((byte)0);
         sizePolicy.setVerticalStretch((byte)0);
         sizePolicy.setHeightForWidth(ProjectStaff.sizePolicy().hasHeightForWidth());
         ProjectStaff.setSizePolicy(sizePolicy);
-        ProjectStaff.setMinimumSize(new QSize(800, 360));
+        ProjectStaff.setMinimumSize(new QSize(700, 360));
         gridLayout = new QGridLayout(ProjectStaff);
         gridLayout.setObjectName("gridLayout");
         tblWorkStaff = new QTableView(ProjectStaff);

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ProjectData.jui'
 **
-** Created: Do 26. Mai 07:32:54 2011
+** Created: Fr. Mai 27 11:08:26 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -33,13 +33,13 @@ public class Ui_ProjectData implements com.trolltech.qt.QUiForm<QWidget>
     public void setupUi(QWidget ProjectData)
     {
         ProjectData.setObjectName("ProjectData");
-        ProjectData.resize(new QSize(800, 360).expandedTo(ProjectData.minimumSizeHint()));
+        ProjectData.resize(new QSize(700, 360).expandedTo(ProjectData.minimumSizeHint()));
         QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Minimum, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
         sizePolicy.setHorizontalStretch((byte)0);
         sizePolicy.setVerticalStretch((byte)0);
         sizePolicy.setHeightForWidth(ProjectData.sizePolicy().hasHeightForWidth());
         ProjectData.setSizePolicy(sizePolicy);
-        ProjectData.setMinimumSize(new QSize(800, 360));
+        ProjectData.setMinimumSize(new QSize(700, 360));
         ProjectData.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         gridLayout = new QGridLayout(ProjectData);
         gridLayout.setObjectName("gridLayout");
