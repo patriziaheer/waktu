@@ -71,7 +71,7 @@ public class ComboBoxData {
 			throws WaktuException {
 		cmb.clear();
 		for (WorkPackage wp : WorkPackageController.getInstance().getAllWorkPackages()) {
-			cmb.addItem(wp.toString(), wp);
+			cmb.addItem(wp.getProject().getProjectIdentifier() + " " + wp.getDescription(), wp);
 		}
 	}
 
