@@ -119,8 +119,12 @@ public class TestFavoriteController extends TestSuite {
 		assertEquals(f6.getUser(), fc.getFavorites(usr3).get(0).getUser());
 		assertEquals(f6.getId(), fc.getFavorites(usr3).get(0).getId());
 		
+		assertEquals(f6, fc.getFavorites(usr3).get(0));
+		assertEquals(f6.hashCode(), fc.getFavorites(usr3).get(0).hashCode());
+		
 		fc.removeFavorite(f6);
 		
 		assertEquals(0, fc.getFavorites(usr3).size());
 	}
+	
 }

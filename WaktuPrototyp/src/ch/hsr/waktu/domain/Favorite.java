@@ -66,8 +66,6 @@ public class Favorite {
 		if (obj instanceof Favorite) {
 			Favorite fav = (Favorite)obj;
 			if (fav.id == id &&
-			fav.endTime.equals(endTime) &&
-			fav.startTime.equals(startTime) &&
 			fav.usr.equals(usr) &&
 			fav.workPackage.equals(workPackage)) {
 				return true;

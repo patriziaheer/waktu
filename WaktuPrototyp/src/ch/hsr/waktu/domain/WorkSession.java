@@ -84,10 +84,7 @@ public class WorkSession {
 			if (ws.id == id &&
 			ws.userRef.equals(userRef) &&
 			ws.workPackageRef.equals(workPackageRef) &&
-			ws.description.equals(description) &&
-			ws.startTime.equals(startTime) &&
-			ws.endTime.equals(endTime)
-			) {
+			ws.description.equals(description)) {
 				return true;
 			}
 		}
