@@ -37,7 +37,6 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 	}
 	
 	private List<WorkSession> getAllWorkSessions() throws WaktuException {
-		System.out.println("getAllWorkSessions()");
 		return XmlUtil.getWorkSessionsFromXml(workSessionFilePath);
 	}
 	
@@ -54,6 +53,29 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 			if(ws.getUser().equals(user)) {
 				workSessionsByUser.add(ws);
 			}
+		}
+		System.out.println("getWorkSessionsByUser - Size:" + workSessionsByUser.size());
+		for(WorkSession w: workSessionsByUser) {
+		      System.out.println("WorkSession:");
+		      System.out.println(w.getDescription());
+		      System.out.println(w.getEnd().toString());
+              System.out.println(w.getStart().toString());
+              System.out.println("User");
+              System.out.println(w.getUser().getFirstname());
+              System.out.println(w.getUser().getName());
+//              System.out.println(w.getUser().getUsername());
+//              System.out.println(w.getUser().getPasswordHash());
+//              System.out.println(w.getUser().getPensum());
+//              System.out.println(w.getUser().getSystemRole());
+//              System.out.println(w.getUser().getHoliday());
+              System.out.println("WorkPackage");
+              System.out.println(w.getWorkPackage().getDescription());
+              System.out.println("Project");
+//              System.out.println(w.getWorkPackage().getProject().getDescription());
+//              System.out.println(w.getWorkPackage().getProject().getPlannedTime());
+              System.out.println(w.getWorkPackage().getProject().getProjectIdentifier());
+//              System.out.println(w.getWorkPackage().getProject().getProjectManager().getUsername());
+
 		}
 		return workSessionsByUser;
 }

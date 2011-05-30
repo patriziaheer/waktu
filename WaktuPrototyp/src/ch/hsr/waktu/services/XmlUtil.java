@@ -26,6 +26,10 @@ import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.domain.WorkSession;
 
 public class XmlUtil {
+    
+    private XmlUtil() {
+        
+    }
 
 	private static Document parseXmlFile(final String filePath) 
 			throws WaktuException {
@@ -70,8 +74,8 @@ public class XmlUtil {
 
 	public static List<WorkSession> getWorkSessionsFromXml(final String filePath)
 			throws WaktuException {
-		// TODO
-		Document document = parseXmlFile(filePath);
+
+	    Document document = parseXmlFile(filePath);
 		if (document == null) {
 			return null;
 		}
@@ -142,7 +146,11 @@ public class XmlUtil {
 
 	private static WorkPackage getWorkPackageContentOf(final Node element, 
 			final String name) throws WaktuException {
-		
+//		System.out.println("getWorkPackageContentOf");
+		WorkPackage wp = WorkPackageController.getInstance().getWorkPackage(
+                getTextContentOf(element, name));
+//		System.out.println("WorkPackage: " + wp.getDescription());
+//		System.out.println(wp.getProject().getDescription());
 		return WorkPackageController.getInstance().getWorkPackage(
 				getTextContentOf(element, name));
 	}

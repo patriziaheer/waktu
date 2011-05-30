@@ -63,10 +63,11 @@ public class TimeController {
 
 	private static double calculateWorktime(Project project, Usr usr) throws WaktuException {
 		double worktime = 0;
-
+		System.out.println("Worktime: " + worktime);
 		try {
 			for(WorkSession ws: WorkSessionController.getInstance().getWorkSessions(project, usr)) {
-				worktime += TimeUtil.calculateTimespanInSeconds(ws.getStart(), ws.getEnd());
+				System.out.println("calculateWorktime(): WorkSession:" + ws.toString());
+			    worktime += TimeUtil.calculateTimespanInSeconds(ws.getStart(), ws.getEnd());
 			}
 		} catch (NullPointerException e) {
 			return 0;

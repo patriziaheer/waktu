@@ -234,7 +234,7 @@ public class WorkPackageController extends QSignalEmitter {
 		logger.info("workPackage " + workPackage + " updated");
 	}
 	
-	private void handleException(Exception e) throws WaktuException{
+	private void handleException(Exception e) throws WaktuException {
 		if(e instanceof IllegalArgumentException) {
 			logger.error(e + e.getMessage());
 			throw new WaktuException("Database problem");
@@ -251,5 +251,10 @@ public class WorkPackageController extends QSignalEmitter {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+    public static void setInstance(
+            WorkPackageController workPackageController) {
+        theInstance = workPackageController;
+    }
 
 }

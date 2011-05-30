@@ -10,6 +10,8 @@ import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.controller.datacontroller.ProjectControllerXml;
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.controller.datacontroller.UserControllerXml;
+import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
+import ch.hsr.waktu.controller.datacontroller.WorkPackageControllerXml;
 import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.controller.datacontroller.WorkSessionControllerXml;
 import ch.hsr.waktu.domain.Project;
@@ -21,6 +23,7 @@ public class TestTimeController {
 	private UserController previousUserController;
 	private WorkSessionController previousWorkSessionController;
 	private ProjectController previousProjectController;
+	private WorkPackageController previousWorkPackageController;
 	
 	@Before
 	public void before() {
@@ -32,12 +35,14 @@ public class TestTimeController {
 		previousUserController = UserController.getInstance();
 		previousWorkSessionController = WorkSessionController.getInstance();
 		previousProjectController = ProjectController.getInstance();
+		previousWorkPackageController = WorkPackageController.getInstance();
 	}
 	
 	private void setFakeControllers() {
 		UserController.setInstance(new UserControllerXml());
 		WorkSessionController.setInstance(new WorkSessionControllerXml());
 		ProjectController.setInstance(new ProjectControllerXml());
+		WorkPackageController.setInstance(new WorkPackageControllerXml());
 	}
 	
 	@After
@@ -52,6 +57,6 @@ public class TestTimeController {
 		Project project = ProjectController.getInstance().getProject("Waktu");
 		Usr user = UserController.getInstance().getUser("patriziaheer");
 		double time = TimeController.calculateWorktime(user, project, null,  null, null);
-		assertEquals(7.0 , time, 0.01);
+		assertEquals(6.0 , time, 0.01);
 	}
 }
