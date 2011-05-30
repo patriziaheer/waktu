@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 public class PersistenceController {
 	private static PersistenceController theInstance = null;
 	private static String PERSISTENCE_UNIT_NAME = null;
-	
+
 	public static PersistenceController getInstance(String persistenceUnit) {
 		if (theInstance == null) {
 			theInstance = new PersistenceController();
@@ -17,23 +17,24 @@ public class PersistenceController {
 		}
 		return theInstance;
 	}
-	
+
 	public static PersistenceController getInstance() {
-		
-		if(theInstance == null) {
-//			throw new WaktuException("Please initialize with persistenceUnit");
+
+		if (theInstance == null) {
+			// throw new
+			// WaktuException("Please initialize with persistenceUnit");
 			return null;
 		}
 		return theInstance;
 	}
-	
+
 	private Logger logger = Logger.getLogger(PersistenceController.class);
-		private EntityManagerFactory emf;
+	private EntityManagerFactory emf;
 	protected EntityManager em;
-	
-	protected  PersistenceController() {
+
+	protected PersistenceController() {
 	}
-	
+
 	public EntityManagerFactory getEMF() {
 		if (emf == null) {
 			emf = createEMF();
@@ -44,15 +45,13 @@ public class PersistenceController {
 
 	private EntityManagerFactory createEMF() {
 		try {
-			return Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+			return Persistence
+					.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		} catch (RuntimeException e) {
-			logger.error("Persistence.createEMF FAILED: "
-					+ e.getMessage());
+			logger.error("Persistence.createEMF FAILED: " + e.getMessage());
 			e.printStackTrace();
 			throw e;
 		}
 	}
-	
-	
-	
+
 }

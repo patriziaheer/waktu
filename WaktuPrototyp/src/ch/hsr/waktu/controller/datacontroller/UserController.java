@@ -17,34 +17,12 @@ import ch.hsr.waktu.services.UsernameUtil;
 import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
-import com.trolltech.qt.core.QCoreApplication;
 
 /**
  * @author simon.staeheli
  * @version 1.0
  */
 public class UserController extends QSignalEmitter {
-	
-	public enum UserProperties {
-		Data {
-			@Override
-			public String toString() {
-				return QCoreApplication.translate("UserProperties", "Data");
-			}
-		}, 
-		Projects {
-			@Override
-			public String toString() {
-				return QCoreApplication.translate("UserProperties", "Projects");
-			}
-		}, 
-		WorkSessions {
-			@Override
-			public String toString() {
-				return QCoreApplication.translate("UserProperties", "WorkSessions");
-			}
-		}
-	}
 
 	private static UserController theInstance = null;
 
@@ -79,11 +57,12 @@ public class UserController extends QSignalEmitter {
 		}
 
 		try {
-			activeUsers = em.createQuery(
-					"SELECT u FROM Usr u WHERE u.active = 'TRUE' ORDER BY u.firstname")
+			activeUsers = em
+					.createQuery(
+							"SELECT u FROM Usr u WHERE u.active = 'TRUE' ORDER BY u.firstname")
 					.getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -103,9 +82,10 @@ public class UserController extends QSignalEmitter {
 		}
 
 		try {
-			allUsers = em.createQuery("SELECT u FROM Usr u ORDER BY u.firstname").getResultList();
+			allUsers = em.createQuery(
+					"SELECT u FROM Usr u ORDER BY u.firstname").getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -125,11 +105,12 @@ public class UserController extends QSignalEmitter {
 		}
 
 		try {
-			inactiveUsers = em.createQuery(
-					"SELECT u FROM Usr u WHERE u.active = 'FALSE' ORDER BY u.firstname")
+			inactiveUsers = em
+					.createQuery(
+							"SELECT u FROM Usr u WHERE u.active = 'FALSE' ORDER BY u.firstname")
 					.getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -149,11 +130,12 @@ public class UserController extends QSignalEmitter {
 		}
 
 		try {
-			allProjectManagers = em.createQuery(
-					"SELECT u FROM Usr u JOIN u.systemRole s WHERE u.systemRole = ch.hsr.waktu.domain.SystemRole.PROJECTMANAGER OR u.systemRole = ch.hsr.waktu.domain.SystemRole.ADMIN ORDER BY u.firstname")
+			allProjectManagers = em
+					.createQuery(
+							"SELECT u FROM Usr u JOIN u.systemRole s WHERE u.systemRole = ch.hsr.waktu.domain.SystemRole.PROJECTMANAGER OR u.systemRole = ch.hsr.waktu.domain.SystemRole.ADMIN ORDER BY u.firstname")
 					.getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -181,7 +163,7 @@ public class UserController extends QSignalEmitter {
 		} catch (NoResultException e) {
 			throw new WaktuException("User or password wrong!");
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -219,7 +201,7 @@ public class UserController extends QSignalEmitter {
 			em.persist(newUsr);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -249,7 +231,7 @@ public class UserController extends QSignalEmitter {
 			em.merge(usr);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -262,9 +244,9 @@ public class UserController extends QSignalEmitter {
 			throws WaktuException {
 		return UsernameUtil.generateUsername(getAllUsers(), firstname, name);
 	}
-	
-	private void handleException(Exception e) throws WaktuException{
-		if(e instanceof IllegalArgumentException) {
+
+	private void handleException(Exception e) throws WaktuException {
+		if (e instanceof IllegalArgumentException) {
 			logger.error(e + e.getMessage());
 			throw new WaktuException("Database problem");
 		} else if (e instanceof IllegalStateException) {

@@ -4,13 +4,11 @@ import com.trolltech.qt.QSignalEmitter;
 import com.trolltech.qt.core.QTranslator;
 import com.trolltech.qt.gui.QApplication;
 
-
 public class LanguageController extends QSignalEmitter {
 	public enum Language {
-		EN,
-		DE
+		EN, DE
 	}
-	
+
 	private static LanguageController theInstance = null;
 
 	public static LanguageController getInstance() {
@@ -19,11 +17,12 @@ public class LanguageController extends QSignalEmitter {
 		}
 		return theInstance;
 	}
-	private Language currLanguage; 
+
+	private Language currLanguage;
 	public Signal0 languageChanged = new Signal0();
-	
+
 	private LanguageController() {
-		
+
 	}
 
 	public Language getCurrLanguage() {
@@ -34,17 +33,16 @@ public class LanguageController extends QSignalEmitter {
 		this.currLanguage = currLanguage;
 		changeLanguage();
 	}
-	
+
 	private void changeLanguage() {
-        QTranslator translator = new QTranslator();
-        if (currLanguage == Language.EN) {
-        	translator.load("classpath:waktu_en.qm");
-        } else if (currLanguage == Language.DE) {
-        	translator.load("classpath:waktu_de.qm");
-        }
-        QApplication.installTranslator(translator);
-        languageChanged.emit();
+		QTranslator translator = new QTranslator();
+		if (currLanguage == Language.EN) {
+			translator.load("classpath:waktu_en.qm");
+		} else if (currLanguage == Language.DE) {
+			translator.load("classpath:waktu_de.qm");
+		}
+		QApplication.installTranslator(translator);
+		languageChanged.emit();
 	}
-	
-	
+
 }

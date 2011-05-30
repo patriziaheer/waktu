@@ -119,12 +119,18 @@ public class TestFavoriteController extends TestSuite {
 		assertEquals(f6.getUser(), fc.getFavorites(usr3).get(0).getUser());
 		assertEquals(f6.getId(), fc.getFavorites(usr3).get(0).getId());
 		
-		assertEquals(f6, fc.getFavorites(usr3).get(0));
-		assertEquals(f6.hashCode(), fc.getFavorites(usr3).get(0).hashCode());
-		
 		fc.removeFavorite(f6);
 		
 		assertEquals(0, fc.getFavorites(usr3).size());
+	}
+	
+	@Test
+	public void testEqualsAndHashCode() throws WaktuException {
+		Favorite f7 = fc.addFavorite(usr4, w3, TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-25 10:00","yyyy-MM-dd hh:mm")), TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-25 12:00","yyyy-MM-dd hh:mm")));
+		
+		assertEquals(f7, fc.getFavorites(usr4).get(0));
+		assertEquals(f7.hashCode(), fc.getFavorites(usr4).get(0).hashCode());
+		
 	}
 	
 }

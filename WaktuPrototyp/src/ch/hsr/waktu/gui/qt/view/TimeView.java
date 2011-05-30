@@ -82,7 +82,8 @@ public class TimeView extends QMainWindow {
 		splitter.setCollapsible(0, false);
 
 		try {
-			ComboBoxData.createProjectForUserComboBox(ui.cmbProject, currUser, null);
+			ComboBoxData.createProjectForUserComboBox(ui.cmbProject, currUser,
+					null);
 		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}
@@ -100,7 +101,6 @@ public class TimeView extends QMainWindow {
 		ui.cmbProject.setCurrentIndex(-1);
 		ui.cmbProject.currentIndexChanged.connect(this, "projectChanged()");
 
-
 		ui.btnReset.clicked.connect(this, "resetClicked()");
 		ui.btnCreate.clicked.connect(this, "createWorkSessionClicked()");
 		ui.btnTimeOnly.clicked.connect(this, "timeOnlyClicked()");
@@ -116,7 +116,6 @@ public class TimeView extends QMainWindow {
 		ui.tblWorksessions.setSelectionBehavior(SelectionBehavior.SelectRows);
 		ui.tblWorksessions.horizontalHeader().resizeSection(0, 200);
 
-
 		FavoriteController.getInstance().add.connect(this,
 				"favoriteAdded(Favorite)");
 		FavoriteController.getInstance().update.connect(this,
@@ -130,13 +129,19 @@ public class TimeView extends QMainWindow {
 				"workSessionUpdated()");
 		WorkSessionController.getInstance().removed.connect(this,
 				"workSessionRemoved(WorkSession)");
-		
-		ProjectStaffController.getInstance().add.connect(this, "projectStaffChanged(ProjectStaff)");
-		ProjectStaffController.getInstance().removed.connect(this, "projectStaffChanged(ProjectStaff)");
-		ProjectController.getInstance().add.connect(this, "projectsAdded(Project)");
-		ProjectController.getInstance().update.connect(this, "projectsUpdated()");
-		WorkPackageController.getInstance().add.connect(this, "workPackageAdded(WorkPackage)");
-		WorkPackageController.getInstance().update.connect(this, "workPackageUpdated()");
+
+		ProjectStaffController.getInstance().add.connect(this,
+				"projectStaffChanged(ProjectStaff)");
+		ProjectStaffController.getInstance().removed.connect(this,
+				"projectStaffChanged(ProjectStaff)");
+		ProjectController.getInstance().add.connect(this,
+				"projectsAdded(Project)");
+		ProjectController.getInstance().update.connect(this,
+				"projectsUpdated()");
+		WorkPackageController.getInstance().add.connect(this,
+				"workPackageAdded(WorkPackage)");
+		WorkPackageController.getInstance().update.connect(this,
+				"workPackageUpdated()");
 
 		ui.tblWorksessions.setModel(workSessionModel);
 		ui.tblFavorites.setModel(favoriteModel);
@@ -150,12 +155,13 @@ public class TimeView extends QMainWindow {
 		ui.actionEN.triggered.connect(this, "translateEN()");
 		ui.actionIcs_Import.triggered.connect(this, "icsImportClicked()");
 		ui.actionLogout.triggered.connect(this, "logoutClicked()");
-		
+
 		setLanguageChecked();
 
-		LanguageController.getInstance().languageChanged.connect(this,"translate()");
+		LanguageController.getInstance().languageChanged.connect(this,
+				"translate()");
 		managmentView.logout.connect(this, "logoutClicked()");
-		
+
 		ui.txtStart.setDisplayFormat("HH:mm");
 		ui.txtEnd.setDisplayFormat("HH:mm");
 
@@ -257,9 +263,11 @@ public class TimeView extends QMainWindow {
 		updateWorkSessionModel();
 		try {
 			if (workSessionModel != null) {
-				workSessionModel.updateModel(currUser, calendar.getCurrentDate());
+				workSessionModel.updateModel(currUser,
+						calendar.getCurrentDate());
 			} else {
-				workSessionModel = new WorkSessionModel(currUser, calendar.getCurrentDate());
+				workSessionModel = new WorkSessionModel(currUser,
+						calendar.getCurrentDate());
 			}
 		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
@@ -291,7 +299,7 @@ public class TimeView extends QMainWindow {
 			ui.lblOvertime.setText(""
 					+ TimeController.calculateOvertime(currUser, new QDate(01,
 							01, 1900), new QDate(31, 12, 2999)));
-			ui.lblHolidays.setText(currUser.getHoliday()+"");
+			ui.lblHolidays.setText(currUser.getHoliday() + "");
 		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}
@@ -322,7 +330,8 @@ public class TimeView extends QMainWindow {
 		} else {
 			Project project;
 			try {
-				WorkPackage workPackage = (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex());
+				WorkPackage workPackage = (WorkPackage) ui.cmbWorkpackage
+						.itemData(ui.cmbWorkpackage.currentIndex());
 				QDateTime start = new QDateTime();
 				start.setDate(calendar.getCurrentDate());
 				start.setTime(ui.txtStart.time());
@@ -362,12 +371,14 @@ public class TimeView extends QMainWindow {
 			WorkPackage wp = favorite.getWorkPackageID();
 			Project project = wp.getProject();
 			try {
-				ComboBoxData.createProjectForUserComboBox(ui.cmbProject, currUser, project);
+				ComboBoxData.createProjectForUserComboBox(ui.cmbProject,
+						currUser, project);
 			} catch (WaktuException e) {
 				setStatusBarText(e.getMessage());
 			}
 			try {
-				ComboBoxData.createActiveWorkPackageComboBox(ui.cmbWorkpackage, project, wp);
+				ComboBoxData.createActiveWorkPackageComboBox(ui.cmbWorkpackage,
+						project, wp);
 			} catch (WaktuException e) {
 				setStatusBarText(e.getMessage());
 			}
@@ -421,7 +432,8 @@ public class TimeView extends QMainWindow {
 		} else {
 
 			try {
-				WorkPackage workPackage = (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex());
+				WorkPackage workPackage = (WorkPackage) ui.cmbWorkpackage
+						.itemData(ui.cmbWorkpackage.currentIndex());
 				QDateTime start = new QDateTime();
 				start.setDate(calendar.getCurrentDate());
 				start.setTime(ui.txtStart.time());
@@ -599,16 +611,18 @@ public class TimeView extends QMainWindow {
 		ui.retranslateUi(this);
 		setLanguageChecked();
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void icsImportClicked() {
-		String fileName = QFileDialog.getOpenFileName(this,tr("Open ICS File"), "", new QFileDialog.Filter(tr("Ics Files (*.ics)")));
+		String fileName = QFileDialog.getOpenFileName(this,
+				tr("Open ICS File"), "", new QFileDialog.Filter(
+						tr("Ics Files (*.ics)")));
 		if (fileName.isEmpty() == false) {
 			IcsImportView icsImport = new IcsImportView(fileName);
 			icsImport.show();
 		}
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void logoutClicked() {
 		managmentView.close();
@@ -621,31 +635,31 @@ public class TimeView extends QMainWindow {
 	protected void closeEvent(QCloseEvent arg__1) {
 		QApplication.exit();
 	}
-	
+
 	@Override
 	protected void contextMenuEvent(QContextMenuEvent event) {
 		QMenu menu = new QMenu(this);
-		
+
 		QAction addToFavorites = new QAction(QCoreApplication.translate(
 				"TimeView", "Add to Favorites"), menu);
 		addToFavorites.triggered.connect(this, "addToFavorites()");
-		
+
 		QAction managmentAction = new QAction(QCoreApplication.translate(
 				"TimeView", "Open Managment"), menu);
 		managmentAction.triggered.connect(this, "managmentClicked()");
-		
-		QAction icsImport = new QAction(QCoreApplication.translate(
-				"TimeView", "Ics Import"), menu);
+
+		QAction icsImport = new QAction(QCoreApplication.translate("TimeView",
+				"Ics Import"), menu);
 		icsImport.triggered.connect(this, "icsImportClicked()");
-		
-		QMenu languageMenu = new QMenu(QCoreApplication.translate(
-				"TimeView", "Language"), menu);
-		QAction actionDE = new QAction(QCoreApplication.translate(
-				"TimeView", "DE"), menu);
+
+		QMenu languageMenu = new QMenu(QCoreApplication.translate("TimeView",
+				"Language"), menu);
+		QAction actionDE = new QAction(QCoreApplication.translate("TimeView",
+				"DE"), menu);
 		actionDE.setCheckable(true);
 		actionDE.triggered.connect(this, "translateDE()");
-		QAction actionEN = new QAction(QCoreApplication.translate(
-				"TimeView", "EN"), menu);
+		QAction actionEN = new QAction(QCoreApplication.translate("TimeView",
+				"EN"), menu);
 		actionEN.setCheckable(true);
 		actionEN.triggered.connect(this, "translateEN()");
 		languageMenu.addAction(actionEN);
@@ -658,11 +672,10 @@ public class TimeView extends QMainWindow {
 			actionEN.setChecked(true);
 		}
 
-		
 		QAction logoutAction = new QAction(QCoreApplication.translate(
 				"TimeView", "Logout"), menu);
 		logoutAction.triggered.connect(this, "logoutClicked()");
-		
+
 		QAction closeAction = new QAction(QCoreApplication.translate(
 				"TimeView", "Close"), menu);
 		closeAction.triggered.connect(this, "closeApp()");
@@ -673,7 +686,7 @@ public class TimeView extends QMainWindow {
 		menu.addMenu(languageMenu);
 		menu.addAction(logoutAction);
 		menu.addAction(closeAction);
-		
+
 		menu.exec(event.globalPos());
 	}
 
@@ -681,53 +694,59 @@ public class TimeView extends QMainWindow {
 	private void projectStaffChanged(ProjectStaff projectStaff) {
 		projectCombo();
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void projectsAdded(Project project) {
 		projectCombo();
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void projectsUpdated() {
 		projectCombo();
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void workPackageAdded(WorkPackage workPackage) {
 		workPackageCombo();
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void workPackageUpdated() {
 		workPackageCombo();
 	}
-	
+
 	private void projectCombo() {
-		Project project = (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex());
+		Project project = (Project) ui.cmbProject.itemData(ui.cmbProject
+				.currentIndex());
 		try {
-			ComboBoxData.createProjectForUserComboBox(ui.cmbProject, currUser, project);
+			ComboBoxData.createProjectForUserComboBox(ui.cmbProject, currUser,
+					project);
 		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}
 		if (project != null) {
 			try {
-				ComboBoxData.createActiveWorkPackageComboBox(ui.cmbWorkpackage, project, null);
+				ComboBoxData.createActiveWorkPackageComboBox(ui.cmbWorkpackage,
+						project, null);
 			} catch (WaktuException e) {
 				setStatusBarText(e.getMessage());
 			}
 		}
 	}
-	
+
 	private void workPackageCombo() {
-		Project project = (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex());
-		WorkPackage wp = (WorkPackage) ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex());
+		Project project = (Project) ui.cmbProject.itemData(ui.cmbProject
+				.currentIndex());
+		WorkPackage wp = (WorkPackage) ui.cmbWorkpackage
+				.itemData(ui.cmbWorkpackage.currentIndex());
 		try {
-			ComboBoxData.createActiveWorkPackageComboBox(ui.cmbWorkpackage, project, wp);
+			ComboBoxData.createActiveWorkPackageComboBox(ui.cmbWorkpackage,
+					project, wp);
 		} catch (WaktuException e) {
 			setStatusBarText(e.getMessage());
 		}
 	}
-	
+
 	private void setLanguageChecked() {
 		if (LanguageController.getInstance().getCurrLanguage() == Language.DE) {
 			ui.actionDE.setChecked(true);
@@ -738,4 +757,3 @@ public class TimeView extends QMainWindow {
 		}
 	}
 }
-

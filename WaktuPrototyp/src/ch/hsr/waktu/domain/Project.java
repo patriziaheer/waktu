@@ -1,7 +1,5 @@
 package ch.hsr.waktu.domain;
 
-
-
 /**
  * @author simon.staeheli
  * @version 1.0
@@ -15,21 +13,22 @@ public class Project {
 	private boolean active = true;
 	private int plannedTime;
 
-	public Project(){
+	public Project() {
 
 	}
-	
+
 	public Project(String projectIdentifier) {
 		this.projectIdentifier = projectIdentifier;
 	}
-	
+
 	public Project(String projectID, String description, int plannedTime) {
 		this.projectIdentifier = projectID;
 		this.description = description;
 		this.plannedTime = plannedTime;
 	}
-	
-	public Project(String projectID, String description, Usr projectManager, int plannedTime) {
+
+	public Project(String projectID, String description, Usr projectManager,
+			int plannedTime) {
 		this.projectIdentifier = projectID;
 		this.description = description;
 		this.projectManager = projectManager;
@@ -71,11 +70,11 @@ public class Project {
 	public void setProjectIdentifier(String projectIdentifier) {
 		this.projectIdentifier = projectIdentifier;
 	}
-	
+
 	public Usr getProjectManager() {
 		return projectManager;
 	}
-	
+
 	public void setProjectManager(Usr projectManager) {
 		this.projectManager = projectManager;
 	}
@@ -84,18 +83,21 @@ public class Project {
 	public String toString() {
 		return projectIdentifier + " " + description;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Project) {
-			Project proj = (Project)obj;
-			if (proj.projectIdentifier.equals(projectIdentifier) && 
-				proj.description.equals(description) && 
-				proj.projectid == projectid &&
-				proj.active == active &&
-				proj.plannedTime == plannedTime /*&&
-				proj.projectManager.equals(projectManager)*/) {
-					return true;
+			Project proj = (Project) obj;
+			if (proj.projectIdentifier.equals(projectIdentifier)
+					&& proj.description.equals(description)
+					&& proj.projectid == projectid && proj.active == active
+					&& proj.plannedTime == plannedTime /*
+														 * &&
+														 * proj.projectManager
+														 * .equals
+														 * (projectManager)
+														 */) {
+				return true;
 			} else {
 				return false;
 			}

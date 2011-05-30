@@ -15,12 +15,13 @@ public class WorkSession {
 	private String description;
 	private WorkPackage workPackageRef;
 
-	public WorkSession(){
+	public WorkSession() {
 
 	}
-	
+
 	public WorkSession(Usr user, WorkPackage workPackage,
-			GregorianCalendar startTime, GregorianCalendar endTime, String description){
+			GregorianCalendar startTime, GregorianCalendar endTime,
+			String description) {
 		this.userRef = user;
 		this.workPackageRef = workPackage;
 		this.startTime = startTime;
@@ -71,10 +72,14 @@ public class WorkSession {
 	public void setWorkPackage(WorkPackage workPackage) {
 		this.workPackageRef = workPackage;
 	}
-	
+
 	@Override
 	public String toString() {
-		return id + ""; //+ " " + userRef + " " + workPackageRef.getDescription() + " " + TimeUtil.convertGregorianToQDateTime(startTime) + " - " + TimeUtil.convertGregorianToQDateTime(endTime);
+		return id + ""; // + " " + userRef + " " +
+						// workPackageRef.getDescription() + " " +
+						// TimeUtil.convertGregorianToQDateTime(startTime) +
+						// " - " +
+						// TimeUtil.convertGregorianToQDateTime(endTime);
 	}
 
 	@Override
@@ -90,7 +95,7 @@ public class WorkSession {
 		}
 		return super.equals(obj);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		int hashCode = 23;

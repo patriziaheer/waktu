@@ -19,15 +19,15 @@ import com.trolltech.qt.gui.QAbstractItemView.SelectionBehavior;
 import com.trolltech.qt.gui.QAbstractItemView.SelectionMode;
 
 public class ProjectStaffView extends QWidget {
-	
+
 	private Ui_ProjectStaff ui = new Ui_ProjectStaff();
 	private Project project;
 	private ProjectStaffModel projectStaffModel;
 	public Signal1<String> errorMessage = new Signal1<String>();
-	
+
 	public ProjectStaffView(Project project) {
 		this.project = project;
-		
+
 	}
 
 	public void initialize() {
@@ -47,17 +47,20 @@ public class ProjectStaffView extends QWidget {
 		ui.tblWorkStaff.resizeRowsToContents();
 		ui.tblWorkStaff.setSelectionMode(SelectionMode.SingleSelection);
 		ui.tblWorkStaff.setSelectionBehavior(SelectionBehavior.SelectRows);
-		
-		ui.btnAdd.clicked.connect(this, "addUser()");
-		
-		ProjectStaffController.getInstance().add.connect(this, "added(ProjectStaff)");
-		ProjectStaffController.getInstance().removed.connect(this, "removed(ProjectStaff)");
 
-		LanguageController.getInstance().languageChanged.connect(this, "translate()");
-		
+		ui.btnAdd.clicked.connect(this, "addUser()");
+
+		ProjectStaffController.getInstance().add.connect(this,
+				"added(ProjectStaff)");
+		ProjectStaffController.getInstance().removed.connect(this,
+				"removed(ProjectStaff)");
+
+		LanguageController.getInstance().languageChanged.connect(this,
+				"translate()");
+
 		UserController.getInstance().add.connect(this, "userAdded(Usr)");
 		UserController.getInstance().update.connect(this, "userChanged()");
-		
+
 		if (GuiController.getInstance().canAddProjectStaff() == false) {
 			ui.cmbUsers.setVisible(false);
 			ui.btnAdd.setVisible(false);
@@ -65,46 +68,52 @@ public class ProjectStaffView extends QWidget {
 			updateProjectStaffModel();
 		}
 	}
-	
+
 	private void updateProjectStaffModel() {
 		try {
-			for (int i = 0; i < ProjectStaffController.getInstance().getUsers(project).size(); i++) {
-				QModelIndex currIndex = projectStaffModel.index(i, projectStaffModel.columnCount()-1);
+			for (int i = 0; i < ProjectStaffController.getInstance()
+					.getUsers(project).size(); i++) {
+				QModelIndex currIndex = projectStaffModel.index(i,
+						projectStaffModel.columnCount() - 1);
 
 				IndexButton deleteButton = new IndexButton(currIndex);
 				deleteButton.setFixedHeight(20);
-				deleteButton.setIcon(new QIcon("classpath:icons/delete_16x16.png"));
-				deleteButton.actionClicked.connect(this, "deleteClicked(IndexButton)");
-				
+				deleteButton.setIcon(new QIcon(
+						"classpath:icons/delete_16x16.png"));
+				deleteButton.actionClicked.connect(this,
+						"deleteClicked(IndexButton)");
+
 				ui.tblWorkStaff.setIndexWidget(currIndex, deleteButton);
 			}
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void deleteClicked(IndexButton btn) {
 		try {
-			Usr user = ProjectStaffController.getInstance().getUsers(project).get(btn.getIndex().row());
+			Usr user = ProjectStaffController.getInstance().getUsers(project)
+					.get(btn.getIndex().row());
 			ProjectStaffController.getInstance().removeUser(user, project);
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void addUser() {
 		try {
-			Usr usr = (Usr)ui.cmbUsers.itemData(ui.cmbUsers.currentIndex());
+			Usr usr = (Usr) ui.cmbUsers.itemData(ui.cmbUsers.currentIndex());
 			if (usr != null) {
-				ProjectStaffController.getInstance().addProjectStaff(usr, project);
+				ProjectStaffController.getInstance().addProjectStaff(usr,
+						project);
 			}
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void added(ProjectStaff projectStaff) {
 		updateData();
@@ -114,16 +123,16 @@ public class ProjectStaffView extends QWidget {
 	private void removed(ProjectStaff projectStaff) {
 		updateData();
 	}
-	
+
 	private void updateData() {
 		updateTable();
 		try {
 			ComboBoxData.createUserProjectStaffComboBox(ui.cmbUsers, project);
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
-		}	
+		}
 	}
-	
+
 	private void updateTable() {
 		try {
 			if (projectStaffModel != null) {
@@ -135,26 +144,28 @@ public class ProjectStaffView extends QWidget {
 			errorMessage.emit(e.getMessage());
 		}
 		projectStaffModel.layoutAboutToBeChanged.emit();
-		projectStaffModel.dataChanged.emit(projectStaffModel.index(0, 0), projectStaffModel.index(projectStaffModel.rowCount(), projectStaffModel.columnCount()));
+		projectStaffModel.dataChanged.emit(projectStaffModel.index(0, 0),
+				projectStaffModel.index(projectStaffModel.rowCount(),
+						projectStaffModel.columnCount()));
 		projectStaffModel.layoutChanged.emit();
 		if (GuiController.getInstance().canAddProjectStaff() == true) {
 			updateProjectStaffModel();
 		}
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void translate() {
-        ui.retranslateUi(this);
+		ui.retranslateUi(this);
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void userAdded(Usr usr) {
 		updateData();
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void userChanged() {
 		updateData();
 	}
-	
+
 }

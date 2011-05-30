@@ -53,21 +53,28 @@ public class ProjectWorkSessionModel extends QAbstractItemModel {
 			case 4:
 				return TimeUtil.convertGregorianToQDateTime(workSession
 						.getEnd());
-			case 5:{
-				QTime duration = new QTime(0,0,0);
-				duration = duration.addSecs(TimeUtil.calculateTimespanInSeconds(
-						workSession.getStart(), workSession.getEnd()));
+			case 5: {
+				QTime duration = new QTime(0, 0, 0);
+				duration = duration.addSecs(TimeUtil
+						.calculateTimespanInSeconds(workSession.getStart(),
+								workSession.getEnd()));
 				return duration;
 			}
 			}
 		} else if (Qt.ItemDataRole.SizeHintRole == role) {
 			switch (index.column()) {
-			case 0: return new QSize(170, 20);
-			case 1: return new QSize(170, 20);
-			case 2: return new QSize(170, 20);
-			case 3: return new QSize(44, 20);
-			case 4: return new QSize(44, 20);
-			case 5: return new QSize(30, 20);
+			case 0:
+				return new QSize(170, 20);
+			case 1:
+				return new QSize(170, 20);
+			case 2:
+				return new QSize(170, 20);
+			case 3:
+				return new QSize(44, 20);
+			case 4:
+				return new QSize(44, 20);
+			case 5:
+				return new QSize(30, 20);
 			}
 		}
 		return null;
@@ -79,31 +86,44 @@ public class ProjectWorkSessionModel extends QAbstractItemModel {
 				&& Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
 			case 0:
-				return QCoreApplication.translate("ProjectWorkSessionModel", "WorkPackage");
+				return QCoreApplication.translate("ProjectWorkSessionModel",
+						"WorkPackage");
 			case 1:
-				return QCoreApplication.translate("ProjectWorkSessionModel", "Desciption");
+				return QCoreApplication.translate("ProjectWorkSessionModel",
+						"Desciption");
 			case 2:
-				return QCoreApplication.translate("ProjectWorkSessionModel", "User");
+				return QCoreApplication.translate("ProjectWorkSessionModel",
+						"User");
 			case 3:
-				return QCoreApplication.translate("ProjectWorkSessionModel", "Start");
+				return QCoreApplication.translate("ProjectWorkSessionModel",
+						"Start");
 			case 4:
-				return QCoreApplication.translate("ProjectWorkSessionModel", "End");
+				return QCoreApplication.translate("ProjectWorkSessionModel",
+						"End");
 			case 5:
-				return QCoreApplication.translate("ProjectWorkSessionModel", "Duration");
+				return QCoreApplication.translate("ProjectWorkSessionModel",
+						"Duration");
 			}
 		} else if (Qt.ItemDataRole.SizeHintRole == role
 				&& Qt.Orientation.Vertical == orientation) {
 			return new QSize(0, 20);
-		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Horizontal == orientation) {
+		} else if (Qt.ItemDataRole.SizeHintRole == role
+				&& Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
-			case 0: return new QSize(170, 30);
-			case 1: return new QSize(170, 30);
-			case 2: return new QSize(170, 30);
-			case 3: return new QSize(44, 30);
-			case 4: return new QSize(44, 30);
-			case 5: return new QSize(30, 30);
+			case 0:
+				return new QSize(170, 30);
+			case 1:
+				return new QSize(170, 30);
+			case 2:
+				return new QSize(170, 30);
+			case 3:
+				return new QSize(44, 30);
+			case 4:
+				return new QSize(44, 30);
+			case 5:
+				return new QSize(30, 30);
 			}
-		} 
+		}
 		return super.headerData(section, orientation, role);
 	}
 

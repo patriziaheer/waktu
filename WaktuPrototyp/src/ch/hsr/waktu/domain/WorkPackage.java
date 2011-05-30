@@ -10,11 +10,11 @@ public class WorkPackage {
 	private String description;
 	private boolean active = true;
 	private Project project;
-	
-	public WorkPackage(){
+
+	public WorkPackage() {
 	}
-	
-	public WorkPackage(Project project, String description){
+
+	public WorkPackage(Project project, String description) {
 		this.project = project;
 		this.description = description;
 	}
@@ -46,26 +46,24 @@ public class WorkPackage {
 	public void setProject(Project project) {
 		this.project = project;
 	}
-	
+
 	@Override
 	public String toString() {
 		return description;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof WorkPackage) {
-			WorkPackage wp = (WorkPackage)obj;
-			if (wp.id == id &&
-			wp.description.equals(description) &&
-			wp.active == active &&
-			wp.project.equals(project)) {
+			WorkPackage wp = (WorkPackage) obj;
+			if (wp.id == id && wp.description.equals(description)
+					&& wp.active == active && wp.project.equals(project)) {
 				return true;
 			}
 		}
 		return super.equals(obj);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		int hashCode = 23;

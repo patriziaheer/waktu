@@ -1,6 +1,5 @@
 package ch.hsr.waktu.gui.qt.model;
 
-
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -24,13 +23,13 @@ import com.trolltech.qt.core.Qt.ItemFlags;
 import com.trolltech.qt.core.Qt.Orientation;
 
 public class WorkSessionModel extends QAbstractItemModel {
-	
+
 	private Logger logger = Logger.getLogger(WorkSessionModel.class);
-	
+
 	private List<WorkSession> workSessions;
 	private QModelIndex editable = null;
 	private QDate date;
-	
+
 	public WorkSessionModel(Usr usr, QDate date) throws WaktuException {
 		this.date = date;
 		updateModel(usr, date);
@@ -48,97 +47,136 @@ public class WorkSessionModel extends QAbstractItemModel {
 
 	@Override
 	public Object data(QModelIndex index, int role) {
-		if (Qt.ItemDataRole.DisplayRole == role 
+		if (Qt.ItemDataRole.DisplayRole == role
 				|| Qt.ItemDataRole.EditRole == role
 				|| Qt.ItemDataRole.ToolTipRole == role) {
 			WorkSession workSession = workSessions.get(index.row());
 			switch (index.column()) {
-			case 0: return workSession.getWorkPackage().getProject().getDescription();
-			case 1: return workSession.getWorkPackage().getDescription(); 
-			case 2: return workSession.getDescription();
-			case 3: return TimeUtil.convertGregorianToQDateTime(workSession.getStart()).time();
-			case 4: return TimeUtil.convertGregorianToQDateTime(workSession.getEnd()).time();
-			case 5: return "";
+			case 0:
+				return workSession.getWorkPackage().getProject()
+						.getDescription();
+			case 1:
+				return workSession.getWorkPackage().getDescription();
+			case 2:
+				return workSession.getDescription();
+			case 3:
+				return TimeUtil.convertGregorianToQDateTime(
+						workSession.getStart()).time();
+			case 4:
+				return TimeUtil.convertGregorianToQDateTime(
+						workSession.getEnd()).time();
+			case 5:
+				return "";
 			}
 		} else if (Qt.ItemDataRole.SizeHintRole == role) {
 			switch (index.column()) {
-			case 0: return new QSize(150, 20);
-			case 1: return new QSize(150, 20);
-			case 2: return new QSize(150, 20);
-			case 3: return new QSize(44, 20);
-			case 4: return new QSize(44, 20);
-			case 5: return new QSize(30, 20);
+			case 0:
+				return new QSize(150, 20);
+			case 1:
+				return new QSize(150, 20);
+			case 2:
+				return new QSize(150, 20);
+			case 3:
+				return new QSize(44, 20);
+			case 4:
+				return new QSize(44, 20);
+			case 5:
+				return new QSize(30, 20);
 			}
 		}
 		return null;
 	}
-	
+
 	@Override
 	public Object headerData(int section, Orientation orientation, int role) {
-		if (Qt.ItemDataRole.DisplayRole == role && Qt.Orientation.Horizontal == orientation) {
+		if (Qt.ItemDataRole.DisplayRole == role
+				&& Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
-			case 0: return QCoreApplication.translate("WorkSessionModel", "Project");
-			case 1: return QCoreApplication.translate("WorkSessionModel", "WorkPackage"); 
-			case 2: return QCoreApplication.translate("WorkSessionModel", "Description");
-			case 3: return QCoreApplication.translate("WorkSessionModel", "Start");
-			case 4: return QCoreApplication.translate("WorkSessionModel", "End");
-			case 5: return "";
+			case 0:
+				return QCoreApplication
+						.translate("WorkSessionModel", "Project");
+			case 1:
+				return QCoreApplication.translate("WorkSessionModel",
+						"WorkPackage");
+			case 2:
+				return QCoreApplication.translate("WorkSessionModel",
+						"Description");
+			case 3:
+				return QCoreApplication.translate("WorkSessionModel", "Start");
+			case 4:
+				return QCoreApplication.translate("WorkSessionModel", "End");
+			case 5:
+				return "";
 			}
-		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Vertical == orientation) {
-			return new QSize(0,20);
-		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Horizontal == orientation) {
+		} else if (Qt.ItemDataRole.SizeHintRole == role
+				&& Qt.Orientation.Vertical == orientation) {
+			return new QSize(0, 20);
+		} else if (Qt.ItemDataRole.SizeHintRole == role
+				&& Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
-			case 0: return new QSize(120, 30);
-			case 1: return new QSize(120, 30);
-			case 2: return new QSize(120, 30);
-			case 3: return new QSize(44, 30);
-			case 4: return new QSize(44, 30);
-			case 5: return new QSize(30, 30);
+			case 0:
+				return new QSize(120, 30);
+			case 1:
+				return new QSize(120, 30);
+			case 2:
+				return new QSize(120, 30);
+			case 3:
+				return new QSize(44, 30);
+			case 4:
+				return new QSize(44, 30);
+			case 5:
+				return new QSize(30, 30);
 			}
-		} 
+		}
 		return null;
 	}
-	
 
 	@Override
 	public ItemFlags flags(QModelIndex index) {
 		if (editable == null) {
 			return super.flags(index);
 		}
-		if (index.row() == editable.row() && index.column() != columnCount()-1 && index.column() != 0 && index.column() != 1) {
-			Qt.ItemFlag[] flags = {Qt.ItemFlag.ItemIsEditable,Qt.ItemFlag.ItemIsSelectable,Qt.ItemFlag.ItemIsEnabled};
+		if (index.row() == editable.row()
+				&& index.column() != columnCount() - 1 && index.column() != 0
+				&& index.column() != 1) {
+			Qt.ItemFlag[] flags = { Qt.ItemFlag.ItemIsEditable,
+					Qt.ItemFlag.ItemIsSelectable, Qt.ItemFlag.ItemIsEnabled };
 			ItemFlags f = super.flags(index);
 			f.set(flags);
 			return f;
 		}
 		return super.flags(index);
 	}
-	
+
 	@Override
 	public boolean setData(QModelIndex index, Object value, int role) {
 		WorkSession workSession = workSessions.get(index.row());
-		switch(index.column()) {
+		switch (index.column()) {
 		case 2: {
-			workSession.setDescription((String)value);
+			workSession.setDescription((String) value);
 		}
-		break;
+			break;
 		case 3: {
-			QDateTime qDateTime = new QDateTime(date, (QTime)value);
-			if (qDateTime.compareTo(TimeUtil.convertGregorianToQDateTime(workSession.getEnd())) < 0) {
-				GregorianCalendar dateTime = TimeUtil.convertQDateTimeToGregorian(qDateTime);
+			QDateTime qDateTime = new QDateTime(date, (QTime) value);
+			if (qDateTime.compareTo(TimeUtil
+					.convertGregorianToQDateTime(workSession.getEnd())) < 0) {
+				GregorianCalendar dateTime = TimeUtil
+						.convertQDateTimeToGregorian(qDateTime);
 				workSession.setStart(dateTime);
 			}
 		}
-		break;
+			break;
 		case 4: {
-			QDateTime qDateTime = new QDateTime(date, (QTime)value);
-			if (qDateTime.compareTo(TimeUtil.convertGregorianToQDateTime(workSession.getStart())) > 0) {
-				GregorianCalendar dateTime = TimeUtil.convertQDateTimeToGregorian(qDateTime);
+			QDateTime qDateTime = new QDateTime(date, (QTime) value);
+			if (qDateTime.compareTo(TimeUtil
+					.convertGregorianToQDateTime(workSession.getStart())) > 0) {
+				GregorianCalendar dateTime = TimeUtil
+						.convertQDateTimeToGregorian(qDateTime);
 				workSession.setEnd(dateTime);
 			}
-			
+
 		}
-		break;
+			break;
 		}
 		return super.setData(index, value, role);
 	}
@@ -165,14 +203,15 @@ public class WorkSessionModel extends QAbstractItemModel {
 			logger.info("Row " + editable.row() + " is editable");
 		}
 	}
-	
+
 	public WorkSession getWorkSession(int row) {
 		return workSessions.get(row);
 	}
-	
+
 	public void updateModel(Usr usr, QDate date) throws WaktuException {
 		this.date = date;
-		workSessions = WorkSessionController.getInstance().getWorkSessions(usr, date);
+		workSessions = WorkSessionController.getInstance().getWorkSessions(usr,
+				date);
 	}
 
 }

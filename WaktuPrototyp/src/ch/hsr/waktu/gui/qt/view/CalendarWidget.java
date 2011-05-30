@@ -6,16 +6,16 @@ import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.gui.QPixmap;
 import com.trolltech.qt.gui.QWidget;
 
-public class CalendarWidget extends QWidget{ 
-	
+public class CalendarWidget extends QWidget {
+
 	private Ui_Calendar ui = new Ui_Calendar();
 	public Signal0 dayChanged = new Signal0();
 	private QDate currDate = QDate.currentDate();
-	
+
 	public CalendarWidget() {
 		ui.setupUi(this);
 		ui.lblLogo.setPixmap(new QPixmap("classpath:icons/logo_klein.png"));
-		
+
 		// calendar slots
 		ui.btnMo.clicked.connect(this, "moClicked()");
 		ui.btnDi.clicked.connect(this, "diClicked()");
@@ -27,12 +27,13 @@ public class CalendarWidget extends QWidget{
 		ui.btnLeft.clicked.connect(this, "leftClicked()");
 		ui.btnRight.clicked.connect(this, "rightClicked()");
 		ui.btnToday.clicked.connect(this, "todayClicked()");
-		
-		LanguageController.getInstance().languageChanged.connect(this, "translate()");
-		
+
+		LanguageController.getInstance().languageChanged.connect(this,
+				"translate()");
+
 		updateCalendar();
 	}
-	
+
 	public QDate getCurrentDate() {
 		return currDate;
 	}
@@ -226,7 +227,7 @@ public class CalendarWidget extends QWidget{
 		ui.lblEnd.setText(endDate.toString("dd.MM.yy"));
 		dayChanged.emit();
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void todayClicked() {
 		currDate = QDate.currentDate();
@@ -239,5 +240,4 @@ public class CalendarWidget extends QWidget{
 		updateCalendar();
 	}
 
-	
 }

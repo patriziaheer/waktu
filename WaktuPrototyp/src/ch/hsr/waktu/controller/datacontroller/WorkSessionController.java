@@ -69,7 +69,7 @@ public class WorkSessionController extends QSignalEmitter {
 					"SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE u.usrid = '"
 							+ user.getId() + "'").getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -104,7 +104,7 @@ public class WorkSessionController extends QSignalEmitter {
 							+ "' AND u.usrid = '" + user.getId() + "'");
 			workSessionsByDate = q.getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -133,7 +133,7 @@ public class WorkSessionController extends QSignalEmitter {
 							+ "' AND u.usrid = '" + user.getId() + "'");
 			workSessionsByUserAndDate = q.getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -158,7 +158,7 @@ public class WorkSessionController extends QSignalEmitter {
 					"SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp WHERE wp.id = '"
 							+ workPackage.getId() + "'").getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -185,7 +185,7 @@ public class WorkSessionController extends QSignalEmitter {
 									+ "' AND u.usrid = '"
 									+ usr.getId() + "'").getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -209,10 +209,12 @@ public class WorkSessionController extends QSignalEmitter {
 							+ fromDate.toString("yyyy-MM-dd")
 							+ " 00:00:00"
 							+ "' AND ws.endTime <= '"
-							+ toDate.toString("yyyy-MM-dd") + " 23:59:59" + "' AND wp.id = '"+workPackage.getId()+"'");
+							+ toDate.toString("yyyy-MM-dd")
+							+ " 23:59:59"
+							+ "' AND wp.id = '" + workPackage.getId() + "'");
 			workSessionsByDateAndWorkPackage = q.getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -237,7 +239,7 @@ public class WorkSessionController extends QSignalEmitter {
 							"SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN wp.project p WHERE p.projectid = '"
 									+ project.getId() + "'").getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -264,7 +266,7 @@ public class WorkSessionController extends QSignalEmitter {
 									+ "' AND u.usrid = '"
 									+ usr.getId() + "'").getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -296,10 +298,12 @@ public class WorkSessionController extends QSignalEmitter {
 							+ start.toString("yyyy-MM-dd")
 							+ " 00:00:00"
 							+ "' AND ws.endTime <= '"
-							+ end.toString("yyyy-MM-dd") + " 23:59:59" + "' AND p.projectid = '"+project.getId()+"'");
+							+ end.toString("yyyy-MM-dd")
+							+ " 23:59:59"
+							+ "' AND p.projectid = '" + project.getId() + "'");
 			workSessionsByDate = q.getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -330,14 +334,16 @@ public class WorkSessionController extends QSignalEmitter {
 			Query q = em
 					.createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u JOIN ws.workPackageRef wp JOIN wp.project p WHERE p.projectid = '"
 							+ project.getId()
-							+ "' AND u.usrid = '"+usr.getId()+"' AND ws.startTime >= '"
+							+ "' AND u.usrid = '"
+							+ usr.getId()
+							+ "' AND ws.startTime >= '"
 							+ start.toString("yyyy-MM-dd")
 							+ " 00:00:00"
 							+ "' AND ws.endTime <= '"
 							+ end.toString("yyyy-MM-dd") + " 23:59:59" + "'");
 			workSessionsByDate = q.getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -380,7 +386,7 @@ public class WorkSessionController extends QSignalEmitter {
 			em.persist(newWorkSession);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -402,14 +408,10 @@ public class WorkSessionController extends QSignalEmitter {
 		// problem: JPA saves GregorianCalendar-Dates with wrong month in DB
 		// (eg. 6 instead of 5)
 		// quick fix: subtract 1 from GregorianCalendar.MONTH
-		workSession.getStart()
-		.set(GregorianCalendar.MONTH,
-				workSession.getStart().get(
-						GregorianCalendar.MONTH) - 1);
-		workSession.getEnd()
-		.set(GregorianCalendar.MONTH,
-				workSession.getEnd().get(
-						GregorianCalendar.MONTH) - 1);
+		workSession.getStart().set(GregorianCalendar.MONTH,
+				workSession.getStart().get(GregorianCalendar.MONTH) - 1);
+		workSession.getEnd().set(GregorianCalendar.MONTH,
+				workSession.getEnd().get(GregorianCalendar.MONTH) - 1);
 
 		BusinessRuleController.check(workSession);
 
@@ -419,7 +421,7 @@ public class WorkSessionController extends QSignalEmitter {
 			em.merge(workSession);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -445,16 +447,16 @@ public class WorkSessionController extends QSignalEmitter {
 			em.remove(em.find(WorkSession.class, workSession.getId()));
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
 		removed.emit(workSession);
 		logger.info("workSession " + workSession + " deleted");
 	}
-	
-	private void handleException(Exception e) throws WaktuException{
-		if(e instanceof IllegalArgumentException) {
+
+	private void handleException(Exception e) throws WaktuException {
+		if (e instanceof IllegalArgumentException) {
 			logger.error(e + e.getMessage());
 			throw new WaktuException("Database problem");
 		} else if (e instanceof IllegalStateException) {

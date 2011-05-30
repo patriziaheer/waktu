@@ -57,9 +57,11 @@ public class ProjectStaffController extends QSignalEmitter {
 			projects = em
 					.createQuery(
 							"SELECT p FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE u.usrid = '"
-									+ user.getId() + "' ORDER by p.projectIdentifier ASC").getResultList();
+									+ user.getId()
+									+ "' ORDER by p.projectIdentifier ASC")
+					.getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -67,7 +69,8 @@ public class ProjectStaffController extends QSignalEmitter {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Project> getProjectsWhereUserIsNotMember(Usr user) throws WaktuException {
+	public List<Project> getProjectsWhereUserIsNotMember(Usr user)
+			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
@@ -79,9 +82,13 @@ public class ProjectStaffController extends QSignalEmitter {
 
 		try {
 			nonUserProjects = em
-							.createQuery("SELECT p FROM Project p WHERE p.projectid NOT IN (SELECT pr.projectid FROM ProjectStaff ps JOIN ps.project pr JOIN ps.user u WHERE u.usrid = " + user.getId() + ")  ORDER by p.projectIdentifier ASC").getResultList();
+					.createQuery(
+							"SELECT p FROM Project p WHERE p.projectid NOT IN (SELECT pr.projectid FROM ProjectStaff ps JOIN ps.project pr JOIN ps.user u WHERE u.usrid = "
+									+ user.getId()
+									+ ")  ORDER by p.projectIdentifier ASC")
+					.getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -109,7 +116,7 @@ public class ProjectStaffController extends QSignalEmitter {
 							"SELECT u FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE p.projectid = '"
 									+ project.getId() + "'").getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -129,9 +136,11 @@ public class ProjectStaffController extends QSignalEmitter {
 
 		try {
 			users = em
-					.createQuery("SELECT u FROM Usr u WHERE u.usrid NOT IN (SELECT us.usrid FROM ProjectStaff ps JOIN ps.user us JOIN ps.project p WHERE p.projectid = " + project.getId() + ")").getResultList();
+					.createQuery(
+							"SELECT u FROM Usr u WHERE u.usrid NOT IN (SELECT us.usrid FROM ProjectStaff ps JOIN ps.user us JOIN ps.project p WHERE p.projectid = "
+									+ project.getId() + ")").getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -158,7 +167,7 @@ public class ProjectStaffController extends QSignalEmitter {
 			em.persist(newProjectStaff);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -197,16 +206,16 @@ public class ProjectStaffController extends QSignalEmitter {
 			em.remove(projectStaffToRemove);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
 		removed.emit(projectStaffToRemove);
 		logger.info("projectStaff " + projectStaffToRemove + " deleted");
 	}
-	
-	private void handleException(Exception e) throws WaktuException{
-		if(e instanceof IllegalArgumentException) {
+
+	private void handleException(Exception e) throws WaktuException {
+		if (e instanceof IllegalArgumentException) {
 			logger.error(e + e.getMessage());
 			throw new WaktuException("Database problem");
 		} else if (e instanceof IllegalStateException) {
