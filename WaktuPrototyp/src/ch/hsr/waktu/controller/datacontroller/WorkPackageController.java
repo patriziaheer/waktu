@@ -37,7 +37,7 @@ public class WorkPackageController extends QSignalEmitter {
 	private WorkPackageController() {
 
 	}
-	
+
 	/**
 	 * 
 	 * @param workPackageId
@@ -47,16 +47,16 @@ public class WorkPackageController extends QSignalEmitter {
 	public WorkPackage getWorkPackage(int workPackageId) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
-		}	
-		
+		}
+
 		WorkPackage workPackage = null;
 		try {
 			workPackage = em.find(WorkPackage.class, workPackageId);
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -66,25 +66,30 @@ public class WorkPackageController extends QSignalEmitter {
 	/**
 	 * 
 	 * @param project
-	 * @throws WaktuException 
+	 * @throws WaktuException
 	 */
 	@SuppressWarnings("unchecked")
-	public List<WorkPackage> getActiveWorkPackages(Project project) throws WaktuException {
-		//TODO filter nach projekt
+	public List<WorkPackage> getActiveWorkPackages(Project project)
+			throws WaktuException {
+		// TODO filter nach projekt
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
 		List<WorkPackage> activeWorkPackages = null;
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		try {
-			activeWorkPackages = em.createQuery(
-					"SELECT wp FROM WorkPackage wp JOIN wp.project p WHERE wp.active = TRUE AND p.projectid = '" + project.getId() + "' ORDER BY wp.description ASC").getResultList();
+			activeWorkPackages = em
+					.createQuery(
+							"SELECT wp FROM WorkPackage wp JOIN wp.project p WHERE wp.active = TRUE AND p.projectid = '"
+									+ project.getId()
+									+ "' ORDER BY wp.description ASC")
+					.getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -103,16 +108,17 @@ public class WorkPackageController extends QSignalEmitter {
 				.createEntityManager();
 
 		List<WorkPackage> allWorkPackages = null;
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		try {
 			allWorkPackages = em.createQuery(
-					"SELECT wp FROM WorkPackage wp JOIN wp.project p WHERE p.projectid = '" + project.getId() + "'").getResultList();
+					"SELECT wp FROM WorkPackage wp JOIN wp.project p WHERE p.projectid = '"
+							+ project.getId() + "'").getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -124,22 +130,23 @@ public class WorkPackageController extends QSignalEmitter {
 	 * @throws WaktuException
 	 */
 	@SuppressWarnings("unchecked")
-	public List<WorkPackage> getAllWorkPackages()
-			throws WaktuException {
+	public List<WorkPackage> getAllWorkPackages() throws WaktuException {
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
 
 		List<WorkPackage> allWorkPackages = null;
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		try {
-			allWorkPackages = em.createQuery(
-					"SELECT wp FROM WorkPackage wp JOIN wp.project p ORDER BY p.projectIdentifier ASC, wp.description ASC").getResultList();
+			allWorkPackages = em
+					.createQuery(
+							"SELECT wp FROM WorkPackage wp JOIN wp.project p ORDER BY p.projectIdentifier ASC, wp.description ASC")
+					.getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -158,17 +165,18 @@ public class WorkPackageController extends QSignalEmitter {
 				.createEntityManager();
 
 		List<WorkPackage> inactiveWorkPackages = null;
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		try {
-			inactiveWorkPackages = em.createQuery(
-					"SELECT wp FROM WorkPackage wp JOIN wp.project p WHERE wp.active = FALSE AND p.projectid = '" + project.getId() + "'")
-					.getResultList();
+			inactiveWorkPackages = em
+					.createQuery(
+							"SELECT wp FROM WorkPackage wp JOIN wp.project p WHERE wp.active = FALSE AND p.projectid = '"
+									+ project.getId() + "'").getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -185,19 +193,19 @@ public class WorkPackageController extends QSignalEmitter {
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		WorkPackage newWorkPackage = new WorkPackage(project, description);
-		
+
 		try {
 			em.getTransaction().begin();
 			em.persist(newWorkPackage);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -216,27 +224,27 @@ public class WorkPackageController extends QSignalEmitter {
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
 				.createEntityManager();
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		try {
 			em.getTransaction().begin();
 			em.merge(workPackage);
 
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
 		update.emit();
 		logger.info("workPackage " + workPackage + " updated");
 	}
-	
-	private void handleException(Exception e) throws WaktuException{
-		if(e instanceof IllegalArgumentException) {
+
+	private void handleException(Exception e) throws WaktuException {
+		if (e instanceof IllegalArgumentException) {
 			logger.error(e + e.getMessage());
 			throw new WaktuException("Database problem");
 		} else if (e instanceof IllegalStateException) {

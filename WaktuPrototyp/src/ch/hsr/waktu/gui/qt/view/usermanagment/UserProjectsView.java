@@ -46,7 +46,7 @@ public class UserProjectsView extends QWidget {
 		ui.tblProjects.resizeRowsToContents();
 		ui.tblProjects.setSelectionMode(SelectionMode.SingleSelection);
 		ui.tblProjects.setSelectionBehavior(SelectionBehavior.SelectRows);
-		
+
 		ui.btnAdd.clicked.connect(this, "addProject()");
 
 		ProjectStaffController.getInstance().add.connect(this,
@@ -63,9 +63,11 @@ public class UserProjectsView extends QWidget {
 		} else {
 			updateProjectModel();
 		}
-		
-		ProjectController.getInstance().add.connect(this, "projectAdded(Project)");
-		ProjectController.getInstance().update.connect(this, "projectUpdated()");
+
+		ProjectController.getInstance().add.connect(this,
+				"projectAdded(Project)");
+		ProjectController.getInstance().update
+				.connect(this, "projectUpdated()");
 	}
 
 	private void updateProjectModel() {
@@ -103,7 +105,8 @@ public class UserProjectsView extends QWidget {
 	@SuppressWarnings("unused")
 	private void addProject() {
 		try {
-			Project proj = (Project) ui.cmbProjects.itemData(ui.cmbProjects.currentIndex());
+			Project proj = (Project) ui.cmbProjects.itemData(ui.cmbProjects
+					.currentIndex());
 			if (proj != null) {
 				ProjectStaffController.getInstance().addProjectStaff(usr, proj);
 			}
@@ -121,7 +124,7 @@ public class UserProjectsView extends QWidget {
 	private void removed(ProjectStaff projectStaff) {
 		updateData();
 	}
-	
+
 	private void updateData() {
 		updateTable();
 		try {
@@ -156,12 +159,12 @@ public class UserProjectsView extends QWidget {
 	private void translate() {
 		ui.retranslateUi(this);
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void projectAdded(Project proj) {
 		updateData();
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void projectUpdated() {
 		updateData();

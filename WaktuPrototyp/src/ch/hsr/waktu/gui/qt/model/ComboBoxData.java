@@ -14,17 +14,23 @@ import com.trolltech.qt.gui.QComboBox;
 
 /**
  * Combobox Daten generieren
+ * 
  * @author patriziaheer
- *
+ * 
  */
 public class ComboBoxData {
+
+	private ComboBoxData() {
+
+	}
 
 	/**
 	 * 
 	 * @param cmb
 	 * @param currRole
 	 */
-	public static void createSystemRoleComboBox(QComboBox cmb, SystemRole currRole) {
+	public static void createSystemRoleComboBox(QComboBox cmb,
+			SystemRole currRole) {
 		cmb.clear();
 		int i = 0;
 		int currIndex = -1;
@@ -37,7 +43,7 @@ public class ComboBoxData {
 		}
 		cmb.setCurrentIndex(currIndex);
 	}
-	
+
 	/**
 	 * 
 	 * @param cmb
@@ -91,7 +97,8 @@ public class ComboBoxData {
 	public static void createAllWorkPackageComboBox(QComboBox cmb, Project proj)
 			throws WaktuException {
 		cmb.clear();
-		for (WorkPackage wp : WorkPackageController.getInstance().getAllWorkPackages(proj)) {
+		for (WorkPackage wp : WorkPackageController.getInstance()
+				.getAllWorkPackages(proj)) {
 			cmb.addItem(wp.toString(), wp);
 		}
 	}
@@ -104,8 +111,11 @@ public class ComboBoxData {
 	public static void createAllWorkPackageComboBox(QComboBox cmb)
 			throws WaktuException {
 		cmb.clear();
-		for (WorkPackage wp : WorkPackageController.getInstance().getAllWorkPackages()) {
-			cmb.addItem(wp.getProject().getProjectIdentifier() + " " + wp.getDescription(), wp);
+		for (WorkPackage wp : WorkPackageController.getInstance()
+				.getAllWorkPackages()) {
+			cmb.addItem(
+					wp.getProject().getProjectIdentifier() + " "
+							+ wp.getDescription(), wp);
 		}
 	}
 
@@ -166,9 +176,11 @@ public class ComboBoxData {
 	 * @param project
 	 * @throws WaktuException
 	 */
-	public static void createUserProjectStaffComboBox(QComboBox cmb, Project project) throws WaktuException {
+	public static void createUserProjectStaffComboBox(QComboBox cmb,
+			Project project) throws WaktuException {
 		cmb.clear();
-		for (Usr usr : ProjectStaffController.getInstance().getUsersNotMemberOf(project)) {
+		for (Usr usr : ProjectStaffController.getInstance()
+				.getUsersNotMemberOf(project)) {
 			cmb.addItem(usr.toString(), usr);
 		}
 	}
@@ -179,9 +191,11 @@ public class ComboBoxData {
 	 * @param user
 	 * @throws WaktuException
 	 */
-	public static void createProjectProjectStaffComboBox(QComboBox cmb, Usr user) throws WaktuException {
+	public static void createProjectProjectStaffComboBox(QComboBox cmb, Usr user)
+			throws WaktuException {
 		cmb.clear();
-		for (Project project: ProjectStaffController.getInstance().getProjectsWhereUserIsNotMember(user)) {
+		for (Project project : ProjectStaffController.getInstance()
+				.getProjectsWhereUserIsNotMember(user)) {
 			cmb.addItem(project.toString(), project);
 		}
 	}
@@ -191,10 +205,10 @@ public class ComboBoxData {
 	 * @param cmb
 	 * @throws WaktuException
 	 */
-	public static void createAllProjectComboBox(QComboBox cmb) throws WaktuException  {
+	public static void createAllProjectComboBox(QComboBox cmb)
+			throws WaktuException {
 		cmb.clear();
-		for (Project project : ProjectController.getInstance()
-				.getAllProjects()) {
+		for (Project project : ProjectController.getInstance().getAllProjects()) {
 			cmb.addItem(project.toString(), project);
 		}
 	}

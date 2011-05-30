@@ -48,9 +48,12 @@ public class ProjectStaffModel extends QAbstractItemModel {
 			}
 		} else if (Qt.ItemDataRole.SizeHintRole == role) {
 			switch (index.column()) {
-			case 0: return new QSize(400, 30);
-			case 1: return new QSize(400, 30);
-			case 2: return new QSize(50, 30);
+			case 0:
+				return new QSize(400, 30);
+			case 1:
+				return new QSize(400, 30);
+			case 2:
+				return new QSize(50, 30);
 			}
 		}
 		return null;
@@ -64,20 +67,25 @@ public class ProjectStaffModel extends QAbstractItemModel {
 			case 0:
 				return QCoreApplication.translate("ProjectStaffModel", "Name");
 			case 1:
-				return QCoreApplication.translate("ProjectStaffModel", "Firstname");
+				return QCoreApplication.translate("ProjectStaffModel",
+						"Firstname");
 			case 2:
 				return "";
 			}
 		} else if (Qt.ItemDataRole.SizeHintRole == role
 				&& Qt.Orientation.Vertical == orientation) {
 			return new QSize(0, 20);
-		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Horizontal == orientation) {
+		} else if (Qt.ItemDataRole.SizeHintRole == role
+				&& Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
-			case 0: return new QSize(400, 30);
-			case 1: return new QSize(400, 30);
-			case 2: return new QSize(50, 30);
+			case 0:
+				return new QSize(400, 30);
+			case 1:
+				return new QSize(400, 30);
+			case 2:
+				return new QSize(50, 30);
 			}
-		} 
+		}
 		return super.headerData(section, orientation, role);
 	}
 

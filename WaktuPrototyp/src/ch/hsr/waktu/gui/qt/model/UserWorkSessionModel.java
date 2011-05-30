@@ -17,10 +17,10 @@ import com.trolltech.qt.core.Qt;
 import com.trolltech.qt.core.Qt.Orientation;
 
 public class UserWorkSessionModel extends QAbstractItemModel {
-	
+
 	private Usr usr;
 	private List<WorkSession> workSessions;
-	
+
 	public UserWorkSessionModel(Usr usr) throws WaktuException {
 		this.usr = usr;
 		updateWorkSessionModel();
@@ -33,7 +33,7 @@ public class UserWorkSessionModel extends QAbstractItemModel {
 
 	@Override
 	public int rowCount(QModelIndex arg0) {
-			return workSessions.size();
+		return workSessions.size();
 	}
 
 	@Override
@@ -41,54 +41,89 @@ public class UserWorkSessionModel extends QAbstractItemModel {
 		if (Qt.ItemDataRole.DisplayRole == role) {
 			WorkSession workSession = workSessions.get(index.row());
 			switch (index.column()) {
-			case 0: return workSession.getWorkPackage().getProject();
-			case 1: return workSession.getWorkPackage();
-			case 2: return workSession.getDescription();
-			case 3: return TimeUtil.convertGregorianToQDateTime(workSession.getStart());
-			case 4: return TimeUtil.convertGregorianToQDateTime(workSession.getEnd());
+			case 0:
+				return workSession.getWorkPackage().getProject();
+			case 1:
+				return workSession.getWorkPackage();
+			case 2:
+				return workSession.getDescription();
+			case 3:
+				return TimeUtil.convertGregorianToQDateTime(workSession
+						.getStart());
+			case 4:
+				return TimeUtil.convertGregorianToQDateTime(workSession
+						.getEnd());
 			case 5: {
-				QTime duration = new QTime(0,0,0);
-				duration = duration.addSecs(TimeUtil.calculateTimespanInSeconds(
-						workSession.getStart(), workSession.getEnd()));
+				QTime duration = new QTime(0, 0, 0);
+				duration = duration.addSecs(TimeUtil
+						.calculateTimespanInSeconds(workSession.getStart(),
+								workSession.getEnd()));
 				return duration.toString("hh:mm");
 			}
 			}
 		} else if (Qt.ItemDataRole.SizeHintRole == role) {
 			switch (index.column()) {
-			case 0: return new QSize(170, 20);
-			case 1: return new QSize(170, 20);
-			case 2: return new QSize(170, 20);
-			case 3: return new QSize(44, 20);
-			case 4: return new QSize(44, 20);
-			case 5: return new QSize(30, 20);
+			case 0:
+				return new QSize(170, 20);
+			case 1:
+				return new QSize(170, 20);
+			case 2:
+				return new QSize(170, 20);
+			case 3:
+				return new QSize(44, 20);
+			case 4:
+				return new QSize(44, 20);
+			case 5:
+				return new QSize(30, 20);
 			}
 		}
 		return null;
 	}
-	
+
 	@Override
 	public Object headerData(int section, Orientation orientation, int role) {
-		if (Qt.ItemDataRole.DisplayRole == role && Qt.Orientation.Horizontal == orientation) {
+		if (Qt.ItemDataRole.DisplayRole == role
+				&& Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
-			case 0: return QCoreApplication.translate("UserWorkSessionModel", "Project");
-			case 1: return QCoreApplication.translate("UserWorkSessionModel", "WorkPackage");
-			case 2: return QCoreApplication.translate("UserWorkSessionModel", "Desciption");
-			case 3: return QCoreApplication.translate("UserWorkSessionModel", "Start");
-			case 4: return QCoreApplication.translate("UserWorkSessionModel", "End");
-			case 5: return QCoreApplication.translate("UserWorkSessionModel", "Duration");
+			case 0:
+				return QCoreApplication.translate("UserWorkSessionModel",
+						"Project");
+			case 1:
+				return QCoreApplication.translate("UserWorkSessionModel",
+						"WorkPackage");
+			case 2:
+				return QCoreApplication.translate("UserWorkSessionModel",
+						"Desciption");
+			case 3:
+				return QCoreApplication.translate("UserWorkSessionModel",
+						"Start");
+			case 4:
+				return QCoreApplication
+						.translate("UserWorkSessionModel", "End");
+			case 5:
+				return QCoreApplication.translate("UserWorkSessionModel",
+						"Duration");
 			}
- 		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Vertical == orientation) {
-			return new QSize(0,20);
-		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Horizontal == orientation) {
+		} else if (Qt.ItemDataRole.SizeHintRole == role
+				&& Qt.Orientation.Vertical == orientation) {
+			return new QSize(0, 20);
+		} else if (Qt.ItemDataRole.SizeHintRole == role
+				&& Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
-			case 0: return new QSize(170, 30);
-			case 1: return new QSize(170, 30);
-			case 2: return new QSize(170, 30);
-			case 3: return new QSize(44, 30);
-			case 4: return new QSize(44, 30);
-			case 5: return new QSize(30, 30);
+			case 0:
+				return new QSize(170, 30);
+			case 1:
+				return new QSize(170, 30);
+			case 2:
+				return new QSize(170, 30);
+			case 3:
+				return new QSize(44, 30);
+			case 4:
+				return new QSize(44, 30);
+			case 5:
+				return new QSize(30, 30);
 			}
-		} 
+		}
 		return super.headerData(section, orientation, role);
 	}
 
@@ -105,5 +140,5 @@ public class UserWorkSessionModel extends QAbstractItemModel {
 	public void updateWorkSessionModel() throws WaktuException {
 		workSessions = WorkSessionController.getInstance().getWorkSessions(usr);
 	}
-	
+
 }

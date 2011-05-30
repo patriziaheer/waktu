@@ -134,7 +134,8 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 
 	public void updateWorkPackageModel() {
 		try {
-			workPackages = WorkPackageController.getInstance().getAllWorkPackages(project);
+			workPackages = WorkPackageController.getInstance()
+					.getAllWorkPackages(project);
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}

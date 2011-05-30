@@ -14,7 +14,7 @@ public class GuiController {
 
 	/**
 	 * 
-	 * @return The only one instance of GuiController
+	 * @return The only instance of GuiController
 	 */
 	public static GuiController getInstance() {
 		if (theInstance == null) {
@@ -27,6 +27,7 @@ public class GuiController {
 
 	/**
 	 * Checks if loggedInUser can add Projects
+	 * 
 	 * @return A boolean if can add a project
 	 */
 	public boolean canAddProject() {
@@ -41,6 +42,7 @@ public class GuiController {
 
 	/**
 	 * Checks if loggedInUser can modify projects
+	 * 
 	 * @return A boolean if can modify projects
 	 */
 	public boolean canModifyProject() {
@@ -55,6 +57,7 @@ public class GuiController {
 
 	/**
 	 * Checks if loggedInUser can add project staff
+	 * 
 	 * @return A boolean if can add project staff to project
 	 */
 	public boolean canAddProjectStaff() {
@@ -69,11 +72,13 @@ public class GuiController {
 
 	/**
 	 * Checks if loggedInUser can Add Users
-	 * @return  A boolean if can add an user
+	 * 
+	 * @return A boolean if can add an user
 	 */
 	public boolean canAddUser() {
 		try {
-			return PermissionController.getInstance().checkPermission("addUser");
+			return PermissionController.getInstance()
+					.checkPermission("addUser");
 		} catch (WaktuException e) {
 			logger.info(e.getMessage());
 		}
@@ -82,7 +87,8 @@ public class GuiController {
 
 	/**
 	 * Checks if loggedInUsr can modify users
-	 * @return  A boolean if can modify a user
+	 * 
+	 * @return A boolean if can modify a user
 	 */
 	public boolean canModifyUser() {
 		try {
@@ -96,41 +102,47 @@ public class GuiController {
 
 	/**
 	 * Checks if current logged in user is usrToModify.
+	 * 
 	 * @param usrToModify
-	 * @return A boolean if the logged in usr can change the password 
+	 * @return A boolean if the logged in usr can change the password
 	 */
 	public boolean canModifyUser(Usr usrToModify) {
 		boolean permission = false;
 		try {
-			permission = PermissionController.getInstance().checkPermission("updateUser");
+			permission = PermissionController.getInstance().checkPermission(
+					"updateUser");
 		} catch (WaktuException e) {
 			logger.info(e.getMessage());
 		}
-		
-		if(!usrToModify.equals(LoginController.getInstance().getLoggedInUser())) {
+
+		if (!usrToModify
+				.equals(LoginController.getInstance().getLoggedInUser())) {
 			permission = false;
 		}
-		
+
 		return permission;
 	}
 
 	/**
 	 * Checks if current logged in user is project manager of project.
+	 * 
 	 * @param project
-	 * @return  A boolean if can add a work package
+	 * @return A boolean if can add a work package
 	 */
 	public boolean canAddWorkPackage(Project project) {
 		boolean permission = false;
 		try {
-			permission = PermissionController.getInstance().checkPermission("addWorkPackage");
+			permission = PermissionController.getInstance().checkPermission(
+					"addWorkPackage");
 		} catch (WaktuException e) {
 			logger.info(e.getMessage());
 		}
-		
-		if(!project.getProjectManager().equals(LoginController.getInstance().getLoggedInUser())) {
+
+		if (!project.getProjectManager().equals(
+				LoginController.getInstance().getLoggedInUser())) {
 			permission = false;
 		}
-		
+
 		return permission;
 	}
 

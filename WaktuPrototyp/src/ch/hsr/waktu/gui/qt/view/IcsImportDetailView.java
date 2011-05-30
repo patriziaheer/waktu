@@ -66,16 +66,14 @@ public class IcsImportDetailView extends QWidget {
 			} else if (ui.dteEnd.dateTime().compareTo(ui.dteStart.dateTime()) <= 0) {
 				errorMessage.emit("Endtime must be greater then Starttime");
 			} else {
-				WorkSessionController
-						.getInstance()
-						.addWorkSession(
-								LoginController.getInstance().getLoggedInUser(),
-								(WorkPackage) ui.cmbWorkPackage
-										.itemData(ui.cmbWorkPackage.currentIndex()),
-								TimeUtil.convertQDateTimeToGregorian(ui.dteStart
-										.dateTime()),
-								TimeUtil.convertQDateTimeToGregorian(ui.dteEnd
-										.dateTime()), ui.txtDescription.text());
+				WorkSessionController.getInstance().addWorkSession(
+						LoginController.getInstance().getLoggedInUser(),
+						(WorkPackage) ui.cmbWorkPackage
+								.itemData(ui.cmbWorkPackage.currentIndex()),
+						TimeUtil.convertQDateTimeToGregorian(ui.dteStart
+								.dateTime()),
+						TimeUtil.convertQDateTimeToGregorian(ui.dteEnd
+								.dateTime()), ui.txtDescription.text());
 				closeMe.emit(this);
 			}
 		} catch (WaktuException e) {

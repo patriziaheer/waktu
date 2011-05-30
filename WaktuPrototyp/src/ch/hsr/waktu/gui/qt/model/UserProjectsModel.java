@@ -48,8 +48,10 @@ public class UserProjectsModel extends QAbstractItemModel {
 			}
 		} else if (Qt.ItemDataRole.SizeHintRole == role) {
 			switch (index.column()) {
-			case 0: return new QSize(250, 20);
-			case 1: return new QSize(50, 20);
+			case 0:
+				return new QSize(250, 20);
+			case 1:
+				return new QSize(50, 20);
 			}
 		}
 		return null;
@@ -61,21 +63,26 @@ public class UserProjectsModel extends QAbstractItemModel {
 				&& Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
 			case 0:
-				return QCoreApplication.translate("UserProjectsModel", "ProjectIdentifier");
+				return QCoreApplication.translate("UserProjectsModel",
+						"ProjectIdentifier");
 			case 1:
-				return QCoreApplication.translate("UserProjectsModel", "Description");
+				return QCoreApplication.translate("UserProjectsModel",
+						"Description");
 			case 2:
 				return "";
 			}
 		} else if (Qt.ItemDataRole.SizeHintRole == role
 				&& Qt.Orientation.Vertical == orientation) {
 			return new QSize(0, 20);
-		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Horizontal == orientation) {
+		} else if (Qt.ItemDataRole.SizeHintRole == role
+				&& Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
-			case 0: return new QSize(250, 30);
-			case 1: return new QSize(50, 30);
+			case 0:
+				return new QSize(250, 30);
+			case 1:
+				return new QSize(50, 30);
 			}
-		} 
+		}
 		return super.headerData(section, orientation, role);
 	}
 

@@ -1,4 +1,5 @@
 package ch.hsr.waktu.gui.qt.model;
+
 import java.util.List;
 
 import ch.hsr.waktu.controller.datacontroller.UserController;
@@ -13,12 +14,11 @@ import com.trolltech.qt.gui.QColor;
 import com.trolltech.qt.gui.QFont;
 import com.trolltech.qt.gui.QTreeModel;
 
-
 public class UserTreeModel extends QTreeModel {
-	
+
 	private List<Usr> usrs;
 	private boolean showInactivs;
-	
+
 	public UserTreeModel(boolean showInactivs) throws WaktuException {
 		this.showInactivs = showInactivs;
 		updateUsrModel();
@@ -29,7 +29,7 @@ public class UserTreeModel extends QTreeModel {
 		if (parent == null) {
 			return usrs.get(index);
 		} else if (parent instanceof Usr) {
-			return UserController.UserProperties.values()[index];
+			return UserProperties.values()[index];
 		}
 		return null;
 	}
@@ -39,7 +39,7 @@ public class UserTreeModel extends QTreeModel {
 		if (parent == null) {
 			return usrs.size();
 		} else if (parent instanceof Usr) {
-			return UserController.UserProperties.values().length;
+			return UserProperties.values().length;
 		}
 		return 0;
 	}
@@ -51,7 +51,7 @@ public class UserTreeModel extends QTreeModel {
 		}
 		return value.toString();
 	}
-	
+
 	@Override
 	public Object headerData(int section, Orientation orientation, int role) {
 		return "";
@@ -64,33 +64,33 @@ public class UserTreeModel extends QTreeModel {
 	@Override
 	public Object data(Object value, int role) {
 		switch (role) {
-			case Qt.ItemDataRole.DisplayRole: {
-				return value;
-			}
-			case Qt.ItemDataRole.ToolTipRole: {
-				return value.toString();
-			} 
-			case Qt.ItemDataRole.FontRole: {
-				QFont font = new QFont();
-				font.setPointSize(10);
-				return font;
-			}
-			case Qt.ItemDataRole.ForegroundRole: {
-				if (value instanceof Usr) {
-					Usr usr = (Usr)value;
-					if (usr.isActive() == false) {
-						return QColor.red;
-					}
-				} else {
-					return QColor.black;
+		case Qt.ItemDataRole.DisplayRole: {
+			return value;
+		}
+		case Qt.ItemDataRole.ToolTipRole: {
+			return value.toString();
+		}
+		case Qt.ItemDataRole.FontRole: {
+			QFont font = new QFont();
+			font.setPointSize(10);
+			return font;
+		}
+		case Qt.ItemDataRole.ForegroundRole: {
+			if (value instanceof Usr) {
+				Usr usr = (Usr) value;
+				if (usr.isActive() == false) {
+					return QColor.red;
 				}
+			} else {
+				return QColor.black;
 			}
-			case Qt.ItemDataRole.SizeHintRole:
-				return new QSize(200, 20);
+		}
+		case Qt.ItemDataRole.SizeHintRole:
+			return new QSize(200, 20);
 		}
 		return super.data(value, role);
 	}
-	
+
 	public void updateUsrModel() throws WaktuException {
 		if (showInactivs) {
 			usrs = UserController.getInstance().getAllUsers();
@@ -98,8 +98,8 @@ public class UserTreeModel extends QTreeModel {
 			usrs = UserController.getInstance().getActiveUsers();
 		}
 	}
-	
-	public void setShowInactivs(boolean showInactivs){
+
+	public void setShowInactivs(boolean showInactivs) {
 		this.showInactivs = showInactivs;
 	}
 }

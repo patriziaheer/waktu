@@ -14,40 +14,12 @@ import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
-import com.trolltech.qt.core.QCoreApplication;
 
 /**
  * @author simon.staeheli
  * @version 1.0
  */
 public class ProjectController extends QSignalEmitter {
-
-	public enum ProjectProperties {
-		Data {
-			@Override
-			public String toString() {
-				return QCoreApplication.translate("ProjectProperties", "Data");
-			}
-		}, 
-		WorkPackages {
-			@Override
-			public String toString() {
-				return QCoreApplication.translate("ProjectProperties", "WorkPackages");
-			}
-		}, 
-		ProjectStaff {
-			@Override
-			public String toString() {
-				return QCoreApplication.translate("ProjectProperties", "ProjectStaff");
-			}
-		}, 
-		WorkSessions {
-			@Override
-			public String toString() {
-				return QCoreApplication.translate("ProjectProperties", "WorkSessions");
-			}
-		}
-	}
 
 	private static ProjectController theInstance = null;
 
@@ -57,7 +29,7 @@ public class ProjectController extends QSignalEmitter {
 		}
 		return theInstance;
 	}
-	
+
 	public static void setInstance(ProjectController projectControllerInstance) {
 		theInstance = projectControllerInstance;
 	}
@@ -74,18 +46,19 @@ public class ProjectController extends QSignalEmitter {
 	public List<Project> getActiveProjects() throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
-		}	
-		
+		}
+
 		List<Project> allActiveProjects = null;
 		try {
-			allActiveProjects = em.createQuery(
-					"SELECT p FROM Project p WHERE p.active = TRUE ORDER BY p.projectIdentifier ASC")
+			allActiveProjects = em
+					.createQuery(
+							"SELECT p FROM Project p WHERE p.active = TRUE ORDER BY p.projectIdentifier ASC")
 					.getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -93,23 +66,32 @@ public class ProjectController extends QSignalEmitter {
 		return allActiveProjects;
 	}
 
+	/**
+	 * 
+	 * @param usr
+	 * @return 
+	 * @throws WaktuException
+	 */
+	
 	@SuppressWarnings("unchecked")
-	public List<Project> getActiveProjects(Usr usr)
-			throws WaktuException {
+	public List<Project> getActiveProjects(Usr usr) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
-		}	
-		
+		}
+
 		List<Project> activeProjectsOfUser = null;
 		try {
-			activeProjectsOfUser = em.createQuery(
-					"SELECT p FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE u.usrid = '"
-							+ usr.getId() + "' ORDER BY p.projectIdentifier ASC").getResultList();
+			activeProjectsOfUser = em
+					.createQuery(
+							"SELECT p FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE u.usrid = '"
+									+ usr.getId()
+									+ "' ORDER BY p.projectIdentifier ASC")
+					.getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -121,17 +103,18 @@ public class ProjectController extends QSignalEmitter {
 	public List<Project> getAllProjects() throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
-		}	
-		
+		}
+
 		List<Project> allProjects = null;
 		try {
-			allProjects = em.createQuery("SELECT p FROM Project p ORDER BY p.projectIdentifier ASC")
+			allProjects = em.createQuery(
+					"SELECT p FROM Project p ORDER BY p.projectIdentifier ASC")
 					.getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -143,18 +126,19 @@ public class ProjectController extends QSignalEmitter {
 	public List<Project> getInactiveProjects() throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
-		}	
-		
+		}
+
 		List<Project> allInactiveProjects = null;
 		try {
-			allInactiveProjects = em.createQuery(
-					"SELECT p FROM Project p WHERE p.active = FALSE ORDER BY p.projectIdentifier ASC")
+			allInactiveProjects = em
+					.createQuery(
+							"SELECT p FROM Project p WHERE p.active = FALSE ORDER BY p.projectIdentifier ASC")
 					.getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -165,16 +149,16 @@ public class ProjectController extends QSignalEmitter {
 	public Project getProject(int projectId) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
-		}	
-		
+		}
+
 		Project project = null;
 		try {
 			project = em.find(Project.class, projectId);
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -210,13 +194,13 @@ public class ProjectController extends QSignalEmitter {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
-		if(!PermissionController.getInstance().checkPermission()) {
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
-		}	
-		
+		}
+
 		Project newProject = new Project(projectIdentifier, description,
 				projectManager, plannedTime);
-		
+
 		BusinessRuleController.check(newProject);
 
 		try {
@@ -224,7 +208,7 @@ public class ProjectController extends QSignalEmitter {
 			em.persist(newProject);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
@@ -242,29 +226,29 @@ public class ProjectController extends QSignalEmitter {
 	public void updateProject(Project project) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
-		}	
-		
+		}
+
 		BusinessRuleController.check(project);
-		
+
 		try {
 			em.getTransaction().begin();
-//			em.find(Project.class, project.getId());
+			// em.find(Project.class, project.getId());
 			em.merge(project);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);			
+			handleException(e);
 		} finally {
 			em.close();
 		}
 		update.emit();
 		logger.info("project " + project + " updated");
 	}
-	
-	private void handleException(Exception e) throws WaktuException{
-		if(e instanceof IllegalArgumentException) {
+
+	private void handleException(Exception e) throws WaktuException {
+		if (e instanceof IllegalArgumentException) {
 			logger.error(e + e.getMessage());
 			throw new WaktuException("Database problem");
 		} else if (e instanceof IllegalStateException) {

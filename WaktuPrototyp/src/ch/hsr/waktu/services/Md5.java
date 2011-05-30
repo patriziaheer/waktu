@@ -4,15 +4,20 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class Md5 {
-	public static String hash(String input) {
-		if(input != null) {
+public final class Md5 {
+
+	private Md5() {
+
+	}
+
+	public static String hash(final String input) {
+		if (input != null) {
 			MessageDigest digest = null;
 			byte[] hash = null;
-			
+
 			try {
 				digest = java.security.MessageDigest.getInstance("MD5");
-				
+
 				try {
 					digest.update(input.getBytes("UTF-8"));
 					hash = digest.digest();
@@ -24,17 +29,18 @@ public class Md5 {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return null;
 	}
 
-	public static String byteArrayToString(byte[] binaryData) {
+	public static String byteArrayToString(final byte[] binaryData) {
 
 		final char[] hexadecimal = { '0', '1', '2', '3', '4', '5', '6', '7',
 				'8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
-		if (binaryData.length != 16)
+		if (binaryData.length != 16) {
 			return null;
+		}
 
 		char[] buffer = new char[32];
 

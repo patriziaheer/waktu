@@ -1,9 +1,11 @@
 package ch.hsr.waktu.gui.qt.view;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.domain.Project;
+import ch.hsr.waktu.gui.qt.model.ProjectProperties;
 import ch.hsr.waktu.gui.qt.model.ProjectTreeModel;
 import ch.hsr.waktu.gui.qt.model.SortFilterModel;
 import ch.hsr.waktu.gui.qt.view.projectmanagment.ProjectDataView;
@@ -19,7 +21,6 @@ import com.trolltech.qt.core.Qt;
 import com.trolltech.qt.gui.QSplitter;
 import com.trolltech.qt.gui.QWidget;
 
-
 public class ProjectDetails extends QWidget {
 
 	private Ui_ManagmentDetails ui = new Ui_ManagmentDetails();
@@ -28,7 +29,7 @@ public class ProjectDetails extends QWidget {
 	private QWidget currWidget = new QWidget();
 	private SortFilterModel filterModel;
 	public Signal1<String> errorMessage = new Signal1<String>();
-	
+
 	public ProjectDetails() {
 		ui.setupUi(this);
 		try {
@@ -36,12 +37,12 @@ public class ProjectDetails extends QWidget {
 		} catch (WaktuException e) {
 			showErrorMessage(e.getMessage());
 		}
-		
+
 		filterModel = new SortFilterModel();
 		filterModel.setDynamicSortFilter(true);
 		filterModel.setSourceModel(projectTreeModel);
 		ui.treeView.setModel(filterModel);
-		
+
 		splitter = new QSplitter(Qt.Orientation.Horizontal);
 		splitter.addWidget(ui.widget);
 		splitter.addWidget(currWidget);
@@ -49,60 +50,74 @@ public class ProjectDetails extends QWidget {
 		sizes.add(50);
 		sizes.add(800);
 		splitter.setSizes(sizes);
-		
+
 		ui.gridLayout.removeWidget(ui.widget);
 		ui.gridLayout.addWidget(splitter);
-		
-		ui.treeView.selectionModel().selectionChanged.connect(this, "selectionChanged()");
+
+		ui.treeView.selectionModel().selectionChanged.connect(this,
+				"selectionChanged()");
 		ui.lineEdit.textChanged.connect(this, "textFilterChanged()");
 		ProjectController.getInstance().update.connect(this, "updateData()");
 		ProjectController.getInstance().add.connect(this, "addData(Project)");
 
-		LanguageController.getInstance().languageChanged.connect(this, "translate()");
+		LanguageController.getInstance().languageChanged.connect(this,
+				"translate()");
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void selectionChanged() {
-		QModelIndex selectedIndex = filterModel.mapToSource(ui.treeView.selectionModel().selectedIndexes().get(0));
+		QModelIndex selectedIndex = filterModel.mapToSource(ui.treeView
+				.selectionModel().selectedIndexes().get(0));
 		Object selected = projectTreeModel.indexToValue(selectedIndex);
-		Object parent = projectTreeModel.indexToValue(projectTreeModel.parent(selectedIndex));
+		Object parent = projectTreeModel.indexToValue(projectTreeModel
+				.parent(selectedIndex));
 		if (selected instanceof Project) {
 			if (currWidget != null) {
 				currWidget.setParent(null);
 			}
-			ProjectDataView projectDataView = new ProjectDataView((Project) selected);
-			projectDataView.errorMessage.connect(this, "showErrorMessage(String)");
+			ProjectDataView projectDataView = new ProjectDataView(
+					(Project) selected);
+			projectDataView.errorMessage.connect(this,
+					"showErrorMessage(String)");
 			projectDataView.initialize();
 			currWidget = projectDataView;
-		} else if (selected instanceof ProjectController.ProjectProperties) {
+		} else if (selected instanceof ProjectProperties) {
 			if (currWidget != null) {
 				currWidget.setParent(null);
 			}
-			switch ((ProjectController.ProjectProperties)selected) {
+			switch ((ProjectProperties) selected) {
 			case Data: {
-				ProjectDataView projectDataView = new ProjectDataView((Project)parent);
-				projectDataView.errorMessage.connect(this, "showErrorMessage(String)");
+				ProjectDataView projectDataView = new ProjectDataView(
+						(Project) parent);
+				projectDataView.errorMessage.connect(this,
+						"showErrorMessage(String)");
 				projectDataView.initialize();
 				currWidget = projectDataView;
 			}
-			break;
+				break;
 			case WorkPackages: {
-				ProjectWorkPackageView projectWorkPackageView = new ProjectWorkPackageView((Project)parent);
-				projectWorkPackageView.errorMessage.connect(this, "showErrorMessage(String)");
+				ProjectWorkPackageView projectWorkPackageView = new ProjectWorkPackageView(
+						(Project) parent);
+				projectWorkPackageView.errorMessage.connect(this,
+						"showErrorMessage(String)");
 				projectWorkPackageView.initialize();
 				currWidget = projectWorkPackageView;
 			}
-			break;
+				break;
 			case WorkSessions: {
-				ProjectWorkSessionsView projectWorkSessionsView = new ProjectWorkSessionsView((Project)parent);
-				projectWorkSessionsView.errorMessage.connect(this, "showErrorMessage(String)");
+				ProjectWorkSessionsView projectWorkSessionsView = new ProjectWorkSessionsView(
+						(Project) parent);
+				projectWorkSessionsView.errorMessage.connect(this,
+						"showErrorMessage(String)");
 				projectWorkSessionsView.initialize();
 				currWidget = projectWorkSessionsView;
 			}
-			break;
+				break;
 			case ProjectStaff: {
-				ProjectStaffView projectStaffView = new ProjectStaffView((Project)parent);
-				projectStaffView.errorMessage.connect(this, "showErrorMessage(String)");
+				ProjectStaffView projectStaffView = new ProjectStaffView(
+						(Project) parent);
+				projectStaffView.errorMessage.connect(this,
+						"showErrorMessage(String)");
 				projectStaffView.initialize();
 				currWidget = projectStaffView;
 			}
@@ -110,23 +125,23 @@ public class ProjectDetails extends QWidget {
 		}
 		splitter.addWidget(currWidget);
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void textFilterChanged() {
 		projectTreeModel.layoutAboutToBeChanged.emit();
-        Qt.CaseSensitivity caseSensitivity = Qt.CaseSensitivity.CaseInsensitive;
+		Qt.CaseSensitivity caseSensitivity = Qt.CaseSensitivity.CaseInsensitive;
 
-        QRegExp regExp = new QRegExp(ui.lineEdit.text(),
-                                     caseSensitivity, QRegExp.PatternSyntax.RegExp);
-        filterModel.setFilterRegExp(regExp);
-        projectTreeModel.layoutChanged.emit();
+		QRegExp regExp = new QRegExp(ui.lineEdit.text(), caseSensitivity,
+				QRegExp.PatternSyntax.RegExp);
+		filterModel.setFilterRegExp(regExp);
+		projectTreeModel.layoutChanged.emit();
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void updateData() {
 		updateTable();
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void addData(Project project) {
 		updateTable();
@@ -139,11 +154,16 @@ public class ProjectDetails extends QWidget {
 			showErrorMessage(e.getMessage());
 		}
 		projectTreeModel.layoutAboutToBeChanged.emit();
-		projectTreeModel.dataChanged.emit(projectTreeModel.index(0, 0), projectTreeModel.index(projectTreeModel.rowCount(), projectTreeModel.columnCount()));
-		filterModel.dataChanged.emit(filterModel.index(0, 0), filterModel.index(projectTreeModel.rowCount(), projectTreeModel.columnCount()));
-        projectTreeModel.layoutChanged.emit();
+		projectTreeModel.dataChanged.emit(projectTreeModel.index(0, 0),
+				projectTreeModel.index(projectTreeModel.rowCount(),
+						projectTreeModel.columnCount()));
+		filterModel.dataChanged.emit(
+				filterModel.index(0, 0),
+				filterModel.index(projectTreeModel.rowCount(),
+						projectTreeModel.columnCount()));
+		projectTreeModel.layoutChanged.emit();
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void closeWindow() {
 		setVisible(false);
@@ -158,16 +178,16 @@ public class ProjectDetails extends QWidget {
 		currWidget = projectDataView;
 		splitter.addWidget(currWidget);
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void translate() {
-        ui.retranslateUi(this);
+		ui.retranslateUi(this);
 	}
-	
+
 	private void showErrorMessage(String errorMessageString) {
 		errorMessage.emit(errorMessageString);
 	}
-	
+
 	public void showInactive(boolean inactivs) {
 		projectTreeModel.setShowInactivs(inactivs);
 		updateTable();

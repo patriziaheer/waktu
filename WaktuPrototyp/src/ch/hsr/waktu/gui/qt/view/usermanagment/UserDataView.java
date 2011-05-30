@@ -74,8 +74,9 @@ public class UserDataView extends QWidget {
 
 				ui.checkBox.setChecked(!usr.isActive());
 				ui.checkBox.setVisible(true);
-				
-				ComboBoxData.createSystemRoleComboBox(ui.cmbRole, usr.getSystemRole());
+
+				ComboBoxData.createSystemRoleComboBox(ui.cmbRole,
+						usr.getSystemRole());
 			} else {
 				ui.grpOverview.setVisible(true);
 				ui.btnAdd.setVisible(false);
@@ -108,9 +109,10 @@ public class UserDataView extends QWidget {
 
 				ui.checkBox.setChecked(!usr.isActive());
 				ui.checkBox.setVisible(false);
-				
+
 				ui.cmbRole.setEnabled(false);
-				ComboBoxData.createSystemRoleComboBox(ui.cmbRole, usr.getSystemRole());
+				ComboBoxData.createSystemRoleComboBox(ui.cmbRole,
+						usr.getSystemRole());
 			}
 			updateTimeInfos();
 		} else {
@@ -129,7 +131,7 @@ public class UserDataView extends QWidget {
 			ui.cmbRole.setEnabled(true);
 		}
 	}
-	
+
 	private void updateTimeInfos() {
 		ui.lblPlannedDay.setText("" + TimeController.HOURS_PER_WORKDAY);
 		try {
@@ -175,7 +177,8 @@ public class UserDataView extends QWidget {
 		usr.setPensum(ui.txtPensum.value());
 		usr.setHoliday(ui.txtHolidays.value());
 		usr.setActiveState(!ui.checkBox.isChecked());
-		usr.setSystemRole((SystemRole)ui.cmbRole.itemData(ui.cmbRole.currentIndex()));
+		usr.setSystemRole((SystemRole) ui.cmbRole.itemData(ui.cmbRole
+				.currentIndex()));
 		try {
 			UserController.getInstance().updateUser(usr);
 		} catch (WaktuException e) {
@@ -203,7 +206,8 @@ public class UserDataView extends QWidget {
 		if (usr != null) {
 			ui.btnAdd.setText(QCoreApplication.translate("UserDataView",
 					"Save", null));
-			ComboBoxData.createSystemRoleComboBox(ui.cmbRole, usr.getSystemRole());
+			ComboBoxData.createSystemRoleComboBox(ui.cmbRole,
+					usr.getSystemRole());
 		} else {
 			ui.btnAdd.setText(QCoreApplication.translate("UserDataView", "Add",
 					null));
