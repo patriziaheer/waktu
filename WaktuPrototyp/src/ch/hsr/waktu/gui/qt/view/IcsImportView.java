@@ -15,10 +15,10 @@ import com.trolltech.qt.gui.QTabWidget;
 import com.trolltech.qt.gui.QVBoxLayout;
 import com.trolltech.qt.gui.QWidget;
 
-public class IcsImportView extends QWidget{
+public class IcsImportView extends QWidget {
 	private QTabWidget tabWidget;
 	private QLabel lblStatus;
-	
+
 	public IcsImportView(String path) {
 		setWindowTitle("ICS Import");
 		QVBoxLayout gLayout = new QVBoxLayout();
@@ -27,22 +27,26 @@ public class IcsImportView extends QWidget{
 		lblStatus = new QLabel(this);
 		gLayout.addWidget(tabWidget);
 		gLayout.addWidget(lblStatus);
-		
+
 		ArrayList<WorkSession> workSessions;
 		try {
 			workSessions = IcsParser.parseIcsFile(path);
 			for (WorkSession workSession : workSessions) {
-				IcsImportDetailView icsImportDetailView = new IcsImportDetailView(workSession);
-				icsImportDetailView.errorMessage.connect(this, "setErrorMessage(String)");
-				icsImportDetailView.closeMe.connect(this, "closeTab(IcsImportDetailView)");
+				IcsImportDetailView icsImportDetailView = new IcsImportDetailView(
+						workSession);
+				icsImportDetailView.errorMessage.connect(this,
+						"setErrorMessage(String)");
+				icsImportDetailView.closeMe.connect(this,
+						"closeTab(IcsImportDetailView)");
 				icsImportDetailView.initialize();
-				tabWidget.addTab(icsImportDetailView, workSession.getDescription());
+				tabWidget.addTab(icsImportDetailView,
+						workSession.getDescription());
 			}
 		} catch (WaktuException e) {
 			setErrorMessage(e.getMessage());
 		}
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void closeTab(IcsImportDetailView icsImportDetailView) {
 		if (tabWidget.count() > 1) {
@@ -51,12 +55,12 @@ public class IcsImportView extends QWidget{
 			close();
 		}
 	}
-	
+
 	private void setErrorMessage(String errorMessage) {
 		lblStatus.setText(errorMessage);
 		QPalette palette = lblStatus.palette();
 		palette.setBrush(ColorRole.WindowText, new QBrush(QColor.red));
 		lblStatus.setPalette(palette);
 	}
-	
+
 }

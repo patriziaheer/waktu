@@ -39,7 +39,8 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 	@Override
 	public Object data(QModelIndex index, int role) {
 		WorkPackage workPackage = workPackages.get(index.row());
-		if (Qt.ItemDataRole.DisplayRole == role || Qt.ItemDataRole.EditRole == role) {
+		if (Qt.ItemDataRole.DisplayRole == role
+				|| Qt.ItemDataRole.EditRole == role) {
 			switch (index.column()) {
 			case 0:
 				return workPackage.getDescription();
@@ -48,8 +49,10 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 			}
 		} else if (Qt.ItemDataRole.SizeHintRole == role) {
 			switch (index.column()) {
-			case 0: return new QSize(500, 20);
-			case 1: return new QSize(50, 20);
+			case 0:
+				return new QSize(500, 20);
+			case 1:
+				return new QSize(50, 20);
 			}
 		}
 		return null;
@@ -57,21 +60,28 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 
 	@Override
 	public Object headerData(int section, Orientation orientation, int role) {
-		if (Qt.ItemDataRole.DisplayRole == role && Qt.Orientation.Horizontal == orientation) {
+		if (Qt.ItemDataRole.DisplayRole == role
+				&& Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
 			case 0:
-				return QCoreApplication.translate("ProjectWorkPackageModel", "Description");
+				return QCoreApplication.translate("ProjectWorkPackageModel",
+						"Description");
 			case 1:
-				return QCoreApplication.translate("ProjectWorkPackageModel", "Inactiv");
+				return QCoreApplication.translate("ProjectWorkPackageModel",
+						"Inactiv");
 			}
-		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Vertical == orientation) {
+		} else if (Qt.ItemDataRole.SizeHintRole == role
+				&& Qt.Orientation.Vertical == orientation) {
 			return new QSize(0, 20);
-		} else if (Qt.ItemDataRole.SizeHintRole == role && Qt.Orientation.Horizontal == orientation) {
+		} else if (Qt.ItemDataRole.SizeHintRole == role
+				&& Qt.Orientation.Horizontal == orientation) {
 			switch (section) {
-			case 0: return new QSize(500, 30);
-			case 1: return new QSize(50, 30);
+			case 0:
+				return new QSize(500, 30);
+			case 1:
+				return new QSize(50, 30);
 			}
-		} 
+		}
 		return super.headerData(section, orientation, role);
 	}
 
@@ -79,10 +89,13 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 	public ItemFlags flags(QModelIndex index) {
 		ItemFlags f = super.flags(index);
 		if (index.column() == 1) {
-			Qt.ItemFlag[] flags = { Qt.ItemFlag.ItemIsEditable, Qt.ItemFlag.ItemIsSelectable, Qt.ItemFlag.ItemIsEnabled, Qt.ItemFlag.ItemIsUserCheckable };
+			Qt.ItemFlag[] flags = { Qt.ItemFlag.ItemIsEditable,
+					Qt.ItemFlag.ItemIsSelectable, Qt.ItemFlag.ItemIsEnabled,
+					Qt.ItemFlag.ItemIsUserCheckable };
 			f.set(flags);
 		} else {
-			Qt.ItemFlag[] flags = { Qt.ItemFlag.ItemIsEditable, Qt.ItemFlag.ItemIsSelectable, Qt.ItemFlag.ItemIsEnabled };
+			Qt.ItemFlag[] flags = { Qt.ItemFlag.ItemIsEditable,
+					Qt.ItemFlag.ItemIsSelectable, Qt.ItemFlag.ItemIsEnabled };
 			f.set(flags);
 		}
 		return f;
@@ -93,11 +106,11 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 		WorkPackage workPackage = workPackages.get(index.row());
 		switch (index.column()) {
 		case 0: {
-			workPackage.setDescription((String)value);
+			workPackage.setDescription((String) value);
 			return true;
 		}
 		case 1: {
-			workPackage.setActiveState((Boolean)value);
+			workPackage.setActiveState((Boolean) value);
 			return true;
 		}
 		}
@@ -108,7 +121,7 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public QModelIndex index(int row, int column, QModelIndex arg2) {
 		return createIndex(row, column);
@@ -118,13 +131,15 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
 	public QModelIndex parent(QModelIndex arg0) {
 		return null;
 	}
-	
+
 	public void updateWorkPackageModel() {
 		try {
-			workPackages = WorkPackageController.getInstance().getAllWorkPackages(project);
+			workPackages = WorkPackageController.getInstance()
+					.getAllWorkPackages(project);
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
+
 	}
 
 	public WorkPackage getWorkPackage(int row) {

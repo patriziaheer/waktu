@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ProjectData.jui'
 **
-** Created: Di. Mai 24 10:26:33 2011
+** Created: Mo 30. Mai 13:11:13 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -33,13 +33,14 @@ public class Ui_ProjectData implements com.trolltech.qt.QUiForm<QWidget>
     public void setupUi(QWidget ProjectData)
     {
         ProjectData.setObjectName("ProjectData");
-        ProjectData.resize(new QSize(800, 360).expandedTo(ProjectData.minimumSizeHint()));
+        ProjectData.resize(new QSize(700, 360).expandedTo(ProjectData.minimumSizeHint()));
         QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Minimum, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
         sizePolicy.setHorizontalStretch((byte)0);
         sizePolicy.setVerticalStretch((byte)0);
         sizePolicy.setHeightForWidth(ProjectData.sizePolicy().hasHeightForWidth());
         ProjectData.setSizePolicy(sizePolicy);
-        ProjectData.setMinimumSize(new QSize(800, 360));
+        ProjectData.setMinimumSize(new QSize(700, 360));
+        ProjectData.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         gridLayout = new QGridLayout(ProjectData);
         gridLayout.setObjectName("gridLayout");
         lblProjectnumber = new QLabel(ProjectData);
@@ -101,6 +102,11 @@ public class Ui_ProjectData implements com.trolltech.qt.QUiForm<QWidget>
 
         gridLayout.addItem(verticalSpacer, 6, 2, 1, 1);
 
+        QWidget.setTabOrder(txtProjectnumber, txtDescription);
+        QWidget.setTabOrder(txtDescription, cmbProjectManager);
+        QWidget.setTabOrder(cmbProjectManager, txtPlannedTime);
+        QWidget.setTabOrder(txtPlannedTime, checkBox);
+        QWidget.setTabOrder(checkBox, btnAdd);
         retranslateUi(ProjectData);
 
         ProjectData.connectSlotsByName();

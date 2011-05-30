@@ -10,6 +10,9 @@
     <height>545</height>
    </rect>
   </property>
+  <property name="focusPolicy">
+   <enum>com.trolltech.qt.core.Qt.FocusPolicy.TabFocus</enum>
+  </property>
   <property name="windowTitle">
    <string>Import</string>
   </property>
@@ -80,6 +83,15 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>cmbProject</tabstop>
+  <tabstop>cmbWorkPackage</tabstop>
+  <tabstop>dteStart</tabstop>
+  <tabstop>dteEnd</tabstop>
+  <tabstop>txtDescription</tabstop>
+  <tabstop>btnDiscard</tabstop>
+  <tabstop>btnImport</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

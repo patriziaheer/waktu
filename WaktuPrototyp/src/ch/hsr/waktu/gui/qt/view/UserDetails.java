@@ -1,8 +1,12 @@
 package ch.hsr.waktu.gui.qt.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.gui.qt.model.SortFilterModel;
+import ch.hsr.waktu.gui.qt.model.UserProperties;
 import ch.hsr.waktu.gui.qt.model.UserTreeModel;
 import ch.hsr.waktu.gui.qt.view.usermanagment.UserDataView;
 import ch.hsr.waktu.gui.qt.view.usermanagment.UserProjectsView;
@@ -40,6 +44,10 @@ public class UserDetails extends QWidget {
 		splitter = new QSplitter(Qt.Orientation.Horizontal);
 		splitter.addWidget(ui.widget);
 		splitter.addWidget(currWidget);
+		List<Integer> sizes = new ArrayList<Integer>();
+		sizes.add(50);
+		sizes.add(800);
+		splitter.setSizes(sizes);
 
 		ui.gridLayout.removeWidget(ui.widget);
 		ui.gridLayout.addWidget(splitter);
@@ -52,7 +60,6 @@ public class UserDetails extends QWidget {
 
 		LanguageController.getInstance().languageChanged.connect(this,
 				"translate()");
-		
 
 	}
 
@@ -71,11 +78,11 @@ public class UserDetails extends QWidget {
 			userDataView.errorMessage.connect(this, "showErrorMessage(String)");
 			userDataView.initialize();
 			currWidget = userDataView;
-		} else if (selected instanceof UserController.UserProperties) {
+		} else if (selected instanceof UserProperties) {
 			if (currWidget != null) {
 				currWidget.setParent(null);
 			}
-			switch ((UserController.UserProperties) selected) {
+			switch ((UserProperties) selected) {
 			case Data: {
 				UserDataView userDataView = new UserDataView((Usr) parent);
 				userDataView.errorMessage.connect(this,
@@ -156,7 +163,8 @@ public class UserDetails extends QWidget {
 		}
 		UserDataView userDataView = new UserDataView(null);
 		userDataView.initialize();
-		currWidget = userDataView;;
+		currWidget = userDataView;
+		;
 		splitter.addWidget(currWidget);
 	}
 
@@ -168,7 +176,7 @@ public class UserDetails extends QWidget {
 	private void showErrorMessage(String errorMessageString) {
 		errorMessage.emit(errorMessageString);
 	}
-	
+
 	public void showInactive(boolean inactivs) {
 		userTreeModel.setShowInactivs(inactivs);
 		updateTable();

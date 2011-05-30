@@ -15,6 +15,8 @@ import ch.hsr.waktu.services.WaktuException;
 import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.gui.QIcon;
 import com.trolltech.qt.gui.QWidget;
+import com.trolltech.qt.gui.QAbstractItemView.SelectionBehavior;
+import com.trolltech.qt.gui.QAbstractItemView.SelectionMode;
 
 public class UserProjectsView extends QWidget {
 
@@ -42,6 +44,9 @@ public class UserProjectsView extends QWidget {
 		ui.tblProjects.setModel(projectsModel);
 		ui.tblProjects.horizontalHeader().setStretchLastSection(true);
 		ui.tblProjects.resizeRowsToContents();
+		ui.tblProjects.setSelectionMode(SelectionMode.SingleSelection);
+		ui.tblProjects.setSelectionBehavior(SelectionBehavior.SelectRows);
+
 		ui.btnAdd.clicked.connect(this, "addProject()");
 
 		ProjectStaffController.getInstance().add.connect(this,
@@ -58,9 +63,11 @@ public class UserProjectsView extends QWidget {
 		} else {
 			updateProjectModel();
 		}
-		
-		ProjectController.getInstance().add.connect(this, "projectAdded(Project)");
-		ProjectController.getInstance().update.connect(this, "projectUpdated()");
+
+		ProjectController.getInstance().add.connect(this,
+				"projectAdded(Project)");
+		ProjectController.getInstance().update
+				.connect(this, "projectUpdated()");
 	}
 
 	private void updateProjectModel() {
@@ -98,7 +105,8 @@ public class UserProjectsView extends QWidget {
 	@SuppressWarnings("unused")
 	private void addProject() {
 		try {
-			Project proj = (Project) ui.cmbProjects.itemData(ui.cmbProjects.currentIndex());
+			Project proj = (Project) ui.cmbProjects.itemData(ui.cmbProjects
+					.currentIndex());
 			if (proj != null) {
 				ProjectStaffController.getInstance().addProjectStaff(usr, proj);
 			}
@@ -116,7 +124,7 @@ public class UserProjectsView extends QWidget {
 	private void removed(ProjectStaff projectStaff) {
 		updateData();
 	}
-	
+
 	private void updateData() {
 		updateTable();
 		try {
@@ -128,7 +136,11 @@ public class UserProjectsView extends QWidget {
 
 	private void updateTable() {
 		try {
-			projectsModel.updateProjectsModel();
+			if (projectsModel != null) {
+				projectsModel.updateProjectsModel();
+			} else {
+				projectsModel = new UserProjectsModel(usr);
+			}
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
@@ -147,12 +159,12 @@ public class UserProjectsView extends QWidget {
 	private void translate() {
 		ui.retranslateUi(this);
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void projectAdded(Project proj) {
 		updateData();
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void projectUpdated() {
 		updateData();

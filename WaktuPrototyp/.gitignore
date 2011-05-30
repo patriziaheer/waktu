@@ -5,3 +5,4 @@ AddTestData.java
 persistence.log
 testlog4j.log
 testlog4j.log.1
+.DS_Store

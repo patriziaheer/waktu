@@ -30,7 +30,7 @@ public class ProjectTreeModel extends QTreeModel {
 		if (parent == null) {
 			return projects.get(index);
 		} else if (parent instanceof Project) {
-			return ProjectController.ProjectProperties.values()[index];
+			return ProjectProperties.values()[index];
 		}
 		return null;
 	}
@@ -40,7 +40,7 @@ public class ProjectTreeModel extends QTreeModel {
 		if (parent == null) {
 			return projects.size();
 		} else if (parent instanceof Project) {
-			return ProjectController.ProjectProperties.values().length;
+			return ProjectProperties.values().length;
 		}
 		return 0;
 	}
@@ -78,7 +78,7 @@ public class ProjectTreeModel extends QTreeModel {
 		}
 		case Qt.ItemDataRole.ForegroundRole: {
 			if (value instanceof Usr) {
-				Usr usr = (Usr)value;
+				Usr usr = (Usr) value;
 				if (usr.isActive() == false) {
 					return QColor.red;
 				}
@@ -99,7 +99,7 @@ public class ProjectTreeModel extends QTreeModel {
 			projects = ProjectController.getInstance().getActiveProjects();
 		}
 	}
-	
+
 	public void setShowInactivs(boolean showInactivs) {
 		this.showInactivs = showInactivs;
 	}

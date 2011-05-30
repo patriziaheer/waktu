@@ -39,12 +39,9 @@ public class UserDataView extends QWidget {
 		WorkSessionController.getInstance().removed.connect(this,
 				"workSessionChanged(WorkSession)");
 
-		ui.txtUnvisbileField.setVisible(false);
-
 		LanguageController.getInstance().languageChanged.connect(this,
 				"translate()");
 		setFields();
-		updateTimeInfos();
 	}
 
 	private void setFields() {
@@ -77,8 +74,9 @@ public class UserDataView extends QWidget {
 
 				ui.checkBox.setChecked(!usr.isActive());
 				ui.checkBox.setVisible(true);
-				
-				ComboBoxData.createSystemRoleComboBox(ui.cmbRole, usr.getSystemRole());
+
+				ComboBoxData.createSystemRoleComboBox(ui.cmbRole,
+						usr.getSystemRole());
 			} else {
 				ui.grpOverview.setVisible(true);
 				ui.btnAdd.setVisible(false);
@@ -111,10 +109,12 @@ public class UserDataView extends QWidget {
 
 				ui.checkBox.setChecked(!usr.isActive());
 				ui.checkBox.setVisible(false);
-				
+
 				ui.cmbRole.setEnabled(false);
-				ComboBoxData.createSystemRoleComboBox(ui.cmbRole, usr.getSystemRole());
+				ComboBoxData.createSystemRoleComboBox(ui.cmbRole,
+						usr.getSystemRole());
 			}
+			updateTimeInfos();
 		} else {
 			ui.grpOverview.setVisible(false);
 			ui.btnAdd.setVisible(true);
@@ -128,6 +128,7 @@ public class UserDataView extends QWidget {
 			ui.txtHolidays.setEnabled(true);
 			ui.checkBox.setVisible(true);
 			ComboBoxData.createSystemRoleComboBox(ui.cmbRole, null);
+			ui.cmbRole.setEnabled(true);
 		}
 	}
 
@@ -176,6 +177,8 @@ public class UserDataView extends QWidget {
 		usr.setPensum(ui.txtPensum.value());
 		usr.setHoliday(ui.txtHolidays.value());
 		usr.setActiveState(!ui.checkBox.isChecked());
+		usr.setSystemRole((SystemRole) ui.cmbRole.itemData(ui.cmbRole
+				.currentIndex()));
 		try {
 			UserController.getInstance().updateUser(usr);
 		} catch (WaktuException e) {
@@ -186,13 +189,11 @@ public class UserDataView extends QWidget {
 	@SuppressWarnings("unused")
 	private void updateData() {
 		setFields();
-		updateTimeInfos();
 	}
 
 	@SuppressWarnings("unused")
 	private void addData(Usr usr) {
 		setFields();
-		updateTimeInfos();
 	}
 
 	@SuppressWarnings("unused")
@@ -205,20 +206,27 @@ public class UserDataView extends QWidget {
 		if (usr != null) {
 			ui.btnAdd.setText(QCoreApplication.translate("UserDataView",
 					"Save", null));
+			ComboBoxData.createSystemRoleComboBox(ui.cmbRole,
+					usr.getSystemRole());
 		} else {
 			ui.btnAdd.setText(QCoreApplication.translate("UserDataView", "Add",
 					null));
+			ComboBoxData.createSystemRoleComboBox(ui.cmbRole, null);
 		}
 	}
 
 	@SuppressWarnings("unused")
 	private void workSessionUpdated() {
-		updateTimeInfos();
+		if (usr != null) {
+			updateTimeInfos();
+		}
 	}
 
 	@SuppressWarnings("unused")
 	private void workSessionChanged(WorkSession workSession) {
-		updateTimeInfos();
+		if (usr != null) {
+			updateTimeInfos();
+		}
 	}
 
 }

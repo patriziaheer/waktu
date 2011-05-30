@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ManagmentWindow.jui'
 **
-** Created: Di. Mai 24 13:33:31 2011
+** Created: Fr. Mai 27 11:28:43 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -38,8 +38,14 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
     public void setupUi(QMainWindow ManagmentWindow)
     {
         ManagmentWindow.setObjectName("ManagmentWindow");
-        ManagmentWindow.resize(new QSize(1115, 584).expandedTo(ManagmentWindow.minimumSizeHint()));
-        ManagmentWindow.setMinimumSize(new QSize(650, 0));
+        ManagmentWindow.resize(new QSize(950, 453).expandedTo(ManagmentWindow.minimumSizeHint()));
+        QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.MinimumExpanding, com.trolltech.qt.gui.QSizePolicy.Policy.MinimumExpanding);
+        sizePolicy.setHorizontalStretch((byte)0);
+        sizePolicy.setVerticalStretch((byte)0);
+        sizePolicy.setHeightForWidth(ManagmentWindow.sizePolicy().hasHeightForWidth());
+        ManagmentWindow.setSizePolicy(sizePolicy);
+        ManagmentWindow.setMinimumSize(new QSize(950, 300));
+        ManagmentWindow.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         actionClose = new QAction(ManagmentWindow);
         actionClose.setObjectName("actionClose");
         actionAdd = new QAction(ManagmentWindow);
@@ -77,7 +83,7 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         ManagmentWindow.setCentralWidget(centralwidget);
         menubar = new QMenuBar(ManagmentWindow);
         menubar.setObjectName("menubar");
-        menubar.setGeometry(new QRect(0, 0, 1115, 22));
+        menubar.setGeometry(new QRect(0, 0, 950, 22));
         menuFile = new QMenu(menubar);
         menuFile.setObjectName("menuFile");
         menuLanguage = new QMenu(menuFile);

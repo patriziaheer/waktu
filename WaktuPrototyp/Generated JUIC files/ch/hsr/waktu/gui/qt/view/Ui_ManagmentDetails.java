@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ManagmentDetails.jui'
 **
-** Created: Mo. Mai 9 13:41:05 2011
+** Created: Fr. Mai 27 10:37:58 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -32,6 +32,7 @@ public class Ui_ManagmentDetails implements com.trolltech.qt.QUiForm<QWidget>
         sizePolicy.setHeightForWidth(ManagmentDetails.sizePolicy().hasHeightForWidth());
         ManagmentDetails.setSizePolicy(sizePolicy);
         ManagmentDetails.setMinimumSize(new QSize(200, 0));
+        ManagmentDetails.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         gridLayout = new QGridLayout(ManagmentDetails);
         gridLayout.setMargin(12);
         gridLayout.setObjectName("gridLayout");
@@ -59,6 +60,7 @@ public class Ui_ManagmentDetails implements com.trolltech.qt.QUiForm<QWidget>
 
         gridLayout.addWidget(widget, 2, 1, 1, 1);
 
+        QWidget.setTabOrder(lineEdit, treeView);
         retranslateUi(ManagmentDetails);
 
         ManagmentDetails.connectSlotsByName();

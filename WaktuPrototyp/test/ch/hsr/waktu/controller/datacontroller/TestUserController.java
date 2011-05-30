@@ -49,7 +49,7 @@ public class TestUserController extends TestSuite {
 
 			Usr usr1 = uc.addUser("Mike", "Fisler", "1234", 100, SystemRole.ADMIN, 25);
 			Usr usr2 = uc.addUser("Simon", "Stäheli", "5678", 10, SystemRole.EMPLOYEE, 30);
-			Usr usr3 = uc.addUser("Fredi", "Egli", "Karabum!", 50,	SystemRole.PROJECTMANAGER, 80);
+			Usr usr3 = uc.addUser("Fredi", "Egli", "Karabum!", 50,	SystemRole.EMPLOYEE, 80);
 			Usr usr4 = uc.addUser("David", "Steiner", "fels3n3gg?", 70,SystemRole.PROJECTMANAGER, 80);
 			Usr usr5 = uc.addUser("Maura", "Weber", "turicum", 25,	SystemRole.PROJECTMANAGER, 80);
 			
@@ -87,7 +87,7 @@ public class TestUserController extends TestSuite {
 
 	@Test
 	public void testGetProjectManagers() throws WaktuException {
-		assertEquals(2, uc.getProjectManagers().size());
+		assertEquals(4, uc.getProjectManagers().size());
 
 	}
 	

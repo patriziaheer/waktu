@@ -8,18 +8,18 @@ import com.trolltech.qt.core.QModelIndex;
 import com.trolltech.qt.gui.QCheckBox;
 
 public class IndexCheckbox extends QCheckBox {
-	
+
 	private QModelIndex index;
 	private WorkPackage workPackage;
 	public Signal1<String> errorMessage = new Signal1<String>();
-	
+
 	public IndexCheckbox(QModelIndex index, WorkPackage wp, boolean state) {
 		setChecked(state);
 		stateChanged.connect(this, "stateChanged()");
 		this.index = index;
 		this.workPackage = wp;
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void stateChanged() {
 		workPackage.setActiveState(!isChecked());
@@ -33,10 +33,11 @@ public class IndexCheckbox extends QCheckBox {
 	public QModelIndex getIndex() {
 		return index;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "IndexButton with index: row:" + index.row() + " column: " + index.column();
+		return "IndexButton with index: row:" + index.row() + " column: "
+				+ index.column();
 	}
 
 }

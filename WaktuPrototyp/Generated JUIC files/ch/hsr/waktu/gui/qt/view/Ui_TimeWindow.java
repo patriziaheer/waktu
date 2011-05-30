@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'TimeWindow.jui'
 **
-** Created: Di. Mai 24 13:33:31 2011
+** Created: Mo 30. Mai 13:11:13 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -77,7 +77,8 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
     public void setupUi(QMainWindow TimeWindow)
     {
         TimeWindow.setObjectName("TimeWindow");
-        TimeWindow.resize(new QSize(784, 731).expandedTo(TimeWindow.minimumSizeHint()));
+        TimeWindow.resize(new QSize(790, 540).expandedTo(TimeWindow.minimumSizeHint()));
+        TimeWindow.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         actionClose = new QAction(TimeWindow);
         actionClose.setObjectName("actionClose");
         actionOpenManagment = new QAction(TimeWindow);
@@ -200,7 +201,7 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         sizePolicy.setVerticalStretch((byte)0);
         sizePolicy.setHeightForWidth(grpCreateWorksession.sizePolicy().hasHeightForWidth());
         grpCreateWorksession.setSizePolicy(sizePolicy);
-        grpCreateWorksession.setMinimumSize(new QSize(350, 0));
+        grpCreateWorksession.setMinimumSize(new QSize(310, 0));
         gridLayout_2 = new QGridLayout(grpCreateWorksession);
         gridLayout_2.setObjectName("gridLayout_2");
         lblTime = new QLabel(grpCreateWorksession);
@@ -321,7 +322,7 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         TimeWindow.setStatusBar(statusBar);
         menuBar = new QMenuBar(TimeWindow);
         menuBar.setObjectName("menuBar");
-        menuBar.setGeometry(new QRect(0, 0, 784, 22));
+        menuBar.setGeometry(new QRect(0, 0, 790, 22));
         menuManagment = new QMenu(menuBar);
         menuManagment.setObjectName("menuManagment");
         menuFile = new QMenu(menuBar);
@@ -329,6 +330,17 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         menuLanguage = new QMenu(menuFile);
         menuLanguage.setObjectName("menuLanguage");
         TimeWindow.setMenuBar(menuBar);
+        QWidget.setTabOrder(txtStart, txtEnd);
+        QWidget.setTabOrder(txtEnd, cmbProject);
+        QWidget.setTabOrder(cmbProject, cmbWorkpackage);
+        QWidget.setTabOrder(cmbWorkpackage, txtDescription);
+        QWidget.setTabOrder(txtDescription, btnReset);
+        QWidget.setTabOrder(btnReset, btnCreate);
+        QWidget.setTabOrder(btnCreate, tblFavorites);
+        QWidget.setTabOrder(tblFavorites, btnTimeOnly);
+        QWidget.setTabOrder(btnTimeOnly, btnWorkPackageOnly);
+        QWidget.setTabOrder(btnWorkPackageOnly, btnCreateFavorite);
+        QWidget.setTabOrder(btnCreateFavorite, tblWorksessions);
 
         menuBar.addAction(menuFile.menuAction());
         menuBar.addAction(menuManagment.menuAction());

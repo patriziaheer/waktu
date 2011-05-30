@@ -5,7 +5,6 @@ import java.util.GregorianCalendar;
 /**
  * @author simon.staeheli
  * @version 1.0
- * @created 01-Apr-2011 15:36:30
  */
 public class Favorite {
 
@@ -15,17 +14,18 @@ public class Favorite {
 	private Usr usr;
 	private WorkPackage workPackage;
 
-	public Favorite(){
+	public Favorite() {
 
 	}
 
-	public Favorite(Usr userId, WorkPackage workPackage, GregorianCalendar startTime, GregorianCalendar endTime){
+	public Favorite(Usr userId, WorkPackage workPackage,
+			GregorianCalendar startTime, GregorianCalendar endTime) {
 		this.usr = userId;
 		this.workPackage = workPackage;
 		this.startTime = startTime;
 		this.endTime = endTime;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -65,18 +65,16 @@ public class Favorite {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Favorite) {
-			Favorite fav = (Favorite)obj;
-			if (fav.id == id &&
-			fav.endTime.equals(endTime) &&
-			fav.startTime.equals(startTime) &&
-			fav.usr.equals(usr) &&
-			fav.workPackage.equals(workPackage)) {
+			Favorite fav = (Favorite) obj;
+			if (fav.id == id && fav.endTime.equals(endTime)
+					&& fav.startTime.equals(startTime) && fav.usr.equals(usr)
+					&& fav.workPackage.equals(workPackage)) {
 				return true;
 			}
 		}
 		return super.equals(obj);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		int hashCode = 23;
@@ -87,10 +85,11 @@ public class Favorite {
 		hashCode += 31 * workPackage.hashCode();
 		return hashCode;
 	}
-	
+
 	@Override
 	public String toString() {
-		return id + startTime.toString() + endTime.toString() + workPackage.getDescription() + usr.getUsername();
+		return id + startTime.toString() + endTime.toString()
+				+ workPackage.getDescription() + usr.getUsername();
 	}
-	
+
 }

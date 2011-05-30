@@ -17,7 +17,7 @@ import com.trolltech.qt.QSignalEmitter;
 /**
  * @author pheer
  * @version 1.0
- * @created 01-Apr-2011 15:36:30
+ * 
  */
 public class PermissionController extends QSignalEmitter {
 
@@ -34,7 +34,7 @@ public class PermissionController extends QSignalEmitter {
 		}
 		return theInstance;
 	}
-	
+
 	private PermissionController() {
 		try {
 			allPermissionNodes = getPermissionNodes();
@@ -44,7 +44,7 @@ public class PermissionController extends QSignalEmitter {
 		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
 	}
 
 	private static List<Permission> getPermissionTable() {
@@ -53,8 +53,8 @@ public class PermissionController extends QSignalEmitter {
 					.createEntityManager();
 
 			@SuppressWarnings("unchecked")
-			List<Permission> perm = em.createQuery(
-					"SELECT p FROM Permission p").getResultList();
+			List<Permission> perm = em
+					.createQuery("SELECT p FROM Permission p").getResultList();
 
 			em.close();
 			permissions = perm;
@@ -77,7 +77,8 @@ public class PermissionController extends QSignalEmitter {
 
 	}
 
-	public static ArrayList<PermissionNode> getPermissionNodes() throws IllegalArgumentException, IllegalAccessException {
+	public static ArrayList<PermissionNode> getPermissionNodes()
+			throws IllegalArgumentException, IllegalAccessException {
 		ArrayList<PermissionNode> list = new ArrayList<PermissionNode>();
 
 		for (Permission p : getPermissionTable()) {
@@ -91,14 +92,14 @@ public class PermissionController extends QSignalEmitter {
 		return list;
 
 	}
-	
+
 	public void reloadPermissions() throws WaktuException {
 		try {
 			permissions = null;
 			allPermissionNodes = getPermissionNodes();
-		} catch(IllegalAccessException e) {
+		} catch (IllegalAccessException e) {
 			throw new WaktuException("General problem");
-		} catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			throw new WaktuException("General problem");
 		}
 

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'IcsImport.jui'
 **
-** Created: Mo. Mai 16 15:27:37 2011
+** Created: Do 26. Mai 07:32:54 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -34,6 +34,7 @@ public class Ui_IcsImport implements com.trolltech.qt.QUiForm<QWidget>
     {
         IcsImport.setObjectName("IcsImport");
         IcsImport.resize(new QSize(735, 545).expandedTo(IcsImport.minimumSizeHint()));
+        IcsImport.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         gridLayout = new QGridLayout(IcsImport);
         gridLayout.setObjectName("gridLayout");
         label = new QLabel(IcsImport);
@@ -96,6 +97,12 @@ public class Ui_IcsImport implements com.trolltech.qt.QUiForm<QWidget>
 
         gridLayout.addWidget(txtDescription, 4, 1, 1, 2);
 
+        QWidget.setTabOrder(cmbProject, cmbWorkPackage);
+        QWidget.setTabOrder(cmbWorkPackage, dteStart);
+        QWidget.setTabOrder(dteStart, dteEnd);
+        QWidget.setTabOrder(dteEnd, txtDescription);
+        QWidget.setTabOrder(txtDescription, btnDiscard);
+        QWidget.setTabOrder(btnDiscard, btnImport);
         retranslateUi(IcsImport);
 
         IcsImport.connectSlotsByName();

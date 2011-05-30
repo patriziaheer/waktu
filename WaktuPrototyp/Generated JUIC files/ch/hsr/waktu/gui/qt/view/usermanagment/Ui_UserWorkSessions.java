@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'UserWorkSessions.jui'
 **
-** Created: Mo. Mai 23 11:18:32 2011
+** Created: Mo 30. Mai 13:11:13 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -33,19 +33,20 @@ public class Ui_UserWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
     public void setupUi(QWidget UserWorkSessions)
     {
         UserWorkSessions.setObjectName("UserWorkSessions");
-        UserWorkSessions.resize(new QSize(800, 360).expandedTo(UserWorkSessions.minimumSizeHint()));
+        UserWorkSessions.resize(new QSize(700, 360).expandedTo(UserWorkSessions.minimumSizeHint()));
         QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Minimum, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
         sizePolicy.setHorizontalStretch((byte)0);
         sizePolicy.setVerticalStretch((byte)0);
         sizePolicy.setHeightForWidth(UserWorkSessions.sizePolicy().hasHeightForWidth());
         UserWorkSessions.setSizePolicy(sizePolicy);
-        UserWorkSessions.setMinimumSize(new QSize(800, 360));
+        UserWorkSessions.setMinimumSize(new QSize(700, 360));
+        UserWorkSessions.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         gridLayout = new QGridLayout(UserWorkSessions);
         gridLayout.setMargin(12);
         gridLayout.setObjectName("gridLayout");
         cmbProject = new QComboBox(UserWorkSessions);
         cmbProject.setObjectName("cmbProject");
-        QSizePolicy sizePolicy1 = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Expanding, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
+        QSizePolicy sizePolicy1 = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Fixed, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
         sizePolicy1.setHorizontalStretch((byte)0);
         sizePolicy1.setVerticalStretch((byte)0);
         sizePolicy1.setHeightForWidth(cmbProject.sizePolicy().hasHeightForWidth());
@@ -56,7 +57,7 @@ public class Ui_UserWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
 
         cmbWorkpackage = new QComboBox(UserWorkSessions);
         cmbWorkpackage.setObjectName("cmbWorkpackage");
-        QSizePolicy sizePolicy2 = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Expanding, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
+        QSizePolicy sizePolicy2 = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Fixed, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
         sizePolicy2.setHorizontalStretch((byte)0);
         sizePolicy2.setVerticalStretch((byte)0);
         sizePolicy2.setHeightForWidth(cmbWorkpackage.sizePolicy().hasHeightForWidth());
@@ -79,7 +80,8 @@ public class Ui_UserWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
         sizePolicy3.setVerticalStretch((byte)0);
         sizePolicy3.setHeightForWidth(txtStart.sizePolicy().hasHeightForWidth());
         txtStart.setSizePolicy(sizePolicy3);
-        txtStart.setMaximumSize(new QSize(90, 16777215));
+        txtStart.setMinimumSize(new QSize(80, 0));
+        txtStart.setMaximumSize(new QSize(80, 16777215));
 
         horizontalLayout.addWidget(txtStart);
 
@@ -101,7 +103,8 @@ public class Ui_UserWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
         sizePolicy5.setVerticalStretch((byte)0);
         sizePolicy5.setHeightForWidth(txtEnd.sizePolicy().hasHeightForWidth());
         txtEnd.setSizePolicy(sizePolicy5);
-        txtEnd.setMaximumSize(new QSize(90, 16777215));
+        txtEnd.setMinimumSize(new QSize(80, 0));
+        txtEnd.setMaximumSize(new QSize(80, 16777215));
 
         horizontalLayout.addWidget(txtEnd);
 
@@ -115,6 +118,7 @@ public class Ui_UserWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
 
         btnAddFilter = new QPushButton(UserWorkSessions);
         btnAddFilter.setObjectName("btnAddFilter");
+        btnAddFilter.setDefault(true);
 
         gridLayout.addWidget(btnAddFilter, 0, 3, 1, 1);
 
@@ -134,6 +138,13 @@ public class Ui_UserWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
 
         gridLayout.addWidget(lblTotalTime, 2, 4, 1, 1);
 
+        QWidget.setTabOrder(cmbProject, cmbWorkpackage);
+        QWidget.setTabOrder(cmbWorkpackage, txtStart);
+        QWidget.setTabOrder(txtStart, txtEnd);
+        QWidget.setTabOrder(txtEnd, chkFilterDate);
+        QWidget.setTabOrder(chkFilterDate, btnAddFilter);
+        QWidget.setTabOrder(btnAddFilter, btnRemoveFilter);
+        QWidget.setTabOrder(btnRemoveFilter, tblWorkSessions);
         retranslateUi(UserWorkSessions);
 
         UserWorkSessions.connectSlotsByName();

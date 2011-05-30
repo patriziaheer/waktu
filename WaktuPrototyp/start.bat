@@ -1,1 +1,1 @@
-java -jar waktuwin.jar
+java -jar build/waktuwin.jar

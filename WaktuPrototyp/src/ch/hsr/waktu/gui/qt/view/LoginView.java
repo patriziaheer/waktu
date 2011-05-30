@@ -60,7 +60,7 @@ public class LoginView extends QDialog {
 
 		this.layout().setMenuBar(menuBar);
 		changeText();
-		
+
 		setLanguageChecked();
 	}
 
@@ -72,23 +72,22 @@ public class LoginView extends QDialog {
 	@SuppressWarnings("unused")
 	private void loginClicked() {
 		try {
-			this.setCursor(new QCursor(CursorShape.WaitCursor));
 			if (LoginController.getInstance().login(ui.txtUsername.text(),
 					ui.txtPassword.text())) {
-		        QSplashScreen splashScreen = new QSplashScreen(new QPixmap("classpath:icons/logo.png"));
-		        splashScreen.show();
-		        splashScreen.showMessage("Login...");
-				Usr usr = UserController.getInstance().getUser(ui.txtUsername.text());
+				QSplashScreen splashScreen = new QSplashScreen(new QPixmap(
+						"classpath:icons/logo.png"));
+				splashScreen.show();
+				splashScreen.showMessage("Login...");
+				Usr usr = UserController.getInstance().getUser(
+						ui.txtUsername.text());
 				TimeView timeView = new TimeView(usr);
 				timeView.show();
 				this.setCursor(new QCursor(CursorShape.ArrowCursor));
 				close();
 				splashScreen.finish(timeView);
 			} else {
-				setStatus(com.trolltech.qt.core.QCoreApplication
-						.translate("LoginView", "Username or Password wrong",
-								null));
-				this.setCursor(new QCursor(CursorShape.ArrowCursor));
+				setStatus(com.trolltech.qt.core.QCoreApplication.translate(
+						"LoginView", "Username or Password wrong", null));
 			}
 		} catch (WaktuException e) {
 			setStatus(e.getMessage());
@@ -125,18 +124,17 @@ public class LoginView extends QDialog {
 	}
 
 	private void changeText() {
-		fileMenu.setTitle(QCoreApplication.translate(
-				"LoginView", "File", null));
-		languageMenu.setTitle(QCoreApplication.translate(
-				"LoginView", "language", null));
-		translateDEAction.setText(QCoreApplication
-				.translate("LoginView", "DE", null));
-		translateENAction.setText(QCoreApplication
-				.translate("LoginView", "EN", null));
-		closeAction.setText(QCoreApplication.translate(
-				"LoginView", "Close", null));
+		fileMenu.setTitle(QCoreApplication.translate("LoginView", "File", null));
+		languageMenu.setTitle(QCoreApplication.translate("LoginView",
+				"language", null));
+		translateDEAction.setText(QCoreApplication.translate("LoginView", "DE",
+				null));
+		translateENAction.setText(QCoreApplication.translate("LoginView", "EN",
+				null));
+		closeAction.setText(QCoreApplication.translate("LoginView", "Close",
+				null));
 	}
-	
+
 	private void setLanguageChecked() {
 		if (LanguageController.getInstance().getCurrLanguage() == Language.DE) {
 			translateDEAction.setChecked(true);
@@ -146,6 +144,5 @@ public class LoginView extends QDialog {
 			translateENAction.setChecked(true);
 		}
 	}
-	
-	
+
 }

@@ -16,22 +16,24 @@ import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.core.QDate;
 import com.trolltech.qt.gui.QWidget;
+import com.trolltech.qt.gui.QAbstractItemView.SelectionBehavior;
+import com.trolltech.qt.gui.QAbstractItemView.SelectionMode;
 
-public class UserWorkSessionsView extends QWidget{ 
-	
+public class UserWorkSessionsView extends QWidget {
+
 	private Ui_UserWorkSessions ui = new Ui_UserWorkSessions();
 	private UserWorkSessionModel workSessionModel;
 	private TableSortFilterModel filterModel;
 	private Usr usr;
 	public Signal1<String> errorMessage = new Signal1<String>();
-	
+
 	public UserWorkSessionsView(Usr usr) {
 		this.usr = usr;
 	}
 
 	public void initialize() {
 		ui.setupUi(this);
-		
+
 		projectCombo();
 		workPackageCombo(null);
 		try {
@@ -45,11 +47,15 @@ public class UserWorkSessionsView extends QWidget{
 		ui.tblWorkSessions.setModel(filterModel);
 		ui.tblWorkSessions.horizontalHeader().setStretchLastSection(true);
 		ui.tblWorkSessions.resizeRowsToContents();
-		
-		WorkSessionController.getInstance().add.connect(this, "added(WorkSession)");
-		WorkSessionController.getInstance().removed.connect(this, "removed(WorkSession)");
+		ui.tblWorkSessions.setSelectionMode(SelectionMode.SingleSelection);
+		ui.tblWorkSessions.setSelectionBehavior(SelectionBehavior.SelectRows);
+
+		WorkSessionController.getInstance().add.connect(this,
+				"added(WorkSession)");
+		WorkSessionController.getInstance().removed.connect(this,
+				"removed(WorkSession)");
 		WorkSessionController.getInstance().update.connect(this, "updated()");
-		
+
 		ui.cmbProject.currentIndexChanged.connect(this, "projectChanged()");
 		ui.cmbProject.setCurrentIndex(-1);
 		ui.cmbWorkpackage.setCurrentIndex(-1);
@@ -57,39 +63,54 @@ public class UserWorkSessionsView extends QWidget{
 		ui.btnRemoveFilter.clicked.connect(this, "removeFilter()");
 
 		try {
-			ui.lblTotalTime.setText(""+TimeController.calculateWorktime(usr, null, null, null, null));
+			ui.lblTotalTime.setText(""
+					+ TimeController.calculateWorktime(usr, null, null, null,
+							null));
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
-		
-		LanguageController.getInstance().languageChanged.connect(this, "translate()");
-		
-		WorkPackageController.getInstance().add.connect(this, "workPackageAdded(WorkPackage)");
-		WorkPackageController.getInstance().update.connect(this, "workPackageUpdated()");
-		
-		ProjectController.getInstance().add.connect(this, "projectAdded(Project)");
-		ProjectController.getInstance().update.connect(this, "projectUpdated()");
+
+		LanguageController.getInstance().languageChanged.connect(this,
+				"translate()");
+
+		WorkPackageController.getInstance().add.connect(this,
+				"workPackageAdded(WorkPackage)");
+		WorkPackageController.getInstance().update.connect(this,
+				"workPackageUpdated()");
+
+		ProjectController.getInstance().add.connect(this,
+				"projectAdded(Project)");
+		ProjectController.getInstance().update
+				.connect(this, "projectUpdated()");
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void addFilter() {
-		filterModel.setProject((Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
-		filterModel.setWorkPackage((WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()));
+		filterModel.setProject((Project) ui.cmbProject.itemData(ui.cmbProject
+				.currentIndex()));
+		filterModel.setWorkPackage((WorkPackage) ui.cmbWorkpackage
+				.itemData(ui.cmbWorkpackage.currentIndex()));
 		if (ui.chkFilterDate.isChecked()) {
 			QDate start = null;
 			QDate end = null;
-			
+
 			if (ui.txtStart.date().toString("dd.MM.yyyy").equals("01.01.2000") == false) {
-				start = ui.txtStart.date(); 
+				start = ui.txtStart.date();
 			}
 			if (ui.txtEnd.date().toString("dd.MM.yyyy").equals("01.01.2000") == false) {
 				end = ui.txtEnd.date();
 			}
 			filterModel.setStart(start);
 			filterModel.setEnd(end);
-			
+
 			try {
-				ui.lblTotalTime.setText(""+TimeController.calculateWorktime(usr, (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()), (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), start, end));
+				ui.lblTotalTime.setText(""
+						+ TimeController.calculateWorktime(usr,
+								(Project) ui.cmbProject.itemData(ui.cmbProject
+										.currentIndex()),
+								(WorkPackage) ui.cmbWorkpackage
+										.itemData(ui.cmbWorkpackage
+												.currentIndex()), start, end));
 			} catch (WaktuException e) {
 				errorMessage.emit(e.getMessage());
 			}
@@ -97,55 +118,68 @@ public class UserWorkSessionsView extends QWidget{
 			filterModel.setStart(null);
 			filterModel.setEnd(null);
 			try {
-				ui.lblTotalTime.setText(""+TimeController.calculateWorktime(usr, (Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()), (WorkPackage)ui.cmbWorkpackage.itemData(ui.cmbWorkpackage.currentIndex()), null, null));
+				ui.lblTotalTime.setText(""
+						+ TimeController.calculateWorktime(usr,
+								(Project) ui.cmbProject.itemData(ui.cmbProject
+										.currentIndex()),
+								(WorkPackage) ui.cmbWorkpackage
+										.itemData(ui.cmbWorkpackage
+												.currentIndex()), null, null));
 			} catch (WaktuException e) {
 				errorMessage.emit(e.getMessage());
 			}
 		}
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void removeFilter() {
 		try {
-			ui.lblTotalTime.setText(""+TimeController.calculateWorktime(usr, null, null, null, null));
+			ui.lblTotalTime.setText(""
+					+ TimeController.calculateWorktime(usr, null, null, null,
+							null));
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
 		ui.cmbProject.setCurrentIndex(-1);
 		ui.cmbWorkpackage.setCurrentIndex(-1);
-		ui.txtStart.setDate(new QDate(01, 01, 1900));
-		ui.txtEnd.setDate(new QDate(01, 01, 1900));
+		ui.txtStart.setDate(null);
+		ui.txtEnd.setDate(null);
 		ui.chkFilterDate.setChecked(false);
 		filterModel.setUsr(null);
+		filterModel.setProject(null);
 		filterModel.setWorkPackage(null);
 		filterModel.setStart(null);
 		filterModel.setEnd(null);
 	}
-	
-	
+
 	@SuppressWarnings("unused")
 	private void projectChanged() {
-		workPackageCombo((Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
+		workPackageCombo((Project) ui.cmbProject.itemData(ui.cmbProject
+				.currentIndex()));
 	}
 
 	@SuppressWarnings("unused")
 	private void added(WorkSession workSession) {
 		updateWorkSessionTable();
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void updated() {
 		updateWorkSessionTable();
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void removed(WorkSession workSession) {
 		updateWorkSessionTable();
 	}
-	
+
 	private void updateWorkSessionTable() {
 		try {
-			workSessionModel.updateWorkSessionModel();
+			if (workSessionModel != null) {
+				workSessionModel.updateWorkSessionModel();
+			} else {
+				workSessionModel = new UserWorkSessionModel(usr);
+			}
 		} catch (WaktuException e) {
 			errorMessage.emit(e.getMessage());
 		}
@@ -155,10 +189,10 @@ public class UserWorkSessionsView extends QWidget{
 						workSessionModel.columnCount()));
 		workSessionModel.layoutChanged.emit();
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void translate() {
-        ui.retranslateUi(this);
+		ui.retranslateUi(this);
 	}
 
 	private void workPackageCombo(Project proj) {
@@ -166,7 +200,8 @@ public class UserWorkSessionsView extends QWidget{
 			if (proj == null) {
 				ComboBoxData.createAllWorkPackageComboBox(ui.cmbWorkpackage);
 			} else {
-				ComboBoxData.createAllWorkPackageComboBox(ui.cmbWorkpackage, proj);
+				ComboBoxData.createAllWorkPackageComboBox(ui.cmbWorkpackage,
+						proj);
 			}
 			ui.cmbWorkpackage.setCurrentIndex(-1);
 		} catch (WaktuException e) {
@@ -181,26 +216,27 @@ public class UserWorkSessionsView extends QWidget{
 			errorMessage.emit(e.getMessage());
 		}
 	}
-	
 
 	@SuppressWarnings("unused")
 	private void workPackageAdded(WorkPackage workPackage) {
-		workPackageCombo((Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
+		workPackageCombo((Project) ui.cmbProject.itemData(ui.cmbProject
+				.currentIndex()));
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void workPackageUpdated() {
-		workPackageCombo((Project)ui.cmbProject.itemData(ui.cmbProject.currentIndex()));
+		workPackageCombo((Project) ui.cmbProject.itemData(ui.cmbProject
+				.currentIndex()));
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void projectAdded(Project project) {
 		projectCombo();
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void projectUpdated() {
 		projectCombo();
 	}
-	
+
 }

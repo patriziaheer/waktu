@@ -1,0 +1,63 @@
+body {
+	background-color: #D6E3FF;
+	margin: 0px;
+	font-family: helvetica;
+	font-size: 9pt;
+}
+
+div#all {
+	
+	width: 810px;
+	height: 107px;
+	left: 50%;
+    margin-left: -385px;
+    margin-top: -83px;
+    position: absolute;
+    top: 50%;
+}
+
+div#site {
+	width: 350px;
+	height: 107px;
+	background-color: white;
+	float: left;
+	background-image: url(img/login.png);
+	padding: 15px;
+	float: left;
+	
+}
+
+div#logo {
+	width: 350px;
+	height: 107px;
+	background-color: #D6E3FF;
+	background-image: url(img/login.png);
+	float: left;
+	text-align: center;
+	padding: 15px;
+	margin-right: 10px;
+}
+
+td {
+	padding: 5px;
+}
+
+th {
+	text-align: left;
+}
+
+td.ws {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 0px;
+	padding-right: 0px;
+	
+	border-top: 1px solid #848284;
+	border-collapse: collapse;
+	
+}
+
+table.ws {
+	border-collapse: collapse;
+}
+

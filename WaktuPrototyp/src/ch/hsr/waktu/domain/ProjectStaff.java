@@ -3,7 +3,6 @@ package ch.hsr.waktu.domain;
 /**
  * @author simon.staeheli
  * @version 1.0
- * @created 01-Apr-2011 15:36:30
  */
 public class ProjectStaff {
 
@@ -12,10 +11,10 @@ public class ProjectStaff {
 	private Usr user;
 
 	public ProjectStaff() {
-		
+
 	}
-	
-	public ProjectStaff(Usr userId, Project projectId){
+
+	public ProjectStaff(Usr userId, Project projectId) {
 		this.project = projectId;
 		this.user = userId;
 	}
@@ -42,22 +41,22 @@ public class ProjectStaff {
 
 	@Override
 	public String toString() {
-		return id + " " + project.getProjectIdentifier() + " " + user.getUsername();
+		return id + " " + project.getProjectIdentifier() + " "
+				+ user.getUsername();
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof ProjectStaff) {
-			ProjectStaff ps = (ProjectStaff)obj;
-			if (ps.id == id &&
-			ps.project.equals(project) &&
-			ps.user.equals(user)) {
+			ProjectStaff ps = (ProjectStaff) obj;
+			if (ps.id == id && ps.project.equals(project)
+					&& ps.user.equals(user)) {
 				return true;
 			}
 		}
 		return super.equals(obj);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		int hashCode = 23;

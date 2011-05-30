@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'CalendarWidget.jui'
 **
-** Created: Mo. Mai 23 11:00:14 2011
+** Created: Do 26. Mai 07:32:54 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -30,13 +30,14 @@ public class Ui_Calendar implements com.trolltech.qt.QUiForm<QWidget>
     public QSpacerItem horizontalSpacer;
     public QLabel lblCurrDate;
     public QPushButton btnToday;
+    public QLabel lblLogo;
 
     public Ui_Calendar() { super(); }
 
     public void setupUi(QWidget Calendar)
     {
         Calendar.setObjectName("Calendar");
-        Calendar.resize(new QSize(646, 100).expandedTo(Calendar.minimumSizeHint()));
+        Calendar.resize(new QSize(649, 100).expandedTo(Calendar.minimumSizeHint()));
         QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Preferred, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
         sizePolicy.setHorizontalStretch((byte)0);
         sizePolicy.setVerticalStretch((byte)0);
@@ -44,6 +45,7 @@ public class Ui_Calendar implements com.trolltech.qt.QUiForm<QWidget>
         Calendar.setSizePolicy(sizePolicy);
         Calendar.setMinimumSize(new QSize(0, 100));
         Calendar.setMaximumSize(new QSize(16777215, 100));
+        Calendar.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         gridLayout = new QGridLayout(Calendar);
         gridLayout.setObjectName("gridLayout");
         btnMo = new QPushButton(Calendar);
@@ -200,6 +202,21 @@ public class Ui_Calendar implements com.trolltech.qt.QUiForm<QWidget>
 
         gridLayout.addWidget(btnToday, 0, 2, 1, 1);
 
+        lblLogo = new QLabel(Calendar);
+        lblLogo.setObjectName("lblLogo");
+        lblLogo.setPixmap(new QPixmap(("../../../../../../../resources/icons/logo_klein.png")));
+
+        gridLayout.addWidget(lblLogo, 0, 0, 2, 1);
+
+        QWidget.setTabOrder(btnToday, btnLeft);
+        QWidget.setTabOrder(btnLeft, btnRight);
+        QWidget.setTabOrder(btnRight, btnMo);
+        QWidget.setTabOrder(btnMo, btnDi);
+        QWidget.setTabOrder(btnDi, btnMi);
+        QWidget.setTabOrder(btnMi, btnDo);
+        QWidget.setTabOrder(btnDo, btnFri);
+        QWidget.setTabOrder(btnFri, btnSa);
+        QWidget.setTabOrder(btnSa, btnSo);
         retranslateUi(Calendar);
 
         Calendar.connectSlotsByName();
@@ -222,6 +239,7 @@ public class Ui_Calendar implements com.trolltech.qt.QUiForm<QWidget>
         lblStart.setText("");
         lblCurrDate.setText(com.trolltech.qt.core.QCoreApplication.translate("Calendar", "23.05.11", null));
         btnToday.setText(com.trolltech.qt.core.QCoreApplication.translate("Calendar", "Today", null));
+        lblLogo.setText("");
     } // retranslateUi
 
 }

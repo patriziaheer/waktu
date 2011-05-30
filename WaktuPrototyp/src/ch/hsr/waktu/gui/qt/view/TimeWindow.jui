@@ -6,9 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>784</width>
-    <height>731</height>
+    <width>790</width>
+    <height>540</height>
    </rect>
+  </property>
+  <property name="focusPolicy">
+   <enum>com.trolltech.qt.core.Qt.FocusPolicy.TabFocus</enum>
   </property>
   <property name="windowTitle">
    <string>Time Window</string>
@@ -156,7 +159,7 @@
          </property>
          <property name="minimumSize">
           <size>
-           <width>350</width>
+           <width>310</width>
            <height>0</height>
           </size>
          </property>
@@ -330,7 +333,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>784</width>
+     <width>790</width>
      <height>22</height>
     </rect>
    </property>
@@ -402,6 +405,20 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>txtStart</tabstop>
+  <tabstop>txtEnd</tabstop>
+  <tabstop>cmbProject</tabstop>
+  <tabstop>cmbWorkpackage</tabstop>
+  <tabstop>txtDescription</tabstop>
+  <tabstop>btnReset</tabstop>
+  <tabstop>btnCreate</tabstop>
+  <tabstop>tblFavorites</tabstop>
+  <tabstop>btnTimeOnly</tabstop>
+  <tabstop>btnWorkPackageOnly</tabstop>
+  <tabstop>btnCreateFavorite</tabstop>
+  <tabstop>tblWorksessions</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

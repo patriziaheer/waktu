@@ -12,6 +12,7 @@ import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.domain.Favorite;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
+import ch.hsr.waktu.services.ExceptionHandling;
 import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
@@ -19,7 +20,6 @@ import com.trolltech.qt.QSignalEmitter;
 /**
  * @author simon.staeheli
  * @version 1.0
- * @created 01-Apr-2011 15:36:30
  */
 public class FavoriteController extends QSignalEmitter {
 
@@ -43,30 +43,32 @@ public class FavoriteController extends QSignalEmitter {
 
 	/**
 	 * 
-	 * @param Usr user
+	 * @param user
+	 * @return List<Favorite> favorites
 	 * @throws WaktuException
 	 */
-	
 	@SuppressWarnings("unchecked")
 	public List<Favorite> getFavorites(Usr user) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
-		List<Favorite> allFavoritesOfUsr = null;		
+
+		List<Favorite> allFavoritesOfUsr = null;
 		try {
-			allFavoritesOfUsr = em.createQuery("SELECT f FROM Favorite f JOIN f.usr u WHERE u.usrid = '"+user.getId()+"' ORDER BY f.id").getResultList();
+			allFavoritesOfUsr = em.createQuery(
+					"SELECT f FROM Favorite f JOIN f.usr u WHERE u.usrid = '"
+							+ user.getId() + "' ORDER BY f.id").getResultList();
 		} catch (Exception e) {
-			handleException(e);			
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
-		return allFavoritesOfUsr;		
+		return allFavoritesOfUsr;
 	}
-	
+
 	/**
 	 * 
 	 * @param workPackage
@@ -74,27 +76,28 @@ public class FavoriteController extends QSignalEmitter {
 	 * @param endTime
 	 */
 	public Favorite addFavorite(Usr user, WorkPackage workPackage,
-			GregorianCalendar startTime, GregorianCalendar endTime) throws WaktuException {
+			GregorianCalendar startTime, GregorianCalendar endTime)
+			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		Favorite newFavorite = new Favorite(user, workPackage, startTime,
 				endTime);
-		
+
 		try {
 			em.getTransaction().begin();
 			em.persist(newFavorite);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);			
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
-		
+
 		add.emit(newFavorite);
 		logger.info("favorite " + newFavorite + " deleted");
 		return newFavorite;
@@ -109,25 +112,25 @@ public class FavoriteController extends QSignalEmitter {
 	public void updateFavorite(Favorite favorite) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		try {
 			em.getTransaction().begin();
 			em.find(Favorite.class, favorite.getId());
 			em.merge(favorite);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);			
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
 		update.emit();
 		logger.info("favorite " + favorite.getId() + " updated");
 	}
-	
+
 	/**
 	 * 
 	 * @param favorite
@@ -137,35 +140,21 @@ public class FavoriteController extends QSignalEmitter {
 	public void removeFavorite(Favorite favorite) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
-		
-		if(!PermissionController.getInstance().checkPermission()) {
+
+		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		
+
 		try {
 			em.getTransaction().begin();
 			em.remove(em.find(Favorite.class, favorite.getId()));
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);			
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
 		removed.emit(favorite);
 		logger.info("favorite " + favorite + " deleted");
 	}
-	
-	private void handleException(Exception e) throws WaktuException{
-		if(e instanceof IllegalArgumentException) {
-			logger.error(e + e.getMessage());
-			throw new WaktuException("Database problem");
-		} else if (e instanceof IllegalStateException) {
-			logger.error(e + e.getMessage());
-			throw new WaktuException("Illegal argument");
-		} else {
-			logger.error(e + e.getMessage());
-			throw new WaktuException("General Problem");
-		}
-	}
-
 }

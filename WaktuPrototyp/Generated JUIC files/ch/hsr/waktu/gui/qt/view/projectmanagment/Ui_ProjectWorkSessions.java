@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ProjectWorkSessions.jui'
 **
-** Created: Mo. Mai 23 11:18:32 2011
+** Created: Mo 30. Mai 13:11:13 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -33,18 +33,19 @@ public class Ui_ProjectWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
     public void setupUi(QWidget ProjectWorkSessions)
     {
         ProjectWorkSessions.setObjectName("ProjectWorkSessions");
-        ProjectWorkSessions.resize(new QSize(800, 360).expandedTo(ProjectWorkSessions.minimumSizeHint()));
+        ProjectWorkSessions.resize(new QSize(700, 360).expandedTo(ProjectWorkSessions.minimumSizeHint()));
         QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Minimum, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
         sizePolicy.setHorizontalStretch((byte)0);
         sizePolicy.setVerticalStretch((byte)0);
         sizePolicy.setHeightForWidth(ProjectWorkSessions.sizePolicy().hasHeightForWidth());
         ProjectWorkSessions.setSizePolicy(sizePolicy);
-        ProjectWorkSessions.setMinimumSize(new QSize(800, 360));
+        ProjectWorkSessions.setMinimumSize(new QSize(700, 360));
+        ProjectWorkSessions.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         gridLayout = new QGridLayout(ProjectWorkSessions);
         gridLayout.setObjectName("gridLayout");
         cmbWorkpackage = new QComboBox(ProjectWorkSessions);
         cmbWorkpackage.setObjectName("cmbWorkpackage");
-        QSizePolicy sizePolicy1 = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Expanding, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
+        QSizePolicy sizePolicy1 = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Fixed, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
         sizePolicy1.setHorizontalStretch((byte)0);
         sizePolicy1.setVerticalStretch((byte)0);
         sizePolicy1.setHeightForWidth(cmbWorkpackage.sizePolicy().hasHeightForWidth());
@@ -56,7 +57,7 @@ public class Ui_ProjectWorkSessions implements com.trolltech.qt.QUiForm<QWidget>
 
         cmbUser = new QComboBox(ProjectWorkSessions);
         cmbUser.setObjectName("cmbUser");
-        QSizePolicy sizePolicy2 = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Expanding, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
+        QSizePolicy sizePolicy2 = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Fixed, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
         sizePolicy2.setHorizontalStretch((byte)0);
         sizePolicy2.setVerticalStretch((byte)0);
         sizePolicy2.setHeightForWidth(cmbUser.sizePolicy().hasHeightForWidth());
