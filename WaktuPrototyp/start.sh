@@ -1,1 +1,1 @@
-java -d32 -XstartOnFirstThread -jar waktumac.jar
+java -d32 -XstartOnFirstThread -jar build/waktumac.jar

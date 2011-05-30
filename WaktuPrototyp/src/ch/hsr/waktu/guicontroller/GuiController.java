@@ -12,6 +12,10 @@ public class GuiController {
 
 	private static GuiController theInstance = null;
 
+	/**
+	 * 
+	 * @return The only one instance of GuiController
+	 */
 	public static GuiController getInstance() {
 		if (theInstance == null) {
 			theInstance = new GuiController();
@@ -22,8 +26,8 @@ public class GuiController {
 	private Logger logger = Logger.getLogger(GuiController.class);
 
 	/**
-	 * 
-	 * @param user
+	 * Checks if loggedInUser can add Projects
+	 * @return A boolean if can add a project
 	 */
 	public boolean canAddProject() {
 		try {
@@ -35,6 +39,10 @@ public class GuiController {
 		return false;
 	}
 
+	/**
+	 * Checks if loggedInUser can modify projects
+	 * @return A boolean if can modify projects
+	 */
 	public boolean canModifyProject() {
 		try {
 			return PermissionController.getInstance().checkPermission(
@@ -46,7 +54,8 @@ public class GuiController {
 	}
 
 	/**
-	 * 
+	 * Checks if loggedInUser can add project staff
+	 * @return A boolean if can add project staff to project
 	 */
 	public boolean canAddProjectStaff() {
 		try {
@@ -59,8 +68,8 @@ public class GuiController {
 	}
 
 	/**
-	 * 
-	 * @param user
+	 * Checks if loggedInUser can Add Users
+	 * @return  A boolean if can add an user
 	 */
 	public boolean canAddUser() {
 		try {
@@ -71,6 +80,10 @@ public class GuiController {
 		return false;
 	}
 
+	/**
+	 * Checks if loggedInUsr can modify users
+	 * @return  A boolean if can modify a user
+	 */
 	public boolean canModifyUser() {
 		try {
 			return PermissionController.getInstance().checkPermission(
@@ -83,7 +96,8 @@ public class GuiController {
 
 	/**
 	 * Checks if current logged in user is usrToModify.
-	 * @param user
+	 * @param usrToModify
+	 * @return A boolean if the logged in usr can change the password 
 	 */
 	public boolean canModifyUser(Usr usrToModify) {
 		boolean permission = false;
@@ -102,7 +116,8 @@ public class GuiController {
 
 	/**
 	 * Checks if current logged in user is project manager of project.
-	 * @param user
+	 * @param project
+	 * @return  A boolean if can add a work package
 	 */
 	public boolean canAddWorkPackage(Project project) {
 		boolean permission = false;

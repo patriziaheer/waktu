@@ -12,8 +12,18 @@ import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.gui.QComboBox;
 
+/**
+ * Combobox Daten generieren
+ * @author patriziaheer
+ *
+ */
 public class ComboBoxData {
 
+	/**
+	 * 
+	 * @param cmb
+	 * @param currRole
+	 */
 	public static void createSystemRoleComboBox(QComboBox cmb, SystemRole currRole) {
 		cmb.clear();
 		int i = 0;
@@ -27,7 +37,13 @@ public class ComboBoxData {
 		}
 		cmb.setCurrentIndex(currIndex);
 	}
-
+	
+	/**
+	 * 
+	 * @param cmb
+	 * @param currUsr
+	 * @throws WaktuException
+	 */
 	public static void createProjectManagerComboBox(QComboBox cmb, Usr currUsr)
 			throws WaktuException {
 		cmb.clear();
@@ -43,6 +59,13 @@ public class ComboBoxData {
 		cmb.setCurrentIndex(currIndex);
 	}
 
+	/**
+	 * 
+	 * @param cmb
+	 * @param currUser
+	 * @param project
+	 * @throws WaktuException
+	 */
 	public static void createProjectForUserComboBox(QComboBox cmb,
 			Usr currUser, Project project) throws WaktuException {
 		cmb.clear();
@@ -59,6 +82,12 @@ public class ComboBoxData {
 		cmb.setCurrentIndex(currIndex);
 	}
 
+	/**
+	 * 
+	 * @param cmb
+	 * @param proj
+	 * @throws WaktuException
+	 */
 	public static void createAllWorkPackageComboBox(QComboBox cmb, Project proj)
 			throws WaktuException {
 		cmb.clear();
@@ -67,6 +96,11 @@ public class ComboBoxData {
 		}
 	}
 
+	/**
+	 * 
+	 * @param cmb
+	 * @throws WaktuException
+	 */
 	public static void createAllWorkPackageComboBox(QComboBox cmb)
 			throws WaktuException {
 		cmb.clear();
@@ -75,6 +109,13 @@ public class ComboBoxData {
 		}
 	}
 
+	/**
+	 * 
+	 * @param cmb
+	 * @param project
+	 * @param workPackage
+	 * @throws WaktuException
+	 */
 	public static void createActiveWorkPackageComboBox(QComboBox cmb,
 			Project project, WorkPackage workPackage) throws WaktuException {
 		cmb.clear();
@@ -93,6 +134,11 @@ public class ComboBoxData {
 		cmb.setCurrentIndex(currIndex);
 	}
 
+	/**
+	 * 
+	 * @param cmb
+	 * @throws WaktuException
+	 */
 	public static void createActiveProjectComboBox(QComboBox cmb)
 			throws WaktuException {
 		cmb.clear();
@@ -102,6 +148,11 @@ public class ComboBoxData {
 		}
 	}
 
+	/**
+	 * 
+	 * @param cmb
+	 * @throws WaktuException
+	 */
 	public static void createUserComboBox(QComboBox cmb) throws WaktuException {
 		cmb.clear();
 		for (Usr usr : UserController.getInstance().getActiveUsers()) {
@@ -109,6 +160,12 @@ public class ComboBoxData {
 		}
 	}
 
+	/**
+	 * 
+	 * @param cmb
+	 * @param project
+	 * @throws WaktuException
+	 */
 	public static void createUserProjectStaffComboBox(QComboBox cmb, Project project) throws WaktuException {
 		cmb.clear();
 		for (Usr usr : ProjectStaffController.getInstance().getUsersNotMemberOf(project)) {
@@ -116,6 +173,12 @@ public class ComboBoxData {
 		}
 	}
 
+	/**
+	 * 
+	 * @param cmb
+	 * @param user
+	 * @throws WaktuException
+	 */
 	public static void createProjectProjectStaffComboBox(QComboBox cmb, Usr user) throws WaktuException {
 		cmb.clear();
 		for (Project project: ProjectStaffController.getInstance().getProjectsWhereUserIsNotMember(user)) {
@@ -123,6 +186,11 @@ public class ComboBoxData {
 		}
 	}
 
+	/**
+	 * 
+	 * @param cmb
+	 * @throws WaktuException
+	 */
 	public static void createAllProjectComboBox(QComboBox cmb) throws WaktuException  {
 		cmb.clear();
 		for (Project project : ProjectController.getInstance()

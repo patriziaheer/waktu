@@ -27,15 +27,15 @@ public class TableSortFilterModel extends QSortFilterProxyModel {
         QModelIndex idxEnd = null;
 
         if (sourceModel() instanceof ProjectWorkSessionModel) {
-	        idxWP = sourceModel().index(sourceRow, 0, sourceParent); //WP
-	        idxUsr = sourceModel().index(sourceRow, 2, sourceParent); //Usr
-	        idxStart = sourceModel().index(sourceRow, 3, sourceParent); //start
-	        idxEnd = sourceModel().index(sourceRow, 4, sourceParent); //end
+	        idxWP = sourceModel().index(sourceRow, 0, sourceParent);
+	        idxUsr = sourceModel().index(sourceRow, 2, sourceParent);
+	        idxStart = sourceModel().index(sourceRow, 3, sourceParent);
+	        idxEnd = sourceModel().index(sourceRow, 4, sourceParent);
         } else if (sourceModel() instanceof UserWorkSessionModel) {
-        	idxProj = sourceModel().index(sourceRow, 0, sourceParent); //Project
-	        idxWP = sourceModel().index(sourceRow, 1, sourceParent); //WP
-	        idxStart = sourceModel().index(sourceRow, 3, sourceParent); //start
-	        idxEnd = sourceModel().index(sourceRow, 4, sourceParent); //end
+        	idxProj = sourceModel().index(sourceRow, 0, sourceParent);
+	        idxWP = sourceModel().index(sourceRow, 1, sourceParent);
+	        idxStart = sourceModel().index(sourceRow, 3, sourceParent);
+	        idxEnd = sourceModel().index(sourceRow, 4, sourceParent); 
         }
 
         QAbstractItemModel model = sourceModel();

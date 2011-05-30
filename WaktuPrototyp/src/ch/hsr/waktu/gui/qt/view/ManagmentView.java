@@ -18,14 +18,11 @@ import com.trolltech.qt.gui.QPalette.ColorRole;
 public class ManagmentView extends QMainWindow {
 
 	private Ui_ManagmentWindow ui = new Ui_ManagmentWindow();
-	//private Usr currUsr;
 	private ProjectDetails projectDetails;
 	private UserDetails userDetails;
 	public Signal0 logout = new Signal0();
 	
 	public ManagmentView(Usr usr) {
-		//currUsr = usr;
-		
 		ui.setupUi(this);
 		ui.tabWidget.removeTab(0);
 		projectDetails = new ProjectDetails();

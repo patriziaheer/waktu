@@ -19,7 +19,6 @@ import com.trolltech.qt.QSignalEmitter;
 /**
  * @author simon.staeheli
  * @version 1.0
- * @created 01-Apr-2011 15:36:30
  */
 public class FavoriteController extends QSignalEmitter {
 
@@ -43,10 +42,10 @@ public class FavoriteController extends QSignalEmitter {
 
 	/**
 	 * 
-	 * @param Usr user
+	 * @param user
+	 * @return List<Favorite> favorites
 	 * @throws WaktuException
 	 */
-	
 	@SuppressWarnings("unchecked")
 	public List<Favorite> getFavorites(Usr user) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()

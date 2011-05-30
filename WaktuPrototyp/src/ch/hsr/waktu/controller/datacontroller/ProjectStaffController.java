@@ -18,7 +18,6 @@ import com.trolltech.qt.QSignalEmitter;
 /**
  * @author simon.staeheli
  * @version 1.0
- * @created 01-Apr-2011 15:36:30
  */
 public class ProjectStaffController extends QSignalEmitter {
 
@@ -173,7 +172,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	 * 
 	 * @param user
 	 * @param project
-	 * @return
+	 * @throws WaktuException
 	 */
 	public void removeUser(Usr user, Project project) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()

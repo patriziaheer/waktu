@@ -18,7 +18,7 @@ public class BusinessRuleController {
 	
 	/**
 	 * Checks if the accordant user has access rights to the specified method.
-	 * @param Usr usr
+	 * @param usr
 	 * @throws WaktuException
 	 */
 	public static void check(Usr usr) throws WaktuException {

@@ -31,10 +31,7 @@ public class LoginController {
 		loggedInUser = user;
 	}
 
-	/**
-	 * 
-	 * @param user
-	 */
+
 	public void logout() {
 		setLoggedInUser(null);
 	}
@@ -42,6 +39,8 @@ public class LoginController {
 	/**
 	 * 
 	 * @param username
+	 * @param password
+	 * @return boolean
 	 * @throws WaktuException
 	 */
 	public boolean login(String username, String password)
@@ -60,7 +59,6 @@ public class LoginController {
 	/**
 	 * 
 	 * @param username
-	 * @param password
 	 * @throws WaktuException 
 	 */
 	public boolean canLogin(String username) throws WaktuException {

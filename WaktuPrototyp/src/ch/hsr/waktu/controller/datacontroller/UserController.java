@@ -22,7 +22,6 @@ import com.trolltech.qt.core.QCoreApplication;
 /**
  * @author simon.staeheli
  * @version 1.0
- * @created 01-Apr-2011 15:36:30
  */
 public class UserController extends QSignalEmitter {
 	
@@ -164,7 +163,9 @@ public class UserController extends QSignalEmitter {
 
 	/**
 	 * 
-	 * @param loginName
+	 * @param username
+	 * @return boolean
+	 * @throws WaktuException
 	 */
 	public Usr getUser(String username) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
@@ -190,11 +191,14 @@ public class UserController extends QSignalEmitter {
 
 	/**
 	 * 
-	 * @param username
-	 * @param name
 	 * @param firstname
+	 * @param lastname
+	 * @param password
 	 * @param pensum
 	 * @param role
+	 * @param holiday
+	 * @return Usr
+	 * @throws WaktuException
 	 */
 	public Usr addUser(String firstname, String lastname, String password,
 			int pensum, SystemRole role, double holiday) throws WaktuException {

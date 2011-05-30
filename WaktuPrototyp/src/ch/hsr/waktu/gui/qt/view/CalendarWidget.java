@@ -49,9 +49,6 @@ public class CalendarWidget extends QWidget{
 
 	@SuppressWarnings("unused")
 	private void moClicked() {
-		//resetButtonEnabled();
-		//ui.btnMo.setEnabled(false);
-
 		if (currDate.dayOfWeek() == 7) {
 			currDate = currDate.addDays(-6);
 		} else {
@@ -62,9 +59,6 @@ public class CalendarWidget extends QWidget{
 
 	@SuppressWarnings("unused")
 	private void diClicked() {
-		//resetButtonEnabled();
-		//ui.btnDi.setEnabled(false);
-
 		switch (currDate.dayOfWeek()) {
 		case 7: {
 			currDate = currDate.addDays(-5);
@@ -83,9 +77,6 @@ public class CalendarWidget extends QWidget{
 
 	@SuppressWarnings("unused")
 	private void miClicked() {
-		//resetButtonEnabled();
-		//ui.btnMi.setEnabled(false);
-
 		switch (currDate.dayOfWeek()) {
 		case 7: {
 			currDate = currDate.addDays(-4);
@@ -104,9 +95,6 @@ public class CalendarWidget extends QWidget{
 
 	@SuppressWarnings("unused")
 	private void doClicked() {
-		//resetButtonEnabled();
-		//ui.btnDo.setEnabled(false);
-
 		switch (currDate.dayOfWeek()) {
 		case 7: {
 			currDate = currDate.addDays(-3);
@@ -126,9 +114,6 @@ public class CalendarWidget extends QWidget{
 
 	@SuppressWarnings("unused")
 	private void friClicked() {
-		//resetButtonEnabled();
-		//ui.btnFri.setEnabled(false);
-
 		switch (currDate.dayOfWeek()) {
 		case 7: {
 			currDate = currDate.addDays(-2);
@@ -149,9 +134,6 @@ public class CalendarWidget extends QWidget{
 
 	@SuppressWarnings("unused")
 	private void saClicked() {
-		//resetButtonEnabled();
-		//ui.btnSa.setEnabled(false);
-
 		switch (currDate.dayOfWeek()) {
 		case 7: {
 			currDate = currDate.addDays(-1);
@@ -173,9 +155,6 @@ public class CalendarWidget extends QWidget{
 
 	@SuppressWarnings("unused")
 	private void soClicked() {
-		//resetButtonEnabled();
-		//ui.btnSo.setEnabled(false);
-
 		currDate = currDate.addDays(7 - currDate.dayOfWeek());
 		updateCalendar();
 	}

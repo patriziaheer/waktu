@@ -66,14 +66,6 @@ public class TimeView extends QMainWindow {
 		managmentView = new ManagmentView(currUser);
 		calendar = new CalendarWidget();
 		calendar.dayChanged.connect(this, "dayChanged()");
-		//QLabel logo = new QLabel();
-		//logo.setPixmap(new QPixmap("classpath:icons/logo_klein.png"));
-		
-		//QWidget wCalLogo = new QWidget();
-		//QHBoxLayout calLogoLayout = new QHBoxLayout();
-		//calLogoLayout.addWidget(logo);
-		//calLogoLayout.addWidget(calendar);
-		//wCalLogo.setLayout(calLogoLayout);
 
 		ui.setupUi(this);
 		QSplitter splitter = new QSplitter(Orientation.Vertical);
@@ -109,7 +101,6 @@ public class TimeView extends QMainWindow {
 		ui.cmbProject.currentIndexChanged.connect(this, "projectChanged()");
 
 
-		// worksession slots
 		ui.btnReset.clicked.connect(this, "resetClicked()");
 		ui.btnCreate.clicked.connect(this, "createWorkSessionClicked()");
 		ui.btnTimeOnly.clicked.connect(this, "timeOnlyClicked()");
@@ -409,6 +400,7 @@ public class TimeView extends QMainWindow {
 			} catch (WaktuException e) {
 				setStatusBarText(e.getMessage());
 			}
+			ui.tblFavorites.clearSelection();
 		} else {
 			setStatusBarText("Select a Favorite");
 		}

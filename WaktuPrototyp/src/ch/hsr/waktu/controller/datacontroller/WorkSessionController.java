@@ -23,7 +23,6 @@ import com.trolltech.qt.core.QDate;
 /**
  * @author simon.staeheli
  * @version 1.0
- * @created 01-Apr-2011 15:36:30
  */
 public class WorkSessionController extends QSignalEmitter {
 
@@ -274,8 +273,10 @@ public class WorkSessionController extends QSignalEmitter {
 
 	/**
 	 * 
-	 * @param user
-	 * @param date
+	 * @param project
+	 * @param start
+	 * @param end
+	 * @return List<WorkSession>
 	 * @throws WaktuException
 	 */
 	@SuppressWarnings("unchecked")
@@ -307,8 +308,11 @@ public class WorkSessionController extends QSignalEmitter {
 
 	/**
 	 * 
-	 * @param user
-	 * @param date
+	 * @param project
+	 * @param usr
+	 * @param start
+	 * @param end
+	 * @return List<WorkSession> workSessions
 	 * @throws WaktuException
 	 */
 	@SuppressWarnings("unchecked")

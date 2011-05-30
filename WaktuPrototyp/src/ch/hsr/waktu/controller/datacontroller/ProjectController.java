@@ -19,7 +19,6 @@ import com.trolltech.qt.core.QCoreApplication;
 /**
  * @author simon.staeheli
  * @version 1.0
- * @created 01-Apr-2011 15:36:30
  */
 public class ProjectController extends QSignalEmitter {
 

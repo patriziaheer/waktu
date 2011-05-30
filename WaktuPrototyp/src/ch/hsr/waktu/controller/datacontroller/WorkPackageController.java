@@ -17,7 +17,6 @@ import com.trolltech.qt.QSignalEmitter;
 /**
  * @author simon.staeheli
  * @version 1.0
- * @created 01-Apr-2011 15:36:30
  */
 public class WorkPackageController extends QSignalEmitter {
 
@@ -41,7 +40,9 @@ public class WorkPackageController extends QSignalEmitter {
 	
 	/**
 	 * 
-	 * @param loginName
+	 * @param workPackageId
+	 * @return WorkPackage workPackage
+	 * @throws WaktuException
 	 */
 	public WorkPackage getWorkPackage(int workPackageId) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
