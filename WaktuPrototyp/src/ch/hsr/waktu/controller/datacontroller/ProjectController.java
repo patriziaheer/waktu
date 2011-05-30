@@ -11,6 +11,7 @@ import ch.hsr.waktu.controller.PermissionController;
 import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.services.ExceptionHandling;
 import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
@@ -58,7 +59,7 @@ public class ProjectController extends QSignalEmitter {
 							"SELECT p FROM Project p WHERE p.active = TRUE ORDER BY p.projectIdentifier ASC")
 					.getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -91,7 +92,7 @@ public class ProjectController extends QSignalEmitter {
 									+ "' ORDER BY p.projectIdentifier ASC")
 					.getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -114,7 +115,7 @@ public class ProjectController extends QSignalEmitter {
 					"SELECT p FROM Project p ORDER BY p.projectIdentifier ASC")
 					.getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -138,7 +139,7 @@ public class ProjectController extends QSignalEmitter {
 							"SELECT p FROM Project p WHERE p.active = FALSE ORDER BY p.projectIdentifier ASC")
 					.getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -158,7 +159,7 @@ public class ProjectController extends QSignalEmitter {
 		try {
 			project = em.find(Project.class, projectId);
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -208,7 +209,7 @@ public class ProjectController extends QSignalEmitter {
 			em.persist(newProject);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -239,7 +240,7 @@ public class ProjectController extends QSignalEmitter {
 			em.merge(project);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -247,16 +248,4 @@ public class ProjectController extends QSignalEmitter {
 		logger.info("project " + project + " updated");
 	}
 
-	private void handleException(Exception e) throws WaktuException {
-		if (e instanceof IllegalArgumentException) {
-			logger.error(e + e.getMessage());
-			throw new WaktuException("Database problem");
-		} else if (e instanceof IllegalStateException) {
-			logger.error(e + e.getMessage());
-			throw new WaktuException("Illegal argument");
-		} else {
-			logger.error(e + e.getMessage());
-			throw new WaktuException("General Problem");
-		}
-	}
 }
