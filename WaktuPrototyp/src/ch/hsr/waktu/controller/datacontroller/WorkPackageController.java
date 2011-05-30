@@ -10,6 +10,7 @@ import ch.hsr.waktu.controller.PermissionController;
 import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.WorkPackage;
+import ch.hsr.waktu.services.ExceptionHandling;
 import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
@@ -56,7 +57,7 @@ public class WorkPackageController extends QSignalEmitter {
 		try {
 			workPackage = em.find(WorkPackage.class, workPackageId);
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -71,8 +72,7 @@ public class WorkPackageController extends QSignalEmitter {
 	@SuppressWarnings("unchecked")
 	public List<WorkPackage> getActiveWorkPackages(Project project)
 			throws WaktuException {
-		// TODO filter nach projekt
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		List<WorkPackage> activeWorkPackages = null;
@@ -89,7 +89,7 @@ public class WorkPackageController extends QSignalEmitter {
 									+ "' ORDER BY wp.description ASC")
 					.getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -118,7 +118,7 @@ public class WorkPackageController extends QSignalEmitter {
 					"SELECT wp FROM WorkPackage wp JOIN wp.project p WHERE p.projectid = '"
 							+ project.getId() + "'").getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -146,7 +146,7 @@ public class WorkPackageController extends QSignalEmitter {
 							"SELECT wp FROM WorkPackage wp JOIN wp.project p ORDER BY p.projectIdentifier ASC, wp.description ASC")
 					.getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -176,7 +176,7 @@ public class WorkPackageController extends QSignalEmitter {
 							"SELECT wp FROM WorkPackage wp JOIN wp.project p WHERE wp.active = FALSE AND p.projectid = '"
 									+ project.getId() + "'").getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -205,7 +205,7 @@ public class WorkPackageController extends QSignalEmitter {
 			em.persist(newWorkPackage);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -235,7 +235,7 @@ public class WorkPackageController extends QSignalEmitter {
 
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -243,17 +243,5 @@ public class WorkPackageController extends QSignalEmitter {
 		logger.info("workPackage " + workPackage + " updated");
 	}
 
-	private void handleException(Exception e) throws WaktuException {
-		if (e instanceof IllegalArgumentException) {
-			logger.error(e + e.getMessage());
-			throw new WaktuException("Database problem");
-		} else if (e instanceof IllegalStateException) {
-			logger.error(e + e.getMessage());
-			throw new WaktuException("Illegal argument");
-		} else {
-			logger.error(e + e.getMessage());
-			throw new WaktuException("General Problem");
-		}
-	}
 
 }

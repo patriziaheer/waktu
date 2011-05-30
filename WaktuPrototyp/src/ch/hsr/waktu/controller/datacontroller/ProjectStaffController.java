@@ -11,6 +11,7 @@ import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.ProjectStaff;
 import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.services.ExceptionHandling;
 import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
@@ -61,7 +62,7 @@ public class ProjectStaffController extends QSignalEmitter {
 									+ "' ORDER by p.projectIdentifier ASC")
 					.getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -88,7 +89,7 @@ public class ProjectStaffController extends QSignalEmitter {
 									+ ")  ORDER by p.projectIdentifier ASC")
 					.getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -116,7 +117,7 @@ public class ProjectStaffController extends QSignalEmitter {
 							"SELECT u FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE p.projectid = '"
 									+ project.getId() + "'").getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -140,7 +141,7 @@ public class ProjectStaffController extends QSignalEmitter {
 							"SELECT u FROM Usr u WHERE u.usrid NOT IN (SELECT us.usrid FROM ProjectStaff ps JOIN ps.user us JOIN ps.project p WHERE p.projectid = "
 									+ project.getId() + ")").getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -167,7 +168,7 @@ public class ProjectStaffController extends QSignalEmitter {
 			em.persist(newProjectStaff);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -206,7 +207,7 @@ public class ProjectStaffController extends QSignalEmitter {
 			em.remove(projectStaffToRemove);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -214,16 +215,4 @@ public class ProjectStaffController extends QSignalEmitter {
 		logger.info("projectStaff " + projectStaffToRemove + " deleted");
 	}
 
-	private void handleException(Exception e) throws WaktuException {
-		if (e instanceof IllegalArgumentException) {
-			logger.error(e + e.getMessage());
-			throw new WaktuException("Database problem");
-		} else if (e instanceof IllegalStateException) {
-			logger.error(e + e.getMessage());
-			throw new WaktuException("Illegal argument");
-		} else {
-			logger.error(e + e.getMessage());
-			throw new WaktuException("General Problem" + e.getMessage());
-		}
-	}
 }

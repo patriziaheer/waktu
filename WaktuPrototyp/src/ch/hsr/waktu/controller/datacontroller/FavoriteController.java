@@ -12,6 +12,7 @@ import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.domain.Favorite;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
+import ch.hsr.waktu.services.ExceptionHandling;
 import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
@@ -61,7 +62,7 @@ public class FavoriteController extends QSignalEmitter {
 					"SELECT f FROM Favorite f JOIN f.usr u WHERE u.usrid = '"
 							+ user.getId() + "' ORDER BY f.id").getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -92,7 +93,7 @@ public class FavoriteController extends QSignalEmitter {
 			em.persist(newFavorite);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -122,7 +123,7 @@ public class FavoriteController extends QSignalEmitter {
 			em.merge(favorite);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -149,25 +150,11 @@ public class FavoriteController extends QSignalEmitter {
 			em.remove(em.find(Favorite.class, favorite.getId()));
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
 		removed.emit(favorite);
 		logger.info("favorite " + favorite + " deleted");
 	}
-
-	private void handleException(Exception e) throws WaktuException {
-		if (e instanceof IllegalArgumentException) {
-			logger.error(e + e.getMessage());
-			throw new WaktuException("Database problem");
-		} else if (e instanceof IllegalStateException) {
-			logger.error(e + e.getMessage());
-			throw new WaktuException("Illegal argument");
-		} else {
-			logger.error(e + e.getMessage());
-			throw new WaktuException("General Problem");
-		}
-	}
-
 }

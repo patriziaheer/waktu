@@ -12,6 +12,7 @@ import ch.hsr.waktu.controller.PermissionController;
 import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
+import ch.hsr.waktu.services.ExceptionHandling;
 import ch.hsr.waktu.services.Md5;
 import ch.hsr.waktu.services.UsernameUtil;
 import ch.hsr.waktu.services.WaktuException;
@@ -62,7 +63,7 @@ public class UserController extends QSignalEmitter {
 							"SELECT u FROM Usr u WHERE u.active = 'TRUE' ORDER BY u.firstname")
 					.getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -85,7 +86,7 @@ public class UserController extends QSignalEmitter {
 			allUsers = em.createQuery(
 					"SELECT u FROM Usr u ORDER BY u.firstname").getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -110,7 +111,7 @@ public class UserController extends QSignalEmitter {
 							"SELECT u FROM Usr u WHERE u.active = 'FALSE' ORDER BY u.firstname")
 					.getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -135,7 +136,7 @@ public class UserController extends QSignalEmitter {
 							"SELECT u FROM Usr u JOIN u.systemRole s WHERE u.systemRole = ch.hsr.waktu.domain.SystemRole.PROJECTMANAGER OR u.systemRole = ch.hsr.waktu.domain.SystemRole.ADMIN ORDER BY u.firstname")
 					.getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -163,7 +164,7 @@ public class UserController extends QSignalEmitter {
 		} catch (NoResultException e) {
 			throw new WaktuException("User or password wrong!");
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -201,7 +202,7 @@ public class UserController extends QSignalEmitter {
 			em.persist(newUsr);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -231,7 +232,7 @@ public class UserController extends QSignalEmitter {
 			em.merge(usr);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -243,19 +244,6 @@ public class UserController extends QSignalEmitter {
 	protected String generateUsername(String firstname, String name)
 			throws WaktuException {
 		return UsernameUtil.generateUsername(getAllUsers(), firstname, name);
-	}
-
-	private void handleException(Exception e) throws WaktuException {
-		if (e instanceof IllegalArgumentException) {
-			logger.error(e + e.getMessage());
-			throw new WaktuException("Database problem");
-		} else if (e instanceof IllegalStateException) {
-			logger.error(e + e.getMessage());
-			throw new WaktuException("Illegal argument");
-		} else {
-			logger.error(e + e.getMessage());
-			throw new WaktuException("General Problem");
-		}
 	}
 
 }

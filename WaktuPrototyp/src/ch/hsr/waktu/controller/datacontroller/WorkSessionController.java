@@ -15,6 +15,7 @@ import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.domain.WorkSession;
+import ch.hsr.waktu.services.ExceptionHandling;
 import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
@@ -69,7 +70,7 @@ public class WorkSessionController extends QSignalEmitter {
 					"SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE u.usrid = '"
 							+ user.getId() + "'").getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -104,7 +105,7 @@ public class WorkSessionController extends QSignalEmitter {
 							+ "' AND u.usrid = '" + user.getId() + "'");
 			workSessionsByDate = q.getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -133,7 +134,7 @@ public class WorkSessionController extends QSignalEmitter {
 							+ "' AND u.usrid = '" + user.getId() + "'");
 			workSessionsByUserAndDate = q.getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -158,7 +159,7 @@ public class WorkSessionController extends QSignalEmitter {
 					"SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp WHERE wp.id = '"
 							+ workPackage.getId() + "'").getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -185,7 +186,7 @@ public class WorkSessionController extends QSignalEmitter {
 									+ "' AND u.usrid = '"
 									+ usr.getId() + "'").getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -214,7 +215,7 @@ public class WorkSessionController extends QSignalEmitter {
 							+ "' AND wp.id = '" + workPackage.getId() + "'");
 			workSessionsByDateAndWorkPackage = q.getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -239,7 +240,7 @@ public class WorkSessionController extends QSignalEmitter {
 							"SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN wp.project p WHERE p.projectid = '"
 									+ project.getId() + "'").getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -266,7 +267,7 @@ public class WorkSessionController extends QSignalEmitter {
 									+ "' AND u.usrid = '"
 									+ usr.getId() + "'").getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -303,7 +304,7 @@ public class WorkSessionController extends QSignalEmitter {
 							+ "' AND p.projectid = '" + project.getId() + "'");
 			workSessionsByDate = q.getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -343,7 +344,7 @@ public class WorkSessionController extends QSignalEmitter {
 							+ end.toString("yyyy-MM-dd") + " 23:59:59" + "'");
 			workSessionsByDate = q.getResultList();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -366,10 +367,6 @@ public class WorkSessionController extends QSignalEmitter {
 		WorkSession newWorkSession = new WorkSession(user, workPackage,
 				startTime, endTime, description);
 
-		// TODO: SS: GregorianCalendar <-> TIMESTAMP in POSTGRESQL-Mapping
-		// problem: JPA saves GregorianCalendar-Dates with wrong month in DB
-		// (eg. 6 instead of 5)
-		// quick fix: subtract 1 from GregorianCalendar.MONTH
 		newWorkSession.getStart().set(GregorianCalendar.MONTH,
 				newWorkSession.getStart().get(GregorianCalendar.MONTH) - 1);
 		newWorkSession.getEnd().set(GregorianCalendar.MONTH,
@@ -386,7 +383,7 @@ public class WorkSessionController extends QSignalEmitter {
 			em.persist(newWorkSession);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -404,10 +401,7 @@ public class WorkSessionController extends QSignalEmitter {
 		if (!PermissionController.getInstance().checkPermission()) {
 			throw new WaktuException("Permission denied");
 		}
-		// TODO: SS: GregorianCalendar <-> TIMESTAMP in POSTGRESQL-Mapping
-		// problem: JPA saves GregorianCalendar-Dates with wrong month in DB
-		// (eg. 6 instead of 5)
-		// quick fix: subtract 1 from GregorianCalendar.MONTH
+
 		workSession.getStart().set(GregorianCalendar.MONTH,
 				workSession.getStart().get(GregorianCalendar.MONTH) - 1);
 		workSession.getEnd().set(GregorianCalendar.MONTH,
@@ -421,7 +415,7 @@ public class WorkSessionController extends QSignalEmitter {
 			em.merge(workSession);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -447,7 +441,7 @@ public class WorkSessionController extends QSignalEmitter {
 			em.remove(em.find(WorkSession.class, workSession.getId()));
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			handleException(e);
+			ExceptionHandling.handleException(e);
 		} finally {
 			em.close();
 		}
@@ -455,16 +449,4 @@ public class WorkSessionController extends QSignalEmitter {
 		logger.info("workSession " + workSession + " deleted");
 	}
 
-	private void handleException(Exception e) throws WaktuException {
-		if (e instanceof IllegalArgumentException) {
-			logger.error(e + e.getMessage());
-			throw new WaktuException("Database problem");
-		} else if (e instanceof IllegalStateException) {
-			logger.error(e + e.getMessage());
-			throw new WaktuException("Illegal argument");
-		} else {
-			logger.error(e + e.getMessage());
-			throw new WaktuException("General Problem");
-		}
-	}
 }
