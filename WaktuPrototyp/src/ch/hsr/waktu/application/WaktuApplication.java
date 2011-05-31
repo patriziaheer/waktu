@@ -18,7 +18,12 @@ import com.trolltech.qt.gui.QIcon;
 import com.trolltech.qt.gui.QPixmap;
 import com.trolltech.qt.gui.QSplashScreen;
 
-public class WaktuApplication {
+/**
+ * Main Application
+ * @author Patrizia Heer, Simon Stäheli, Michael Fisler
+ *
+ */
+public final class WaktuApplication {
 
 	private WaktuApplication() {
 
@@ -57,7 +62,7 @@ public class WaktuApplication {
 		QApplication.exec();
 	}
 
-	private static String getStyleSheet(String path) {
+	private static String getStyleSheet(final String path) {
 		logger.info("Initialize Stylesheet");
 		QFile file = new QFile(path);
 		if (!file.open(new QIODevice.OpenMode(QIODevice.OpenModeFlag.ReadOnly,
@@ -69,7 +74,7 @@ public class WaktuApplication {
 
 		StringBuffer buffer = new StringBuffer();
 
-		while (in.atEnd() == false) {
+		while (!in.atEnd()) {
 			buffer.append(in.readLine());
 		}
 
