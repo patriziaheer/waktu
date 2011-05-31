@@ -22,11 +22,11 @@ public class LoginController {
 
 	private static Usr loggedInUser;
 
-	public Usr getLoggedInUser() {
+	public final Usr getLoggedInUser() {
 		return loggedInUser;
 	}
 
-	private void setLoggedInUser(Usr user) {
+	private void setLoggedInUser(final Usr user) {
 		loggedInUser = user;
 	}
 
@@ -60,7 +60,7 @@ public class LoginController {
 	 * @param username
 	 * @throws WaktuException
 	 */
-	public boolean canLogin(String username) throws WaktuException {
+	public final boolean canLogin(final String username) throws WaktuException {
 
 		if (UserController.getInstance().getUser(username) != null) {
 			return true;
