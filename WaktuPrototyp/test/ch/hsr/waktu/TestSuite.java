@@ -10,6 +10,7 @@ import org.junit.BeforeClass;
 
 import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.controller.datacontroller.UserController;
+import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.gui.QApplication;
 
@@ -30,28 +31,38 @@ public class TestSuite {
 			URL url = loader.getResource("testsettings");
 			PropertyConfigurator.configure(url);
 			
-			PersistenceController.getInstance("waktutest");
+			PersistenceController.setInstance("waktutest");
 			
 			runFirstTime = false;
 		}
-		EntityManager em = PersistenceController.getInstance("waktutest")
-		.getEMF().createEntityManager();
+		EntityManager em;
+		try {
+			em = PersistenceController.getInstance()
+			.getEMF().createEntityManager();
 		
 		em.getTransaction().begin();
 		em.createNativeQuery(
 				"TRUNCATE TABLE favorite, permission, projectstaff, worksession, workpackage, project, usr")
 				.executeUpdate();
 		em.getTransaction().commit();
+		} catch (WaktuException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@AfterClass
 	public static void afterAll() {
-		EntityManager em = PersistenceController.getInstance("waktutest")
-				.getEMF().createEntityManager();
+		EntityManager em;
+		try {
+			em = PersistenceController.getInstance()
+					.getEMF().createEntityManager();
 		em.getTransaction().begin();
 		em.createNativeQuery(
 				"TRUNCATE TABLE favorite, permission, projectstaff, worksession, workpackage, project, usr")
 				.executeUpdate();
 		em.getTransaction().commit();
+		} catch (WaktuException e) {
+			e.printStackTrace();
+		}
 	}
 }

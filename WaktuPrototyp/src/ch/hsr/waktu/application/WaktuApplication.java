@@ -5,6 +5,7 @@ import java.net.URL;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.gui.qt.view.LoginView;
 import ch.hsr.waktu.guicontroller.LanguageController;
 import ch.hsr.waktu.guicontroller.LanguageController.Language;
@@ -44,6 +45,8 @@ public class WaktuApplication {
 
 		String sheet = getStyleSheet("classpath:stylesheet.txt");
 		app.setStyleSheet(sheet);
+		
+		PersistenceController.setInstance("waktu");
 		LanguageController.getInstance().setCurrLanguage(Language.DE);
 
 		LoginView loginView = new LoginView();

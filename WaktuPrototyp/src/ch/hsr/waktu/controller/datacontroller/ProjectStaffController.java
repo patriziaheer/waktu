@@ -45,7 +45,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Project> getProjects(Usr user) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		List<Project> projects = null;
@@ -72,7 +72,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	@SuppressWarnings("unchecked")
 	public List<Project> getProjectsWhereUserIsNotMember(Usr user)
 			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		List<Project> nonUserProjects = null;
@@ -102,7 +102,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Usr> getUsers(Project project) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		List<Usr> users = null;
@@ -126,7 +126,7 @@ public class ProjectStaffController extends QSignalEmitter {
 
 	@SuppressWarnings("unchecked")
 	public List<Usr> getUsersNotMemberOf(Project project) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		List<Usr> users = null;
@@ -185,7 +185,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	 * @throws WaktuException
 	 */
 	public void removeUser(Usr user, Project project) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		ProjectStaff projectStaffToRemove = null;

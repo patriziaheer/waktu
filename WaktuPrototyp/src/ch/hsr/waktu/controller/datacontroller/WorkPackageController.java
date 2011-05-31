@@ -104,7 +104,7 @@ public class WorkPackageController extends QSignalEmitter {
 	@SuppressWarnings("unchecked")
 	public List<WorkPackage> getAllWorkPackages(Project project)
 			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		List<WorkPackage> allWorkPackages = null;
@@ -131,7 +131,7 @@ public class WorkPackageController extends QSignalEmitter {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<WorkPackage> getAllWorkPackages() throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		List<WorkPackage> allWorkPackages = null;
@@ -161,7 +161,7 @@ public class WorkPackageController extends QSignalEmitter {
 	@SuppressWarnings("unchecked")
 	public List<WorkPackage> getInactiveWorkPackages(Project project)
 			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		List<WorkPackage> inactiveWorkPackages = null;
@@ -222,7 +222,7 @@ public class WorkPackageController extends QSignalEmitter {
 	 */
 	public void updateWorkPackage(WorkPackage workPackage)
 			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		if (!PermissionController.getInstance().checkPermission()) {

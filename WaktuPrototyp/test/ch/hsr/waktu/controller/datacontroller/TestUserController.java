@@ -2,14 +2,10 @@ package ch.hsr.waktu.controller.datacontroller;
 
 import static org.junit.Assert.assertEquals;
 
-import javax.persistence.EntityManager;
-
 import org.apache.log4j.Logger;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import ch.hsr.waktu.TestSuite;
 import ch.hsr.waktu.controller.LoginController;
 import ch.hsr.waktu.controller.PermissionController;
 import ch.hsr.waktu.controller.PersistenceController;
@@ -17,7 +13,7 @@ import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.services.WaktuException;
 
-public class TestUserController extends TestSuite {
+public class TestUserController extends TestSuiteDataController {
 
 	static UserController uc;
 	static LoginController lc;
@@ -34,7 +30,7 @@ public class TestUserController extends TestSuite {
 	public static void before() {
 
 		try {
-			prc = PersistenceController.getInstance("waktutest");
+			prc = PersistenceController.getInstance();
 			uc = UserController.getInstance();
 			pc = ProjectController.getInstance();
 			lc = LoginController.getInstance();
@@ -65,18 +61,6 @@ public class TestUserController extends TestSuite {
 		} catch (WaktuException e) {
 			logger.error("TestUserController failed" + e.getMessage());
 		}
-	}
-
-	@AfterClass
-	public static void after() {
-		
-		EntityManager em = PersistenceController.getInstance("waktutest")
-				.getEMF().createEntityManager();
-		em.getTransaction().begin();
-		em.createNativeQuery(
-				"TRUNCATE TABLE favorite, permission, projectstaff, worksession, workpackage, project, usr")
-				.executeUpdate();
-		em.getTransaction().commit();
 	}
 
 	@Test

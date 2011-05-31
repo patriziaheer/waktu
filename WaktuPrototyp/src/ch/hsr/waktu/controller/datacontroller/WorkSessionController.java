@@ -56,7 +56,7 @@ public class WorkSessionController extends QSignalEmitter {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<WorkSession> getWorkSessions(Usr user) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		List<WorkSession> workSessionsByUser = null;
@@ -86,7 +86,7 @@ public class WorkSessionController extends QSignalEmitter {
 	@SuppressWarnings("unchecked")
 	public List<WorkSession> getWorkSessions(Usr user, QDate date)
 			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		List<WorkSession> workSessionsByDate = null;
 
@@ -115,7 +115,7 @@ public class WorkSessionController extends QSignalEmitter {
 	@SuppressWarnings("unchecked")
 	public List<WorkSession> getWorkSessions(Usr user, QDate fromDate,
 			QDate toDate) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		List<WorkSession> workSessionsByUserAndDate = null;
 
@@ -145,7 +145,7 @@ public class WorkSessionController extends QSignalEmitter {
 	@SuppressWarnings("unchecked")
 	public List<WorkSession> getWorkSessions(WorkPackage workPackage)
 			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		List<WorkSession> workSessionsByProject = null;
@@ -169,7 +169,7 @@ public class WorkSessionController extends QSignalEmitter {
 	@SuppressWarnings("unchecked")
 	public List<WorkSession> getWorkSessions(WorkPackage workPackage, Usr usr)
 			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		List<WorkSession> workSessionsByProject = null;
@@ -196,7 +196,7 @@ public class WorkSessionController extends QSignalEmitter {
 	@SuppressWarnings("unchecked")
 	public List<WorkSession> getWorkSessions(WorkPackage workPackage,
 			QDate fromDate, QDate toDate) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		List<WorkSession> workSessionsByDateAndWorkPackage = null;
 
@@ -225,7 +225,7 @@ public class WorkSessionController extends QSignalEmitter {
 	@SuppressWarnings("unchecked")
 	public List<WorkSession> getWorkSessions(Project project)
 			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		List<WorkSession> workSessionsByProject = null;
@@ -250,7 +250,7 @@ public class WorkSessionController extends QSignalEmitter {
 	@SuppressWarnings("unchecked")
 	public List<WorkSession> getWorkSessions(Project project, Usr usr)
 			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		List<WorkSession> workSessionsByProject = null;
@@ -285,7 +285,7 @@ public class WorkSessionController extends QSignalEmitter {
 	@SuppressWarnings("unchecked")
 	public List<WorkSession> getWorkSessions(Project project, QDate start,
 			QDate end) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		List<WorkSession> workSessionsByDate = null;
 
@@ -323,7 +323,7 @@ public class WorkSessionController extends QSignalEmitter {
 	@SuppressWarnings("unchecked")
 	public List<WorkSession> getWorkSessions(Project project, Usr usr,
 			QDate start, QDate end) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		List<WorkSession> workSessionsByDate = null;
 
@@ -362,7 +362,7 @@ public class WorkSessionController extends QSignalEmitter {
 	public WorkSession addWorkSession(Usr user, WorkPackage workPackage,
 			GregorianCalendar startTime, GregorianCalendar endTime,
 			String description) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		WorkSession newWorkSession = new WorkSession(user, workPackage,
 				startTime, endTime, description);
@@ -395,7 +395,7 @@ public class WorkSessionController extends QSignalEmitter {
 
 	public void updateWorkSession(WorkSession workSession)
 			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		if (!PermissionController.getInstance().checkPermission()) {
@@ -434,7 +434,7 @@ public class WorkSessionController extends QSignalEmitter {
 			throw new WaktuException("Permission denied");
 		}
 
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		try {
 			em.getTransaction().begin();

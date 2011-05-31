@@ -6,33 +6,33 @@ import javax.persistence.Persistence;
 
 import org.apache.log4j.Logger;
 
+import ch.hsr.waktu.services.WaktuException;
+
 public class PersistenceController {
 	private static PersistenceController theInstance = null;
 	private static String PERSISTENCE_UNIT_NAME = null;
 
-	public static PersistenceController getInstance(String persistenceUnit) {
+	public static PersistenceController getInstance() throws WaktuException {
+		
 		if (theInstance == null) {
+			 throw new  WaktuException("Please initialize Controller with setInstance() first");
+		}
+		return theInstance;
+	}
+
+	public static void setInstance(String persistenceUnit) {
+		if(theInstance == null) {
 			theInstance = new PersistenceController();
-			PERSISTENCE_UNIT_NAME = persistenceUnit;
+			PERSISTENCE_UNIT_NAME = persistenceUnit;			
 		}
-		return theInstance;
 	}
-
-	public static PersistenceController getInstance() {
-
-		if (theInstance == null) {
-			// throw new
-			// WaktuException("Please initialize with persistenceUnit");
-			return null;
-		}
-		return theInstance;
-	}
-
+	
 	private Logger logger = Logger.getLogger(PersistenceController.class);
 	private EntityManagerFactory emf;
 	protected EntityManager em;
 
 	protected PersistenceController() {
+		
 	}
 
 	public EntityManagerFactory getEMF() {

@@ -96,7 +96,7 @@ public class UserController extends QSignalEmitter {
 
 	@SuppressWarnings("unchecked")
 	public List<Usr> getInactiveUsers() throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		List<Usr> inactiveUsers = null;
@@ -121,7 +121,7 @@ public class UserController extends QSignalEmitter {
 
 	@SuppressWarnings("unchecked")
 	public List<Usr> getProjectManagers() throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		List<Usr> allProjectManagers = null;
@@ -151,7 +151,7 @@ public class UserController extends QSignalEmitter {
 	 * @throws WaktuException
 	 */
 	public Usr getUser(String username) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		Usr usr = null;
@@ -185,7 +185,7 @@ public class UserController extends QSignalEmitter {
 	 */
 	public Usr addUser(String firstname, String lastname, String password,
 			int pensum, SystemRole role, double holiday) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		Usr newUsr = new Usr(generateUsername(firstname, lastname), firstname,

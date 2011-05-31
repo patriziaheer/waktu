@@ -35,7 +35,7 @@ public class PermissionController extends QSignalEmitter {
 		return theInstance;
 	}
 
-	private PermissionController() {
+	private PermissionController() throws SecurityException, WaktuException {
 		try {
 			allPermissionNodes = getPermissionNodes();
 		} catch (IllegalArgumentException e) {
@@ -47,7 +47,7 @@ public class PermissionController extends QSignalEmitter {
 		}
 	}
 
-	private static List<Permission> getPermissionTable() {
+	private static List<Permission> getPermissionTable() throws WaktuException {
 		if (permissions == null) {
 			EntityManager em = PersistenceController.getInstance().getEMF()
 					.createEntityManager();
@@ -62,10 +62,10 @@ public class PermissionController extends QSignalEmitter {
 		return permissions;
 	}
 
-	public Permission addPermission(SystemRole systemRole) {
+	public Permission addPermission(SystemRole systemRole) throws WaktuException {
 
 		Permission newPermission = new Permission(systemRole);
-		EntityManager em = PersistenceController.getInstance("waktu").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		em.getTransaction().begin();
 		em.persist(newPermission);
@@ -78,7 +78,7 @@ public class PermissionController extends QSignalEmitter {
 	}
 
 	public static ArrayList<PermissionNode> getPermissionNodes()
-			throws IllegalArgumentException, IllegalAccessException {
+			throws IllegalArgumentException, IllegalAccessException, SecurityException, WaktuException {
 		ArrayList<PermissionNode> list = new ArrayList<PermissionNode>();
 
 		for (Permission p : getPermissionTable()) {

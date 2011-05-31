@@ -22,7 +22,7 @@ public class TestableUserController extends UserController {
 	@Override
 	public Usr addUser(String firstname, String lastname, String password,
 			int pensum, SystemRole role, double holiday) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance("waktutest").getEMF()
+		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
 		Usr newUsr = new Usr(firstname+lastname, firstname,
