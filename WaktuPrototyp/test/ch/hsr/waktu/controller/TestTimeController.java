@@ -147,7 +147,7 @@ public class TestTimeController {
 	public void getPlannedTimeForMonth_monthWith5Weekends() throws WaktuException {
 	    Usr user = UserController.getInstance().getUser("patriziaheer");
 	    double time = TimeController.getPlannedTime(user, new QDate(2011, 05, 19));
-	    assertEquals(TimeController.HOURS_PER_WORKDAY * 25 * user.getPensum()/100 , time, 0.01);
+	    assertEquals(TimeController.HOURS_PER_WORKDAY * 22 * user.getPensum()/100 , time, 0.01);
 	}
 	
 	@Test  

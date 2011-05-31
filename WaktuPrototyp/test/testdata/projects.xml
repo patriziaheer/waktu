@@ -11,14 +11,14 @@
 		<projectid>2</projectid>
 		<projectIdentifier>Avec</projectIdentifier>
 		<description>SE2p</description>
-		<projectManager>simonstäheli</projectManager>
+		<projectManager>simonstaeheli</projectManager>
 		<active>true</active>
 		<plannedTime>240</plannedTime>
 	</Project>
 	<Project>
 		<projectid>3</projectid>
 		<projectIdentifier>SBB</projectIdentifier>
-		<description>ÖV</description>
+		<description></description>
 		<projectManager>mikefisler</projectManager>
 		<active>true</active>
 		<plannedTime>120</plannedTime>
