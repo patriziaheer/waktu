@@ -2,8 +2,10 @@ package ch.hsr.waktu.services;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -15,6 +17,7 @@ import org.xml.sax.SAXException;
 
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.controller.datacontroller.UserController;
+import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
 import ch.hsr.waktu.domain.Favorite;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.SystemRole;
@@ -23,12 +26,14 @@ import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.domain.WorkSession;
 
 public class XmlUtil {
+    
+    private XmlUtil() {
+        
+    }
 
-	private XmlUtil() {
+	private static Document parseXmlFile(final String filePath) 
+			throws WaktuException {
 
-	}
-
-	private static Document parseXmlFile(String filePath) throws WaktuException {
 		File file = new File(filePath);
 		try {
 			return DocumentBuilderFactory.newInstance().newDocumentBuilder()
@@ -42,19 +47,44 @@ public class XmlUtil {
 		}
 	}
 
-	// @SuppressWarnings("unused")
-	// private static void saveXmlFile(String filePath, Document document) {
-	// //TODO
-	// }
+	   public static LinkedList<Usr> getUsersFromXml(String filePath) throws WaktuException {
 
-	public static LinkedList<WorkSession> getWorkSessionsFromXml(String filePath)
+       LinkedList<Usr> users = new LinkedList<Usr>();
+    
+       Document document = parseXmlFile(filePath);
+       if (document == null) {
+           return null;
+       }
+       NodeList usrs = document.getElementsByTagName("Usr");
+       for (int i = 0; i < usrs.getLength(); i++) {
+           Node usr = usrs.item(i);
+           Usr u = new Usr();
+           u.setUsername(getTextContentOf(usr, "username"));
+           u.setFirstname(getTextContentOf(usr, "firstname"));
+           u.setName(getTextContentOf(usr, "lastname"));
+           u.setPasswordHash(getTextContentOf(usr, "passwordHash"));
+           u.setPensum(getIntegerContentOf(usr, "pensum"));
+           u.setSystemRole(getSystemRoleContentOf(usr, "systemRole"));
+           u.setHoliday(getDoubleContentOf(usr, "holiday"));
+           u.setActiveState(getBooleanContentOf(usr, "active"));
+           users.add(u);
+       }
+       return users;
+	}
+
+	public static void saveWorkSessionsToXml(String filePath,
+			LinkedList<WorkSession> workSessions) {
+
+	}
+
+	public static List<WorkSession> getWorkSessionsFromXml(final String filePath)
 			throws WaktuException {
-		// TODO
-		Document document = parseXmlFile(filePath);
+
+	    Document document = parseXmlFile(filePath);
 		if (document == null) {
 			return null;
 		}
-		LinkedList<WorkSession> worksessions = new LinkedList<WorkSession>();
+		ArrayList<WorkSession> worksessions = new ArrayList<WorkSession>();
 		NodeList workSessionNodeList = document
 				.getElementsByTagName("WorkSession");
 		for (int i = 0; i < workSessionNodeList.getLength(); i++) {
@@ -64,65 +94,35 @@ public class XmlUtil {
 			ws.setUser(getUserContentOf(node, "user"));
 			ws.setStart(getTimeContentOf(node, "start"));
 			ws.setEnd(getTimeContentOf(node, "end"));
-			ws.setWorkPackage(getWorkPackageContentOf(node, "workPackage"));
+			ws.setWorkPackage(getWorkPackageContentOf(node, "WorkPackage"));
 			worksessions.add(ws);
 		}
 		return worksessions;
 	}
 
-	private static WorkPackage getWorkPackageContentOf(Node node, String string)
+	public static List<Project> getProjectsFromXml(final String filePath)
 			throws WaktuException {
-		WorkPackage wp = new WorkPackage();
-		wp.setActiveState(XmlUtil.getBooleanContentOf(node, "active"));
-		wp.setDescription(getTextContentOf(node, "description"));
-		wp.setProject(getProjectContentOf(node, "project"));
-		return null;
-	}
-
-	private static Project getProjectContentOf(Node node, String string)
-			throws WaktuException {
-		// TODO Auto-generated method stub
-		return ProjectController.getInstance().getProject(
-				getIntegerContentOf(node, string));
-	}
-
-	public static void saveWorkSessionsToXml(String filePath,
-			LinkedList<WorkSession> workSessions) {
-
-	}
-
-	public static LinkedList<Usr> getUsersFromXml(String filePath)
-			throws WaktuException {
-
-		LinkedList<Usr> users = new LinkedList<Usr>();
-
 		Document document = parseXmlFile(filePath);
 		if (document == null) {
 			return null;
 		}
-		NodeList usrs = document.getElementsByTagName("Usr");
-		for (int i = 0; i < usrs.getLength(); i++) {
-			Node usr = usrs.item(i);
-			Usr u = new Usr();
-			u.setUsername(getTextContentOf(usr, "username"));
-			u.setFirstname(getTextContentOf(usr, "firstname"));
-			u.setName(getTextContentOf(usr, "lastname"));
-			u.setPasswordHash(getTextContentOf(usr, "passwordHash"));
-			u.setPensum(getIntegerContentOf(usr, "pensum"));
-			u.setSystemRole(getSystemRoleContentOf(usr, "systemRole"));
-			u.setHoliday(getDoubleContentOf(usr, "holiday"));
-			u.setActiveState(getBooleanContentOf(usr, "active"));
-			users.add(u);
+		ArrayList<Project> projects = new ArrayList<Project>();
+		NodeList projectNodeList = document.getElementsByTagName("Project");
+		for (int i = 0; i < projectNodeList.getLength(); i++) {
+			Node node = projectNodeList.item(i);
+			Project p = new Project();
+			p.setActiveState(getBooleanContentOf(node, "active"));
+			p.setDescription(getTextContentOf(node, "description"));
+			p.setPlannedTime(getIntegerContentOf(node, "plannedTime"));
+			p.setProjectIdentifier(getTextContentOf(node, "projectIdentifier"));
+			p.setProjectManager(getUserContentOf(node, "projectManager"));
+			projects.add(p);
 		}
-		return users;
+		return projects;
 	}
 
-	// public static void saveUsersToXml(String filePath, LinkedList<Usr> users)
-	// {
-	// //TODO
-	// }
+	public static List<Favorite> getFavoritesFromXml(final String filePath) {
 
-	public static LinkedList<Favorite> getFavoritesFromXml(String filePath) {
 		if (filePath == null) {
 			return null;
 		}
@@ -130,7 +130,40 @@ public class XmlUtil {
 		return favorites;
 	}
 
-	private static String getTextContentOf(Node element, String name) {
+	public static List<WorkPackage> getWorkPackagesFromXml(final String filePath)
+			throws WaktuException {
+		Document document = parseXmlFile(filePath);
+		if (document == null) {
+			return null;
+		}
+		ArrayList<WorkPackage> workpackages = new ArrayList<WorkPackage>();
+		NodeList workPackageNodeList = document
+				.getElementsByTagName("WorkPackage");
+		for (int i = 0; i < workPackageNodeList.getLength(); i++) {
+			Node node = workPackageNodeList.item(i);
+			WorkPackage wp = new WorkPackage();
+			wp.setActiveState(getBooleanContentOf(node, "active"));
+			wp.setDescription(getTextContentOf(node, "description"));
+			wp.setProject(getProjectContentOf(node, "project"));
+			workpackages.add(wp);
+		}
+		return workpackages;
+	}
+
+	private static WorkPackage getWorkPackageContentOf(final Node element, 
+			final String name) throws WaktuException {
+
+		return WorkPackageController.getInstance().getWorkPackage(
+				getTextContentOf(element, name));
+	}
+
+	private static Project getProjectContentOf(final Node element, 
+			final String name) throws WaktuException {
+		return ProjectController.getInstance().getProject(
+				getTextContentOf(element, name));
+	}
+
+	private static String getTextContentOf(final Node element, final String name) {
 		NodeList attributes = element.getChildNodes();
 		for (int i = 0; i < attributes.getLength(); i++) {
 			if (attributes.item(i).getNodeName().equals(name)) {
@@ -140,15 +173,17 @@ public class XmlUtil {
 		return "";
 	}
 
-	private static boolean getBooleanContentOf(Node element, String name) {
-		return (getTextContentOf(element, name).equalsIgnoreCase("true"));
+	private static boolean getBooleanContentOf(final Node element, 
+			final String name) {
+		
+		return getTextContentOf(element, name).equalsIgnoreCase("true");
 	}
 
-	private static int getIntegerContentOf(Node element, String name) {
+	private static int getIntegerContentOf(final Node element, final String name) {
 		return new Integer(getTextContentOf(element, name));
 	}
 
-	private static double getDoubleContentOf(Node element, String name) {
+	private static double getDoubleContentOf(final Node element, final String name) {
 		return new Double(getTextContentOf(element, name));
 	}
 
@@ -161,12 +196,17 @@ public class XmlUtil {
 		return null;
 	}
 
-	private static Usr getUserContentOf(Node element, String name)
+	private static Usr getUserContentOf(final Node element, final String name)
 			throws WaktuException {
-		return UserController.getInstance().getUser(name);
+		
+		return UserController.getInstance().getUser(
+				getTextContentOf(element, name));
 	}
 
-	private static GregorianCalendar getTimeContentOf(Node element, String name) {
-		return new GregorianCalendar();
+	private static GregorianCalendar getTimeContentOf(final Node element, 
+			final String name) {
+		
+		return TimeUtil.convertQDateTimeToGregorian(TimeUtil
+				.stringToQDateTime(getTextContentOf(element, name)));
 	}
 }

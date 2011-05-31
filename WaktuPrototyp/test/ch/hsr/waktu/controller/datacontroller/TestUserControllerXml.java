@@ -77,13 +77,7 @@ public class TestUserControllerXml extends TestSuite {
 		inactiveUsersReferenceList.clear();
 		projectManagersReferenceList.clear();
 	}
-	
-	
-	
-	@Test
-	public void addUser() {
-		//TODO
-	}
+
 	
 	@Test
 	public void getAllUsers() throws WaktuException {
