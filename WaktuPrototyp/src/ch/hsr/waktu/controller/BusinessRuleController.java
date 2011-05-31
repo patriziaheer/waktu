@@ -12,7 +12,7 @@ import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.domain.WorkSession;
 import ch.hsr.waktu.services.WaktuException;
 
-public class BusinessRuleController {
+public final class BusinessRuleController {
 
 	private BusinessRuleController() {
 
@@ -22,12 +22,12 @@ public class BusinessRuleController {
 			.getLogger(BusinessRuleController.class);
 
 	/**
-	 * Checks if the accordant user has access rights to the specified method.
+	 * Checks if the respective user has access rights to the specified method.
 	 * 
 	 * @param usr
 	 * @throws WaktuException
 	 */
-	public static void check(Usr usr) throws WaktuException {
+	public static void check(final Usr usr) throws WaktuException {
 
 		if (usr.getHoliday() < 0) {
 			logger.info("Negative holiday");
@@ -38,13 +38,19 @@ public class BusinessRuleController {
 			throw new WaktuException("Pensum too low, must be between 1 - 100%");
 		}
 		if (usr.getPensum() > 100) {
-			logger.info("Pensum higher than 100%");
-			throw new WaktuException("Pensum higher than 100%");
+			logger.info("Pensum exceeds 100%");
+			throw new WaktuException("Pensum exceeds 100%");
 		}
 
 	}
 
-	public static void check(Project project) throws WaktuException {
+	/**
+	 * Checks BusinessRule-compliance of a project
+	 * 
+	 * @param project
+	 * @throws WaktuException
+	 */
+	public static void check(final Project project) throws WaktuException {
 
 		if (project.getPlannedTime() < 0) {
 			logger.info("Negative planned time");
@@ -62,6 +68,12 @@ public class BusinessRuleController {
 		}
 	}
 
+	/**
+	 * Checks BusinessRule-compliance of a WorkSession
+	 * 
+	 * @param workPackage
+	 * @throws WaktuException
+	 */
 	public static void check(WorkSession workPackage) throws WaktuException {
 
 		if (workPackage.getStart().after(workPackage.getEnd())) {
@@ -71,7 +83,13 @@ public class BusinessRuleController {
 
 	}
 
-	public static void check(WorkPackage workPackage) throws WaktuException {
+	/**
+	 * Checks BusinessRule-compliance of a WorkPackage
+	 * 
+	 * @param workPackage
+	 * @throws WaktuException
+	 */
+	public static void check(final WorkPackage workPackage) throws WaktuException {
 
 		List<WorkPackage> allWorkPackages = WorkPackageController.getInstance()
 				.getAllWorkPackages(workPackage.getProject());
