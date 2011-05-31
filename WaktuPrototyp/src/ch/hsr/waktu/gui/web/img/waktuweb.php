@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 	require_once 'controller/class.UsrController.php';
 	require_once 'controller/class.ProjectController.php';
@@ -24,7 +24,9 @@
 	
 	if(!empty($_POST)) {
 		
-		$_POST['date'] = substr($_POST['date'], 6,4).'-'.substr($_POST['date'], 3,2).'-'.substr($_POST['date'],0,2);
+		$_POST['date'] = substr($_POST['date'], 8,2).substr($_POST['date'], 5,2).substr($_POST['date'],0,4);
+		
+		print_r($_POST['date']);
 		
 		$workS = new WorkSession($lc->getLoggedInUser(), $_POST['date']." ".$_POST['start'], $_POST['date']." ".$_POST['end'], WorkPackageController::getInstance()->getWorkPackage($_POST['workpackageid']), $_POST['desc']);	
 		$wc->addWorkSession($workS);
@@ -48,8 +50,8 @@
 			'<tr class="ws">
 				<td class="ws">'.$ws->getWorkPackage()->getProject()->getDescription().'</td>
 				<td class="ws">'.$ws->getWorkPackage()->getDescription().'</td>
-				<td class="ws">'.$ws->getEndTime().'</td>
 				<td class="ws">'.$ws->getStartTime().'</td>
+				<td class="ws">'.$ws->getEndTime().'</td>
 				<td class="ws">'.$ws->getDescription().'</td>
 			</tr>';
 	}
