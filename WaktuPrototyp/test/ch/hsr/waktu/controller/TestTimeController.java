@@ -87,15 +87,6 @@ public class TestTimeController {
     }
 	
 	@Test
-    public void calculateWorktimeForProjectForWorkPackageForUser_workPackageNotPartOfProject() throws WaktuException {
-        WorkPackage workPackage = WorkPackageController.getInstance().getWorkPackage("Domain");
-        Project project = ProjectController.getInstance().getProject("SBB");
-        Usr user = UserController.getInstance().getUser("patriziaheer");
-        double time = TimeController.calculateWorktime(user, project, workPackage,  null, null);
-        assertEquals(0.0 , time, 0.01);
-    }
-	
-	@Test
     public void calculateWorktimeForProject() throws WaktuException {
         Project project = ProjectController.getInstance().getProject("Waktu");
         double time = TimeController.calculateWorktime(null, project, null,  null, null);
@@ -156,7 +147,7 @@ public class TestTimeController {
         QDate fromDate = new QDate(2011, 05, 16);
         QDate toDate = new QDate(2011, 05, 16);
         double time = TimeController.calculateOvertime(user, fromDate,  toDate);
-        assertEquals(0.0 , time, 0.01);
+        assertEquals(-7.5 , time, 0.01);
     }
 	
 	@Test  

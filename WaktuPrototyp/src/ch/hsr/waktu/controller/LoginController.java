@@ -18,8 +18,7 @@ public class LoginController {
 		return theInstance;
 	}
 
-	@SuppressWarnings("unused")
-	private Logger logger = Logger.getLogger(PermissionController.class);
+	private Logger logger = Logger.getLogger(LoginController.class);
 
 	private static Usr loggedInUser;
 
@@ -49,6 +48,7 @@ public class LoginController {
 			String passwordHash = Md5.hash(password);
 			if (user.getPasswordHash().equals(passwordHash)) {
 				setLoggedInUser(user);
+				logger.info(user + " logged in");
 				return true;
 			}
 		}

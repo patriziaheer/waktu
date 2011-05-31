@@ -75,11 +75,7 @@ public class WorkSession {
 
 	@Override
 	public String toString() {
-		return id + ""; // + " " + userRef + " " +
-						// workPackageRef.getDescription() + " " +
-						// TimeUtil.convertGregorianToQDateTime(startTime) +
-						// " - " +
-						// TimeUtil.convertGregorianToQDateTime(endTime);
+		return id + ""; 
 	}
 
 	@Override

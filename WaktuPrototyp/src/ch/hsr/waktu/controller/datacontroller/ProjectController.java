@@ -221,7 +221,6 @@ public class ProjectController extends QSignalEmitter {
 
 		try {
 			em.getTransaction().begin();
-			// em.find(Project.class, project.getId());
 			em.merge(project);
 			em.getTransaction().commit();
 		} catch (Exception e) {
