@@ -100,9 +100,8 @@ public class TimeController {
 	}
 
 	public static double getPlannedTime(Usr user, QDate fromDate, QDate toDate) {
-		return fromDate.daysTo(toDate)
-				* getNumberOfWorkdays(user, fromDate, toDate)
-				* HOURS_PER_WORKDAY;
+		return getNumberOfWorkdays(user, fromDate, toDate)
+				* HOURS_PER_WORKDAY * user.getPensum()/100;
 	}
 
 	private static double getNumberOfWorkdaysForMonth(Usr user, QDate currMonth) {
