@@ -12,6 +12,12 @@
 		<project>Waktu</project>
 	</WorkPackage>
 	<WorkPackage>
+		<id>7</id>
+		<description>SSD</description>
+		<active>true</active>
+		<project>Waktu</project>
+	</WorkPackage>
+	<WorkPackage>
 		<id>3</id>
 		<description>Snacks</description>
 		<active>true</active>

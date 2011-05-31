@@ -19,14 +19,14 @@
 		<id>3</id>
 		<description>code review</description>
 		<user>patriziaheer</user>
-		<start>20110517T010000</start>
-		<end>20110517T040000</end>
+		<start>20110617T010000</start>
+		<end>20110617T040000</end>
 		<WorkPackage>Domain</WorkPackage>
 	</WorkSession>
 	<WorkSession>
 		<id>4</id>
 		<description>Kreditkarte</description>
-		<user>simonstäheli</user>
+		<user>simonstaeheli</user>
 		<start>20110518T130000</start>
 		<end>20110518T170000</end>
 		<WorkPackage>Brot</WorkPackage>
@@ -46,5 +46,21 @@
 		<start>20110517T170000</start>
 		<end>20110517T230000</end>
 		<WorkPackage>Rundreise</WorkPackage>
+	</WorkSession>
+	<WorkSession>
+		<id>7</id>
+		<description>blub</description>
+		<user>mikefisler</user>
+		<start>20110517T120000</start>
+		<end>20110517T190000</end>
+		<WorkPackage>Domain</WorkPackage>
+	</WorkSession>
+	<WorkSession>
+		<id>8</id>
+		<description>blub</description>
+		<user>simonstaeheli</user>
+		<start>20111017T010000</start>
+		<end>20111017T190000</end>
+		<WorkPackage>SSD</WorkPackage>
 	</WorkSession>
 </WorkSessions>
