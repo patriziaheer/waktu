@@ -18,23 +18,6 @@ public class TimeController {
         
     }
 
-//	private static double calculateWorktime(Project project, Usr usr) throws WaktuException {
-//		double worktime = 0;
-//		try {
-//			for(WorkSession ws: WorkSessionController.getInstance().getWorkSessions(project, usr)) {
-//				System.out.println("calculateWorktime(): WorkSession:" + ws.toString());
-//			    worktime += TimeUtil.calculateTimespanInSeconds(ws.getStart(), ws.getEnd());
-//			}
-//		} catch (NullPointerException e) {
-//			return 0;
-//		}		
-//		return worktime/3600;
-//	}
-//		
-//	private TimeController() {
-//
-//	}
-
 	public static final double HOURS_PER_WORKDAY = 8.5;
 
 	public static double calculateWorktime(Usr usr, Project project,
@@ -43,24 +26,24 @@ public class TimeController {
 		double worktime = 0;
 		List<WorkSession> workSessions = null;
 
-		if (project != null && usr == null) {
+		if (project != null && usr == null && workPackage == null) {
 			workSessions = WorkSessionController.getInstance().getWorkSessions(
 					project);
-		} else if (project != null && usr != null) {
+		} else if (project != null && usr != null && workPackage == null) {
 			workSessions = WorkSessionController.getInstance().getWorkSessions(
 					project, usr);
-		} else if (project == null && usr != null) {
+		} else if (project == null && usr != null && workPackage == null) {
 			workSessions = WorkSessionController.getInstance().getWorkSessions(
 					usr);
-		} else if (project == null && usr == null && workPackage != null) {
-		    workSessions = WorkSessionController.getInstance().getWorkSessions(workPackage);
+		} else if (usr == null && workPackage != null) {
+			workSessions = WorkSessionController.getInstance().getWorkSessions(workPackage);
+		} else if (usr != null && workPackage != null) {
+			workSessions = WorkSessionController.getInstance().getWorkSessions(workPackage, usr);
 		}
 
 		try {
 			for (WorkSession ws : workSessions) {
-				if ((workPackage == null || ws.getWorkPackage().equals(
-						workPackage))
-						&& (start == null || start.compareTo(TimeUtil
+				if ((start == null || start.compareTo(TimeUtil
 								.convertGregorianToQDateTime(ws.getStart())
 								.date()) <= 0)
 						&& (end == null || end.compareTo(TimeUtil
