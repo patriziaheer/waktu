@@ -43,22 +43,24 @@ public class TimeController {
 		double worktime = 0;
 		List<WorkSession> workSessions = null;
 
-		if (project != null && usr == null) {
+		if (project != null && usr == null && workPackage == null) {
 			workSessions = WorkSessionController.getInstance().getWorkSessions(
 					project);
-		} else if (project != null && usr != null) {
+		} else if (project != null && usr != null && workPackage == null) {
 			workSessions = WorkSessionController.getInstance().getWorkSessions(
 					project, usr);
-		} else if (project == null && usr != null) {
+		} else if (project == null && usr != null && workPackage == null) {
 			workSessions = WorkSessionController.getInstance().getWorkSessions(
 					usr);
+		} else if (usr == null && workPackage != null) {
+			workSessions = WorkSessionController.getInstance().getWorkSessions(workPackage);
+		} else if (usr != null && workPackage != null) {
+			workSessions = WorkSessionController.getInstance().getWorkSessions(workPackage, usr);
 		}
 
 		try {
 			for (WorkSession ws : workSessions) {
-				if ((workPackage == null || ws.getWorkPackage().equals(
-						workPackage))
-						&& (start == null || start.compareTo(TimeUtil
+				if ((start == null || start.compareTo(TimeUtil
 								.convertGregorianToQDateTime(ws.getStart())
 								.date()) <= 0)
 						&& (end == null || end.compareTo(TimeUtil
