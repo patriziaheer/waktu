@@ -41,6 +41,10 @@ public class TimeController {
 			workSessions = WorkSessionController.getInstance().getWorkSessions(workPackage, usr);
 		}
 
+		if(workSessions == null) {
+		    return worktime;
+		}
+		
 		try {
 			for (WorkSession ws : workSessions) {
 				if ((start == null || start.compareTo(TimeUtil
