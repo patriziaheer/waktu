@@ -17,7 +17,6 @@ public class TimeUtil {
 
 	private static Logger logger = Logger.getLogger(TimeUtil.class);
 
-	// TODO: Konvertier-Methoden refactoren gemäss DKellers Aussage.. MF: wtf?
 	public static QDateTime convertGregorianToQDateTime(
 			final GregorianCalendar dateTime) {
 		QDate date = new QDate(dateTime.get(GregorianCalendar.YEAR),
@@ -61,15 +60,23 @@ public class TimeUtil {
 		return new GregorianCalendar(date.year(), date.month(), date.day());
 	}
 
+	/**
+	 * 
+	 * @param date
+	 * @return array containing first and last day of month specified by date
+	 */
 	public static QDate[] getMonthBoundaries(final QDate date) {
-		// TODO
 		QDate[] startDayEndDay = { new QDate(date.year(), date.month(), 1),
 				new QDate(date.year(), date.month(), date.daysInMonth()) };
 		return startDayEndDay;
 	}
 
+	/**
+	 * 
+	 * @param date
+	 * @return array containing first and last day of week specified by date
+	 */
 	public static QDate[] getWeekBoundaries(final QDate date) {
-		// TODO
 		QDate[] startDayEndDay = {
 				new QDate(date.year(), getFirstDayOfWeek(date).month(),
 						getFirstDayOfWeek(date).day()),
@@ -83,11 +90,21 @@ public class TimeUtil {
 		return lastDay.addDays(6);
 	}
 
+	/**
+	 * 
+	 * @param date
+	 * @return first day of week specified by date
+	 */
 	static QDate getFirstDayOfWeek(final QDate date) {
 		QDate firstDay = date.clone();
 		return firstDay.addDays(-date.dayOfWeek() + 1);
 	}
 
+	/**
+	 * 
+	 * @param date
+	 * @return array containing first and last day of year specified by date
+	 */
 	public static QDate[] getYearBoundaries(final QDate date) {
 		QDate[] startDayEndDay = { new QDate(date.year(), 1, 1),
 				new QDate(date.year(), 12, 31) };
