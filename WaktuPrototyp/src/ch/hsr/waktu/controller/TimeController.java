@@ -52,6 +52,8 @@ public class TimeController {
 		} else if (project == null && usr != null) {
 			workSessions = WorkSessionController.getInstance().getWorkSessions(
 					usr);
+		} else if (project == null && usr == null && workPackage != null) {
+		    workSessions = WorkSessionController.getInstance().getWorkSessions(workPackage);
 		}
 
 		try {

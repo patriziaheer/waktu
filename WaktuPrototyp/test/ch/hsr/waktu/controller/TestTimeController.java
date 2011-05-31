@@ -156,7 +156,7 @@ public class TestTimeController {
         QDate fromDate = new QDate(2011, 05, 16);
         QDate toDate = new QDate(2011, 05, 16);
         double time = TimeController.calculateOvertime(user, fromDate,  toDate);
-        assertEquals(0.0 , time, 0.01);
+        assertEquals(-7.5 , time, 0.01);
     }
 	
 	@Test  
