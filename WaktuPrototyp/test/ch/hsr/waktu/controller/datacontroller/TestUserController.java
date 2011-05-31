@@ -25,6 +25,7 @@ public class TestUserController extends TestSuite {
 	static PersistenceController prc;
 	static ProjectController pc;
 	static ProjectStaffController psc;
+	static Usr usr6;
 	
 	static Logger logger = Logger.getLogger(TestUserController.class);
 
@@ -52,6 +53,7 @@ public class TestUserController extends TestSuite {
 			Usr usr3 = uc.addUser("Fredi", "Egli", "Karabum!", 50,	SystemRole.EMPLOYEE, 80);
 			Usr usr4 = uc.addUser("David", "Steiner", "fels3n3gg?", 70,SystemRole.PROJECTMANAGER, 80);
 			Usr usr5 = uc.addUser("Maura", "Weber", "turicum", 25,	SystemRole.PROJECTMANAGER, 80);
+			usr6 = uc.addUser("Patrizia", "Heer", "1234", 25, SystemRole.PROJECTMANAGER, 80);
 			
 			usr4.setActiveState(false);
 			usr5.setActiveState(false);
@@ -82,12 +84,12 @@ public class TestUserController extends TestSuite {
 	@Test
 	public void testAddUser() throws WaktuException {
 
-		assertEquals(6, uc.getAllUsers().size());
+		assertEquals(7, uc.getAllUsers().size());
 	}
 
 	@Test
 	public void testGetProjectManagers() throws WaktuException {
-		assertEquals(4, uc.getProjectManagers().size());
+		assertEquals(5, uc.getProjectManagers().size());
 
 	}
 	
@@ -98,7 +100,7 @@ public class TestUserController extends TestSuite {
 	
 	@Test
 	public void testGetActiveUsers() throws WaktuException {
-		assertEquals(4, uc.getActiveUsers().size());
+		assertEquals(5, uc.getActiveUsers().size());
 	}
 
 	
@@ -119,6 +121,12 @@ public class TestUserController extends TestSuite {
 		
 		assertEquals(usr3, uc.getUser("frediegli"));
 		assertEquals(usr3.getId(), uc.getUser("frediegli").getId());
+	}
+	
+	@Test
+	public void testEqualsAndHashCode() throws WaktuException {
+		assertEquals(usr6, uc.getUser("patriziaheer"));
+		assertEquals(usr6.hashCode(), uc.getUser("patriziaheer").hashCode());
 	}
 
 }

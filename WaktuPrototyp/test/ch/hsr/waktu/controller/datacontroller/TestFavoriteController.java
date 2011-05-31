@@ -131,6 +131,47 @@ public class TestFavoriteController extends TestSuite {
 		assertEquals(f7, fc.getFavorites(usr4).get(0));
 		assertEquals(f7.hashCode(), fc.getFavorites(usr4).get(0).hashCode());
 		
+		assert(f7.equals(usr3) == false);
+	}
+	
+	@Test
+	public void testErrorGetFavorites() {
+		try {
+			fc.getFavorites(null);
+			assert(false);
+		} catch (WaktuException e) {
+			assert(true);
+		}
+	}
+	
+	@Test
+	public void testErrorAddFavorites() {
+		try {
+			fc.addFavorite(new Usr(), null, null, null);
+			assert(false);
+		} catch (WaktuException e) {
+			assert(true);
+		}
+	}
+	
+	@Test
+	public void testErrorRemoveFavorites() {
+		try {
+			fc.removeFavorite(null);
+			assert(false);
+		} catch (WaktuException e) {
+			assert(true);
+		}
+	}
+	
+	@Test
+	public void testErrorUpdateFavorites() {
+		try {
+			fc.updateFavorite(null);
+			assert(false);
+		} catch (WaktuException e) {
+			assert(true);
+		}
 	}
 	
 }
