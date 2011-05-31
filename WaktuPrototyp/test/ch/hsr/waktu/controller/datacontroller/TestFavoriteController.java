@@ -29,14 +29,13 @@ public class TestFavoriteController extends TestSuiteDataController {
 	static ProjectStaffController psc;
 	static FavoriteController fc;
 	static WorkPackageController wpc;
-	
+
 	static Project p1;
 	static WorkPackage w1, w2, w3, w4, w5;
 	static Favorite f1, f2, f3, f4, f5;
 	static Usr usr1, usr2, usr3, usr4, usr5;
-	
-	static Logger logger = Logger.getLogger(TestFavoriteController.class);
 
+	static Logger logger = Logger.getLogger(TestFavoriteController.class);
 
 	@BeforeClass
 	public static void before() {
@@ -50,32 +49,58 @@ public class TestFavoriteController extends TestSuiteDataController {
 			wpc = WorkPackageController.getInstance();
 			fc = FavoriteController.getInstance();
 
-			TestableUserController.getInstance().addUser("pa", "ti", "1234", 10, SystemRole.ADMIN, 30);
+			TestableUserController.getInstance().addUser("pa", "ti", "1234",
+					10, SystemRole.ADMIN, 30);
 			pmc.addPermission(SystemRole.ADMIN);
 			pmc.addPermission(SystemRole.EMPLOYEE);
 			pmc.addPermission(SystemRole.PROJECTMANAGER);
 			pmc.reloadPermissions();
 			lc.login("pati", "1234");
 
-			usr1 = uc.addUser("Mike", "Fisler", "1234", 100, SystemRole.ADMIN, 25);
-			usr2 = uc.addUser("Simon", "Stäheli", "5678", 10, SystemRole.EMPLOYEE, 30);
-			usr3 = uc.addUser("Fredi", "Egli", "Karabum!", 50,	SystemRole.PROJECTMANAGER, 80);
-			usr4 = uc.addUser("David", "Steiner", "fels3n3gg?", 70,SystemRole.PROJECTMANAGER, 80);
-			usr5 = uc.addUser("Maura", "Weber", "turicum", 25,	SystemRole.PROJECTMANAGER, 80);
+			usr1 = uc.addUser("Mike", "Fisler", "1234", 100, SystemRole.ADMIN,
+					25);
+			usr2 = uc.addUser("Simon", "Stäheli", "5678", 10,
+					SystemRole.EMPLOYEE, 30);
+			usr3 = uc.addUser("Fredi", "Egli", "Karabum!", 50,
+					SystemRole.PROJECTMANAGER, 80);
+			usr4 = uc.addUser("David", "Steiner", "fels3n3gg?", 70,
+					SystemRole.PROJECTMANAGER, 80);
+			usr5 = uc.addUser("Maura", "Weber", "turicum", 25,
+					SystemRole.PROJECTMANAGER, 80);
 
 			p1 = pc.addProject("0001-SBB", "SBB Verwaltungssoftware", usr2, 125);
-			
+
 			w1 = wpc.addWorkPackage(p1, "Kick-Off");
 			w2 = wpc.addWorkPackage(p1, "Analyse");
 			w3 = wpc.addWorkPackage(p1, "Design");
 			w4 = wpc.addWorkPackage(p1, "Implementation");
 			w5 = wpc.addWorkPackage(p1, "Testing");
-			
-			f1 = fc.addFavorite(usr1, w1, TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-21 10:00","yyyy-MM-dd hh:mm")), TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-21 12:00","yyyy-MM-dd hh:mm")));
-			f2 = fc.addFavorite(usr1, w1, TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-22 10:00","yyyy-MM-dd hh:mm")), TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-22 12:00","yyyy-MM-dd hh:mm")));
-			f3 = fc.addFavorite(usr1, w2, TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-23 10:00","yyyy-MM-dd hh:mm")), TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-23 12:00","yyyy-MM-dd hh:mm")));
-			f4 = fc.addFavorite(usr2, w2, TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-24 10:00","yyyy-MM-dd hh:mm")), TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-24 12:00","yyyy-MM-dd hh:mm")));
-			f5 = fc.addFavorite(usr2, w3, TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-25 10:00","yyyy-MM-dd hh:mm")), TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-25 12:00","yyyy-MM-dd hh:mm")));
+
+			f1 = fc.addFavorite(usr1, w1, TimeUtil
+					.convertQDateTimeToGregorian(QDateTime.fromString(
+							"2011-05-21 10:00", "yyyy-MM-dd hh:mm")), TimeUtil
+					.convertQDateTimeToGregorian(QDateTime.fromString(
+							"2011-05-21 12:00", "yyyy-MM-dd hh:mm")));
+			f2 = fc.addFavorite(usr1, w1, TimeUtil
+					.convertQDateTimeToGregorian(QDateTime.fromString(
+							"2011-05-22 10:00", "yyyy-MM-dd hh:mm")), TimeUtil
+					.convertQDateTimeToGregorian(QDateTime.fromString(
+							"2011-05-22 12:00", "yyyy-MM-dd hh:mm")));
+			f3 = fc.addFavorite(usr1, w2, TimeUtil
+					.convertQDateTimeToGregorian(QDateTime.fromString(
+							"2011-05-23 10:00", "yyyy-MM-dd hh:mm")), TimeUtil
+					.convertQDateTimeToGregorian(QDateTime.fromString(
+							"2011-05-23 12:00", "yyyy-MM-dd hh:mm")));
+			f4 = fc.addFavorite(usr2, w2, TimeUtil
+					.convertQDateTimeToGregorian(QDateTime.fromString(
+							"2011-05-24 10:00", "yyyy-MM-dd hh:mm")), TimeUtil
+					.convertQDateTimeToGregorian(QDateTime.fromString(
+							"2011-05-24 12:00", "yyyy-MM-dd hh:mm")));
+			f5 = fc.addFavorite(usr2, w3, TimeUtil
+					.convertQDateTimeToGregorian(QDateTime.fromString(
+							"2011-05-25 10:00", "yyyy-MM-dd hh:mm")), TimeUtil
+					.convertQDateTimeToGregorian(QDateTime.fromString(
+							"2011-05-25 12:00", "yyyy-MM-dd hh:mm")));
 
 		} catch (WaktuException e) {
 			logger.error("TestUserController failed" + e.getMessage());
@@ -84,78 +109,68 @@ public class TestFavoriteController extends TestSuiteDataController {
 
 	@Test
 	public void testGetFavoritesOfUser() throws WaktuException {
-		
+
 		assertEquals(3, fc.getFavorites(usr1).size());
 		assertEquals(2, fc.getFavorites(usr2).size());
 	}
-	
+
 	@Test
 	public void testUpdateAndRemoveFavorite() throws WaktuException {
-		Favorite f6 = fc.addFavorite(usr2, w3, TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-25 10:00","yyyy-MM-dd hh:mm")), TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-25 12:00","yyyy-MM-dd hh:mm")));
+		Favorite f6 = fc.addFavorite(usr2, w3, TimeUtil
+				.convertQDateTimeToGregorian(QDateTime.fromString(
+						"2011-05-25 10:00", "yyyy-MM-dd hh:mm")), TimeUtil
+				.convertQDateTimeToGregorian(QDateTime.fromString(
+						"2011-05-25 12:00", "yyyy-MM-dd hh:mm")));
 
 		f6.setUser(usr3);
-		f6.setStartTime(TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-26 10:00","yyyy-MM-dd hh:mm")));
-		f6.setEndTime(TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-26 10:00","yyyy-MM-dd hh:mm")));
+		f6.setStartTime(TimeUtil.convertQDateTimeToGregorian(QDateTime
+				.fromString("2011-05-26 10:00", "yyyy-MM-dd hh:mm")));
+		f6.setEndTime(TimeUtil.convertQDateTimeToGregorian(QDateTime
+				.fromString("2011-05-26 10:00", "yyyy-MM-dd hh:mm")));
 		f6.setWorkPackageID(w4);
-		
+
 		fc.updateFavorite(f6);
 		assertEquals(f6.getId(), fc.getFavorites(usr3).get(0).getId());
 		assertEquals(f6.getUser(), fc.getFavorites(usr3).get(0).getUser());
 		assertEquals(f6.getId(), fc.getFavorites(usr3).get(0).getId());
-		
+
 		fc.removeFavorite(f6);
-		
+
 		assertEquals(0, fc.getFavorites(usr3).size());
 	}
-	
+
 	@Test
 	public void testEqualsAndHashCode() throws WaktuException {
-		Favorite f7 = fc.addFavorite(usr4, w3, TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-25 10:00","yyyy-MM-dd hh:mm")), TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-25 12:00","yyyy-MM-dd hh:mm")));
-		
+		Favorite f7 = fc.addFavorite(usr4, w3, TimeUtil
+				.convertQDateTimeToGregorian(QDateTime.fromString(
+						"2011-05-25 10:00", "yyyy-MM-dd hh:mm")), TimeUtil
+				.convertQDateTimeToGregorian(QDateTime.fromString(
+						"2011-05-25 12:00", "yyyy-MM-dd hh:mm")));
+
 		assertEquals(f7, fc.getFavorites(usr4).get(0));
 		assertEquals(f7.hashCode(), fc.getFavorites(usr4).get(0).hashCode());
-		
-		assert(f7.equals(usr3) == false);
+
+		assert (f7.equals(usr3) == false);
 	}
-	
-	@Test
-	public void testErrorGetFavorites() {
-		try {
-			fc.getFavorites(null);
-			assert(false);
-		} catch (WaktuException e) {
-			assert(true);
-		}
+
+	@Test(expected = WaktuException.class)
+	public void testErrorGetFavorites() throws WaktuException {
+		fc.getFavorites(null);
 	}
-	
-	@Test
-	public void testErrorAddFavorites() {
-		try {
-			fc.addFavorite(new Usr(), null, null, null);
-			assert(false);
-		} catch (WaktuException e) {
-			assert(true);
-		}
+
+	@Test(expected = WaktuException.class)
+	public void testErrorAddFavorites() throws WaktuException {
+		fc.addFavorite(new Usr(), null, null, null);
 	}
-	
-	@Test
-	public void testErrorRemoveFavorites() {
-		try {
-			fc.removeFavorite(null);
-			assert(false);
-		} catch (WaktuException e) {
-			assert(true);
-		}
+
+	@Test(expected = WaktuException.class)
+	public void testErrorRemoveFavorites() throws WaktuException {
+		fc.removeFavorite(null);
 	}
-	
-	@Test
-	public void testErrorUpdateFavorites() {
-		try {
-			fc.updateFavorite(null);
-			assert(false);
-		} catch (WaktuException e) {
-			assert(true);
-		}
+
+	@Test(expected = WaktuException.class)
+	public void testErrorUpdateFavorites() throws WaktuException {
+		fc.updateFavorite(null);
 	}
-	
+
 }

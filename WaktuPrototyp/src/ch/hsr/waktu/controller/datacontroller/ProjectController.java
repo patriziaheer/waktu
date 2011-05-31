@@ -168,21 +168,6 @@ public class ProjectController extends QSignalEmitter {
 
 	/**
 	 * 
-	 * @param projectIdentifier
-	 * @param description
-	 * @param plannedTime
-	 * @throws WaktuException
-	 */
-	public Project addProject(String projectIdentifier, String description,
-			int plannedTime) throws WaktuException {
-		Usr projectManager = null;
-		return this.addProject(projectIdentifier, description, projectManager,
-				plannedTime);
-
-	}
-
-	/**
-	 * 
 	 * 
 	 * @param projectIdentifier
 	 * @param description

@@ -117,4 +117,28 @@ public class TestProjectController extends TestSuiteDataController {
 		assert(p4.equals(usr2) == false);
 	}
 
+	@Test(expected=WaktuException.class)
+	public void testErrorActiveProjects() throws WaktuException {
+		pc.getActiveProjects(new Usr());
+	}
+
+	@Test(expected=WaktuException.class)
+	public void testErrorProjectId() throws WaktuException {
+		pc.getProject(null);
+	}
+
+	@Test(expected=WaktuException.class)
+	public void testErrorProjectIdentifier() throws WaktuException {
+		pc.getProject(null);
+	}
+
+	@Test(expected=WaktuException.class)
+	public void testErrorAddProject() throws WaktuException {
+		pc.addProject(null, null, new Usr(), 0);
+	}
+
+	@Test(expected=WaktuException.class)
+	public void testErrorUpdateProjects() throws WaktuException {
+		pc.updateProject(new Project());
+	}
 }

@@ -155,4 +155,14 @@ public class TestProjectStaffController extends TestSuiteDataController {
 		assert(usr6.equals(p6) == false);
 	}
 
+	@Test(expected=WaktuException.class)
+	public void testErrorAddProjectStaff() throws WaktuException {
+		psc.addProjectStaff(new Usr(), new Project());
+	}
+
+	@Test(expected=WaktuException.class)
+	public void testErrorRemoveProjectStaff() throws WaktuException {
+		psc.removeUser(new Usr(), new Project());
+	}
+
 }

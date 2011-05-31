@@ -169,4 +169,29 @@ public class TestWorkPackageController extends TestSuiteDataController {
 		assert(w26.equals(usr1) == false);
 	}
 
+	@Test(expected=WaktuException.class)
+	public void testErrorAddWorkPackage() throws WaktuException {
+		wpc.addWorkPackage(new Project(), "");
+	}
+
+	@Test(expected=WaktuException.class)
+	public void testErrorUpdateWorkPackage() throws WaktuException {
+		wpc.updateWorkPackage(null);
+	}
+
+	@Test(expected=WaktuException.class)
+	public void testErrorGetAllWorkPackage() throws WaktuException {
+		wpc.getAllWorkPackages(null);
+	}
+
+	@Test(expected=WaktuException.class)
+	public void testErrorGetActiveWorkPackage() throws WaktuException {
+		wpc.getActiveWorkPackages(null);
+	}
+
+	@Test(expected=WaktuException.class)
+	public void testErrorGetInactiveWorkPackage() throws WaktuException {
+		wpc.getInactiveWorkPackages(null);
+	}
+
 }
