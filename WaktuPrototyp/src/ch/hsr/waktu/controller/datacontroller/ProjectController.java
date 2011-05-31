@@ -248,4 +248,8 @@ public class ProjectController extends QSignalEmitter {
 		logger.info("project " + project + " updated");
 	}
 
+	public Project getProject(String projectIdentifier) throws WaktuException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

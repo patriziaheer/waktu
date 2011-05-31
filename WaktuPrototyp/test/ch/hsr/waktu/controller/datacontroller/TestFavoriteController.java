@@ -107,4 +107,55 @@ public class TestFavoriteController extends TestSuiteDataController {
 		
 		assertEquals(0, fc.getFavorites(usr3).size());
 	}
+	
+	@Test
+	public void testEqualsAndHashCode() throws WaktuException {
+		Favorite f7 = fc.addFavorite(usr4, w3, TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-25 10:00","yyyy-MM-dd hh:mm")), TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-25 12:00","yyyy-MM-dd hh:mm")));
+		
+		assertEquals(f7, fc.getFavorites(usr4).get(0));
+		assertEquals(f7.hashCode(), fc.getFavorites(usr4).get(0).hashCode());
+		
+		assert(f7.equals(usr3) == false);
+	}
+	
+	@Test
+	public void testErrorGetFavorites() {
+		try {
+			fc.getFavorites(null);
+			assert(false);
+		} catch (WaktuException e) {
+			assert(true);
+		}
+	}
+	
+	@Test
+	public void testErrorAddFavorites() {
+		try {
+			fc.addFavorite(new Usr(), null, null, null);
+			assert(false);
+		} catch (WaktuException e) {
+			assert(true);
+		}
+	}
+	
+	@Test
+	public void testErrorRemoveFavorites() {
+		try {
+			fc.removeFavorite(null);
+			assert(false);
+		} catch (WaktuException e) {
+			assert(true);
+		}
+	}
+	
+	@Test
+	public void testErrorUpdateFavorites() {
+		try {
+			fc.updateFavorite(null);
+			assert(false);
+		} catch (WaktuException e) {
+			assert(true);
+		}
+	}
+	
 }

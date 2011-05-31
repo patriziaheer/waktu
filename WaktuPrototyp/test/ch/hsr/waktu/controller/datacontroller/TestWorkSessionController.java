@@ -31,10 +31,10 @@ public class TestWorkSessionController extends TestSuiteDataController {
 	static WorkPackageController wpc;
 	static WorkSessionController wsc;
 	
-	static Usr usr1, usr2, usr3, usr4, usr5;
-	static Project p1, p2, p3, p4, p5;
-	static WorkPackage w10, w20, w30, w40, w41, w50, w51;
-	static WorkSession ws1;
+	static Usr usr1, usr2, usr3, usr4, usr5, usr6;
+	static Project p1, p2, p3, p4, p5, p6;
+	static WorkPackage w10, w20, w30, w40, w41, w50, w51, w6;
+	static WorkSession ws1, ws6;
 	
 	static Logger logger = Logger.getLogger(TestWorkSessionController.class);
 
@@ -64,12 +64,14 @@ public class TestWorkSessionController extends TestSuiteDataController {
 			usr3 = uc.addUser("Fredi", "Egli", "Karabum!", 50,	SystemRole.PROJECTMANAGER, 80);
 			usr4 = uc.addUser("David", "Steiner", "fels3n3gg?", 70,SystemRole.PROJECTMANAGER, 80);
 			usr5 = uc.addUser("Maura", "Weber", "turicum", 25,	SystemRole.PROJECTMANAGER, 80);
+			usr6 = uc.addUser("Patrizia", "Heer", "1234", 25, SystemRole.PROJECTMANAGER, 80);
 
 			p1 = pc.addProject("0001-SBB", "SBB Verwaltungssoftware", usr2, 125);
 			p2 = pc.addProject("0002-HSR", "Stundenplansoftware", usr1, 130);
 			p3 = pc.addProject("0003-UNIZH", "Stundenplansoftware", usr1, 543);
 			p4 = pc.addProject("0004-UBS", "E-Banking", usr1, 1000);
 			p5 = pc.addProject("0005-CS", "Boni-Verwaltungs-Programm", usr1, 739);
+			p6 = pc.addProject("0006-Test", "Test", usr6, 750);
 			
 			w10 = wpc.addWorkPackage(p1, "Kick-Off");
 			w20 = wpc.addWorkPackage(p2, "Analyse");
@@ -78,6 +80,7 @@ public class TestWorkSessionController extends TestSuiteDataController {
 			w41 = wpc.addWorkPackage(p4, "Testing");
 			w50 = wpc.addWorkPackage(p5, "Roll-Out");
 			w51 = wpc.addWorkPackage(p5, "Documentation");
+			w6 = wpc.addWorkPackage(p6, "Test");
 
 			ws1 =   wsc.addWorkSession(usr1, w10, TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-22 07:00","yyyy-MM-dd hh:mm")), TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-22 10:00","yyyy-MM-dd hh:mm")), "doijfrjwa");
 					wsc.addWorkSession(usr1, w10, TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-22 09:00","yyyy-MM-dd hh:mm")), TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-22 12:00","yyyy-MM-dd hh:mm")), "ökapjafcN");
@@ -107,7 +110,7 @@ public class TestWorkSessionController extends TestSuiteDataController {
 					wsc.addWorkSession(usr5, w41, TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-28 14:00","yyyy-MM-dd hh:mm")), TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-28 16:10","yyyy-MM-dd hh:mm")), "dldeleEd");
 					wsc.addWorkSession(usr5, w41, TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-28 15:00","yyyy-MM-dd hh:mm")), TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-28 17:15","yyyy-MM-dd hh:mm")), "7ujrznS");
 					wsc.addWorkSession(usr5, w41, TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-29 16:00","yyyy-MM-dd hh:mm")), TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-29 18:05","yyyy-MM-dd hh:mm")), "dsfe-deaewf");
-					
+			ws6 = wsc.addWorkSession(usr6, w6, TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-27 12:00","yyyy-MM-dd hh:mm")), TimeUtil.convertQDateTimeToGregorian(QDateTime.fromString("2011-05-27 13:10","yyyy-MM-dd hh:mm")), "Test");
 			
 		} catch (WaktuException e) {
 			logger.error("TestWorkPackageController failed \n" + e.getMessage() + "\n" + e.getStackTrace()[0] + "\n" + e.getStackTrace()[1] + "\n" + e.getStackTrace()[2]);
@@ -232,5 +235,13 @@ public class TestWorkSessionController extends TestSuiteDataController {
 		wsc.removeWorkSession(tempWs);
 		
 		assertEquals(0,wsc.getWorkSessions(ws1.getWorkPackage().getProject(), ws1.getUser(), QDate.fromString("2011-04-22","yyyy-MM-dd"), QDate.fromString("2011-04-22","yyyy-MM-dd")).size());
+	}
+	
+	@Test
+	public void testEqualsAndHashCode() throws WaktuException {
+		WorkSession wsToTest = wsc.getWorkSessions(w6, QDate.fromString("2011-05-27","yyyy-MM-dd"), QDate.fromString("2011-05-27","yyyy-MM-dd")).get(0);
+		assertEquals(ws6, wsToTest);
+		assertEquals(ws6.hashCode(), wsToTest.hashCode());
+		assert(wsToTest.equals(usr1) == false);
 	}
 }

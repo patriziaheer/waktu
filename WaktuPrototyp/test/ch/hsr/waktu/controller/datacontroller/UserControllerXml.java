@@ -1,6 +1,8 @@
 package ch.hsr.waktu.controller.datacontroller;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
@@ -51,13 +53,13 @@ public class UserControllerXml extends UserController {
 	}
 
 	@Override
-	public LinkedList<Usr> getAllUsers() throws WaktuException {
+	public List<Usr> getAllUsers() throws WaktuException {
 			return XmlUtil.getUsersFromXml(userFilePath);
 	}
 
 	@Override
-	public LinkedList<Usr> getInactiveUsers() throws WaktuException {
-		LinkedList<Usr> inactiveUsers = new LinkedList<Usr>();
+	public List<Usr> getInactiveUsers() throws WaktuException {
+		ArrayList<Usr> inactiveUsers = new ArrayList<Usr>();
 		for(Usr u: getAllUsers()) {
 			if(!u.isActive()) {
 				inactiveUsers.add(u);
@@ -67,8 +69,8 @@ public class UserControllerXml extends UserController {
 	}
 
 	@Override
-	public LinkedList<Usr> getProjectManagers() throws WaktuException {
-		LinkedList<Usr> projectManagers = new LinkedList<Usr>();
+	public List<Usr> getProjectManagers() throws WaktuException {
+		ArrayList<Usr> projectManagers = new ArrayList<Usr>();
 		for(Usr u: getAllUsers()) {
 			if(u.getSystemRole().equals(SystemRole.PROJECTMANAGER)) {
 				projectManagers.add(u);
@@ -87,19 +89,4 @@ public class UserControllerXml extends UserController {
 		return null;
 	}
 
-	public void updateUser(Usr user) throws WaktuException {
-		for(Usr u: getAllUsers()) {
-			if(u.equals(user)) {
-				u.setActiveState(user.isActive());
-				u.setFirstname(user.getFirstname());
-				u.setHoliday(user.getHoliday());
-				u.setName(user.getName());
-				u.setPassword(user.getPasswordHash());
-				u.setPensum(user.getPensum());
-				u.setSystemRole(user.getSystemRole());
-				u.setUsername(user.getUsername());
-//TODO update XML-File
-			}
-		}
-	}
 }

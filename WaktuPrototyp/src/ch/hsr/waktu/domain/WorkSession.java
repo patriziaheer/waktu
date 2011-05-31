@@ -85,12 +85,11 @@ public class WorkSession {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof WorkSession) {
-			WorkSession ws = (WorkSession) obj;
-			if (ws.id == id && ws.userRef.equals(userRef)
-					&& ws.workPackageRef.equals(workPackageRef)
-					&& ws.description.equals(description)
-					&& ws.startTime.equals(startTime)
-					&& ws.endTime.equals(endTime)) {
+			WorkSession ws = (WorkSession)obj;
+			if (ws.id == id &&
+			ws.userRef.equals(userRef) &&
+			ws.workPackageRef.equals(workPackageRef) &&
+			ws.description.equals(description)) {
 				return true;
 			}
 		}

@@ -1,12 +1,11 @@
 package ch.hsr.waktu.controller.datacontroller;
 
-import java.util.GregorianCalendar;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import com.trolltech.qt.core.QDate;
 
-import ch.hsr.waktu.controller.BusinessRuleController;
 import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
@@ -37,6 +36,10 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 		
 	}
 	
+	private List<WorkSession> getAllWorkSessions() throws WaktuException {
+		return XmlUtil.getWorkSessionsFromXml(workSessionFilePath);
+	}
+	
 	@Override
 	public List<WorkSession> getWorkSessions(Usr user) throws WaktuException {
 
@@ -46,7 +49,7 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 //			throw new WaktuException("Permission denied");
 //		}
 		
-		for(WorkSession ws: XmlUtil.getWorkSessionsFromXml(workSessionFilePath)){
+		for(WorkSession ws: getAllWorkSessions()){
 			if(ws.getUser().equals(user)) {
 				workSessionsByUser.add(ws);
 			}
@@ -62,7 +65,7 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 //			throw new WaktuException("Permission denied");
 //		}
 		
-		List<WorkSession> workSessionsByDate = new LinkedList<WorkSession>();
+		List<WorkSession> workSessionsByDate = new ArrayList<WorkSession>();
 		
 		for(WorkSession ws: getWorkSessions(user)) {
 			if(TimeUtil.convertGregorianToQDateTime(ws.getStart()).date().equals(date)) {
@@ -71,6 +74,37 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 		}
 	
 		return workSessionsByDate;
+	}
+	
+	@Override
+	public List<WorkSession> getWorkSessions(Usr user, QDate fromDate, QDate toDate) throws WaktuException {
+		List<WorkSession> workSessionsByUserInTimeRange = new ArrayList<WorkSession>();
+		
+		for(WorkSession ws: getWorkSessions(user)) {
+			if(TimeUtil.convertGregorianToQDateTime(ws.getStart()).date().daysTo(fromDate) >= 0 &&
+					TimeUtil.convertGregorianToQDateTime(ws.getEnd()).date().daysTo(toDate) <= 0) {
+				workSessionsByUserInTimeRange.add(ws);
+			}
+		}
+		return workSessionsByUserInTimeRange;
+	}
+	
+	@Override
+	public List<WorkSession> getWorkSessions(WorkPackage workPackage) throws WaktuException {
+		//TODO
+		return new ArrayList<WorkSession>();
+	}
+
+	@Override
+	public List<WorkSession> getWorkSessions(WorkPackage workPackage, Usr user) {
+		//TODO
+		return new ArrayList<WorkSession>();
+	}
+	
+	@Override
+	public List<WorkSession> getWorkSessions(WorkPackage workPackage, QDate fromDate, QDate toDate) {
+		//TODO
+		return new ArrayList<WorkSession>();
 	}
 
 	@Override
@@ -81,9 +115,9 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 //			throw new WaktuException("Permission denied");
 //		}
 		
-		List<WorkSession> workSessionsByProject = new LinkedList<WorkSession>();
+		List<WorkSession> workSessionsByProject = new ArrayList<WorkSession>();
 
-		for(WorkSession ws: XmlUtil.getWorkSessionsFromXml(workSessionFilePath)) {
+		for(WorkSession ws: getAllWorkSessions()) {
 			if(ws.getWorkPackage().getProject().equals(project)) {
 				workSessionsByProject.add(ws);
 			}
@@ -92,45 +126,27 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 	}
 
 	@Override
-	public WorkSession addWorkSession(Usr user, WorkPackage workPackage,
-		GregorianCalendar startTime, GregorianCalendar endTime,
-		String description) throws WaktuException {
+	public List<WorkSession> getWorkSessions(Project project, Usr user) throws WaktuException {
+		List<WorkSession> workSessionsByProjectAndUser = new ArrayList<WorkSession>();
+		for(WorkSession ws: getWorkSessions(user)) {
+			if(ws.getWorkPackage().getProject().equals(project)) {
+				workSessionsByProjectAndUser.add(ws);
+			}
+		}
+		return workSessionsByProjectAndUser;
+	}
 	
-		WorkSession newWorkSession = new WorkSession(user, workPackage,
-			startTime, endTime, description);
-	
-//		if(!PermissionController.checkPermission()) {
-//			throw new WaktuException("Permission denied");
-//		}
-	
-		BusinessRuleController.check(newWorkSession);
-	
-		return newWorkSession;
+	@Override
+	public List<WorkSession> getWorkSessions(Project project, QDate fromDate, QDate toDate) throws WaktuException {
+		List<WorkSession> workSessionsByProjectInTimeRange = new ArrayList<WorkSession>();
+		
+		for(WorkSession ws: getWorkSessions(project)) {
+			if(TimeUtil.convertGregorianToQDateTime(ws.getStart()).date().daysTo(fromDate) >= 0 &&
+					TimeUtil.convertGregorianToQDateTime(ws.getEnd()).date().daysTo(toDate) <= 0) {
+				workSessionsByProjectInTimeRange.add(ws);
+			}
+		}
+		return workSessionsByProjectInTimeRange;
 	}
 
-	public void updateWorkSession(WorkSession workSession)
-		throws WaktuException {
-	
-//		if(!PermissionController.checkPermission()) {
-//			throw new WaktuException("Permission denied");
-//		}
-//	
-//		BusinessRuleController.check(workSession);
-//	
-//		WorkSession updatedWorkSession;	
-	}
-
-/**
-* 
-* @param workSession
-*/
-	public void removeWorkSession(WorkSession workSession)
-		throws WaktuException {
-	
-//		if(!PermissionController.checkPermission()) {
-//			throw new WaktuException("Permission denied");
-//		}
-	
-	
-	}
 }

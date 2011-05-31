@@ -13,10 +13,27 @@ import ch.hsr.waktu.services.WaktuException;
 import com.trolltech.qt.core.QDate;
 
 public class TimeController {
+    
+    private TimeController() {
+        
+    }
 
-	private TimeController() {
-
-	}
+//	private static double calculateWorktime(Project project, Usr usr) throws WaktuException {
+//		double worktime = 0;
+//		try {
+//			for(WorkSession ws: WorkSessionController.getInstance().getWorkSessions(project, usr)) {
+//				System.out.println("calculateWorktime(): WorkSession:" + ws.toString());
+//			    worktime += TimeUtil.calculateTimespanInSeconds(ws.getStart(), ws.getEnd());
+//			}
+//		} catch (NullPointerException e) {
+//			return 0;
+//		}		
+//		return worktime/3600;
+//	}
+//		
+//	private TimeController() {
+//
+//	}
 
 	public static final double HOURS_PER_WORKDAY = 8.5;
 
@@ -83,9 +100,8 @@ public class TimeController {
 	}
 
 	public static double getPlannedTime(Usr user, QDate fromDate, QDate toDate) {
-		return fromDate.daysTo(toDate)
-				* getNumberOfWorkdays(user, fromDate, toDate)
-				* HOURS_PER_WORKDAY;
+		return roundToTenth(getNumberOfWorkdays(user, fromDate, toDate)
+				* HOURS_PER_WORKDAY);
 	}
 
 	private static double getNumberOfWorkdaysForMonth(Usr user, QDate currMonth) {

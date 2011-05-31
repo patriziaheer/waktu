@@ -7,7 +7,11 @@ import ch.hsr.waktu.controller.PermissionController;
 import ch.hsr.waktu.services.WaktuException;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
-
+/**
+ * A Class for handle the Permissions for the User in the GUI
+ * @author patriziaheer
+ * @version 1.0
+ */
 public class GuiController {
 
 	private static GuiController theInstance = null;

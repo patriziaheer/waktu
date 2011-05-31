@@ -25,9 +25,9 @@ public class TestWorkPackageController extends TestSuiteDataController {
 	static ProjectStaffController psc;
 	static WorkPackageController wpc;
 	
-	static Usr usr1, usr2, usr3, usr4, usr5;
-	static Project p1, p2, p3, p4, p5;
-	static WorkPackage w1, w2, w3, w4, w5, w6, w7, w8, w9, w10, w11, w12, w13, w14, w15, w16, w17, w18, w19, w20, w21, w22, w23, w24, w25;
+	static Usr usr1, usr2, usr3, usr4, usr5, usr6;
+	static Project p1, p2, p3, p4, p5, p6;
+	static WorkPackage w1, w2, w3, w4, w5, w6, w7, w8, w9, w10, w11, w12, w13, w14, w15, w16, w17, w18, w19, w20, w21, w22, w23, w24, w25, w26;
 	
 	static Logger logger = Logger.getLogger(TestWorkPackageController.class);
 
@@ -56,12 +56,14 @@ public class TestWorkPackageController extends TestSuiteDataController {
 			usr3 = uc.addUser("Fredi", "Egli", "Karabum!", 50,	SystemRole.PROJECTMANAGER, 80);
 			usr4 = uc.addUser("David", "Steiner", "fels3n3gg?", 70,SystemRole.PROJECTMANAGER, 80);
 			usr5 = uc.addUser("Maura", "Weber", "turicum", 25,	SystemRole.PROJECTMANAGER, 80);
+			usr6 = uc.addUser("Patrizia", "Heer", "1234", 25, SystemRole.PROJECTMANAGER, 80);
 
 			p1 = pc.addProject("0001-SBB", "SBB Verwaltungssoftware", usr2, 125);
 			p2 = pc.addProject("0002-HSR", "Stundenplansoftware", usr1, 130);
 			p3 = pc.addProject("0003-UNIZH", "Stundenplansoftware", usr1, 543);
 			p4 = pc.addProject("0004-UBS", "E-Banking", usr1, 1000);
 			p5 = pc.addProject("0005-CS", "Boni-Verwaltungs-Programm", usr1, 739);
+			p6 = pc.addProject("0006-Test", "Test", usr6, 750);
 			
 			w1 = wpc.addWorkPackage(p1, "Kick-Off");
 			w2 = wpc.addWorkPackage(p1, "Analyse");
@@ -88,6 +90,7 @@ public class TestWorkPackageController extends TestSuiteDataController {
 			w23 = wpc.addWorkPackage(p5, "Testing");
 			w24 = wpc.addWorkPackage(p5, "Roll-Out");
 			w25 = wpc.addWorkPackage(p5, "Benutzer instruieren");
+			w26 = wpc.addWorkPackage(p6, "Test");
 			
 			w1.setActiveState(false);
 			w6.setActiveState(false);
@@ -157,6 +160,13 @@ public class TestWorkPackageController extends TestSuiteDataController {
 				
 		assertEquals(w14.getId(),wpc.getWorkPackage(w14.getId()).getId());
 		assertEquals(w15.getId(),wpc.getWorkPackage(w15.getId()).getId());
+	}
+	
+	@Test
+	public void testEqualsAndHashCode() throws WaktuException {
+		assertEquals(w26, wpc.getAllWorkPackages(p6).get(0));
+		assertEquals(w26.hashCode(), wpc.getAllWorkPackages(p6).get(0).hashCode());
+		assert(w26.equals(usr1) == false);
 	}
 
 }
