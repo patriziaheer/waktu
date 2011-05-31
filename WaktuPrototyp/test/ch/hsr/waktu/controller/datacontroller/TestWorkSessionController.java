@@ -2,8 +2,6 @@ package ch.hsr.waktu.controller.datacontroller;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.GregorianCalendar;
-
 import org.apache.log4j.Logger;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -118,7 +116,7 @@ public class TestWorkSessionController extends TestSuiteDataController {
 			logger.error("TestWorkPackageController failed \n" + e.getMessage() + "\n" + e.getStackTrace()[0] + "\n" + e.getStackTrace()[1] + "\n" + e.getStackTrace()[2]);
 		}
 	}
-
+	
 	@Test
 	public void testGetWorkSessionByUser() throws WaktuException {
 		assertEquals(5, wsc.getWorkSessions(usr1).size());

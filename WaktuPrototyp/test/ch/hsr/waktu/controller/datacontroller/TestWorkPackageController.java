@@ -113,6 +113,11 @@ public class TestWorkPackageController extends TestSuiteDataController {
 			logger.error("TestWorkPackageController failed \n" + e.getMessage() + "\n" + e.getStackTrace()[0] + "\n" + e.getStackTrace()[1] + "\n" + e.getStackTrace()[2]);
 		}
 	}
+	
+	@Test
+	public void testGetAllWorkPackages() throws WaktuException {
+		assertEquals(26, wpc.getAllWorkPackages().size());
+	}
 
 	@Test
 	public void testAddWorkPackage() throws WaktuException {
