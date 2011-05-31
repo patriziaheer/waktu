@@ -1,7 +1,6 @@
 package ch.hsr.waktu.controller.datacontroller;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import com.trolltech.qt.core.QDate;
@@ -43,11 +42,7 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 	@Override
 	public List<WorkSession> getWorkSessions(Usr user) throws WaktuException {
 
-		List<WorkSession> workSessionsByUser = new LinkedList<WorkSession>();
-
-//		if(!PermissionController.checkPermission()) {
-//			throw new WaktuException("Permission denied");
-//		}
+		List<WorkSession> workSessionsByUser = new ArrayList<WorkSession>();
 		
 		for(WorkSession ws: getAllWorkSessions()){
 			if(ws.getUser().equals(user)) {
@@ -60,10 +55,6 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 	@Override
 	public List<WorkSession> getWorkSessions(Usr user, QDate date)
 		throws WaktuException {
-
-//		if(!PermissionController.checkPermission()) {
-//			throw new WaktuException("Permission denied");
-//		}
 		
 		List<WorkSession> workSessionsByDate = new ArrayList<WorkSession>();
 		
@@ -91,29 +82,32 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 	
 	@Override
 	public List<WorkSession> getWorkSessions(WorkPackage workPackage) throws WaktuException {
-		//TODO
-		return new ArrayList<WorkSession>();
+	    List<WorkSession> workSessionsByWorkPackage = new ArrayList<WorkSession>();
+        
+        for(WorkSession ws: getAllWorkSessions()){
+            if(ws.getWorkPackage().equals(workPackage)) {
+                workSessionsByWorkPackage.add(ws);
+            }
+        }
+        return workSessionsByWorkPackage;
 	}
 
 	@Override
-	public List<WorkSession> getWorkSessions(WorkPackage workPackage, Usr user) {
-		//TODO
-		return new ArrayList<WorkSession>();
-	}
-	
-	@Override
-	public List<WorkSession> getWorkSessions(WorkPackage workPackage, QDate fromDate, QDate toDate) {
-		//TODO
-		return new ArrayList<WorkSession>();
+	public List<WorkSession> getWorkSessions(WorkPackage workPackage, Usr user) throws WaktuException {
+List<WorkSession> workSessionsByWorkPackageAndUser = new ArrayList<WorkSession>();
+        
+        for(WorkSession ws: getWorkSessions(workPackage)){
+            System.out.println("WorkPackage");
+            if(ws.getUser().equals(user)) {
+                workSessionsByWorkPackageAndUser.add(ws);
+            }
+        }
+        return workSessionsByWorkPackageAndUser;
 	}
 
 	@Override
 	public List<WorkSession> getWorkSessions(Project project)
 		throws WaktuException {
-	
-//		if(!PermissionController.checkPermission()) {
-//			throw new WaktuException("Permission denied");
-//		}
 		
 		List<WorkSession> workSessionsByProject = new ArrayList<WorkSession>();
 
