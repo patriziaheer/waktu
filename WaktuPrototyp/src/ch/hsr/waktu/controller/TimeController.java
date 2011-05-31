@@ -18,23 +18,6 @@ public class TimeController {
         
     }
 
-//	private static double calculateWorktime(Project project, Usr usr) throws WaktuException {
-//		double worktime = 0;
-//		try {
-//			for(WorkSession ws: WorkSessionController.getInstance().getWorkSessions(project, usr)) {
-//				System.out.println("calculateWorktime(): WorkSession:" + ws.toString());
-//			    worktime += TimeUtil.calculateTimespanInSeconds(ws.getStart(), ws.getEnd());
-//			}
-//		} catch (NullPointerException e) {
-//			return 0;
-//		}		
-//		return worktime/3600;
-//	}
-//		
-//	private TimeController() {
-//
-//	}
-
 	public static final double HOURS_PER_WORKDAY = 8.5;
 
 	public static double calculateWorktime(Usr usr, Project project,
