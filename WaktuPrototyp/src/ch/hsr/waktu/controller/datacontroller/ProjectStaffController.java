@@ -202,8 +202,6 @@ public class ProjectStaffController extends QSignalEmitter {
 									+ project.getId()
 									+ "' AND u.usrid = '"
 									+ user.getId() + "'").getSingleResult();
-			// ProjectStaff projectStaffToRemove = em.find(ProjectStaff.class,
-			// projStaff.getId());
 			em.remove(projectStaffToRemove);
 			em.getTransaction().commit();
 		} catch (Exception e) {

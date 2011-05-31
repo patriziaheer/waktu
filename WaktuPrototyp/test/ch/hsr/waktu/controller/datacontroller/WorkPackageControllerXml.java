@@ -1,17 +1,9 @@
 package ch.hsr.waktu.controller.datacontroller;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-import com.trolltech.qt.core.QDate;
-
-import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Project;
-import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
-import ch.hsr.waktu.domain.WorkSession;
-import ch.hsr.waktu.services.TimeUtil;
 import ch.hsr.waktu.services.WaktuException;
 import ch.hsr.waktu.services.XmlUtil;
 

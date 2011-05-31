@@ -69,7 +69,7 @@ public class TestUserControllerXml extends TestSuite {
 	
 	@After
 	public void clearReferenceUserLists() {
-		for(@SuppressWarnings("unused") Usr u: allUsersReferenceList) { //TODO references stored in users? If not: delete all u seperately
+		for(@SuppressWarnings("unused") Usr u: allUsersReferenceList) { 
 			u = null;
 		}
 		allUsersReferenceList.clear();
