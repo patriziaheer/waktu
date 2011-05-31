@@ -39,10 +39,8 @@ public class PermissionController extends QSignalEmitter {
 		try {
 			allPermissionNodes = getPermissionNodes();
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
