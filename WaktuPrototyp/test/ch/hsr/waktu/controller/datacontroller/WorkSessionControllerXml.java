@@ -97,7 +97,6 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 List<WorkSession> workSessionsByWorkPackageAndUser = new ArrayList<WorkSession>();
         
         for(WorkSession ws: getWorkSessions(workPackage)){
-            System.out.println("WorkPackage");
             if(ws.getUser().equals(user)) {
                 workSessionsByWorkPackageAndUser.add(ws);
             }

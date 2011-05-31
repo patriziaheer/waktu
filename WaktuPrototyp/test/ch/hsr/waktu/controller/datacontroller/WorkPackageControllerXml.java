@@ -40,10 +40,8 @@ private String workPackageFilePath = "./test/testdata/workpackages.xml";
 	
 	@Override
 	public WorkPackage getWorkPackage(String description) throws WaktuException {
-//	    System.out.println("getting WorkPacakge: " + description);
 		for(WorkPackage wp: getAllWorkPackages()) {
 			if(wp.getDescription().equals(description)) {
-//			    System.out.println("WorkPackage found: " + wp.toString());
 				return wp;
 			}
 		}

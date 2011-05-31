@@ -12,7 +12,7 @@ import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.domain.WorkSession;
 import ch.hsr.waktu.services.WaktuException;
 
-public final class BusinessRuleController {
+public class BusinessRuleController {
 
 	private BusinessRuleController() {
 
