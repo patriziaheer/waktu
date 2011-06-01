@@ -2,8 +2,14 @@ package ch.hsr.waktu.controller;
 
 import java.util.GregorianCalendar;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
+import ch.hsr.waktu.controller.datacontroller.ProjectController;
+import ch.hsr.waktu.controller.datacontroller.ProjectControllerXml;
+import ch.hsr.waktu.controller.datacontroller.UserController;
+import ch.hsr.waktu.controller.datacontroller.UserControllerXml;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
@@ -12,6 +18,24 @@ import ch.hsr.waktu.domain.WorkSession;
 import ch.hsr.waktu.services.WaktuException;
 
 public class TestBusinessRuleController {
+    
+    private ProjectController previousProjectController;
+    private UserController previousUserController;
+
+    @Before
+    public void before() {
+        previousProjectController = ProjectController.getInstance();
+        previousUserController = UserController.getInstance();
+        ProjectController.setInstance(new ProjectControllerXml());
+        UserController.setInstance(new UserControllerXml());
+    }
+
+    @After
+    public void after() {
+        ProjectController.setInstance(previousProjectController);
+        UserController.setInstance(previousUserController);
+    }
+    
     @Test
     public void checkUser_validUser() throws WaktuException {
         BusinessRuleController.check(new Usr("hansmuster", "Hans", "Muster",
@@ -46,8 +70,8 @@ public class TestBusinessRuleController {
 
     @Test
     public void checkProject_validProject() throws WaktuException {
-        // BusinessRuleController.check(new Project("projectID", "Test project",
-        // new Usr(), 42));
+         BusinessRuleController.check(new Project("projectID", "Test project",
+                 new Usr(), 42));
     }
 
     @Test(expected = WaktuException.class)
