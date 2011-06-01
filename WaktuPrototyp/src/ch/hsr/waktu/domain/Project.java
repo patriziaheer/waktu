@@ -91,16 +91,11 @@ public class Project {
 			if (proj.projectIdentifier.equals(projectIdentifier)
 					&& proj.description.equals(description)
 					&& proj.projectid == projectid && proj.active == active
-					&& proj.plannedTime == plannedTime /*
-														 * &&
-														 * proj.projectManager
-														 * .equals
-														 * (projectManager)
-														 */) {
+					&& proj.plannedTime == plannedTime) {
 				return true;
-			} else {
-				return false;
 			}
+			return false;
+
 		}
 		return super.equals(obj);
 	}
