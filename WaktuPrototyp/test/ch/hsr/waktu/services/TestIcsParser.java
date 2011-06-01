@@ -93,7 +93,7 @@ public class TestIcsParser extends TestSuite {
 	}
 	
 	
-	private void assertCalendarValidity(ArrayList<WorkSession> testCalendar, int noOfValidEntries) {
+	private void assertCalendarValidity(final ArrayList<WorkSession> testCalendar, final int noOfValidEntries) {
 		for(int i=0; i < noOfValidEntries; i++) {
 			assertEquals(calendar.get(i).getDescription(), testCalendar.get(i).getDescription());
 		}

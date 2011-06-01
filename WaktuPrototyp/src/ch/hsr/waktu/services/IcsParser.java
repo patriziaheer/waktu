@@ -60,7 +60,7 @@ public class IcsParser {
 	 *         file.
 	 * @throws WaktuException
 	 */
-	public static ArrayList<WorkSession> parseIcsFile(String filePath)
+	public static ArrayList<WorkSession> parseIcsFile(final String filePath)
 			throws WaktuException {
 
 		ArrayList<WorkSession> calendar = new ArrayList<WorkSession>();
@@ -128,7 +128,7 @@ public class IcsParser {
 		}
 	}
 
-	private static boolean isValidWorkSession(WorkSession workSession) {
+	private static boolean isValidWorkSession(final WorkSession workSession) {
 		if (workSession == null) {
 			return false;
 		}
@@ -147,7 +147,7 @@ public class IcsParser {
 	 *            a string beginning with an .ics tag
 	 * @return string without the tag.
 	 */
-	private static String stripTag(String stringWithTag) {
+	private static String stripTag(final String stringWithTag) {
 		return stringWithTag.split(":", 2)[1];
 	}
 

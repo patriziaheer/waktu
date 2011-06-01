@@ -17,7 +17,7 @@ public class ProjectDataView extends QWidget {
 	private Project project;
 	public Signal1<String> errorMessage = new Signal1<String>();
 
-	public ProjectDataView(Project project) {
+	public ProjectDataView(final Project project) {
 		this.project = project;
 	}
 
@@ -146,7 +146,7 @@ public class ProjectDataView extends QWidget {
 	}
 
 	@SuppressWarnings("unused")
-	private void addData(Project project) {
+	private void addData(final Project project) {
 		setFields();
 	}
 

@@ -41,7 +41,7 @@ public class LoginController {
 	 * @return boolean
 	 * @throws WaktuException
 	 */
-	public boolean login(String username, String password)
+	public boolean login(final String username, final String password)
 			throws WaktuException {
 		if (canLogin(username)) {
 			Usr user = UserController.getInstance().getUser(username);

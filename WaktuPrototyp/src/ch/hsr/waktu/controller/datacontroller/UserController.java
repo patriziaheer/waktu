@@ -34,7 +34,7 @@ public class UserController extends QSignalEmitter {
 		return theInstance;
 	}
 
-	public static void setInstance(UserController userControllerInstance) {
+	public static void setInstance(final UserController userControllerInstance) {
 		theInstance = userControllerInstance;
 	}
 
@@ -150,7 +150,7 @@ public class UserController extends QSignalEmitter {
 	 * @return boolean
 	 * @throws WaktuException
 	 */
-	public Usr getUser(String username) throws WaktuException {
+	public Usr getUser(final String username) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -183,8 +183,8 @@ public class UserController extends QSignalEmitter {
 	 * @return Usr
 	 * @throws WaktuException
 	 */
-	public Usr addUser(String firstname, String lastname, String password,
-			int pensum, SystemRole role, double holiday) throws WaktuException {
+	public Usr addUser(final String firstname, final String lastname, final String password,
+			final int pensum, final SystemRole role, final double holiday) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -217,7 +217,7 @@ public class UserController extends QSignalEmitter {
 	 * 
 	 * @param usr
 	 */
-	public void updateUser(Usr usr) throws WaktuException {
+	public void updateUser(final Usr usr) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -241,7 +241,7 @@ public class UserController extends QSignalEmitter {
 
 	}
 
-	protected String generateUsername(String firstname, String name)
+	protected String generateUsername(final String firstname, final String name)
 			throws WaktuException {
 		return UsernameUtil.generateUsername(getAllUsers(), firstname, name);
 	}

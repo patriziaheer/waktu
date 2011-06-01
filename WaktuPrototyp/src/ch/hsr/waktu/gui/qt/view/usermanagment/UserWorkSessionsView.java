@@ -27,7 +27,7 @@ public class UserWorkSessionsView extends QWidget {
 	private Usr usr;
 	public Signal1<String> errorMessage = new Signal1<String>();
 
-	public UserWorkSessionsView(Usr usr) {
+	public UserWorkSessionsView(final Usr usr) {
 		this.usr = usr;
 	}
 
@@ -159,7 +159,7 @@ public class UserWorkSessionsView extends QWidget {
 	}
 
 	@SuppressWarnings("unused")
-	private void added(WorkSession workSession) {
+	private void added(final WorkSession workSession) {
 		updateWorkSessionTable();
 	}
 
@@ -169,7 +169,7 @@ public class UserWorkSessionsView extends QWidget {
 	}
 
 	@SuppressWarnings("unused")
-	private void removed(WorkSession workSession) {
+	private void removed(final WorkSession workSession) {
 		updateWorkSessionTable();
 	}
 
@@ -195,7 +195,7 @@ public class UserWorkSessionsView extends QWidget {
 		ui.retranslateUi(this);
 	}
 
-	private void workPackageCombo(Project proj) {
+	private void workPackageCombo(final Project proj) {
 		try {
 			if (proj == null) {
 				ComboBoxData.createAllWorkPackageComboBox(ui.cmbWorkpackage);
@@ -218,7 +218,7 @@ public class UserWorkSessionsView extends QWidget {
 	}
 
 	@SuppressWarnings("unused")
-	private void workPackageAdded(WorkPackage workPackage) {
+	private void workPackageAdded(final WorkPackage workPackage) {
 		workPackageCombo((Project) ui.cmbProject.itemData(ui.cmbProject
 				.currentIndex()));
 	}
@@ -230,7 +230,7 @@ public class UserWorkSessionsView extends QWidget {
 	}
 
 	@SuppressWarnings("unused")
-	private void projectAdded(Project project) {
+	private void projectAdded(final Project project) {
 		projectCombo();
 	}
 

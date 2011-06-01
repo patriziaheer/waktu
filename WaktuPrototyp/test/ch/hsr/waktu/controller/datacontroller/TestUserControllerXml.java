@@ -120,7 +120,7 @@ public class TestUserControllerXml extends TestSuite {
 		assertEquals(null, user);
 	}
 
-	private void assertUserListEquality(LinkedList<Usr> userReferenceList, List<Usr> userList) {
+	private void assertUserListEquality(final LinkedList<Usr> userReferenceList, final List<Usr> userList) {
 		for(int i=0; i<userList.size(); i++) {
 			assertEquals(userReferenceList.get(i), userList.get(i));
 		}

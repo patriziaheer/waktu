@@ -36,7 +36,7 @@ public class WorkSessionController extends QSignalEmitter {
 		return theInstance;
 	}
 
-	public static void setInstance(WorkSessionController workSessionController) {
+	public static void setInstance(final WorkSessionController workSessionController) {
 		theInstance = workSessionController;
 	}
 
@@ -55,7 +55,7 @@ public class WorkSessionController extends QSignalEmitter {
 	 * @throws WaktuException
 	 */
 	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(Usr user) throws WaktuException {
+	public List<WorkSession> getWorkSessions(final Usr user) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -84,7 +84,7 @@ public class WorkSessionController extends QSignalEmitter {
 	 * @throws WaktuException
 	 */
 	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(Usr user, QDate date)
+	public List<WorkSession> getWorkSessions(final Usr user, final QDate date)
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
@@ -113,8 +113,8 @@ public class WorkSessionController extends QSignalEmitter {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(Usr user, QDate fromDate,
-			QDate toDate) throws WaktuException {
+	public List<WorkSession> getWorkSessions(final Usr user, final QDate fromDate,
+			final QDate toDate) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		List<WorkSession> workSessionsByUserAndDate = null;
@@ -143,7 +143,7 @@ public class WorkSessionController extends QSignalEmitter {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(WorkPackage workPackage)
+	public List<WorkSession> getWorkSessions(final WorkPackage workPackage)
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
@@ -167,7 +167,7 @@ public class WorkSessionController extends QSignalEmitter {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(WorkPackage workPackage, Usr usr)
+	public List<WorkSession> getWorkSessions(final WorkPackage workPackage, final Usr usr)
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
@@ -194,8 +194,8 @@ public class WorkSessionController extends QSignalEmitter {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(WorkPackage workPackage,
-			QDate fromDate, QDate toDate) throws WaktuException {
+	public List<WorkSession> getWorkSessions(final WorkPackage workPackage,
+			final QDate fromDate, final QDate toDate) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		List<WorkSession> workSessionsByDateAndWorkPackage = null;
@@ -223,7 +223,7 @@ public class WorkSessionController extends QSignalEmitter {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(Project project)
+	public List<WorkSession> getWorkSessions(final Project project)
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
@@ -248,7 +248,7 @@ public class WorkSessionController extends QSignalEmitter {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(Project project, Usr usr)
+	public List<WorkSession> getWorkSessions(final Project project, final Usr usr)
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
@@ -283,8 +283,8 @@ public class WorkSessionController extends QSignalEmitter {
 	 * @throws WaktuException
 	 */
 	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(Project project, QDate start,
-			QDate end) throws WaktuException {
+	public List<WorkSession> getWorkSessions(final Project project, final QDate start,
+			final QDate end) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		List<WorkSession> workSessionsByDate = null;
@@ -321,8 +321,8 @@ public class WorkSessionController extends QSignalEmitter {
 	 * @throws WaktuException
 	 */
 	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(Project project, Usr usr,
-			QDate start, QDate end) throws WaktuException {
+	public List<WorkSession> getWorkSessions(final Project project, final Usr usr,
+			final QDate start, final QDate end) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		List<WorkSession> workSessionsByDate = null;
@@ -359,9 +359,9 @@ public class WorkSessionController extends QSignalEmitter {
 	 * @param endTime
 	 * @throws WaktuException
 	 */
-	public WorkSession addWorkSession(Usr user, WorkPackage workPackage,
-			GregorianCalendar startTime, GregorianCalendar endTime,
-			String description) throws WaktuException {
+	public WorkSession addWorkSession(final Usr user, final WorkPackage workPackage,
+			final GregorianCalendar startTime, final GregorianCalendar endTime,
+			final String description) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 		WorkSession newWorkSession = new WorkSession(user, workPackage,
@@ -393,7 +393,7 @@ public class WorkSessionController extends QSignalEmitter {
 		return newWorkSession;
 	}
 
-	public void updateWorkSession(WorkSession workSession)
+	public void updateWorkSession(final WorkSession workSession)
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
@@ -427,7 +427,7 @@ public class WorkSessionController extends QSignalEmitter {
 	 * 
 	 * @param workSession
 	 */
-	public void removeWorkSession(WorkSession workSession)
+	public void removeWorkSession(final WorkSession workSession)
 			throws WaktuException {
 
 		if (!PermissionController.getInstance().checkPermission()) {

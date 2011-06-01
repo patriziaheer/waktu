@@ -94,7 +94,7 @@ public class LoginView extends QDialog {
 		}
 	}
 
-	private void setStatus(String text) {
+	private void setStatus(final String text) {
 		ui.lblStatus.setText(text);
 		QPalette palette = ui.lblStatus.palette();
 		palette.setBrush(ColorRole.WindowText, new QBrush(QColor.red));

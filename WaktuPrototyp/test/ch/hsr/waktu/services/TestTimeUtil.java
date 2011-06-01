@@ -72,8 +72,8 @@ public class TestTimeUtil extends TestSuite {
 				new QDate(2008, 3, 1)));
 	}
 
-	private void assertBoundaryEquality(QDate[] refStartDateEndDate,
-			QDate[] weekBoundaries) {
+	private void assertBoundaryEquality(final QDate[] refStartDateEndDate,
+			final QDate[] weekBoundaries) {
 			for(int i=0; i < 2; i++) {
 				assertEquals(refStartDateEndDate[i], weekBoundaries[i]);
 			}

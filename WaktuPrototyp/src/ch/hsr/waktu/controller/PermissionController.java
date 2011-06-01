@@ -14,11 +14,6 @@ import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
 
-/**
- * @author pheer
- * @version 1.0
- * 
- */
 public class PermissionController extends QSignalEmitter {
 
 	private static Logger logger = Logger.getLogger(PermissionController.class);
@@ -60,7 +55,7 @@ public class PermissionController extends QSignalEmitter {
 		return permissions;
 	}
 
-	public Permission addPermission(SystemRole systemRole) throws WaktuException {
+	public Permission addPermission(final SystemRole systemRole) throws WaktuException {
 
 		Permission newPermission = new Permission(systemRole);
 		EntityManager em = PersistenceController.getInstance().getEMF()
@@ -108,7 +103,7 @@ public class PermissionController extends QSignalEmitter {
 		return checkPermission(trace[1].getMethodName());
 	}
 
-	public boolean checkPermission(String method) throws WaktuException {
+	public boolean checkPermission(final String method) throws WaktuException {
 		boolean permission = false;
 		try {
 			for (PermissionNode pn : allPermissionNodes) {
@@ -138,8 +133,8 @@ public class PermissionController extends QSignalEmitter {
 
 class PermissionNode {
 
-	public PermissionNode(SystemRole systemRole, String method,
-			boolean permission) {
+	public PermissionNode(final SystemRole systemRole, final String method,
+			final boolean permission) {
 		this.systemRole = systemRole;
 		this.method = method;
 		this.permission = permission;

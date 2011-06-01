@@ -31,7 +31,7 @@ public class ProjectController extends QSignalEmitter {
 		return theInstance;
 	}
 
-	public static void setInstance(ProjectController projectControllerInstance) {
+	public static void setInstance(final ProjectController projectControllerInstance) {
 		theInstance = projectControllerInstance;
 	}
 
@@ -75,7 +75,7 @@ public class ProjectController extends QSignalEmitter {
 	 */
 	
 	@SuppressWarnings("unchecked")
-	public List<Project> getActiveProjects(Usr usr) throws WaktuException {
+	public List<Project> getActiveProjects(final Usr usr) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -147,7 +147,7 @@ public class ProjectController extends QSignalEmitter {
 		return allInactiveProjects;
 	}
 
-	public Project getProject(int projectId) throws WaktuException {
+	public Project getProject(final int projectId) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -175,8 +175,8 @@ public class ProjectController extends QSignalEmitter {
 	 * @param plannedTime
 	 * @throws WaktuException
 	 */
-	public Project addProject(String projectIdentifier, String description,
-			Usr projectManager, int plannedTime) throws WaktuException {
+	public Project addProject(final String projectIdentifier, final String description,
+			final Usr projectManager, final int plannedTime) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -209,7 +209,7 @@ public class ProjectController extends QSignalEmitter {
 	 * @param project
 	 */
 
-	public void updateProject(Project project) throws WaktuException {
+	public void updateProject(final Project project) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -232,7 +232,7 @@ public class ProjectController extends QSignalEmitter {
 		logger.info("project " + project + " updated");
 	}
 
-	public Project getProject(String projectIdentifier) throws WaktuException {
+	public Project getProject(final String projectIdentifier) throws WaktuException {
 		// TODO Auto-generated method stub
 		return null;
 	}

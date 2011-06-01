@@ -61,7 +61,7 @@ public class TimeView extends QMainWindow {
 	private ManagmentView managmentView;
 	private CalendarWidget calendar;
 
-	public TimeView(Usr usr) {
+	public TimeView(final Usr usr) {
 		currUser = usr;
 		managmentView = new ManagmentView(currUser);
 		calendar = new CalendarWidget();
@@ -170,7 +170,7 @@ public class TimeView extends QMainWindow {
 		updateTimeInfos();
 	}
 
-	private void setStatusBarText(String text) {
+	private void setStatusBarText(final String text) {
 		ui.statusBar.showMessage(text, 5000);
 		QPalette palette = ui.statusBar.palette();
 		palette.setBrush(ColorRole.WindowText, new QBrush(QColor.red));
@@ -491,7 +491,7 @@ public class TimeView extends QMainWindow {
 	}
 
 	@SuppressWarnings("unused")
-	private void favoriteAdded(Favorite favorite) {
+	private void favoriteAdded(final Favorite favorite) {
 		updateFavoriteTable();
 		updateTimeInfos();
 	}
@@ -503,13 +503,13 @@ public class TimeView extends QMainWindow {
 	}
 
 	@SuppressWarnings("unused")
-	private void favoriteRemoved(Favorite favorite) {
+	private void favoriteRemoved(final Favorite favorite) {
 		updateFavoriteTable();
 		updateTimeInfos();
 	}
 
 	@SuppressWarnings("unused")
-	private void workSessionAdded(WorkSession workSession) {
+	private void workSessionAdded(final WorkSession workSession) {
 		updateWorkSessionTable();
 		updateTimeInfos();
 	}
@@ -520,13 +520,13 @@ public class TimeView extends QMainWindow {
 	}
 
 	@SuppressWarnings("unused")
-	private void workSessionRemoved(WorkSession workSession) {
+	private void workSessionRemoved(final WorkSession workSession) {
 		updateWorkSessionTable();
 		updateTimeInfos();
 	}
 
 	@SuppressWarnings("unused")
-	private void workSessionEditClicked(IndexButton btn) {
+	private void workSessionEditClicked(final IndexButton btn) {
 		logger.info("EditClicked for " + btn);
 		if (workSessionModel.getEditable() != null
 				&& EditStatus.Edit == btn.getStatus()) {
@@ -555,7 +555,7 @@ public class TimeView extends QMainWindow {
 	}
 
 	@SuppressWarnings("unused")
-	private void workSessionDeleteClicked(IndexButton btn) {
+	private void workSessionDeleteClicked(final IndexButton btn) {
 		logger.info("EditClicked for " + btn);
 		try {
 			WorkSessionController.getInstance().removeWorkSession(
@@ -571,7 +571,7 @@ public class TimeView extends QMainWindow {
 	}
 
 	@SuppressWarnings("unused")
-	private void favoriteEditClicked(IndexButton btn) {
+	private void favoriteEditClicked(final IndexButton btn) {
 		logger.info("EditClicked for favorite " + btn);
 		if (favoriteModel.getEditable() != null
 				&& EditStatus.Edit == btn.getStatus()) {
@@ -595,7 +595,7 @@ public class TimeView extends QMainWindow {
 	}
 
 	@SuppressWarnings("unused")
-	private void favoriteDeleteClicked(IndexButton btn) {
+	private void favoriteDeleteClicked(final IndexButton btn) {
 		logger.info("EditClicked for favorite " + btn);
 		try {
 			FavoriteController.getInstance().removeFavorite(
@@ -632,12 +632,12 @@ public class TimeView extends QMainWindow {
 	}
 
 	@Override
-	protected void closeEvent(QCloseEvent arg__1) {
+	protected void closeEvent(final QCloseEvent arg__1) {
 		QApplication.exit();
 	}
 
 	@Override
-	protected void contextMenuEvent(QContextMenuEvent event) {
+	protected void contextMenuEvent(final QContextMenuEvent event) {
 		QMenu menu = new QMenu(this);
 
 		QAction addToFavorites = new QAction(QCoreApplication.translate(
@@ -691,12 +691,12 @@ public class TimeView extends QMainWindow {
 	}
 
 	@SuppressWarnings("unused")
-	private void projectStaffChanged(ProjectStaff projectStaff) {
+	private void projectStaffChanged(final ProjectStaff projectStaff) {
 		projectCombo();
 	}
 
 	@SuppressWarnings("unused")
-	private void projectsAdded(Project project) {
+	private void projectsAdded(final Project project) {
 		projectCombo();
 	}
 
@@ -706,7 +706,7 @@ public class TimeView extends QMainWindow {
 	}
 
 	@SuppressWarnings("unused")
-	private void workPackageAdded(WorkPackage workPackage) {
+	private void workPackageAdded(final WorkPackage workPackage) {
 		workPackageCombo();
 	}
 

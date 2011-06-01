@@ -79,7 +79,7 @@ public class WorkSession {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (obj instanceof WorkSession) {
 			WorkSession ws = (WorkSession)obj;
 			if (ws.id == id &&

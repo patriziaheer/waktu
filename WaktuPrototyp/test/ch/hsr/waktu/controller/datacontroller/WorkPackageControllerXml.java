@@ -19,7 +19,7 @@ private String workPackageFilePath = "./test/testdata/workpackages.xml";
 		return theInstance;
 	}
 	
-	public static void setInstance(
+	public static void setInstance( final
 			WorkPackageControllerXml workSessionControllerInstance) {
 		theInstance = workSessionControllerInstance;
 	}
@@ -34,12 +34,12 @@ private String workPackageFilePath = "./test/testdata/workpackages.xml";
 	}
 	
 	@Override
-	public List<WorkPackage> getAllWorkPackages(Project project) throws WaktuException {
+	public List<WorkPackage> getAllWorkPackages(final Project project) throws WaktuException {
 		return null;
 	}
 	
 	@Override
-	public WorkPackage getWorkPackage(String description) throws WaktuException {
+	public WorkPackage getWorkPackage(final String description) throws WaktuException {
 		for(WorkPackage wp: getAllWorkPackages()) {
 			if(wp.getDescription().equals(description)) {
 				return wp;

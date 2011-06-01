@@ -20,8 +20,8 @@ public class TimeController {
 
 	public static final double HOURS_PER_WORKDAY = 8.5;
 
-	public static double calculateWorktime(Usr usr, Project project,
-			WorkPackage workPackage, QDate start, QDate end)
+	public static double calculateWorktime(final Usr usr, final Project project,
+			final WorkPackage workPackage, final QDate start, final QDate end)
 			throws WaktuException {
 		double worktime = 0;
 		List<WorkSession> workSessions = null;
@@ -63,37 +63,37 @@ public class TimeController {
 		return roundToTenth(worktime / 3600);
 	}
 
-	public static double calculateOvertime(Usr user, QDate fromDate,
-			QDate toDate) throws WaktuException {
+	public static double calculateOvertime(final Usr user, final QDate fromDate,
+			final QDate toDate) throws WaktuException {
 		return calculateWorktime(user, null, null, fromDate, toDate)
 				- getPlannedTime(user, fromDate, toDate);
 	}
 
-	public static double calculateWorktimeForWeek(Usr user, QDate date)
+	public static double calculateWorktimeForWeek(final Usr user, final QDate date)
 			throws WaktuException {
 		QDate[] weekStartDateEndDate = TimeUtil.getWeekBoundaries(date);
 		return calculateWorktime(user, null, null, weekStartDateEndDate[0],
 				weekStartDateEndDate[1]);
 	}
 
-	public static double calculateWorktimeForMonth(Usr user, QDate date)
+	public static double calculateWorktimeForMonth(final Usr user, final QDate date)
 			throws WaktuException {
 		QDate[] monthStartDateEndDate = TimeUtil.getMonthBoundaries(date);
 		return calculateWorktime(user, null, null, monthStartDateEndDate[0],
 				monthStartDateEndDate[1]);
 	}
 
-	public static double getPlannedTime(Usr user, QDate currMonth) {
+	public static double getPlannedTime(final Usr user, final QDate currMonth) {
 		return roundToTenth(getNumberOfWorkdaysForMonth(user, currMonth)
 				* HOURS_PER_WORKDAY);
 	}
 
-	public static double getPlannedTime(Usr user, QDate fromDate, QDate toDate) {
+	public static double getPlannedTime(final Usr user, final QDate fromDate, final QDate toDate) {
 		return roundToTenth(getNumberOfWorkdays(user, fromDate, toDate)
 				* HOURS_PER_WORKDAY);
 	}
 
-	private static double getNumberOfWorkdaysForMonth(Usr user, QDate currMonth) {
+	private static double getNumberOfWorkdaysForMonth(final Usr user, final QDate currMonth) {
 		return user.getPensum()
 				/ 100.0
 				* getNumberOfWorkdays(user,
@@ -101,8 +101,8 @@ public class TimeController {
 						TimeUtil.getMonthBoundaries(currMonth)[1]);
 	}
 
-	private static double getNumberOfWorkdays(Usr user, QDate fromDate,
-			QDate toDate) {
+	private static double getNumberOfWorkdays(final Usr user, final QDate fromDate,
+			final QDate toDate) {
 		int days = 0;
 		for (QDate d = fromDate; d.compareTo(toDate) <= 0; d = d.addDays(1)) {
 			if (d.dayOfWeek() != 6 && d.dayOfWeek() != 7) {
@@ -112,7 +112,7 @@ public class TimeController {
 		return user.getPensum() / 100.0 * days;
 	}
 
-	private static double roundToTenth(double d) {
+	private static double roundToTenth(final double d) {
 		return Math.round(d * 10.) / 10.;
 	}
 

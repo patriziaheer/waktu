@@ -45,7 +45,7 @@ public class WorkPackageController extends QSignalEmitter {
 	 * @return WorkPackage workPackage
 	 * @throws WaktuException
 	 */
-	public WorkPackage getWorkPackage(int workPackageId) throws WaktuException {
+	public WorkPackage getWorkPackage(final int workPackageId) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -70,7 +70,7 @@ public class WorkPackageController extends QSignalEmitter {
 	 * @throws WaktuException
 	 */
 	@SuppressWarnings("unchecked")
-	public List<WorkPackage> getActiveWorkPackages(Project project)
+	public List<WorkPackage> getActiveWorkPackages(final Project project)
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
@@ -102,7 +102,7 @@ public class WorkPackageController extends QSignalEmitter {
 	 * @throws WaktuException
 	 */
 	@SuppressWarnings("unchecked")
-	public List<WorkPackage> getAllWorkPackages(Project project)
+	public List<WorkPackage> getAllWorkPackages(final Project project)
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
@@ -159,7 +159,7 @@ public class WorkPackageController extends QSignalEmitter {
 	 * @throws WaktuException
 	 */
 	@SuppressWarnings("unchecked")
-	public List<WorkPackage> getInactiveWorkPackages(Project project)
+	public List<WorkPackage> getInactiveWorkPackages(final Project project)
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
@@ -189,7 +189,7 @@ public class WorkPackageController extends QSignalEmitter {
 	 * @param description
 	 * @throws WaktuException
 	 */
-	public WorkPackage addWorkPackage(Project project, String description)
+	public WorkPackage addWorkPackage(final Project project, final String description)
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
@@ -220,7 +220,7 @@ public class WorkPackageController extends QSignalEmitter {
 	 * @param workPackage
 	 * @throws WaktuException
 	 */
-	public void updateWorkPackage(WorkPackage workPackage)
+	public void updateWorkPackage(final WorkPackage workPackage)
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
@@ -243,13 +243,13 @@ public class WorkPackageController extends QSignalEmitter {
 		logger.info("workPackage " + workPackage + " updated");
 	}
 
-	public WorkPackage getWorkPackage(String description) throws WaktuException {
+	public WorkPackage getWorkPackage(final String description) throws WaktuException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
     public static void setInstance(
-            WorkPackageController workPackageController) {
+            final WorkPackageController workPackageController) {
         theInstance = workPackageController;
     }
 

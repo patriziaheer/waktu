@@ -110,7 +110,7 @@ public class GuiController {
 	 * @param usrToModify
 	 * @return A boolean if the logged in usr can change the password
 	 */
-	public boolean canModifyUser(Usr usrToModify) {
+	public boolean canModifyUser(final Usr usrToModify) {
 		boolean permission = false;
 		try {
 			permission = PermissionController.getInstance().checkPermission(
@@ -133,7 +133,7 @@ public class GuiController {
 	 * @param project
 	 * @return A boolean if can add a work package
 	 */
-	public boolean canAddWorkPackage(Project project) {
+	public boolean canAddWorkPackage(final Project project) {
 		boolean permission = false;
 		try {
 			permission = PermissionController.getInstance().checkPermission(

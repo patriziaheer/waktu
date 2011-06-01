@@ -21,7 +21,7 @@ public class UserDataView extends QWidget {
 	private Usr usr;
 	public Signal1<String> errorMessage = new Signal1<String>();
 
-	public UserDataView(Usr user) {
+	public UserDataView(final Usr user) {
 		this.usr = user;
 	}
 
@@ -192,7 +192,7 @@ public class UserDataView extends QWidget {
 	}
 
 	@SuppressWarnings("unused")
-	private void addData(Usr usr) {
+	private void addData(final Usr usr) {
 		setFields();
 	}
 
@@ -223,7 +223,7 @@ public class UserDataView extends QWidget {
 	}
 
 	@SuppressWarnings("unused")
-	private void workSessionChanged(WorkSession workSession) {
+	private void workSessionChanged(final WorkSession workSession) {
 		if (usr != null) {
 			updateTimeInfos();
 		}

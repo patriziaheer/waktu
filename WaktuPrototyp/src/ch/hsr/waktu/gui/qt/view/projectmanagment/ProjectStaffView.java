@@ -25,7 +25,7 @@ public class ProjectStaffView extends QWidget {
 	private ProjectStaffModel projectStaffModel;
 	public Signal1<String> errorMessage = new Signal1<String>();
 
-	public ProjectStaffView(Project project) {
+	public ProjectStaffView(final Project project) {
 		this.project = project;
 
 	}
@@ -91,7 +91,7 @@ public class ProjectStaffView extends QWidget {
 	}
 
 	@SuppressWarnings("unused")
-	private void deleteClicked(IndexButton btn) {
+	private void deleteClicked(final IndexButton btn) {
 		try {
 			Usr user = ProjectStaffController.getInstance().getUsers(project)
 					.get(btn.getIndex().row());
@@ -115,12 +115,12 @@ public class ProjectStaffView extends QWidget {
 	}
 
 	@SuppressWarnings("unused")
-	private void added(ProjectStaff projectStaff) {
+	private void added(final ProjectStaff projectStaff) {
 		updateData();
 	}
 
 	@SuppressWarnings("unused")
-	private void removed(ProjectStaff projectStaff) {
+	private void removed(final ProjectStaff projectStaff) {
 		updateData();
 	}
 
@@ -159,7 +159,7 @@ public class ProjectStaffView extends QWidget {
 	}
 
 	@SuppressWarnings("unused")
-	private void userAdded(Usr usr) {
+	private void userAdded(final Usr usr) {
 		updateData();
 	}
 

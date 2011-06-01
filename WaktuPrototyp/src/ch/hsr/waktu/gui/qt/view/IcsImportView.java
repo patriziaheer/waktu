@@ -19,7 +19,7 @@ public class IcsImportView extends QWidget {
 	private QTabWidget tabWidget;
 	private QLabel lblStatus;
 
-	public IcsImportView(String path) {
+	public IcsImportView(final String path) {
 		setWindowTitle("ICS Import");
 		QVBoxLayout gLayout = new QVBoxLayout();
 		this.setLayout(gLayout);
@@ -48,7 +48,7 @@ public class IcsImportView extends QWidget {
 	}
 
 	@SuppressWarnings("unused")
-	private void closeTab(IcsImportDetailView icsImportDetailView) {
+	private void closeTab(final IcsImportDetailView icsImportDetailView) {
 		if (tabWidget.count() > 1) {
 			tabWidget.removeTab(tabWidget.indexOf(icsImportDetailView));
 		} else {
@@ -56,7 +56,7 @@ public class IcsImportView extends QWidget {
 		}
 	}
 
-	private void setErrorMessage(String errorMessage) {
+	private void setErrorMessage(final String errorMessage) {
 		lblStatus.setText(errorMessage);
 		QPalette palette = lblStatus.palette();
 		palette.setBrush(ColorRole.WindowText, new QBrush(QColor.red));

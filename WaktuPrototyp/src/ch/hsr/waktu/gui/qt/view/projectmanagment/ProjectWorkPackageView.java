@@ -23,7 +23,7 @@ public class ProjectWorkPackageView extends QWidget {
 	private ProjectWorkPackageModel workPackageModel;
 	public Signal1<String> errorMessage = new Signal1<String>();
 
-	public ProjectWorkPackageView(Project project) {
+	public ProjectWorkPackageView(final Project project) {
 		this.project = project;
 	}
 
@@ -103,7 +103,7 @@ public class ProjectWorkPackageView extends QWidget {
 	}
 
 	@SuppressWarnings("unused")
-	private void addData(WorkPackage workPackage) {
+	private void addData(final WorkPackage workPackage) {
 		updateTable();
 	}
 
@@ -117,7 +117,7 @@ public class ProjectWorkPackageView extends QWidget {
 		ui.retranslateUi(this);
 	}
 
-	private void showErrorMessage(String errorMessageString) {
+	private void showErrorMessage(final String errorMessageString) {
 		errorMessage.emit(errorMessageString);
 	}
 

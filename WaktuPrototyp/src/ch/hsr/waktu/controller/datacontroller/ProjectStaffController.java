@@ -44,7 +44,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	 * @param user
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Project> getProjects(Usr user) throws WaktuException {
+	public List<Project> getProjects(final Usr user) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -70,7 +70,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Project> getProjectsWhereUserIsNotMember(Usr user)
+	public List<Project> getProjectsWhereUserIsNotMember(final Usr user)
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
@@ -101,7 +101,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	 * @param project
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Usr> getUsers(Project project) throws WaktuException {
+	public List<Usr> getUsers(final Project project) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -125,7 +125,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Usr> getUsersNotMemberOf(Project project) throws WaktuException {
+	public List<Usr> getUsersNotMemberOf(final Project project) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -153,7 +153,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	 * @param user
 	 * @param project
 	 */
-	public ProjectStaff addProjectStaff(Usr user, Project project)
+	public ProjectStaff addProjectStaff(final Usr user, final Project project)
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
@@ -184,7 +184,7 @@ public class ProjectStaffController extends QSignalEmitter {
 	 * @param project
 	 * @throws WaktuException
 	 */
-	public void removeUser(Usr user, Project project) throws WaktuException {
+	public void removeUser(final Usr user, final Project project) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 

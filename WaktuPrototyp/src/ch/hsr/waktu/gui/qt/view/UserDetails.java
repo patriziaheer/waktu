@@ -130,7 +130,7 @@ public class UserDetails extends QWidget {
 	}
 
 	@SuppressWarnings("unused")
-	private void addData(Usr user) {
+	private void addData(final Usr user) {
 		updateTable();
 	}
 
@@ -172,11 +172,11 @@ public class UserDetails extends QWidget {
 		ui.retranslateUi(this);
 	}
 
-	private void showErrorMessage(String errorMessageString) {
+	private void showErrorMessage(final String errorMessageString) {
 		errorMessage.emit(errorMessageString);
 	}
 
-	public void showInactive(boolean inactivs) {
+	public void showInactive(final boolean inactivs) {
 		userTreeModel.setShowInactivs(inactivs);
 		updateTable();
 	}

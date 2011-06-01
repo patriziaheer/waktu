@@ -22,7 +22,7 @@ public class ManagmentView extends QMainWindow {
 	private UserDetails userDetails;
 	public Signal0 logout = new Signal0();
 
-	public ManagmentView(Usr usr) {
+	public ManagmentView(final Usr usr) {
 		ui.setupUi(this);
 		ui.tabWidget.removeTab(0);
 		projectDetails = new ProjectDetails();
@@ -100,7 +100,7 @@ public class ManagmentView extends QMainWindow {
 				QCoreApplication.translate("ManagmentView", "Users"));
 	}
 
-	private void setStatusBarText(String text) {
+	private void setStatusBarText(final String text) {
 		ui.statusBar.showMessage(text, 2000);
 		QPalette palette = ui.statusBar.palette();
 		palette.setBrush(ColorRole.WindowText, new QBrush(QColor.red));
@@ -108,12 +108,12 @@ public class ManagmentView extends QMainWindow {
 	}
 
 	@SuppressWarnings("unused")
-	private void showErrorMessage(String errorMessage) {
+	private void showErrorMessage(final String errorMessage) {
 		setStatusBarText(errorMessage);
 	}
 
 	@Override
-	protected void contextMenuEvent(QContextMenuEvent event) {
+	protected void contextMenuEvent(final QContextMenuEvent event) {
 		QMenu menu = new QMenu(this);
 		QAction actionAddProject = new QAction(QCoreApplication.translate(
 				"ManagmentView", "Add Project"), menu);

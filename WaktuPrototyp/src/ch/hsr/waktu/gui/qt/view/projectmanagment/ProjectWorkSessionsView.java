@@ -27,7 +27,7 @@ public class ProjectWorkSessionsView extends QWidget {
 	private TableSortFilterModel filterModel = new TableSortFilterModel();
 	public Signal1<String> errorMessage = new Signal1<String>();
 
-	public ProjectWorkSessionsView(Project project) {
+	public ProjectWorkSessionsView(final Project project) {
 		this.project = project;
 	}
 
@@ -142,7 +142,7 @@ public class ProjectWorkSessionsView extends QWidget {
 	}
 
 	@SuppressWarnings("unused")
-	private void added(WorkSession workSession) {
+	private void added(final WorkSession workSession) {
 		updateWorkSessionTable();
 	}
 
@@ -152,7 +152,7 @@ public class ProjectWorkSessionsView extends QWidget {
 	}
 
 	@SuppressWarnings("unused")
-	private void removed(WorkSession workSession) {
+	private void removed(final WorkSession workSession) {
 		updateWorkSessionTable();
 	}
 

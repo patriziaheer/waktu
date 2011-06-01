@@ -22,7 +22,7 @@ public class UserControllerXml extends UserController {
 		return theInstance;
 	}
 	
-	public static void setInstance(
+	public static void setInstance( final
 			UserControllerXml userControllerInstance) {
 		theInstance = userControllerInstance;
 	}
@@ -30,16 +30,6 @@ public class UserControllerXml extends UserController {
 	public UserControllerXml() {
 		
 	}
-	
-//	@Override
-//	public Usr addUser(String firstname, String lastname, String password,
-//			int pensum, SystemRole role, double holiday) throws WaktuException {
-//		LinkedList<Usr> allUsers = getAllUsers();
-//		Usr newUser = new Usr(UsernameUtil.generateUsername(getAllUsers(), firstname, lastname), firstname, lastname, password, pensum, role, holiday);
-//		allUsers.add(newUser);
-//		XmlUtil.saveUsersToXml(userFilePath, allUsers);
-//		return newUser;
-//	}
 
 	@Override
 	public LinkedList<Usr> getActiveUsers() throws WaktuException {
@@ -80,7 +70,7 @@ public class UserControllerXml extends UserController {
 	}
 
 	@Override
-	public Usr getUser(String username) throws WaktuException {
+	public Usr getUser(final String username) throws WaktuException {
 		for(Usr u: getAllUsers()) {
 			if(u.getUsername().equals(username)) {
 				return u;

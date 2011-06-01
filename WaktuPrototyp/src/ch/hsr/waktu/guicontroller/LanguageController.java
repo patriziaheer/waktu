@@ -50,7 +50,7 @@ public class LanguageController extends QSignalEmitter {
 	 * Changes the selected language to currlanguage
 	 * @param currLanguage
 	 */
-	public void setCurrLanguage(Language currLanguage) {
+	public void setCurrLanguage(final Language currLanguage) {
 		this.currLanguage = currLanguage;
 		changeLanguage();
 	}

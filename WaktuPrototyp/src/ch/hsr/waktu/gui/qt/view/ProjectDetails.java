@@ -143,7 +143,7 @@ public class ProjectDetails extends QWidget {
 	}
 
 	@SuppressWarnings("unused")
-	private void addData(Project project) {
+	private void addData(final Project project) {
 		updateTable();
 	}
 
@@ -184,11 +184,11 @@ public class ProjectDetails extends QWidget {
 		ui.retranslateUi(this);
 	}
 
-	private void showErrorMessage(String errorMessageString) {
+	private void showErrorMessage(final String errorMessageString) {
 		errorMessage.emit(errorMessageString);
 	}
 
-	public void showInactive(boolean inactivs) {
+	public void showInactive(final boolean inactivs) {
 		projectTreeModel.setShowInactivs(inactivs);
 		updateTable();
 	}

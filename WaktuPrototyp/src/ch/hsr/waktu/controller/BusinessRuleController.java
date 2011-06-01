@@ -74,7 +74,7 @@ public class BusinessRuleController {
 	 * @param workPackage
 	 * @throws WaktuException
 	 */
-	public static void check(WorkSession workPackage) throws WaktuException {
+	public static void check(final WorkSession workPackage) throws WaktuException {
 
 		if (workPackage.getStart().after(workPackage.getEnd())) {
 			logger.info("Start time is after end time");

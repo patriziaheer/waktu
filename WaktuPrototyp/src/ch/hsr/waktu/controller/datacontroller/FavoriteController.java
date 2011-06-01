@@ -48,7 +48,7 @@ public class FavoriteController extends QSignalEmitter {
 	 * @throws WaktuException
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Favorite> getFavorites(Usr user) throws WaktuException {
+	public List<Favorite> getFavorites(final Usr user) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -75,8 +75,8 @@ public class FavoriteController extends QSignalEmitter {
 	 * @param startTime
 	 * @param endTime
 	 */
-	public Favorite addFavorite(Usr user, WorkPackage workPackage,
-			GregorianCalendar startTime, GregorianCalendar endTime)
+	public Favorite addFavorite(final Usr user, final WorkPackage workPackage,
+			final GregorianCalendar startTime, final GregorianCalendar endTime)
 			throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
@@ -109,7 +109,7 @@ public class FavoriteController extends QSignalEmitter {
 	 * @throws WaktuException
 	 */
 
-	public void updateFavorite(Favorite favorite) throws WaktuException {
+	public void updateFavorite(final Favorite favorite) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
@@ -137,7 +137,7 @@ public class FavoriteController extends QSignalEmitter {
 	 * @throws WaktuException
 	 */
 
-	public void removeFavorite(Favorite favorite) throws WaktuException {
+	public void removeFavorite(final Favorite favorite) throws WaktuException {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 

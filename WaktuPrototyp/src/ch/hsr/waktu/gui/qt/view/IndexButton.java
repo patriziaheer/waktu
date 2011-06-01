@@ -17,11 +17,11 @@ public class IndexButton extends QPushButton {
 	private QModelIndex index;
 	private EditStatus status;
 
-	public IndexButton(QModelIndex index) {
+	public IndexButton(final QModelIndex index) {
 		this("", index);
 	}
 
-	public IndexButton(String text, QModelIndex index) {
+	public IndexButton(final String text, final QModelIndex index) {
 		super(text);
 		clicked.connect(this, "clicked()");
 		this.index = index;
@@ -42,7 +42,7 @@ public class IndexButton extends QPushButton {
 		return status;
 	}
 
-	public void setStatus(EditStatus status) {
+	public void setStatus(final EditStatus status) {
 		this.status = status;
 	}
 

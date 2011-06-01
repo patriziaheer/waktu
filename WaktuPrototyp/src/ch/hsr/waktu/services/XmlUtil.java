@@ -47,7 +47,7 @@ public class XmlUtil {
 		}
 	}
 
-	   public static LinkedList<Usr> getUsersFromXml(String filePath) throws WaktuException {
+	   public static LinkedList<Usr> getUsersFromXml(final String filePath) throws WaktuException {
 
        LinkedList<Usr> users = new LinkedList<Usr>();
     
@@ -72,7 +72,7 @@ public class XmlUtil {
        return users;
 	}
 
-	public static void saveWorkSessionsToXml(String filePath,
+	public static void saveWorkSessionsToXml(final String filePath, final
 			LinkedList<WorkSession> workSessions) {
 
 	}
@@ -187,7 +187,7 @@ public class XmlUtil {
 		return new Double(getTextContentOf(element, name));
 	}
 
-	private static SystemRole getSystemRoleContentOf(Node element, String name) {
+	private static SystemRole getSystemRoleContentOf(final Node element, final String name) {
 		for (SystemRole sr : SystemRole.values()) {
 			if (sr.toString().equalsIgnoreCase(getTextContentOf(element, name))) {
 				return sr;

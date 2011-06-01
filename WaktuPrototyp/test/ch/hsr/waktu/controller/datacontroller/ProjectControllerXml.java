@@ -11,7 +11,7 @@ public class ProjectControllerXml extends ProjectController {
 	private static final String projectFilePath = "./test/testdata/projects.xml";
 
 	@Override
-	public Project getProject(String projectIdentifier) throws WaktuException {
+	public Project getProject(final String projectIdentifier) throws WaktuException {
 		for(Project p: getAllProjects()) {
 			if(p.getProjectIdentifier().equals(projectIdentifier)) {
 				return p;

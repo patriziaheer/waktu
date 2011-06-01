@@ -18,7 +18,7 @@ public class IcsImportDetailView extends QWidget {
 	public Signal1<String> errorMessage = new Signal1<String>();
 	public Signal1<IcsImportDetailView> closeMe = new Signal1<IcsImportDetailView>();
 
-	public IcsImportDetailView(WorkSession workSession) {
+	public IcsImportDetailView(final WorkSession workSession) {
 		this.workSession = workSession;
 	}
 

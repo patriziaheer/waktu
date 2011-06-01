@@ -20,7 +20,7 @@ public class PersistenceController {
 		return theInstance;
 	}
 
-	public static void setInstance(String persistenceUnit) {
+	public static void setInstance(final String persistenceUnit) {
 		if(theInstance == null) {
 			theInstance = new PersistenceController();
 			PERSISTENCE_UNIT_NAME = persistenceUnit;			

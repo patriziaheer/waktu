@@ -25,7 +25,7 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 		return theInstance;
 	}
 	
-	public static void setInstance(
+	public static void setInstance( final
 			WorkSessionControllerXml workSessionControllerInstance) {
 		theInstance = workSessionControllerInstance;
 	}
@@ -39,7 +39,7 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 	}
 	
 	@Override
-	public List<WorkSession> getWorkSessions(Usr user) throws WaktuException {
+	public List<WorkSession> getWorkSessions(final Usr user) throws WaktuException {
 
 		List<WorkSession> workSessionsByUser = new ArrayList<WorkSession>();
 		
@@ -52,7 +52,7 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 }
 
 	@Override
-	public List<WorkSession> getWorkSessions(Usr user, QDate date)
+	public List<WorkSession> getWorkSessions(final Usr user, final QDate date)
 		throws WaktuException {
 		
 		List<WorkSession> workSessionsByDate = new ArrayList<WorkSession>();
@@ -67,7 +67,7 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 	}
 	
 	@Override
-	public List<WorkSession> getWorkSessions(Usr user, QDate fromDate, QDate toDate) throws WaktuException {
+	public List<WorkSession> getWorkSessions(final Usr user, final QDate fromDate, final QDate toDate) throws WaktuException {
 		List<WorkSession> workSessionsByUserInTimeRange = new ArrayList<WorkSession>();
 		
 		for(WorkSession ws: getWorkSessions(user)) {
@@ -80,7 +80,7 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 	}
 	
 	@Override
-	public List<WorkSession> getWorkSessions(WorkPackage workPackage) throws WaktuException {
+	public List<WorkSession> getWorkSessions(final WorkPackage workPackage) throws WaktuException {
 	    List<WorkSession> workSessionsByWorkPackage = new ArrayList<WorkSession>();
         
         for(WorkSession ws: getAllWorkSessions()){
@@ -92,7 +92,7 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 	}
 
 	@Override
-	public List<WorkSession> getWorkSessions(WorkPackage workPackage, Usr user) throws WaktuException {
+	public List<WorkSession> getWorkSessions(final WorkPackage workPackage, final Usr user) throws WaktuException {
 List<WorkSession> workSessionsByWorkPackageAndUser = new ArrayList<WorkSession>();
         
         for(WorkSession ws: getWorkSessions(workPackage)){
@@ -104,7 +104,7 @@ List<WorkSession> workSessionsByWorkPackageAndUser = new ArrayList<WorkSession>(
 	}
 
 	@Override
-	public List<WorkSession> getWorkSessions(Project project)
+	public List<WorkSession> getWorkSessions(final Project project)
 		throws WaktuException {
 		
 		List<WorkSession> workSessionsByProject = new ArrayList<WorkSession>();
@@ -118,7 +118,7 @@ List<WorkSession> workSessionsByWorkPackageAndUser = new ArrayList<WorkSession>(
 	}
 
 	@Override
-	public List<WorkSession> getWorkSessions(Project project, Usr user) throws WaktuException {
+	public List<WorkSession> getWorkSessions(final Project project, final Usr user) throws WaktuException {
 		List<WorkSession> workSessionsByProjectAndUser = new ArrayList<WorkSession>();
 		for(WorkSession ws: getWorkSessions(user)) {
 			if(ws.getWorkPackage().getProject().equals(project)) {
@@ -129,7 +129,7 @@ List<WorkSession> workSessionsByWorkPackageAndUser = new ArrayList<WorkSession>(
 	}
 	
 	@Override
-	public List<WorkSession> getWorkSessions(Project project, QDate fromDate, QDate toDate) throws WaktuException {
+	public List<WorkSession> getWorkSessions(final Project project, final QDate fromDate, final QDate toDate) throws WaktuException {
 		List<WorkSession> workSessionsByProjectInTimeRange = new ArrayList<WorkSession>();
 		
 		for(WorkSession ws: getWorkSessions(project)) {
