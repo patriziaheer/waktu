@@ -37,6 +37,7 @@ class WorkSessionController {
 	}
 	
 	public function addWorkSession($worksession) {
+	
 		$query = "	INSERT INTO worksession (usr, workpackage, starttime, endtime, description) 
 					VALUES (
 					".$worksession->getUser()->getUsrId().", 

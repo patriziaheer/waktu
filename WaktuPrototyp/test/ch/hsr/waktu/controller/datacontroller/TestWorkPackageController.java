@@ -113,6 +113,11 @@ public class TestWorkPackageController extends TestSuiteDataController {
 			logger.error("TestWorkPackageController failed \n" + e.getMessage() + "\n" + e.getStackTrace()[0] + "\n" + e.getStackTrace()[1] + "\n" + e.getStackTrace()[2]);
 		}
 	}
+	
+	@Test
+	public void testGetAllWorkPackages() throws WaktuException {
+		assertEquals(26, wpc.getAllWorkPackages().size());
+	}
 
 	@Test
 	public void testAddWorkPackage() throws WaktuException {
@@ -167,6 +172,31 @@ public class TestWorkPackageController extends TestSuiteDataController {
 		assertEquals(w26, wpc.getAllWorkPackages(p6).get(0));
 		assertEquals(w26.hashCode(), wpc.getAllWorkPackages(p6).get(0).hashCode());
 		assert(w26.equals(usr1) == false);
+	}
+
+	@Test(expected=WaktuException.class)
+	public void testErrorAddWorkPackage() throws WaktuException {
+		wpc.addWorkPackage(new Project(), "");
+	}
+
+	@Test(expected=WaktuException.class)
+	public void testErrorUpdateWorkPackage() throws WaktuException {
+		wpc.updateWorkPackage(null);
+	}
+
+	@Test(expected=WaktuException.class)
+	public void testErrorGetAllWorkPackage() throws WaktuException {
+		wpc.getAllWorkPackages(null);
+	}
+
+	@Test(expected=WaktuException.class)
+	public void testErrorGetActiveWorkPackage() throws WaktuException {
+		wpc.getActiveWorkPackages(null);
+	}
+
+	@Test(expected=WaktuException.class)
+	public void testErrorGetInactiveWorkPackage() throws WaktuException {
+		wpc.getInactiveWorkPackages(null);
 	}
 
 }
