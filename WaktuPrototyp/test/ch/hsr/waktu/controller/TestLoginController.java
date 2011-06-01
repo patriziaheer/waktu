@@ -17,18 +17,13 @@ public class TestLoginController extends TestSuite{
 	private UserController previousUserController;
 	
 	@Before
-	public void storePreviousControllers() {
+	public void before() {
 		previousUserController = UserController.getInstance();
 		UserController.setInstance(new UserControllerXml());
 	}
 	
-//	@Before
-//	public void setFakeControllers() {
-//		UserController.setInstance(new UserControllerXml());
-//	}
-	
 	@After
-	public void restorePreviousControllers() {
+	public void after() {
 		UserController.setInstance(previousUserController);
 	}
 	
@@ -49,7 +44,7 @@ public class TestLoginController extends TestSuite{
 	
 	@Test
 	public void login_InvalidUsername_False() throws WaktuException {
-			assertEquals(false, LoginController.getInstance().login("�ng�ltigernameh", "whatever"));
+			assertEquals(false, LoginController.getInstance().login("ungueltigernameh", "whatever"));
 	}
 	
 	@Test
