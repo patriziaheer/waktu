@@ -91,7 +91,7 @@ public class IcsParser {
                 }
             }
         } catch (Exception e) {
-
+            throw new WaktuException("A general problem occurred reading current line");
         }
         try {
             br.close();
