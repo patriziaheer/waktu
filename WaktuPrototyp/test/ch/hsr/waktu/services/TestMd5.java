@@ -13,8 +13,8 @@ public class TestMd5 extends TestSuite {
 		assertEquals(null, Md5.hash(null));
 	}
 	
-	//MD5 strings from: http://www.miraclesalad.com/webtools/md5.php
-	//� 2010, Sunny Walker
+	//MD5 referecnce strings from: http://www.miraclesalad.com/webtools/md5.php
+	//(c) 2010, Sunny Walker
 	@Test
 	public void hash_LowerCaseInput() {
 		assertEquals("61a60170273e74a5be90355ffe8e86ad", Md5.hash("aabbcc"));
