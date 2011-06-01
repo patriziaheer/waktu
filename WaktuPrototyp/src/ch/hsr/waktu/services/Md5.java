@@ -35,8 +35,8 @@ public final class Md5 {
 
     public static String byteArrayToString(final byte[] binaryData) {
 
-        final char[] hexadecimal = { '0', '1', '2', '3', '4', '5', '6', '7',
-                '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
+        final char[] hexadecimal = {'0', '1', '2', '3', '4', '5', '6', '7',
+                '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
         if (binaryData.length != 16) {
             return null;

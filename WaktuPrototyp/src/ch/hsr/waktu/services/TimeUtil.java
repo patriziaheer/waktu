@@ -66,7 +66,7 @@ public class TimeUtil {
      * @return array containing first and last day of month specified by date
      */
     public static QDate[] getMonthBoundaries(final QDate date) {
-        QDate[] startDayEndDay = { new QDate(date.year(), date.month(), 1),
+        QDate[] startDayEndDay = {new QDate(date.year(), date.month(), 1),
                 new QDate(date.year(), date.month(), date.daysInMonth()) };
         return startDayEndDay;
     }
@@ -106,8 +106,8 @@ public class TimeUtil {
      * @return array containing first and last day of year specified by date
      */
     public static QDate[] getYearBoundaries(final QDate date) {
-        QDate[] startDayEndDay = { new QDate(date.year(), 1, 1),
-                new QDate(date.year(), 12, 31) };
+        QDate[] startDayEndDay = {new QDate(date.year(), 1, 1),
+                new QDate(date.year(), 12, 31)};
         return startDayEndDay;
     }
 

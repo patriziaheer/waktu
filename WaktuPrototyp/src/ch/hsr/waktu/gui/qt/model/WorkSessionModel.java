@@ -139,8 +139,8 @@ public class WorkSessionModel extends QAbstractItemModel {
         if (index.row() == editable.row()
                 && index.column() != columnCount() - 1 && index.column() != 0
                 && index.column() != 1) {
-            Qt.ItemFlag[] flags = { Qt.ItemFlag.ItemIsEditable,
-                    Qt.ItemFlag.ItemIsSelectable, Qt.ItemFlag.ItemIsEnabled };
+            Qt.ItemFlag[] flags = {Qt.ItemFlag.ItemIsEditable,
+                    Qt.ItemFlag.ItemIsSelectable, Qt.ItemFlag.ItemIsEnabled};
             ItemFlags f = super.flags(index);
             f.set(flags);
             return f;

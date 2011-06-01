@@ -89,13 +89,13 @@ public class ProjectWorkPackageModel extends QAbstractItemModel {
     public ItemFlags flags(QModelIndex index) {
         ItemFlags f = super.flags(index);
         if (index.column() == 1) {
-            Qt.ItemFlag[] flags = { Qt.ItemFlag.ItemIsEditable,
+            Qt.ItemFlag[] flags = {Qt.ItemFlag.ItemIsEditable,
                     Qt.ItemFlag.ItemIsSelectable, Qt.ItemFlag.ItemIsEnabled,
-                    Qt.ItemFlag.ItemIsUserCheckable };
+                    Qt.ItemFlag.ItemIsUserCheckable};
             f.set(flags);
         } else {
-            Qt.ItemFlag[] flags = { Qt.ItemFlag.ItemIsEditable,
-                    Qt.ItemFlag.ItemIsSelectable, Qt.ItemFlag.ItemIsEnabled };
+            Qt.ItemFlag[] flags = {Qt.ItemFlag.ItemIsEditable,
+                    Qt.ItemFlag.ItemIsSelectable, Qt.ItemFlag.ItemIsEnabled};
             f.set(flags);
         }
         return f;

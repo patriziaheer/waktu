@@ -120,8 +120,8 @@ public class FavoriteModel extends QAbstractItemModel {
         }
         if (index.row() == editable.row()
                 && index.column() != columnCount() - 1 && index.column() != 0) {
-            Qt.ItemFlag[] flags = { Qt.ItemFlag.ItemIsEditable,
-                    Qt.ItemFlag.ItemIsSelectable, Qt.ItemFlag.ItemIsEnabled };
+            Qt.ItemFlag[] flags = {Qt.ItemFlag.ItemIsEditable,
+                    Qt.ItemFlag.ItemIsSelectable, Qt.ItemFlag.ItemIsEnabled};
             ItemFlags f = super.flags(index);
             f.set(flags);
             return f;

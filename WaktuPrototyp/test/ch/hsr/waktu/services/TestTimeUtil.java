@@ -58,7 +58,7 @@ public class TestTimeUtil extends TestSuite {
     }
 
     public void getWeekBoundaries() {
-        QDate[] refStartDateEndDate = { new QDate(2011, 5, 9),
+        QDate[] refStartDateEndDate = {new QDate(2011, 5, 9),
                 new QDate(2011, 5, 15) };
         assertBoundaryEquality(refStartDateEndDate,
                 TimeUtil.getWeekBoundaries(new QDate(2011, 5, 13)));
@@ -66,7 +66,7 @@ public class TestTimeUtil extends TestSuite {
 
     @Test
     public void getWeekBoundaries_WeekSpanningOverTwoMonths() {
-        QDate[] refStartDateEndDate = { new QDate(2011, 5, 30),
+        QDate[] refStartDateEndDate = {new QDate(2011, 5, 30),
                 new QDate(2011, 6, 5) };
         assertBoundaryEquality(refStartDateEndDate,
                 TimeUtil.getWeekBoundaries(new QDate(2011, 5, 31)));
@@ -74,7 +74,7 @@ public class TestTimeUtil extends TestSuite {
 
     @Test
     public void getWeekBoundaries_WeekSpanningOverFebruaryMarchLeapyear() {
-        QDate[] refStartDateEndDate = { new QDate(2008, 2, 25),
+        QDate[] refStartDateEndDate = {new QDate(2008, 2, 25),
                 new QDate(2008, 3, 2) };
         assertBoundaryEquality(refStartDateEndDate,
                 TimeUtil.getWeekBoundaries(new QDate(2008, 3, 1)));
