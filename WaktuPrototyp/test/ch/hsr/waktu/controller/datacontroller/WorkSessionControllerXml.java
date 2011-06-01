@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.trolltech.qt.core.QDate;
 
-import ch.hsr.waktu.controller.datacontroller.WorkSessionController;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
