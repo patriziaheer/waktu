@@ -90,13 +90,14 @@ public class IcsParser {
                     }
                 }
             }
-        } catch (Exception e) {
-            throw new WaktuException("A general problem occurred reading current line");
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
         }
         try {
             br.close();
         } catch (IOException e) {
-            throw new WaktuException("IO problem");
+            throw new WaktuException("An Input Output Problem has occurred");
         }
 
         return calendar;
