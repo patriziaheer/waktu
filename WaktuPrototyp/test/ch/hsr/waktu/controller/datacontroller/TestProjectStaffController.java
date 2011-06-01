@@ -151,8 +151,8 @@ public class TestProjectStaffController extends TestSuiteDataController {
 		assertEquals(usr6, psc.getUsers(p6).get(0));
 		assertEquals(usr6.hashCode(),  psc.getUsers(p6).get(0).hashCode());
 		
-		assert(p6.equals(usr6) == false);
-		assert(usr6.equals(p6) == false);
+		assert(!p6.equals(usr6));
+		assert(!usr6.equals(p6));
 	}
 
 	@Test(expected=WaktuException.class)

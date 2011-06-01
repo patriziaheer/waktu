@@ -150,7 +150,7 @@ public class TestFavoriteController extends TestSuiteDataController {
 		assertEquals(f7, fc.getFavorites(usr4).get(0));
 		assertEquals(f7.hashCode(), fc.getFavorites(usr4).get(0).hashCode());
 
-		assert (f7.equals(usr3) == false);
+		assert (!f7.equals(usr3));
 	}
 
 	@Test(expected = WaktuException.class)

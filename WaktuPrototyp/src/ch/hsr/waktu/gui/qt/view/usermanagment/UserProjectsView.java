@@ -57,7 +57,7 @@ public class UserProjectsView extends QWidget {
 		LanguageController.getInstance().languageChanged.connect(this,
 				"translate()");
 
-		if (GuiController.getInstance().canAddProjectStaff() == false) {
+		if (!GuiController.getInstance().canAddProjectStaff()) {
 			ui.btnAdd.setVisible(false);
 			ui.cmbProjects.setVisible(false);
 		} else {
@@ -150,7 +150,7 @@ public class UserProjectsView extends QWidget {
 				projectsModel.index(projectsModel.rowCount(),
 						projectsModel.columnCount()));
 		projectsModel.layoutChanged.emit();
-		if (GuiController.getInstance().canAddProjectStaff() == true) {
+		if (GuiController.getInstance().canAddProjectStaff()) {
 			updateProjectModel();
 		}
 	}

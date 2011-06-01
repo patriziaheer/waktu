@@ -44,7 +44,7 @@ public class ProjectWorkPackageView extends QWidget {
 
 		WorkPackageController.getInstance().update.connect(this, "updated()");
 
-		if (GuiController.getInstance().canAddWorkPackage(project) == false) {
+		if (!GuiController.getInstance().canAddWorkPackage(project)) {
 			ui.btnAdd.setVisible(false);
 			ui.txtDescription.setVisible(false);
 		}
@@ -77,7 +77,7 @@ public class ProjectWorkPackageView extends QWidget {
 
 	@SuppressWarnings("unused")
 	private void addClicked() {
-		if (ui.txtDescription.text().isEmpty() == false) {
+		if (!ui.txtDescription.text().isEmpty()) {
 			try {
 				WorkPackageController.getInstance().addWorkPackage(project,
 						ui.txtDescription.text());

@@ -78,7 +78,7 @@ public class UserTreeModel extends QTreeModel {
 		case Qt.ItemDataRole.ForegroundRole: {
 			if (value instanceof Usr) {
 				Usr usr = (Usr) value;
-				if (usr.isActive() == false) {
+				if (!usr.isActive()) {
 					return QColor.red;
 				}
 			} else {

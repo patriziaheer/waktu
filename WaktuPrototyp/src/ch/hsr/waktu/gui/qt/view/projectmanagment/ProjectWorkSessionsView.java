@@ -86,10 +86,10 @@ public class ProjectWorkSessionsView extends QWidget {
 			QDate start = null;
 			QDate end = null;
 
-			if (ui.txtStart.date().toString("dd.MM.yyyy").equals("01.01.2000") == false) {
+			if (!ui.txtStart.date().toString("dd.MM.yyyy").equals("01.01.2000")) {
 				start = ui.txtStart.date();
 			}
-			if (ui.txtEnd.date().toString("dd.MM.yyyy").equals("01.01.2000") == false) {
+			if (!ui.txtEnd.date().toString("dd.MM.yyyy").equals("01.01.2000")) {
 				end = ui.txtEnd.date();
 			}
 			filterModel.setStart(start);

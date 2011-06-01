@@ -242,7 +242,7 @@ public class TestWorkSessionController extends TestSuiteDataController {
 		WorkSession wsToTest = wsc.getWorkSessions(w6, QDate.fromString("2011-05-27","yyyy-MM-dd"), QDate.fromString("2011-05-27","yyyy-MM-dd")).get(0);
 		assertEquals(ws6, wsToTest);
 		assertEquals(ws6.hashCode(), wsToTest.hashCode());
-		assert(wsToTest.equals(usr1) == false);
+		assert(!wsToTest.equals(usr1));
 	}
 
 	@Test(expected=WaktuException.class)

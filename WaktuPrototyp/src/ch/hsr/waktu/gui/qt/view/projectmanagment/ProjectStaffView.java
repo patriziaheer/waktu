@@ -61,7 +61,7 @@ public class ProjectStaffView extends QWidget {
 		UserController.getInstance().add.connect(this, "userAdded(Usr)");
 		UserController.getInstance().update.connect(this, "userChanged()");
 
-		if (GuiController.getInstance().canAddProjectStaff() == false) {
+		if (!GuiController.getInstance().canAddProjectStaff()) {
 			ui.cmbUsers.setVisible(false);
 			ui.btnAdd.setVisible(false);
 		} else {
@@ -148,7 +148,7 @@ public class ProjectStaffView extends QWidget {
 				projectStaffModel.index(projectStaffModel.rowCount(),
 						projectStaffModel.columnCount()));
 		projectStaffModel.layoutChanged.emit();
-		if (GuiController.getInstance().canAddProjectStaff() == true) {
+		if (GuiController.getInstance().canAddProjectStaff()) {
 			updateProjectStaffModel();
 		}
 	}

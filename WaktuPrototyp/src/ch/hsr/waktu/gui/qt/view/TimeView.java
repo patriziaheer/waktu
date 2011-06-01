@@ -617,7 +617,7 @@ public class TimeView extends QMainWindow {
 		String fileName = QFileDialog.getOpenFileName(this,
 				tr("Open ICS File"), "", new QFileDialog.Filter(
 						tr("Ics Files (*.ics)")));
-		if (fileName.isEmpty() == false) {
+		if (!fileName.isEmpty()) {
 			IcsImportView icsImport = new IcsImportView(fileName);
 			icsImport.show();
 		}

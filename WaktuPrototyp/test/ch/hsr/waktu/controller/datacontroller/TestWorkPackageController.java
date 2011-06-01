@@ -171,7 +171,7 @@ public class TestWorkPackageController extends TestSuiteDataController {
 	public void testEqualsAndHashCode() throws WaktuException {
 		assertEquals(w26, wpc.getAllWorkPackages(p6).get(0));
 		assertEquals(w26.hashCode(), wpc.getAllWorkPackages(p6).get(0).hashCode());
-		assert(w26.equals(usr1) == false);
+		assert(!w26.equals(usr1));
 	}
 
 	@Test(expected=WaktuException.class)

@@ -114,7 +114,7 @@ public class TestProjectController extends TestSuiteDataController {
 		assertEquals(p4, pc.getProject(p4.getId()));
 		assertEquals(p4.hashCode(), pc.getProject(p4.getId()).hashCode());
 		
-		assert(p4.equals(usr2) == false);
+		assert(!p4.equals(usr2));
 	}
 
 	@Test(expected=WaktuException.class)
