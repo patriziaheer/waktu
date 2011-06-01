@@ -1,6 +1,7 @@
 package ch.hsr.waktu.controller.datacontroller;
 
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
 
 import java.util.LinkedList;
 import java.util.List;
