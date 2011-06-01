@@ -8,6 +8,7 @@ import ch.hsr.waktu.controller.PersistenceController;
 import ch.hsr.waktu.services.WaktuException;
 
 public class TestSuiteDataController {
+    
 	@AfterClass
 	public static void after() {
 		EntityManager em;

@@ -164,7 +164,6 @@ public class UserDetails extends QWidget {
 		UserDataView userDataView = new UserDataView(null);
 		userDataView.initialize();
 		currWidget = userDataView;
-		;
 		splitter.addWidget(currWidget);
 	}
 
