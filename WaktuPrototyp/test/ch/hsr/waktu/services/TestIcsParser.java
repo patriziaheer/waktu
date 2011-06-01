@@ -18,7 +18,7 @@ public class TestIcsParser extends TestSuite {
 	private WorkSession ws2 = new WorkSession();
 	private WorkSession ws3 = new WorkSession();
 	private ArrayList<WorkSession> calendar = new ArrayList<WorkSession>();
-	//TODO file nicht vorhanden -> Fehlermeldung
+
 	@Before
 	public void setUp() {
 		ws1.setDescription("Prog3");
