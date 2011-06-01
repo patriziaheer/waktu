@@ -15,18 +15,14 @@ public class TestUsernameUtil extends TestSuite {
 	private UserController previousUserController;
 	
 	@Before
-	public void storePreviousControllers() {
+	public void before() {
 		previousUserController = UserController.getInstance();
 		UserController.setInstance(new UserControllerXml());
 	}
 	
-//	@Before
-//	public void setFakeController() {
-//		UserController.setInstance(new UserControllerXml());
-//	}
-	
+
 	@After
-	public void restorePreviousControllers() {
+	public void after() {
 		UserController.setInstance(previousUserController);
 	}
 	
