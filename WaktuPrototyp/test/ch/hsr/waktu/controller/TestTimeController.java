@@ -125,21 +125,21 @@ public class TestTimeController {
     public void getPlannedTime_5Weeks() throws WaktuException {
         Usr user = UserController.getInstance().getUser("patriziaheer");
         double time = TimeController.getPlannedTime(user, new QDate(2011, 05, 16), new QDate(2011, 06, 19));
-        assertEquals(TimeController.HOURS_PER_WORKDAY * 25 * user.getPensum()/100 , time, 0.01);
+        assertEquals(TimeController.HOURS_PER_WORKDAY * 25 * user.getPensum() / 100 , time, 0.01);
     }
 	
 	@Test
     public void getPlannedTimeForMonth_monthWith4Weekends() throws WaktuException {
         Usr user = UserController.getInstance().getUser("patriziaheer");
         double time = TimeController.getPlannedTime(user, new QDate(2011, 06, 19));
-        assertEquals(TimeController.HOURS_PER_WORKDAY * 22 * user.getPensum()/100 , time, 0.01);
+        assertEquals(TimeController.HOURS_PER_WORKDAY * 22 * user.getPensum() / 100 , time, 0.01);
     }
 	
 	@Test  
 	public void getPlannedTimeForMonth_monthWith5Weekends() throws WaktuException {
 	    Usr user = UserController.getInstance().getUser("patriziaheer");
 	    double time = TimeController.getPlannedTime(user, new QDate(2011, 05, 19));
-	    assertEquals(TimeController.HOURS_PER_WORKDAY * 22 * user.getPensum()/100 , time, 0.01);
+	    assertEquals(TimeController.HOURS_PER_WORKDAY * 22 * user.getPensum() / 100 , time, 0.01);
 	}
 	
 	@Test  

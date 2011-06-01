@@ -12,7 +12,7 @@ import ch.hsr.waktu.controller.datacontroller.UserControllerXml;
 import ch.hsr.waktu.services.WaktuException;
 
 
-public class TestLoginController extends TestSuite{
+public class TestLoginController extends TestSuite {
 
 	private UserController previousUserController;
 	

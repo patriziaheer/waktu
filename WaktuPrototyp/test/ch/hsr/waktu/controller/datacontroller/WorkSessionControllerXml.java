@@ -43,7 +43,7 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 
 		List<WorkSession> workSessionsByUser = new ArrayList<WorkSession>();
 		
-		for(WorkSession ws: getAllWorkSessions()){
+		for(WorkSession ws : getAllWorkSessions()) {
 			if(ws.getUser().equals(user)) {
 				workSessionsByUser.add(ws);
 			}
@@ -57,7 +57,7 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 		
 		List<WorkSession> workSessionsByDate = new ArrayList<WorkSession>();
 		
-		for(WorkSession ws: getWorkSessions(user)) {
+		for(WorkSession ws : getWorkSessions(user)) {
 			if(TimeUtil.convertGregorianToQDateTime(ws.getStart()).date().equals(date)) {
 				workSessionsByDate.add(ws);
 			}
@@ -70,7 +70,7 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 	public List<WorkSession> getWorkSessions(final Usr user, final QDate fromDate, final QDate toDate) throws WaktuException {
 		List<WorkSession> workSessionsByUserInTimeRange = new ArrayList<WorkSession>();
 		
-		for(WorkSession ws: getWorkSessions(user)) {
+		for(WorkSession ws : getWorkSessions(user)) {
 			if(TimeUtil.convertGregorianToQDateTime(ws.getStart()).date().daysTo(fromDate) >= 0 &&
 					TimeUtil.convertGregorianToQDateTime(ws.getEnd()).date().daysTo(toDate) <= 0) {
 				workSessionsByUserInTimeRange.add(ws);
@@ -83,7 +83,7 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 	public List<WorkSession> getWorkSessions(final WorkPackage workPackage) throws WaktuException {
 	    List<WorkSession> workSessionsByWorkPackage = new ArrayList<WorkSession>();
         
-        for(WorkSession ws: getAllWorkSessions()){
+        for(WorkSession ws : getAllWorkSessions()) {
             if(ws.getWorkPackage().equals(workPackage)) {
                 workSessionsByWorkPackage.add(ws);
             }
@@ -95,7 +95,7 @@ private String workSessionFilePath = "./test/testdata/worksessions.xml";
 	public List<WorkSession> getWorkSessions(final WorkPackage workPackage, final Usr user) throws WaktuException {
 List<WorkSession> workSessionsByWorkPackageAndUser = new ArrayList<WorkSession>();
         
-        for(WorkSession ws: getWorkSessions(workPackage)){
+        for(WorkSession ws : getWorkSessions(workPackage)) {
             if(ws.getUser().equals(user)) {
                 workSessionsByWorkPackageAndUser.add(ws);
             }
@@ -109,7 +109,7 @@ List<WorkSession> workSessionsByWorkPackageAndUser = new ArrayList<WorkSession>(
 		
 		List<WorkSession> workSessionsByProject = new ArrayList<WorkSession>();
 
-		for(WorkSession ws: getAllWorkSessions()) {
+		for(WorkSession ws : getAllWorkSessions()) {
 			if(ws.getWorkPackage().getProject().equals(project)) {
 				workSessionsByProject.add(ws);
 			}
@@ -120,7 +120,7 @@ List<WorkSession> workSessionsByWorkPackageAndUser = new ArrayList<WorkSession>(
 	@Override
 	public List<WorkSession> getWorkSessions(final Project project, final Usr user) throws WaktuException {
 		List<WorkSession> workSessionsByProjectAndUser = new ArrayList<WorkSession>();
-		for(WorkSession ws: getWorkSessions(user)) {
+		for(WorkSession ws : getWorkSessions(user)) {
 			if(ws.getWorkPackage().getProject().equals(project)) {
 				workSessionsByProjectAndUser.add(ws);
 			}
@@ -132,7 +132,7 @@ List<WorkSession> workSessionsByWorkPackageAndUser = new ArrayList<WorkSession>(
 	public List<WorkSession> getWorkSessions(final Project project, final QDate fromDate, final QDate toDate) throws WaktuException {
 		List<WorkSession> workSessionsByProjectInTimeRange = new ArrayList<WorkSession>();
 		
-		for(WorkSession ws: getWorkSessions(project)) {
+		for(WorkSession ws : getWorkSessions(project)) {
 			if(TimeUtil.convertGregorianToQDateTime(ws.getStart()).date().daysTo(fromDate) >= 0 &&
 					TimeUtil.convertGregorianToQDateTime(ws.getEnd()).date().daysTo(toDate) <= 0) {
 				workSessionsByProjectInTimeRange.add(ws);

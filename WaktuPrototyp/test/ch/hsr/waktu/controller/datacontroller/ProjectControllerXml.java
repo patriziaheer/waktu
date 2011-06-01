@@ -12,7 +12,7 @@ public class ProjectControllerXml extends ProjectController {
 
 	@Override
 	public Project getProject(final String projectIdentifier) throws WaktuException {
-		for(Project p: getAllProjects()) {
+		for(Project p : getAllProjects()) {
 			if(p.getProjectIdentifier().equals(projectIdentifier)) {
 				return p;
 			}

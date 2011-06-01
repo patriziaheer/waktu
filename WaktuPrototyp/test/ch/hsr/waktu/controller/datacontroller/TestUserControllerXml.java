@@ -49,19 +49,19 @@ public class TestUserControllerXml extends TestSuite {
 		Usr u10 = new Usr("obiwankenobi","Obi Wan","Kenobi","81dc9bdb52d04dc20036dbd8313ed055", 30, SystemRole.PROJECTMANAGER, 10);
 		allUsersReferenceList.add(u10);
 		
-		for(Usr u: allUsersReferenceList) {
+		for(Usr u : allUsersReferenceList) {
 			if(u.isActive()) {
 				activeUsersReferenceList.add(u);
 			}
 		}
 		
-		for(Usr u: allUsersReferenceList) {
+		for(Usr u : allUsersReferenceList) {
 			if(!u.isActive()) {
 				inactiveUsersReferenceList.add(u);
 			}
 		}
 		
-		for(Usr u: allUsersReferenceList) {
+		for(Usr u : allUsersReferenceList) {
 			if(u.getSystemRole().equals(SystemRole.PROJECTMANAGER)) {
 				projectManagersReferenceList.add(u);
 			}
@@ -70,7 +70,7 @@ public class TestUserControllerXml extends TestSuite {
 	
 	@After
 	public void clearReferenceUserLists() {
-		for(@SuppressWarnings("unused") Usr u: allUsersReferenceList) { 
+		for(@SuppressWarnings("unused") Usr u : allUsersReferenceList) { 
 			u = null;
 		}
 		allUsersReferenceList.clear();
@@ -121,7 +121,7 @@ public class TestUserControllerXml extends TestSuite {
 	}
 
 	private void assertUserListEquality(final LinkedList<Usr> userReferenceList, final List<Usr> userList) {
-		for(int i=0; i<userList.size(); i++) {
+		for(int i = 0; i < userList.size(); i++) {
 			assertEquals(userReferenceList.get(i), userList.get(i));
 		}
 		assertEquals(userReferenceList.size(), userList.size());

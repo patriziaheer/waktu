@@ -245,52 +245,52 @@ public class TestWorkSessionController extends TestSuiteDataController {
 		assert(!wsToTest.equals(usr1));
 	}
 
-	@Test(expected=WaktuException.class)
+	@Test(expected = WaktuException.class)
 	public void testErrorGetAllUsrWorkSession() throws WaktuException {
 		wsc.getWorkSessions((Usr)null);
 	}
 
-	@Test(expected=WaktuException.class)
+	@Test(expected = WaktuException.class)
 	public void testErrorGetAllProjectWorkSession() throws WaktuException {
 		wsc.getWorkSessions((Project)null);
 	}
 
-	@Test(expected=WaktuException.class)
+	@Test(expected = WaktuException.class)
 	public void testErrorGetAllWorkPackageWorkSession() throws WaktuException {
 		wsc.getWorkSessions((WorkPackage)null);
 	}
 
-	@Test(expected=WaktuException.class)
+	@Test(expected = WaktuException.class)
 	public void testErrorGetAllProjectUsrWorkSession() throws WaktuException {
 		wsc.getWorkSessions((Project)null, (Usr)null);
 	}
 
-	@Test(expected=WaktuException.class)
+	@Test(expected = WaktuException.class)
 	public void testErrorGetAllWorkPackageUsrWorkSession() throws WaktuException {
 		wsc.getWorkSessions((WorkPackage)null, (Usr)null);
 	}
 
-	@Test(expected=WaktuException.class)
+	@Test(expected = WaktuException.class)
 	public void testErrorGetAllUsrQDateWorkSession() throws WaktuException {
 		wsc.getWorkSessions((Usr)null, (QDate)null);
 	}
 
-	@Test(expected=WaktuException.class)
+	@Test(expected = WaktuException.class)
 	public void testErrorGetAllUsrStartEndWorkSession() throws WaktuException {
 		wsc.getWorkSessions((Usr)null, (QDate)null, (QDate)null);
 	}
 
-	@Test(expected=WaktuException.class)
+	@Test(expected = WaktuException.class)
 	public void testErrorGetAllProjectStartEndWorkSession() throws WaktuException {
 		wsc.getWorkSessions((Project)null, (QDate)null, (QDate)null);
 	}
 
-	@Test(expected=WaktuException.class)
+	@Test(expected = WaktuException.class)
 	public void testErrorGetAllWorkPackageStartEndWorkSession() throws WaktuException {
 		wsc.getWorkSessions((WorkPackage)null, (QDate)null, (QDate)null);
 	}
 
-	@Test(expected=WaktuException.class)
+	@Test(expected = WaktuException.class)
 	public void testErrorGetAllProjectUsrStartEndWorkSession() throws WaktuException {
 		wsc.getWorkSessions((Project)null, (Usr)null, (QDate)null, (QDate)null);
 	}

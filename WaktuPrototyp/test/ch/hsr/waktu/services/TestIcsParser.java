@@ -86,7 +86,7 @@ public class TestIcsParser extends TestSuite {
 		assertCalendarValidity(testCalendar, 2);
 	}
 	
-	@Test(expected=WaktuException.class)
+	@Test(expected = WaktuException.class)
 	public void parseIcsFile_invalidFilepathInArgument_NullReturnedWaktuGeneralException() throws WaktuException {
 		ArrayList<WorkSession> testCalendar = IcsParser.parseIcsFile(null);
 		assertEquals(null, testCalendar);
@@ -94,13 +94,13 @@ public class TestIcsParser extends TestSuite {
 	
 	
 	private void assertCalendarValidity(final ArrayList<WorkSession> testCalendar, final int noOfValidEntries) {
-		for(int i=0; i < noOfValidEntries; i++) {
+		for(int i = 0; i < noOfValidEntries; i++) {
 			assertEquals(calendar.get(i).getDescription(), testCalendar.get(i).getDescription());
 		}
-		for(int i=0; i < noOfValidEntries; i++) {
+		for(int i = 0; i < noOfValidEntries; i++) {
 			assertEquals(calendar.get(i).getStart(), testCalendar.get(i).getStart());
 		}
-		for(int i=0; i < noOfValidEntries; i++) {
+		for(int i = 0; i < noOfValidEntries; i++) {
 			assertEquals(calendar.get(i).getEnd(), testCalendar.get(i).getEnd());
 		}
 		assertEquals(noOfValidEntries, testCalendar.size());

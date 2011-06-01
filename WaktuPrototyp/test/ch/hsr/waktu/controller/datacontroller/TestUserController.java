@@ -78,7 +78,7 @@ public class TestUserController extends TestSuiteDataController {
 	}
 	
 	@Test
-	public void testGetInactiveUsers() throws WaktuException{
+	public void testGetInactiveUsers() throws WaktuException {
 		assertEquals(2, uc.getInactiveUsers().size());
 	}
 	
@@ -113,12 +113,12 @@ public class TestUserController extends TestSuiteDataController {
 		assertEquals(usr6.hashCode(), uc.getUser("patriziaheer").hashCode());
 	}
 
-	@Test(expected=WaktuException.class)
+	@Test(expected = WaktuException.class)
 	public void testErrorGetUser() throws WaktuException {
 		uc.getUser(null);
 	}
 
-	@Test(expected=WaktuException.class)
+	@Test(expected = WaktuException.class)
 	public void testErrorUpdateUser() throws WaktuException {
 		uc.updateUser(new Usr());
 	}

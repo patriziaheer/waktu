@@ -25,7 +25,7 @@ public class TestableUserController extends UserController {
 		EntityManager em = PersistenceController.getInstance().getEMF()
 				.createEntityManager();
 
-		Usr newUsr = new Usr(firstname+lastname, firstname,
+		Usr newUsr = new Usr(firstname + lastname, firstname,
 				lastname, Md5.hash(password), pensum, role, holiday);
 		try {
 			em.getTransaction().begin();
