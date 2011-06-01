@@ -1,19 +1,18 @@
 /********************************************************************************
-** Form generated from reading ui file 'UserData.jui'
-**
-** Created: Mo 30. Mai 13:11:13 2011
-**      by: Qt User Interface Compiler version 4.5.2
-**
-** WARNING! All changes made in this file will be lost when recompiling ui file!
-********************************************************************************/
+ ** Form generated from reading ui file 'UserData.jui'
+ **
+ ** Created: Mo 30. Mai 13:11:13 2011
+ **      by: Qt User Interface Compiler version 4.5.2
+ **
+ ** WARNING! All changes made in this file will be lost when recompiling ui file!
+ ********************************************************************************/
 
 package ch.hsr.waktu.gui.qt.view.usermanagment;
 
 import com.trolltech.qt.core.*;
 import com.trolltech.qt.gui.*;
 
-public class Ui_UserData implements com.trolltech.qt.QUiForm<QWidget>
-{
+public class Ui_UserData implements com.trolltech.qt.QUiForm<QWidget> {
     public QGridLayout gridLayout;
     public QLabel lblName;
     public QLineEdit txtName;
@@ -42,15 +41,19 @@ public class Ui_UserData implements com.trolltech.qt.QUiForm<QWidget>
     public QLabel lblUsername;
     public QLineEdit txtUserName;
 
-    public Ui_UserData() { super(); }
+    public Ui_UserData() {
+        super();
+    }
 
-    public void setupUi(QWidget UserData)
-    {
+    public void setupUi(QWidget UserData) {
         UserData.setObjectName("UserData");
-        UserData.resize(new QSize(700, 389).expandedTo(UserData.minimumSizeHint()));
-        QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Minimum, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
-        sizePolicy.setHorizontalStretch((byte)0);
-        sizePolicy.setVerticalStretch((byte)0);
+        UserData.resize(new QSize(700, 389).expandedTo(UserData
+                .minimumSizeHint()));
+        QSizePolicy sizePolicy = new QSizePolicy(
+                com.trolltech.qt.gui.QSizePolicy.Policy.Minimum,
+                com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
+        sizePolicy.setHorizontalStretch((byte) 0);
+        sizePolicy.setVerticalStretch((byte) 0);
         sizePolicy.setHeightForWidth(UserData.sizePolicy().hasHeightForWidth());
         UserData.setSizePolicy(sizePolicy);
         UserData.setMinimumSize(new QSize(700, 360));
@@ -135,7 +138,6 @@ public class Ui_UserData implements com.trolltech.qt.QUiForm<QWidget>
 
         gridLayout_5.addWidget(lblHolidays, 1, 3, 1, 1);
 
-
         gridLayout.addWidget(grpOverview, 10, 0, 1, 4);
 
         btnAdd = new QPushButton(UserData);
@@ -144,7 +146,9 @@ public class Ui_UserData implements com.trolltech.qt.QUiForm<QWidget>
 
         gridLayout.addWidget(btnAdd, 8, 3, 1, 1);
 
-        horizontalSpacer = new QSpacerItem(40, 20, com.trolltech.qt.gui.QSizePolicy.Policy.Expanding, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
+        horizontalSpacer = new QSpacerItem(40, 20,
+                com.trolltech.qt.gui.QSizePolicy.Policy.Expanding,
+                com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
 
         gridLayout.addItem(horizontalSpacer, 8, 1, 1, 2);
 
@@ -153,7 +157,9 @@ public class Ui_UserData implements com.trolltech.qt.QUiForm<QWidget>
 
         gridLayout.addWidget(txtHolidays, 6, 1, 1, 3);
 
-        verticalSpacer = new QSpacerItem(20, 40, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum, com.trolltech.qt.gui.QSizePolicy.Policy.Expanding);
+        verticalSpacer = new QSpacerItem(20, 40,
+                com.trolltech.qt.gui.QSizePolicy.Policy.Minimum,
+                com.trolltech.qt.gui.QSizePolicy.Policy.Expanding);
 
         gridLayout.addItem(verticalSpacer, 9, 2, 1, 1);
 
@@ -169,7 +175,8 @@ public class Ui_UserData implements com.trolltech.qt.QUiForm<QWidget>
 
         txtPassword = new QLineEdit(UserData);
         txtPassword.setObjectName("txtPassword");
-        txtPassword.setEchoMode(com.trolltech.qt.gui.QLineEdit.EchoMode.Password);
+        txtPassword
+                .setEchoMode(com.trolltech.qt.gui.QLineEdit.EchoMode.Password);
 
         gridLayout.addWidget(txtPassword, 3, 1, 1, 3);
 
@@ -202,26 +209,41 @@ public class Ui_UserData implements com.trolltech.qt.QUiForm<QWidget>
         UserData.connectSlotsByName();
     } // setupUi
 
-    void retranslateUi(QWidget UserData)
-    {
-        UserData.setWindowTitle(com.trolltech.qt.core.QCoreApplication.translate("UserData", "UserData", null));
-        lblName.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "Name:", null));
-        lblPensum.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "Pensum:", null));
-        lblRole.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "Role:", null));
-        lblHolidaysText2.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "Holidays:", null));
-        grpOverview.setTitle(com.trolltech.qt.core.QCoreApplication.translate("UserData", "Overview", null));
-        lblPlannedDayText.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "Worktime per day:", null));
-        lblOvertimeText.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "Overtime:", null));
-        lblHolidaysText.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "Holidays", null));
-        lblPlannedDay.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "8.2h", null));
-        lblOvertime.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "2.4h", null));
-        lblHolidays.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "12.3d", null));
-        btnAdd.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "add", null));
-        checkBox.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "Inactiv", null));
-        lblFirstname.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "Firstname:", null));
-        lblPassword.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "Password:", null));
-        lblUsername.setText(com.trolltech.qt.core.QCoreApplication.translate("UserData", "Username:", null));
+    void retranslateUi(QWidget UserData) {
+        UserData.setWindowTitle(com.trolltech.qt.core.QCoreApplication
+                .translate("UserData", "UserData", null));
+        lblName.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "UserData", "Name:", null));
+        lblPensum.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "UserData", "Pensum:", null));
+        lblRole.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "UserData", "Role:", null));
+        lblHolidaysText2.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("UserData", "Holidays:", null));
+        grpOverview.setTitle(com.trolltech.qt.core.QCoreApplication.translate(
+                "UserData", "Overview", null));
+        lblPlannedDayText.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("UserData", "Worktime per day:", null));
+        lblOvertimeText.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("UserData", "Overtime:", null));
+        lblHolidaysText.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("UserData", "Holidays", null));
+        lblPlannedDay.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "UserData", "8.2h", null));
+        lblOvertime.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "UserData", "2.4h", null));
+        lblHolidays.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "UserData", "12.3d", null));
+        btnAdd.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "UserData", "add", null));
+        checkBox.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "UserData", "Inactiv", null));
+        lblFirstname.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "UserData", "Firstname:", null));
+        lblPassword.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "UserData", "Password:", null));
+        lblUsername.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "UserData", "Username:", null));
     } // retranslateUi
 
 }
-

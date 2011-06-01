@@ -1,19 +1,18 @@
 /********************************************************************************
-** Form generated from reading ui file 'LoginDialog.jui'
-**
-** Created: Do 26. Mai 07:32:54 2011
-**      by: Qt User Interface Compiler version 4.5.2
-**
-** WARNING! All changes made in this file will be lost when recompiling ui file!
-********************************************************************************/
+ ** Form generated from reading ui file 'LoginDialog.jui'
+ **
+ ** Created: Do 26. Mai 07:32:54 2011
+ **      by: Qt User Interface Compiler version 4.5.2
+ **
+ ** WARNING! All changes made in this file will be lost when recompiling ui file!
+ ********************************************************************************/
 
 package ch.hsr.waktu.gui.qt.view;
 
 import com.trolltech.qt.core.*;
 import com.trolltech.qt.gui.*;
 
-public class Ui_LoginDialog implements com.trolltech.qt.QUiForm<QDialog>
-{
+public class Ui_LoginDialog implements com.trolltech.qt.QUiForm<QDialog> {
     public QGridLayout gridLayout;
     public QLabel lblUsernmae;
     public QLineEdit txtUsername;
@@ -23,20 +22,26 @@ public class Ui_LoginDialog implements com.trolltech.qt.QUiForm<QDialog>
     public QPushButton btnLogin;
     public QLabel lblStatus;
 
-    public Ui_LoginDialog() { super(); }
+    public Ui_LoginDialog() {
+        super();
+    }
 
-    public void setupUi(QDialog LoginDialog)
-    {
+    public void setupUi(QDialog LoginDialog) {
         LoginDialog.setObjectName("LoginDialog");
-        LoginDialog.resize(new QSize(400, 150).expandedTo(LoginDialog.minimumSizeHint()));
-        QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Fixed, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
-        sizePolicy.setHorizontalStretch((byte)0);
-        sizePolicy.setVerticalStretch((byte)0);
-        sizePolicy.setHeightForWidth(LoginDialog.sizePolicy().hasHeightForWidth());
+        LoginDialog.resize(new QSize(400, 150).expandedTo(LoginDialog
+                .minimumSizeHint()));
+        QSizePolicy sizePolicy = new QSizePolicy(
+                com.trolltech.qt.gui.QSizePolicy.Policy.Fixed,
+                com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
+        sizePolicy.setHorizontalStretch((byte) 0);
+        sizePolicy.setVerticalStretch((byte) 0);
+        sizePolicy.setHeightForWidth(LoginDialog.sizePolicy()
+                .hasHeightForWidth());
         LoginDialog.setSizePolicy(sizePolicy);
         LoginDialog.setMinimumSize(new QSize(400, 150));
         LoginDialog.setMaximumSize(new QSize(400, 150));
-        LoginDialog.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
+        LoginDialog
+                .setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         LoginDialog.setSizeGripEnabled(false);
         LoginDialog.setModal(false);
         gridLayout = new QGridLayout(LoginDialog);
@@ -59,7 +64,8 @@ public class Ui_LoginDialog implements com.trolltech.qt.QUiForm<QDialog>
 
         txtPassword = new QLineEdit(LoginDialog);
         txtPassword.setObjectName("txtPassword");
-        txtPassword.setEchoMode(com.trolltech.qt.gui.QLineEdit.EchoMode.Password);
+        txtPassword
+                .setEchoMode(com.trolltech.qt.gui.QLineEdit.EchoMode.Password);
 
         gridLayout.addWidget(txtPassword, 1, 1, 1, 2);
 
@@ -87,15 +93,18 @@ public class Ui_LoginDialog implements com.trolltech.qt.QUiForm<QDialog>
         LoginDialog.connectSlotsByName();
     } // setupUi
 
-    void retranslateUi(QDialog LoginDialog)
-    {
-        LoginDialog.setWindowTitle(com.trolltech.qt.core.QCoreApplication.translate("LoginDialog", "Login", null));
-        lblUsernmae.setText(com.trolltech.qt.core.QCoreApplication.translate("LoginDialog", "Username:", null));
-        lblPassword.setText(com.trolltech.qt.core.QCoreApplication.translate("LoginDialog", "Password:", null));
-        btnCancel.setText(com.trolltech.qt.core.QCoreApplication.translate("LoginDialog", "Cancel", null));
-        btnLogin.setText(com.trolltech.qt.core.QCoreApplication.translate("LoginDialog", "Login", null));
+    void retranslateUi(QDialog LoginDialog) {
+        LoginDialog.setWindowTitle(com.trolltech.qt.core.QCoreApplication
+                .translate("LoginDialog", "Login", null));
+        lblUsernmae.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "LoginDialog", "Username:", null));
+        lblPassword.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "LoginDialog", "Password:", null));
+        btnCancel.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "LoginDialog", "Cancel", null));
+        btnLogin.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "LoginDialog", "Login", null));
         lblStatus.setText("");
     } // retranslateUi
 
 }
-

@@ -1,19 +1,18 @@
 /********************************************************************************
-** Form generated from reading ui file 'TimeWindow.jui'
-**
-** Created: Mo 30. Mai 13:11:13 2011
-**      by: Qt User Interface Compiler version 4.5.2
-**
-** WARNING! All changes made in this file will be lost when recompiling ui file!
-********************************************************************************/
+ ** Form generated from reading ui file 'TimeWindow.jui'
+ **
+ ** Created: Mo 30. Mai 13:11:13 2011
+ **      by: Qt User Interface Compiler version 4.5.2
+ **
+ ** WARNING! All changes made in this file will be lost when recompiling ui file!
+ ********************************************************************************/
 
 package ch.hsr.waktu.gui.qt.view;
 
 import com.trolltech.qt.core.*;
 import com.trolltech.qt.gui.*;
 
-public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
-{
+public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow> {
     public QAction actionClose;
     public QAction actionOpenManagment;
     public QAction actionAdd_to_Favorites;
@@ -72,13 +71,16 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
     public QMenu menuFile;
     public QMenu menuLanguage;
 
-    public Ui_TimeWindow() { super(); }
+    public Ui_TimeWindow() {
+        super();
+    }
 
-    public void setupUi(QMainWindow TimeWindow)
-    {
+    public void setupUi(QMainWindow TimeWindow) {
         TimeWindow.setObjectName("TimeWindow");
-        TimeWindow.resize(new QSize(790, 540).expandedTo(TimeWindow.minimumSizeHint()));
-        TimeWindow.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
+        TimeWindow.resize(new QSize(790, 540).expandedTo(TimeWindow
+                .minimumSizeHint()));
+        TimeWindow
+                .setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         actionClose = new QAction(TimeWindow);
         actionClose.setObjectName("actionClose");
         actionOpenManagment = new QAction(TimeWindow);
@@ -108,7 +110,6 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         tblWorksessions.setObjectName("tblWorksessions");
 
         gridLayout_4.addWidget(tblWorksessions, 0, 0, 1, 1);
-
 
         gridLayout.addWidget(grpWorksessions, 3, 0, 1, 2);
 
@@ -186,7 +187,6 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
 
         gridLayout_5.addWidget(lblHolidays, 2, 5, 1, 1);
 
-
         gridLayout.addWidget(grpOverview, 4, 0, 1, 2);
 
         widget = new QWidget(centralwidget);
@@ -196,10 +196,13 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         horizontalLayout_3.setObjectName("horizontalLayout_3");
         grpCreateWorksession = new QGroupBox(widget);
         grpCreateWorksession.setObjectName("grpCreateWorksession");
-        QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Preferred, com.trolltech.qt.gui.QSizePolicy.Policy.Preferred);
-        sizePolicy.setHorizontalStretch((byte)0);
-        sizePolicy.setVerticalStretch((byte)0);
-        sizePolicy.setHeightForWidth(grpCreateWorksession.sizePolicy().hasHeightForWidth());
+        QSizePolicy sizePolicy = new QSizePolicy(
+                com.trolltech.qt.gui.QSizePolicy.Policy.Preferred,
+                com.trolltech.qt.gui.QSizePolicy.Policy.Preferred);
+        sizePolicy.setHorizontalStretch((byte) 0);
+        sizePolicy.setVerticalStretch((byte) 0);
+        sizePolicy.setHeightForWidth(grpCreateWorksession.sizePolicy()
+                .hasHeightForWidth());
         grpCreateWorksession.setSizePolicy(sizePolicy);
         grpCreateWorksession.setMinimumSize(new QSize(310, 0));
         gridLayout_2 = new QGridLayout(grpCreateWorksession);
@@ -213,10 +216,13 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         horizontalLayout.setObjectName("horizontalLayout");
         txtStart = new QTimeEdit(grpCreateWorksession);
         txtStart.setObjectName("txtStart");
-        QSizePolicy sizePolicy1 = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Fixed, com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
-        sizePolicy1.setHorizontalStretch((byte)0);
-        sizePolicy1.setVerticalStretch((byte)0);
-        sizePolicy1.setHeightForWidth(txtStart.sizePolicy().hasHeightForWidth());
+        QSizePolicy sizePolicy1 = new QSizePolicy(
+                com.trolltech.qt.gui.QSizePolicy.Policy.Fixed,
+                com.trolltech.qt.gui.QSizePolicy.Policy.Fixed);
+        sizePolicy1.setHorizontalStretch((byte) 0);
+        sizePolicy1.setVerticalStretch((byte) 0);
+        sizePolicy1
+                .setHeightForWidth(txtStart.sizePolicy().hasHeightForWidth());
         txtStart.setSizePolicy(sizePolicy1);
         txtStart.setMinimumSize(new QSize(65, 0));
         txtStart.setMaximumSize(new QSize(65, 16777215));
@@ -235,10 +241,11 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
 
         horizontalLayout.addWidget(txtEnd);
 
-        horizontalSpacer_2 = new QSpacerItem(40, 20, com.trolltech.qt.gui.QSizePolicy.Policy.Expanding, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
+        horizontalSpacer_2 = new QSpacerItem(40, 20,
+                com.trolltech.qt.gui.QSizePolicy.Policy.Expanding,
+                com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
 
         horizontalLayout.addItem(horizontalSpacer_2);
-
 
         gridLayout_2.addLayout(horizontalLayout, 0, 2, 1, 6);
 
@@ -282,7 +289,6 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
 
         gridLayout_2.addWidget(btnCreate, 5, 5, 1, 3);
 
-
         horizontalLayout_3.addWidget(grpCreateWorksession);
 
         grpFavorites = new QGroupBox(widget);
@@ -310,9 +316,7 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
 
         gridLayout_3.addWidget(btnTimeOnly, 1, 0, 1, 1);
 
-
         horizontalLayout_3.addWidget(grpFavorites);
-
 
         gridLayout.addWidget(widget, 0, 0, 1, 2);
 
@@ -357,48 +361,85 @@ public class Ui_TimeWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         TimeWindow.connectSlotsByName();
     } // setupUi
 
-    void retranslateUi(QMainWindow TimeWindow)
-    {
-        TimeWindow.setWindowTitle(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Time Window", null));
-        actionClose.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Close", null));
-        actionOpenManagment.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Open", null));
-        actionAdd_to_Favorites.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Add to Favorites", null));
-        actionEN.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "EN", null));
-        actionDE.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "DE", null));
-        actionIcs_Import.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Ics Import", null));
-        actionLogout.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Logout", null));
-        grpWorksessions.setTitle(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Worksessions", null));
-        grpOverview.setTitle(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Overview", null));
-        lblPlannedDayText.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Worktime per day:", null));
-        lblTodayText.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Worktime today:", null));
-        lblCurrentWeekText.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Worktime current Week:", null));
-        lblOvertimeText.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Overtime:", null));
-        lblCurrentMonthText.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Worktime current Month:", null));
-        lblPlannedMonthText.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Worktime for March:", null));
-        lblHolidaysText.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Holidays", null));
-        lblPlannedDay.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "8.2h", null));
-        lblPlannedMonth.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "164.4h", null));
-        lblToday.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "0.0h", null));
-        lblCurrentWeek.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "20.4h", null));
-        lblCurrentMonth.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "45.3h", null));
-        lblOvertime.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "2.4h", null));
-        lblHolidays.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "12.3d", null));
-        grpCreateWorksession.setTitle(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Create Worksession", null));
-        lblTime.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Time:", null));
-        lblBis2.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "-", null));
-        lblProject.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Project:", null));
-        lblWorkPackage.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Work Package:", null));
-        lblDescription.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Description:", null));
-        btnReset.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "reset", null));
-        btnCreate.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "create", null));
-        grpFavorites.setTitle(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Favorites", null));
-        btnCreateFavorite.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "create", null));
-        btnWorkPackageOnly.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Workpackage only", null));
-        btnTimeOnly.setText(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Time only", null));
-        menuManagment.setTitle(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Managment", null));
-        menuFile.setTitle(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "File", null));
-        menuLanguage.setTitle(com.trolltech.qt.core.QCoreApplication.translate("TimeWindow", "Language", null));
+    void retranslateUi(QMainWindow TimeWindow) {
+        TimeWindow.setWindowTitle(com.trolltech.qt.core.QCoreApplication
+                .translate("TimeWindow", "Time Window", null));
+        actionClose.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "TimeWindow", "Close", null));
+        actionOpenManagment.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("TimeWindow", "Open", null));
+        actionAdd_to_Favorites.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("TimeWindow", "Add to Favorites", null));
+        actionEN.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "TimeWindow", "EN", null));
+        actionDE.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "TimeWindow", "DE", null));
+        actionIcs_Import.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("TimeWindow", "Ics Import", null));
+        actionLogout.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "TimeWindow", "Logout", null));
+        grpWorksessions.setTitle(com.trolltech.qt.core.QCoreApplication
+                .translate("TimeWindow", "Worksessions", null));
+        grpOverview.setTitle(com.trolltech.qt.core.QCoreApplication.translate(
+                "TimeWindow", "Overview", null));
+        lblPlannedDayText.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("TimeWindow", "Worktime per day:", null));
+        lblTodayText.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "TimeWindow", "Worktime today:", null));
+        lblCurrentWeekText.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("TimeWindow", "Worktime current Week:", null));
+        lblOvertimeText.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("TimeWindow", "Overtime:", null));
+        lblCurrentMonthText.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("TimeWindow", "Worktime current Month:", null));
+        lblPlannedMonthText.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("TimeWindow", "Worktime for March:", null));
+        lblHolidaysText.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("TimeWindow", "Holidays", null));
+        lblPlannedDay.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "TimeWindow", "8.2h", null));
+        lblPlannedMonth.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("TimeWindow", "164.4h", null));
+        lblToday.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "TimeWindow", "0.0h", null));
+        lblCurrentWeek.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("TimeWindow", "20.4h", null));
+        lblCurrentMonth.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("TimeWindow", "45.3h", null));
+        lblOvertime.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "TimeWindow", "2.4h", null));
+        lblHolidays.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "TimeWindow", "12.3d", null));
+        grpCreateWorksession.setTitle(com.trolltech.qt.core.QCoreApplication
+                .translate("TimeWindow", "Create Worksession", null));
+        lblTime.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "TimeWindow", "Time:", null));
+        lblBis2.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "TimeWindow", "-", null));
+        lblProject.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "TimeWindow", "Project:", null));
+        lblWorkPackage.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("TimeWindow", "Work Package:", null));
+        lblDescription.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("TimeWindow", "Description:", null));
+        btnReset.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "TimeWindow", "reset", null));
+        btnCreate.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "TimeWindow", "create", null));
+        grpFavorites.setTitle(com.trolltech.qt.core.QCoreApplication.translate(
+                "TimeWindow", "Favorites", null));
+        btnCreateFavorite.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("TimeWindow", "create", null));
+        btnWorkPackageOnly.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("TimeWindow", "Workpackage only", null));
+        btnTimeOnly.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "TimeWindow", "Time only", null));
+        menuManagment.setTitle(com.trolltech.qt.core.QCoreApplication
+                .translate("TimeWindow", "Managment", null));
+        menuFile.setTitle(com.trolltech.qt.core.QCoreApplication.translate(
+                "TimeWindow", "File", null));
+        menuLanguage.setTitle(com.trolltech.qt.core.QCoreApplication.translate(
+                "TimeWindow", "Language", null));
     } // retranslateUi
 
 }
-

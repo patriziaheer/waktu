@@ -27,426 +27,430 @@ import com.trolltech.qt.core.QDate;
  */
 public class WorkSessionController extends QSignalEmitter {
 
-	private static WorkSessionController theInstance = null;
+    private static WorkSessionController theInstance = null;
 
-	public static WorkSessionController getInstance() {
-		if (theInstance == null) {
-			theInstance = new WorkSessionController();
-		}
-		return theInstance;
-	}
+    public static WorkSessionController getInstance() {
+        if (theInstance == null) {
+            theInstance = new WorkSessionController();
+        }
+        return theInstance;
+    }
 
-	public static void setInstance(final WorkSessionController workSessionController) {
-		theInstance = workSessionController;
-	}
+    public static void setInstance(
+            final WorkSessionController workSessionController) {
+        theInstance = workSessionController;
+    }
 
-	private Logger logger = Logger.getLogger(WorkSessionController.class);
-	public Signal0 update = new Signal0();
-	public Signal1<WorkSession> add = new Signal1<WorkSession>();
-	public Signal1<WorkSession> removed = new Signal1<WorkSession>();
+    private Logger logger = Logger.getLogger(WorkSessionController.class);
+    public Signal0 update = new Signal0();
+    public Signal1<WorkSession> add = new Signal1<WorkSession>();
+    public Signal1<WorkSession> removed = new Signal1<WorkSession>();
 
-	protected WorkSessionController() {
+    protected WorkSessionController() {
 
-	}
+    }
 
-	/**
-	 * 
-	 * @param user
-	 * @throws WaktuException
-	 */
-	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(final Usr user) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+    /**
+     * 
+     * @param user
+     * @throws WaktuException
+     */
+    @SuppressWarnings("unchecked")
+    public List<WorkSession> getWorkSessions(final Usr user)
+            throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
 
-		List<WorkSession> workSessionsByUser = null;
+        List<WorkSession> workSessionsByUser = null;
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		try {
-			workSessionsByUser = em.createQuery(
-					"SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE u.usrid = '"
-							+ user.getId() + "'").getResultList();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
-		return workSessionsByUser;
-	}
+        try {
+            workSessionsByUser = em.createQuery(
+                    "SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE u.usrid = '"
+                            + user.getId() + "'").getResultList();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
+        return workSessionsByUser;
+    }
 
-	/**
-	 * 
-	 * @param user
-	 * @param date
-	 * @throws WaktuException
-	 */
-	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(final Usr user, final QDate date)
-			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
-		List<WorkSession> workSessionsByDate = null;
+    /**
+     * 
+     * @param user
+     * @param date
+     * @throws WaktuException
+     */
+    @SuppressWarnings("unchecked")
+    public List<WorkSession> getWorkSessions(final Usr user, final QDate date)
+            throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
+        List<WorkSession> workSessionsByDate = null;
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		try {
-			Query q = em
-					.createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE ws.startTime >= '"
-							+ date.toString("yyyy-MM-dd")
-							+ " 00:00:00"
-							+ "' AND ws.endTime <= '"
-							+ date.toString("yyyy-MM-dd")
-							+ " 23:59:59"
-							+ "' AND u.usrid = '" + user.getId() + "'");
-			workSessionsByDate = q.getResultList();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
-		return workSessionsByDate;
-	}
+        try {
+            Query q = em
+                    .createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE ws.startTime >= '"
+                            + date.toString("yyyy-MM-dd")
+                            + " 00:00:00"
+                            + "' AND ws.endTime <= '"
+                            + date.toString("yyyy-MM-dd")
+                            + " 23:59:59"
+                            + "' AND u.usrid = '" + user.getId() + "'");
+            workSessionsByDate = q.getResultList();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
+        return workSessionsByDate;
+    }
 
-	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(final Usr user, final QDate fromDate,
-			final QDate toDate) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
-		List<WorkSession> workSessionsByUserAndDate = null;
+    @SuppressWarnings("unchecked")
+    public List<WorkSession> getWorkSessions(final Usr user,
+            final QDate fromDate, final QDate toDate) throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
+        List<WorkSession> workSessionsByUserAndDate = null;
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		try {
-			Query q = em
-					.createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE ws.startTime >= '"
-							+ fromDate.toString("yyyy-MM-dd")
-							+ " 00:00:00"
-							+ "' AND ws.endTime <= '"
-							+ toDate.toString("yyyy-MM-dd")
-							+ " 23:59:59"
-							+ "' AND u.usrid = '" + user.getId() + "'");
-			workSessionsByUserAndDate = q.getResultList();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
-		return workSessionsByUserAndDate;
+        try {
+            Query q = em
+                    .createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE ws.startTime >= '"
+                            + fromDate.toString("yyyy-MM-dd")
+                            + " 00:00:00"
+                            + "' AND ws.endTime <= '"
+                            + toDate.toString("yyyy-MM-dd")
+                            + " 23:59:59"
+                            + "' AND u.usrid = '" + user.getId() + "'");
+            workSessionsByUserAndDate = q.getResultList();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
+        return workSessionsByUserAndDate;
 
-	}
+    }
 
-	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(final WorkPackage workPackage)
-			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+    @SuppressWarnings("unchecked")
+    public List<WorkSession> getWorkSessions(final WorkPackage workPackage)
+            throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
 
-		List<WorkSession> workSessionsByProject = null;
+        List<WorkSession> workSessionsByProject = null;
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		try {
-			workSessionsByProject = em.createQuery(
-					"SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp WHERE wp.id = '"
-							+ workPackage.getId() + "'").getResultList();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
-		return workSessionsByProject;
-	}
+        try {
+            workSessionsByProject = em.createQuery(
+                    "SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp WHERE wp.id = '"
+                            + workPackage.getId() + "'").getResultList();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
+        return workSessionsByProject;
+    }
 
-	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(final WorkPackage workPackage, final Usr usr)
-			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+    @SuppressWarnings("unchecked")
+    public List<WorkSession> getWorkSessions(final WorkPackage workPackage,
+            final Usr usr) throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
 
-		List<WorkSession> workSessionsByProject = null;
+        List<WorkSession> workSessionsByProject = null;
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		try {
-			workSessionsByProject = em
-					.createQuery(
-							"SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN ws.userRef u WHERE wp.id = '"
-									+ workPackage.getId()
-									+ "' AND u.usrid = '"
-									+ usr.getId() + "'").getResultList();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
-		return workSessionsByProject;
-	}
+        try {
+            workSessionsByProject = em
+                    .createQuery(
+                            "SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN ws.userRef u WHERE wp.id = '"
+                                    + workPackage.getId()
+                                    + "' AND u.usrid = '"
+                                    + usr.getId() + "'").getResultList();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
+        return workSessionsByProject;
+    }
 
-	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(final WorkPackage workPackage,
-			final QDate fromDate, final QDate toDate) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
-		List<WorkSession> workSessionsByDateAndWorkPackage = null;
+    @SuppressWarnings("unchecked")
+    public List<WorkSession> getWorkSessions(final WorkPackage workPackage,
+            final QDate fromDate, final QDate toDate) throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
+        List<WorkSession> workSessionsByDateAndWorkPackage = null;
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		try {
-			Query q = em
-					.createQuery("SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp WHERE ws.startTime >= '"
-							+ fromDate.toString("yyyy-MM-dd")
-							+ " 00:00:00"
-							+ "' AND ws.endTime <= '"
-							+ toDate.toString("yyyy-MM-dd")
-							+ " 23:59:59"
-							+ "' AND wp.id = '" + workPackage.getId() + "'");
-			workSessionsByDateAndWorkPackage = q.getResultList();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
-		return workSessionsByDateAndWorkPackage;
-	}
+        try {
+            Query q = em
+                    .createQuery("SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp WHERE ws.startTime >= '"
+                            + fromDate.toString("yyyy-MM-dd")
+                            + " 00:00:00"
+                            + "' AND ws.endTime <= '"
+                            + toDate.toString("yyyy-MM-dd")
+                            + " 23:59:59"
+                            + "' AND wp.id = '" + workPackage.getId() + "'");
+            workSessionsByDateAndWorkPackage = q.getResultList();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
+        return workSessionsByDateAndWorkPackage;
+    }
 
-	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(final Project project)
-			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+    @SuppressWarnings("unchecked")
+    public List<WorkSession> getWorkSessions(final Project project)
+            throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
 
-		List<WorkSession> workSessionsByProject = null;
+        List<WorkSession> workSessionsByProject = null;
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		try {
-			workSessionsByProject = em
-					.createQuery(
-							"SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN wp.project p WHERE p.projectid = '"
-									+ project.getId() + "'").getResultList();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
-		return workSessionsByProject;
-	}
+        try {
+            workSessionsByProject = em
+                    .createQuery(
+                            "SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN wp.project p WHERE p.projectid = '"
+                                    + project.getId() + "'").getResultList();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
+        return workSessionsByProject;
+    }
 
-	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(final Project project, final Usr usr)
-			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+    @SuppressWarnings("unchecked")
+    public List<WorkSession> getWorkSessions(final Project project,
+            final Usr usr) throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
 
-		List<WorkSession> workSessionsByProject = null;
+        List<WorkSession> workSessionsByProject = null;
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		try {
-			workSessionsByProject = em
-					.createQuery(
-							"SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN wp.project p JOIN ws.userRef u WHERE p.projectid = '"
-									+ project.getId()
-									+ "' AND u.usrid = '"
-									+ usr.getId() + "'").getResultList();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
-		return workSessionsByProject;
-	}
+        try {
+            workSessionsByProject = em
+                    .createQuery(
+                            "SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN wp.project p JOIN ws.userRef u WHERE p.projectid = '"
+                                    + project.getId()
+                                    + "' AND u.usrid = '"
+                                    + usr.getId() + "'").getResultList();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
+        return workSessionsByProject;
+    }
 
-	/**
-	 * 
-	 * @param project
-	 * @param start
-	 * @param end
-	 * @return List<WorkSession>
-	 * @throws WaktuException
-	 */
-	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(final Project project, final QDate start,
-			final QDate end) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
-		List<WorkSession> workSessionsByDate = null;
+    /**
+     * 
+     * @param project
+     * @param start
+     * @param end
+     * @return List<WorkSession>
+     * @throws WaktuException
+     */
+    @SuppressWarnings("unchecked")
+    public List<WorkSession> getWorkSessions(final Project project,
+            final QDate start, final QDate end) throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
+        List<WorkSession> workSessionsByDate = null;
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		try {
-			Query q = em
-					.createQuery("SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN wp.project p WHERE ws.startTime >= '"
-							+ start.toString("yyyy-MM-dd")
-							+ " 00:00:00"
-							+ "' AND ws.endTime <= '"
-							+ end.toString("yyyy-MM-dd")
-							+ " 23:59:59"
-							+ "' AND p.projectid = '" + project.getId() + "'");
-			workSessionsByDate = q.getResultList();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
-		return workSessionsByDate;
-	}
+        try {
+            Query q = em
+                    .createQuery("SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN wp.project p WHERE ws.startTime >= '"
+                            + start.toString("yyyy-MM-dd")
+                            + " 00:00:00"
+                            + "' AND ws.endTime <= '"
+                            + end.toString("yyyy-MM-dd")
+                            + " 23:59:59"
+                            + "' AND p.projectid = '" + project.getId() + "'");
+            workSessionsByDate = q.getResultList();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
+        return workSessionsByDate;
+    }
 
-	/**
-	 * 
-	 * @param project
-	 * @param usr
-	 * @param start
-	 * @param end
-	 * @return List<WorkSession> workSessions
-	 * @throws WaktuException
-	 */
-	@SuppressWarnings("unchecked")
-	public List<WorkSession> getWorkSessions(final Project project, final Usr usr,
-			final QDate start, final QDate end) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
-		List<WorkSession> workSessionsByDate = null;
+    /**
+     * 
+     * @param project
+     * @param usr
+     * @param start
+     * @param end
+     * @return List<WorkSession> workSessions
+     * @throws WaktuException
+     */
+    @SuppressWarnings("unchecked")
+    public List<WorkSession> getWorkSessions(final Project project,
+            final Usr usr, final QDate start, final QDate end)
+            throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
+        List<WorkSession> workSessionsByDate = null;
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		try {
-			Query q = em
-					.createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u JOIN ws.workPackageRef wp JOIN wp.project p WHERE p.projectid = '"
-							+ project.getId()
-							+ "' AND u.usrid = '"
-							+ usr.getId()
-							+ "' AND ws.startTime >= '"
-							+ start.toString("yyyy-MM-dd")
-							+ " 00:00:00"
-							+ "' AND ws.endTime <= '"
-							+ end.toString("yyyy-MM-dd") + " 23:59:59" + "'");
-			workSessionsByDate = q.getResultList();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
-		return workSessionsByDate;
-	}
+        try {
+            Query q = em
+                    .createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u JOIN ws.workPackageRef wp JOIN wp.project p WHERE p.projectid = '"
+                            + project.getId()
+                            + "' AND u.usrid = '"
+                            + usr.getId()
+                            + "' AND ws.startTime >= '"
+                            + start.toString("yyyy-MM-dd")
+                            + " 00:00:00"
+                            + "' AND ws.endTime <= '"
+                            + end.toString("yyyy-MM-dd") + " 23:59:59" + "'");
+            workSessionsByDate = q.getResultList();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
+        return workSessionsByDate;
+    }
 
-	/**
-	 * 
-	 * @param user
-	 * @param workPackage
-	 * @param startTime
-	 * @param endTime
-	 * @throws WaktuException
-	 */
-	public WorkSession addWorkSession(final Usr user, final WorkPackage workPackage,
-			final GregorianCalendar startTime, final GregorianCalendar endTime,
-			final String description) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
-		WorkSession newWorkSession = new WorkSession(user, workPackage,
-				startTime, endTime, description);
+    /**
+     * 
+     * @param user
+     * @param workPackage
+     * @param startTime
+     * @param endTime
+     * @throws WaktuException
+     */
+    public WorkSession addWorkSession(final Usr user,
+            final WorkPackage workPackage, final GregorianCalendar startTime,
+            final GregorianCalendar endTime, final String description)
+            throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
+        WorkSession newWorkSession = new WorkSession(user, workPackage,
+                startTime, endTime, description);
 
-		newWorkSession.getStart().set(GregorianCalendar.MONTH,
-				newWorkSession.getStart().get(GregorianCalendar.MONTH) - 1);
-		newWorkSession.getEnd().set(GregorianCalendar.MONTH,
-				newWorkSession.getEnd().get(GregorianCalendar.MONTH) - 1);
+        newWorkSession.getStart().set(GregorianCalendar.MONTH,
+                newWorkSession.getStart().get(GregorianCalendar.MONTH) - 1);
+        newWorkSession.getEnd().set(GregorianCalendar.MONTH,
+                newWorkSession.getEnd().get(GregorianCalendar.MONTH) - 1);
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		BusinessRuleController.check(newWorkSession);
+        BusinessRuleController.check(newWorkSession);
 
-		try {
-			em.getTransaction().begin();
-			em.persist(newWorkSession);
-			em.getTransaction().commit();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
+        try {
+            em.getTransaction().begin();
+            em.persist(newWorkSession);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
 
-		add.emit(newWorkSession);
-		logger.info("favorite " + newWorkSession + " deleted");
-		return newWorkSession;
-	}
+        add.emit(newWorkSession);
+        logger.info("favorite " + newWorkSession + " deleted");
+        return newWorkSession;
+    }
 
-	public void updateWorkSession(final WorkSession workSession)
-			throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+    public void updateWorkSession(final WorkSession workSession)
+            throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		workSession.getStart().set(GregorianCalendar.MONTH,
-				workSession.getStart().get(GregorianCalendar.MONTH) - 1);
-		workSession.getEnd().set(GregorianCalendar.MONTH,
-				workSession.getEnd().get(GregorianCalendar.MONTH) - 1);
+        workSession.getStart().set(GregorianCalendar.MONTH,
+                workSession.getStart().get(GregorianCalendar.MONTH) - 1);
+        workSession.getEnd().set(GregorianCalendar.MONTH,
+                workSession.getEnd().get(GregorianCalendar.MONTH) - 1);
 
-		BusinessRuleController.check(workSession);
+        BusinessRuleController.check(workSession);
 
-		try {
-			em.getTransaction().begin();
-			em.find(WorkSession.class, workSession.getId());
-			em.merge(workSession);
-			em.getTransaction().commit();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
-		update.emit();
-		logger.info("workSession " + workSession + " updated");
-	}
+        try {
+            em.getTransaction().begin();
+            em.find(WorkSession.class, workSession.getId());
+            em.merge(workSession);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
+        update.emit();
+        logger.info("workSession " + workSession + " updated");
+    }
 
-	/**
-	 * 
-	 * @param workSession
-	 */
-	public void removeWorkSession(final WorkSession workSession)
-			throws WaktuException {
+    /**
+     * 
+     * @param workSession
+     */
+    public void removeWorkSession(final WorkSession workSession)
+            throws WaktuException {
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
-		try {
-			em.getTransaction().begin();
-			em.remove(em.find(WorkSession.class, workSession.getId()));
-			em.getTransaction().commit();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
-		removed.emit(workSession);
-		logger.info("workSession " + workSession + " deleted");
-	}
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.remove(em.find(WorkSession.class, workSession.getId()));
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
+        removed.emit(workSession);
+        logger.info("workSession " + workSession + " deleted");
+    }
 
 }

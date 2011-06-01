@@ -13,156 +13,156 @@ import com.trolltech.qt.gui.QWidget;
 
 public class ProjectDataView extends QWidget {
 
-	private Ui_ProjectData ui = new Ui_ProjectData();
-	private Project project;
-	public Signal1<String> errorMessage = new Signal1<String>();
+    private Ui_ProjectData ui = new Ui_ProjectData();
+    private Project project;
+    public Signal1<String> errorMessage = new Signal1<String>();
 
-	public ProjectDataView(final Project project) {
-		this.project = project;
-	}
+    public ProjectDataView(final Project project) {
+        this.project = project;
+    }
 
-	public void initialize() {
-		ui.setupUi(this);
-		ui.btnAdd.clicked.connect(this, "addClicked()");
+    public void initialize() {
+        ui.setupUi(this);
+        ui.btnAdd.clicked.connect(this, "addClicked()");
 
-		ProjectController.getInstance().update.connect(this, "updateData()");
-		ProjectController.getInstance().add.connect(this, "addData(Project)");
+        ProjectController.getInstance().update.connect(this, "updateData()");
+        ProjectController.getInstance().add.connect(this, "addData(Project)");
 
-		LanguageController.getInstance().languageChanged.connect(this,
-				"translate()");
+        LanguageController.getInstance().languageChanged.connect(this,
+                "translate()");
 
-		setFields();
-	}
+        setFields();
+    }
 
-	private void setFields() {
-		if (project != null) {
-			if (GuiController.getInstance().canModifyProject()) {
-				ui.btnAdd.setVisible(true);
-				ui.btnAdd.setText(QCoreApplication.translate("ProjectDataView",
-						"Save", null));
+    private void setFields() {
+        if (project != null) {
+            if (GuiController.getInstance().canModifyProject()) {
+                ui.btnAdd.setVisible(true);
+                ui.btnAdd.setText(QCoreApplication.translate("ProjectDataView",
+                        "Save", null));
 
-				ui.txtDescription.setText(project.getDescription());
-				ui.txtDescription.setEnabled(true);
+                ui.txtDescription.setText(project.getDescription());
+                ui.txtDescription.setEnabled(true);
 
-				ui.txtProjectnumber.setText(project.getProjectIdentifier());
-				ui.txtProjectnumber.setEnabled(false);
+                ui.txtProjectnumber.setText(project.getProjectIdentifier());
+                ui.txtProjectnumber.setEnabled(false);
 
-				ui.txtPlannedTime.setValue(project.getPlannedTime());
-				ui.txtPlannedTime.setEnabled(true);
+                ui.txtPlannedTime.setValue(project.getPlannedTime());
+                ui.txtPlannedTime.setEnabled(true);
 
-				ui.txtPlannedTime.setValue(project.getPlannedTime());
-				ui.txtPlannedTime.setEnabled(true);
+                ui.txtPlannedTime.setValue(project.getPlannedTime());
+                ui.txtPlannedTime.setEnabled(true);
 
-				ui.checkBox.setChecked(!project.isActive());
-				ui.checkBox.setEnabled(true);
-				try {
-					ComboBoxData.createProjectManagerComboBox(
-							ui.cmbProjectManager, project.getProjectManager());
-				} catch (WaktuException e) {
-					errorMessage.emit(e.getMessage());
-				}
+                ui.checkBox.setChecked(!project.isActive());
+                ui.checkBox.setEnabled(true);
+                try {
+                    ComboBoxData.createProjectManagerComboBox(
+                            ui.cmbProjectManager, project.getProjectManager());
+                } catch (WaktuException e) {
+                    errorMessage.emit(e.getMessage());
+                }
 
-			} else {
-				ui.btnAdd.setVisible(false);
+            } else {
+                ui.btnAdd.setVisible(false);
 
-				ui.txtDescription.setText(project.getDescription());
-				ui.txtDescription.setEnabled(false);
+                ui.txtDescription.setText(project.getDescription());
+                ui.txtDescription.setEnabled(false);
 
-				ui.txtProjectnumber.setText(project.getProjectIdentifier());
-				ui.txtProjectnumber.setEnabled(false);
+                ui.txtProjectnumber.setText(project.getProjectIdentifier());
+                ui.txtProjectnumber.setEnabled(false);
 
-				ui.txtPlannedTime.setValue(project.getPlannedTime());
-				ui.txtPlannedTime.setEnabled(false);
+                ui.txtPlannedTime.setValue(project.getPlannedTime());
+                ui.txtPlannedTime.setEnabled(false);
 
-				ui.txtPlannedTime.setValue(project.getPlannedTime());
-				ui.txtPlannedTime.setEnabled(false);
+                ui.txtPlannedTime.setValue(project.getPlannedTime());
+                ui.txtPlannedTime.setEnabled(false);
 
-				ui.checkBox.setChecked(!project.isActive());
-				ui.checkBox.setEnabled(false);
-				try {
-					ComboBoxData.createProjectManagerComboBox(
-							ui.cmbProjectManager, project.getProjectManager());
-				} catch (WaktuException e) {
-					errorMessage.emit(e.getMessage());
-				}
-				ui.cmbProjectManager.setEnabled(false);
-			}
-		} else {
-			ui.btnAdd.setVisible(true);
+                ui.checkBox.setChecked(!project.isActive());
+                ui.checkBox.setEnabled(false);
+                try {
+                    ComboBoxData.createProjectManagerComboBox(
+                            ui.cmbProjectManager, project.getProjectManager());
+                } catch (WaktuException e) {
+                    errorMessage.emit(e.getMessage());
+                }
+                ui.cmbProjectManager.setEnabled(false);
+            }
+        } else {
+            ui.btnAdd.setVisible(true);
 
-			ui.txtDescription.setEnabled(true);
-			ui.txtProjectnumber.setEnabled(true);
-			ui.txtPlannedTime.setEnabled(true);
-			ui.txtPlannedTime.setEnabled(true);
-			ui.checkBox.setEnabled(true);
-			ui.cmbProjectManager.setEnabled(true);
-			try {
-				ComboBoxData.createProjectManagerComboBox(ui.cmbProjectManager,
-						null);
-			} catch (WaktuException e) {
-				errorMessage.emit(e.getMessage());
-			}
-		}
-	}
+            ui.txtDescription.setEnabled(true);
+            ui.txtProjectnumber.setEnabled(true);
+            ui.txtPlannedTime.setEnabled(true);
+            ui.txtPlannedTime.setEnabled(true);
+            ui.checkBox.setEnabled(true);
+            ui.cmbProjectManager.setEnabled(true);
+            try {
+                ComboBoxData.createProjectManagerComboBox(ui.cmbProjectManager,
+                        null);
+            } catch (WaktuException e) {
+                errorMessage.emit(e.getMessage());
+            }
+        }
+    }
 
-	@SuppressWarnings("unused")
-	private void addClicked() {
-		if (project == null) {
-			addNewProject();
-		} else {
-			saveProject();
-		}
-		setFields();
-	}
+    @SuppressWarnings("unused")
+    private void addClicked() {
+        if (project == null) {
+            addNewProject();
+        } else {
+            saveProject();
+        }
+        setFields();
+    }
 
-	private void addNewProject() {
-		try {
-			project = ProjectController.getInstance().addProject(
-					ui.txtProjectnumber.text(),
-					ui.txtDescription.text(),
-					(Usr) ui.cmbProjectManager.itemData(ui.cmbProjectManager
-							.currentIndex()), ui.txtPlannedTime.value());
-		} catch (WaktuException e) {
-			errorMessage.emit(e.getMessage());
-		}
-	}
+    private void addNewProject() {
+        try {
+            project = ProjectController.getInstance().addProject(
+                    ui.txtProjectnumber.text(),
+                    ui.txtDescription.text(),
+                    (Usr) ui.cmbProjectManager.itemData(ui.cmbProjectManager
+                            .currentIndex()), ui.txtPlannedTime.value());
+        } catch (WaktuException e) {
+            errorMessage.emit(e.getMessage());
+        }
+    }
 
-	private void saveProject() {
-		project.setDescription(ui.txtDescription.text());
-		project.setPlannedTime(ui.txtPlannedTime.value());
-		project.setProjectManager((Usr) ui.cmbProjectManager
-				.itemData(ui.cmbProjectManager.currentIndex()));
-		project.setActiveState(!ui.checkBox.isChecked());
-		try {
-			ProjectController.getInstance().updateProject(project);
-		} catch (WaktuException e) {
-			errorMessage.emit(e.getMessage());
-		}
-	}
+    private void saveProject() {
+        project.setDescription(ui.txtDescription.text());
+        project.setPlannedTime(ui.txtPlannedTime.value());
+        project.setProjectManager((Usr) ui.cmbProjectManager
+                .itemData(ui.cmbProjectManager.currentIndex()));
+        project.setActiveState(!ui.checkBox.isChecked());
+        try {
+            ProjectController.getInstance().updateProject(project);
+        } catch (WaktuException e) {
+            errorMessage.emit(e.getMessage());
+        }
+    }
 
-	@SuppressWarnings("unused")
-	private void updateData() {
-		setFields();
-	}
+    @SuppressWarnings("unused")
+    private void updateData() {
+        setFields();
+    }
 
-	@SuppressWarnings("unused")
-	private void addData(final Project project) {
-		setFields();
-	}
+    @SuppressWarnings("unused")
+    private void addData(final Project project) {
+        setFields();
+    }
 
-	@SuppressWarnings("unused")
-	private void translate() {
-		ui.retranslateUi(this);
-		changeText();
-	}
+    @SuppressWarnings("unused")
+    private void translate() {
+        ui.retranslateUi(this);
+        changeText();
+    }
 
-	private void changeText() {
-		if (project != null) {
-			ui.btnAdd.setText(QCoreApplication.translate("ProjectDataView",
-					"Save", null));
-		} else {
-			ui.btnAdd.setText(QCoreApplication.translate("ProjectDataView",
-					"Add", null));
-		}
-	}
+    private void changeText() {
+        if (project != null) {
+            ui.btnAdd.setText(QCoreApplication.translate("ProjectDataView",
+                    "Save", null));
+        } else {
+            ui.btnAdd.setText(QCoreApplication.translate("ProjectDataView",
+                    "Add", null));
+        }
+    }
 }

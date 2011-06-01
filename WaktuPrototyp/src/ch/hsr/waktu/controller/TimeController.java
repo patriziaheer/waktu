@@ -13,107 +13,110 @@ import ch.hsr.waktu.services.WaktuException;
 import com.trolltech.qt.core.QDate;
 
 public class TimeController {
-    
+
     private TimeController() {
-        
+
     }
 
-	public static final double HOURS_PER_WORKDAY = 8.5;
+    public static final double HOURS_PER_WORKDAY = 8.5;
 
-	public static double calculateWorktime(final Usr usr, final Project project,
-			final WorkPackage workPackage, final QDate start, final QDate end)
-			throws WaktuException {
-		double worktime = 0;
-		List<WorkSession> workSessions = null;
+    public static double calculateWorktime(final Usr usr,
+            final Project project, final WorkPackage workPackage,
+            final QDate start, final QDate end) throws WaktuException {
+        double worktime = 0;
+        List<WorkSession> workSessions = null;
 
-		if (project != null && usr == null && workPackage == null) {
-			workSessions = WorkSessionController.getInstance().getWorkSessions(
-					project);
-		} else if (project != null && usr != null && workPackage == null) {
-			workSessions = WorkSessionController.getInstance().getWorkSessions(
-					project, usr);
-		} else if (project == null && usr != null && workPackage == null) {
-			workSessions = WorkSessionController.getInstance().getWorkSessions(
-					usr);
-		} else if (usr == null && workPackage != null) {
-			workSessions = WorkSessionController.getInstance().getWorkSessions(workPackage);
-		} else if (usr != null && workPackage != null) {
-			workSessions = WorkSessionController.getInstance().getWorkSessions(workPackage, usr);
-		}
+        if (project != null && usr == null && workPackage == null) {
+            workSessions = WorkSessionController.getInstance().getWorkSessions(
+                    project);
+        } else if (project != null && usr != null && workPackage == null) {
+            workSessions = WorkSessionController.getInstance().getWorkSessions(
+                    project, usr);
+        } else if (project == null && usr != null && workPackage == null) {
+            workSessions = WorkSessionController.getInstance().getWorkSessions(
+                    usr);
+        } else if (usr == null && workPackage != null) {
+            workSessions = WorkSessionController.getInstance().getWorkSessions(
+                    workPackage);
+        } else if (usr != null && workPackage != null) {
+            workSessions = WorkSessionController.getInstance().getWorkSessions(
+                    workPackage, usr);
+        }
 
-		if(workSessions == null) {
-		    return worktime;
-		}
-		
-		try {
-			for (WorkSession ws : workSessions) {
-				if ((start == null || start.compareTo(TimeUtil
-								.convertGregorianToQDateTime(ws.getStart())
-								.date()) <= 0)
-						&& (end == null || end.compareTo(TimeUtil
-								.convertGregorianToQDateTime(ws.getEnd())
-								.date()) >= 0)) {
-					worktime += TimeUtil.calculateTimespanInSeconds(
-							ws.getStart(), ws.getEnd());
-				}
-			}
-		} catch (NullPointerException e) {
-			return 0;
-		}
-		return roundToTenth(worktime / 3600);
-	}
+        if (workSessions == null) {
+            return worktime;
+        }
 
-	public static double calculateOvertime(final Usr user, final QDate fromDate,
-			final QDate toDate) throws WaktuException {
-		return calculateWorktime(user, null, null, fromDate, toDate)
-				- getPlannedTime(user, fromDate, toDate);
-	}
+        try {
+            for (WorkSession ws : workSessions) {
+                if ((start == null || start.compareTo(TimeUtil
+                        .convertGregorianToQDateTime(ws.getStart()).date()) <= 0)
+                        && (end == null || end.compareTo(TimeUtil
+                                .convertGregorianToQDateTime(ws.getEnd())
+                                .date()) >= 0)) {
+                    worktime += TimeUtil.calculateTimespanInSeconds(
+                            ws.getStart(), ws.getEnd());
+                }
+            }
+        } catch (NullPointerException e) {
+            return 0;
+        }
+        return roundToTenth(worktime / 3600);
+    }
 
-	public static double calculateWorktimeForWeek(final Usr user, final QDate date)
-			throws WaktuException {
-		QDate[] weekStartDateEndDate = TimeUtil.getWeekBoundaries(date);
-		return calculateWorktime(user, null, null, weekStartDateEndDate[0],
-				weekStartDateEndDate[1]);
-	}
+    public static double calculateOvertime(final Usr user,
+            final QDate fromDate, final QDate toDate) throws WaktuException {
+        return calculateWorktime(user, null, null, fromDate, toDate)
+                - getPlannedTime(user, fromDate, toDate);
+    }
 
-	public static double calculateWorktimeForMonth(final Usr user, final QDate date)
-			throws WaktuException {
-		QDate[] monthStartDateEndDate = TimeUtil.getMonthBoundaries(date);
-		return calculateWorktime(user, null, null, monthStartDateEndDate[0],
-				monthStartDateEndDate[1]);
-	}
+    public static double calculateWorktimeForWeek(final Usr user,
+            final QDate date) throws WaktuException {
+        QDate[] weekStartDateEndDate = TimeUtil.getWeekBoundaries(date);
+        return calculateWorktime(user, null, null, weekStartDateEndDate[0],
+                weekStartDateEndDate[1]);
+    }
 
-	public static double getPlannedTime(final Usr user, final QDate currMonth) {
-		return roundToTenth(getNumberOfWorkdaysForMonth(user, currMonth)
-				* HOURS_PER_WORKDAY);
-	}
+    public static double calculateWorktimeForMonth(final Usr user,
+            final QDate date) throws WaktuException {
+        QDate[] monthStartDateEndDate = TimeUtil.getMonthBoundaries(date);
+        return calculateWorktime(user, null, null, monthStartDateEndDate[0],
+                monthStartDateEndDate[1]);
+    }
 
-	public static double getPlannedTime(final Usr user, final QDate fromDate, final QDate toDate) {
-		return roundToTenth(getNumberOfWorkdays(user, fromDate, toDate)
-				* HOURS_PER_WORKDAY);
-	}
+    public static double getPlannedTime(final Usr user, final QDate currMonth) {
+        return roundToTenth(getNumberOfWorkdaysForMonth(user, currMonth)
+                * HOURS_PER_WORKDAY);
+    }
 
-	private static double getNumberOfWorkdaysForMonth(final Usr user, final QDate currMonth) {
-		return user.getPensum()
-				/ 100.0
-				* getNumberOfWorkdays(user,
-						TimeUtil.getMonthBoundaries(currMonth)[0],
-						TimeUtil.getMonthBoundaries(currMonth)[1]);
-	}
+    public static double getPlannedTime(final Usr user, final QDate fromDate,
+            final QDate toDate) {
+        return roundToTenth(getNumberOfWorkdays(user, fromDate, toDate)
+                * HOURS_PER_WORKDAY);
+    }
 
-	private static double getNumberOfWorkdays(final Usr user, final QDate fromDate,
-			final QDate toDate) {
-		int days = 0;
-		for (QDate d = fromDate; d.compareTo(toDate) <= 0; d = d.addDays(1)) {
-			if (d.dayOfWeek() != 6 && d.dayOfWeek() != 7) {
-				days++;
-			}
-		}
-		return user.getPensum() / 100.0 * days;
-	}
+    private static double getNumberOfWorkdaysForMonth(final Usr user,
+            final QDate currMonth) {
+        return user.getPensum()
+                / 100.0
+                * getNumberOfWorkdays(user,
+                        TimeUtil.getMonthBoundaries(currMonth)[0],
+                        TimeUtil.getMonthBoundaries(currMonth)[1]);
+    }
 
-	private static double roundToTenth(final double d) {
-		return Math.round(d * 10.) / 10.;
-	}
+    private static double getNumberOfWorkdays(final Usr user,
+            final QDate fromDate, final QDate toDate) {
+        int days = 0;
+        for (QDate d = fromDate; d.compareTo(toDate) <= 0; d = d.addDays(1)) {
+            if (d.dayOfWeek() != 6 && d.dayOfWeek() != 7) {
+                days++;
+            }
+        }
+        return user.getPensum() / 100.0 * days;
+    }
+
+    private static double roundToTenth(final double d) {
+        return Math.round(d * 10.) / 10.;
+    }
 
 }

@@ -25,225 +25,226 @@ import com.trolltech.qt.QSignalEmitter;
  */
 public class UserController extends QSignalEmitter {
 
-	private static UserController theInstance = null;
+    private static UserController theInstance = null;
 
-	public static UserController getInstance() {
-		if (theInstance == null) {
-			theInstance = new UserController();
-		}
-		return theInstance;
-	}
+    public static UserController getInstance() {
+        if (theInstance == null) {
+            theInstance = new UserController();
+        }
+        return theInstance;
+    }
 
-	public static void setInstance(final UserController userControllerInstance) {
-		theInstance = userControllerInstance;
-	}
+    public static void setInstance(final UserController userControllerInstance) {
+        theInstance = userControllerInstance;
+    }
 
-	private Logger logger = Logger.getLogger(UserController.class);
-	public Signal0 update = new Signal0();
-	public Signal1<Usr> add = new Signal1<Usr>();
+    private Logger logger = Logger.getLogger(UserController.class);
+    public Signal0 update = new Signal0();
+    public Signal1<Usr> add = new Signal1<Usr>();
 
-	protected UserController() {
+    protected UserController() {
 
-	}
+    }
 
-	@SuppressWarnings("unchecked")
-	public List<Usr> getActiveUsers() throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+    @SuppressWarnings("unchecked")
+    public List<Usr> getActiveUsers() throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
 
-		List<Usr> activeUsers = null;
+        List<Usr> activeUsers = null;
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		try {
-			activeUsers = em
-					.createQuery(
-							"SELECT u FROM Usr u WHERE u.active = 'TRUE' ORDER BY u.firstname")
-					.getResultList();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
+        try {
+            activeUsers = em
+                    .createQuery(
+                            "SELECT u FROM Usr u WHERE u.active = 'TRUE' ORDER BY u.firstname")
+                    .getResultList();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
 
-		return activeUsers;
-	}
+        return activeUsers;
+    }
 
-	@SuppressWarnings("unchecked")
-	public List<Usr> getAllUsers() throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+    @SuppressWarnings("unchecked")
+    public List<Usr> getAllUsers() throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
 
-		List<Usr> allUsers = null;
+        List<Usr> allUsers = null;
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		try {
-			allUsers = em.createQuery(
-					"SELECT u FROM Usr u ORDER BY u.firstname").getResultList();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
+        try {
+            allUsers = em.createQuery(
+                    "SELECT u FROM Usr u ORDER BY u.firstname").getResultList();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
 
-		return allUsers;
-	}
+        return allUsers;
+    }
 
-	@SuppressWarnings("unchecked")
-	public List<Usr> getInactiveUsers() throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+    @SuppressWarnings("unchecked")
+    public List<Usr> getInactiveUsers() throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
 
-		List<Usr> inactiveUsers = null;
+        List<Usr> inactiveUsers = null;
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		try {
-			inactiveUsers = em
-					.createQuery(
-							"SELECT u FROM Usr u WHERE u.active = 'FALSE' ORDER BY u.firstname")
-					.getResultList();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
+        try {
+            inactiveUsers = em
+                    .createQuery(
+                            "SELECT u FROM Usr u WHERE u.active = 'FALSE' ORDER BY u.firstname")
+                    .getResultList();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
 
-		return inactiveUsers;
-	}
+        return inactiveUsers;
+    }
 
-	@SuppressWarnings("unchecked")
-	public List<Usr> getProjectManagers() throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+    @SuppressWarnings("unchecked")
+    public List<Usr> getProjectManagers() throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
 
-		List<Usr> allProjectManagers = null;
+        List<Usr> allProjectManagers = null;
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		try {
-			allProjectManagers = em
-					.createQuery(
-							"SELECT u FROM Usr u JOIN u.systemRole s WHERE u.systemRole = ch.hsr.waktu.domain.SystemRole.PROJECTMANAGER OR u.systemRole = ch.hsr.waktu.domain.SystemRole.ADMIN ORDER BY u.firstname")
-					.getResultList();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
+        try {
+            allProjectManagers = em
+                    .createQuery(
+                            "SELECT u FROM Usr u JOIN u.systemRole s WHERE u.systemRole = ch.hsr.waktu.domain.SystemRole.PROJECTMANAGER OR u.systemRole = ch.hsr.waktu.domain.SystemRole.ADMIN ORDER BY u.firstname")
+                    .getResultList();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
 
-		return allProjectManagers;
-	}
+        return allProjectManagers;
+    }
 
-	/**
-	 * 
-	 * @param username
-	 * @return boolean
-	 * @throws WaktuException
-	 */
-	public Usr getUser(final String username) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+    /**
+     * 
+     * @param username
+     * @return boolean
+     * @throws WaktuException
+     */
+    public Usr getUser(final String username) throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
 
-		Usr usr = null;
+        Usr usr = null;
 
-		try {
-			usr = (Usr) em
-					.createQuery(
-							"SELECT u FROM Usr u WHERE u.username = '"
-									+ username + "'").getSingleResult();
-		} catch (NoResultException e) {
-			throw new WaktuException("User or password wrong!");
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
+        try {
+            usr = (Usr) em
+                    .createQuery(
+                            "SELECT u FROM Usr u WHERE u.username = '"
+                                    + username + "'").getSingleResult();
+        } catch (NoResultException e) {
+            throw new WaktuException("User or password wrong!");
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
 
-		return usr;
-	}
+        return usr;
+    }
 
-	/**
-	 * 
-	 * @param firstname
-	 * @param lastname
-	 * @param password
-	 * @param pensum
-	 * @param role
-	 * @param holiday
-	 * @return Usr
-	 * @throws WaktuException
-	 */
-	public Usr addUser(final String firstname, final String lastname, final String password,
-			final int pensum, final SystemRole role, final double holiday) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+    /**
+     * 
+     * @param firstname
+     * @param lastname
+     * @param password
+     * @param pensum
+     * @param role
+     * @param holiday
+     * @return Usr
+     * @throws WaktuException
+     */
+    public Usr addUser(final String firstname, final String lastname,
+            final String password, final int pensum, final SystemRole role,
+            final double holiday) throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
 
-		Usr newUsr = new Usr(generateUsername(firstname, lastname), firstname,
-				lastname, Md5.hash(password), pensum, role, holiday);
+        Usr newUsr = new Usr(generateUsername(firstname, lastname), firstname,
+                lastname, Md5.hash(password), pensum, role, holiday);
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission deniedd");
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission deniedd");
+        }
 
-		BusinessRuleController.check(newUsr);
+        BusinessRuleController.check(newUsr);
 
-		try {
-			em.getTransaction().begin();
-			em.persist(newUsr);
-			em.getTransaction().commit();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
+        try {
+            em.getTransaction().begin();
+            em.persist(newUsr);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
 
-		add.emit(newUsr);
-		logger.info("user " + newUsr + " added");
-		return newUsr;
-	}
+        add.emit(newUsr);
+        logger.info("user " + newUsr + " added");
+        return newUsr;
+    }
 
-	/**
-	 * Attention, password must by hashed!
-	 * 
-	 * @param usr
-	 */
-	public void updateUser(final Usr usr) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+    /**
+     * Attention, password must by hashed!
+     * 
+     * @param usr
+     */
+    public void updateUser(final Usr usr) throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		BusinessRuleController.check(usr);
+        BusinessRuleController.check(usr);
 
-		try {
-			em.getTransaction().begin();
-			em.merge(usr);
-			em.getTransaction().commit();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
-		update.emit();
-		logger.info("user " + usr + " updated");
+        try {
+            em.getTransaction().begin();
+            em.merge(usr);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
+        update.emit();
+        logger.info("user " + usr + " updated");
 
-	}
+    }
 
-	protected String generateUsername(final String firstname, final String name)
-			throws WaktuException {
-		return UsernameUtil.generateUsername(getAllUsers(), firstname, name);
-	}
+    protected String generateUsername(final String firstname, final String name)
+            throws WaktuException {
+        return UsernameUtil.generateUsername(getAllUsers(), firstname, name);
+    }
 
 }

@@ -1,19 +1,19 @@
 /********************************************************************************
-** Form generated from reading ui file 'ManagmentWindow.jui'
-**
-** Created: Fr. Mai 27 11:28:43 2011
-**      by: Qt User Interface Compiler version 4.5.2
-**
-** WARNING! All changes made in this file will be lost when recompiling ui file!
-********************************************************************************/
+ ** Form generated from reading ui file 'ManagmentWindow.jui'
+ **
+ ** Created: Fr. Mai 27 11:28:43 2011
+ **      by: Qt User Interface Compiler version 4.5.2
+ **
+ ** WARNING! All changes made in this file will be lost when recompiling ui file!
+ ********************************************************************************/
 
 package ch.hsr.waktu.gui.qt.view;
 
 import com.trolltech.qt.core.*;
 import com.trolltech.qt.gui.*;
 
-public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
-{
+public class Ui_ManagmentWindow implements
+        com.trolltech.qt.QUiForm<QMainWindow> {
     public QAction actionClose;
     public QAction actionAdd;
     public QAction actionAddProject;
@@ -33,19 +33,25 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
     public QMenu menuView;
     public QStatusBar statusBar;
 
-    public Ui_ManagmentWindow() { super(); }
+    public Ui_ManagmentWindow() {
+        super();
+    }
 
-    public void setupUi(QMainWindow ManagmentWindow)
-    {
+    public void setupUi(QMainWindow ManagmentWindow) {
         ManagmentWindow.setObjectName("ManagmentWindow");
-        ManagmentWindow.resize(new QSize(950, 453).expandedTo(ManagmentWindow.minimumSizeHint()));
-        QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.MinimumExpanding, com.trolltech.qt.gui.QSizePolicy.Policy.MinimumExpanding);
-        sizePolicy.setHorizontalStretch((byte)0);
-        sizePolicy.setVerticalStretch((byte)0);
-        sizePolicy.setHeightForWidth(ManagmentWindow.sizePolicy().hasHeightForWidth());
+        ManagmentWindow.resize(new QSize(950, 453).expandedTo(ManagmentWindow
+                .minimumSizeHint()));
+        QSizePolicy sizePolicy = new QSizePolicy(
+                com.trolltech.qt.gui.QSizePolicy.Policy.MinimumExpanding,
+                com.trolltech.qt.gui.QSizePolicy.Policy.MinimumExpanding);
+        sizePolicy.setHorizontalStretch((byte) 0);
+        sizePolicy.setVerticalStretch((byte) 0);
+        sizePolicy.setHeightForWidth(ManagmentWindow.sizePolicy()
+                .hasHeightForWidth());
         ManagmentWindow.setSizePolicy(sizePolicy);
         ManagmentWindow.setMinimumSize(new QSize(950, 300));
-        ManagmentWindow.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
+        ManagmentWindow
+                .setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         actionClose = new QAction(ManagmentWindow);
         actionClose.setObjectName("actionClose");
         actionAdd = new QAction(ManagmentWindow);
@@ -61,7 +67,8 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         actionDE.setObjectName("actionDE");
         actionDE.setCheckable(true);
         actionShow_Inactiv_Projects = new QAction(ManagmentWindow);
-        actionShow_Inactiv_Projects.setObjectName("actionShow_Inactiv_Projects");
+        actionShow_Inactiv_Projects
+                .setObjectName("actionShow_Inactiv_Projects");
         actionShow_Inactiv_Projects.setCheckable(true);
         actionInactiv_Users = new QAction(ManagmentWindow);
         actionInactiv_Users.setObjectName("actionInactiv_Users");
@@ -76,7 +83,8 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
         tabWidget.setObjectName("tabWidget");
         tabProject = new QWidget();
         tabProject.setObjectName("tabProject");
-        tabWidget.addTab(tabProject, com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Projekte", null));
+        tabWidget.addTab(tabProject, com.trolltech.qt.core.QCoreApplication
+                .translate("ManagmentWindow", "Projekte", null));
 
         gridLayout_2.addWidget(tabWidget, 0, 0, 1, 1);
 
@@ -110,27 +118,40 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
 
         tabWidget.setCurrentIndex(0);
 
-
         ManagmentWindow.connectSlotsByName();
     } // setupUi
 
-    void retranslateUi(QMainWindow ManagmentWindow)
-    {
-        ManagmentWindow.setWindowTitle(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Managment Window", null));
-        actionClose.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Close", null));
-        actionAdd.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Add", null));
-        actionAddProject.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Add Project", null));
-        actionAddUser.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Add User", null));
-        actionEN.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "EN", null));
-        actionDE.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "DE", null));
-        actionShow_Inactiv_Projects.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Inactiv Projects", null));
-        actionInactiv_Users.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Inactiv Users", null));
-        actionLogout.setText(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Logout", null));
-        tabWidget.setTabText(tabWidget.indexOf(tabProject), com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Projekte", null));
-        menuFile.setTitle(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "File", null));
-        menuLanguage.setTitle(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "Language", null));
-        menuView.setTitle(com.trolltech.qt.core.QCoreApplication.translate("ManagmentWindow", "View", null));
+    void retranslateUi(QMainWindow ManagmentWindow) {
+        ManagmentWindow.setWindowTitle(com.trolltech.qt.core.QCoreApplication
+                .translate("ManagmentWindow", "Managment Window", null));
+        actionClose.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "ManagmentWindow", "Close", null));
+        actionAdd.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "ManagmentWindow", "Add", null));
+        actionAddProject.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("ManagmentWindow", "Add Project", null));
+        actionAddUser.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "ManagmentWindow", "Add User", null));
+        actionEN.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "ManagmentWindow", "EN", null));
+        actionDE.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "ManagmentWindow", "DE", null));
+        actionShow_Inactiv_Projects
+                .setText(com.trolltech.qt.core.QCoreApplication.translate(
+                        "ManagmentWindow", "Inactiv Projects", null));
+        actionInactiv_Users.setText(com.trolltech.qt.core.QCoreApplication
+                .translate("ManagmentWindow", "Inactiv Users", null));
+        actionLogout.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "ManagmentWindow", "Logout", null));
+        tabWidget.setTabText(tabWidget.indexOf(tabProject),
+                com.trolltech.qt.core.QCoreApplication.translate(
+                        "ManagmentWindow", "Projekte", null));
+        menuFile.setTitle(com.trolltech.qt.core.QCoreApplication.translate(
+                "ManagmentWindow", "File", null));
+        menuLanguage.setTitle(com.trolltech.qt.core.QCoreApplication.translate(
+                "ManagmentWindow", "Language", null));
+        menuView.setTitle(com.trolltech.qt.core.QCoreApplication.translate(
+                "ManagmentWindow", "View", null));
     } // retranslateUi
 
 }
-

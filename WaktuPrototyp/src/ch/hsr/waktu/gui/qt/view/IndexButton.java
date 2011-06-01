@@ -7,49 +7,49 @@ import com.trolltech.qt.gui.QPushButton;
 
 public class IndexButton extends QPushButton {
 
-	private Logger logger = Logger.getLogger(IndexButton.class);
+    private Logger logger = Logger.getLogger(IndexButton.class);
 
-	public enum EditStatus {
-		Edit, Save
-	}
+    public enum EditStatus {
+        Edit, Save
+    }
 
-	public Signal1<IndexButton> actionClicked = new Signal1<IndexButton>();
-	private QModelIndex index;
-	private EditStatus status;
+    public Signal1<IndexButton> actionClicked = new Signal1<IndexButton>();
+    private QModelIndex index;
+    private EditStatus status;
 
-	public IndexButton(final QModelIndex index) {
-		this("", index);
-	}
+    public IndexButton(final QModelIndex index) {
+        this("", index);
+    }
 
-	public IndexButton(final String text, final QModelIndex index) {
-		super(text);
-		clicked.connect(this, "clicked()");
-		this.index = index;
-		status = EditStatus.Edit;
-	}
+    public IndexButton(final String text, final QModelIndex index) {
+        super(text);
+        clicked.connect(this, "clicked()");
+        this.index = index;
+        status = EditStatus.Edit;
+    }
 
-	@SuppressWarnings("unused")
-	private void clicked() {
-		logger.info("clicked");
-		actionClicked.emit(this);
-	}
+    @SuppressWarnings("unused")
+    private void clicked() {
+        logger.info("clicked");
+        actionClicked.emit(this);
+    }
 
-	public QModelIndex getIndex() {
-		return index;
-	}
+    public QModelIndex getIndex() {
+        return index;
+    }
 
-	public EditStatus getStatus() {
-		return status;
-	}
+    public EditStatus getStatus() {
+        return status;
+    }
 
-	public void setStatus(final EditStatus status) {
-		this.status = status;
-	}
+    public void setStatus(final EditStatus status) {
+        this.status = status;
+    }
 
-	@Override
-	public String toString() {
-		return "IndexButton with index: row:" + index.row() + " column: "
-				+ index.column() + " and status: " + status;
-	}
+    @Override
+    public String toString() {
+        return "IndexButton with index: row:" + index.row() + " column: "
+                + index.column() + " and status: " + status;
+    }
 
 }

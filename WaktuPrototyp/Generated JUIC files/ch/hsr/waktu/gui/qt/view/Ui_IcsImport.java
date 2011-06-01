@@ -1,19 +1,18 @@
 /********************************************************************************
-** Form generated from reading ui file 'IcsImport.jui'
-**
-** Created: Do 26. Mai 07:32:54 2011
-**      by: Qt User Interface Compiler version 4.5.2
-**
-** WARNING! All changes made in this file will be lost when recompiling ui file!
-********************************************************************************/
+ ** Form generated from reading ui file 'IcsImport.jui'
+ **
+ ** Created: Do 26. Mai 07:32:54 2011
+ **      by: Qt User Interface Compiler version 4.5.2
+ **
+ ** WARNING! All changes made in this file will be lost when recompiling ui file!
+ ********************************************************************************/
 
 package ch.hsr.waktu.gui.qt.view;
 
 import com.trolltech.qt.core.*;
 import com.trolltech.qt.gui.*;
 
-public class Ui_IcsImport implements com.trolltech.qt.QUiForm<QWidget>
-{
+public class Ui_IcsImport implements com.trolltech.qt.QUiForm<QWidget> {
     public QGridLayout gridLayout;
     public QLabel label;
     public QComboBox cmbProject;
@@ -28,12 +27,14 @@ public class Ui_IcsImport implements com.trolltech.qt.QUiForm<QWidget>
     public QLabel label_5;
     public QLineEdit txtDescription;
 
-    public Ui_IcsImport() { super(); }
+    public Ui_IcsImport() {
+        super();
+    }
 
-    public void setupUi(QWidget IcsImport)
-    {
+    public void setupUi(QWidget IcsImport) {
         IcsImport.setObjectName("IcsImport");
-        IcsImport.resize(new QSize(735, 545).expandedTo(IcsImport.minimumSizeHint()));
+        IcsImport.resize(new QSize(735, 545).expandedTo(IcsImport
+                .minimumSizeHint()));
         IcsImport.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         gridLayout = new QGridLayout(IcsImport);
         gridLayout.setObjectName("gridLayout");
@@ -108,17 +109,23 @@ public class Ui_IcsImport implements com.trolltech.qt.QUiForm<QWidget>
         IcsImport.connectSlotsByName();
     } // setupUi
 
-    void retranslateUi(QWidget IcsImport)
-    {
-        IcsImport.setWindowTitle(com.trolltech.qt.core.QCoreApplication.translate("IcsImport", "Import", null));
-        label.setText(com.trolltech.qt.core.QCoreApplication.translate("IcsImport", "Project:", null));
-        label_2.setText(com.trolltech.qt.core.QCoreApplication.translate("IcsImport", "Workpackage:", null));
-        label_3.setText(com.trolltech.qt.core.QCoreApplication.translate("IcsImport", "Start:", null));
-        label_4.setText(com.trolltech.qt.core.QCoreApplication.translate("IcsImport", "End:", null));
-        btnDiscard.setText(com.trolltech.qt.core.QCoreApplication.translate("IcsImport", "Discard Worksession", null));
-        btnImport.setText(com.trolltech.qt.core.QCoreApplication.translate("IcsImport", "Import Worksession", null));
-        label_5.setText(com.trolltech.qt.core.QCoreApplication.translate("IcsImport", "Description:", null));
+    void retranslateUi(QWidget IcsImport) {
+        IcsImport.setWindowTitle(com.trolltech.qt.core.QCoreApplication
+                .translate("IcsImport", "Import", null));
+        label.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "IcsImport", "Project:", null));
+        label_2.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "IcsImport", "Workpackage:", null));
+        label_3.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "IcsImport", "Start:", null));
+        label_4.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "IcsImport", "End:", null));
+        btnDiscard.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "IcsImport", "Discard Worksession", null));
+        btnImport.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "IcsImport", "Import Worksession", null));
+        label_5.setText(com.trolltech.qt.core.QCoreApplication.translate(
+                "IcsImport", "Description:", null));
     } // retranslateUi
 
 }
-

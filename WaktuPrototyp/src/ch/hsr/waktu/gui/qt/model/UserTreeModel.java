@@ -16,90 +16,90 @@ import com.trolltech.qt.gui.QTreeModel;
 
 public class UserTreeModel extends QTreeModel {
 
-	private List<Usr> usrs;
-	private boolean showInactivs;
+    private List<Usr> usrs;
+    private boolean showInactivs;
 
-	public UserTreeModel(boolean showInactivs) throws WaktuException {
-		this.showInactivs = showInactivs;
-		updateUsrModel();
-	}
+    public UserTreeModel(boolean showInactivs) throws WaktuException {
+        this.showInactivs = showInactivs;
+        updateUsrModel();
+    }
 
-	@Override
-	public Object child(Object parent, int index) {
-		if (parent == null) {
-			return usrs.get(index);
-		} else if (parent instanceof Usr) {
-			return UserProperties.values()[index];
-		}
-		return null;
-	}
+    @Override
+    public Object child(Object parent, int index) {
+        if (parent == null) {
+            return usrs.get(index);
+        } else if (parent instanceof Usr) {
+            return UserProperties.values()[index];
+        }
+        return null;
+    }
 
-	@Override
-	public int childCount(Object parent) {
-		if (parent == null) {
-			return usrs.size();
-		} else if (parent instanceof Usr) {
-			return UserProperties.values().length;
-		}
-		return 0;
-	}
+    @Override
+    public int childCount(Object parent) {
+        if (parent == null) {
+            return usrs.size();
+        } else if (parent instanceof Usr) {
+            return UserProperties.values().length;
+        }
+        return 0;
+    }
 
-	@Override
-	public String text(Object value) {
-		if (value == null) {
-			return "";
-		}
-		return value.toString();
-	}
+    @Override
+    public String text(Object value) {
+        if (value == null) {
+            return "";
+        }
+        return value.toString();
+    }
 
-	@Override
-	public Object headerData(int section, Orientation orientation, int role) {
-		return "";
-	}
+    @Override
+    public Object headerData(int section, Orientation orientation, int role) {
+        return "";
+    }
 
-	public Usr getUser(List<QModelIndex> selected) {
-		return null;
-	}
+    public Usr getUser(List<QModelIndex> selected) {
+        return null;
+    }
 
-	@Override
-	public Object data(Object value, int role) {
-		switch (role) {
-		case Qt.ItemDataRole.DisplayRole: {
-			return value;
-		}
-		case Qt.ItemDataRole.ToolTipRole: {
-			return value.toString();
-		}
-		case Qt.ItemDataRole.FontRole: {
-			QFont font = new QFont();
-			font.setPointSize(10);
-			return font;
-		}
-		case Qt.ItemDataRole.ForegroundRole: {
-			if (value instanceof Usr) {
-				Usr usr = (Usr) value;
-				if (!usr.isActive()) {
-					return QColor.red;
-				}
-			} else {
-				return QColor.black;
-			}
-		}
-		case Qt.ItemDataRole.SizeHintRole:
-			return new QSize(200, 20);
-		}
-		return super.data(value, role);
-	}
+    @Override
+    public Object data(Object value, int role) {
+        switch (role) {
+        case Qt.ItemDataRole.DisplayRole: {
+            return value;
+        }
+        case Qt.ItemDataRole.ToolTipRole: {
+            return value.toString();
+        }
+        case Qt.ItemDataRole.FontRole: {
+            QFont font = new QFont();
+            font.setPointSize(10);
+            return font;
+        }
+        case Qt.ItemDataRole.ForegroundRole: {
+            if (value instanceof Usr) {
+                Usr usr = (Usr) value;
+                if (!usr.isActive()) {
+                    return QColor.red;
+                }
+            } else {
+                return QColor.black;
+            }
+        }
+        case Qt.ItemDataRole.SizeHintRole:
+            return new QSize(200, 20);
+        }
+        return super.data(value, role);
+    }
 
-	public void updateUsrModel() throws WaktuException {
-		if (showInactivs) {
-			usrs = UserController.getInstance().getAllUsers();
-		} else {
-			usrs = UserController.getInstance().getActiveUsers();
-		}
-	}
+    public void updateUsrModel() throws WaktuException {
+        if (showInactivs) {
+            usrs = UserController.getInstance().getAllUsers();
+        } else {
+            usrs = UserController.getInstance().getActiveUsers();
+        }
+    }
 
-	public void setShowInactivs(boolean showInactivs) {
-		this.showInactivs = showInactivs;
-	}
+    public void setShowInactivs(boolean showInactivs) {
+        this.showInactivs = showInactivs;
+    }
 }

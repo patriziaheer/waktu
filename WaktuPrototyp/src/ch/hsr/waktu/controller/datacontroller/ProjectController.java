@@ -22,218 +22,221 @@ import com.trolltech.qt.QSignalEmitter;
  */
 public class ProjectController extends QSignalEmitter {
 
-	private static ProjectController theInstance = null;
+    private static ProjectController theInstance = null;
 
-	public static ProjectController getInstance() {
-		if (theInstance == null) {
-			theInstance = new ProjectController();
-		}
-		return theInstance;
-	}
+    public static ProjectController getInstance() {
+        if (theInstance == null) {
+            theInstance = new ProjectController();
+        }
+        return theInstance;
+    }
 
-	public static void setInstance(final ProjectController projectControllerInstance) {
-		theInstance = projectControllerInstance;
-	}
+    public static void setInstance(
+            final ProjectController projectControllerInstance) {
+        theInstance = projectControllerInstance;
+    }
 
-	private Logger logger = Logger.getLogger(ProjectController.class);
-	public Signal0 update = new Signal0();
-	public Signal1<Project> add = new Signal1<Project>();
+    private Logger logger = Logger.getLogger(ProjectController.class);
+    public Signal0 update = new Signal0();
+    public Signal1<Project> add = new Signal1<Project>();
 
-	protected ProjectController() {
-		logger.info("constructor");
-	}
+    protected ProjectController() {
+        logger.info("constructor");
+    }
 
-	@SuppressWarnings("unchecked")
-	public List<Project> getActiveProjects() throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+    @SuppressWarnings("unchecked")
+    public List<Project> getActiveProjects() throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		List<Project> allActiveProjects = null;
-		try {
-			allActiveProjects = em
-					.createQuery(
-							"SELECT p FROM Project p WHERE p.active = TRUE ORDER BY p.projectIdentifier ASC")
-					.getResultList();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
+        List<Project> allActiveProjects = null;
+        try {
+            allActiveProjects = em
+                    .createQuery(
+                            "SELECT p FROM Project p WHERE p.active = TRUE ORDER BY p.projectIdentifier ASC")
+                    .getResultList();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
 
-		return allActiveProjects;
-	}
+        return allActiveProjects;
+    }
 
-	/**
-	 * 
-	 * @param usr
-	 * @return 
-	 * @throws WaktuException
-	 */
-	
-	@SuppressWarnings("unchecked")
-	public List<Project> getActiveProjects(final Usr usr) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+    /**
+     * 
+     * @param usr
+     * @return
+     * @throws WaktuException
+     */
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+    @SuppressWarnings("unchecked")
+    public List<Project> getActiveProjects(final Usr usr) throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
 
-		List<Project> activeProjectsOfUser = null;
-		try {
-			activeProjectsOfUser = em
-					.createQuery(
-							"SELECT p FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE u.usrid = '"
-									+ usr.getId()
-									+ "' ORDER BY p.projectIdentifier ASC")
-					.getResultList();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		return activeProjectsOfUser;
-	}
+        List<Project> activeProjectsOfUser = null;
+        try {
+            activeProjectsOfUser = em
+                    .createQuery(
+                            "SELECT p FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE u.usrid = '"
+                                    + usr.getId()
+                                    + "' ORDER BY p.projectIdentifier ASC")
+                    .getResultList();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
 
-	@SuppressWarnings("unchecked")
-	public List<Project> getAllProjects() throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+        return activeProjectsOfUser;
+    }
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+    @SuppressWarnings("unchecked")
+    public List<Project> getAllProjects() throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
 
-		List<Project> allProjects = null;
-		try {
-			allProjects = em.createQuery(
-					"SELECT p FROM Project p ORDER BY p.projectIdentifier ASC")
-					.getResultList();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		return allProjects;
-	}
+        List<Project> allProjects = null;
+        try {
+            allProjects = em.createQuery(
+                    "SELECT p FROM Project p ORDER BY p.projectIdentifier ASC")
+                    .getResultList();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
 
-	@SuppressWarnings("unchecked")
-	public List<Project> getInactiveProjects() throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+        return allProjects;
+    }
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+    @SuppressWarnings("unchecked")
+    public List<Project> getInactiveProjects() throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
 
-		List<Project> allInactiveProjects = null;
-		try {
-			allInactiveProjects = em
-					.createQuery(
-							"SELECT p FROM Project p WHERE p.active = FALSE ORDER BY p.projectIdentifier ASC")
-					.getResultList();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		return allInactiveProjects;
-	}
+        List<Project> allInactiveProjects = null;
+        try {
+            allInactiveProjects = em
+                    .createQuery(
+                            "SELECT p FROM Project p WHERE p.active = FALSE ORDER BY p.projectIdentifier ASC")
+                    .getResultList();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
 
-	public Project getProject(final int projectId) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+        return allInactiveProjects;
+    }
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+    public Project getProject(final int projectId) throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
 
-		Project project = null;
-		try {
-			project = em.find(Project.class, projectId);
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
-		return project;
-	}
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-	/**
-	 * 
-	 * 
-	 * @param projectIdentifier
-	 * @param description
-	 * @param projectManager
-	 * @param plannedTime
-	 * @throws WaktuException
-	 */
-	public Project addProject(final String projectIdentifier, final String description,
-			final Usr projectManager, final int plannedTime) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+        Project project = null;
+        try {
+            project = em.find(Project.class, projectId);
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
+        return project;
+    }
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+    /**
+     * 
+     * 
+     * @param projectIdentifier
+     * @param description
+     * @param projectManager
+     * @param plannedTime
+     * @throws WaktuException
+     */
+    public Project addProject(final String projectIdentifier,
+            final String description, final Usr projectManager,
+            final int plannedTime) throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
 
-		Project newProject = new Project(projectIdentifier, description,
-				projectManager, plannedTime);
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		BusinessRuleController.check(newProject);
+        Project newProject = new Project(projectIdentifier, description,
+                projectManager, plannedTime);
 
-		try {
-			em.getTransaction().begin();
-			em.persist(newProject);
-			em.getTransaction().commit();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
+        BusinessRuleController.check(newProject);
 
-		add.emit(newProject);
-		logger.info("project " + newProject + " added");
-		return newProject;
-	}
+        try {
+            em.getTransaction().begin();
+            em.persist(newProject);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
 
-	/**
-	 * 
-	 * @param project
-	 */
+        add.emit(newProject);
+        logger.info("project " + newProject + " added");
+        return newProject;
+    }
 
-	public void updateProject(final Project project) throws WaktuException {
-		EntityManager em = PersistenceController.getInstance().getEMF()
-				.createEntityManager();
+    /**
+     * 
+     * @param project
+     */
 
-		if (!PermissionController.getInstance().checkPermission()) {
-			throw new WaktuException("Permission denied");
-		}
+    public void updateProject(final Project project) throws WaktuException {
+        EntityManager em = PersistenceController.getInstance().getEMF()
+                .createEntityManager();
 
-		BusinessRuleController.check(project);
+        if (!PermissionController.getInstance().checkPermission()) {
+            throw new WaktuException("Permission denied");
+        }
 
-		try {
-			em.getTransaction().begin();
-			em.merge(project);
-			em.getTransaction().commit();
-		} catch (Exception e) {
-			ExceptionHandling.handleException(e);
-		} finally {
-			em.close();
-		}
-		update.emit();
-		logger.info("project " + project + " updated");
-	}
+        BusinessRuleController.check(project);
 
-	public Project getProject(final String projectIdentifier) throws WaktuException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        try {
+            em.getTransaction().begin();
+            em.merge(project);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            ExceptionHandling.handleException(e);
+        } finally {
+            em.close();
+        }
+        update.emit();
+        logger.info("project " + project + " updated");
+    }
+
+    public Project getProject(final String projectIdentifier)
+            throws WaktuException {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }
