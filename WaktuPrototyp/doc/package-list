@@ -1,0 +1,11 @@
+ch.hsr.waktu
+ch.hsr.waktu.application
+ch.hsr.waktu.controller
+ch.hsr.waktu.controller.datacontroller
+ch.hsr.waktu.domain
+ch.hsr.waktu.gui.qt.model
+ch.hsr.waktu.gui.qt.view
+ch.hsr.waktu.gui.qt.view.projectmanagment
+ch.hsr.waktu.gui.qt.view.usermanagment
+ch.hsr.waktu.guicontroller
+ch.hsr.waktu.services

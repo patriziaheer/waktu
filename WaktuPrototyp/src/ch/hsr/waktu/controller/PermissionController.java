@@ -129,7 +129,7 @@ public class PermissionController extends QSignalEmitter {
 
     /**
      * 
-     * @return
+     * @return boolean
      * @throws WaktuException
      */
     public boolean checkPermission() throws WaktuException {
