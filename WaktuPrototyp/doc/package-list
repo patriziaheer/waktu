@@ -1,3 +1,5 @@
 ch.hsr.waktu.controller
 ch.hsr.waktu.controller.datacontroller
+ch.hsr.waktu.domain
+ch.hsr.waktu.guicontroller
 ch.hsr.waktu.services
