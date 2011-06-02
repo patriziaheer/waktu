@@ -1,5 +1,6 @@
 package ch.hsr.waktu.controller.datacontroller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ch.hsr.waktu.domain.Project;
@@ -36,7 +37,13 @@ public class WorkPackageControllerXml extends WorkPackageController {
     @Override
     public List<WorkPackage> getAllWorkPackages(final Project project)
             throws WaktuException {
-        return null;
+        ArrayList<WorkPackage> workPackagesByProject = new ArrayList<WorkPackage>();
+        for (WorkPackage wp : getAllWorkPackages()) {
+            if (wp.getProject().equals(project)) {
+                workPackagesByProject.add(wp);
+            }
+        }
+        return workPackagesByProject;
     }
 
     public WorkPackage getWorkPackage(final String description)

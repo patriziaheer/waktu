@@ -10,6 +10,8 @@ import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.controller.datacontroller.ProjectControllerXml;
 import ch.hsr.waktu.controller.datacontroller.UserController;
 import ch.hsr.waktu.controller.datacontroller.UserControllerXml;
+import ch.hsr.waktu.controller.datacontroller.WorkPackageController;
+import ch.hsr.waktu.controller.datacontroller.WorkPackageControllerXml;
 import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.SystemRole;
 import ch.hsr.waktu.domain.Usr;
@@ -21,19 +23,23 @@ public class TestBusinessRuleController {
     
     private ProjectController previousProjectController;
     private UserController previousUserController;
+    private WorkPackageController previousWorkPackageController;
 
     @Before
     public void before() {
         previousProjectController = ProjectController.getInstance();
         previousUserController = UserController.getInstance();
+        previousWorkPackageController = WorkPackageController.getInstance();
         ProjectController.setInstance(new ProjectControllerXml());
         UserController.setInstance(new UserControllerXml());
+        WorkPackageController.setInstance(new WorkPackageControllerXml());
     }
 
     @After
     public void after() {
         ProjectController.setInstance(previousProjectController);
         UserController.setInstance(previousUserController);
+        WorkPackageController.setInstance(previousWorkPackageController);
     }
     
     @Test
