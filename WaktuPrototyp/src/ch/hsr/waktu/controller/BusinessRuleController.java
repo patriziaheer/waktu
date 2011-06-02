@@ -14,9 +14,7 @@ import ch.hsr.waktu.services.WaktuException;
 
 public class BusinessRuleController {
 
-    private BusinessRuleController() {
-
-    }
+    private BusinessRuleController() { }
 
     private static Logger logger = Logger
             .getLogger(BusinessRuleController.class);

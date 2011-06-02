@@ -9,8 +9,17 @@ import ch.hsr.waktu.services.WaktuException;
 
 public class LoginController {
 
+	private LoginController() { }
+	
     private static LoginController theInstance = null;
+    private static Usr loggedInUser;
 
+    private Logger logger = Logger.getLogger(LoginController.class);
+
+    /**
+     * 
+     * @return LoginController
+     */
     public static LoginController getInstance() {
         if (theInstance == null) {
             theInstance = new LoginController();
@@ -18,18 +27,25 @@ public class LoginController {
         return theInstance;
     }
 
-    private Logger logger = Logger.getLogger(LoginController.class);
-
-    private static Usr loggedInUser;
-
+    /**
+     * 
+     * @return Usr
+     */
     public final Usr getLoggedInUser() {
         return loggedInUser;
     }
 
+    /**
+     * 
+     * @param user
+     */
     private void setLoggedInUser(final Usr user) {
         loggedInUser = user;
     }
 
+    /**
+     * 
+     */
     public void logout() {
         setLoggedInUser(null);
     }

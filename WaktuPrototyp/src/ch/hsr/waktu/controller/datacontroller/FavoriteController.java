@@ -17,14 +17,23 @@ import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
 
-/**
- * @author simon.staeheli
- * @version 1.0
- */
 public class FavoriteController extends QSignalEmitter {
+	
+	private FavoriteController() {
+		
+	}
 
     private static FavoriteController theInstance = null;
+    
+    private Logger logger = Logger.getLogger(FavoriteController.class);
+    public Signal0 update = new Signal0();
+    public Signal1<Favorite> add = new Signal1<Favorite>();
+    public Signal1<Favorite> removed = new Signal1<Favorite>();
 
+    /**
+     * 
+     * @return FavoriteController
+     */
     public static FavoriteController getInstance() {
         if (theInstance == null) {
             theInstance = new FavoriteController();
@@ -32,19 +41,10 @@ public class FavoriteController extends QSignalEmitter {
         return theInstance;
     }
 
-    private Logger logger = Logger.getLogger(FavoriteController.class);
-    public Signal0 update = new Signal0();
-    public Signal1<Favorite> add = new Signal1<Favorite>();
-    public Signal1<Favorite> removed = new Signal1<Favorite>();
-
-    private FavoriteController() {
-
-    }
-
     /**
      * 
      * @param user
-     * @return List<Favorite> favorites
+     * @return List<Favorite>
      * @throws WaktuException
      */
     @SuppressWarnings("unchecked")
@@ -71,9 +71,12 @@ public class FavoriteController extends QSignalEmitter {
 
     /**
      * 
+     * @param user
      * @param workPackage
      * @param startTime
      * @param endTime
+     * @return Favorite
+     * @throws WaktuException
      */
     public Favorite addFavorite(final Usr user, final WorkPackage workPackage,
             final GregorianCalendar startTime, final GregorianCalendar endTime)

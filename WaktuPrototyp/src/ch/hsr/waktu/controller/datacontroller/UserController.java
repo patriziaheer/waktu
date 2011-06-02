@@ -19,33 +19,40 @@ import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
 
-/**
- * @author simon.staeheli
- * @version 1.0
- */
 public class UserController extends QSignalEmitter {
+	
+	protected UserController() { }
 
     private static UserController theInstance = null;
+    
+    private Logger logger = Logger.getLogger(UserController.class);
+    public Signal0 update = new Signal0();
+    public Signal1<Usr> add = new Signal1<Usr>();
 
+    /**
+     * 
+     * @return UserController
+     */
     public static UserController getInstance() {
         if (theInstance == null) {
             theInstance = new UserController();
         }
         return theInstance;
     }
-
+    
+    /**
+     * 
+     * @param userControllerInstance
+     */
     public static void setInstance(final UserController userControllerInstance) {
         theInstance = userControllerInstance;
     }
 
-    private Logger logger = Logger.getLogger(UserController.class);
-    public Signal0 update = new Signal0();
-    public Signal1<Usr> add = new Signal1<Usr>();
-
-    protected UserController() {
-
-    }
-
+    /**
+     * 
+     * @return List<Usr>
+     * @throws WaktuException
+     */
     @SuppressWarnings("unchecked")
     public List<Usr> getActiveUsers() throws WaktuException {
         EntityManager em = PersistenceController.getInstance().getEMF()
@@ -71,6 +78,11 @@ public class UserController extends QSignalEmitter {
         return activeUsers;
     }
 
+    /**
+     * 
+     * @return List<Usr>
+     * @throws WaktuException
+     */
     @SuppressWarnings("unchecked")
     public List<Usr> getAllUsers() throws WaktuException {
         EntityManager em = PersistenceController.getInstance().getEMF()
@@ -94,6 +106,11 @@ public class UserController extends QSignalEmitter {
         return allUsers;
     }
 
+    /**
+     * 
+     * @return List<Usr>
+     * @throws WaktuException
+     */
     @SuppressWarnings("unchecked")
     public List<Usr> getInactiveUsers() throws WaktuException {
         EntityManager em = PersistenceController.getInstance().getEMF()
@@ -119,6 +136,11 @@ public class UserController extends QSignalEmitter {
         return inactiveUsers;
     }
 
+    /**
+     * 
+     * @return List<Usr>
+     * @throws WaktuException
+     */
     @SuppressWarnings("unchecked")
     public List<Usr> getProjectManagers() throws WaktuException {
         EntityManager em = PersistenceController.getInstance().getEMF()
@@ -147,7 +169,7 @@ public class UserController extends QSignalEmitter {
     /**
      * 
      * @param username
-     * @return boolean
+     * @return Usr
      * @throws WaktuException
      */
     public Usr getUser(final String username) throws WaktuException {
@@ -214,9 +236,9 @@ public class UserController extends QSignalEmitter {
     }
 
     /**
-     * Attention, password must by hashed!
      * 
      * @param usr
+     * @throws WaktuException
      */
     public void updateUser(final Usr usr) throws WaktuException {
         EntityManager em = PersistenceController.getInstance().getEMF()
@@ -242,6 +264,13 @@ public class UserController extends QSignalEmitter {
 
     }
 
+    /**
+     * 
+     * @param firstname
+     * @param name
+     * @return String
+     * @throws WaktuException
+     */
     protected String generateUsername(final String firstname, final String name)
             throws WaktuException {
         return UsernameUtil.generateUsername(getAllUsers(), firstname, name);

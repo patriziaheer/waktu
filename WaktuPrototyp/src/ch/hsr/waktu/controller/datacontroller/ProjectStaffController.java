@@ -16,14 +16,20 @@ import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
 
-/**
- * @author simon.staeheli
- * @version 1.0
- */
 public class ProjectStaffController extends QSignalEmitter {
 
-    private static ProjectStaffController theInstance = null;
+	private ProjectStaffController() { }
 
+	private static ProjectStaffController theInstance = null;
+	
+	private Logger logger = Logger.getLogger(ProjectStaffController.class);
+	public Signal1<ProjectStaff> add = new Signal1<ProjectStaff>();
+	public Signal1<ProjectStaff> removed = new Signal1<ProjectStaff>();
+
+	/**
+	 * 
+	 * @return ProjectStaffController
+	 */
     public static ProjectStaffController getInstance() {
         if (theInstance == null) {
             theInstance = new ProjectStaffController();
@@ -31,17 +37,11 @@ public class ProjectStaffController extends QSignalEmitter {
         return theInstance;
     }
 
-    private Logger logger = Logger.getLogger(ProjectStaffController.class);
-    public Signal1<ProjectStaff> add = new Signal1<ProjectStaff>();
-    public Signal1<ProjectStaff> removed = new Signal1<ProjectStaff>();
-
-    private ProjectStaffController() {
-
-    }
-
     /**
      * 
      * @param user
+     * @return List<Project>
+     * @throws WaktuException
      */
     @SuppressWarnings("unchecked")
     public List<Project> getProjects(final Usr user) throws WaktuException {
@@ -69,6 +69,12 @@ public class ProjectStaffController extends QSignalEmitter {
         return projects;
     }
 
+    /**
+     * 
+     * @param user
+     * @return List<Project>
+     * @throws WaktuException
+     */
     @SuppressWarnings("unchecked")
     public List<Project> getProjectsWhereUserIsNotMember(final Usr user)
             throws WaktuException {
@@ -99,6 +105,8 @@ public class ProjectStaffController extends QSignalEmitter {
     /**
      * 
      * @param project
+     * @return List<Usr>
+     * @throws WaktuException
      */
     @SuppressWarnings("unchecked")
     public List<Usr> getUsers(final Project project) throws WaktuException {
@@ -124,6 +132,12 @@ public class ProjectStaffController extends QSignalEmitter {
         return users;
     }
 
+    /**
+     * 
+     * @param project
+     * @return List<Usr>
+     * @throws WaktuException
+     */
     @SuppressWarnings("unchecked")
     public List<Usr> getUsersNotMemberOf(final Project project)
             throws WaktuException {
@@ -153,6 +167,8 @@ public class ProjectStaffController extends QSignalEmitter {
      * 
      * @param user
      * @param project
+     * @return ProjectStaff
+     * @throws WaktuException
      */
     public ProjectStaff addProjectStaff(final Usr user, final Project project)
             throws WaktuException {

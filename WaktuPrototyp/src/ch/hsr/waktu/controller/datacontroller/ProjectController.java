@@ -16,34 +16,41 @@ import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
 
-/**
- * @author simon.staeheli
- * @version 1.0
- */
 public class ProjectController extends QSignalEmitter {
+	
+	protected ProjectController() { }
 
     private static ProjectController theInstance = null;
-
-    public static ProjectController getInstance() {
-        if (theInstance == null) {
-            theInstance = new ProjectController();
-        }
-        return theInstance;
-    }
-
-    public static void setInstance(
-            final ProjectController projectControllerInstance) {
-        theInstance = projectControllerInstance;
-    }
 
     private Logger logger = Logger.getLogger(ProjectController.class);
     public Signal0 update = new Signal0();
     public Signal1<Project> add = new Signal1<Project>();
-
-    protected ProjectController() {
-        logger.info("constructor");
+    
+    /**
+     * 
+     * @return ProjectController
+     */
+    public static ProjectController getInstance() {
+    	if (theInstance == null) {
+    		theInstance = new ProjectController();
+    	}
+    	return theInstance;
+    }
+    
+    /**
+     * 
+     * @param projectControllerInstance
+     */
+    public static void setInstance(
+    		final ProjectController projectControllerInstance) {
+    	theInstance = projectControllerInstance;
     }
 
+    /**
+     * 
+     * @return List<Project>
+     * @throws WaktuException
+     */
     @SuppressWarnings("unchecked")
     public List<Project> getActiveProjects() throws WaktuException {
         EntityManager em = PersistenceController.getInstance().getEMF()
@@ -71,10 +78,9 @@ public class ProjectController extends QSignalEmitter {
     /**
      * 
      * @param usr
-     * @return
+     * @return List<Project>
      * @throws WaktuException
      */
-
     @SuppressWarnings("unchecked")
     public List<Project> getActiveProjects(final Usr usr) throws WaktuException {
         EntityManager em = PersistenceController.getInstance().getEMF()
@@ -101,6 +107,11 @@ public class ProjectController extends QSignalEmitter {
         return activeProjectsOfUser;
     }
 
+    /**
+     * 
+     * @return List<Project>
+     * @throws WaktuException
+     */
     @SuppressWarnings("unchecked")
     public List<Project> getAllProjects() throws WaktuException {
         EntityManager em = PersistenceController.getInstance().getEMF()
@@ -124,6 +135,11 @@ public class ProjectController extends QSignalEmitter {
         return allProjects;
     }
 
+    /**
+     * 
+     * @return List<Project>
+     * @throws WaktuException
+     */
     @SuppressWarnings("unchecked")
     public List<Project> getInactiveProjects() throws WaktuException {
         EntityManager em = PersistenceController.getInstance().getEMF()
@@ -148,6 +164,12 @@ public class ProjectController extends QSignalEmitter {
         return allInactiveProjects;
     }
 
+    /**
+     * 
+     * @param projectId
+     * @return Project
+     * @throws WaktuException
+     */
     public Project getProject(final int projectId) throws WaktuException {
         EntityManager em = PersistenceController.getInstance().getEMF()
                 .createEntityManager();
@@ -166,14 +188,25 @@ public class ProjectController extends QSignalEmitter {
         }
         return project;
     }
-
+    
     /**
      * 
+     * @param projectIdentifier
+     * @return Project
+     * @throws WaktuException
+     */
+    public Project getProject(final String projectIdentifier)
+    throws WaktuException {
+    	return null;
+    }
+
+    /**
      * 
      * @param projectIdentifier
      * @param description
      * @param projectManager
      * @param plannedTime
+     * @return Project
      * @throws WaktuException
      */
     public Project addProject(final String projectIdentifier,
@@ -209,6 +242,7 @@ public class ProjectController extends QSignalEmitter {
     /**
      * 
      * @param project
+     * @throws WaktuException
      */
 
     public void updateProject(final Project project) throws WaktuException {
@@ -232,11 +266,5 @@ public class ProjectController extends QSignalEmitter {
         }
         update.emit();
         logger.info("project " + project + " updated");
-    }
-
-    public Project getProject(final String projectIdentifier)
-            throws WaktuException {
-        // TODO Auto-generated method stub
-        return null;
     }
 }

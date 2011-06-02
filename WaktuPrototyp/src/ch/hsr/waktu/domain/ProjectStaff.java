@@ -1,9 +1,5 @@
 package ch.hsr.waktu.domain;
 
-/**
- * @author simon.staeheli
- * @version 1.0
- */
 public class ProjectStaff {
 
     private int id;

@@ -15,34 +15,40 @@ import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
 
-/**
- * @author simon.staeheli
- * @version 1.0
- */
 public class WorkPackageController extends QSignalEmitter {
+	
+	protected WorkPackageController() { }
 
     private static WorkPackageController theInstance = null;
+    
+    private Logger logger = Logger.getLogger(WorkPackageController.class);
+    public Signal0 update = new Signal0();
+    public Signal1<WorkPackage> add = new Signal1<WorkPackage>();
 
+    /**
+     * 
+     * @return WorkPackageController
+     */
     public static WorkPackageController getInstance() {
         if (theInstance == null) {
             theInstance = new WorkPackageController();
         }
         return theInstance;
     }
-
-    private Logger logger = Logger.getLogger(WorkPackageController.class);
-
-    public Signal0 update = new Signal0();
-    public Signal1<WorkPackage> add = new Signal1<WorkPackage>();
-
-    protected WorkPackageController() {
-
+    
+    /**
+     * 
+     * @param workPackageController
+     */
+    public static void setInstance(
+    		final WorkPackageController workPackageController) {
+    	theInstance = workPackageController;
     }
 
     /**
      * 
      * @param workPackageId
-     * @return WorkPackage workPackage
+     * @return WorkPackage
      * @throws WaktuException
      */
     public WorkPackage getWorkPackage(final int workPackageId)
@@ -68,6 +74,7 @@ public class WorkPackageController extends QSignalEmitter {
     /**
      * 
      * @param project
+     * @return List<WorkPackage>
      * @throws WaktuException
      */
     @SuppressWarnings("unchecked")
@@ -100,6 +107,7 @@ public class WorkPackageController extends QSignalEmitter {
     /**
      * 
      * @param project
+     * @return List<WorkPackage>
      * @throws WaktuException
      */
     @SuppressWarnings("unchecked")
@@ -128,6 +136,7 @@ public class WorkPackageController extends QSignalEmitter {
 
     /**
      * 
+     * @return List<WorkPackage>
      * @throws WaktuException
      */
     @SuppressWarnings("unchecked")
@@ -157,6 +166,7 @@ public class WorkPackageController extends QSignalEmitter {
     /**
      * 
      * @param project
+     * @return List<WorkPackage>
      * @throws WaktuException
      */
     @SuppressWarnings("unchecked")
@@ -188,6 +198,7 @@ public class WorkPackageController extends QSignalEmitter {
      * 
      * @param project
      * @param description
+     * @return WorkPackage
      * @throws WaktuException
      */
     public WorkPackage addWorkPackage(final Project project,
@@ -246,13 +257,7 @@ public class WorkPackageController extends QSignalEmitter {
 
     public WorkPackage getWorkPackage(final String description)
             throws WaktuException {
-        // TODO Auto-generated method stub
         return null;
-    }
-
-    public static void setInstance(
-            final WorkPackageController workPackageController) {
-        theInstance = workPackageController;
     }
 
 }

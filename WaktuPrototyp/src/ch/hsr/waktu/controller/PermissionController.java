@@ -10,11 +10,20 @@ import org.apache.log4j.Logger;
 
 import ch.hsr.waktu.domain.Permission;
 import ch.hsr.waktu.domain.SystemRole;
+import ch.hsr.waktu.services.ExceptionHandling;
 import ch.hsr.waktu.services.WaktuException;
 
 import com.trolltech.qt.QSignalEmitter;
 
 public class PermissionController extends QSignalEmitter {
+	
+	private PermissionController() throws WaktuException {
+		try {
+			allPermissionNodes = getPermissionNodes();
+		} catch (Exception e) {
+			ExceptionHandling.handleException(e);
+		} 
+	}
 
     private static Logger logger = Logger.getLogger(PermissionController.class);
     public Signal0 update = new Signal0();
@@ -23,6 +32,11 @@ public class PermissionController extends QSignalEmitter {
     private static ArrayList<PermissionNode> allPermissionNodes = null;
     private static PermissionController theInstance = null;
 
+    /**
+     * 
+     * @return PermissionController
+     * @throws WaktuException
+     */
     public static PermissionController getInstance() throws WaktuException {
         if (theInstance == null) {
             theInstance = new PermissionController();
@@ -30,16 +44,11 @@ public class PermissionController extends QSignalEmitter {
         return theInstance;
     }
 
-    private PermissionController() throws SecurityException, WaktuException {
-        try {
-            allPermissionNodes = getPermissionNodes();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     * 
+     * @return List<Permission>
+     * @throws WaktuException
+     */
     private static List<Permission> getPermissionTable() throws WaktuException {
         if (permissions == null) {
             EntityManager em = PersistenceController.getInstance().getEMF()
@@ -55,6 +64,12 @@ public class PermissionController extends QSignalEmitter {
         return permissions;
     }
 
+    /**
+     * 
+     * @param systemRole
+     * @return Permission
+     * @throws WaktuException
+     */
     public Permission addPermission(final SystemRole systemRole)
             throws WaktuException {
 
@@ -71,6 +86,14 @@ public class PermissionController extends QSignalEmitter {
 
     }
 
+    /**
+     * 
+     * @return ArrayList<PermissionNode>
+     * @throws IllegalArgumentException
+     * @throws IllegalAccessException
+     * @throws SecurityException
+     * @throws WaktuException
+     */
     public static ArrayList<PermissionNode> getPermissionNodes()
             throws IllegalArgumentException, IllegalAccessException,
             SecurityException, WaktuException {
@@ -88,6 +111,10 @@ public class PermissionController extends QSignalEmitter {
 
     }
 
+    /**
+     * 
+     * @throws WaktuException
+     */
     public void reloadPermissions() throws WaktuException {
         try {
             permissions = null;
@@ -100,11 +127,22 @@ public class PermissionController extends QSignalEmitter {
 
     }
 
+    /**
+     * 
+     * @return
+     * @throws WaktuException
+     */
     public boolean checkPermission() throws WaktuException {
         StackTraceElement[] trace = new Throwable().getStackTrace();
         return checkPermission(trace[1].getMethodName());
     }
 
+    /**
+     * 
+     * @param method
+     * @return boolean
+     * @throws WaktuException
+     */
     public boolean checkPermission(final String method) throws WaktuException {
         boolean permission = false;
         try {
@@ -135,6 +173,12 @@ public class PermissionController extends QSignalEmitter {
 
 class PermissionNode {
 
+	/**
+	 * 
+	 * @param systemRole
+	 * @param method
+	 * @param permission
+	 */
     public PermissionNode(final SystemRole systemRole, final String method,
             final boolean permission) {
         this.systemRole = systemRole;
@@ -147,14 +191,26 @@ class PermissionNode {
     private String method;
     private boolean permission;
 
+    /**
+     * 
+     * @return SystemRole
+     */
     public SystemRole getSystemRole() {
         return systemRole;
     }
 
+    /**
+     * 
+     * @return boolean
+     */
     public boolean getPermission() {
         return permission;
     }
 
+    /**
+     * 
+     * @return String
+     */
     public String getMethod() {
         return method;
     }

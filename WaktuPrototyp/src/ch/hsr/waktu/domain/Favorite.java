@@ -2,10 +2,6 @@ package ch.hsr.waktu.domain;
 
 import java.util.GregorianCalendar;
 
-/**
- * @author simon.staeheli
- * @version 1.0
- */
 public class Favorite {
 
     private int id;

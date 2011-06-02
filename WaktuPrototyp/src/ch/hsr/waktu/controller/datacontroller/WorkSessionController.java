@@ -21,38 +21,41 @@ import ch.hsr.waktu.services.WaktuException;
 import com.trolltech.qt.QSignalEmitter;
 import com.trolltech.qt.core.QDate;
 
-/**
- * @author simon.staeheli
- * @version 1.0
- */
 public class WorkSessionController extends QSignalEmitter {
 
+	protected WorkSessionController() { }
+
     private static WorkSessionController theInstance = null;
-
-    public static WorkSessionController getInstance() {
-        if (theInstance == null) {
-            theInstance = new WorkSessionController();
-        }
-        return theInstance;
-    }
-
-    public static void setInstance(
-            final WorkSessionController workSessionController) {
-        theInstance = workSessionController;
-    }
 
     private Logger logger = Logger.getLogger(WorkSessionController.class);
     public Signal0 update = new Signal0();
     public Signal1<WorkSession> add = new Signal1<WorkSession>();
     public Signal1<WorkSession> removed = new Signal1<WorkSession>();
-
-    protected WorkSessionController() {
-
+    
+    /**
+     * 
+     * @return WorkSessionController
+     */
+    public static WorkSessionController getInstance() {
+    	if (theInstance == null) {
+    		theInstance = new WorkSessionController();
+    	}
+    	return theInstance;
+    }
+    
+    /**
+     * 
+     * @param workSessionController
+     */
+    public static void setInstance(
+    		final WorkSessionController workSessionController) {
+    	theInstance = workSessionController;
     }
 
     /**
      * 
      * @param user
+     * @return List<WorkSession>
      * @throws WaktuException
      */
     @SuppressWarnings("unchecked")
@@ -83,6 +86,7 @@ public class WorkSessionController extends QSignalEmitter {
      * 
      * @param user
      * @param date
+     * @return List<WorkSession>
      * @throws WaktuException
      */
     @SuppressWarnings("unchecked")
@@ -113,7 +117,15 @@ public class WorkSessionController extends QSignalEmitter {
         }
         return workSessionsByDate;
     }
-
+    
+    /**
+     * 
+     * @param user
+     * @param fromDate
+     * @param toDate
+     * @return List<WorkSession>
+     * @throws WaktuException
+     */
     @SuppressWarnings("unchecked")
     public List<WorkSession> getWorkSessions(final Usr user,
             final QDate fromDate, final QDate toDate) throws WaktuException {
@@ -144,6 +156,12 @@ public class WorkSessionController extends QSignalEmitter {
 
     }
 
+    /**
+     * 
+     * @param workPackage
+     * @return List<WorkSession>
+     * @throws WaktuException
+     */
     @SuppressWarnings("unchecked")
     public List<WorkSession> getWorkSessions(final WorkPackage workPackage)
             throws WaktuException {
@@ -167,7 +185,14 @@ public class WorkSessionController extends QSignalEmitter {
         }
         return workSessionsByProject;
     }
-
+    
+    /**
+     * 
+     * @param workPackage
+     * @param usr
+     * @return List<WorkSession>
+     * @throws WaktuException
+     */
     @SuppressWarnings("unchecked")
     public List<WorkSession> getWorkSessions(final WorkPackage workPackage,
             final Usr usr) throws WaktuException {
@@ -194,7 +219,15 @@ public class WorkSessionController extends QSignalEmitter {
         }
         return workSessionsByProject;
     }
-
+    
+    /**
+     * 
+     * @param workPackage
+     * @param fromDate
+     * @param toDate
+     * @return List<WorkSession>
+     * @throws WaktuException
+     */
     @SuppressWarnings("unchecked")
     public List<WorkSession> getWorkSessions(final WorkPackage workPackage,
             final QDate fromDate, final QDate toDate) throws WaktuException {
@@ -223,7 +256,13 @@ public class WorkSessionController extends QSignalEmitter {
         }
         return workSessionsByDateAndWorkPackage;
     }
-
+    
+    /**
+     * 
+     * @param project
+     * @return List<WorkSession>
+     * @throws WaktuException
+     */
     @SuppressWarnings("unchecked")
     public List<WorkSession> getWorkSessions(final Project project)
             throws WaktuException {
@@ -249,6 +288,13 @@ public class WorkSessionController extends QSignalEmitter {
         return workSessionsByProject;
     }
 
+    /**
+     * 
+     * @param project
+     * @param usr
+     * @return List<WorkSession>
+     * @throws WaktuException
+     */
     @SuppressWarnings("unchecked")
     public List<WorkSession> getWorkSessions(final Project project,
             final Usr usr) throws WaktuException {
@@ -360,6 +406,8 @@ public class WorkSessionController extends QSignalEmitter {
      * @param workPackage
      * @param startTime
      * @param endTime
+     * @param description
+     * @return WorkSession
      * @throws WaktuException
      */
     public WorkSession addWorkSession(final Usr user,
@@ -396,7 +444,12 @@ public class WorkSessionController extends QSignalEmitter {
         logger.info("favorite " + newWorkSession + " deleted");
         return newWorkSession;
     }
-
+    
+    /**
+     * 
+     * @param workSession
+     * @throws WaktuException
+     */
     public void updateWorkSession(final WorkSession workSession)
             throws WaktuException {
         EntityManager em = PersistenceController.getInstance().getEMF()
@@ -430,6 +483,7 @@ public class WorkSessionController extends QSignalEmitter {
     /**
      * 
      * @param workSession
+     * @throws WaktuException
      */
     public void removeWorkSession(final WorkSession workSession)
             throws WaktuException {
