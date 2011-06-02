@@ -84,7 +84,7 @@
     <message>
         <location filename="../src/ch/hsr/waktu/gui/qt/model/FavoriteModel.java" line="85"/>
         <source>End</source>
-        <translation>End</translation>
+        <translation>Ende</translation>
     </message>
 </context>
 <context>
@@ -419,7 +419,7 @@
     <message>
         <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectWorkSessionModel.java" line="90"/>
         <source>End</source>
-        <translation>End</translation>
+        <translation>Ende</translation>
     </message>
     <message>
         <location filename="../src/ch/hsr/waktu/gui/qt/model/ProjectWorkSessionModel.java" line="92"/>
@@ -507,7 +507,7 @@
     <message>
         <location filename="../src/ch/hsr/waktu/gui/qt/view/TimeView.java" line="646"/>
         <source>Add to Favorites</source>
-        <translation>Zu Favoriten hinzufpgen</translation>
+        <translation>Zu Favoriten hinzufügen</translation>
     </message>
     <message>
         <location filename="../src/ch/hsr/waktu/gui/qt/view/TimeView.java" line="650"/>
@@ -907,7 +907,7 @@
     <message>
         <location filename="../src/ch/hsr/waktu/gui/qt/model/UserWorkSessionModel.java" line="77"/>
         <source>End</source>
-        <translation>End</translation>
+        <translation>Ende</translation>
     </message>
     <message>
         <location filename="../src/ch/hsr/waktu/gui/qt/model/UserWorkSessionModel.java" line="78"/>
@@ -978,7 +978,7 @@
     <message>
         <location filename="../src/ch/hsr/waktu/gui/qt/model/WorkSessionModel.java" line="84"/>
         <source>End</source>
-        <translation>End</translation>
+        <translation>Ende</translation>
     </message>
 </context>
 <context>
@@ -1006,7 +1006,7 @@
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_IcsImport.java" line="110"/>
         <source>End:</source>
-        <translation>End:</translation>
+        <translation>Ende:</translation>
     </message>
     <message>
         <location filename="../Generated JUIC files/ch/hsr/waktu/gui/qt/view/Ui_IcsImport.java" line="111"/>
