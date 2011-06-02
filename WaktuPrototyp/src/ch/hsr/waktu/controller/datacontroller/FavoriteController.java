@@ -59,7 +59,7 @@ public class FavoriteController extends QSignalEmitter {
         List<Favorite> allFavoritesOfUsr = null;
         try {
             allFavoritesOfUsr = em.createQuery(
-                    "SELECT f FROM Favorite f JOIN f.usr u WHERE u.usrid = '"
+                    "SELECT f FROM Favorite f JOIN f.user u WHERE u.id = '"
                             + user.getId() + "' ORDER BY f.id").getResultList();
         } catch (Exception e) {
             ExceptionHandling.handleException(e);

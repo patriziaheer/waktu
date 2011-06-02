@@ -2,7 +2,7 @@ package ch.hsr.waktu.domain;
 
 public class Project {
 
-    private int projectid;
+    private int id;
     private String projectIdentifier;
     private String description;
     private Usr projectManager;
@@ -32,7 +32,7 @@ public class Project {
     }
 
     public int getId() {
-        return projectid;
+        return id;
     }
 
     public String getDescription() {
@@ -86,7 +86,7 @@ public class Project {
             Project proj = (Project) obj;
             if (proj.projectIdentifier.equals(projectIdentifier)
                     && proj.description.equals(description)
-                    && proj.projectid == projectid && proj.active == active
+                    && proj.id == id && proj.active == active
                     && proj.plannedTime == plannedTime) {
                 return true;
             }
@@ -99,7 +99,7 @@ public class Project {
     @Override
     public int hashCode() {
         int hashCode = 23;
-        hashCode += 31 * projectid;
+        hashCode += 31 * id;
         hashCode += 31 * projectIdentifier.hashCode();
         hashCode += 31 * description.hashCode();
         if (projectManager != null) {

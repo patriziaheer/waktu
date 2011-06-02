@@ -1,7 +1,7 @@
 package ch.hsr.waktu.domain;
 
 public class Permission {
-    private int permissionid;
+    private int id;
     private SystemRole systemRole;
     public boolean getActiveUsers = true;
     public boolean getAllUsers = true;
@@ -48,7 +48,7 @@ public class Permission {
     }
 
     public int getId() {
-        return permissionid;
+        return id;
     }
 
     public SystemRole getSystemRole() {

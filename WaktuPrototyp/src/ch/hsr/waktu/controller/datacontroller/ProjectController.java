@@ -94,7 +94,7 @@ public class ProjectController extends QSignalEmitter {
         try {
             activeProjectsOfUser = em
                     .createQuery(
-                            "SELECT p FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE u.usrid = '"
+                            "SELECT p FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE u.id = '"
                                     + usr.getId()
                                     + "' ORDER BY p.projectIdentifier ASC")
                     .getResultList();

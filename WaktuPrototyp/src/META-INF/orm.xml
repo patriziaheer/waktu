@@ -8,7 +8,7 @@
 		<table name="favorite" />
 		<attributes>
 			<id name="id">
-				<column name="favoriteId" />
+				<column name="id" />
 				<generated-value strategy="IDENTITY" />
 			</id>
 			<basic name="startTime">
@@ -20,7 +20,7 @@
 			<one-to-one name="workPackage" fetch="LAZY">
 				<join-column name="workPackage"/>
 			</one-to-one>
-			<one-to-one name="usr" fetch="LAZY">
+			<one-to-one name="user" fetch="LAZY">
 				<join-column name="usr"/>
 			</one-to-one>
 		</attributes>
@@ -29,8 +29,8 @@
 	<entity class="ch.hsr.waktu.domain.Project">
 		<table name="project" />
 		<attributes>
-			<id name="projectid">
-				<column name="projectId" />
+			<id name="id">
+				<column name="id" />
 				<generated-value strategy="IDENTITY" />
 			</id>						
 			<one-to-one name="projectManager" fetch="LAZY">
@@ -43,14 +43,14 @@
 		<table name="projectstaff" />
 		<attributes>
 			<id name="id">
-				<column name="projectStaff" />
+				<column name="id" />
 				<generated-value strategy="IDENTITY" />
 			</id>
 			<one-to-one name="project" fetch="LAZY">
-				<join-column name="projectid" />
+				<join-column name="project" />
 			</one-to-one>
 			<one-to-one name="user" fetch="LAZY">
-				<join-column name="usrid" />
+				<join-column name="usr" />
 			</one-to-one>
 		</attributes>
 	</entity>
@@ -58,8 +58,8 @@
 	<entity class="ch.hsr.waktu.domain.Usr">
 		<table name="usr" />
 		<attributes>
-			<id name="usrid">
-				<column name="usrId" />
+			<id name="id">
+				<column name="id" />
 				<generated-value strategy="IDENTITY" />
 			</id>
 
@@ -73,7 +73,7 @@
 		<table name="workpackage" />
 		<attributes>
 			<id name="id">
-				<column name="workPackageId" />
+				<column name="id" />
 				<generated-value strategy="IDENTITY" />
 			</id>
 			<one-to-one name="project" fetch="LAZY">
@@ -87,7 +87,7 @@
 		<table name="worksession" />
 		<attributes>
 			<id name="id">
-				<column name="workSessionId" />
+				<column name="id" />
 				<generated-value strategy="IDENTITY" />
 			</id>
 			<basic name="startTime">
@@ -99,10 +99,10 @@
 			<basic name="description">
 				<column name="description" />
 			</basic>
-			<one-to-one name="workPackageRef" fetch="LAZY">
+			<one-to-one name="workPackage" fetch="LAZY">
 				<join-column name="workpackage"/>
 			</one-to-one>
-			<one-to-one name="userRef" fetch="LAZY">
+			<one-to-one name="user" fetch="LAZY">
 				<join-column name="usr"/>
 			</one-to-one>
 		</attributes>
@@ -111,8 +111,8 @@
 	<entity class="ch.hsr.waktu.domain.Permission">
 		<table name="permission" />
 		<attributes>
-			<id name="permissionid">
-				<column name="permissionId" />
+			<id name="id">
+				<column name="id" />
 				<generated-value strategy="IDENTITY" />
 			</id>
 			<basic name="systemRole">

@@ -57,7 +57,7 @@ public class ProjectStaffController extends QSignalEmitter {
         try {
             projects = em
                     .createQuery(
-                            "SELECT p FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE u.usrid = '"
+                            "SELECT p FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE u.id = '"
                                     + user.getId()
                                     + "' ORDER by p.projectIdentifier ASC")
                     .getResultList();
@@ -90,7 +90,7 @@ public class ProjectStaffController extends QSignalEmitter {
         try {
             nonUserProjects = em
                     .createQuery(
-                            "SELECT p FROM Project p WHERE p.projectid NOT IN (SELECT pr.projectid FROM ProjectStaff ps JOIN ps.project pr JOIN ps.user u WHERE u.usrid = "
+                            "SELECT p FROM Project p WHERE p.id NOT IN (SELECT pr.id FROM ProjectStaff ps JOIN ps.project pr JOIN ps.user u WHERE u.id = "
                                     + user.getId()
                                     + ")  ORDER by p.projectIdentifier ASC")
                     .getResultList();
@@ -122,7 +122,7 @@ public class ProjectStaffController extends QSignalEmitter {
         try {
             users = em
                     .createQuery(
-                            "SELECT u FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE p.projectid = '"
+                            "SELECT u FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE p.id = '"
                                     + project.getId() + "'").getResultList();
         } catch (Exception e) {
             ExceptionHandling.handleException(e);
@@ -153,7 +153,7 @@ public class ProjectStaffController extends QSignalEmitter {
         try {
             users = em
                     .createQuery(
-                            "SELECT u FROM Usr u WHERE u.usrid NOT IN (SELECT us.usrid FROM ProjectStaff ps JOIN ps.user us JOIN ps.project p WHERE p.projectid = "
+                            "SELECT u FROM Usr u WHERE u.id NOT IN (SELECT us.id FROM ProjectStaff ps JOIN ps.user us JOIN ps.project p WHERE p.id = "
                                     + project.getId() + ")").getResultList();
         } catch (Exception e) {
             ExceptionHandling.handleException(e);
@@ -216,9 +216,9 @@ public class ProjectStaffController extends QSignalEmitter {
             em.getTransaction().begin();
             projectStaffToRemove = (ProjectStaff) em
                     .createQuery(
-                            "SELECT ps FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE p.projectid = '"
+                            "SELECT ps FROM ProjectStaff ps JOIN ps.project p JOIN ps.user u WHERE p.id = '"
                                     + project.getId()
-                                    + "' AND u.usrid = '"
+                                    + "' AND u.id = '"
                                     + user.getId() + "'").getSingleResult();
             em.remove(projectStaffToRemove);
             em.getTransaction().commit();

@@ -215,7 +215,7 @@ public class UserController extends QSignalEmitter {
                 lastname, Md5.hash(password), pensum, role, holiday);
 
         if (!PermissionController.getInstance().checkPermission()) {
-            throw new WaktuException("Permission deniedd");
+            throw new WaktuException("Permission denied");
         }
 
         BusinessRuleController.check(newUsr);

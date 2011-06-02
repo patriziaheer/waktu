@@ -7,7 +7,7 @@ public class Favorite {
     private int id;
     private GregorianCalendar endTime;
     private GregorianCalendar startTime;
-    private Usr usr;
+    private Usr user;
     private WorkPackage workPackage;
 
     public Favorite() {
@@ -16,7 +16,7 @@ public class Favorite {
 
     public Favorite(Usr userId, WorkPackage workPackage,
             GregorianCalendar startTime, GregorianCalendar endTime) {
-        this.usr = userId;
+        this.user = userId;
         this.workPackage = workPackage;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -43,11 +43,11 @@ public class Favorite {
     }
 
     public Usr getUser() {
-        return usr;
+        return user;
     }
 
     public void setUser(Usr usr) {
-        this.usr = usr;
+        this.user = usr;
     }
 
     public WorkPackage getWorkPackageID() {
@@ -63,7 +63,7 @@ public class Favorite {
         if (obj instanceof Favorite) {
             Favorite fav = (Favorite) obj;
             if (fav.id == id && fav.endTime.equals(endTime)
-                    && fav.usr.equals(usr)
+                    && fav.user.equals(user)
                     && fav.workPackage.equals(workPackage)) {
                 return true;
             }
@@ -77,7 +77,7 @@ public class Favorite {
         hashCode += 31 * id;
         hashCode += 31 * endTime.hashCode();
         hashCode += 31 * startTime.hashCode();
-        hashCode += 31 * usr.hashCode();
+        hashCode += 31 * user.hashCode();
         hashCode += 31 * workPackage.hashCode();
         return hashCode;
     }
@@ -85,7 +85,7 @@ public class Favorite {
     @Override
     public String toString() {
         return id + startTime.toString() + endTime.toString()
-                + workPackage.getDescription() + usr.getUsername();
+                + workPackage.getDescription() + user.getUsername();
     }
 
 }

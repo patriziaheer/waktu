@@ -4,7 +4,7 @@ import ch.hsr.waktu.services.Md5;
 
 public class Usr {
 
-    private int usrid;
+    private int id;
     private String username;
     private String name;
     private String firstname;
@@ -64,7 +64,7 @@ public class Usr {
     }
 
     public int getId() {
-        return usrid;
+        return id;
     }
 
     public String getName() {
@@ -112,7 +112,7 @@ public class Usr {
     public boolean equals(Object obj) {
         if (obj instanceof Usr) {
             Usr usr = (Usr) obj;
-            if (usr.username.equals(username) && usr.usrid == usrid
+            if (usr.username.equals(username) && usr.id == id
                     && usr.firstname.equals(firstname) && usr.name.equals(name)
                     && usr.holiday == holiday && usr.active == active
                     && usr.passwordHash.equals(passwordHash)
@@ -127,7 +127,7 @@ public class Usr {
     @Override
     public int hashCode() {
         int hashCode = 23;
-        hashCode += 31 * usrid;
+        hashCode += 31 * id;
         hashCode += 31 * username.hashCode();
         hashCode += 31 * name.hashCode();
         hashCode += 31 * firstname.hashCode();

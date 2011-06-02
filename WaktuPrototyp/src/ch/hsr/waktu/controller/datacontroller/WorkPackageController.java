@@ -92,7 +92,7 @@ public class WorkPackageController extends QSignalEmitter {
         try {
             activeWorkPackages = em
                     .createQuery(
-                            "SELECT wp FROM WorkPackage wp JOIN wp.project p WHERE wp.active = TRUE AND p.projectid = '"
+                            "SELECT wp FROM WorkPackage wp JOIN wp.project p WHERE wp.active = TRUE AND p.id = '"
                                     + project.getId()
                                     + "' ORDER BY wp.description ASC")
                     .getResultList();
@@ -124,7 +124,7 @@ public class WorkPackageController extends QSignalEmitter {
 
         try {
             allWorkPackages = em.createQuery(
-                    "SELECT wp FROM WorkPackage wp JOIN wp.project p WHERE p.projectid = '"
+                    "SELECT wp FROM WorkPackage wp JOIN wp.project p WHERE p.id = '"
                             + project.getId() + "'").getResultList();
         } catch (Exception e) {
             ExceptionHandling.handleException(e);
@@ -184,7 +184,7 @@ public class WorkPackageController extends QSignalEmitter {
         try {
             inactiveWorkPackages = em
                     .createQuery(
-                            "SELECT wp FROM WorkPackage wp JOIN wp.project p WHERE wp.active = FALSE AND p.projectid = '"
+                            "SELECT wp FROM WorkPackage wp JOIN wp.project p WHERE wp.active = FALSE AND p.id = '"
                                     + project.getId() + "'").getResultList();
         } catch (Exception e) {
             ExceptionHandling.handleException(e);

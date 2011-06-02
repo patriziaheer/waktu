@@ -72,7 +72,7 @@ public class WorkSessionController extends QSignalEmitter {
 
         try {
             workSessionsByUser = em.createQuery(
-                    "SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE u.usrid = '"
+                    "SELECT ws FROM WorkSession ws JOIN ws.user u WHERE u.id = '"
                             + user.getId() + "'").getResultList();
         } catch (Exception e) {
             ExceptionHandling.handleException(e);
@@ -102,13 +102,13 @@ public class WorkSessionController extends QSignalEmitter {
 
         try {
             Query q = em
-                    .createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE ws.startTime >= '"
+                    .createQuery("SELECT ws FROM WorkSession ws JOIN ws.user u WHERE ws.startTime >= '"
                             + date.toString("yyyy-MM-dd")
                             + " 00:00:00"
                             + "' AND ws.endTime <= '"
                             + date.toString("yyyy-MM-dd")
                             + " 23:59:59"
-                            + "' AND u.usrid = '" + user.getId() + "'");
+                            + "' AND u.id = '" + user.getId() + "'");
             workSessionsByDate = q.getResultList();
         } catch (Exception e) {
             ExceptionHandling.handleException(e);
@@ -139,13 +139,13 @@ public class WorkSessionController extends QSignalEmitter {
 
         try {
             Query q = em
-                    .createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u WHERE ws.startTime >= '"
+                    .createQuery("SELECT ws FROM WorkSession ws JOIN ws.user u WHERE ws.startTime >= '"
                             + fromDate.toString("yyyy-MM-dd")
                             + " 00:00:00"
                             + "' AND ws.endTime <= '"
                             + toDate.toString("yyyy-MM-dd")
                             + " 23:59:59"
-                            + "' AND u.usrid = '" + user.getId() + "'");
+                            + "' AND u.id = '" + user.getId() + "'");
             workSessionsByUserAndDate = q.getResultList();
         } catch (Exception e) {
             ExceptionHandling.handleException(e);
@@ -176,7 +176,7 @@ public class WorkSessionController extends QSignalEmitter {
 
         try {
             workSessionsByProject = em.createQuery(
-                    "SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp WHERE wp.id = '"
+                    "SELECT ws FROM WorkSession ws JOIN ws.workPackage wp WHERE wp.id = '"
                             + workPackage.getId() + "'").getResultList();
         } catch (Exception e) {
             ExceptionHandling.handleException(e);
@@ -208,9 +208,9 @@ public class WorkSessionController extends QSignalEmitter {
         try {
             workSessionsByProject = em
                     .createQuery(
-                            "SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN ws.userRef u WHERE wp.id = '"
+                            "SELECT ws FROM WorkSession ws JOIN ws.workPackage wp JOIN ws.user u WHERE wp.id = '"
                                     + workPackage.getId()
-                                    + "' AND u.usrid = '"
+                                    + "' AND u.id = '"
                                     + usr.getId() + "'").getResultList();
         } catch (Exception e) {
             ExceptionHandling.handleException(e);
@@ -241,7 +241,7 @@ public class WorkSessionController extends QSignalEmitter {
 
         try {
             Query q = em
-                    .createQuery("SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp WHERE ws.startTime >= '"
+                    .createQuery("SELECT ws FROM WorkSession ws JOIN ws.workPackage wp WHERE ws.startTime >= '"
                             + fromDate.toString("yyyy-MM-dd")
                             + " 00:00:00"
                             + "' AND ws.endTime <= '"
@@ -278,7 +278,7 @@ public class WorkSessionController extends QSignalEmitter {
         try {
             workSessionsByProject = em
                     .createQuery(
-                            "SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN wp.project p WHERE p.projectid = '"
+                            "SELECT ws FROM WorkSession ws JOIN ws.workPackage wp JOIN wp.project p WHERE p.id = '"
                                     + project.getId() + "'").getResultList();
         } catch (Exception e) {
             ExceptionHandling.handleException(e);
@@ -310,9 +310,9 @@ public class WorkSessionController extends QSignalEmitter {
         try {
             workSessionsByProject = em
                     .createQuery(
-                            "SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN wp.project p JOIN ws.userRef u WHERE p.projectid = '"
+                            "SELECT ws FROM WorkSession ws JOIN ws.workPackage wp JOIN wp.project p JOIN ws.user u WHERE p.id = '"
                                     + project.getId()
-                                    + "' AND u.usrid = '"
+                                    + "' AND u.id = '"
                                     + usr.getId() + "'").getResultList();
         } catch (Exception e) {
             ExceptionHandling.handleException(e);
@@ -343,13 +343,13 @@ public class WorkSessionController extends QSignalEmitter {
 
         try {
             Query q = em
-                    .createQuery("SELECT ws FROM WorkSession ws JOIN ws.workPackageRef wp JOIN wp.project p WHERE ws.startTime >= '"
+                    .createQuery("SELECT ws FROM WorkSession ws JOIN ws.workPackage wp JOIN wp.project p WHERE ws.startTime >= '"
                             + start.toString("yyyy-MM-dd")
                             + " 00:00:00"
                             + "' AND ws.endTime <= '"
                             + end.toString("yyyy-MM-dd")
                             + " 23:59:59"
-                            + "' AND p.projectid = '" + project.getId() + "'");
+                            + "' AND p.id = '" + project.getId() + "'");
             workSessionsByDate = q.getResultList();
         } catch (Exception e) {
             ExceptionHandling.handleException(e);
@@ -382,9 +382,9 @@ public class WorkSessionController extends QSignalEmitter {
 
         try {
             Query q = em
-                    .createQuery("SELECT ws FROM WorkSession ws JOIN ws.userRef u JOIN ws.workPackageRef wp JOIN wp.project p WHERE p.projectid = '"
+                    .createQuery("SELECT ws FROM WorkSession ws JOIN ws.user u JOIN ws.workPackage wp JOIN wp.project p WHERE p.id = '"
                             + project.getId()
-                            + "' AND u.usrid = '"
+                            + "' AND u.id = '"
                             + usr.getId()
                             + "' AND ws.startTime >= '"
                             + start.toString("yyyy-MM-dd")

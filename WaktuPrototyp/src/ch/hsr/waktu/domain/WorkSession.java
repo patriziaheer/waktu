@@ -7,9 +7,9 @@ public class WorkSession {
     private int id;
     private GregorianCalendar endTime;
     private GregorianCalendar startTime;
-    private Usr userRef;
+    private Usr user;
     private String description;
-    private WorkPackage workPackageRef;
+    private WorkPackage workPackage;
 
     public WorkSession() {
 
@@ -18,8 +18,8 @@ public class WorkSession {
     public WorkSession(Usr user, WorkPackage workPackage,
             GregorianCalendar startTime, GregorianCalendar endTime,
             String description) {
-        this.userRef = user;
-        this.workPackageRef = workPackage;
+        this.user = user;
+        this.workPackage = workPackage;
         this.startTime = startTime;
         this.endTime = endTime;
         this.description = description;
@@ -46,11 +46,11 @@ public class WorkSession {
     }
 
     public Usr getUser() {
-        return userRef;
+        return user;
     }
 
     public void setUser(Usr user) {
-        this.userRef = user;
+        this.user = user;
     }
 
     public String getDescription() {
@@ -62,11 +62,11 @@ public class WorkSession {
     }
 
     public WorkPackage getWorkPackage() {
-        return workPackageRef;
+        return workPackage;
     }
 
     public void setWorkPackage(WorkPackage workPackage) {
-        this.workPackageRef = workPackage;
+        this.workPackage = workPackage;
     }
 
     @Override
@@ -78,8 +78,8 @@ public class WorkSession {
     public boolean equals(final Object obj) {
         if (obj instanceof WorkSession) {
             WorkSession ws = (WorkSession) obj;
-            if (ws.id == id && ws.userRef.equals(userRef)
-                    && ws.workPackageRef.equals(workPackageRef)
+            if (ws.id == id && ws.user.equals(user)
+                    && ws.workPackage.equals(workPackage)
                     && ws.description.equals(description)) {
                 return true;
             }
@@ -91,8 +91,8 @@ public class WorkSession {
     public int hashCode() {
         int hashCode = 23;
         hashCode += 31 * id;
-        hashCode += 31 * userRef.hashCode();
-        hashCode += 31 * workPackageRef.hashCode();
+        hashCode += 31 * user.hashCode();
+        hashCode += 31 * workPackage.hashCode();
         hashCode += 31 * description.hashCode();
         hashCode += 31 * startTime.hashCode();
         hashCode += 31 * endTime.hashCode();
