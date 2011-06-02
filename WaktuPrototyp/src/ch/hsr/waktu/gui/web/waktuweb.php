@@ -1,9 +1,11 @@
-﻿<?php
+<?php
 
 	require_once 'controller/class.UsrController.php';
 	require_once 'controller/class.ProjectController.php';
 	require_once 'controller/class.WorkSessionController.php';
 	require_once 'controller/class.WorkPackageController.php';
+
+	require_once 'services/class.TimeUtil.php';
 
 	require_once 'controller/class.LoginController.php';
 	require_once 'controller/class.PersistenceController.php';
@@ -12,22 +14,16 @@
 	$pec->openConnection();
 
 	$uc = UsrController::getInstance();
-	$pc = ProjectController::getInstance();
 	$wc = WorkSessionController::getInstance();
 	$wp = WorkPackageController::getInstance();
-	
 	$lc = LoginController::getInstance();
 	
-	session_start();
-	$lc->setLoggedInUser($_SESSION['user']);	
-
+	$lc->startSession();
 	
 	if(!empty($_POST)) {
 		
-		$_POST['date'] = substr($_POST['date'], 6,4).'-'.substr($_POST['date'], 3,2).'-'.substr($_POST['date'],0,2);
-		
-		$workS = new WorkSession($lc->getLoggedInUser(), $_POST['date']." ".$_POST['start'], $_POST['date']." ".$_POST['end'], WorkPackageController::getInstance()->getWorkPackage($_POST['workpackageid']), $_POST['desc']);	
-		$wc->addWorkSession($workS);
+		$date = TimeUtil::convertHumanToSqlDate($_POST['date']);
+		$wc->addWorkSession($lc->getLoggedInUser(), WorkPackageController::getInstance()->getWorkPackage($_POST['workpackageid']), $date." ".$_POST['start'], $date." ".$_POST['end'], $_POST['desc']);
 		unset($_POST);
 	}
 	
@@ -35,7 +31,7 @@
 	$projects = $wp->getWorkPackagesOfUser($lc->getLoggedInUser());
 	$worksessions = $wc->getAllWorkSession();	
 
-	function longerThan($inputString) {
+	function formatString($inputString) {
 		if(strlen($inputString) > 26) {
 			return $inputString.".";
 		}
@@ -48,39 +44,17 @@
 			'<tr class="ws">
 				<td class="ws">'.$ws->getWorkPackage()->getProject()->getDescription().'</td>
 				<td class="ws">'.$ws->getWorkPackage()->getDescription().'</td>
-				<td class="ws">'.$ws->getEndTime().'</td>
 				<td class="ws">'.$ws->getStartTime().'</td>
+				<td class="ws">'.$ws->getEndTime().'</td>
 				<td class="ws">'.$ws->getDescription().'</td>
 			</tr>';
 	}
 	
 	foreach($projects as $key => $p) {
 		$pList .= '
-				<option value="'.$p->getId().'">'.longerThan(substr($p->getProject()->getDescription()." / ".$p->getDescription(),0,27)).'</option>				
+				<option value="'.$p->getId().'">'.formatString(substr($p->getProject()->getDescription()." / ".$p->getDescription(),0,27)).'</option>				
 				';
 	}
-	
-	
-	
-
-//	$lc->login('pati','1234');
-	
-//	print_r($users);
-//	print_r($projects);
-//	print_r($worksessions);
-
-//	$workP = $wp->getWorkPackage(1);
-//	$user = $uc->getUsr(2);
-//	print_r($user);
-	
-	//$workS = new WorkSession($user, "2011-05-25 02:00", '2011-05-25 00:01', 'Neuer Eintrag', $workP);	
-	//	echo $wc->addWorkSession($workS);
-	
-//	print_r($workS);
-
-//	echo $wc->addWorkSession($workS);
-
-	
 	
 	$pec->closeConnection();
 ?>
@@ -89,13 +63,14 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8" /> 
 <title>WaktuWeb</title>
 	<link rel="stylesheet" href="waktuweb.css">
 </head>
 <body>
 <div id="site">
 	<div id="logo">
-		<div style="width: 350px; text-align: right;">Eingeloggt als: <i><?php echo $_SESSION['user']->getUsername() ?></i> | <a href="index.php">Ausloggen</a></div>
+		<div style="width: 350px; text-align: right;">Eingeloggt als: <i><?php echo $_SESSION['user']->getUsername() ?></i> | <a href="logout.php">Ausloggen</a></div>
 		<img style="padding-top: 40px;" width="293px" height="125px" src="img/logo.png">
 	</div>
 	<div id="addworksession">
