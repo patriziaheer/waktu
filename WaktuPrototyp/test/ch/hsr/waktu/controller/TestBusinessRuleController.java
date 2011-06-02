@@ -37,6 +37,13 @@ public class TestBusinessRuleController {
     }
     
     @Test
+    public void checkWorkPackage() throws WaktuException {
+    	Project p = new Project("projectID", "Test project",
+    			new Usr(), 150);
+    	BusinessRuleController.check(new WorkPackage(p, "WorkPackage description"));
+    }
+    
+    @Test
     public void checkUser_validUser() throws WaktuException {
         BusinessRuleController.check(new Usr("hansmuster", "Hans", "Muster",
                 "1234", 3, SystemRole.EMPLOYEE, 24));
