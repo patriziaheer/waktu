@@ -39,7 +39,6 @@ public class WorkPackageControllerXml extends WorkPackageController {
         return null;
     }
 
-    @Override
     public WorkPackage getWorkPackage(final String description)
             throws WaktuException {
         for (WorkPackage wp : getAllWorkPackages()) {

@@ -6,8 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.trolltech.qt.core.QDate;
-
+import ch.hsr.waktu.controller.TimeController;
 import ch.hsr.waktu.controller.datacontroller.ProjectController;
 import ch.hsr.waktu.controller.datacontroller.ProjectControllerXml;
 import ch.hsr.waktu.controller.datacontroller.UserController;
@@ -20,6 +19,8 @@ import ch.hsr.waktu.domain.Project;
 import ch.hsr.waktu.domain.Usr;
 import ch.hsr.waktu.domain.WorkPackage;
 import ch.hsr.waktu.services.WaktuException;
+
+import com.trolltech.qt.core.QDate;
 
 public class TestTimeController {
 
@@ -66,7 +67,7 @@ public class TestTimeController {
 
     @Test
     public void calculateWorktimeForProjectForUser() throws WaktuException {
-        Project project = ProjectController.getInstance().getProject("Waktu");
+        Project project = ((ProjectControllerXml)ProjectControllerXml.getInstance()).getProject("Waktu");
         Usr user = UserController.getInstance().getUser("patriziaheer");
         double time = TimeController.calculateWorktime(user, project, null,
                 null, null);
@@ -75,7 +76,7 @@ public class TestTimeController {
 
     @Test
     public void calculateWorktimeForWorkPackageForUser() throws WaktuException {
-        WorkPackage workPackage = WorkPackageController.getInstance()
+        WorkPackage workPackage = ((WorkPackageControllerXml)WorkPackageControllerXml.getInstance())
                 .getWorkPackage("Domain");
         Usr user = UserController.getInstance().getUser("patriziaheer");
         double time = TimeController.calculateWorktime(user, null, workPackage,
@@ -85,7 +86,7 @@ public class TestTimeController {
 
     @Test
     public void calculateWorktimeForWorkPackage() throws WaktuException {
-        WorkPackage workPackage = WorkPackageController.getInstance()
+        WorkPackage workPackage = ((WorkPackageControllerXml)WorkPackageControllerXml.getInstance())
                 .getWorkPackage("Domain");
         double time = TimeController.calculateWorktime(null, null, workPackage,
                 null, null);
@@ -94,7 +95,7 @@ public class TestTimeController {
 
     @Test
     public void calculateWorktimeForProject() throws WaktuException {
-        Project project = ProjectController.getInstance().getProject("Waktu");
+        Project project = ((ProjectControllerXml)ProjectControllerXml.getInstance()).getProject("Waktu");
         double time = TimeController.calculateWorktime(null, project, null,
                 null, null);
         assertEquals(31.0, time, 0.01);
