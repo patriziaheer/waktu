@@ -132,26 +132,7 @@ public class TimeUtil {
      *         and QTime).
      */
     static QDateTime stringToQDateTime(final String dateTimeString) {
-        String[] dateTime = splitTimeDateString(dateTimeString);
-        int year = new Integer(dateTime[0].substring(0, 4));
-        int month = new Integer(dateTime[0].substring(4, 6));
-        int day = new Integer(dateTime[0].substring(6, 8));
-        int hours = new Integer(dateTime[1].substring(0, 2));
-        int minutes = new Integer(dateTime[1].substring(2, 4));
-        int seconds = new Integer(dateTime[1].substring(4, 6));
-        return new QDateTime(new QDate(year, month, day), new QTime(hours,
-                minutes, seconds));
+        return QDateTime.fromString(dateTimeString.replace("T", " "), "yyyyMMdd hhmmss");
     }
 
-    /**
-     * Splits a string containing a date followed by a time in two separate
-     * strings.
-     * 
-     * @param timeDateString
-     *            string containing date and time delimited by 'T'
-     * @return array containing a date- and a time-string
-     */
-    private static String[] splitTimeDateString(final String timeDateString) {
-        return timeDateString.split("T");
-    }
 }

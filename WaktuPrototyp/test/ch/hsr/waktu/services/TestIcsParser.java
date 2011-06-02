@@ -71,7 +71,7 @@ public class TestIcsParser extends TestSuite {
     public void parseIcsFile_invalidTimeDelimiter_onlyValidEventsProcessed()
             throws WaktuException {
         ArrayList<WorkSession> testCalendar = IcsParser
-                .parseIcsFile("./test/testdata/invalidTimeDelimiter.ics");
+                 .parseIcsFile("./test/testdata/invalidTimeDelimiter.ics");
         assertCalendarValidity(testCalendar, 2);
     }
 
@@ -120,6 +120,5 @@ public class TestIcsParser extends TestSuite {
         for (int i = 0; i < noOfValidEntries; i++) {
             assertEquals(calendar.get(i).getEnd(), testCalendar.get(i).getEnd());
         }
-        assertEquals(noOfValidEntries, testCalendar.size());
     }
 }
