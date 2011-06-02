@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project default="test" name="Create Runnable Jar for Project WaktuPrototyp">
+<project default="create_run_jar" name="Create Runnable Jar for Project WaktuPrototyp">
     <!--this file was created by Eclipse Runnable JAR Export Wizard-->
     <!--ANT 1.7 is required                                        -->
 
@@ -7,26 +7,11 @@
 	<property name="bin" location="bin" />
 	<property name="lib" location="lib" />
 	<property name="dist.zip" location="waktu.zip" />
-	<property name="test.report.dir" location="build/test" />
-	<property name="test.dir" location="test" />
-	<property name="build.prod.dir" location="${bin}/prod" />
-	<property name="build.test.dir" location="${bin}/test" />
-	
-	<path id="project.classpath">
-		<pathelement location="${build.prod.dir}" />
-		<pathelement location="${build.test.dir}" />
-		<fileset dir="${lib}">
-			<include name="*.jar" />
-		</fileset>
-	</path>
 	
 	<target name="init">
 		<!-- Create the build directory structure used by compile -->
 		<!-- mkdir dir="${dist}" /-->
 		<mkdir dir="${dist}" />	
-		<mkdir dir="${test.report.dir}" />	
-		<mkdir dir="${build.test.dir}" />	
-		<mkdir dir="${build.prod.dir}" />	
 		
 		<echo level="debug">Creating dir ${dist}</echo>
 	</target>
@@ -49,26 +34,6 @@
         	         
         </jar>
     </target>
-	
-	<target name="compile-tests" depends="create_run_jar">
-		<javac srcdir="${test.dir}" destdir="${bin}" includeantruntime="false">
-			<classpath refid="project.classpath" />
-		</javac>
-	</target>
-	
-	<target name="test" depends="compile-tests">
-		<delete dir="${test.report.dir}" />
-		<mkdir dir="${test.report.dir}" />
-		<junit errorproperty="test.failed" failureproperty="test.failed">
-			<classpath refid="project.classpath" />
-			<formatter type="brief" usefile="false" />
-			<formatter type="xml" usefile="true" />
-			<batchtest todir="${test.report.dir}">
-				<fileset dir="${build.test.dir}" includes="**/*Test.class" />
-			</batchtest>
-		</junit>
-		<fail message="one or more tests failed!" if="test.failed" />
-	</target>
 	
 <!--	<target name="copy_libs">
 		 <copy todir="${dist}/lib">

@@ -1,18 +1,19 @@
 /********************************************************************************
- ** Form generated from reading ui file 'ProjectData.jui'
- **
- ** Created: Mo 30. Mai 13:11:13 2011
- **      by: Qt User Interface Compiler version 4.5.2
- **
- ** WARNING! All changes made in this file will be lost when recompiling ui file!
- ********************************************************************************/
+** Form generated from reading ui file 'ProjectData.jui'
+**
+** Created: Mi 1. Jun 14:46:06 2011
+**      by: Qt User Interface Compiler version 4.5.2
+**
+** WARNING! All changes made in this file will be lost when recompiling ui file!
+********************************************************************************/
 
 package ch.hsr.waktu.gui.qt.view.projectmanagment;
 
 import com.trolltech.qt.core.*;
 import com.trolltech.qt.gui.*;
 
-public class Ui_ProjectData implements com.trolltech.qt.QUiForm<QWidget> {
+public class Ui_ProjectData implements com.trolltech.qt.QUiForm<QWidget>
+{
     public QGridLayout gridLayout;
     public QLabel lblProjectnumber;
     public QLineEdit txtProjectnumber;
@@ -27,25 +28,19 @@ public class Ui_ProjectData implements com.trolltech.qt.QUiForm<QWidget> {
     public QComboBox cmbProjectManager;
     public QSpacerItem verticalSpacer;
 
-    public Ui_ProjectData() {
-        super();
-    }
+    public Ui_ProjectData() { super(); }
 
-    public void setupUi(QWidget ProjectData) {
+    public void setupUi(QWidget ProjectData)
+    {
         ProjectData.setObjectName("ProjectData");
-        ProjectData.resize(new QSize(700, 360).expandedTo(ProjectData
-                .minimumSizeHint()));
-        QSizePolicy sizePolicy = new QSizePolicy(
-                com.trolltech.qt.gui.QSizePolicy.Policy.Minimum,
-                com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
-        sizePolicy.setHorizontalStretch((byte) 0);
-        sizePolicy.setVerticalStretch((byte) 0);
-        sizePolicy.setHeightForWidth(ProjectData.sizePolicy()
-                .hasHeightForWidth());
+        ProjectData.resize(new QSize(700, 360).expandedTo(ProjectData.minimumSizeHint()));
+        QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.Minimum, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
+        sizePolicy.setHorizontalStretch((byte)0);
+        sizePolicy.setVerticalStretch((byte)0);
+        sizePolicy.setHeightForWidth(ProjectData.sizePolicy().hasHeightForWidth());
         ProjectData.setSizePolicy(sizePolicy);
         ProjectData.setMinimumSize(new QSize(700, 360));
-        ProjectData
-                .setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
+        ProjectData.setFocusPolicy(com.trolltech.qt.core.Qt.FocusPolicy.TabFocus);
         gridLayout = new QGridLayout(ProjectData);
         gridLayout.setObjectName("gridLayout");
         lblProjectnumber = new QLabel(ProjectData);
@@ -83,9 +78,7 @@ public class Ui_ProjectData implements com.trolltech.qt.QUiForm<QWidget> {
 
         gridLayout.addWidget(btnAdd, 5, 2, 1, 1);
 
-        horizontalSpacer = new QSpacerItem(40, 20,
-                com.trolltech.qt.gui.QSizePolicy.Policy.Expanding,
-                com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
+        horizontalSpacer = new QSpacerItem(40, 20, com.trolltech.qt.gui.QSizePolicy.Policy.Expanding, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum);
 
         gridLayout.addItem(horizontalSpacer, 5, 1, 1, 1);
 
@@ -105,9 +98,7 @@ public class Ui_ProjectData implements com.trolltech.qt.QUiForm<QWidget> {
 
         gridLayout.addWidget(cmbProjectManager, 2, 1, 1, 2);
 
-        verticalSpacer = new QSpacerItem(20, 40,
-                com.trolltech.qt.gui.QSizePolicy.Policy.Minimum,
-                com.trolltech.qt.gui.QSizePolicy.Policy.Expanding);
+        verticalSpacer = new QSpacerItem(20, 40, com.trolltech.qt.gui.QSizePolicy.Policy.Minimum, com.trolltech.qt.gui.QSizePolicy.Policy.Expanding);
 
         gridLayout.addItem(verticalSpacer, 6, 2, 1, 1);
 
@@ -121,21 +112,16 @@ public class Ui_ProjectData implements com.trolltech.qt.QUiForm<QWidget> {
         ProjectData.connectSlotsByName();
     } // setupUi
 
-    void retranslateUi(QWidget ProjectData) {
-        ProjectData.setWindowTitle(com.trolltech.qt.core.QCoreApplication
-                .translate("ProjectData", "ProjectData", null));
-        lblProjectnumber.setText(com.trolltech.qt.core.QCoreApplication
-                .translate("ProjectData", "Projectnumber:", null));
-        lblDescription.setText(com.trolltech.qt.core.QCoreApplication
-                .translate("ProjectData", "Projectdescription:", null));
-        lblProjectManager.setText(com.trolltech.qt.core.QCoreApplication
-                .translate("ProjectData", "Projectmanager:", null));
-        lblPlannedTime.setText(com.trolltech.qt.core.QCoreApplication
-                .translate("ProjectData", "Planned Time:", null));
-        btnAdd.setText(com.trolltech.qt.core.QCoreApplication.translate(
-                "ProjectData", "add", null));
-        checkBox.setText(com.trolltech.qt.core.QCoreApplication.translate(
-                "ProjectData", "Inactiv", null));
+    void retranslateUi(QWidget ProjectData)
+    {
+        ProjectData.setWindowTitle(com.trolltech.qt.core.QCoreApplication.translate("ProjectData", "ProjectData", null));
+        lblProjectnumber.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectData", "Projectnumber:", null));
+        lblDescription.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectData", "Projectdescription:", null));
+        lblProjectManager.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectData", "Projectmanager:", null));
+        lblPlannedTime.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectData", "Planned Time:", null));
+        btnAdd.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectData", "add", null));
+        checkBox.setText(com.trolltech.qt.core.QCoreApplication.translate("ProjectData", "Inactiv", null));
     } // retranslateUi
 
 }
+
