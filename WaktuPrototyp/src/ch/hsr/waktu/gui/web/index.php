@@ -1,9 +1,9 @@
 <?php
 
-	require_once 'controller/class.UsrController.php';
+	require_once '../../controller/datacontroller/class.UsrController.php';
 
-	require_once 'controller/class.LoginController.php';
-	require_once 'controller/class.PersistenceController.php';
+	require_once '../../controller/class.LoginController.php';
+	require_once '../../controller/class.PersistenceController.php';
 
 	$pec = PersistenceController::getInstance();
 	$pec->openConnection();

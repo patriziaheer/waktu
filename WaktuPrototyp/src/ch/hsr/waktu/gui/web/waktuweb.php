@@ -1,14 +1,14 @@
 <?php
 
-	require_once 'controller/class.UsrController.php';
-	require_once 'controller/class.ProjectController.php';
-	require_once 'controller/class.WorkSessionController.php';
-	require_once 'controller/class.WorkPackageController.php';
+	require_once '../../controller/datacontroller/class.UsrController.php';
+	require_once '../../controller/datacontroller/class.ProjectController.php';
+	require_once '../../controller/datacontroller/class.WorkSessionController.php';
+	require_once '../../controller/datacontroller/class.WorkPackageController.php';
 
-	require_once 'services/class.TimeUtil.php';
+	require_once '../../services/class.TimeUtil.php';
 
-	require_once 'controller/class.LoginController.php';
-	require_once 'controller/class.PersistenceController.php';
+	require_once '../../controller/class.LoginController.php';
+	require_once '../../controller/class.PersistenceController.php';
 
 	$pec = PersistenceController::getInstance();
 	$pec->openConnection();
