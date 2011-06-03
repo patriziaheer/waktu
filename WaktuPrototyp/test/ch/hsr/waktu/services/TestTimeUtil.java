@@ -19,12 +19,12 @@ public class TestTimeUtil extends TestSuite {
         assertEquals(new QDateTime(new QDate(2011, 4, 27),
                 new QTime(15, 32, 23)),
                 TimeUtil.convertGregorianToQDateTime(new GregorianCalendar(
-                        2011, 4, 27, 15, 32, 23)));
+                        2011, 3, 27, 15, 32, 23)));
     }
 
     @Test
     public void convertQDateTimeToGregorian_YearMonthDayHrsMinsSecs() {
-        assertEquals(new GregorianCalendar(2011, 4, 27, 15, 32, 23),
+        assertEquals(new GregorianCalendar(2011, 3, 27, 15, 32, 23),
                 TimeUtil.convertQDateTimeToGregorian(new QDateTime(new QDate(
                         2011, 4, 27), new QTime(15, 32, 23))));
     }

@@ -144,11 +144,6 @@ public class GuiController {
             logger.info(e.getMessage());
         }
 
-        if (!project.getProjectManager().equals(
-                LoginController.getInstance().getLoggedInUser())) {
-            permission = false;
-        }
-
         return permission;
     }
 

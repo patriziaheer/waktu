@@ -20,7 +20,7 @@ public class TimeUtil {
     public static QDateTime convertGregorianToQDateTime(
             final GregorianCalendar dateTime) {
         QDate date = new QDate(dateTime.get(GregorianCalendar.YEAR),
-                dateTime.get(GregorianCalendar.MONTH),
+                dateTime.get(GregorianCalendar.MONTH)+1,
                 dateTime.get(GregorianCalendar.DAY_OF_MONTH));
         QTime time = new QTime(dateTime.get(GregorianCalendar.HOUR_OF_DAY),
                 dateTime.get(GregorianCalendar.MINUTE),
@@ -33,7 +33,7 @@ public class TimeUtil {
         QDate date = dateTime.date();
         QTime time = dateTime.time();
         GregorianCalendar gregCal = new GregorianCalendar(date.year(),
-                date.month(), date.day(), time.hour(), time.minute(),
+                date.month()-1, date.day(), time.hour(), time.minute(),
                 time.second());
         logger.info(gregCal.get(Calendar.DAY_OF_MONTH) + "."
                 + gregCal.get(Calendar.MONTH) + "."

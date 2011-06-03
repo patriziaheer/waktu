@@ -22,16 +22,16 @@ public class TestIcsParser extends TestSuite {
     @Before
     public void setUp() {
         ws1.setDescription("Prog3");
-        ws1.setStart(new GregorianCalendar(2010, 8, 10, 8, 0, 0));
-        ws1.setEnd(new GregorianCalendar(2010, 8, 10, 10, 0, 0));
+        ws1.setStart(new GregorianCalendar(2010, 7, 10, 8, 0, 0));
+        ws1.setEnd(new GregorianCalendar(2010, 7, 10, 10, 0, 0));
         calendar.add(ws1);
         ws2.setDescription("Prog2");
-        ws2.setStart(new GregorianCalendar(2010, 8, 10, 10, 10, 0));
-        ws2.setEnd(new GregorianCalendar(2010, 8, 10, 11, 50, 0));
+        ws2.setStart(new GregorianCalendar(2010, 7, 10, 10, 10, 0));
+        ws2.setEnd(new GregorianCalendar(2010, 7, 10, 11, 50, 0));
         calendar.add(ws2);
         ws3.setDescription("Analysis II");
-        ws3.setStart(new GregorianCalendar(2010, 8, 9, 13, 10, 0));
-        ws3.setEnd(new GregorianCalendar(2010, 8, 9, 15, 0, 0));
+        ws3.setStart(new GregorianCalendar(2010, 7, 9, 13, 10, 0));
+        ws3.setEnd(new GregorianCalendar(2010, 7, 9, 15, 0, 0));
         calendar.add(ws3);
 
     }

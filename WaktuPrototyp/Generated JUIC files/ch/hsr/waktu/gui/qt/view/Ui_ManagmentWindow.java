@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'ManagmentWindow.jui'
 **
-** Created: Mi 1. Jun 14:46:06 2011
+** Created: Fr 3. Jun 09:59:12 2011
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -38,7 +38,7 @@ public class Ui_ManagmentWindow implements com.trolltech.qt.QUiForm<QMainWindow>
     public void setupUi(QMainWindow ManagmentWindow)
     {
         ManagmentWindow.setObjectName("ManagmentWindow");
-        ManagmentWindow.resize(new QSize(950, 453).expandedTo(ManagmentWindow.minimumSizeHint()));
+        ManagmentWindow.resize(new QSize(950, 509).expandedTo(ManagmentWindow.minimumSizeHint()));
         QSizePolicy sizePolicy = new QSizePolicy(com.trolltech.qt.gui.QSizePolicy.Policy.MinimumExpanding, com.trolltech.qt.gui.QSizePolicy.Policy.MinimumExpanding);
         sizePolicy.setHorizontalStretch((byte)0);
         sizePolicy.setVerticalStretch((byte)0);

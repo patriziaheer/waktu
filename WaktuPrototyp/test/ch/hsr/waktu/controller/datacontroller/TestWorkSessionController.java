@@ -419,8 +419,8 @@ public class TestWorkSessionController extends TestSuiteDataController {
 
         WorkSession temp = wsc.getWorkSessions(
                 ws1.getWorkPackage().getProject(), ws1.getUser(),
-                QDate.fromString("2011-05-02", "yyyy-MM-dd"),
-                QDate.fromString("2011-05-02", "yyyy-MM-dd")).get(0);
+                QDate.fromString("2011-04-02", "yyyy-MM-dd"),
+                QDate.fromString("2011-04-02", "yyyy-MM-dd")).get(0);
 
         assertEquals(ws1, temp);
 
@@ -445,16 +445,16 @@ public class TestWorkSessionController extends TestSuiteDataController {
                 "fvöasç*vf4FW");
         WorkSession tempWs = wsc.getWorkSessions(
                 ws1.getWorkPackage().getProject(), ws1.getUser(),
-                QDate.fromString("2011-04-22", "yyyy-MM-dd"),
-                QDate.fromString("2011-04-22", "yyyy-MM-dd")).get(0);
+                QDate.fromString("2011-05-22", "yyyy-MM-dd"),
+                QDate.fromString("2011-05-22", "yyyy-MM-dd")).get(0);
         wsc.removeWorkSession(tempWs);
 
         assertEquals(
                 0,
                 wsc.getWorkSessions(ws1.getWorkPackage().getProject(),
                         ws1.getUser(),
-                        QDate.fromString("2011-04-22", "yyyy-MM-dd"),
-                        QDate.fromString("2011-04-22", "yyyy-MM-dd")).size());
+                        QDate.fromString("2011-05-22", "yyyy-MM-dd"),
+                        QDate.fromString("2011-05-22", "yyyy-MM-dd")).size());
     }
 
     @Test

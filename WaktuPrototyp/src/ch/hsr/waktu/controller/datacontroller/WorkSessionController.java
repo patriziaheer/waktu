@@ -420,9 +420,9 @@ public class WorkSessionController extends QSignalEmitter {
                 startTime, endTime, description);
 
         newWorkSession.getStart().set(GregorianCalendar.MONTH,
-                newWorkSession.getStart().get(GregorianCalendar.MONTH) - 1);
+                newWorkSession.getStart().get(GregorianCalendar.MONTH));
         newWorkSession.getEnd().set(GregorianCalendar.MONTH,
-                newWorkSession.getEnd().get(GregorianCalendar.MONTH) - 1);
+                newWorkSession.getEnd().get(GregorianCalendar.MONTH));
 
         if (!PermissionController.getInstance().checkPermission()) {
             throw new WaktuException("Permission denied");

@@ -26,7 +26,7 @@ public class TimeController {
         double worktime = 0;
         List<WorkSession> workSessions = null;
 
-        if (project != null && usr == null && workPackage == null) {
+         if (project != null && usr == null && workPackage == null) {
             workSessions = WorkSessionController.getInstance().getWorkSessions(
                     project);
         } else if (project != null && usr != null && workPackage == null) {
